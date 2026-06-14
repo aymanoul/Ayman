@@ -7,7 +7,9 @@
 # - The "magic" MCP server reads its key from $MAGIC_API_KEY so the secret is
 #   never committed to git. Set MAGIC_API_KEY in your web environment config.
 #
-# The hook is idempotent (safe to re-run) and runs only on the web.
+# The hook is idempotent (safe to re-run) and runs only on the web. It runs
+# asynchronously: the session starts immediately and the toolkit finishes
+# installing in the background, becoming available shortly after.
 
 set -uo pipefail
 
@@ -17,6 +19,10 @@ log() { echo "[session-start] $*" >&2; }
 if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
   exit 0
 fi
+
+# Run asynchronously: the session starts immediately while the rest of this
+# script installs the toolkit in the background (up to asyncTimeout ms).
+echo '{"async": true, "asyncTimeout": 300000}'
 
 # --- 1. Design skills (global / user scope) --------------------------------
 REPOS=(

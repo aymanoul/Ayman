@@ -32,9 +32,10 @@ If `MAGIC_API_KEY` is not set, the skills still install but the `magic` server i
 
 ## Activation
 
-Merge this into the repo's **default branch**. Future web sessions branch from it and
-will run the hook automatically. New `magic` MCP tools become available once the session
-finishes connecting.
+Future web sessions that branch from a branch containing this `.claude/` directory run
+the hook automatically. The hook runs **asynchronously**, so the session starts
+immediately and the skills + `magic` MCP server finish installing in the background a
+short while later, rather than blocking startup.
 
 > Note: these are third-party skills and an MCP server; they run with full agent
 > permissions. Review them before relying on them for sensitive work.
