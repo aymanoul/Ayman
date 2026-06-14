@@ -10,11 +10,20 @@ reinstalls everything on startup.
 
 `.claude/hooks/session-start.sh` runs on each web session and:
 
-1. Installs 22 design / UX skills globally (`~/.claude/skills/`) via the `skills` CLI:
+1. Installs 48 design / video / UX skills globally (`~/.claude/skills/`).
+
+   Via the `skills` CLI:
    - [`nextlevelbuilder/ui-ux-pro-max-skill`](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) — 7 skills
    - [`emilkowalski/skill`](https://github.com/emilkowalski/skill) — 1 skill
    - [`Leonxlnx/taste-skill`](https://github.com/Leonxlnx/taste-skill) — 13 skills
    - [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable) — 1 skill
+   - [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) — 16 skills (video)
+   - [`AgriciDaniel/banana-claude`](https://github.com/AgriciDaniel/banana-claude) — 1 skill
+   - [`hardikpandya/stop-slop`](https://github.com/hardikpandya/stop-slop) — 1 skill
+   - [`JuliusBrussee/caveman`](https://github.com/JuliusBrussee/caveman) — 7 skills
+
+   Installed manually (SKILL.md lives in a non-standard path the CLI can't auto-detect):
+   - [`coleam00/context-engineering-intro`](https://github.com/coleam00/context-engineering-intro) — 1 skill (`build-with-agent-team`)
 2. Registers the `magic` MCP server ([`@21st-dev/magic`](https://www.npmjs.com/package/@21st-dev/magic)) at user scope.
 
 The hook is idempotent and runs only on the web (it checks `$CLAUDE_CODE_REMOTE`).
