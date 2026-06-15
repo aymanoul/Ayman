@@ -6,6 +6,7 @@ import { findModule, findSeal } from '../data/modules'
 import { rise, stagger } from '../lib/anim'
 import DanielSeal from './seals/DanielSeal'
 import FundamentSeal from './seals/FundamentSeal'
+import AbrahamSeal from './seals/AbrahamSeal'
 
 // Placeholder seal view. Built seals render their own page; the rest get a
 // graceful illuminated holding page until their content lands.
@@ -20,6 +21,9 @@ export default function SealPage() {
   }
   if (moduleId === 'muhammad' && sealId === 'fundament') {
     return <FundamentSeal />
+  }
+  if (moduleId === 'muhammad' && sealId === 'abrahams-nachkommen') {
+    return <AbrahamSeal />
   }
 
   if (!module || !seal) {

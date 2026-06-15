@@ -16,8 +16,8 @@ const modul1Siegel: SealMeta[] = [
     nummer: 'I',
     titel: 'Abrahams Nachkommen',
     arabic: 'إسماعيل',
-    status: 'coming',
-    keywords: ['abraham', 'ismael', 'nachkommen', 'bund', 'großes volk', 'genesis', 'maimonides', 'beschneidung'],
+    status: 'ready',
+    keywords: ['abraham', 'ismael', 'ismail', 'nachkommen', 'bund', 'großes volk', 'goy gadol', 'genesis', 'maimonides', 'beschneidung', 'kedar', 'paran', 'hagar', 'isaak', 'zwölf fürsten', 'stammbaum', 'araber'],
   },
   {
     id: 'prophet-wie-mose',

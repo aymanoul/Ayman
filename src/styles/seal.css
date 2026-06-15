@@ -1398,3 +1398,249 @@
     max-width: 9rem;
   }
 }
+
+/* ============================================================================
+   SIEGEL I — Abrahams Nachkommen. Family tree, twelve princes, covenant gifts.
+   ========================================================================== */
+
+/* ------------------------------------------------------ the family tree */
+.tree {
+  text-align: center;
+}
+.tree__crown {
+  display: flex;
+  justify-content: center;
+}
+.tree__root {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.7rem 1.8rem;
+  border: 1.5px solid var(--brass-line);
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(168, 132, 47, 0.1), var(--paper-card));
+  box-shadow: 0 8px 20px -14px rgba(8, 56, 42, 0.4);
+}
+.tree__root-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--ink);
+}
+.tree__root-ar {
+  font-size: 1.35rem;
+  color: var(--brass-deep);
+  margin-top: 0.05rem;
+}
+.tree__split {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.5rem, 6vw, 4rem);
+  margin-top: 2.6rem;
+  position: relative;
+}
+.tree__split::after {
+  content: '';
+  position: absolute;
+  top: -2.6rem;
+  left: 50%;
+  width: 2px;
+  height: 1.3rem;
+  background: var(--line-strong);
+  transform: translateX(-50%);
+}
+.tree__split::before {
+  content: '';
+  position: absolute;
+  top: -1.3rem;
+  left: 25%;
+  right: 25%;
+  height: 2px;
+  background: var(--line-strong);
+}
+.tree__col {
+  position: relative;
+  flex: 1 1 0;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.tree__col::before {
+  content: '';
+  position: absolute;
+  top: -1.3rem;
+  left: 50%;
+  width: 2px;
+  height: 1.3rem;
+  background: var(--line-strong);
+  transform: translateX(-50%);
+}
+.tree__col-label {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.3rem;
+}
+.tree__col--ismael .tree__col-label {
+  color: var(--green);
+}
+.tree__node {
+  position: relative;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper-card);
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+.tree__node + .tree__node::before {
+  content: '';
+  position: absolute;
+  top: -0.55rem;
+  left: 50%;
+  width: 2px;
+  height: 0.55rem;
+  background: var(--line);
+  transform: translateX(-50%);
+}
+.tree__col--ismael .tree__node {
+  border-color: rgba(14, 91, 67, 0.25);
+}
+.tree__node--end {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  color: #fff;
+  background: linear-gradient(180deg, var(--green-bright), var(--green));
+  border-color: var(--green-deep);
+  box-shadow: 0 12px 26px -14px rgba(8, 56, 42, 0.55);
+}
+.tree__node--isaak {
+  background: linear-gradient(180deg, #bd973c, #a8842f);
+  border-color: var(--brass-deep);
+}
+
+/* ------------------------------------------------------ the twelve princes */
+.zwoelf__ref {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  margin-left: 0.5rem;
+}
+.zwoelf {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+.zwoelf__item {
+  position: relative;
+  padding: 0.7rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper-card);
+  text-align: center;
+}
+.zwoelf__num {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+}
+.zwoelf__name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  color: var(--ink);
+  margin-top: 0.15rem;
+}
+.zwoelf__item--hl {
+  border-color: var(--green);
+  background: var(--green-wash);
+}
+.zwoelf__item--hl .zwoelf__name {
+  color: var(--green-deep);
+}
+.zwoelf__tag {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.56rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-top: 0.2rem;
+}
+
+/* ------------------------------------------------------ the covenant gifts */
+.gaben {
+  list-style: none;
+}
+.gaben li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--line-faint);
+}
+.gaben li:last-child {
+  border-bottom: none;
+}
+.gaben__check {
+  flex: none;
+  align-self: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  display: grid;
+  place-items: center;
+  font-size: 0.78rem;
+  color: #fff;
+  background: var(--green);
+  border-radius: 50%;
+}
+.gaben__gabe {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  color: var(--ink);
+}
+.gaben__ref {
+  margin-left: auto;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  text-align: right;
+}
+
+/* ---------------------------------------------------------------- responsive */
+@media (max-width: 640px) {
+  .tree__split {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .tree__split::before {
+    display: none;
+  }
+  .tree__col {
+    max-width: 320px;
+    width: 100%;
+  }
+  .tree__col::before {
+    display: none;
+  }
+  .zwoelf {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gaben li {
+    flex-wrap: wrap;
+    gap: 0.5rem 0.85rem;
+  }
+  .gaben__ref {
+    margin-left: 2.3rem;
+    text-align: left;
+  }
+}
