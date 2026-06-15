@@ -131,22 +131,53 @@
   flex-direction: column;
   align-items: center;
 }
-.statue__svg {
+.statue__figure {
+  position: relative;
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
+  margin: 0 auto;
+}
+.statue__berg {
+  position: absolute;
+  left: 50%;
+  bottom: 1%;
+  translate: -50% 0;
+  width: 152%;
   height: auto;
-  filter: drop-shadow(0 24px 36px rgba(8, 56, 42, 0.18));
+  z-index: 0;
+  transform-origin: bottom center;
+  filter: drop-shadow(0 10px 24px rgba(8, 56, 42, 0.25));
 }
-.statue__zone {
+.statue__img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 22px 30px rgba(8, 56, 42, 0.22));
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.statue__hotspots {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.statue__hot {
+  position: absolute;
+  border: none;
+  background: transparent;
+  border-radius: 12px;
   cursor: pointer;
-  transition: filter 0.3s var(--ease-out);
-  outline: none;
+  transition: background 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
 }
-.statue__zone.is-hover {
-  filter: brightness(1.1) drop-shadow(0 0 10px rgba(201, 162, 39, 0.45));
+.statue__hot.is-hover {
+  background: rgba(201, 162, 39, 0.16);
+  box-shadow: inset 0 0 0 2px rgba(201, 162, 39, 0.7), 0 0 18px rgba(201, 162, 39, 0.3);
 }
-.statue__zone:focus-visible {
-  filter: brightness(1.1) drop-shadow(0 0 0 2px var(--green-bright));
+.statue__hot:focus-visible {
+  outline: 2px solid var(--green-bright);
+  outline-offset: 0;
 }
 .statue__readout {
   margin-top: 1.25rem;
@@ -1011,14 +1042,20 @@
 .map {
   max-width: 820px;
   margin: 0 auto;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 1px 2px rgba(8, 56, 42, 0.04), 0 14px 32px -22px rgba(8, 56, 42, 0.2);
+}
+.map__img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .map__svg {
   width: 100%;
   height: auto;
-  background: var(--paper-card);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: 0 1px 2px rgba(8, 56, 42, 0.04);
 }
 .map__div {
   font-family: var(--font-ui);

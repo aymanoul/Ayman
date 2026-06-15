@@ -120,7 +120,7 @@ export default function DanielSeal() {
           <Eyebrow kicker="Haupt-Exhibit" title="Das Traumbild" />
           <p className="sec__lead">
             Fünf Materialien, fünf Reiche. Berühre eine Zone, um Reich und Beleg zu sehen — und lass den Stein
-            rollen, der das Eisen zerschmettert und zum großen Berg wird.
+            zum großen Berg werden, der die Erde füllt.
           </p>
           <DanielStatue />
         </section>
