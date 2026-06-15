@@ -131,8 +131,11 @@ export default function MoseSeal() {
           <div className="belege-grid">
             <BelegCard beleg={moseBelege.deut1818} />
             <BelegCard beleg={moseBelege.deut3410} />
+            <BelegCard beleg={moseBelege.deut1815} />
             <BelegCard beleg={moseBelege.q7315} />
             <BelegCard beleg={moseBelege.q5334} />
+            <BelegCard beleg={moseBelege.john121} />
+            <BelegCard beleg={moseBelege.apg322} />
           </div>
         </section>
 

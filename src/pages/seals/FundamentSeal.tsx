@@ -123,17 +123,11 @@ export default function FundamentSeal() {
             <BelegCard beleg={fundamentBelege.q7157} />
             <BelegCard beleg={fundamentBelege.q616} />
             <BelegCard beleg={fundamentBelege.q2146} />
-            <BelegCard beleg={fundamentBelege.erkenntnis} />
-          </div>
-        </section>
-
-        {/* ---- the corruption question — the crux ---- */}
-        <section className="sec">
-          <Eyebrow kicker="Der Einwand · gelöst" title="Ist die Bibel verfälscht?" />
-          <TahrifSpektrum />
-          <div className="belege-grid" style={{ marginTop: '1.5rem', maxWidth: '560px' }}>
             <BelegCard beleg={fundamentBelege.q279} />
             <BelegCard beleg={fundamentBelege.q568} />
+            <BelegCard beleg={fundamentBelege.q546} />
+            <BelegCard beleg={fundamentBelege.tahrif} />
+            <BelegCard beleg={fundamentBelege.erkenntnis} />
           </div>
         </section>
 

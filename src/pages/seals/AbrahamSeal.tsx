@@ -131,8 +131,13 @@ export default function AbrahamSeal() {
           <div className="belege-grid">
             <BelegCard beleg={abrahamBelege.gen1720} />
             <BelegCard beleg={abrahamBelege.gen2113} />
+            <BelegCard beleg={abrahamBelege.gen2118} />
+            <BelegCard beleg={abrahamBelege.gen1726} />
+            <BelegCard beleg={abrahamBelege.gen2218} />
             <BelegCard beleg={abrahamBelege.q2129} />
+            <BelegCard beleg={abrahamBelege.q1437} />
             <BelegCard beleg={abrahamBelege.genealogie} />
+            <BelegCard beleg={abrahamBelege.maimonides} />
           </div>
         </section>
 
