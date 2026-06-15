@@ -46,11 +46,11 @@ export default function SealPage() {
           Siegel {seal.nummer}
         </motion.p>
         <motion.h1 variants={rise}>{seal.titel}</motion.h1>
-        <motion.p className="arabic" variants={rise} style={{ fontSize: '2rem', color: 'var(--gold)' }}>
+        <motion.p className="arabic" variants={rise} style={{ fontSize: '2rem', color: 'var(--green)' }}>
           {seal.arabic}
         </motion.p>
-        <motion.p className="seek__note" variants={rise} style={{ marginTop: '1rem' }}>
-          Dieses Siegel wird gerade illuminiert.
+        <motion.p className="seek__note" variants={rise} style={{ marginTop: '1rem', fontSize: '0.95rem' }}>
+          Dieses Siegel wird gerade illuminiert — es folgt in Kürze.
         </motion.p>
         <motion.div variants={rise}>
           <Link to={`/modul/${module.id}`} className="stub__back">

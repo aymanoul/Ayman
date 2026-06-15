@@ -529,7 +529,16 @@
   color: var(--green);
 }
 .srow--soon {
-  opacity: 0.66;
+  opacity: 0.64;
+}
+.srow__soon {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-left: auto;
 }
 @media (hover: hover) and (pointer: fine) {
   .srow:hover {

@@ -66,7 +66,11 @@ export default function ModulePage() {
                   <span className="srow__ar" lang="ar" dir="rtl">
                     {s.arabic}
                   </span>
-                  <Chevron className="plate__go" style={{ opacity: 0.5 }} aria-hidden />
+                  {s.status === 'coming' ? (
+                    <span className="srow__soon">◆ Folgt</span>
+                  ) : (
+                    <Chevron className="plate__go" style={{ opacity: 0.5 }} aria-hidden />
+                  )}
                 </Link>
               </motion.div>
             ))}
