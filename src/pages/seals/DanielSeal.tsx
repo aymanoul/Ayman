@@ -8,6 +8,7 @@ import { BelegCard } from '../../components/Beleg'
 import DanielStatue from '../../components/exhibits/DanielStatue'
 import Timeline from '../../components/exhibits/Timeline'
 import { PelachTable, HmdBridge, KonstantinCard } from '../../components/exhibits/MoreExhibits'
+import MapExhibit from '../../components/exhibits/MapExhibit'
 import { rise, stagger } from '../../lib/anim'
 import {
   danielThese,
@@ -142,6 +143,12 @@ export default function DanielSeal() {
         <section className="sec">
           <Eyebrow kicker="Historischer Beweis" title="Das Zeitfenster" />
           <Timeline />
+        </section>
+
+        {/* ---- the map ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Geografischer Beweis" title="Das geteilte Rom" />
+          <MapExhibit />
         </section>
 
         {/* ---- objection / counter ---- */}
