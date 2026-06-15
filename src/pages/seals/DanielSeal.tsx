@@ -7,6 +7,7 @@ import { Crown } from '../../components/Ornament'
 import { BelegCard } from '../../components/Beleg'
 import DanielStatue from '../../components/exhibits/DanielStatue'
 import Timeline from '../../components/exhibits/Timeline'
+import { PelachTable, HmdBridge, KonstantinCard } from '../../components/exhibits/MoreExhibits'
 import { rise, stagger } from '../../lib/anim'
 import {
   danielThese,
@@ -151,6 +152,16 @@ export default function DanielSeal() {
               <KonterRow key={i} item={k} />
             ))}
           </motion.div>
+        </section>
+
+        {/* ---- supporting exhibits ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Exhibits" title="Sprache, Wurzel, Geschichte" />
+          <div className="exhibits-grid">
+            <PelachTable />
+            <HmdBridge />
+            <KonstantinCard />
+          </div>
         </section>
 
         {/* ---- scholarly layer ---- */}

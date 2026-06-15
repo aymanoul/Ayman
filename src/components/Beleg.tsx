@@ -41,39 +41,6 @@ export function BelegProvider({ children }: { children: ReactNode }) {
   )
 }
 
-function Rays() {
-  return (
-    <svg className="beleg-rays" viewBox="0 0 400 400" aria-hidden>
-      <defs>
-        <radialGradient id="rayglow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ffe9a8" stopOpacity="0.5" />
-          <stop offset="45%" stopColor="#d9b24a" stopOpacity="0.12" />
-          <stop offset="100%" stopColor="#d9b24a" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="200" cy="200" r="200" fill="url(#rayglow)" />
-      {Array.from({ length: 36 }, (_, i) => {
-        const a = (i / 36) * Math.PI * 2
-        const long = i % 2 === 0
-        const r1 = 40
-        const r2 = long ? 210 : 150
-        return (
-          <line
-            key={i}
-            x1={200 + r1 * Math.cos(a)}
-            y1={200 + r1 * Math.sin(a)}
-            x2={200 + r2 * Math.cos(a)}
-            y2={200 + r2 * Math.sin(a)}
-            stroke="#e9c766"
-            strokeWidth={long ? 1.4 : 0.8}
-            opacity={long ? 0.5 : 0.28}
-          />
-        )
-      })}
-    </svg>
-  )
-}
-
 function BelegModal({ beleg, onClose }: { beleg: Beleg; onClose: () => void }) {
   const reduce = useReducedMotion()
   const rtl = beleg.sprache === 'ar' || beleg.sprache === 'he'
@@ -99,8 +66,6 @@ function BelegModal({ beleg, onClose }: { beleg: Beleg; onClose: () => void }) {
         transition={{ duration: 0.34, ease: EASE }}
         onClick={(e) => e.stopPropagation()}
       >
-        {beleg.typ === 'quran' && <Rays />}
-
         <header className="beleg-panel__head">
           <span className="beleg-panel__label">{LABEL[beleg.typ]}</span>
           <span className="beleg-panel__ref">{beleg.fundstelle}</span>
@@ -118,7 +83,11 @@ function BelegModal({ beleg, onClose }: { beleg: Beleg; onClose: () => void }) {
           )}
 
           {beleg.original && (
-            <p className={`beleg-original ${scriptClass} ${beleg.typ === 'quran' ? 'is-hero' : ''}`} dir={rtl ? 'rtl' : undefined} lang={beleg.sprache}>
+            <p
+              className={`beleg-original ${scriptClass} ${beleg.typ === 'quran' ? 'is-hero quran-script' : ''}`}
+              dir={rtl ? 'rtl' : undefined}
+              lang={beleg.sprache}
+            >
               {beleg.original}
             </p>
           )}
@@ -148,7 +117,7 @@ export function BelegCard({ beleg, className = '' }: { beleg: Beleg; className?:
         <span className="beleg-card__ref">{beleg.fundstelle}</span>
       </span>
       {beleg.typ === 'quran' && beleg.kern && (
-        <span className="beleg-card__ar arabic" dir="rtl" aria-hidden>
+        <span className="beleg-card__ar quran-script" dir="rtl" aria-hidden>
           {beleg.kern}
         </span>
       )}

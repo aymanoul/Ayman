@@ -267,5 +267,35 @@ export const danielVernetzung = [
   { ziel: 'Siegel VII — Jüdische Erwartung', text: '4 Esra, Rabbi Akiva, Bar Kochba — Juden erwarteten aktiv das Reich Gottes und einen Krieger-Messias.' },
 ]
 
+// ---- additional exhibits ----
+export const pelachRows = [
+  { stelle: 'Esra 7,24', text: 'Tempeldiener — schlichtes „dienen"' },
+  { stelle: 'Genesis 14,14', text: 'Abrahams Männer dienen ihm' },
+  { stelle: 'Genesis 27,29', text: 'Völker dienen Jakob' },
+  { stelle: 'Genesis 29,18', text: 'Jakob dient Laban sieben Jahre' },
+]
+export const pelachPointe =
+  'Hat Jakob Laban angebetet? pelach heißt dienen — der Menschensohn wird befolgt, nicht vergöttert.'
+
+export const hmdBridge = {
+  root: 'Ḥ · M · D',
+  hebrew: 'חֲמוּדוֹת',
+  hebrewTrans: 'ḥamudot',
+  hebrewRef: 'Daniel 9,23 — „vielgeliebt"',
+  arabic: 'مُحَمَّد · أحْمَد',
+  arabicTrans: 'Muhammad · Aḥmad',
+  arabicRef: '„der Gepriesene"',
+  note: 'Dieselbe semitische Wurzel — Strong H2530. Brücke zu Siegel IV (maḥamaddīm, Hld 5,16).',
+}
+
+export const konstantinMarks = [
+  { mark: 'Niedrige Herkunft, steigt auf', beleg: 'Helena, einfache Herkunft; Aufstieg vom Kommandeur zum Kaiser' },
+  { mark: 'Unterwirft drei Könige', beleg: 'die Tetrarchie — Konstantin besiegt seine Mitherrscher' },
+  { mark: 'Spricht gegen den Höchsten', beleg: 'Konzil von Nicäa 325 — die Trinitätsdoktrin' },
+  { mark: 'Unterdrückt die Heiligen', beleg: 'Verfolgung der unitarischen Christen' },
+  { mark: 'Ändert Festzeiten & Gesetze', beleg: 'Sonntag statt Sabbat — per kaiserlichem Dekret' },
+  { mark: 'Seine Macht wird genommen', beleg: 'Konstantinopel fällt 1453 an die Muslime' },
+]
+
 export const danielGleicheMassstaebe =
   'Der Kritiker verlangt für den Islam ein perfekt eingetroffenes Zeitfenster — und akzeptiert für Jesus eine Daniel-9-Rechnung, die mit keinem Startdatum aufgeht, plus eine Umdeutung des „Steins". Er nimmt pelach als „göttliche Anbetung", obwohl dasselbe Wort in seiner eigenen Bibel „dienen" heißt. Auf gleichen Maßstäben zerbricht die Jesus-Deutung an Daniels eigener Chronologie.'
