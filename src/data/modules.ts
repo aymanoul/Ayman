@@ -32,8 +32,8 @@ const modul1Siegel: SealMeta[] = [
     nummer: 'III',
     titel: 'Arabische Prophezeiungen',
     arabic: 'فاران',
-    status: 'coming',
-    keywords: ['arabien', 'paran', 'kedar', 'sela', 'baca', 'mekka', 'jesaja 42', 'karte'],
+    status: 'ready',
+    keywords: ['arabien', 'paran', 'pharan', 'kedar', 'qedar', 'sela', 'baca', 'baka', 'bakka', 'mekka', 'jesaja 42', 'jesaja 60', 'habakuk', 'teman', 'nebajot', 'zamzam', 'hadsch', 'pilgerfahrt', '5. mose 33', 'deuteronomium 33', 'psalm 84', 'drei aufstrahlungen', 'sinai', 'seir', 'karte', 'midrasch', 'sifre'],
   },
   {
     id: 'hohelied',
