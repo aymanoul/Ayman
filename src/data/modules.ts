@@ -8,8 +8,8 @@ const modul1Siegel: SealMeta[] = [
     nummer: 'Fundament',
     titel: 'Das Fundament',
     arabic: 'مكتوبًا',
-    status: 'coming',
-    keywords: ['koran', 'bewahrung', 'ahmad', 'aḥmad', '7:157', 'maktuban', 'bibel', 'fälschung', '61:6'],
+    status: 'ready',
+    keywords: ['koran', 'bewahrung', 'ahmad', 'aḥmad', '7:157', 'maktuban', 'maktūban', 'bibel', 'fälschung', 'tahrif', 'taḥrīf', 'verfälschung', 'spielregeln', 'methode', '61:6', '2:146', '5:68', 'fundament'],
   },
   {
     id: 'abrahams-nachkommen',

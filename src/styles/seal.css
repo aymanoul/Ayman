@@ -1111,3 +1111,290 @@
   font-size: 0.85rem;
   color: var(--ink-faint);
 }
+
+/* ============================================================================
+   FUNDAMENT — taḥrīf spectrum, the Ḥ-M-D name thread, the rules of reading.
+   ========================================================================== */
+
+/* ----------------------------------------------------- the taḥrīf spectrum */
+.spektrum__lead {
+  max-width: 64ch;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.spektrum__bar {
+  position: relative;
+  margin: 3.4rem 0 0.5rem;
+}
+.spektrum__track {
+  display: block;
+  height: 6px;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(154, 59, 50, 0.7) 0%,
+    rgba(168, 132, 47, 0.55) 32%,
+    var(--green-bright) 64%,
+    rgba(168, 132, 47, 0.55) 86%,
+    rgba(154, 59, 50, 0.7) 100%
+  );
+}
+.spektrum__marker {
+  position: absolute;
+  top: 3px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 70vw;
+}
+.spektrum__dot {
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 3px var(--paper-card), 0 0 0 5px var(--green), 0 8px 16px -6px rgba(8, 56, 42, 0.6);
+}
+.spektrum__flag {
+  margin-top: 0.7rem;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(180deg, var(--green-bright), var(--green));
+  border: 1px solid var(--green-deep);
+  border-radius: 999px;
+  padding: 0.42rem 0.95rem;
+  box-shadow: 0 10px 24px -12px rgba(8, 56, 42, 0.5);
+  white-space: nowrap;
+}
+.spektrum__poles {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.9rem;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.spektrum__poles span:last-child {
+  text-align: right;
+}
+
+/* ------------------------------------------------------ the Ḥ-M-D name thread */
+.namen__pair {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+}
+.namen__card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.3rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(160deg, var(--green-wash), var(--paper-card));
+}
+.namen__ar {
+  font-size: 2.4rem;
+  line-height: 1.3;
+  color: var(--green);
+}
+.namen__trans {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-top: 0.3rem;
+}
+.namen__glanz {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-top: 0.45rem;
+}
+.namen__ref {
+  font-family: var(--font-ui);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 0.7rem;
+}
+.namen__bridge {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0 0.3rem;
+}
+.namen__root {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--brass-deep);
+  background: rgba(168, 132, 47, 0.12);
+  border: 1px solid var(--brass-line);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  white-space: nowrap;
+}
+.namen__bedeutung {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  text-align: center;
+  max-width: 11ch;
+}
+.namen__spuren {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--line-faint);
+  padding-top: 1.1rem;
+}
+.namen__spuren-h {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.6rem;
+}
+.namen__list {
+  list-style: none;
+}
+.namen__spur {
+  display: grid;
+  grid-template-columns: 3.4rem 7.5rem 1fr auto auto;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--line-faint);
+}
+.namen__spur:last-child {
+  border-bottom: none;
+}
+.namen__spur-heb {
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--ink);
+}
+.namen__spur-wort {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--ink);
+}
+.namen__spur-sinn {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.namen__spur-stelle {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+.namen__spur-siegel {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  white-space: nowrap;
+}
+.namen__spur-siegel--none {
+  color: var(--ink-faint);
+  border-color: var(--line-faint);
+}
+
+/* ------------------------------------------------------------- the rules */
+.regeln {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.4rem 1.6rem;
+}
+.regeln li {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line-faint);
+}
+.regeln__n {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--brass);
+  padding-top: 0.2rem;
+}
+.regeln__body {
+  display: flex;
+  flex-direction: column;
+}
+.regeln__r {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--green);
+}
+.regeln__t {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-top: 0.15rem;
+}
+
+/* ---------------------------------------------------------------- responsive */
+@media (max-width: 640px) {
+  .namen__pair {
+    flex-direction: column;
+  }
+  .namen__bridge {
+    flex-direction: row;
+    gap: 0.7rem;
+    padding: 0.2rem 0;
+  }
+  .namen__bedeutung {
+    max-width: none;
+  }
+  .namen__spur {
+    grid-template-columns: 2.6rem 1fr;
+    gap: 0.2rem 0.7rem;
+  }
+  .namen__spur-sinn,
+  .namen__spur-stelle,
+  .namen__spur-siegel {
+    grid-column: 2;
+  }
+  .regeln {
+    grid-template-columns: 1fr;
+  }
+  .spektrum__flag {
+    font-size: 0.64rem;
+    white-space: normal;
+    max-width: 9rem;
+  }
+}

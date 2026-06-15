@@ -5,6 +5,7 @@ import { ArrowLeft } from '../components/icons'
 import { findModule, findSeal } from '../data/modules'
 import { rise, stagger } from '../lib/anim'
 import DanielSeal from './seals/DanielSeal'
+import FundamentSeal from './seals/FundamentSeal'
 
 // Placeholder seal view. Built seals render their own page; the rest get a
 // graceful illuminated holding page until their content lands.
@@ -14,8 +15,11 @@ export default function SealPage() {
   const module = findModule(moduleId)
   const seal = findSeal(moduleId, sealId)
 
-  if (sealId === 'daniel' && moduleId === 'muhammad') {
+  if (moduleId === 'muhammad' && sealId === 'daniel') {
     return <DanielSeal />
+  }
+  if (moduleId === 'muhammad' && sealId === 'fundament') {
+    return <FundamentSeal />
   }
 
   if (!module || !seal) {
