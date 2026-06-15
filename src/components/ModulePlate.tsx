@@ -3,18 +3,25 @@ import { motion } from 'framer-motion'
 import type { ModuleMeta } from '../data/types'
 import Shamsa from './Shamsa'
 import { Chevron } from './icons'
-import { rise } from '../lib/anim'
+import { riseSpring } from '../lib/anim'
 
 // One module rendered as an illuminated plate. Title only — no description,
-// per the minimalist brief. Available plates light up and lead inward;
-// forthcoming plates sit quiet with a "bald" mark.
+// per the minimalist brief. Available plates lift on a spring, the seal ignites
+// and turns; forthcoming plates sit quiet with a "bald" mark.
 export default function ModulePlate({ module }: { module: ModuleMeta }) {
   const open = module.status === 'available'
 
   const inner = (
     <>
+      <span className="plate__frame" aria-hidden>
+        <i />
+        <i />
+        <i />
+        <i />
+      </span>
+      <span className="plate__sweep" aria-hidden />
       <span className="plate__seal" aria-hidden>
-        <Shamsa size={66} animate={false} idle={open} glow={false} />
+        <Shamsa size={72} animate={false} idle={open} glow={false} />
       </span>
       <span className="plate__body">
         <span className="plate__titel">
@@ -33,7 +40,13 @@ export default function ModulePlate({ module }: { module: ModuleMeta }) {
   )
 
   return (
-    <motion.div variants={rise}>
+    <motion.div
+      variants={riseSpring}
+      whileHover={open ? { y: -5 } : undefined}
+      whileTap={open ? { scale: 0.99 } : undefined}
+      transition={{ type: 'spring', stiffness: 340, damping: 26 }}
+      style={{ borderRadius: 18 }}
+    >
       {open ? (
         <Link to={`/modul/${module.id}`} className="plate plate--open" aria-label={`Modul öffnen: ${module.titel}`}>
           {inner}

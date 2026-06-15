@@ -40,15 +40,18 @@
   --hairline-faint: rgba(201, 162, 39, 0.1);
 
   /* ---- Type ---- */
-  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --font-body: 'Cardo', Georgia, serif;
-  --font-ui: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --font-display: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-ui: 'Jost', system-ui, -apple-system, sans-serif;
   --font-arabic: 'Amiri', serif;
   --font-kufi: 'Reem Kufi', sans-serif;
   --font-hebrew: 'Frank Ruhl Libre', serif;
 
-  /* ---- Motion ---- */
-  --ease-sacred: cubic-bezier(0.16, 1, 0.3, 1);
+  /* ---- Motion (strong custom curves — the built-ins are too weak) ---- */
+  --ease-sacred: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
   color-scheme: dark;
 }
@@ -114,15 +117,23 @@ a {
 }
 
 /* ---------------------------------------------------- the ground itself */
-/* A warm dawn of gold light high in a midnight-indigo sky. */
+/* A shaft of gold dawn high in a midnight-indigo sky, edges falling to black. */
 .atmosphere {
   position: fixed;
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(120% 80% at 50% -10%, rgba(201, 162, 39, 0.16) 0%, rgba(201, 162, 39, 0.04) 26%, transparent 52%),
-    radial-gradient(90% 60% at 50% 4%, rgba(91, 134, 214, 0.12) 0%, transparent 50%),
-    linear-gradient(180deg, var(--ground-2) 0%, var(--ground) 38%, #070a15 100%);
+    radial-gradient(60% 42% at 50% -8%, rgba(243, 220, 146, 0.22) 0%, rgba(201, 162, 39, 0.08) 24%, transparent 56%),
+    radial-gradient(120% 70% at 50% -12%, rgba(201, 162, 39, 0.1) 0%, transparent 50%),
+    radial-gradient(100% 60% at 50% 2%, rgba(91, 134, 214, 0.14) 0%, transparent 52%),
+    linear-gradient(180deg, #0c1228 0%, var(--ground) 40%, #05070f 100%);
+}
+.atmosphere::before {
+  /* cinematic vignette — pulls focus to the centre column */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(115% 88% at 50% 38%, transparent 52%, rgba(3, 5, 12, 0.55) 100%);
 }
 .atmosphere::after {
   /* faint film grain so the dark never looks flat/plasticky */
@@ -130,8 +141,23 @@ a {
   position: absolute;
   inset: 0;
   opacity: 0.5;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
+}
+
+/* a slender beam of light descending behind the frontispiece */
+.lightshaft {
+  position: fixed;
+  top: -10vh;
+  left: 50%;
+  translate: -50% 0;
+  width: min(620px, 96vw);
+  height: 86vh;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(46% 60% at 50% 0%, rgba(243, 220, 146, 0.16) 0%, rgba(201, 162, 39, 0.05) 36%, transparent 70%);
+  mix-blend-mode: screen;
+  filter: blur(6px);
 }
 
 /* ----------------------------------------------------------- type roles */

@@ -10,7 +10,7 @@ import { useId } from 'react'
 // ---------------------------------------------------------------------------
 
 const C = 100 // centre
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
+const EASE: [number, number, number, number] = [0.23, 1, 0.32, 1]
 
 function starPath(spikes: number, outer: number, inner: number, rot = -Math.PI / 2): string {
   const step = Math.PI / spikes

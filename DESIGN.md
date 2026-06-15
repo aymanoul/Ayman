@@ -18,11 +18,18 @@ craft), not broadsheet columns. The risk we spend our boldness on is the
 **Shamsa**.
 
 ## Type
-- **Display** — `Fraunces` (high optical contrast, engraved/sacred character).
-- **Body / scholarly** — `Cardo` (made for classicists; carries Latin + Greek).
-- **UI / data** — `Hanken Grotesk` (crisp modern counterpoint, labels & search).
+- **Display** — `Bodoni Moda` (high-contrast Didone; reads expensive, sings on gold).
+- **Body / scholarly** — `Newsreader` (literary, optical sizes, italic for accents).
+- **UI / data** — `Jost` (refined geometric counterpoint, labels & search).
 - **Arabic** — `Amiri` (verses) + `Reem Kufi` (emblematic / the operator name).
 - **Hebrew** — `Frank Ruhl Libre`. RTL handled per script.
+
+## Motion (emil-design craft)
+Strong custom curves (`--ease-out: cubic-bezier(.23,1,.32,1)`), spring entrances,
+scale-on-press (`:active` / `whileTap`), 90ms stagger, transform/opacity only.
+Hero: shaft of light + vignette, parallax ghost Shamsa on scroll, gold-leaf
+shimmer on the name. Plates lift on a spring, the seal ignites and turns, corner
+ornaments kindle. All gated behind `prefers-reduced-motion`.
 
 ## Signature element — the Shamsa
 The "little sun" rosette that opens a manuscript. Hand-built in SVG (girih star
