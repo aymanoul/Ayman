@@ -1,45 +1,34 @@
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Shamsa from '../components/Shamsa'
 import SearchPanel from '../components/SearchPanel'
 import ModulePlate from '../components/ModulePlate'
-import { Diamond, Plus, ArabesqueDivider } from '../components/icons'
+import { Crown, Sprig } from '../components/Ornament'
 import { modules } from '../data/modules'
 import { rise, stagger, EASE } from '../lib/anim'
 
-// "Die Bibliothek" — the entry. Reads top-to-bottom like opening an
-// illuminated manuscript: the frontispiece illuminates under a shaft of light,
-// then the two ways in settle, then the modules rise on a single gold thread.
+// "Die Bibliothek" — the entry, read as a journey. The frontispiece settles,
+// the two ways in arrive, then the modules rise as stations along one emerald
+// path. Bright vellum, intentional arabesque, motion tuned per Emil Kowalski.
 export default function Bibliothek() {
   const reduce = useReducedMotion()
-  const { scrollY } = useScroll()
-  const ghostY = useTransform(scrollY, [0, 700], [0, 150])
-  const ghostRotate = useTransform(scrollY, [0, 700], [0, 26])
 
   return (
     <main className="shell">
-      <div className="lightshaft" aria-hidden />
-
       <div className="wrap">
-        {/* ---- Frontispiece (hero): operator name + emblem ---- */}
+        {/* ---- Frontispiece ---- */}
         <motion.section className="front" initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
-          <motion.div className="front__ghost" aria-hidden style={reduce ? undefined : { y: ghostY, rotate: ghostRotate }}>
-            <Shamsa size={820} animate={false} idle={false} glow={false} decorative />
-          </motion.div>
-
           <motion.span className="front__emblem" variants={rise}>
-            <Shamsa size={150} glow />
+            <Shamsa size={118} />
           </motion.span>
 
           {/* Placeholder — the operator replaces this with their own calligraphy */}
-          <motion.h1 className="front__name shimmer" variants={rise} lang="ar" dir="rtl" title="Platzhalter — Name des Betreibers">
+          <motion.h1 className="front__name gilt" variants={rise} lang="ar" dir="rtl" title="Platzhalter — Name des Betreibers">
             اسم الناشر
           </motion.h1>
 
-          <motion.div className="front__rule" variants={rise} aria-hidden>
-            <i />
-            <Diamond />
-            <i />
-          </motion.div>
+          <motion.span className="front__divider" variants={rise} aria-hidden>
+            <Crown width={168} />
+          </motion.span>
 
           <motion.p className="kicker" variants={rise}>
             Die Bibliothek
@@ -48,43 +37,65 @@ export default function Bibliothek() {
 
         {/* ---- Two ways in ---- */}
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 20 }}
+          initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: reduce ? 0 : 0.65, ease: EASE }}
+          transition={{ duration: 0.7, delay: reduce ? 0 : 0.55, ease: EASE }}
         >
           <SearchPanel />
         </motion.div>
 
-        {/* ---- The modules, threaded on one gold line ---- */}
-        <section className="mods" aria-label="Module">
-          <motion.div
-            className="mods__rail"
-            initial={reduce ? false : { scaleY: 0, opacity: 0 }}
-            whileInView={{ scaleY: 1, opacity: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 1.2, delay: 0.15, ease: EASE }}
-            aria-hidden
-          />
-          <motion.div
-            className="mods__list"
-            initial={reduce ? false : 'hidden'}
-            whileInView="shown"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={stagger}
+        {/* ---- The journey: modules as stations on one path ---- */}
+        <section className="journey" aria-label="Module">
+          <motion.p
+            className="journey__eyebrow"
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.6, ease: EASE }}
           >
-            {modules.map((m) => (
-              <ModulePlate key={m.id} module={m} />
-            ))}
-            <motion.div className="mods__future" variants={rise}>
-              <Plus aria-hidden />
-              weitere Module folgen
+            <i />
+            Eine Reise durch die Schrift
+            <i />
+          </motion.p>
+
+          <div className="mods">
+            <motion.span
+              className="mods__start"
+              initial={reduce ? false : { scale: 0.4, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.5, ease: EASE }}
+              aria-hidden
+            />
+            <motion.div
+              className="mods__path"
+              initial={reduce ? false : { scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
+              aria-hidden
+            />
+            <motion.div
+              className="mods__list"
+              initial={reduce ? false : 'hidden'}
+              whileInView="shown"
+              viewport={{ once: true, amount: 0.15 }}
+              variants={stagger}
+            >
+              {modules.map((m) => (
+                <ModulePlate key={m.id} module={m} />
+              ))}
+              <motion.div className="mods__future" variants={rise}>
+                <span className="mods__future-dot" aria-hidden />
+                weitere Stationen folgen
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </section>
       </div>
 
       <footer className="foot">
-        <ArabesqueDivider />
+        <Sprig width={104} />
         <p>Die Bibliothek</p>
       </footer>
     </main>

@@ -2,11 +2,11 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { useId } from 'react'
 
 // ---------------------------------------------------------------------------
-// The Shamsa ("little sun") — the illuminated rosette that opens a Quran
-// manuscript. Here it is the platform's emblem and the mark of every seal:
-// gold girih geometry on lapis. The geometry is always drawn; the entrance is
-// a single fade + scale + quarter-turn, with an optional slow idle turn and a
-// breathing halo. This is the signature element.
+// The Shamsa ("little sun") — the illuminated rosette that opens a manuscript.
+// The platform's emblem and the mark of every seal: emerald girih geometry with
+// brass illumination on a paper-white disk. Geometry is always drawn; the
+// entrance is a single fade + scale + quarter-turn (Emil ease-out), with an
+// optional slow idle turn. This is the signature element.
 // ---------------------------------------------------------------------------
 
 const C = 100 // centre
@@ -41,8 +41,8 @@ interface ShamsaProps {
   size?: number
   className?: string
   animate?: boolean // orchestrated entrance on mount
-  idle?: boolean // slow ambient rotation + halo pulse
-  glow?: boolean
+  idle?: boolean // slow ambient rotation
+  glow?: boolean // soft halo behind
   title?: string
   decorative?: boolean // pure atmosphere — hidden from assistive tech
 }
@@ -52,7 +52,7 @@ export default function Shamsa({
   className,
   animate = true,
   idle = true,
-  glow = true,
+  glow = false,
   title = 'Shamsa',
   decorative = false,
 }: ShamsaProps) {
@@ -74,71 +74,61 @@ export default function Shamsa({
       role={decorative ? undefined : 'img'}
       aria-label={decorative ? undefined : title}
       aria-hidden={decorative || undefined}
-      initial={play ? { opacity: 0, scale: 0.82, rotate: -12 } : false}
+      initial={play ? { opacity: 0, scale: 0.92, rotate: -8 } : false}
       animate={play ? { opacity: 1, scale: 1, rotate: 0 } : undefined}
-      transition={{ duration: 1.2, ease: EASE }}
+      transition={{ duration: 1, ease: EASE }}
       style={{ overflow: 'visible', transformBox: 'fill-box', transformOrigin: 'center' }}
     >
       <defs>
-        {/* a soft halo, not a hot centre — keeps the core geometry legible */}
         <radialGradient id={`glow-${uid}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#f3dc92" stopOpacity="0.06" />
-          <stop offset="46%" stopColor="#c9a227" stopOpacity="0.12" />
-          <stop offset="66%" stopColor="#c9a227" stopOpacity="0.16" />
-          <stop offset="85%" stopColor="#2a4f9e" stopOpacity="0.1" />
-          <stop offset="100%" stopColor="#2a4f9e" stopOpacity="0" />
+          <stop offset="0%" stopColor="#1c8a63" stopOpacity="0.08" />
+          <stop offset="60%" stopColor="#1c8a63" stopOpacity="0.05" />
+          <stop offset="100%" stopColor="#1c8a63" stopOpacity="0" />
         </radialGradient>
-        <linearGradient id={`gold-${uid}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#f6e2a0" />
-          <stop offset="50%" stopColor="#d4af37" />
-          <stop offset="100%" stopColor="#9a7b1e" />
+        <linearGradient id={`green-${uid}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#1c8a63" />
+          <stop offset="55%" stopColor="#0e5b43" />
+          <stop offset="100%" stopColor="#08382a" />
         </linearGradient>
-        <radialGradient id={`lapis-${uid}`} cx="50%" cy="42%" r="62%">
-          <stop offset="0%" stopColor="#24386f" />
-          <stop offset="100%" stopColor="#16234a" />
-        </radialGradient>
+        <linearGradient id={`brass-${uid}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#cdaa5f" />
+          <stop offset="52%" stopColor="#a8842f" />
+          <stop offset="100%" stopColor="#7e6320" />
+        </linearGradient>
       </defs>
 
-      {/* breathing halo */}
-      {glow && (
-        <motion.circle
-          cx={C}
-          cy={C}
-          r={99}
-          fill={`url(#glow-${uid})`}
-          style={spinStyle}
-          animate={spin ? { scale: [1, 1.05, 1], opacity: [0.85, 1, 0.85] } : undefined}
-          transition={spin ? { duration: 7, repeat: Infinity, ease: 'easeInOut' } : undefined}
-        />
-      )}
+      {glow && <circle cx={C} cy={C} r={99} fill={`url(#glow-${uid})`} />}
+
+      {/* paper disk so the medallion reads on any ground */}
+      <circle cx={C} cy={C} r={67} fill="var(--seal-fill)" />
 
       {/* slow-turning ornamental shell */}
       <motion.g
         style={spinStyle}
         animate={spin ? { rotate: 360 } : undefined}
-        transition={spin ? { duration: 240, repeat: Infinity, ease: 'linear' } : undefined}
+        transition={spin ? { duration: 260, repeat: Infinity, ease: 'linear' } : undefined}
       >
         {dots.map((d, i) => (
-          <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="var(--gold)" />
+          <circle key={i} cx={d.x} cy={d.y} r={d.r} fill={`url(#brass-${uid})`} />
         ))}
-        <circle cx={C} cy={C} r={86} fill="none" stroke={`url(#gold-${uid})`} strokeWidth={1.6} />
+        <circle cx={C} cy={C} r={86} fill="none" stroke={`url(#green-${uid})`} strokeWidth={1.5} />
         {sunrays.map((r, i) => (
-          <line key={i} x1={r.x1} y1={r.y1} x2={r.x2} y2={r.y2} stroke="var(--gold)" strokeWidth={1.1} strokeLinecap="round" opacity={0.85} />
+          <line key={i} x1={r.x1} y1={r.y1} x2={r.x2} y2={r.y2} stroke="var(--green)" strokeWidth={1.1} strokeLinecap="round" opacity={0.55} />
         ))}
-        <circle cx={C} cy={C} r={66} fill={`url(#lapis-${uid})`} stroke={`url(#gold-${uid})`} strokeWidth={1.4} />
+        <circle cx={C} cy={C} r={66} fill="none" stroke={`url(#green-${uid})`} strokeWidth={1.6} />
       </motion.g>
 
       {/* fixed luminous core */}
       <g>
-        <path d={starPath(16, 62, 30)} fill="rgba(42,79,158,0.35)" stroke={`url(#gold-${uid})`} strokeWidth={1.5} strokeLinejoin="round" />
-        <path d={starPath(8, 44, 19)} fill="rgba(201,162,39,0.16)" stroke="var(--gold-lit)" strokeWidth={1.3} strokeLinejoin="round" />
+        <path d={starPath(16, 62, 30)} fill="rgba(14,91,67,0.06)" stroke={`url(#green-${uid})`} strokeWidth={1.5} strokeLinejoin="round" />
+        <path d={starPath(8, 44, 19)} fill="rgba(168,132,47,0.1)" stroke={`url(#brass-${uid})`} strokeWidth={1.3} strokeLinejoin="round" />
         <g>
           {Array.from({ length: 8 }, (_, i) => (
-            <ellipse key={i} cx={C} cy={C - 21} rx={4.6} ry={13} fill="none" stroke="var(--gold)" strokeWidth={1} transform={`rotate(${i * 45} ${C} ${C})`} opacity={0.92} />
+            <ellipse key={i} cx={C} cy={C - 21} rx={4.6} ry={13} fill="none" stroke="var(--brass)" strokeWidth={1} transform={`rotate(${i * 45} ${C} ${C})`} opacity={0.85} />
           ))}
         </g>
-        <circle cx={C} cy={C} r={11} fill="none" stroke="var(--gold-lit)" strokeWidth={1.2} />
-        <circle cx={C} cy={C} r={4.8} fill={`url(#gold-${uid})`} />
+        <circle cx={C} cy={C} r={11} fill="none" stroke={`url(#brass-${uid})`} strokeWidth={1.2} />
+        <circle cx={C} cy={C} r={4.8} fill={`url(#brass-${uid})`} />
       </g>
     </motion.svg>
   )

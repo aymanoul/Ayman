@@ -1,59 +1,53 @@
 # Die Bibliothek — Design
 
-Direction: **prophetisch / sakral**, grounded in the craft of the *illuminated
-Quran manuscript* — lapis lazuli + gold leaf on a midnight ground, warm ivory
-as the written word. A modern, fluid web experience, never a parchment pastiche.
+Direction: **prophetisch / sakral**, experienced as a **journey through
+scripture**. Bright vellum, deep emerald + antique brass, intentional arabesque
+ornament. Modern and quiet — not a parchment pastiche, not a dark theme.
 
 ## Palette (the pigments of the craft)
-- `--ground` `#0a0e1c` — deep midnight indigo; lets gold glow.
-- `--gold` `#c9a227` / `--gold-lit` `#f3dc92` — antique gold leaf + its highlight.
-- `--lapis` `#2a4f9e` — lapis lazuli, the second pigment.
-- `--ivory` `#ece3cd` — the written word.
-- `--rubric` `#b14a42` — manuscript red, reserved for "Einwand".
-- `--konter` `#6aa886` — sage/verdigris, reserved for "Konter".
+- `--paper` `#f3f4ec` / `--paper-card` `#fcfdf8` — warm vellum + raised card.
+- `--ink` `#16201b` — deep green-black (text).
+- `--green` `#0e5b43` / `--green-bright` `#1c8a63` — emerald, the primary accent.
+- `--brass` `#a8842f` — antique brass, illumination accent, used sparingly.
+- `--rubric` `#9a3b32` — reserved for "Einwand".
 
-Why not the AI defaults: not cream-parchment-serif-terracotta (explicitly
-rejected), not black-+-single-neon (this is a two-pigment system from a real
-craft), not broadsheet columns. The risk we spend our boldness on is the
-**Shamsa**.
+Why not the AI defaults: not the dark-+-neon look, not broadsheet columns, and
+not the cream-serif-+-terracotta default — the accent is **emerald**, the
+ornament is real arabesque, and the structure is a **journey**, not an article.
 
 ## Type
-- **Display** — `Bodoni Moda` (high-contrast Didone; reads expensive, sings on gold).
-- **Body / scholarly** — `Newsreader` (literary, optical sizes, italic for accents).
-- **UI / data** — `Jost` (refined geometric counterpoint, labels & search).
-- **Arabic** — `Amiri` (verses) + `Reem Kufi` (emblematic / the operator name).
+- **Display** — `Bodoni Moda` (high-contrast Didone; reads expensive, modern).
+- **Body / scholarly** — `Newsreader` (literary, optical sizes).
+- **UI / data** — `Jost` (geometric counterpoint; labels & search).
+- **Arabic** — `Amiri` (verses) + `Reem Kufi` (the operator name).
 - **Hebrew** — `Frank Ruhl Libre`. RTL handled per script.
-
-## Motion (emil-design craft)
-Strong custom curves (`--ease-out: cubic-bezier(.23,1,.32,1)`), spring entrances,
-scale-on-press (`:active` / `whileTap`), 90ms stagger, transform/opacity only.
-Hero: shaft of light + vignette, parallax ghost Shamsa on scroll, gold-leaf
-shimmer on the name. Plates lift on a spring, the seal ignites and turns, corner
-ornaments kindle. All gated behind `prefers-reduced-motion`.
 
 ## Signature element — the Shamsa
 The "little sun" rosette that opens a manuscript. Hand-built in SVG (girih star
-+ khatam + rosette on lapis), it is the platform's emblem **and** the mark of
-every seal. It illuminates on load and turns slowly. The homepage reads like an
-illuminated frontispiece; the modules then rise along a single gold thread
-("Das Netz spannt sich"). The seal-breaking / stone moment lives in Daniel.
++ khatam + rosette), recoloured for vellum: **emerald geometry, brass core,
+paper-white disk**. It is the platform's emblem and the mark of every seal.
 
-## Motion
-Orchestrated page-load (frontispiece → search → threaded modules), scroll
-reveals, hover micro-interactions on plates/seals. `prefers-reduced-motion`
-fully respected (entrances become instant).
+## The journey
+The homepage is read top-to-bottom as a route: frontispiece → the two ways in →
+"Eine Reise durch die Schrift" → modules as **stations** strung on one emerald
+path. Background is kept clean (the old ghost/girih symbols were removed).
+
+## Motion (Emil Kowalski craft)
+Custom easings only — `--ease-out: cubic-bezier(.23,1,.32,1)`,
+`--ease-in-out: cubic-bezier(.77,0,.175,1)`. Spring entrances (never `scale(0)`),
+`scale(.97)` press feedback, origin-aware search dropdown, hover gated to
+`(hover:hover) and (pointer:fine)`, transform/opacity only, staggered page-load,
+the path draws down on view. `prefers-reduced-motion` fully respected.
 
 ## Built
-- `src/components/Shamsa.tsx` — signature medallion (entrance + idle turn + halo).
-- `src/components/GirihField.tsx` — ambient eightfold tessellation.
+- `src/components/Shamsa.tsx` — emerald/brass signature medallion.
+- `src/components/Ornament.tsx` — arabesque crown + footer sprig (intentional).
 - `src/pages/Bibliothek.tsx` — homepage: frontispiece + search + question agent
-  + module plates + footer.
+  + modules as stations on the journey path.
 - `src/data/` — `Siegel`/module data contract + keyword search index.
-- Module page (9 seals as medallion rows) + seal holding pages so nothing
-  dead-ends.
+- Module page (9 seals as rows) + seal holding pages so nothing dead-ends.
 
 ## Next
-Daniel (Siegel V) as the showcase seal — real interactive Nebuchadnezzar
-statue, timeline, two-level layout — and the immersive `Beleg` modal system
-(golden card → backdrop dim → illuminated full verse with original script).
-Then the remaining seals in the same system.
+Daniel (Siegel V) as the showcase seal — interactive Nebuchadnezzar statue,
+timeline, two-level layout — and the immersive `Beleg` modal system (illuminated
+card → backdrop dim → full verse with original script).

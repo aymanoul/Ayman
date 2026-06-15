@@ -1,43 +1,45 @@
 @import 'tailwindcss';
 
 /* ============================================================================
-   DIE BIBLIOTHEK — Design System
-   Direction: "prophetisch / sakral" — illuminated-manuscript palette.
-   Pigments of the craft: lapis lazuli + gold leaf on a midnight ground,
-   warm ivory as the written word, crimson rubrication for objections.
+   DIE BIBLIOTHEK — Design System v2
+   Direction: "prophetisch / sakral", a JOURNEY through scripture on bright
+   vellum. Pigments: deep emerald + antique brass on warm paper. Ornament is
+   intentional arabesque — never background noise. Motion follows Emil Kowalski.
    ========================================================================== */
 
 :root {
-  /* ---- Ground (deep midnight indigo, lets gold glow) ---- */
-  --ground: #0a0e1c;
-  --ground-2: #0c1124;
-  --ground-raised: #121a31;
-  --ground-panel: #0f1730;
+  /* ---- Paper (warm, bright vellum) ---- */
+  --paper: #f3f4ec;
+  --paper-2: #f8f9f2;
+  --paper-card: #fcfdf8;
+  --paper-sink: #ecece1;
 
-  /* ---- Gold leaf (the illumination) ---- */
-  --gold: #c9a227;
-  --gold-deep: #8a6e1c;
-  --gold-lit: #f3dc92;
-  --gold-ink: #e8cd76;
+  /* ---- Ink (deep green-black) ---- */
+  --ink: #16201b;
+  --ink-soft: #51615a;
+  --ink-faint: #8a978f;
 
-  /* ---- Lapis lazuli (the second pigment) ---- */
-  --lapis: #2a4f9e;
-  --lapis-bright: #5b86d6;
-  --lapis-deep: #16234a;
+  /* ---- Emerald (the primary accent) ---- */
+  --green: #0e5b43;
+  --green-deep: #08382a;
+  --green-bright: #1c8a63;
+  --green-wash: rgba(14, 91, 67, 0.06);
+  --green-wash-2: rgba(14, 91, 67, 0.1);
 
-  /* ---- The written word ---- */
-  --ivory: #ece3cd;
-  --ivory-dim: #a99d80;
-  --ivory-faint: #6e6750;
+  /* ---- Brass (illumination accent, used sparingly) ---- */
+  --brass: #a8842f;
+  --brass-soft: #c6a55c;
+  --brass-deep: #7e6320;
 
-  /* ---- Rubrication / triage ---- */
-  --rubric: #b14a42;       /* "Einwand" — manuscript red */
-  --konter: #6aa886;       /* "Konter" — sage/verdigris */
+  /* ---- Triage / rubrication ---- */
+  --rubric: #9a3b32; /* "Einwand" */
+  --konter: var(--green); /* "Konter" */
 
   /* ---- Lines & seams ---- */
-  --hairline: rgba(201, 162, 39, 0.22);
-  --hairline-strong: rgba(201, 162, 39, 0.5);
-  --hairline-faint: rgba(201, 162, 39, 0.1);
+  --line: rgba(14, 91, 67, 0.16);
+  --line-strong: rgba(14, 91, 67, 0.34);
+  --line-faint: rgba(14, 91, 67, 0.08);
+  --brass-line: rgba(168, 132, 47, 0.4);
 
   /* ---- Type ---- */
   --font-display: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
@@ -47,24 +49,27 @@
   --font-kufi: 'Reem Kufi', sans-serif;
   --font-hebrew: 'Frank Ruhl Libre', serif;
 
-  /* ---- Motion (strong custom curves — the built-ins are too weak) ---- */
-  --ease-sacred: cubic-bezier(0.23, 1, 0.32, 1);
+  /* ---- Seal palette (so the Shamsa is theme-driven) ---- */
+  --seal-ink: var(--green);
+  --seal-accent: var(--brass);
+  --seal-fill: #fbfcf6;
+
+  /* ---- Motion (Emil Kowalski) ---- */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
-  color-scheme: dark;
+  color-scheme: light;
 }
 
-/* ---- Tailwind theme bridge (so utilities map to our pigments) ---- */
+/* ---- Tailwind theme bridge ---- */
 @theme {
-  --color-ground: #0a0e1c;
-  --color-gold: #c9a227;
-  --color-gold-lit: #f3dc92;
-  --color-lapis: #2a4f9e;
-  --color-ivory: #ece3cd;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-ui: 'Hanken Grotesk', system-ui, sans-serif;
+  --color-paper: #f3f4ec;
+  --color-ink: #16201b;
+  --color-green: #0e5b43;
+  --color-brass: #a8842f;
+  --font-display: 'Bodoni Moda', Georgia, serif;
+  --font-ui: 'Jost', system-ui, sans-serif;
 }
 
 /* ---------------------------------------------------------------- reset */
@@ -82,8 +87,8 @@ html {
 }
 body {
   min-height: 100vh;
-  background-color: var(--ground);
-  color: var(--ivory);
+  background-color: var(--paper);
+  color: var(--ink);
   font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.6;
@@ -112,62 +117,39 @@ a {
   text-decoration: none;
 }
 ::selection {
-  background: rgba(201, 162, 39, 0.28);
-  color: var(--gold-lit);
+  background: var(--green-wash-2);
+  color: var(--green-deep);
 }
 
-/* ---------------------------------------------------- the ground itself */
-/* A shaft of gold dawn high in a midnight-indigo sky, edges falling to black. */
+/* ------------------------------------------------- the luminous ground */
+/* Dawn light falling on a page — soft, warm, never flat. */
 .atmosphere {
   position: fixed;
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(60% 42% at 50% -8%, rgba(243, 220, 146, 0.22) 0%, rgba(201, 162, 39, 0.08) 24%, transparent 56%),
-    radial-gradient(120% 70% at 50% -12%, rgba(201, 162, 39, 0.1) 0%, transparent 50%),
-    radial-gradient(100% 60% at 50% 2%, rgba(91, 134, 214, 0.14) 0%, transparent 52%),
-    linear-gradient(180deg, #0c1228 0%, var(--ground) 40%, #05070f 100%);
-}
-.atmosphere::before {
-  /* cinematic vignette — pulls focus to the centre column */
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(115% 88% at 50% 38%, transparent 52%, rgba(3, 5, 12, 0.55) 100%);
+    radial-gradient(135% 85% at 50% -18%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 62%),
+    radial-gradient(110% 70% at 50% -8%, rgba(14, 91, 67, 0.045) 0%, transparent 58%),
+    linear-gradient(180deg, #f7f8f0 0%, var(--paper) 52%, var(--paper-sink) 100%);
 }
 .atmosphere::after {
-  /* faint film grain so the dark never looks flat/plasticky */
+  /* faint paper grain so the light never looks plasticky */
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.5;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-}
-
-/* a slender beam of light descending behind the frontispiece */
-.lightshaft {
-  position: fixed;
-  top: -10vh;
-  left: 50%;
-  translate: -50% 0;
-  width: min(620px, 96vw);
-  height: 86vh;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(46% 60% at 50% 0%, rgba(243, 220, 146, 0.16) 0%, rgba(201, 162, 39, 0.05) 36%, transparent 70%);
-  mix-blend-mode: screen;
-  filter: blur(6px);
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
 }
 
 /* ----------------------------------------------------------- type roles */
 .kicker {
   font-family: var(--font-ui);
   text-transform: uppercase;
-  letter-spacing: 0.42em;
+  letter-spacing: 0.4em;
   font-weight: 500;
   font-size: 0.7rem;
-  color: var(--gold);
+  color: var(--green);
 }
 .label-ui {
   font-family: var(--font-ui);
@@ -190,9 +172,15 @@ a {
   unicode-bidi: isolate;
 }
 
-/* gold-leaf text fill */
+/* emerald display-ink with a whisper of brass at the base */
 .gilt {
-  background: linear-gradient(176deg, var(--gold-lit) 0%, var(--gold) 42%, var(--gold-deep) 100%);
+  background: linear-gradient(174deg, var(--green-bright) 0%, var(--green) 46%, var(--green-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.brassed {
+  background: linear-gradient(174deg, var(--brass-soft) 0%, var(--brass) 50%, var(--brass-deep) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -200,7 +188,7 @@ a {
 
 /* ---------------------------------------------------------- focus ring */
 :focus-visible {
-  outline: 2px solid var(--gold-lit);
+  outline: 2px solid var(--green-bright);
   outline-offset: 3px;
   border-radius: 2px;
 }
