@@ -1644,3 +1644,205 @@
     text-align: left;
   }
 }
+
+/* ============================================================================
+   SIEGEL II — Prophet wie Mose. Comparison table, three expectations, brothers.
+   ========================================================================== */
+
+/* ------------------------------------------------------- the comparison table */
+.vgl {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.vgl__head,
+.vgl__row {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1.15fr 1.5fr;
+  align-items: center;
+}
+.vgl__head {
+  background: var(--green-wash);
+  border-bottom: 1px solid var(--line);
+}
+.vgl__col {
+  padding: 0.7rem 0.8rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+  text-align: center;
+}
+.vgl__col--hl {
+  color: var(--green-deep);
+}
+.vgl__row {
+  border-bottom: 1px solid var(--line-faint);
+}
+.vgl__row:last-child {
+  border-bottom: none;
+}
+.vgl__k {
+  padding: 0.7rem 0.85rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+}
+.vgl__cell {
+  padding: 0.7rem 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--ink);
+  text-align: center;
+  border-left: 1px solid var(--line-faint);
+}
+.vgl__cell--hl {
+  background: var(--green-wash);
+  color: var(--green-deep);
+  font-weight: 600;
+}
+.vgl__cell--off {
+  color: var(--ink-faint);
+}
+
+/* ------------------------------------------------------- the three expectations */
+.erwart__intro {
+  font-family: var(--font-body);
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+.erwart__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+.erwart__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-card);
+}
+.erwart__card--hl {
+  border-color: var(--green);
+  background: var(--green-wash);
+  box-shadow: 0 10px 26px -16px rgba(8, 56, 42, 0.4);
+}
+.erwart__wer {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  color: var(--ink);
+}
+.erwart__card--hl .erwart__wer {
+  color: var(--green-deep);
+}
+.erwart__f {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.erwart__a {
+  margin-top: auto;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rubric);
+  border: 1px solid rgba(154, 59, 50, 0.35);
+  border-radius: 999px;
+  padding: 0.22rem 0.65rem;
+}
+
+/* ------------------------------------------------------- the brother-nations */
+.brueder__wort {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--green);
+  margin-left: 0.45rem;
+}
+.brueder {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+.brueder li {
+  display: grid;
+  grid-template-columns: 9rem 1fr auto;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--line-faint);
+}
+.brueder li:last-child {
+  border-bottom: none;
+}
+.brueder__volk {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--green);
+}
+.brueder__sinn {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.brueder__ref {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* ---------------------------------------------------------------- responsive */
+@media (max-width: 640px) {
+  .vgl__head {
+    display: none;
+  }
+  .vgl__row {
+    grid-template-columns: 1fr;
+    padding: 0.85rem 0.95rem;
+    gap: 0.25rem;
+  }
+  .vgl__k {
+    padding: 0 0 0.35rem;
+    font-size: 0.92rem;
+    color: var(--green);
+  }
+  .vgl__cell {
+    text-align: left;
+    border-left: none;
+    padding: 0.15rem 0;
+  }
+  .vgl__cell::before {
+    content: attr(data-fig) ': ';
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .vgl__cell--hl {
+    background: none;
+  }
+  .vgl__cell--hl::before {
+    color: var(--green);
+  }
+  .erwart__row {
+    grid-template-columns: 1fr;
+  }
+  .brueder li {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+  .brueder__ref {
+    text-align: left;
+  }
+}

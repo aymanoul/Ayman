@@ -24,8 +24,8 @@ const modul1Siegel: SealMeta[] = [
     nummer: 'II',
     titel: 'Prophet wie Mose',
     arabic: 'موسى',
-    status: 'coming',
-    keywords: ['mose', 'moses', 'deuteronomium', '18:18', 'brüder', 'esau', 'edom', '34:10'],
+    status: 'ready',
+    keywords: ['mose', 'moses', 'musa', 'deuteronomium', '5. mose', '18:18', '18:15', 'brüder', 'aus ihren brüdern', 'esau', 'edom', '34:10', 'der prophet', 'paraklet', 'vergleich', 'worte in seinen mund', '73:15'],
   },
   {
     id: 'arabische-prophezeiungen',
