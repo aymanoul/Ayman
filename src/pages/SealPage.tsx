@@ -4,15 +4,19 @@ import Shamsa from '../components/Shamsa'
 import { ArrowLeft } from '../components/icons'
 import { findModule, findSeal } from '../data/modules'
 import { rise, stagger } from '../lib/anim'
+import DanielSeal from './seals/DanielSeal'
 
-// Placeholder seal view. The full two-level seal (debate + scholarly layers,
-// objection/counter boxes, exhibits, Beleg modals) is built per seal —
-// Daniel first. Until then, a graceful illuminated holding page.
+// Placeholder seal view. Built seals render their own page; the rest get a
+// graceful illuminated holding page until their content lands.
 export default function SealPage() {
   const { moduleId, sealId } = useParams()
   const reduce = useReducedMotion()
   const module = findModule(moduleId)
   const seal = findSeal(moduleId, sealId)
+
+  if (sealId === 'daniel' && moduleId === 'muhammad') {
+    return <DanielSeal />
+  }
 
   if (!module || !seal) {
     return (

@@ -48,7 +48,7 @@ const modul1Siegel: SealMeta[] = [
     nummer: 'V',
     titel: 'Daniel',
     arabic: 'دانيال',
-    status: 'coming',
+    status: 'ready',
     keywords: ['daniel', 'statue', 'traumbild', 'nebukadnezar', 'vier reiche', 'stein', '1453', '622', 'zeitstrahl', 'rom'],
   },
   {
