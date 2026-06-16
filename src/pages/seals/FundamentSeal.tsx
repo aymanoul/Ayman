@@ -5,7 +5,7 @@ import Shamsa from '../../components/Shamsa'
 import { ArrowLeft } from '../../components/icons'
 import { Crown } from '../../components/Ornament'
 import { BelegCard } from '../../components/Beleg'
-import { TahrifSpektrum, NameThread, Spielregeln } from '../../components/exhibits/FundamentExhibits'
+import { TahrifSpektrum, NameThread, Spielregeln, IbnAmrJesaja } from '../../components/exhibits/FundamentExhibits'
 import { rise, stagger } from '../../lib/anim'
 import {
   fundamentThese,
@@ -123,12 +123,28 @@ export default function FundamentSeal() {
             <BelegCard beleg={fundamentBelege.q7157} />
             <BelegCard beleg={fundamentBelege.q616} />
             <BelegCard beleg={fundamentBelege.q2146} />
+            <BelegCard beleg={fundamentBelege.q381} />
+            <BelegCard beleg={fundamentBelege.q159} />
             <BelegCard beleg={fundamentBelege.q279} />
             <BelegCard beleg={fundamentBelege.q568} />
             <BelegCard beleg={fundamentBelege.q546} />
+            <BelegCard beleg={fundamentBelege.doppelnatur} />
+            <BelegCard beleg={fundamentBelege.bukhari2125} />
+            <BelegCard beleg={fundamentBelege.funfnamen} />
+            <BelegCard beleg={fundamentBelege.capstone} />
             <BelegCard beleg={fundamentBelege.tahrif} />
             <BelegCard beleg={fundamentBelege.erkenntnis} />
           </div>
+        </section>
+
+        {/* ---- the description: Bukhari 2125 ↔ Isaiah 42 ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Die Beschreibung" title="Aufgeschrieben — und lesbar" />
+          <p className="sec__lead">
+            Kein Schriftzug, sondern eine Beschreibung: was der ṣaḥīḥ-Hadith über die Tora sagt, steht Zug um Zug
+            in Jesaja 42.
+          </p>
+          <IbnAmrJesaja />
         </section>
 
         {/* ---- the name thread ---- */}

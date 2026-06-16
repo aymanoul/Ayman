@@ -2681,3 +2681,78 @@
     background: none;
   }
 }
+
+/* ============================================================================
+   SYNOPSE — generic two-column side-by-side table (Hadith ↔ Bibel, Muhammad ↔
+   Evangelien). Reused across Fundament, Siegel II, Verteidigung.
+   ========================================================================== */
+.synopse {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.synopse__head,
+.synopse__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.synopse__head {
+  background: var(--green-wash);
+  border-bottom: 1px solid var(--line);
+}
+.synopse__head span {
+  padding: 0.7rem 0.95rem;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.synopse__head span:first-child {
+  border-right: 1px solid var(--line);
+}
+.synopse__row {
+  border-bottom: 1px solid var(--line-faint);
+}
+.synopse__row:last-child {
+  border-bottom: none;
+}
+.synopse__a,
+.synopse__b {
+  padding: 0.85rem 0.95rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.synopse__a {
+  border-right: 1px solid var(--line-faint);
+  background: var(--paper-2);
+  color: var(--ink);
+}
+.synopse__b {
+  background: var(--green-wash);
+}
+@media (max-width: 640px) {
+  .synopse__head {
+    display: none;
+  }
+  .synopse__row {
+    grid-template-columns: 1fr;
+  }
+  .synopse__a,
+  .synopse__b {
+    border-right: none;
+  }
+  .synopse__a::before,
+  .synopse__b::before {
+    content: attr(data-lbl) ': ';
+    font-family: var(--font-ui);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+}

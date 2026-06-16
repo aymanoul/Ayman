@@ -1,4 +1,4 @@
-import { tahrifSpektrum, nameThread, spielregeln } from '../../data/seals/fundament'
+import { tahrifSpektrum, nameThread, spielregeln, ibnAmrJesaja } from '../../data/seals/fundament'
 
 // Three foundation exhibits — no photo, just structured argument:
 //  · the taḥrīf spectrum (where the honest position actually sits)
@@ -103,6 +103,33 @@ export function Spielregeln() {
           </li>
         ))}
       </ul>
+    </div>
+  )
+}
+
+// The Torah-description (Bukhari 2125) set against Isaiah 42, row by row.
+export function IbnAmrJesaja() {
+  return (
+    <div className="ex ex--wide synopse-card">
+      <h3 className="ex__title">Die Beschreibung — Hadith ↔ Jesaja 42</h3>
+      <p className="erwart__intro">{ibnAmrJesaja.intro}</p>
+      <div className="synopse">
+        <div className="synopse__head" aria-hidden>
+          <span>{ibnAmrJesaja.spalten[0]}</span>
+          <span>{ibnAmrJesaja.spalten[1]}</span>
+        </div>
+        {ibnAmrJesaja.zeilen.map((z, i) => (
+          <div className="synopse__row" key={i}>
+            <span className="synopse__a" data-lbl="Hadith">
+              {z.h}
+            </span>
+            <span className="synopse__b" data-lbl="Jesaja 42">
+              {z.j}
+            </span>
+          </div>
+        ))}
+      </div>
+      <p className="ex__pointe">{ibnAmrJesaja.pointe}</p>
     </div>
   )
 }

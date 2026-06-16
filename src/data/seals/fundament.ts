@@ -149,6 +149,87 @@ export const fundamentBelege: Record<string, Beleg> = {
       'ʿAbdullāh ibn Salām, ein gelehrter Rabbiner Medinas, nahm den Islam an, sobald er den Propheten sah — „sein Gesicht war kein Gesicht eines Lügners". Salmān al-Fārisī durchwanderte das Christentum auf der Suche nach dem in der Schrift beschriebenen Propheten mit dem Siegel zwischen den Schultern. Der Negus von Abessinien und Waraqa ibn Naufal, der die hebräischen Schriften las, erkannten ihn ebenso. Erkennen ist jedoch nicht Folgen (vgl. 2,146).',
     fundstelle: 'Ṣaḥīḥ al-Bukhārī (ʿAbdullāh ibn Salām; Salmān al-Fārisī; Heraklios, Nr. 7)',
   },
+
+  // ---- The covenant of all prophets to aid the coming messenger ----
+  q381: {
+    typ: 'quran',
+    kurz: 'Gott nahm den Bund der Propheten: kommt der bestätigende Gesandte — glaubt an ihn, steht ihm bei.',
+    original:
+      'وَإِذْ أَخَذَ اللَّهُ مِيثَاقَ النَّبِيِّينَ ... ثُمَّ جَاءَكُمْ رَسُولٌ مُّصَدِّقٌ لِّمَا مَعَكُمْ لَتُؤْمِنُنَّ بِهِ وَلَتَنصُرُنَّهُ',
+    sprache: 'ar',
+    translit:
+      'wa-idh akhadha llāhu mīthāqa n-nabiyyīn … thumma jāʾakum rasūlun muṣaddiqun limā maʿakum la-tuʾminunna bihi wa-la-tanṣurunnah',
+    uebersetzung:
+      '„Und als Gott den Bund der Propheten nahm: … dann kommt zu euch ein Gesandter, der bestätigt, was bei euch ist — an ihn sollt ihr glauben und ihm beistehen." — Ihn abzulehnen heißt, den Bund Abrahams, Moses und Jesu zu brechen.',
+    fundstelle: 'Sure 3 (Āl ʿImrān), Vers 81',
+    kern: 'مِيثَاقَ النَّبِيِّينَ',
+  },
+
+  // ---- Preservation guaranteed only to the Quran ----
+  q159: {
+    typ: 'quran',
+    kurz: 'Wir haben die Ermahnung herabgesandt, und Wir wachen wahrlich über sie.',
+    original: 'إِنَّا نَحْنُ نَزَّلْنَا الذِّكْرَ وَإِنَّا لَهُ لَحَافِظُونَ',
+    sprache: 'ar',
+    translit: 'innā naḥnu nazzalnā dh-dhikra wa-innā lahu la-ḥāfiẓūn',
+    uebersetzung:
+      '„Wahrlich, Wir sind es, die die Ermahnung (den Koran) herabgesandt haben, und Wir wachen wahrlich über sie." — Die Bewahrungsgarantie gilt exklusiv dem Koran, nicht den früheren Schriften. Darum: Spuren, keine Reinschrift.',
+    fundstelle: 'Sure 15 (al-Ḥijr), Vers 9',
+    kern: 'لَحَافِظُونَ',
+  },
+
+  // ---- Source: the two-fold nature of the earlier scriptures ----
+  doppelnatur: {
+    typ: 'quelle',
+    kurz: 'Doppelnatur der Bibel: ursprünglich Licht und Rechtleitung — durch Menschenhand teils verfälscht.',
+    uebersetzung:
+      'Der Koran beschreibt Tora und Evangelium zweifach: ursprünglich „voll Rechtleitung und Licht" (5,44–46; 3,3), in denen Gottes Wort steht; zugleich aber durch Menschenhand verfälscht — geschrieben „mit ihren eigenen Händen" (2,79), verdreht „mit der Zunge" (3,78), „verborgen" (2,159). Die Bewahrungsgarantie gilt allein dem Koran (15,9). Folglich sind in der Bibel detektierbare, aber bestreitbare Spuren zu erwarten — „Wegweiser, sodass keine Entschuldigung bleibt", nicht eine fehlerlose Reinschrift.',
+    fundstelle: 'Koran 5,44–46 · 3,3 · 2,79 · 3,78 · 2,159 · 15,9',
+  },
+
+  // ---- Hadith Bukhari 2125: the Torah-description matches Isaiah 42 ----
+  bukhari2125: {
+    typ: 'quelle',
+    kurz: 'ʿAbdullāh ibn ʿAmr: der Prophet ﷺ ist in der Tora beschrieben — Zug um Zug wie Jesaja 42.',
+    uebersetzung:
+      'ʿAbdullāh ibn ʿAmr ibn al-ʿĀṣ schwört, der Prophet ﷺ sei in der Tora beschrieben: „Zeuge (shāhid), Bringer froher Botschaft (mubashshir) und Warner (nadhīr), Hüter der Schriftunkundigen (ḥirz li-l-ummiyyīn) … Mein Diener und Gesandter; Ich habe ihn al-Mutawakkil genannt — nicht grob, nicht hart, kein Lärmer auf den Märkten; er vergilt Böses nicht mit Bösem, sondern verzeiht … Gott öffnet durch ihn blinde Augen, taube Ohren, verhüllte Herzen." Das deckt sich Zug um Zug mit Jesaja 42,1-3.6-7.',
+    fundstelle: 'Ṣaḥīḥ al-Bukhārī 2125 · vgl. Jesaja 42,1-3.6-7',
+  },
+
+  // ---- Hadith: the five names, including Ahmad ----
+  funfnamen: {
+    typ: 'quelle',
+    kurz: 'Ich habe (mehrere) Namen: ich bin Muhammad, ich bin Aḥmad …',
+    uebersetzung:
+      'Der Prophet ﷺ sagte: „Ich habe (mehrere) Namen: Ich bin Muhammad, ich bin Aḥmad, ich bin al-Māḥī (durch den Gott den Unglauben tilgt), ich bin al-Ḥāshir (zu dessen Füßen die Menschen versammelt werden), und ich bin al-ʿĀqib (nach dem kein Prophet kommt)." — Der Name Aḥmad, den Jesus ankündigte (61,6), aus dem Mund des Propheten selbst.',
+    fundstelle: 'Ṣaḥīḥ al-Bukhārī 3532 · Ṣaḥīḥ Muslim 2354',
+  },
+
+  // ---- Capstone: the prayer of Abraham, the good news of Jesus ----
+  capstone: {
+    typ: 'quelle',
+    kurz: 'Ich bin das Bittgebet meines Vaters Abraham und die frohe Botschaft Jesu.',
+    uebersetzung:
+      '„Ich bin das Bittgebet (daʿwa) meines Vaters Abraham und die frohe Botschaft Jesu (bushrā ʿĪsā)." — Der Prophet ﷺ verknüpft selbst zwei biblische Fäden: das Gebet Abrahams und Ismaels um einen Gesandten aus ihrer Mitte (2,129) und die Ankündigung Jesu von Aḥmad (61,6). Von al-Albānī als ṣaḥīḥ eingestuft.',
+    fundstelle: 'al-Albānī, Silsila aṣ-Ṣaḥīḥa 1546 · vgl. Koran 2,129 · 61,6',
+  },
+}
+
+// ---- Ibn ʿAmr (Bukhari 2125) ↔ Isaiah 42: the description, side by side ------
+export const ibnAmrJesaja = {
+  intro:
+    'Der „Zeig-mir-den-Vers"-Einwand verlangt den Schriftzug „Muhammad". Doch der ṣaḥīḥ-Hadith Bukhārī 2125 nennt die Tora-Beschreibung des Propheten ﷺ — und sie deckt sich Zug um Zug mit Jesaja 42. Eine Beschreibung, kein Buchstabenrätsel.',
+  spalten: ['Hadith (Bukhārī 2125) — die Tora-Beschreibung', 'Jesaja 42 — der Knecht Gottes'],
+  zeilen: [
+    { h: '„Mein Diener und Gesandter"', j: '„Siehe, mein Knecht, den ich halte" (42,1)' },
+    { h: '„Zeuge, Bringer froher Botschaft und Warner"', j: '„als Bund des Volkes, als Licht der Heiden" (42,6)' },
+    { h: '„kein Lärmer auf den Märkten"', j: '„er schreit nicht und erhebt seine Stimme nicht auf der Gasse" (42,2)' },
+    { h: '„nicht grob, nicht hart … verzeiht"', j: '„das geknickte Rohr zerbricht er nicht" (42,3)' },
+    { h: '„Gott öffnet durch ihn blinde Augen, taube Ohren"', j: '„blinde Augen zu öffnen, Gefangene herauszuführen" (42,7)' },
+    { h: '„Hüter der Schriftunkundigen (ummiyyīn)"', j: '„ich gab dich … zum Licht der Völker (gôyīm)" (42,6)' },
+  ],
+  pointe:
+    'Sechs Züge, eine Gestalt. Die Tora-Beschreibung, die der Prophet ﷺ für sich beanspruchte, steht — lesbar — in Jesaja 42. Das entfaltet Siegel III.',
 }
 
 // ---- The taḥrīf spectrum (centre-piece exhibit) ------------------------------
@@ -191,10 +272,30 @@ export const spielregeln = [
 export const fundamentKonter: KonterItem[] = [
   {
     tier: 'stone',
-    einwand: '„Die Bibel ist verfälscht — wie kannst du sie überhaupt benutzen?"',
+    einwand: '„Der Koran nennt die Bibel gefälscht — das ist ein Widerspruch!"',
     konter:
-      'taḥrīf bedeutet im Koran nicht totalen Textverlust. 2,79: Menschen schreiben „mit eigenen Händen". 3,78: sie „verdrehen mit der Zunge". 2,159: sie „verbergen". Das ist Sinnentstellung und Verbergen — nicht das Verschwinden jedes Wortes. Zugleich beruft sich der Koran selbst auf Tora und Evangelium als „Licht und Rechtleitung" (5,46) und fordert, sie „aufzurichten" (5,68). Bewahrt genug, dass die Prophezeiungen überdauern.',
-    belegId: 'q279',
+      'Kein Widerspruch, sondern Doppelnatur: Tora und Evangelium sind ursprünglich „Rechtleitung und Licht" (5,44–46; 3,3), doch durch Menschenhand teils verfälscht — geschrieben „mit eigenen Händen" (2,79), verdreht „mit der Zunge" (3,78), „verborgen" (2,159). Die Bewahrungsgarantie gilt allein dem Koran (15,9). Also erwarten wir Spuren, keine Reinschrift — genug, dass die Prophezeiungen überdauern.',
+    belegId: 'doppelnatur',
+  },
+  {
+    tier: 'stone',
+    einwand: '„Dann zeig den Vers, der ‚Muhammad‘ buchstabiert!"',
+    konter:
+      'Falscher Maßstab: Gott bewahrte Wegweiser, keinen Schriftzug. Der ṣaḥīḥ-Hadith Bukhārī 2125 nennt die Tora-Beschreibung des Propheten ﷺ — Zeuge, Bringer froher Botschaft, Warner, kein Lärmer auf den Märkten, öffnet blinde Augen — und sie deckt sich Zug um Zug mit Jesaja 42. Eine prüfbare Beschreibung, kein Buchstabenrätsel.',
+    belegId: 'bukhari2125',
+  },
+  {
+    tier: 'stone',
+    einwand: '„Das ist muslimische Rückprojektion — nachträglich hineingelesen."',
+    konter:
+      'Nein: jüdische Stämme zogen schon VOR dem Islam in die lebensfeindliche Wüste um Medina, ausdrücklich in Erwartung eines arabischen Propheten, dessen Ort und Zeit ihre eigenen Schriften verrieten (Ibn Isḥāq). Sie verhöhnten ihre heidnischen Nachbarn: „Wenn unser Prophet kommt …" Die Erwartung ging dem Ereignis voraus — das entfaltet Siegel VII.',
+  },
+  {
+    tier: 'stone',
+    einwand: '„Selbst wenn — warum sollte ich ihn deshalb annehmen?"',
+    konter:
+      'Weil der Koran den Bund aller Propheten nennt: kommt der bestätigende Gesandte, „glaubt an ihn und steht ihm bei" (3,81). Ihn abzulehnen heißt nicht, eine Religion abzulehnen, sondern den Bund Abrahams, Moses und Jesu zu brechen — die ihn vorausverkündeten.',
+    belegId: 'q381',
   },
   {
     tier: 'stone',
@@ -205,22 +306,10 @@ export const fundamentKonter: KonterItem[] = [
   },
   {
     tier: 'stone',
-    einwand: '„Der Koran sagt nur ‚er ist vorausgesagt‘ — ohne Kapitel und Vers."',
-    konter:
-      'Genau das liefern die neun Siegel. 7,157 macht eine prüfbare Behauptung: „aufgeschrieben (maktūban) bei ihnen in Tora und Evangelium". Eine prüfbare Behauptung ist eine widerlegbare Behauptung — der Koran setzt sich selbst aufs Spiel. Das Fundament zeigt, dass der Anspruch existiert; die Siegel zeigen, wo er steht.',
-    belegId: 'q7157',
-  },
-  {
-    tier: 'stone',
     einwand: '„‚Aḥmad‘ (61,6) — diesen Namen trägt kein Evangelium."',
     konter:
-      'Auf der Sinn-Ebene heißt Aḥmad „der Hochgepriesene" — und genau diese Bedeutung trägt das griechische períklytos, das dem paráklētos (Joh 14–16) zum Verwechseln ähnelt. Das entfaltet Siegel VI. Auf der Namens-Ebene zählt: der Koran nennt einen kommenden Gesandten, nachprüfbar an dem, was die Schrift über ihn sagt.',
-  },
-  {
-    tier: 'stone',
-    einwand: '„Du liest den Islam in den Text hinein."',
-    konter:
-      'Die Regeln verbieten das: Originalsprachen, anerkannte Lexika (Strong, BDB, Gesenius, HALOT), kein Zirkelschluss. Und entscheidende Deutungen stammen nicht von Muslimen — die Kirchenväter selbst lasen Daniels viertes Reich als Rom. Wir tragen nichts hinein, was die Quellen nicht selbst sagen.',
+      'Der Prophet ﷺ trägt mehrere Namen, darunter Aḥmad (Bukhārī 3532; Muslim 2354). Auf der Sinn-Ebene heißt Aḥmad „der Hochgepriesene" — exakt die Bedeutung des griechischen períklytos, das dem paráklētos (Joh 14–16) zum Verwechseln ähnelt (Siegel VI). Auf der Namens-Ebene zählt: der Koran nennt einen kommenden Gesandten, nachprüfbar an dem, was die Schrift über ihn sagt.',
+    belegId: 'funfnamen',
   },
   {
     tier: 'stone',
@@ -240,40 +329,45 @@ export const fundamentKonter: KonterItem[] = [
 export const fundamentScholar: ScholarItem[] = [
   {
     tier: 'stone',
-    h: '0.1 — Was taḥrīf wirklich heißt',
-    body: 'Zwei klassische Begriffe: taḥrīf al-maʿnā (Entstellung der Bedeutung) und taḥrīf al-lafẓ (Änderung des Wortlauts). Ibn ʿAbbās: der überlieferte Text wurde nicht ausgetauscht — verdreht wird die Auslegung. ar-Rāzī: eine flächendeckende Textänderung über alle Gemeinden und Sprachen hinweg war historisch unmöglich. Die koranischen Belege sprechen vom Schreiben mit eigenen Händen (2,79), Verdrehen der Zunge (3,78) und Verbergen (2,42; 2,159; 2,174) — nicht vom Verschwinden der Schrift.',
+    h: '0.1 — Die koranische Tatsachenbehauptung',
+    body: 'Der Koran stellt es ohne Konjunktiv fest: der Prophet ﷺ ist „bei ihnen aufgeschrieben in Tora und Evangelium" (7,157); Jesus kündigt Aḥmad an (61,6); die Schriftbesitzer „erkennen ihn, wie sie ihre eigenen Söhne erkennen" (2,146; 6,20). Es ist keine Bitte um Bestätigung, sondern eine festgestellte Tatsache — und damit eine prüfbare, widerlegbare.',
   },
   {
     tier: 'stone',
-    h: '0.2 — Der Koran als Zeuge der früheren Schriften',
-    body: 'Der Koran nennt Tora und Evangelium muṣaddiq (bestätigend, 5,46–48), „Rechtleitung und Licht", und fordert, sie „aufzurichten" (5,68). 10,94: „Wenn du im Zweifel bist über das, was Wir herabgesandt haben, so frage die, welche die Schrift vor dir lesen." Eine Schrift, auf die man die Zweifler verweist, kann man nicht zugleich für wertlos erklären.',
+    h: '0.2 — Die Doppelnatur der Bibel',
+    body: 'Tora und Evangelium waren ursprünglich „voll Rechtleitung und Licht" (5,44–46; 3,3) — echtes Gotteswort. Zugleich verfälscht durch Menschenhand: geschrieben „mit eigenen Händen" (2,79), verdreht „mit der Zunge" (3,78), „verborgen" (2,159). Die Bewahrungsgarantie gilt exklusiv dem Koran: „Wir wachen über ihn" (15,9). Kein Widerspruch, sondern zwei Schichten.',
   },
   {
     tier: 'stone',
-    h: '0.3 — Die historische Wiedererkennung',
-    body: 'Menschen, die die Schrift beherrschten, erkannten die Beschreibung: ʿAbdullāh ibn Salām (Rabbiner Medinas), Salmān al-Fārisī (suchte den versprochenen Propheten mit dem „Siegel zwischen den Schultern"), der Negus von Abessinien, Waraqa ibn Naufal. Selbst Kaiser Heraklios bestätigt im Bericht des Abū Sufyān (Bukhārī 7) die prophetischen Zeichen. Die Zeichen waren lesbar — für die, die lesen wollten.',
+    h: '0.3 — Daraus folgt: Spuren, keine Reinschrift',
+    body: 'Aus der Doppelnatur folgt zwingend, was wir erwarten dürfen: detektierbare, aber bestreitbare Spuren — „Wegweiser, sodass keine Entschuldigung bleibt", nicht eine fehlerlose, eindeutige Reinschrift. Wer einen makellosen Schriftzug „Muhammad" verlangt, fordert genau das, was die Doppelnatur ausschließt.',
+  },
+  {
+    tier: 'stone',
+    h: '0.4 — Die Erkenntnishaltung gegenüber der Schrift',
+    body: 'Der Prophet ﷺ gebot eine mittlere Haltung: „Bestätigt die Leute der Schrift nicht und erklärt sie nicht für Lügner, sondern sagt: Wir glauben an das, was zu uns und zu euch herabgesandt wurde" (Sunan Abī Dāwūd 3644; Parallele bei Bukhārī). Weder blinde Übernahme noch pauschale Verwerfung — Prüfung.',
+  },
+  {
+    tier: 'stone',
+    h: '0.5 — Der Hadith-Beleg: Ibn ʿAmr = Jesaja 42',
+    body: 'ʿAbdullāh ibn ʿAmr ibn al-ʿĀṣ schwört, der Prophet ﷺ sei in der Tora beschrieben — „Zeuge, Bringer froher Botschaft, Warner, Hüter der Schriftunkundigen, al-Mutawakkil … kein Lärmer auf den Märkten" (Bukhārī 2125). Das deckt sich mit Jesaja 42. Capstone: „Ich bin das Bittgebet meines Vaters Abraham und die frohe Botschaft Jesu" (Albānī, Silsila 1546) — verknüpft 2,129 und 61,6.',
   },
   {
     tier: 'marble',
-    h: '0.4 — Die Handschriften stützen die These',
+    h: '0.6 — Die Handschriften stützen die These',
     body: 'Die Schriftrollen vom Toten Meer, der masoretische Text und die griechischen Codices zeigen einen erstaunlich stabilen Konsonantentext. Das hilft dem Argument: Ist der Text alt und stabil, kann man die Prophezeiungen nicht als späte Einfügungen abtun. Ein bewahrter Text ist der Freund dieses Beweises, nicht sein Feind.',
   },
   {
     tier: 'stone',
-    h: '0.5 — Die Methode: gleiche Maßstäbe',
+    h: '0.7 — Die Methode: gleiche Maßstäbe',
     body: 'Sechs Regeln: Originalsprachen; anerkannte Lexika (Strong, BDB, Gesenius, HALOT); der Text spricht selbst; kein Zirkelschluss; schwache Belege bleiben draußen; und vor allem — gleiche Maßstäbe für Jesus und Muhammad ﷺ. Was als Erfüllung für den einen gilt, muss auch für den anderen gelten dürfen.',
-  },
-  {
-    tier: 'marble',
-    h: '0.6 — Warum „Fundament" und nicht „Siegel I"',
-    body: 'Dieses Kapitel ist keine einzelne Prophezeiung, sondern der Boden, auf dem die neun Siegel ruhen: der Anspruch (7,157), die Auflösung des Fälschungs-Einwands und die Leseregeln. Ohne dieses Fundament wäre jede Prophezeiung verworfen, bevor man sie liest. Erst wenn der Boden trägt, lohnt der Aufstieg.',
   },
 ]
 
 export const fundamentVernetzung = [
-  { ziel: 'Siegel V — Daniel', text: 'Die Wurzel Ḥ-M-D, hier eingeführt, erscheint dort als ḥamudot (Dan 9,23) — Gabriel nennt Daniel „vielgeliebt".' },
-  { ziel: 'Siegel IV — Hohelied', text: 'maḥamaddīm (Hld 5,16): „ganz und gar begehrenswert" — dieselbe Wurzel, fast der Name selbst.' },
-  { ziel: 'Siegel VI — Der Paraklet', text: 'Aḥmad (61,6) trifft das griechische períklytos / paráklētos (Joh 14–16): „der Gepriesene" gegen „der Tröster".' },
+  { ziel: 'Siegel III — Arabische Prophezeiungen', text: 'Die Tora-Beschreibung aus Bukhārī 2125 deckt sich mit Jesaja 42 — dort wird sie zum vollen geografischen Beweis.' },
+  { ziel: 'Siegel VI — Der Paraklet', text: 'Hier devotional eingeführt, wird Aḥmad (61,6) dort zum Vollbeweis: períklytos / paráklētos (Joh 14–16).' },
+  { ziel: 'Verteidigung — Falscher Prophet?', text: 'Die Doppelnatur (Bewahrung nur des Koran, 15,9) ist zugleich die Antwort auf den Abrogations-Einwand.' },
 ]
 
 export const fundamentGleicheMassstaebe =
