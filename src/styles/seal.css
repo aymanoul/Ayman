@@ -2151,3 +2151,218 @@
   }
 }
 
+/* ============================================================================
+   SIEGEL IV — Das Hohelied · Maḥamaddīm. Word anatomy, the Ḥ-M-D thread
+   (reuses .namen* styling), and the plural of majesty.
+   ========================================================================== */
+
+/* highlight one row of the reused root thread */
+.namen__spur--hl {
+  background: linear-gradient(90deg, var(--green-wash), transparent);
+  border-radius: 8px;
+  margin: 0 -0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.namen__spur--hl .namen__spur-wort,
+.namen__spur--hl .namen__spur-heb {
+  color: var(--green);
+}
+
+/* ----------------------------------------------------- word anatomy (5,16) */
+.anat__head {
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+.anat__wort {
+  display: block;
+  font-size: clamp(2.6rem, 9vw, 4rem);
+  line-height: 1.25;
+  color: var(--green);
+}
+.anat__translit {
+  display: block;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  margin-top: 0.3rem;
+}
+.anat__teile {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+.anat__teil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 8.5rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-2);
+}
+.anat__teil--root {
+  border-color: var(--green);
+  background: linear-gradient(165deg, var(--green-wash-2), var(--paper-card));
+  box-shadow: 0 8px 20px -16px rgba(14, 91, 67, 0.5);
+}
+.anat__he {
+  font-size: 1.9rem;
+  line-height: 1;
+  color: var(--ink);
+}
+.anat__teil--root .anat__he {
+  color: var(--green);
+}
+.anat__label {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 0.35rem;
+}
+.anat__teil--root .anat__label {
+  color: var(--green);
+}
+.anat__sinn {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+.anat__bridge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  padding: 1.3rem;
+  border-top: 1px solid var(--line-faint);
+  border-bottom: 1px solid var(--line-faint);
+  margin-bottom: 1.2rem;
+}
+.anat__skelett {
+  display: flex;
+  gap: 0.5rem;
+}
+.anat__sk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 9px;
+  background: var(--green);
+  color: var(--paper-card);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+.anat__arrow {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--brass);
+}
+.anat__name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+.anat__name-ar {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  color: var(--green);
+}
+.anat__name-trans {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--brass);
+}
+.anat__name-sinn {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+.anat__bedeutung {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 46ch;
+  margin: 0 auto 0.4rem;
+}
+
+/* ----------------------------------------------------- plural of majesty */
+.plural__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+.plural__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+  padding: 1.3rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--paper-card);
+}
+.plural__card--hl {
+  border-color: var(--green);
+  background: linear-gradient(168deg, var(--green-wash-2), var(--paper-card));
+  box-shadow: 0 10px 24px -18px rgba(14, 91, 67, 0.5);
+}
+.plural__he {
+  font-size: 2rem;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.plural__card--hl .plural__he {
+  color: var(--green);
+}
+.plural__t {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.02rem;
+  color: var(--brass);
+}
+.plural__wort {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.plural__sinn {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ---------------------------------------------------------------- responsive */
+@media (max-width: 640px) {
+  .anat__bridge {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .anat__arrow {
+    transform: rotate(90deg);
+  }
+  .anat__teil {
+    min-width: 0;
+    width: 100%;
+  }
+  .plural__row {
+    grid-template-columns: 1fr;
+  }
+}

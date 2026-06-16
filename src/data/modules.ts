@@ -40,8 +40,8 @@ const modul1Siegel: SealMeta[] = [
     nummer: 'IV',
     titel: 'Das Hohelied · Maḥamaddīm',
     arabic: 'محمد',
-    status: 'coming',
-    keywords: ['hohelied', 'machamaddim', 'maḥamaddīm', 'ḥ-m-d', 'salomo', '5:16', 'wurzel', 'stammbaum'],
+    status: 'ready',
+    keywords: ['hohelied', 'schir ha-schirim', 'machamaddim', 'maḥamaddīm', 'mahamaddim', 'ḥ-m-d', 'hmd', 'chamad', 'salomo', '5:16', '5,16', 'wurzel', 'name muhammad', 'der gepriesene', 'begehrenswert', 'plural der hoheit', 'elohim', 'chamudot', 'ḥamudot', 'chemdat', 'ḥemdat', 'haggai', 'daniel 9', 'allegorie', 'targum', 'rashi'],
   },
   {
     id: 'daniel',
