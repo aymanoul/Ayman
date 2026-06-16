@@ -10,6 +10,7 @@ import AbrahamSeal from './seals/AbrahamSeal'
 import MoseSeal from './seals/MoseSeal'
 import ArabienSeal from './seals/ArabienSeal'
 import HoheliedSeal from './seals/HoheliedSeal'
+import ParakletSeal from './seals/ParakletSeal'
 
 // Placeholder seal view. Built seals render their own page; the rest get a
 // graceful illuminated holding page until their content lands.
@@ -36,6 +37,9 @@ export default function SealPage() {
   }
   if (moduleId === 'muhammad' && sealId === 'hohelied') {
     return <HoheliedSeal />
+  }
+  if (moduleId === 'muhammad' && sealId === 'paraklet') {
+    return <ParakletSeal />
   }
 
   if (!module || !seal) {

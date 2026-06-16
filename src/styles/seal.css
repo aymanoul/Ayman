@@ -2366,3 +2366,163 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================================================
+   SIEGEL VI — Der Paraklet. The two Greek words reuse the .baca bridge; the
+   trait list (.merkmale) and the sequence (.abfolge) are bespoke.
+   ========================================================================== */
+
+/* ----------------------------------------------- traits: Spirit or messenger */
+.merkmale__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.3rem;
+}
+.merkmal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.95rem 1.05rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-2);
+  border-left: 3px solid var(--green);
+}
+.merkmal__kopf {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+.merkmal__h {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  color: var(--ink);
+}
+.merkmal__ref {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+.merkmal__sinn {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.merkmale__caveat {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0.9rem 1.1rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(168, 132, 47, 0.1), var(--paper-card));
+  border: 1px solid rgba(168, 132, 47, 0.35);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.merkmale__caveat-tag {
+  color: var(--brass);
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+/* ----------------------------------------------------------- the sequence */
+.abfolge__label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.8rem;
+}
+.abfolge__label--hl {
+  color: var(--green);
+}
+.abfolge__track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.7rem;
+}
+.abfolge__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.3rem;
+  padding: 1rem 0.7rem;
+  border: 1px solid var(--line-faint);
+  border-radius: 12px;
+  background: var(--paper-2);
+}
+.abfolge__dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  color: var(--paper-card);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.abfolge__e {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.abfolge__ref {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  color: var(--ink-faint);
+}
+.abfolge__aber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+.abfolge__aber span {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--brass);
+  padding: 0.15rem 1.1rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.abfolge__paraklet {
+  padding: 1.3rem 1.4rem;
+  border: 1px solid var(--green);
+  border-radius: 14px;
+  background: linear-gradient(165deg, var(--green-wash-2), var(--paper-card));
+  text-align: center;
+}
+.abfolge__quote {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 48ch;
+  margin: 0 auto 0.4rem;
+}
+
+/* ---------------------------------------------------------------- responsive */
+@media (max-width: 640px) {
+  .merkmale__list {
+    grid-template-columns: 1fr;
+  }
+  .abfolge__track {
+    grid-template-columns: 1fr 1fr;
+  }
+}

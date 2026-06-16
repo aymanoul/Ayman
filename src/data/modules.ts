@@ -56,8 +56,8 @@ const modul1Siegel: SealMeta[] = [
     nummer: 'VI',
     titel: 'Der Paraklet',
     arabic: 'أحمد',
-    status: 'coming',
-    keywords: ['paraklet', 'parakletos', 'periklytos', 'johannes', 'tröster', 'geist der wahrheit', 'aḥmad', '16:7'],
+    status: 'ready',
+    keywords: ['paraklet', 'parakletos', 'paráklētos', 'periklytos', 'períklytos', 'johannes', 'johannes 14', 'johannes 16', 'tröster', 'beistand', 'geist der wahrheit', 'heiliger geist', 'aḥmad', 'ahmad', '61:6', '16:7', '16:13', '14:16', '14:26', 'geist oder gesandter', 'der gepriesene', 'griechisch'],
   },
   {
     id: 'juedische-erwartung',
