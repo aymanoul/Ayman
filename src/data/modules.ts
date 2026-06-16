@@ -64,8 +64,8 @@ const modul1Siegel: SealMeta[] = [
     nummer: 'VII',
     titel: 'Jüdische Erwartung · Gleiche Maßstäbe',
     arabic: 'الميزان',
-    status: 'coming',
-    keywords: ['jüdische erwartung', 'gleiche maßstäbe', 'waage', 'kriterien', 'maßstab'],
+    status: 'ready',
+    keywords: ['jüdische erwartung', 'gleiche maßstäbe', 'waage', 'al-mizan', 'al-mīzān', 'mizan', 'kriterien', 'maßstab', 'prüfsteine', 'prophet test', '5. mose 13', '5. mose 18', 'deuteronomium 13', 'andere götter', 'drei erwartungen', 'messias', 'elia', 'der prophet', 'qumran', '1qs', 'maimonides', 'doppelte maßstäbe', 'beweis', 'burhan', '55:7', '57:25', '2:111', '3:84'],
   },
   {
     id: 'verteidigung',

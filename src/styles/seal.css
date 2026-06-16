@@ -2526,3 +2526,158 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ============================================================================
+   SIEGEL VII — Jüdische Erwartung · al-mīzān. The touchstone check (extends
+   .merkmale), the balance + double-standards (.waage / .zmass); the synthesis
+   reuses .netz.
+   ========================================================================== */
+
+/* a green check before a passed touchstone */
+.merkmal__check {
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------- the balance */
+.waage__icon {
+  max-width: 280px;
+  margin: 0 auto 1.6rem;
+}
+.waage__icon svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.waage__line {
+  fill: none;
+  stroke: var(--brass);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.waage__pan {
+  fill: var(--green-wash);
+  stroke: var(--green);
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+}
+.waage__knob {
+  fill: var(--brass);
+}
+.waage__pans {
+  display: flex;
+  justify-content: space-between;
+  max-width: 250px;
+  margin: 0.4rem auto 0;
+}
+.waage__pan-label {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--green);
+}
+.waage__pan-label:first-child {
+  color: var(--ink-soft);
+}
+
+/* --------------------------------------------------- the double standards */
+.zmass {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1.1rem;
+}
+.zmass__head,
+.zmass__row {
+  display: grid;
+  grid-template-columns: 0.9fr 1.3fr 1.3fr;
+}
+.zmass__head {
+  background: var(--green-wash);
+  border-bottom: 1px solid var(--line);
+}
+.zmass__head span {
+  padding: 0.7rem 0.95rem;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.zmass__h-j {
+  color: var(--ink-soft) !important;
+}
+.zmass__h-m {
+  color: var(--green) !important;
+}
+.zmass__row {
+  border-bottom: 1px solid var(--line-faint);
+}
+.zmass__row:last-child {
+  border-bottom: none;
+}
+.zmass__std {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.85rem 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+  background: var(--paper-2);
+}
+.zmass__siegel {
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.zmass__cell {
+  padding: 0.85rem 0.95rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  border-left: 1px solid var(--line-faint);
+}
+.zmass__cell--m {
+  background: var(--green-wash);
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------- responsive */
+@media (max-width: 760px) {
+  .zmass__head {
+    display: none;
+  }
+  .zmass__row {
+    grid-template-columns: 1fr;
+    padding: 0.4rem 0;
+  }
+  .zmass__std {
+    background: none;
+    padding-bottom: 0.4rem;
+    color: var(--green);
+  }
+  .zmass__cell {
+    border-left: none;
+    background: none;
+  }
+  .zmass__cell::before {
+    content: attr(data-lbl) ': ';
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+  .zmass__cell--m {
+    background: none;
+  }
+}
