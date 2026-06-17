@@ -123,7 +123,7 @@ export default function ErwartungSeal() {
         </section>
 
         {/* ---- 🔥 the map + schedule (centrepiece) ---- */}
-        <section className="sec">
+        <section className="sec" id="karte">
           <Eyebrow kicker="Haupt-Exhibit" title="Sie erwarteten ihn — Karte und Zeitplan" />
           <p className="sec__lead">
             Jüdische Stämme zogen vor dem Islam in die härteste Wüste der Erde — weil ihre eigenen Schriften ihnen
@@ -184,19 +184,19 @@ export default function ErwartungSeal() {
         </section>
 
         {/* ---- the balance ---- */}
-        <section className="sec">
+        <section className="sec" id="waage">
           <Eyebrow kicker="Gleiche Maßstäbe" title="Eine Waage, gleiche Gewichte" />
           <Waage />
         </section>
 
         {/* ---- the Banu Qurayza context ---- */}
-        <section className="sec">
+        <section className="sec" id="qurayza">
           <Eyebrow kicker="Der Einwand, entkräftet" title="Banū Qurayẓa im Kontext" />
           <QurayzaTimeline />
         </section>
 
         {/* ---- the davidic dissection ---- */}
-        <section className="sec">
+        <section className="sec" id="davidisch">
           <Eyebrow kicker="Prophezeiung oder Propaganda?" title="Das davidische Narrativ" />
           <DavidischSeziertisch />
         </section>

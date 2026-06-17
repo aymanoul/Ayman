@@ -122,7 +122,7 @@ export default function HoheliedSeal() {
         </section>
 
         {/* ---- 🔥 HAUPT-EXHIBIT: the Hebrew root graphic (centrepiece) ---- */}
-        <section className="sec">
+        <section className="sec" id="wurzel">
           <Eyebrow kicker="Haupt-Exhibit" title="Die Hebräisch-Wurzel-Grafik" />
           <p className="sec__lead">
             מַחֲמַדִּים (Hld 5,16) ↔ חמדת (Haggai 2,7) ↔ أحمد / محمد — alle auf eine Wurzel zurückgeführt:
@@ -132,7 +132,7 @@ export default function HoheliedSeal() {
         </section>
 
         {/* ---- the Einsetzprobe ---- */}
-        <section className="sec">
+        <section className="sec" id="einsetzprobe">
           <Eyebrow kicker="Nur eine Stelle passt" title="Die Einsetzprobe" />
           <Einsetzprobe />
         </section>
@@ -172,13 +172,13 @@ export default function HoheliedSeal() {
         </section>
 
         {/* ---- the physiognomy side-by-side ---- */}
-        <section className="sec">
+        <section className="sec" id="physiognomie">
           <Eyebrow kicker="Zug um Zug" title="Die Physiognomie" />
           <Physiognomie />
         </section>
 
         {/* ---- the Sanhedrin 43a panel ---- */}
-        <section className="sec">
+        <section className="sec" id="sanhedrin">
           <Eyebrow kicker="Die jüdische Namens-Exegese" title="Sanhedrin 43a" />
           <SanhedrinPanel />
         </section>

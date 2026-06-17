@@ -122,7 +122,7 @@ export default function ParakletSeal() {
         </section>
 
         {/* ---- 🔥 the four-criteria matrix (centrepiece) ---- */}
-        <section className="sec">
+        <section className="sec" id="matrix">
           <Eyebrow kicker="Haupt-Exhibit" title="Geist oder Gesandter?" />
           <p className="sec__lead">
             Vier Kriterien aus Jesu eigenen Worten — alle erfüllt von einem kommenden Menschen. Der „Heilige
@@ -132,7 +132,7 @@ export default function ParakletSeal() {
         </section>
 
         {/* ---- the periklytos graphic ---- */}
-        <section className="sec">
+        <section className="sec" id="periklytos">
           <Eyebrow kicker="Der Name" title="Ein Klangschritt, ein Name" />
           <PeriklytosGrafik />
         </section>

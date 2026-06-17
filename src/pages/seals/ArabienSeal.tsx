@@ -121,7 +121,7 @@ export default function ArabienSeal() {
         </section>
 
         {/* ---- 🔥 HAUPT-EXHIBIT: the five-point map ---- */}
-        <section className="sec">
+        <section className="sec" id="karte">
           <Eyebrow kicker="Haupt-Exhibit" title="Fünf Namen, vier Bücher, ein Land" />
           <p className="sec__lead">
             Paran, Kedar, Sela, Tema, Baca — fünf Eigennamen aus vier unabhängigen Büchern, alle in einem
@@ -131,7 +131,7 @@ export default function ArabienSeal() {
         </section>
 
         {/* ---- the three shinings ---- */}
-        <section className="sec">
+        <section className="sec" id="aufstrahlungen">
           <Eyebrow kicker="Deuteronomium 33" title="Sinai · Seir · Paran" />
           <p className="sec__lead">
             Ein einziger Vers ordnet das Licht Gottes in drei Stufen — Dämmerung, Sonnenaufgang, Zenit —, und das

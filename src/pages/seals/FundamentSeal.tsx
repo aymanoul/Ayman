@@ -113,7 +113,7 @@ export default function FundamentSeal() {
         </section>
 
         {/* ---- the claim ---- */}
-        <section className="sec">
+        <section className="sec" id="belege">
           <Eyebrow kicker="Der Anspruch" title="Eine prüfbare Behauptung" />
           <p className="sec__lead">
             Der Koran stellt sich selbst auf die Probe: der kommende Prophet sei „aufgeschrieben" bei den Leuten der
@@ -138,7 +138,7 @@ export default function FundamentSeal() {
         </section>
 
         {/* ---- the description: Bukhari 2125 ↔ Isaiah 42 ---- */}
-        <section className="sec">
+        <section className="sec" id="synopse">
           <Eyebrow kicker="Die Beschreibung" title="Aufgeschrieben — und lesbar" />
           <p className="sec__lead">
             Kein Schriftzug, sondern eine Beschreibung: was der ṣaḥīḥ-Hadith über die Tora sagt, steht Zug um Zug
@@ -148,7 +148,7 @@ export default function FundamentSeal() {
         </section>
 
         {/* ---- the name thread ---- */}
-        <section className="sec">
+        <section className="sec" id="namen">
           <Eyebrow kicker="Der rote Faden" title="Die Wurzel, die den Namen trägt" />
           <NameThread />
         </section>

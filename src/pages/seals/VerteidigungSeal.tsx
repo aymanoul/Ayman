@@ -114,7 +114,7 @@ export default function VerteidigungSeal() {
         </section>
 
         {/* ---- the synopsis (centrepiece) ---- */}
-        <section className="sec">
+        <section className="sec" id="synopse">
           <Eyebrow kicker="Haupt-Exhibit" title="Der Früchte-Test, konsequent" />
           <p className="sec__lead">
             Jesu eigener Maßstab — „an ihren Früchten" — auf Muhammad ﷺ angewandt: Zug um Zug deckt sich seine
@@ -124,7 +124,7 @@ export default function VerteidigungSeal() {
         </section>
 
         {/* ---- the Paul dossier ---- */}
-        <section className="sec">
+        <section className="sec" id="paulus">
           <Eyebrow kicker="Wer brachte die Gesetzlosigkeit?" title="Das Paulus-Dossier" />
           <PaulusDossier />
         </section>
@@ -174,7 +174,7 @@ export default function VerteidigungSeal() {
         </section>
 
         {/* ---- the abrogation list ---- */}
-        <section className="sec">
+        <section className="sec" id="abrogation">
           <Eyebrow kicker="Gott ändert seine Gebote" title="Aufhebung in der Bibel selbst" />
           <Abrogationsliste />
         </section>

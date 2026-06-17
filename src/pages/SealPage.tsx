@@ -1,4 +1,5 @@
-import { Link, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useParams, useLocation } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import Shamsa from '../components/Shamsa'
 import { ArrowLeft } from '../components/icons'
@@ -18,9 +19,25 @@ import VerteidigungSeal from './seals/VerteidigungSeal'
 // graceful illuminated holding page until their content lands.
 export default function SealPage() {
   const { moduleId, sealId } = useParams()
+  const { hash } = useLocation()
   const reduce = useReducedMotion()
   const module = findModule(moduleId)
   const seal = findSeal(moduleId, sealId)
+
+  // Deep-link: scroll to the exhibit named in the URL hash (set by search),
+  // once the seal has rendered; otherwise start at the top.
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0)
+      return
+    }
+    const id = decodeURIComponent(hash.slice(1))
+    const t = setTimeout(() => {
+      const el = document.getElementById(id)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 240)
+    return () => clearTimeout(t)
+  }, [hash, sealId])
 
   if (moduleId === 'muhammad' && sealId === 'daniel') {
     return <DanielSeal />

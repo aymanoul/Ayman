@@ -169,16 +169,30 @@
   text-align: center;
   flex: none;
 }
+.seek__hit-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
+}
 .seek__hit-titel {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.02rem;
+  line-height: 1.25;
   color: var(--ink);
 }
 .seek__hit-mod {
   font-family: var(--font-ui);
   font-size: 0.72rem;
+  letter-spacing: 0.04em;
   color: var(--ink-faint);
-  margin-left: auto;
+}
+.seek__empty {
+  padding: 0.9rem 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
 }
 
 /* --------------------------------------------------------------- JOURNEY */

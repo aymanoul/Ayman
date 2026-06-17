@@ -121,7 +121,7 @@ export default function AbrahamSeal() {
         </section>
 
         {/* ---- the family tree (centrepiece) ---- */}
-        <section className="sec">
+        <section className="sec" id="stammbaum">
           <Eyebrow kicker="Haupt-Exhibit" title="Der Stammbaum" />
           <p className="sec__lead">
             Aus einem Vater, Abraham, gehen zwei gesegnete Linien hervor. Die rechte führt über Isaak nach Israel;
@@ -173,7 +173,7 @@ export default function AbrahamSeal() {
         </section>
 
         {/* ---- the Maimonides trap ---- */}
-        <section className="sec">
+        <section className="sec" id="definition">
           <Eyebrow kicker={'Was heißt „großes Volk"?'} title="Die Maimonides-Falle" />
           <p className="sec__lead">
             Die Tora definiert „großes Volk" selbst — Gottesnähe und Gesetz, nicht Zahl. Dieselbe Definition,
@@ -183,7 +183,7 @@ export default function AbrahamSeal() {
         </section>
 
         {/* ---- the chronology ---- */}
-        <section className="sec">
+        <section className="sec" id="opfersohn">
           <Eyebrow kicker={'Der „einzige Sohn"'} title="Eine Frage der Arithmetik" />
           <Chronologie />
         </section>

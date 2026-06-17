@@ -114,7 +114,7 @@ export default function MoseSeal() {
         </section>
 
         {/* ---- the 15-criteria table (centrepiece) ---- */}
-        <section className="sec">
+        <section className="sec" id="vergleich">
           <Eyebrow kicker="Haupt-Exhibit" title="Wer gleicht Mose?" />
           <p className="sec__lead">
             Der Vers gibt selbst den Maßstab vor: „wie Mose". Fünfzehn Kriterien, drei Gestalten — und ein klares
@@ -172,7 +172,7 @@ export default function MoseSeal() {
         </section>
 
         {/* ---- textual variants of Deut 18:15 ---- */}
-        <section className="sec">
+        <section className="sec" id="textkritik">
           <Eyebrow kicker="Textkritik" title={'Der Zusatz „aus deiner Mitte“'} />
           <Varianten />
         </section>
@@ -190,7 +190,7 @@ export default function MoseSeal() {
         </section>
 
         {/* ---- the sieve ---- */}
-        <section className="sec">
+        <section className="sec" id="sieb">
           <Eyebrow kicker="Alle Kandidaten" title="Das Sieb — wer bleibt übrig?" />
           <Sieb />
         </section>

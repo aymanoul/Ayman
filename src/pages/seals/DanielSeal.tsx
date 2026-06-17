@@ -129,7 +129,7 @@ export default function DanielSeal() {
         </section>
 
         {/* ---- the statue (centrepiece) ---- */}
-        <section className="sec">
+        <section className="sec" id="statue">
           <Eyebrow kicker="Haupt-Exhibit" title="Das Traumbild" />
           <p className="sec__lead">
             Fünf Materialien, fünf Reiche. Berühre eine Zone, um Reich und Beleg zu sehen — und lass den Stein
@@ -188,7 +188,7 @@ export default function DanielSeal() {
         </section>
 
         {/* ---- the timeline ---- */}
-        <section className="sec">
+        <section className="sec" id="zeitstrahl">
           <Eyebrow kicker="Historischer Beweis" title="Das Zeitfenster" />
           <Timeline />
         </section>
@@ -232,7 +232,7 @@ export default function DanielSeal() {
         </section>
 
         {/* ---- the cornerstone / the brick ---- */}
-        <section className="sec">
+        <section className="sec" id="eckstein">
           <Eyebrow kicker="Mt 21,42 ↔ Bukhārī 3535" title="Der Eckstein / der Ziegel" />
           <EcksteinSynopse />
         </section>
