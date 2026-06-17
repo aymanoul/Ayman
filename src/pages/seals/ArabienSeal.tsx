@@ -1,3 +1,4 @@
+import '../../styles/seals/arabien.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -5,7 +6,14 @@ import Shamsa from '../../components/Shamsa'
 import { ArrowLeft } from '../../components/icons'
 import { Crown } from '../../components/Ornament'
 import { BelegCard } from '../../components/Beleg'
-import { DreiAufstrahlungen, ArabienKarte, BacaBruecke } from '../../components/exhibits/ArabienExhibits'
+import {
+  ArabienKarte,
+  DreiAufstrahlungen,
+  Textvarianten,
+  ReihenfolgeBeweis,
+  EtmokhVergleich,
+  SynopseTabellen,
+} from '../../components/exhibits/ArabienExhibits'
 import { rise, stagger } from '../../lib/anim'
 import {
   arabienThese,
@@ -96,9 +104,9 @@ export default function ArabienSeal() {
           </motion.p>
         </motion.header>
 
-        {/* ---- the chain ---- */}
+        {/* ---- the core verses (A–D) as the chain ---- */}
         <section className="sec">
-          <Eyebrow kicker="Debatten-Ebene" title="Die Beweiskette in vier Schritten" />
+          <Eyebrow kicker="Debatten-Ebene" title="Die Kern-Verse: vier Bücher, ein Ort" />
           <motion.ol className="steps" variants={stagger} initial="hidden" whileInView="shown" viewport={{ once: true, amount: 0.2 }}>
             {arabienSteps.map((s) => (
               <motion.li className="step" key={s.n} variants={rise}>
@@ -112,20 +120,34 @@ export default function ArabienSeal() {
           </motion.ol>
         </section>
 
-        {/* ---- the three shinings (centrepiece) ---- */}
+        {/* ---- 🔥 HAUPT-EXHIBIT: the five-point map ---- */}
         <section className="sec">
-          <Eyebrow kicker="Haupt-Exhibit" title="Sinai · Seir · Paran" />
+          <Eyebrow kicker="Haupt-Exhibit" title="Fünf Namen, vier Bücher, ein Land" />
           <p className="sec__lead">
-            Ein einziger Vers ordnet das Licht Gottes in drei Stufen — und das hellste Verb steht über Paran,
-            dem Land Ismaels.
+            Paran, Kedar, Sela, Tema, Baca — fünf Eigennamen aus vier unabhängigen Büchern, alle in einem
+            einzigen Wüstenstreifen. Ein geografisches Koordinatennetz, das nur auf einen Punkt zeigt.
+          </p>
+          <ArabienKarte />
+        </section>
+
+        {/* ---- the three shinings ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Deuteronomium 33" title="Sinai · Seir · Paran" />
+          <p className="sec__lead">
+            Ein einziger Vers ordnet das Licht Gottes in drei Stufen — Dämmerung, Sonnenaufgang, Zenit —, und das
+            hellste Verb steht über Paran, dem Land Ismaels.
           </p>
           <DreiAufstrahlungen />
         </section>
 
-        {/* ---- the map ---- */}
+        {/* ---- order-proof + textual variants ---- */}
         <section className="sec">
-          <Eyebrow kicker="Die Geografie" title="Die Schrift zeigt nach Süden" />
-          <ArabienKarte />
+          <Eyebrow kicker="Deut 33 · Textkritik" title="Reihenfolge und Textzeugen" />
+          <p className="sec__lead">
+            Zwei Belege gegen die „Exodus-Route": die Chronologie der Numeri und die Textvarianten von 33,2.
+          </p>
+          <ReihenfolgeBeweis />
+          <Textvarianten />
         </section>
 
         {/* ---- the belege showcase — ALL of them ---- */}
@@ -136,26 +158,24 @@ export default function ArabienSeal() {
           </p>
           <div className="belege-grid">
             <BelegCard beleg={arabienBelege.deut332} />
+            <BelegCard beleg={arabienBelege.isa4211} />
+            <BelegCard beleg={arabienBelege.isa2113} />
+            <BelegCard beleg={arabienBelege.ps845} />
             <BelegCard beleg={arabienBelege.hab33} />
             <BelegCard beleg={arabienBelege.gen2121} />
-            <BelegCard beleg={arabienBelege.isa421} />
-            <BelegCard beleg={arabienBelege.isa4210} />
-            <BelegCard beleg={arabienBelege.ps846} />
-            <BelegCard beleg={arabienBelege.isa607} />
+            <BelegCard beleg={arabienBelege.gen2513} />
             <BelegCard beleg={arabienBelege.q396} />
             <BelegCard beleg={arabienBelege.q2227} />
-            <BelegCard beleg={arabienBelege.midrasch} />
-            <BelegCard beleg={arabienBelege.parangeo} />
+            <BelegCard beleg={arabienBelege.textvarianten} />
+            <BelegCard beleg={arabienBelege.zehntausend} />
+            <BelegCard beleg={arabienBelege.north} />
+            <BelegCard beleg={arabienBelege.knechtquellen} />
+            <BelegCard beleg={arabienBelege.temaquelle} />
+            <BelegCard beleg={arabienBelege.bacaquelle} />
           </div>
         </section>
 
-        {/* ---- Baca = Bakkah ---- */}
-        <section className="sec">
-          <Eyebrow kicker="Ein Tal, zwei Schriften" title="Das Tal Baka" />
-          <BacaBruecke />
-        </section>
-
-        {/* ---- objection / counter ---- */}
+        {/* ---- objection / counter — ALL six ---- */}
         <section className="sec">
           <Eyebrow kicker="Einwand · Konter" title="Was der Gegner sagt — und die Antwort" />
           <motion.div className="konter-list" variants={stagger} initial="hidden" whileInView="shown" viewport={{ once: true, amount: 0.1 }}>
@@ -165,7 +185,13 @@ export default function ArabienSeal() {
           </motion.div>
         </section>
 
-        {/* ---- scholarly layer ---- */}
+        {/* ---- the etmokh / etmokhah letter comparison (marble) ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Jesaja 42 · Textkritik" title="Der Name des Knechts" />
+          <EtmokhVergleich />
+        </section>
+
+        {/* ---- scholarly layer — ALL items ---- */}
         <section className="sec">
           <Eyebrow kicker="Gelehrten-Ebene" title="Tiefer graben" />
           <button className="scholar__toggle" onClick={() => setDeep((v) => !v)} aria-expanded={deep}>
@@ -190,6 +216,16 @@ export default function ArabienSeal() {
               ))}
             </div>
           </motion.div>
+        </section>
+
+        {/* ---- the three summary tables (Prophezeiung ↔ Erfüllung) ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Prophezeiung ↔ Erfüllung" title="Drei Synopsen" />
+          <p className="sec__lead">
+            Deuteronomium 33, Jesaja 42 und Psalm 84 — Vers für Vers gegen die Erfüllung im Leben Muhammads ﷺ
+            gestellt.
+          </p>
+          <SynopseTabellen />
         </section>
 
         {/* ---- gleiche maßstäbe ---- */}

@@ -1,0 +1,332 @@
+/* ============================================================================
+   SIEGEL VI — Der Paraklet. Exhibit styling (matrix knockouts, periklytos flow,
+   text-criticism, Brown list, bus-driver, church panel). Reuses global
+   .ex/.synopse/.belege/.konter/.netz.
+   ========================================================================== */
+
+/* ---- knockouts under the four-criteria matrix ---- */
+.pk-ko {
+  margin-top: 1.2rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid rgba(154, 59, 50, 0.3);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(154, 59, 50, 0.06), var(--paper-card));
+}
+.pk-ko__strike {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  text-decoration: line-through;
+  text-decoration-color: rgba(154, 59, 50, 0.7);
+  margin-bottom: 0.7rem;
+}
+.pk-ko__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.pk-ko__list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.pk-ko__h {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ink);
+}
+.pk-ko__t {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ---- periklytos flow ---- */
+.pk-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-bottom: 1.2rem;
+}
+.pk-flow__step,
+.pk-flow__teil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.2rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-2);
+  min-width: 8rem;
+}
+.pk-flow__teile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.pk-flow__teil {
+  min-width: 12rem;
+  padding: 0.5rem 0.8rem;
+}
+.pk-flow__step--hl {
+  border-color: var(--green);
+  background: linear-gradient(165deg, var(--green-wash-2), var(--paper-card));
+}
+.pk-flow__step--ar {
+  border-color: var(--brass);
+  background: linear-gradient(165deg, rgba(168, 132, 47, 0.12), var(--paper-card));
+}
+.pk-flow__gr {
+  font-size: 1.6rem;
+  line-height: 1.2;
+  color: var(--green);
+}
+.pk-flow__gr--sm {
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+.pk-flow__trans {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--brass);
+}
+.pk-flow__sinn {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+.pk-flow__arrow {
+  font-size: 1.5rem;
+  color: var(--brass);
+}
+.pk-verweise {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+.pk-verweise li {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+.pk-verweise__ziel {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: var(--brass);
+  margin-right: 0.3rem;
+}
+
+/* ---- text-criticism variants + witnesses ---- */
+.pk-var {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 1.1rem;
+}
+.pk-var__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-card);
+}
+.pk-var__card--hl {
+  border-color: var(--green);
+  background: linear-gradient(165deg, var(--green-wash-2), var(--paper-card));
+}
+.pk-var__typ {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.pk-var__lesart {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.pk-var__note {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.pk-zeugen {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 1rem;
+}
+.pk-zeugen li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line-faint);
+}
+.pk-zeugen__name {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  color: var(--green);
+}
+.pk-zeugen__sinn {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* ---- Brown's list / generic name grid ---- */
+.pk-namen {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+.pk-namen li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line-faint);
+  border-radius: 11px;
+  background: var(--paper-2);
+}
+.pk-namen__name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--green);
+}
+.pk-namen__sinn {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* ---- bus-driver illustration ---- */
+.pk-bus__pair {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.pk-bus__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper-card);
+}
+.pk-bus__rolle {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.pk-bus__wort {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--ink);
+}
+.pk-bus__sinn {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+.pk-bus__x {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--accent-bordeaux, #9a3b32);
+}
+.pk-bus__erkl {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin: 0 auto 0.4rem;
+  text-align: center;
+}
+
+/* ---- church-precedent panel ---- */
+.pk-kirche__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.pk-kirche__list li {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: 0.2rem 1rem;
+  align-items: baseline;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--line-faint);
+  border-radius: 11px;
+  background: var(--paper-2);
+}
+.pk-kirche__wer {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--green);
+}
+.pk-kirche__anspruch {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.pk-kirche__note {
+  grid-column: 2;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 640px) {
+  .pk-var,
+  .pk-zeugen,
+  .pk-namen {
+    grid-template-columns: 1fr;
+  }
+  .pk-bus__pair {
+    grid-template-columns: 1fr;
+  }
+  .pk-bus__x {
+    transform: rotate(90deg);
+  }
+  .pk-kirche__list li {
+    grid-template-columns: 1fr;
+  }
+  .pk-kirche__note {
+    grid-column: 1;
+  }
+}

@@ -5,7 +5,15 @@ import Shamsa from '../../components/Shamsa'
 import { ArrowLeft } from '../../components/icons'
 import { Crown } from '../../components/Ornament'
 import { BelegCard } from '../../components/Beleg'
-import { Stammbaum, ZwoelfFuersten, Bundesgaben } from '../../components/exhibits/AbrahamExhibits'
+import {
+  Stammbaum,
+  VavTabelle,
+  ZwoelfFuersten,
+  GrosseNationWaage,
+  Chronologie,
+  Bundesgaben,
+  IsmaelReha,
+} from '../../components/exhibits/AbrahamExhibits'
 import { rise, stagger } from '../../lib/anim'
 import {
   abrahamThese,
@@ -122,6 +130,12 @@ export default function AbrahamSeal() {
           <Stammbaum />
         </section>
 
+        {/* ---- the Vav-question ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Ein Buchstabe entscheidet" title={'„Und" oder „aber"? (1. Mose 17,21)'} />
+          <VavTabelle />
+        </section>
+
         {/* ---- the belege showcase ---- */}
         <section className="sec">
           <Eyebrow kicker="Die Belege" title="Der Segen über Ismael" />
@@ -129,13 +143,24 @@ export default function AbrahamSeal() {
             Jeder Beleg öffnet sich groß und beleuchtet — Originaltext, Umschrift, Übersetzung und Fundstelle.
           </p>
           <div className="belege-grid">
+            <BelegCard beleg={abrahamBelege.gen177} />
+            <BelegCard beleg={abrahamBelege.gen1723} />
             <BelegCard beleg={abrahamBelege.gen1720} />
+            <BelegCard beleg={abrahamBelege.dtn46} />
             <BelegCard beleg={abrahamBelege.gen2113} />
             <BelegCard beleg={abrahamBelege.gen2118} />
+            <BelegCard beleg={abrahamBelege.gen222} />
             <BelegCard beleg={abrahamBelege.gen1726} />
             <BelegCard beleg={abrahamBelege.gen2218} />
+            <BelegCard beleg={abrahamBelege.gen1612} />
+            <BelegCard beleg={abrahamBelege.ex3210} />
+            <BelegCard beleg={abrahamBelege.mt2143} />
             <BelegCard beleg={abrahamBelege.q2129} />
             <BelegCard beleg={abrahamBelege.q1437} />
+            <BelegCard beleg={abrahamBelege.jubilaeen} />
+            <BelegCard beleg={abrahamBelege.josephus} />
+            <BelegCard beleg={abrahamBelege.chumash} />
+            <BelegCard beleg={abrahamBelege.icc} />
             <BelegCard beleg={abrahamBelege.genealogie} />
             <BelegCard beleg={abrahamBelege.maimonides} />
           </div>
@@ -147,10 +172,32 @@ export default function AbrahamSeal() {
           <ZwoelfFuersten />
         </section>
 
+        {/* ---- the Maimonides trap ---- */}
+        <section className="sec">
+          <Eyebrow kicker={'Was heißt „großes Volk"?'} title="Die Maimonides-Falle" />
+          <p className="sec__lead">
+            Die Tora definiert „großes Volk" selbst — Gottesnähe und Gesetz, nicht Zahl. Dieselbe Definition,
+            mit der die Zahl-Lesart an ihren eigenen Texten zerbricht.
+          </p>
+          <GrosseNationWaage />
+        </section>
+
+        {/* ---- the chronology ---- */}
+        <section className="sec">
+          <Eyebrow kicker={'Der „einzige Sohn"'} title="Eine Frage der Arithmetik" />
+          <Chronologie />
+        </section>
+
         {/* ---- what Ishmael received ---- */}
         <section className="sec">
           <Eyebrow kicker="Der Bund" title="Gleiche Worte, beide Söhne" />
           <Bundesgaben />
+        </section>
+
+        {/* ---- Ishmael rehabilitated ---- */}
+        <section className="sec">
+          <Eyebrow kicker="1. Mose 16,12" title="Die Rehabilitierung Ismaels" />
+          <IsmaelReha />
         </section>
 
         {/* ---- objection / counter ---- */}

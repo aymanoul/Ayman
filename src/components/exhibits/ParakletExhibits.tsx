@@ -1,120 +1,213 @@
-import { zweiWoerter, merkmale, abfolge } from '../../data/seals/paraklet'
+import {
+  kriterienMatrix,
+  periklytosGrafik,
+  textkritik,
+  brownListe,
+  busfahrer,
+  deutBruecke,
+  kirchenPanel,
+} from '../../data/seals/paraklet'
 
-// Three exhibits for Siegel VI — name, description, timing:
-//  · the two Greek words paráklētos ≈ períklytos = Aḥmad (reuses .baca bridge)
-//  · the traits of the Paraclete — Spirit or coming messenger?
-//  · the sequence: the Spirit was already present vs. the Paraclete comes after
+// Exhibits for Siegel VI — Der Paraklet (SPEC §6.6):
+//  · 🔥 the four-criteria matrix (Jesus' words ↔ Muhammad) + the 3 knockouts
+//  · the periklytos root graphic (para + kletos → periklytos → Aḥmad)
+//  · the text-criticism panel for "holy" (Joh 14,26)
+//  · Raymond Brown's list of six scholars
+//  · the "bus-driver who operates" illustration (the Paraclete problem)
+//  · the Deut-18,18 bridge (Joh 16,13 ↔ Deut 18,18)
+//  · the church-precedent panel (Origen's pupils / Mani / Augustine)
 
-export function ZweiWoerter() {
+function SynopseTable({ headA, headB, rows }: { headA: string; headB: string; rows: { a: string; b: string }[] }) {
   return (
-    <div className="ex ex--wide baca">
-      <h3 className="ex__title">παράκλητος ≈ περικλυτός</h3>
-      <p className="erwart__intro">{zweiWoerter.intro}</p>
-
-      <div className="baca__pair">
-        <div className="baca__card">
-          <span className="baca__titel">{zweiWoerter.links.titel}</span>
-          <span className="baca__wort" lang="el">
-            {zweiWoerter.links.wort}
-          </span>
-          <span className="baca__trans">{zweiWoerter.links.trans}</span>
-          <span className="baca__sinn">{zweiWoerter.links.sinn}</span>
-        </div>
-
-        <div className="baca__bridge" aria-hidden>
-          <span className="baca__eq">≈</span>
-        </div>
-
-        <div className="baca__card baca__card--ar">
-          <span className="baca__titel">{zweiWoerter.rechts.titel}</span>
-          <span className="baca__wort" lang="el">
-            {zweiWoerter.rechts.wort}
-          </span>
-          <span className="baca__trans">{zweiWoerter.rechts.trans}</span>
-          <span className="baca__sinn">
-            {zweiWoerter.rechts.sinn} ={' '}
-            <span className="arabic" dir="rtl" lang="ar">
-              أحمد
-            </span>
-          </span>
-        </div>
+    <div className="synopse">
+      <div className="synopse__head" aria-hidden>
+        <span>{headA}</span>
+        <span>{headB}</span>
       </div>
-
-      <ul className="baca__parallelen">
-        {zweiWoerter.parallelen.map((p) => (
-          <li key={p.merkmal}>
-            <span className="baca__merkmal">{p.merkmal}</span>
-            <span className="baca__text">{p.text}</span>
-          </li>
-        ))}
-      </ul>
-
-      <p className="ex__pointe">{zweiWoerter.pointe}</p>
+      {rows.map((r, i) => (
+        <div className="synopse__row" key={i}>
+          <span className="synopse__a" data-lbl={headA}>
+            {r.a}
+          </span>
+          <span className="synopse__b" data-lbl={headB}>
+            {r.b}
+          </span>
+        </div>
+      ))}
     </div>
   )
 }
 
-export function Merkmale() {
+export function KriterienMatrix() {
   return (
-    <div className="ex ex--wide merkmale">
-      <h3 className="ex__title">Geist oder Gesandter?</h3>
-      <p className="erwart__intro">{merkmale.intro}</p>
-
-      <ul className="merkmale__list">
-        {merkmale.zeilen.map((z) => (
-          <li className="merkmal" key={z.merkmal}>
-            <span className="merkmal__kopf">
-              <span className="merkmal__h">{z.merkmal}</span>
-              <span className="merkmal__ref">{z.ref}</span>
-            </span>
-            <span className="merkmal__sinn">{z.sinn}</span>
-          </li>
-        ))}
-      </ul>
-
-      <p className="merkmale__caveat">
-        <span className="merkmale__caveat-tag" aria-hidden>
-          ⚠
-        </span>
-        {merkmale.caveat}
-      </p>
-      <p className="ex__pointe">{merkmale.pointe}</p>
+    <div className="ex ex--wide pk-matrix">
+      <h3 className="ex__title">Die Vier-Kriterien-Matrix</h3>
+      <p className="erwart__intro">{kriterienMatrix.intro}</p>
+      <SynopseTable
+        headA={kriterienMatrix.spalten[0]}
+        headB={kriterienMatrix.spalten[1]}
+        rows={kriterienMatrix.zeilen.map((z) => ({ a: `${z.wort} (${z.ref})`, b: z.erfuellung }))}
+      />
+      <div className="pk-ko">
+        <span className="pk-ko__strike">{kriterienMatrix.durchgestrichen}</span>
+        <ul className="pk-ko__list">
+          {kriterienMatrix.knockouts.map((k, i) => (
+            <li key={i}>
+              <span className="pk-ko__h">{k.h}</span>
+              <span className="pk-ko__t">{k.t}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <p className="ex__pointe">{kriterienMatrix.pointe}</p>
     </div>
   )
 }
 
-export function Abfolge() {
+export function PeriklytosGrafik() {
   return (
-    <div className="ex ex--wide abfolge">
-      <h3 className="ex__title">Die Abfolge</h3>
-      <p className="erwart__intro">{abfolge.intro}</p>
-
-      <div className="abfolge__geist">
-        <span className="abfolge__label">{abfolge.geist.label}</span>
-        <div className="abfolge__track">
-          {abfolge.geist.nodes.map((n, i) => (
-            <div className="abfolge__node" key={n.ref}>
-              <span className="abfolge__dot" aria-hidden>
-                {i + 1}
-              </span>
-              <span className="abfolge__e">{n.e}</span>
-              <span className="abfolge__ref">{n.ref}</span>
+    <div className="ex ex--wide pk-flow-card">
+      <h3 className="ex__title">παράκλητος → περικλυτός → أحمد</h3>
+      <p className="erwart__intro">{periklytosGrafik.intro}</p>
+      <div className="pk-flow">
+        <div className="pk-flow__step">
+          <span className="pk-flow__gr">{periklytosGrafik.start.wort}</span>
+          <span className="pk-flow__trans">{periklytosGrafik.start.trans}</span>
+          <span className="pk-flow__sinn">{periklytosGrafik.start.sinn}</span>
+        </div>
+        <span className="pk-flow__arrow" aria-hidden>→</span>
+        <div className="pk-flow__teile">
+          {periklytosGrafik.teile.map((t) => (
+            <div className="pk-flow__teil" key={t.trans}>
+              <span className="pk-flow__gr pk-flow__gr--sm">{t.gr}</span>
+              <span className="pk-flow__sinn">{t.trans} — {t.sinn}</span>
             </div>
           ))}
         </div>
+        <span className="pk-flow__arrow" aria-hidden>→</span>
+        <div className="pk-flow__step pk-flow__step--hl">
+          <span className="pk-flow__gr">{periklytosGrafik.ziel.gr}</span>
+          <span className="pk-flow__trans">{periklytosGrafik.ziel.trans}</span>
+          <span className="pk-flow__sinn">{periklytosGrafik.ziel.sinn}</span>
+        </div>
+        <span className="pk-flow__arrow" aria-hidden>≈</span>
+        <div className="pk-flow__step pk-flow__step--ar">
+          <span className="pk-flow__gr arabic" dir="rtl" lang="ar">{periklytosGrafik.arabisch.ar}</span>
+          <span className="pk-flow__trans">{periklytosGrafik.arabisch.trans}</span>
+          <span className="pk-flow__sinn">{periklytosGrafik.arabisch.sinn}</span>
+        </div>
       </div>
+      <ul className="pk-verweise">
+        {periklytosGrafik.verweise.map((v) => (
+          <li key={v.ziel}>
+            <span className="pk-verweise__ziel">{v.ziel}</span> {v.text}
+          </li>
+        ))}
+      </ul>
+      <p className="ex__pointe">{periklytosGrafik.pointe}</p>
+    </div>
+  )
+}
 
-      <div className="abfolge__aber" aria-hidden>
-        <span>aber</span>
+export function Textkritik() {
+  return (
+    <div className="ex ex--wide pk-textkritik">
+      <span className="marble-tag">✦ Ergänzender Befund</span>
+      <h3 className="ex__title">Textkritik: „heilig" in Johannes 14,26</h3>
+      <p className="erwart__intro">{textkritik.intro}</p>
+      <div className="pk-var">
+        {textkritik.varianten.map((v, i) => (
+          <div className={`pk-var__card${v.hl ? ' pk-var__card--hl' : ''}`} key={i}>
+            <span className="pk-var__typ">{v.typ}</span>
+            <span className="pk-var__lesart">{v.lesart}</span>
+            <span className="pk-var__note">{v.note}</span>
+          </div>
+        ))}
       </div>
+      <ul className="pk-zeugen">
+        {textkritik.zeugen.map((z) => (
+          <li key={z.name}>
+            <span className="pk-zeugen__name">{z.name}</span>
+            <span className="pk-zeugen__sinn">{z.sinn}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="ex__pointe">{textkritik.pointe}</p>
+    </div>
+  )
+}
 
-      <div className="abfolge__paraklet">
-        <span className="abfolge__label abfolge__label--hl">{abfolge.paraklet.label}</span>
-        <p className="abfolge__quote">{abfolge.paraklet.text}</p>
-        <span className="abfolge__ref">{abfolge.paraklet.ref}</span>
+export function BrownListe() {
+  return (
+    <div className="ex ex--wide pk-brown">
+      <h3 className="ex__title">Raymond Browns Liste</h3>
+      <p className="erwart__intro">{brownListe.intro}</p>
+      <ul className="pk-namen">
+        {brownListe.gelehrte.map((g) => (
+          <li key={g.name}>
+            <span className="pk-namen__name">{g.name}</span>
+            <span className="pk-namen__sinn">{g.sinn}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="ex__pointe">{brownListe.pointe}</p>
+    </div>
+  )
+}
+
+export function Busfahrer() {
+  return (
+    <div className="ex ex--wide pk-bus">
+      <h3 className="ex__title">{busfahrer.titel}</h3>
+      <div className="pk-bus__pair">
+        <div className="pk-bus__card">
+          <span className="pk-bus__rolle">{busfahrer.links.rolle}</span>
+          <span className="pk-bus__wort">{busfahrer.links.wort}</span>
+          <span className="pk-bus__sinn">{busfahrer.links.sinn}</span>
+        </div>
+        <span className="pk-bus__x" aria-hidden>≠</span>
+        <div className="pk-bus__card pk-bus__card--fn">
+          <span className="pk-bus__rolle">{busfahrer.rechts.rolle}</span>
+          <span className="pk-bus__wort">{busfahrer.rechts.wort}</span>
+          <span className="pk-bus__sinn">{busfahrer.rechts.sinn}</span>
+        </div>
       </div>
+      <p className="pk-bus__erkl">{busfahrer.erklaerung}</p>
+      <p className="ex__pointe">{busfahrer.pointe}</p>
+    </div>
+  )
+}
 
-      <p className="ex__pointe">{abfolge.pointe}</p>
+export function DeutBruecke() {
+  return (
+    <div className="ex ex--wide pk-bruecke">
+      <h3 className="ex__title">Der Paraklet = der Prophet wie Mose</h3>
+      <p className="erwart__intro">{deutBruecke.intro}</p>
+      <SynopseTable
+        headA={deutBruecke.spalten[0]}
+        headB={deutBruecke.spalten[1]}
+        rows={deutBruecke.zeilen.map((z) => ({ a: z.a, b: z.b }))}
+      />
+      <p className="ex__pointe">{deutBruecke.pointe}</p>
+    </div>
+  )
+}
+
+export function KirchenPanel() {
+  return (
+    <div className="ex ex--wide pk-kirche">
+      <h3 className="ex__title">Die Kirche selbst: Paraklet = Mensch</h3>
+      <p className="erwart__intro">{kirchenPanel.intro}</p>
+      <ul className="pk-kirche__list">
+        {kirchenPanel.faelle.map((f) => (
+          <li key={f.wer}>
+            <span className="pk-kirche__wer">{f.wer}</span>
+            <span className="pk-kirche__anspruch">{f.anspruch}</span>
+            <span className="pk-kirche__note">{f.note}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="ex__pointe">{kirchenPanel.pointe}</p>
     </div>
   )
 }

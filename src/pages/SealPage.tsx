@@ -12,6 +12,7 @@ import ArabienSeal from './seals/ArabienSeal'
 import HoheliedSeal from './seals/HoheliedSeal'
 import ParakletSeal from './seals/ParakletSeal'
 import ErwartungSeal from './seals/ErwartungSeal'
+import VerteidigungSeal from './seals/VerteidigungSeal'
 
 // Placeholder seal view. Built seals render their own page; the rest get a
 // graceful illuminated holding page until their content lands.
@@ -44,6 +45,9 @@ export default function SealPage() {
   }
   if (moduleId === 'muhammad' && sealId === 'juedische-erwartung') {
     return <ErwartungSeal />
+  }
+  if (moduleId === 'muhammad' && sealId === 'verteidigung') {
+    return <VerteidigungSeal />
   }
 
   if (!module || !seal) {

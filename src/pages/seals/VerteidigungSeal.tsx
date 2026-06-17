@@ -1,4 +1,4 @@
-import '../../styles/seals/hohelied.css'
+import '../../styles/seals/verteidigung.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -6,25 +6,17 @@ import Shamsa from '../../components/Shamsa'
 import { ArrowLeft } from '../../components/icons'
 import { Crown } from '../../components/Ornament'
 import { BelegCard } from '../../components/Beleg'
-import {
-  WurzelThread,
-  Einsetzprobe,
-  Physiognomie,
-  SanhedrinPanel,
-  Verknuepfung,
-  Feindzeugen,
-  PluralHoheit,
-} from '../../components/exhibits/HoheliedExhibits'
+import { Synopse, Zuwd, Abrogationsliste, PaulusDossier, ProvBanner } from '../../components/exhibits/VerteidigungExhibits'
 import { rise, stagger } from '../../lib/anim'
 import {
-  hoheliedThese,
-  hoheliedSteps,
-  hoheliedKonter,
-  hoheliedScholar,
-  hoheliedBelege,
-  hoheliedVernetzung,
-  hoheliedGleicheMassstaebe,
-} from '../../data/seals/hohelied'
+  verteidigungThese,
+  verteidigungSteps,
+  verteidigungKonter,
+  verteidigungScholar,
+  verteidigungBelege,
+  verteidigungVernetzung,
+  verteidigungGleicheMassstaebe,
+} from '../../data/seals/verteidigung'
 
 function Eyebrow({ kicker, title }: { kicker: string; title: string }) {
   const reduce = useReducedMotion()
@@ -42,9 +34,9 @@ function Eyebrow({ kicker, title }: { kicker: string; title: string }) {
   )
 }
 
-function KonterRow({ item }: { item: (typeof hoheliedKonter)[number] }) {
+function KonterRow({ item }: { item: (typeof verteidigungKonter)[number] }) {
   const [open, setOpen] = useState(false)
-  const beleg = item.belegId ? hoheliedBelege[item.belegId] : undefined
+  const beleg = item.belegId ? verteidigungBelege[item.belegId] : undefined
   return (
     <motion.div className={`konter${item.tier === 'marble' ? ' is-marble' : ''}`} variants={rise}>
       {item.tier === 'marble' && <span className="marble-tag">✦ Ergänzender Befund</span>}
@@ -72,7 +64,7 @@ function KonterRow({ item }: { item: (typeof hoheliedKonter)[number] }) {
   )
 }
 
-export default function HoheliedSeal() {
+export default function VerteidigungSeal() {
   const reduce = useReducedMotion()
   const [deep, setDeep] = useState(false)
 
@@ -89,19 +81,19 @@ export default function HoheliedSeal() {
             <Shamsa size={92} />
           </motion.span>
           <motion.span className="seal__num" variants={rise}>
-            Siegel IV
+            Verteidigung
           </motion.span>
           <motion.h1 className="seal__title gilt" variants={rise}>
-            Das Hohelied
+            Falscher Prophet?
           </motion.h1>
           <motion.span className="seal__ar arabic" variants={rise} dir="rtl" lang="ar">
-            محمد
+            الدفاع
           </motion.span>
           <motion.span className="front__divider" variants={rise} aria-hidden>
             <Crown width={150} />
           </motion.span>
           <motion.p className="seal__these" variants={rise}>
-            {hoheliedThese}
+            {verteidigungThese}
           </motion.p>
         </motion.header>
 
@@ -109,7 +101,7 @@ export default function HoheliedSeal() {
         <section className="sec">
           <Eyebrow kicker="Debatten-Ebene" title="Die Beweiskette in vier Schritten" />
           <motion.ol className="steps" variants={stagger} initial="hidden" whileInView="shown" viewport={{ once: true, amount: 0.2 }}>
-            {hoheliedSteps.map((s) => (
+            {verteidigungSteps.map((s) => (
               <motion.li className="step" key={s.n} variants={rise}>
                 <span className="step__n">{s.n}</span>
                 <div>
@@ -121,91 +113,82 @@ export default function HoheliedSeal() {
           </motion.ol>
         </section>
 
-        {/* ---- 🔥 HAUPT-EXHIBIT: the Hebrew root graphic (centrepiece) ---- */}
+        {/* ---- the synopsis (centrepiece) ---- */}
         <section className="sec">
-          <Eyebrow kicker="Haupt-Exhibit" title="Die Hebräisch-Wurzel-Grafik" />
+          <Eyebrow kicker="Haupt-Exhibit" title="Der Früchte-Test, konsequent" />
           <p className="sec__lead">
-            מַחֲמַדִּים (Hld 5,16) ↔ חמדת (Haggai 2,7) ↔ أحمد / محمد — alle auf eine Wurzel zurückgeführt:
-            Ḥ-M-D. Das visuelle Zentrum des Siegels.
+            Jesu eigener Maßstab — „an ihren Früchten" — auf Muhammad ﷺ angewandt: Zug um Zug deckt sich seine
+            Lehre mit dem Evangelium.
           </p>
-          <WurzelThread />
+          <Synopse />
         </section>
 
-        {/* ---- the Einsetzprobe ---- */}
+        {/* ---- the Paul dossier ---- */}
         <section className="sec">
-          <Eyebrow kicker="Nur eine Stelle passt" title="Die Einsetzprobe" />
-          <Einsetzprobe />
+          <Eyebrow kicker="Wer brachte die Gesetzlosigkeit?" title="Das Paulus-Dossier" />
+          <PaulusDossier />
         </section>
 
         {/* ---- the belege showcase — ALL of them ---- */}
         <section className="sec">
-          <Eyebrow kicker="Die Belege" title="Verse, Wurzel und Zeugen" />
+          <Eyebrow kicker="Die Belege" title="Verse, Wurzeln und Quellen" />
           <p className="sec__lead">
             Jeder Beleg öffnet sich groß und beleuchtet — Originaltext, Umschrift, Übersetzung und Fundstelle.
           </p>
           <div className="belege-grid">
-            <BelegCard beleg={hoheliedBelege.song516} />
-            <BelegCard beleg={hoheliedBelege.hag27} />
-            <BelegCard beleg={hoheliedBelege.mal31} />
-            <BelegCard beleg={hoheliedBelege.song510} />
-            <BelegCard beleg={hoheliedBelege.song511} />
-            <BelegCard beleg={hoheliedBelege.song515} />
-            <BelegCard beleg={hoheliedBelege.q616} />
-            <BelegCard beleg={hoheliedBelege.q171} />
-            <BelegCard beleg={hoheliedBelege.q2146} />
-            <BelegCard beleg={hoheliedBelege.wurzelhmd} />
-            <BelegCard beleg={hoheliedBelege.sanhedrin} />
-            <BelegCard beleg={hoheliedBelege.parkhurst} />
-            <BelegCard beleg={hoheliedBelege.higgins} />
-            <BelegCard beleg={hoheliedBelege.dawud} />
-            <BelegCard beleg={hoheliedBelege.ojb} />
-            <BelegCard beleg={hoheliedBelege.herrlichkeit} />
-            <BelegCard beleg={hoheliedBelege.shalom} />
-            <BelegCard beleg={hoheliedBelege.pluralverb} />
-            <BelegCard beleg={hoheliedBelege.allegorie} />
-            <BelegCard beleg={hoheliedBelege.pluralis} />
-            <BelegCard beleg={hoheliedBelege.hesekiel16} />
-            <BelegCard beleg={hoheliedBelege.physiognomie} />
-            <BelegCard beleg={hoheliedBelege.davis} />
-            <BelegCard beleg={hoheliedBelege.eloquenz} />
+            <BelegCard beleg={verteidigungBelege.mt517} />
+            <BelegCard beleg={verteidigungBelege.mt519} />
+            <BelegCard beleg={verteidigungBelege.mt721} />
+            <BelegCard beleg={verteidigungBelege.mt715} />
+            <BelegCard beleg={verteidigungBelege.mt1917} />
+            <BelegCard beleg={verteidigungBelege.jer3131} />
+            <BelegCard beleg={verteidigungBelege.dtn1820} />
+            <BelegCard beleg={verteidigungBelege.dtn1822} />
+            <BelegCard beleg={verteidigungBelege.gen2012} />
+            <BelegCard beleg={verteidigungBelege.gen93} />
+            <BelegCard beleg={verteidigungBelege.gen2928} />
+            <BelegCard beleg={verteidigungBelege.ex129} />
+            <BelegCard beleg={verteidigungBelege.dtn167} />
+            <BelegCard beleg={verteidigungBelege.num302} />
+            <BelegCard beleg={verteidigungBelege.kor1920} />
+            <BelegCard beleg={verteidigungBelege.thess415} />
+            <BelegCard beleg={verteidigungBelege.gal26} />
+            <BelegCard beleg={verteidigungBelege.kor115} />
+            <BelegCard beleg={verteidigungBelege.ps119115} />
+            <BelegCard beleg={verteidigungBelege.gen4927} />
+            <BelegCard beleg={verteidigungBelege.spr2010} />
+            <BelegCard beleg={verteidigungBelege.q285} />
+            <BelegCard beleg={verteidigungBelege.zuwdquelle} />
+            <BelegCard beleg={verteidigungBelege.synopsequelle} />
+            <BelegCard beleg={verteidigungBelege.paulusname} />
+            <BelegCard beleg={verteidigungBelege.patristikquelle} />
+            <BelegCard beleg={verteidigungBelege.aufhebungquelle} />
+            <BelegCard beleg={verteidigungBelege.doppelmassquelle} />
           </div>
         </section>
 
-        {/* ---- the physiognomy side-by-side ---- */}
+        {/* ---- the zûd analysis ---- */}
         <section className="sec">
-          <Eyebrow kicker="Zug um Zug" title="Die Physiognomie" />
-          <Physiognomie />
+          <Eyebrow kicker="5. Mose 18,20" title={'Vorsätzlich — nicht „jeder Prophet"'} />
+          <Zuwd />
         </section>
 
-        {/* ---- the Sanhedrin 43a panel ---- */}
+        {/* ---- the abrogation list ---- */}
         <section className="sec">
-          <Eyebrow kicker="Die jüdische Namens-Exegese" title="Sanhedrin 43a" />
-          <SanhedrinPanel />
+          <Eyebrow kicker="Gott ändert seine Gebote" title="Aufhebung in der Bibel selbst" />
+          <Abrogationsliste />
         </section>
 
-        {/* ---- the cross-link diagram ---- */}
+        {/* ---- the two-measures banner ---- */}
         <section className="sec">
-          <Eyebrow kicker="Das Netz der Prophezeiungen" title="Der Knotenpunkt" />
-          <Verknuepfung />
-        </section>
-
-        {/* ---- the hostile-witnesses panel ---- */}
-        <section className="sec">
-          <Eyebrow kicker="Die unwilligen Zeugen" title="Feindzeugen" />
-          <Feindzeugen />
-        </section>
-
-        {/* ---- the plural of majesty ---- */}
-        <section className="sec">
-          <Eyebrow kicker="Die Grammatik" title="Wenn -īm Hoheit bedeutet" />
-          <PluralHoheit />
+          <ProvBanner />
         </section>
 
         {/* ---- objection / counter ---- */}
         <section className="sec">
           <Eyebrow kicker="Einwand · Konter" title="Was der Gegner sagt — und die Antwort" />
           <motion.div className="konter-list" variants={stagger} initial="hidden" whileInView="shown" viewport={{ once: true, amount: 0.1 }}>
-            {hoheliedKonter.map((k, i) => (
+            {verteidigungKonter.map((k, i) => (
               <KonterRow key={i} item={k} />
             ))}
           </motion.div>
@@ -227,7 +210,7 @@ export default function HoheliedSeal() {
             style={{ overflow: 'hidden' }}
           >
             <div className="scholar">
-              {hoheliedScholar.map((s, i) => (
+              {verteidigungScholar.map((s, i) => (
                 <article key={i} className={`scholar__item${s.tier === 'marble' ? ' is-marble' : ''}`}>
                   {s.tier === 'marble' && <span className="marble-tag">✦ Ergänzender Befund</span>}
                   <h3 className="scholar__h">{s.h}</h3>
@@ -247,14 +230,14 @@ export default function HoheliedSeal() {
           transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
         >
           <span className="massstab__label">Gleiche Maßstäbe</span>
-          <p>{hoheliedGleicheMassstaebe}</p>
+          <p>{verteidigungGleicheMassstaebe}</p>
         </motion.section>
 
         {/* ---- the net ---- */}
         <section className="sec">
           <Eyebrow kicker="Das Netz schließt sich" title="Vernetzung" />
           <div className="netz">
-            {hoheliedVernetzung.map((v) => (
+            {verteidigungVernetzung.map((v) => (
               <article className="netz__item" key={v.ziel}>
                 <h3 className="netz__ziel">{v.ziel}</h3>
                 <p className="netz__text">{v.text}</p>

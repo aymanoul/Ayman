@@ -1,0 +1,139 @@
+/* ============================================================================
+   VERTEIDIGUNGS-SIEGEL — „Falscher Prophet?". Exhibit styling: the zûd word
+   panel, the Paul dossier (three fruits), the Proverbs banner. Reuses global
+   .synopse / .ex / .belege / .konter / .netz.
+   ========================================================================== */
+
+/* ---- the zûd word panel ---- */
+.vt-zuwd__word {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+  padding: 1.3rem;
+  border: 1px solid var(--green);
+  border-radius: 14px;
+  background: linear-gradient(165deg, var(--green-wash-2), var(--paper-card));
+  margin-bottom: 1.1rem;
+}
+.vt-zuwd__he {
+  font-size: 2.6rem;
+  line-height: 1.2;
+  color: var(--green);
+}
+.vt-zuwd__translit {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--brass);
+}
+.vt-zuwd__wurzel {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+}
+.vt-zuwd__bed {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-top: 0.3rem;
+}
+.vt-zuwd__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.vt-zuwd__list li {
+  position: relative;
+  padding: 0.7rem 0.95rem 0.7rem 2rem;
+  border: 1px solid var(--line-faint);
+  border-radius: 11px;
+  background: var(--paper-2);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.vt-zuwd__list li::before {
+  content: "·";
+  position: absolute;
+  left: 0.9rem;
+  color: var(--brass);
+  font-weight: 700;
+}
+
+/* ---- the Paul dossier: three fruits ---- */
+.vt-paulus__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+.vt-paulus__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.2rem 1.2rem 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper-card);
+  border-top: 3px solid var(--accent-bordeaux, #9a3b32);
+}
+.vt-paulus__n {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--brass);
+}
+.vt-paulus__titel {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+.vt-paulus__body {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ---- the Proverbs 20,10 banner ---- */
+.vt-prov {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, rgba(168, 132, 47, 0.1), var(--paper-card));
+  border-color: rgba(168, 132, 47, 0.4);
+}
+.vt-prov__vers {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 40ch;
+  margin: 0 auto;
+}
+.vt-prov__ref {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.vt-prov__unter {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 760px) {
+  .vt-paulus__row {
+    grid-template-columns: 1fr;
+  }
+}

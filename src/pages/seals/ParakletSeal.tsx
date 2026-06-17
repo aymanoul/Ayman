@@ -1,3 +1,4 @@
+import '../../styles/seals/paraklet.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -5,7 +6,15 @@ import Shamsa from '../../components/Shamsa'
 import { ArrowLeft } from '../../components/icons'
 import { Crown } from '../../components/Ornament'
 import { BelegCard } from '../../components/Beleg'
-import { ZweiWoerter, Merkmale, Abfolge } from '../../components/exhibits/ParakletExhibits'
+import {
+  KriterienMatrix,
+  PeriklytosGrafik,
+  Textkritik,
+  BrownListe,
+  Busfahrer,
+  DeutBruecke,
+  KirchenPanel,
+} from '../../components/exhibits/ParakletExhibits'
 import { rise, stagger } from '../../lib/anim'
 import {
   parakletThese,
@@ -112,47 +121,78 @@ export default function ParakletSeal() {
           </motion.ol>
         </section>
 
-        {/* ---- the two words (centrepiece) ---- */}
+        {/* ---- 🔥 the four-criteria matrix (centrepiece) ---- */}
         <section className="sec">
-          <Eyebrow kicker="Haupt-Exhibit" title="Ein Vokalschritt, ein Name" />
+          <Eyebrow kicker="Haupt-Exhibit" title="Geist oder Gesandter?" />
           <p className="sec__lead">
-            Der überlieferte „Beistand" und „der Gepriesene" stehen im Griechischen dicht beieinander — und das
-            zweite Wort ist, Sinn für Sinn, der Name Aḥmad.
+            Vier Kriterien aus Jesu eigenen Worten — alle erfüllt von einem kommenden Menschen. Der „Heilige
+            Geist" scheitert an dreien.
           </p>
-          <ZweiWoerter />
+          <KriterienMatrix />
         </section>
 
-        {/* ---- the traits ---- */}
+        {/* ---- the periklytos graphic ---- */}
         <section className="sec">
-          <Eyebrow kicker="Die Beschreibung" title="Wen beschreibt Jesus?" />
-          <Merkmale />
+          <Eyebrow kicker="Der Name" title="Ein Klangschritt, ein Name" />
+          <PeriklytosGrafik />
         </section>
 
         {/* ---- the belege showcase — ALL of them ---- */}
         <section className="sec">
           <Eyebrow kicker="Die Belege" title="Verheißung, Name und Beschreibung" />
           <p className="sec__lead">
-            Jeder Beleg öffnet sich groß und beleuchtet — Originaltext, Umschrift, Übersetzung und Fundstelle.
-            Auch der stärkste Gegen-Vers steht offen dabei.
+            Jeder Beleg öffnet sich groß und beleuchtet — auch der stärkste Gegen-Vers (14,26) steht offen dabei.
           </p>
           <div className="belege-grid">
             <BelegCard beleg={parakletBelege.john1416} />
-            <BelegCard beleg={parakletBelege.john1613} />
-            <BelegCard beleg={parakletBelege.john167} />
-            <BelegCard beleg={parakletBelege.john1526} />
+            <BelegCard beleg={parakletBelege.john1417} />
             <BelegCard beleg={parakletBelege.john1426} />
+            <BelegCard beleg={parakletBelege.john1526} />
+            <BelegCard beleg={parakletBelege.john167} />
+            <BelegCard beleg={parakletBelege.john1613} />
+            <BelegCard beleg={parakletBelege.john1615} />
             <BelegCard beleg={parakletBelege.q616} />
-            <BelegCard beleg={parakletBelege.q5334} />
+            <BelegCard beleg={parakletBelege.q5325} />
+            <BelegCard beleg={parakletBelege.q16102} />
             <BelegCard beleg={parakletBelege.periklytos} />
-            <BelegCard beleg={parakletBelege.geistschon} />
-            <BelegCard beleg={parakletBelege.anderer} />
+            <BelegCard beleg={parakletBelege.raymondBrown} />
+            <BelegCard beleg={parakletBelege.metzger} />
+            <BelegCard beleg={parakletBelege.nielsen} />
+            <BelegCard beleg={parakletBelege.himmelfahrtMoses} />
+            <BelegCard beleg={parakletBelege.kirchenPraezedenz} />
+            <BelegCard beleg={parakletBelege.anMeinerStelle} />
+            <BelegCard beleg={parakletBelege.maskulinePronomen} />
           </div>
         </section>
 
-        {/* ---- the sequence ---- */}
+        {/* ---- text-criticism panel ---- */}
         <section className="sec">
-          <Eyebrow kicker="Die Zeit" title="Erst nach dem Weggang" />
-          <Abfolge />
+          <Eyebrow kicker="Johannes 14,26" title="Der stärkste Gegen-Vers" />
+          <Textkritik />
+        </section>
+
+        {/* ---- Brown's list ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Selbst christliche Gelehrte" title="Paraklet = ursprünglich ein Mensch" />
+          <BrownListe />
+        </section>
+
+        {/* ---- the bus-driver illustration ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Titel ≠ Funktion" title="Das Paraklet-Problem" />
+          <Busfahrer />
+        </section>
+
+        {/* ---- the Deut-18,18 bridge ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Brücke zu Siegel II" title="Wort für Wort wie Mose" />
+          <DeutBruecke />
+        </section>
+
+        {/* ---- church precedent ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Innerchristliche Tradition" title="Die Kirche selbst" />
+          <KirchenPanel />
         </section>
 
         {/* ---- objection / counter ---- */}

@@ -1,3 +1,4 @@
+import '../../styles/seals/mose.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -5,7 +6,7 @@ import Shamsa from '../../components/Shamsa'
 import { ArrowLeft } from '../../components/icons'
 import { Crown } from '../../components/Ornament'
 import { BelegCard } from '../../components/Beleg'
-import { Vergleich, DreiErwartungen, Brudernationen } from '../../components/exhibits/MoseExhibits'
+import { Fuenfzehn, Varianten, AugustinusPanel, DreiErwartungen, Sieb, Zeugen } from '../../components/exhibits/MoseExhibits'
 import { rise, stagger } from '../../lib/anim'
 import {
   moseThese,
@@ -112,19 +113,19 @@ export default function MoseSeal() {
           </motion.ol>
         </section>
 
-        {/* ---- the comparison (centrepiece) ---- */}
+        {/* ---- the 15-criteria table (centrepiece) ---- */}
         <section className="sec">
           <Eyebrow kicker="Haupt-Exhibit" title="Wer gleicht Mose?" />
           <p className="sec__lead">
-            Der Vers gibt selbst den Maßstab vor: „wie Mose". Neun Kriterien, drei Gestalten — und ein klares Bild,
-            wer Mose gleicht und wer abweicht.
+            Der Vers gibt selbst den Maßstab vor: „wie Mose". Fünfzehn Kriterien, drei Gestalten — und ein klares
+            Bild, wer Mose gleicht und wer abweicht. Mose ↔ Muhammad ﷺ: 15/15. Jesus: 1/15.
           </p>
-          <Vergleich />
+          <Fuenfzehn />
         </section>
 
         {/* ---- the belege showcase ---- */}
         <section className="sec">
-          <Eyebrow kicker="Die Belege" title="Zwei Schlüssel, ein Vers" />
+          <Eyebrow kicker="Die Belege" title="Verse, Quellen und Zeugen" />
           <p className="sec__lead">
             Jeder Beleg öffnet sich groß und beleuchtet — Originaltext, Umschrift, Übersetzung und Fundstelle.
           </p>
@@ -132,23 +133,72 @@ export default function MoseSeal() {
             <BelegCard beleg={moseBelege.deut1818} />
             <BelegCard beleg={moseBelege.deut3410} />
             <BelegCard beleg={moseBelege.deut1815} />
-            <BelegCard beleg={moseBelege.q7315} />
-            <BelegCard beleg={moseBelege.q5334} />
+            <BelegCard beleg={moseBelege.deut24} />
+            <BelegCard beleg={moseBelege.deut237} />
             <BelegCard beleg={moseBelege.john121} />
+            <BelegCard beleg={moseBelege.john1613} />
             <BelegCard beleg={moseBelege.apg322} />
+            <BelegCard beleg={moseBelege.mt517} />
+            <BelegCard beleg={moseBelege.john117} />
+            <BelegCard beleg={moseBelege.q5334} />
+            <BelegCard beleg={moseBelege.bukhari3364} />
+            <BelegCard beleg={moseBelege.q2125} />
+            <BelegCard beleg={moseBelege.q53} />
+            <BelegCard beleg={moseBelege.mt1524} />
+            <BelegCard beleg={moseBelege.john111} />
+            <BelegCard beleg={moseBelege.textvarianten} />
+            <BelegCard beleg={moseBelege.netbibel} />
+            <BelegCard beleg={moseBelege.maimonides} />
+            <BelegCard beleg={moseBelege.blenkinsopp} />
+            <BelegCard beleg={moseBelege.samaritanus} />
+            <BelegCard beleg={moseBelege.baden} />
+            <BelegCard beleg={moseBelege.gersonides} />
+            <BelegCard beleg={moseBelege.lamsa} />
+            <BelegCard beleg={moseBelege.rashi} />
+            <BelegCard beleg={moseBelege.luther} />
+            <BelegCard beleg={moseBelege.augustinus} />
+            <BelegCard beleg={moseBelege.faustus} />
+            <BelegCard beleg={moseBelege.teeple} />
+            <BelegCard beleg={moseBelege.hosea111} />
+            <BelegCard beleg={moseBelege.johEvangelium} />
+            <BelegCard beleg={moseBelege.josephus} />
+            <BelegCard beleg={moseBelege.delitzsch} />
+            <BelegCard beleg={moseBelege.niv} />
+            <BelegCard beleg={moseBelege.greenberg} />
+            <BelegCard beleg={moseBelege.dow} />
+            <BelegCard beleg={moseBelege.exodus33} />
+            <BelegCard beleg={moseBelege.deut1821} />
           </div>
         </section>
 
-        {/* ---- the three expectations ---- */}
+        {/* ---- textual variants of Deut 18:15 ---- */}
         <section className="sec">
-          <Eyebrow kicker="Eine eigene Erwartung" title="Messias · Elia · der Prophet" />
+          <Eyebrow kicker="Textkritik" title={'Der Zusatz „aus deiner Mitte“'} />
+          <Varianten />
+        </section>
+
+        {/* ---- the three expectations (John 1) ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Eine eigene Erwartung" title="Messias · Elija · der Prophet" />
           <DreiErwartungen />
         </section>
 
-        {/* ---- the brother-nations ---- */}
+        {/* ---- the Augustine panel ---- */}
         <section className="sec">
-          <Eyebrow kicker="Die Sprache" title={'Wer sind „die Brüder“?'} />
-          <Brudernationen />
+          <Eyebrow kicker="Sie sagen es selbst" title="Augustinus, Contra Faustum" />
+          <AugustinusPanel />
+        </section>
+
+        {/* ---- the sieve ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Alle Kandidaten" title="Das Sieb — wer bleibt übrig?" />
+          <Sieb />
+        </section>
+
+        {/* ---- external witnesses ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Externe Zeugen" title="Greenberg & Dow" />
+          <Zeugen />
         </section>
 
         {/* ---- objection / counter ---- */}

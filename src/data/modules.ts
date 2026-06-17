@@ -72,8 +72,8 @@ const modul1Siegel: SealMeta[] = [
     nummer: 'Verteidigung',
     titel: 'Falscher Prophet?',
     arabic: 'الدفاع',
-    status: 'coming',
-    keywords: ['falscher prophet', 'verteidigung', 'einwände', 'kritik', 'abrogation', 'schwert'],
+    status: 'ready',
+    keywords: ['falscher prophet', 'verteidigung', 'al-difāʿ', 'einwände', 'kritik', 'abrogation', 'aufhebung', 'schwert', 'paulus', 'anomia', 'gesetzlosigkeit', 'zûd', 'zuwd', 'deut 18,20', 'früchte', 'matthäus 7', 'mt 5,17', 'jeremia 31', 'synopse', 'banu qurayza', 'doppelmaß', 'sprüche 20,10'],
   },
 ]
 

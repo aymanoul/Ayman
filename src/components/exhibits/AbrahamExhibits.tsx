@@ -1,9 +1,51 @@
-import { stammbaum, zwoelfFuersten, ismaelEmpfing, ismaelEmpfingPointe } from '../../data/seals/abraham'
+import {
+  stammbaum,
+  zwoelfFuersten,
+  ismaelEmpfing,
+  ismaelEmpfingPointe,
+  vavTabelle,
+  grosseNationWaage,
+  chronologie,
+  ismaelReha,
+} from '../../data/seals/abraham'
 
-// Three exhibits for Siegel I — one father, two lines:
-//  · the family tree (Abraham → Ishmael → Muhammad ﷺ  |  Abraham → Isaac → Jesus)
+// Exhibits for Siegel I — the blessed line, defined and defended:
+//  · the family tree (Abraham → Ishmael → Muhammad ﷺ | Abraham → Isaac → Jesus)
+//  · the Vav-question (Gen 17,21: "and" vs "but")
 //  · the twelve princes of Ishmael (mirror of Israel's twelve)
-//  · the covenant gifts Ishmael actually received
+//  · the Maimonides trap ("great nation" ≠ number; Ex 32,10 / Ibn Ezra / Benson)
+//  · the chronology (Ishmael was the "only son" for 14 years)
+//  · the covenant gifts; Ishmael rehabilitated (Gen 16,12)
+
+// A small reusable two-column synopsis table (reuses global .synopse styling).
+function SynopseTable({
+  headA,
+  headB,
+  rows,
+}: {
+  headA: string
+  headB: string
+  rows: { a: string; b: string }[]
+}) {
+  return (
+    <div className="synopse">
+      <div className="synopse__head" aria-hidden>
+        <span>{headA}</span>
+        <span>{headB}</span>
+      </div>
+      {rows.map((r, i) => (
+        <div className="synopse__row" key={i}>
+          <span className="synopse__a" data-lbl={headA}>
+            {r.a}
+          </span>
+          <span className="synopse__b" data-lbl={headB}>
+            {r.b}
+          </span>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export function Stammbaum() {
   return (
@@ -50,6 +92,22 @@ export function Stammbaum() {
   )
 }
 
+// The Vav-question: Gen 17,21 "and" vs "but" (reuses .synopse).
+export function VavTabelle() {
+  return (
+    <div className="ex ex--wide vav-card">
+      <h3 className="ex__title">Ein Buchstabe: das Vav (ו) in 1. Mose 17,21</h3>
+      <p className="erwart__intro">{vavTabelle.intro}</p>
+      <SynopseTable
+        headA={vavTabelle.spalten[0]}
+        headB={vavTabelle.spalten[1]}
+        rows={vavTabelle.zeilen.map((z) => ({ a: z.h, b: z.j }))}
+      />
+      <p className="ex__pointe">{vavTabelle.pointe}</p>
+    </div>
+  )
+}
+
 export function ZwoelfFuersten() {
   return (
     <div className="ex ex--wide zwoelf-card">
@@ -72,6 +130,46 @@ export function ZwoelfFuersten() {
   )
 }
 
+// The Maimonides trap: "great nation" is not a number (reuses .synopse).
+export function GrosseNationWaage() {
+  return (
+    <div className="ex ex--wide gnw-card">
+      <h3 className="ex__title">Die Maimonides-Falle: „großes Volk" ≠ Zahl</h3>
+      <p className="erwart__intro">{grosseNationWaage.intro}</p>
+      <p className="gnw__these">
+        <span className="gnw__these-lbl">Behauptung</span>
+        {grosseNationWaage.these}
+      </p>
+      <SynopseTable
+        headA="Gegenzeuge"
+        headB="Was er sagt"
+        rows={grosseNationWaage.gegen.map((g) => ({ a: g.q, b: g.t }))}
+      />
+      <p className="ex__pointe">{grosseNationWaage.pointe}</p>
+    </div>
+  )
+}
+
+// The chronology: Ishmael was the "only son" for 14 years.
+export function Chronologie() {
+  return (
+    <div className="ex ex--wide chrono-card">
+      <h3 className="ex__title">Der „einzige Sohn" — eine Frage der Arithmetik</h3>
+      <p className="erwart__intro">{chronologie.intro}</p>
+      <ul className="chrono">
+        {chronologie.zeilen.map((z, i) => (
+          <li key={i}>
+            <span className="chrono__e">{z.e}</span>
+            <span className="chrono__wert">{z.wert}</span>
+            <span className="chrono__ref">{z.ref}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="ex__pointe">{chronologie.pointe}</p>
+    </div>
+  )
+}
+
 export function Bundesgaben() {
   return (
     <div className="ex ex--wide gaben-card">
@@ -88,6 +186,22 @@ export function Bundesgaben() {
         ))}
       </ul>
       <p className="ex__pointe">{ismaelEmpfingPointe}</p>
+    </div>
+  )
+}
+
+// Ishmael rehabilitated: Gen 16,12 prejudice vs text (reuses .synopse).
+export function IsmaelReha() {
+  return (
+    <div className="ex ex--wide reha-card">
+      <h3 className="ex__title">Die Rehabilitierung Ismaels · 1. Mose 16,12</h3>
+      <p className="erwart__intro">{ismaelReha.intro}</p>
+      <SynopseTable
+        headA="Vorurteil (die Lesart)"
+        headB="Der Text"
+        rows={ismaelReha.zeilen.map((z) => ({ a: z.neg, b: z.pos }))}
+      />
+      <p className="ex__pointe">{ismaelReha.pointe}</p>
     </div>
   )
 }

@@ -1,0 +1,206 @@
+/* ============================================================================
+   SIEGEL IV — Das Hohelied. Exhibit styling: root-graphic highlight, the
+   Einsetzprobe, the Sanhedrin panel, the cross-link diagram, hostile
+   witnesses. Reuses global .namen / .synopse / .plural / .ex.
+   ========================================================================== */
+
+.hl-root .namen__spuren-h {
+  color: var(--brass);
+}
+.hl-spur--hl {
+  background: linear-gradient(90deg, var(--green-wash), transparent);
+  border-radius: 8px;
+  margin: 0 -0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.hl-spur--hl .namen__spur-wort,
+.hl-spur--hl .namen__spur-heb {
+  color: var(--green);
+}
+
+/* ---- the Einsetzprobe (insert "Muhammad") — extends .synopse ---- */
+.einsetz__he {
+  display: block;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: var(--green);
+}
+.einsetz__stelle {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+  margin-top: 0.2rem;
+}
+.einsetz__satz {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.einsetz__verdikt {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  margin-top: 0.35rem;
+}
+.einsetz__verdikt.is-sinn {
+  color: var(--green);
+}
+.einsetz__verdikt.is-unsinn {
+  color: var(--accent-bordeaux, #9a3b32);
+}
+.einsetz__row--hl {
+  background: var(--green-wash);
+}
+
+/* ---- Sanhedrin 43a panel ---- */
+.sanh__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.sanh__fall {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  gap: 0.3rem 1rem;
+  align-items: baseline;
+  padding: 0.75rem 0.95rem;
+  border: 1px solid var(--line-faint);
+  border-radius: 11px;
+  background: var(--paper-2);
+}
+.sanh__fall--hl {
+  border-color: var(--green);
+  background: linear-gradient(135deg, var(--green-wash-2), var(--paper-card));
+}
+.sanh__name {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+.sanh__he {
+  font-size: 1.2rem;
+  color: var(--green);
+}
+.sanh__deutung {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ---- the cross-link diagram (Song as hub) ---- */
+.vnetz__diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.vnetz__nabe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 1.1rem 1.6rem;
+  border: 1px solid var(--green);
+  border-radius: 50%;
+  background: linear-gradient(165deg, var(--green-wash-2), var(--paper-card));
+  min-width: 9rem;
+  aspect-ratio: 1;
+  justify-content: center;
+}
+.vnetz__nabe-he {
+  font-size: 1.8rem;
+  color: var(--green);
+}
+.vnetz__nabe-label {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+.vnetz__speichen {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  width: 100%;
+}
+.vnetz__speiche {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--line-faint);
+  border-radius: 11px;
+  background: var(--paper-2);
+}
+.vnetz__ziel {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--green);
+}
+.vnetz__text {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+/* ---- hostile-witnesses panel (Parkhurst + Higgins) ---- */
+.feind__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+.feind__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--paper-card);
+  border-top: 3px solid var(--brass);
+}
+.feind__zitat {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.feind__name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--green);
+}
+.feind__rolle {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+}
+.feind__kontext {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 640px) {
+  .sanh__fall {
+    grid-template-columns: 1fr;
+  }
+  .vnetz__speichen,
+  .feind__row {
+    grid-template-columns: 1fr;
+  }
+}
