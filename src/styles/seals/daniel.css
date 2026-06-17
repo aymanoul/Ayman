@@ -1,0 +1,295 @@
+/* ============================================================================
+   SIEGEL V — Daniel. Styling for the added exhibits: methodology note, the
+   five-kingdoms table, the four beasts, the stone conditions, formal-vs-
+   functional, the cornerstone synopsis, the two dimensions. Reuses .ex/.synopse.
+   ========================================================================== */
+
+.daniel-methodik {
+  max-width: 680px;
+  margin: 1.4rem auto 0;
+  padding: 0.85rem 1.1rem;
+  border-left: 3px solid var(--brass);
+  background: linear-gradient(135deg, rgba(168, 132, 47, 0.08), var(--paper-card));
+  border-radius: 0 10px 10px 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ---- the five-kingdoms table ---- */
+.dn-reiche__grid,
+.dn-formal__grid {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.dn-reiche__head,
+.dn-reiche__row {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1.6fr;
+}
+.dn-reiche__head,
+.dn-formal__head {
+  background: var(--green-wash);
+  border-bottom: 1px solid var(--line);
+}
+.dn-reiche__head span,
+.dn-formal__head span {
+  padding: 0.7rem 0.9rem;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.dn-reiche__row {
+  border-bottom: 1px solid var(--line-faint);
+}
+.dn-reiche__row:last-child {
+  border-bottom: none;
+}
+.dn-reiche__row.is-stein {
+  background: linear-gradient(135deg, var(--green-wash-2), var(--paper-card));
+}
+.dn-reiche__teil,
+.dn-reiche__reich,
+.dn-reiche__beleg {
+  padding: 0.8rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.dn-reiche__teil {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ink);
+}
+.dn-reiche__reich {
+  color: var(--green);
+}
+.dn-reiche__beleg em {
+  color: var(--ink-faint);
+  font-size: 0.82rem;
+}
+
+/* ---- four beasts ---- */
+.dn-tiere__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+.dn-tiere__list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line-faint);
+  border-radius: 12px;
+  background: var(--paper-2);
+}
+.dn-tiere__tier {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.dn-tiere__reich {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.dn-tiere__detail {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+/* ---- stone conditions ---- */
+.dn-stein__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+.dn-stein__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-card);
+  border-top: 3px solid var(--green);
+}
+.dn-stein__n {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--brass);
+}
+.dn-stein__h {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.dn-stein__t {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+/* ---- formal vs functional ---- */
+.dn-formal__head,
+.dn-formal__row {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 1fr;
+}
+.dn-formal__row {
+  border-bottom: 1px solid var(--line-faint);
+}
+.dn-formal__row:last-child {
+  border-bottom: none;
+}
+.dn-formal__reich,
+.dn-formal__mit,
+.dn-formal__gez {
+  padding: 0.8rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.dn-formal__reich {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ink);
+}
+.dn-formal__gez {
+  color: var(--green);
+}
+.dn-formal__q {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+}
+
+/* ---- cornerstone synopsis ---- */
+.dn-eck__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+.dn-eck__col {
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--paper-2);
+}
+.dn-eck__col--ar {
+  background: linear-gradient(160deg, var(--green-wash), var(--paper-card));
+  border-color: var(--line-strong);
+}
+.dn-eck__label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.5rem;
+}
+.dn-eck__col ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.dn-eck__col li {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink);
+  padding-left: 1rem;
+  position: relative;
+}
+.dn-eck__col li::before {
+  content: "·";
+  position: absolute;
+  left: 0.25rem;
+  color: var(--brass);
+  font-weight: 700;
+}
+
+/* ---- two dimensions ---- */
+.dn-zwei__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+.dn-zwei__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--paper-card);
+  border-top: 3px solid var(--brass);
+}
+.dn-zwei__card--g {
+  border-top-color: var(--green);
+}
+.dn-zwei__h {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.dn-zwei__t {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 640px) {
+  .dn-reiche__head,
+  .dn-reiche__row,
+  .dn-formal__head,
+  .dn-formal__row,
+  .dn-tiere__list,
+  .dn-stein__grid,
+  .dn-eck__pair,
+  .dn-zwei__pair {
+    grid-template-columns: 1fr;
+  }
+  .dn-reiche__head,
+  .dn-formal__head {
+    display: none;
+  }
+  .dn-reiche__teil,
+  .dn-formal__reich {
+    background: none;
+  }
+  .dn-reiche__beleg::before,
+  .dn-reiche__reich::before,
+  .dn-formal__mit::before,
+  .dn-formal__gez::before {
+    content: attr(data-lbl) ': ';
+    font-family: var(--font-ui);
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-right: 0.3rem;
+  }
+}

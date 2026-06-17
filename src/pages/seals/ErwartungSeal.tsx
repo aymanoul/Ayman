@@ -1,3 +1,4 @@
+import '../../styles/seals/erwartung.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -5,7 +6,16 @@ import Shamsa from '../../components/Shamsa'
 import { ArrowLeft } from '../../components/icons'
 import { Crown } from '../../components/Ornament'
 import { BelegCard } from '../../components/Beleg'
-import { Pruefsteine, Waage, Straenge } from '../../components/exhibits/ErwartungExhibits'
+import {
+  Pruefsteine,
+  Waage,
+  KarteZeitplan,
+  QurayzaTimeline,
+  DavidischSeziertisch,
+  Eingestaendnisse,
+  IbnAlHaybanBanner,
+  Straenge,
+} from '../../components/exhibits/ErwartungExhibits'
 import { rise, stagger } from '../../lib/anim'
 import {
   erwartungThese,
@@ -112,43 +122,89 @@ export default function ErwartungSeal() {
           </motion.ol>
         </section>
 
-        {/* ---- the touchstones ---- */}
+        {/* ---- 🔥 the map + schedule (centrepiece) ---- */}
         <section className="sec">
-          <Eyebrow kicker="Die Kriterien" title="Besteht er die Prüfung?" />
+          <Eyebrow kicker="Haupt-Exhibit" title="Sie erwarteten ihn — Karte und Zeitplan" />
           <p className="sec__lead">
-            Nicht unsere Maßstäbe, sondern die der Tora selbst — angelegt, ohne Ansehen der Person.
+            Jüdische Stämme zogen vor dem Islam in die härteste Wüste der Erde — weil ihre eigenen Schriften ihnen
+            Ort (Jesaja 42) und Zeit (Jesaja 21, Daniel) verrieten.
           </p>
-          <Pruefsteine />
+          <KarteZeitplan />
         </section>
 
-        {/* ---- the balance (centrepiece) ---- */}
+        {/* ---- the Ibn al-Hayban banner ---- */}
         <section className="sec">
-          <Eyebrow kicker="Haupt-Exhibit" title="Eine Waage, gleiche Gewichte" />
-          <p className="sec__lead">
-            Der Kern aller sieben Siegel: dasselbe Maß für beide Seiten. Die Waage macht das wiederkehrende
-            Muster der doppelten Maßstäbe sichtbar.
-          </p>
-          <Waage />
+          <Eyebrow kicker="Der emotionale Anker" title="Auf dem Sterbebett" />
+          <IbnAlHaybanBanner />
         </section>
 
         {/* ---- the belege showcase — ALL of them ---- */}
         <section className="sec">
-          <Eyebrow kicker="Die Belege" title="Prüfsteine, Erwartung und Waage" />
+          <Eyebrow kicker="Die Belege" title="Erwartung, Waage und Quellen" />
           <p className="sec__lead">
             Jeder Beleg öffnet sich groß und beleuchtet — Originaltext, Umschrift, Übersetzung und Fundstelle.
           </p>
           <div className="belege-grid">
+            <BelegCard beleg={erwartungBelege.jes4211} />
+            <BelegCard beleg={erwartungBelege.jes2113} />
             <BelegCard beleg={erwartungBelege.deut1822} />
             <BelegCard beleg={erwartungBelege.deut132} />
             <BelegCard beleg={erwartungBelege.deut1815} />
-            <BelegCard beleg={erwartungBelege.john121} />
+            <BelegCard beleg={erwartungBelege.hos111} />
+            <BelegCard beleg={erwartungBelege.mt279} />
+            <BelegCard beleg={erwartungBelege.mt2241} />
+            <BelegCard beleg={erwartungBelege.spr2010} />
             <BelegCard beleg={erwartungBelege.q5507} />
             <BelegCard beleg={erwartungBelege.q5725} />
             <BelegCard beleg={erwartungBelege.q2111} />
             <BelegCard beleg={erwartungBelege.q384} />
+            <BelegCard beleg={erwartungBelege.q2146} />
+            <BelegCard beleg={erwartungBelege.q26197} />
+            <BelegCard beleg={erwartungBelege.q285} />
+            <BelegCard beleg={erwartungBelege.ibnAlHayban} />
+            <BelegCard beleg={erwartungBelege.ibnHischam} />
+            <BelegCard beleg={erwartungBelege.safiyya} />
+            <BelegCard beleg={erwartungBelege.hidschaz} />
+            <BelegCard beleg={erwartungBelege.benAbrahamson} />
+            <BelegCard beleg={erwartungBelege.qurayza} />
+            <BelegCard beleg={erwartungBelege.davidisch} />
+            <BelegCard beleg={erwartungBelege.michaelBrown} />
+            <BelegCard beleg={erwartungBelege.augustinus} />
+            <BelegCard beleg={erwartungBelege.rabbinisch} />
+            <BelegCard beleg={erwartungBelege.messiasWerke} />
             <BelegCard beleg={erwartungBelege.kriterien} />
             <BelegCard beleg={erwartungBelege.doppelmass} />
           </div>
+        </section>
+
+        {/* ---- the touchstones ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Die Kriterien" title="Die Prüfsteine der Tora" />
+          <Pruefsteine />
+        </section>
+
+        {/* ---- the balance ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Gleiche Maßstäbe" title="Eine Waage, gleiche Gewichte" />
+          <Waage />
+        </section>
+
+        {/* ---- the Banu Qurayza context ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Der Einwand, entkräftet" title="Banū Qurayẓa im Kontext" />
+          <QurayzaTimeline />
+        </section>
+
+        {/* ---- the davidic dissection ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Prophezeiung oder Propaganda?" title="Das davidische Narrativ" />
+          <DavidischSeziertisch />
+        </section>
+
+        {/* ---- the admissions ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Sie sagen es selbst" title="Die Eingeständnisse" />
+          <Eingestaendnisse />
         </section>
 
         {/* ---- the synthesis ---- */}
@@ -202,13 +258,13 @@ export default function ErwartungSeal() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
         >
-          <span className="massstab__label">Gleiche Maßstäbe</span>
+          <span className="massstab__label">Gleiche Maßstäbe — die große Synthese</span>
           <p>{erwartungGleicheMassstaebe}</p>
         </motion.section>
 
         {/* ---- the net ---- */}
         <section className="sec">
-          <Eyebrow kicker="Das Netz schließt sich" title="Vernetzung" />
+          <Eyebrow kicker="Das Netz ist geschlossen" title="Vernetzung" />
           <div className="netz">
             {erwartungVernetzung.map((v) => (
               <article className="netz__item" key={v.ziel}>

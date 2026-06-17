@@ -1,3 +1,4 @@
+import '../../styles/seals/daniel.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -7,11 +8,22 @@ import { Crown } from '../../components/Ornament'
 import { BelegCard } from '../../components/Beleg'
 import DanielStatue from '../../components/exhibits/DanielStatue'
 import Timeline from '../../components/exhibits/Timeline'
-import { PelachTable, HmdBridge, KonstantinCard } from '../../components/exhibits/MoreExhibits'
+import {
+  PelachTable,
+  HmdBridge,
+  KonstantinCard,
+  FuenfReiche,
+  VierTiere,
+  SteinBedingungen,
+  FormalFunktional,
+  EcksteinSynopse,
+  ZweiDimensionen,
+} from '../../components/exhibits/MoreExhibits'
 import MapExhibit from '../../components/exhibits/MapExhibit'
 import { rise, stagger } from '../../lib/anim'
 import {
   danielThese,
+  danielMethodik,
   danielSteps,
   danielKonter,
   danielScholar,
@@ -113,6 +125,7 @@ export default function DanielSeal() {
               </motion.li>
             ))}
           </motion.ol>
+          <p className="daniel-methodik">{danielMethodik}</p>
         </section>
 
         {/* ---- the statue (centrepiece) ---- */}
@@ -125,6 +138,20 @@ export default function DanielSeal() {
           <DanielStatue />
         </section>
 
+        {/* ---- the five kingdoms + four beasts ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Daniel liefert die Belege selbst" title="Fünf Reiche, vier Tiere" />
+          <FuenfReiche />
+          <div style={{ height: '1rem' }} />
+          <VierTiere />
+        </section>
+
+        {/* ---- the four conditions of the stone ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Daniel 2,44-45" title="Die vier Bedingungen des Steins" />
+          <SteinBedingungen />
+        </section>
+
         {/* ---- the belege showcase ---- */}
         <section className="sec">
           <Eyebrow kicker="Die Belege" title="Vom Stein zum Berg, der die Erde füllt" />
@@ -133,9 +160,30 @@ export default function DanielSeal() {
           </p>
           <div className="belege-grid">
             <BelegCard beleg={danielBelege.quran619} />
+            <BelegCard beleg={danielBelege.dan238} />
+            <BelegCard beleg={danielBelege.dan820} />
+            <BelegCard beleg={danielBelege.dan821} />
+            <BelegCard beleg={danielBelege.dan240} />
+            <BelegCard beleg={danielBelege.dan241} />
             <BelegCard beleg={danielBelege.dan244} />
+            <BelegCard beleg={danielBelege.dan245} />
+            <BelegCard beleg={danielBelege.dan713} />
+            <BelegCard beleg={danielBelege.dan725} />
+            <BelegCard beleg={danielBelege.dan727} />
             <BelegCard beleg={danielBelege.dan923} />
+            <BelegCard beleg={danielBelege.joh1836} />
+            <BelegCard beleg={danielBelege.mt2018} />
+            <BelegCard beleg={danielBelege.mt2143} />
             <BelegCard beleg={danielBelege.bukhari3535} />
+            <BelegCard beleg={danielBelege.bukhari3235} />
+            <BelegCard beleg={danielBelege.pelach} />
+            <BelegCard beleg={danielBelege.formalfunktional} />
+            <BelegCard beleg={danielBelege.habakuk} />
+            <BelegCard beleg={danielBelege.josephus} />
+            <BelegCard beleg={danielBelege.iddan} />
+            <BelegCard beleg={danielBelege.talmud} />
+            <BelegCard beleg={danielBelege.kirchenvaeter} />
+            <BelegCard beleg={danielBelege.benabrahamson} />
           </div>
         </section>
 
@@ -149,6 +197,12 @@ export default function DanielSeal() {
         <section className="sec">
           <Eyebrow kicker="Geografischer Beweis" title="Das geteilte Rom" />
           <MapExhibit />
+        </section>
+
+        {/* ---- formal vs functional ---- */}
+        <section className="sec">
+          <Eyebrow kicker="War Rom zu Jesu Zeit geteilt?" title="Formal, nicht funktional" />
+          <FormalFunktional />
         </section>
 
         {/* ---- objection / counter ---- */}
@@ -169,6 +223,18 @@ export default function DanielSeal() {
             <HmdBridge />
             <KonstantinCard />
           </div>
+        </section>
+
+        {/* ---- two dimensions of the kingdom ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Geistlich und physisch" title="Zwei Dimensionen des Reiches" />
+          <ZweiDimensionen />
+        </section>
+
+        {/* ---- the cornerstone / the brick ---- */}
+        <section className="sec">
+          <Eyebrow kicker="Mt 21,42 ↔ Bukhārī 3535" title="Der Eckstein / der Ziegel" />
+          <EcksteinSynopse />
         </section>
 
         {/* ---- scholarly layer ---- */}

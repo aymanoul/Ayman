@@ -1,0 +1,221 @@
+/* ============================================================================
+   SIEGEL VII — Jüdische Erwartung. New exhibits: map+schedule list, the
+   Qurayẓa timeline, the davidic dissection, the admissions, the Ibn al-Haybān
+   banner. Reuses global .merkmale/.waage/.zmass/.kschema/.netz.
+   ========================================================================== */
+
+/* ---- map + schedule: the Wo/Wann/Jahr list ---- */
+.kz-wowann {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+.kz-wowann li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--paper-2);
+  border-top: 3px solid var(--green);
+}
+.kz-wowann__tag {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--green);
+}
+.kz-wowann__frage {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.kz-wowann__text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.kz-wowann__ref {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+
+/* ---- Banū-Qurayẓa timeline ---- */
+.qz-time {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.qz-time li {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  gap: 0.2rem 0.9rem;
+  align-items: start;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line-faint);
+  border-radius: 12px;
+  background: var(--paper-2);
+}
+.qz-time__n {
+  grid-row: 1 / span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--paper-card);
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+.qz-time__titel {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.qz-time__text {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ---- davidic dissection ---- */
+.david__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.david__schicht {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-card);
+}
+.david__n {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--brass);
+  text-transform: uppercase;
+}
+.david__titel {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  color: var(--ink);
+}
+.david__beleg {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.david__todes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid var(--green);
+  border-radius: 14px;
+  background: linear-gradient(165deg, var(--green-wash-2), var(--paper-card));
+}
+.david__todes-titel {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--green);
+}
+.david__todes-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* ---- admissions gallery ---- */
+.einge__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+.einge__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--paper-card);
+  border-top: 3px solid var(--brass);
+}
+.einge__wer {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--green);
+}
+.einge__was {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.einge__zitat {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ---- Ibn al-Haybān banner ---- */
+.haybanner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, rgba(168, 132, 47, 0.1), var(--paper-card));
+  border-color: rgba(168, 132, 47, 0.4);
+}
+.haybanner__quelle {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.haybanner__zitat {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 52ch;
+  margin: 0 auto;
+  border: none;
+}
+.haybanner__ref {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 760px) {
+  .kz-wowann,
+  .david__grid,
+  .einge__row {
+    grid-template-columns: 1fr;
+  }
+}
