@@ -1,8 +1,18 @@
 /* ============================================================================
-   SIEGEL II — Prophet wie Mose. Exhibit styling: the 15-criteria correction
-   note, the Deut 18:15 textual-variants table, the Augustinus panel, the
-   sieve, and the Greenberg/Dow witnesses. Reuses global .vgl/.ex/.synopse.
+   SIEGEL II — Prophet wie Mose. Exhibit styling: the 15-criteria score row,
+   the Deut 18:15 textual-variants table (3 columns incl. ✓/— marker), the
+   Augustinus panel, the sieve, the Greenberg/Dow witnesses. Reuses .vgl/.ex.
    ========================================================================== */
+
+/* the score row at the foot of the 15-criteria .vgl table */
+.score-row {
+  border-top: 2px solid var(--line-strong);
+  font-weight: 600;
+}
+.score-row__n {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
 
 .fuenfzehn__korrektur {
   margin-top: 1rem;
@@ -17,7 +27,7 @@
   color: var(--ink-soft);
 }
 
-/* ---- the Deut 18:15 textual-variants table (MT / LXX / SP / DSS) ---- */
+/* ---- the Deut 18:15 textual-variants table (3 columns) ---- */
 .varianten__grid {
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -26,20 +36,23 @@
 .varianten__head,
 .varianten__row {
   display: grid;
-  grid-template-columns: 1fr 1.6fr;
+  grid-template-columns: 1.1fr 1.7fr auto;
   align-items: baseline;
 }
 .varianten__head {
   background: var(--green-wash);
   border-bottom: 1px solid var(--line);
 }
-.varianten__hcol {
+.varianten__head > span {
   padding: 0.7rem 0.95rem;
   font-family: var(--font-ui);
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
+}
+.varianten__hcol {
+  text-align: center;
 }
 .varianten__row {
   border-bottom: 1px solid var(--line-faint);
@@ -61,8 +74,27 @@
   line-height: 1.5;
   color: var(--ink-soft);
 }
+.varianten__mark {
+  padding: 0.8rem 0.95rem;
+  text-align: center;
+  align-self: center;
+  font-size: 1.2rem;
+}
+.varianten__mark--yes {
+  color: var(--green);
+}
+.varianten__mark--no {
+  color: var(--ink-faint);
+}
 
 /* ---- Augustinus "Sie-sagen-es-selbst" panel ---- */
+.aug-panel__werk {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
 .aug-panel__zitat {
   font-family: var(--font-display);
   font-size: 1.3rem;
@@ -70,26 +102,19 @@
   color: var(--ink);
   border-left: 3px solid var(--brass);
   padding: 0.4rem 0 0.4rem 1.1rem;
-  margin-bottom: 0.8rem;
+  margin: 0.6rem 0 0.8rem;
 }
 .aug-panel__autor {
   font-family: var(--font-display);
   font-size: 1.05rem;
   color: var(--green);
 }
-.aug-panel__werk {
-  font-family: var(--font-ui);
-  font-size: 0.78rem;
-  color: var(--ink-faint);
-  margin-left: 0.5rem;
-}
 .aug-panel__kontext {
-  display: block;
   font-family: var(--font-body);
   font-size: 0.92rem;
   line-height: 1.55;
   color: var(--ink-soft);
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
 }
 
 /* ---- the sieve: candidates filtered out, Muhammad remains ---- */
@@ -99,47 +124,50 @@
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
 }
-.sieb__item {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: baseline;
-  gap: 0.3rem 0.8rem;
-  padding: 0.75rem 0.95rem;
+.sieb__item,
+.sieb__bleibt {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.8rem 0.95rem;
   border: 1px solid var(--line-faint);
   border-radius: 11px;
   background: var(--paper-2);
 }
+.sieb__bleibt {
+  border: 1px solid var(--green);
+  background: linear-gradient(165deg, var(--green-wash-2), var(--paper-card));
+}
 .sieb__mark {
-  font-size: 1rem;
+  flex: none;
+  font-size: 1.05rem;
+  line-height: 1.6;
   color: var(--accent-bordeaux, #9a3b32);
+}
+.sieb__mark--in {
+  color: var(--green);
+}
+.sieb__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
 }
 .sieb__name {
   font-family: var(--font-display);
   font-size: 1.05rem;
   color: var(--ink);
 }
+.sieb__name--in {
+  color: var(--green);
+  font-size: 1.25rem;
+}
 .sieb__grund {
-  grid-column: 2;
   font-family: var(--font-body);
   font-size: 0.9rem;
   line-height: 1.5;
   color: var(--ink-soft);
-}
-.sieb__bleibt {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  padding: 1rem 1.1rem;
-  border: 1px solid var(--green);
-  border-radius: 12px;
-  background: linear-gradient(165deg, var(--green-wash-2), var(--paper-card));
-  text-align: center;
-}
-.sieb__bleibt .sieb__name {
-  color: var(--green);
-  font-size: 1.3rem;
 }
 
 /* ---- Greenberg + Dow witness panel ---- */
@@ -152,17 +180,24 @@
 .zeugen__card {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.6rem;
   padding: 1.1rem 1.2rem;
   border: 1px solid var(--line);
   border-radius: 13px;
   background: var(--paper-card);
+  border-top: 3px solid var(--brass);
 }
 .zeugen__zitat {
   font-family: var(--font-display);
   font-size: 1.12rem;
   line-height: 1.5;
   color: var(--ink);
+  margin: 0;
+}
+.zeugen__cap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
 }
 .zeugen__wer {
   font-family: var(--font-display);
@@ -174,28 +209,33 @@
   font-size: 0.74rem;
   color: var(--ink-faint);
 }
-.zeugen__cap {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-}
 
 @media (max-width: 640px) {
-  .varianten__head,
+  .varianten__head {
+    display: none;
+  }
   .varianten__row {
     grid-template-columns: 1fr;
+    padding: 0.3rem 0;
   }
   .varianten__z {
     background: none;
+    padding-bottom: 0.3rem;
+  }
+  .varianten__t::before,
+  .varianten__mark::before {
+    content: attr(data-lbl) ': ';
+    font-family: var(--font-ui);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-right: 0.3rem;
+  }
+  .varianten__mark {
+    text-align: left;
   }
   .zeugen__row {
     grid-template-columns: 1fr;
-  }
-  .sieb__item {
-    grid-template-columns: 1fr;
-  }
-  .sieb__grund {
-    grid-column: 1;
   }
 }

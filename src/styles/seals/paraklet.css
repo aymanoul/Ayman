@@ -317,11 +317,25 @@
   .pk-namen {
     grid-template-columns: 1fr;
   }
+  /* the derivation reads top-to-bottom on mobile */
+  .pk-flow {
+    flex-direction: column;
+  }
+  .pk-flow__step,
+  .pk-flow__teile,
+  .pk-flow__teil {
+    width: 100%;
+    min-width: 0;
+  }
+  .pk-flow__arrow {
+    transform: rotate(90deg);
+  }
   .pk-bus__pair {
     grid-template-columns: 1fr;
   }
   .pk-bus__x {
-    transform: rotate(90deg);
+    display: block;
+    text-align: center;
   }
   .pk-kirche__list li {
     grid-template-columns: 1fr;
