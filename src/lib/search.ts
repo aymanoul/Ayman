@@ -8,6 +8,7 @@
 // ---------------------------------------------------------------------------
 
 import { searchIndex, type IndexEntry } from '../data/searchIndex'
+import { sealFullText } from '../data/sealText'
 
 export interface SearchResult {
   entry: IndexEntry
@@ -64,6 +65,21 @@ const SYNONYMS: Record<string, string> = {
   gesetzgeber: 'gesetz', scharia: 'gesetz',
   reich: 'reiche', weltreich: 'reiche', weltreiche: 'reiche',
   prophet: 'prophet',
+  // book names / common abbreviations → the form used in the data
+  deut: 'deuteronomium', dtn: 'deuteronomium',
+  gen: 'genesis',
+  joh: 'johannes', jh: 'johannes',
+  mt: 'matthaeus', matt: 'matthaeus', matthaeus: 'matthaeus',
+  ps: 'psalm', psalmen: 'psalm',
+  jes: 'jesaja',
+  hab: 'habakuk',
+  hld: 'hohelied', hoheslied: 'hohelied',
+  hag: 'haggai',
+  dan: 'daniel',
+  mal: 'maleachi',
+  jer: 'jeremia',
+  sure: 'koran', quran: 'koran', qurʾan: 'koran',
+  bukhari: 'bukhari', sahih: 'bukhari',
 }
 
 function canon(tok: string): string {
@@ -71,9 +87,14 @@ function canon(tok: string): string {
 }
 
 function tokenize(s: string): string[] {
-  const raw = normalize(s).split(/[^a-z0-9]+/).filter(Boolean)
+  const norm = normalize(s)
   const out: string[] = []
-  for (const t of raw) {
+  // verse references first: "18,18" · "16:7" · "53,3-4" → normalised "18:18", "53:3-4"
+  const verses = norm.match(/\d{1,3}[.,:]\d{1,3}(?:\s?[-–—]\s?\d{1,3})?/g)
+  if (verses) {
+    for (const v of verses) out.push(v.replace(/[.,]/g, ':').replace(/\s/g, '').replace(/[–—]/g, '-'))
+  }
+  for (const t of norm.split(/[^a-z0-9]+/)) {
     if (t.length < 2) continue
     if (STOPWORDS.has(t)) continue
     out.push(canon(t))
@@ -108,6 +129,7 @@ interface Prepared {
   entry: IndexEntry
   tagTokens: Set<string>
   bodyTokens: Set<string>
+  fullTokens: Set<string> // auto-extracted seal text (overview entries only)
   all: string[] // unique tokens for prefix/fuzzy
   raw: string // normalized full text for phrase boost
   isOverview: boolean
@@ -125,7 +147,15 @@ function prepare(): Prepared[] {
     for (const t of tokenize(entry.body)) bodyTokens.add(t)
     const all = Array.from(new Set([...tagTokens, ...bodyTokens]))
     const raw = normalize([entry.label, entry.tags.join(' '), entry.body, entry.kontext].join(' '))
-    return { entry, tagTokens, bodyTokens, all, raw, isOverview: !entry.anchor }
+    const isOverview = !entry.anchor
+    // the seal-overview entry carries the whole seal's text as a catch-all,
+    // so verse numbers, scholar & book names anywhere in the seal are findable.
+    const fullTokens = new Set<string>()
+    if (isOverview) {
+      const ft = sealFullText[entry.sealId]
+      if (ft) for (const t of tokenize(ft)) fullTokens.add(t)
+    }
+    return { entry, tagTokens, bodyTokens, fullTokens, all, raw, isOverview }
   })
   return PREP
 }
@@ -151,6 +181,12 @@ export function search(query: string, limit = 7): SearchResult[] {
       }
       if (p.bodyTokens.has(qt)) {
         score += 2.5
+        matched++
+        continue
+      }
+      // catch-all: any verse number, scholar/book name or word in the seal text
+      if (p.fullTokens.has(qt)) {
+        score += 1.5
         matched++
         continue
       }
