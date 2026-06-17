@@ -6,7 +6,11 @@ import { SearchIcon, SparkIcon, SendIcon } from './icons'
 
 // Two ways in, one brain: a smart search that understands natural language and
 // jumps straight to the right exhibit (e.g. "Vergleich Mohammed Moses Jesus" →
-// the 15-criteria table), and a question box that runs the same engine.
+// the 15-criteria table) or opens a single verse/source directly; and a
+// question box that runs the same engine.
+const TYP_LABEL = { quran: 'Koran', bibel: 'Bibel', quelle: 'Quelle' } as const
+const TYP_GLYPH = { quran: '۝', bibel: '✦', quelle: '❝' } as const
+
 export default function SearchPanel() {
   const navigate = useNavigate()
   const [query, setQuery] = useState('')
@@ -15,7 +19,7 @@ export default function SearchPanel() {
   const [askNote, setAskNote] = useState('')
   const boxRef = useRef<HTMLDivElement>(null)
 
-  const hits: SearchResult[] = query.trim() ? search(query, 7) : []
+  const hits: SearchResult[] = query.trim() ? search(query, 8) : []
 
   useEffect(() => {
     function onDoc(e: MouseEvent) {
@@ -26,8 +30,11 @@ export default function SearchPanel() {
   }, [])
 
   function go(r: SearchResult) {
-    const { moduleId, sealId, anchor } = r.entry
-    navigate(`/modul/${moduleId}/siegel/${sealId}${anchor ? '#' + anchor : ''}`)
+    const { moduleId, sealId, anchor, belegRef } = r.entry
+    let to = `/modul/${moduleId}/siegel/${sealId}`
+    if (belegRef) to += `?beleg=${encodeURIComponent(belegRef)}`
+    else if (anchor) to += `#${anchor}`
+    navigate(to)
     setOpen(false)
   }
 
@@ -61,7 +68,7 @@ export default function SearchPanel() {
             setOpen(true)
           }}
           onFocus={() => setOpen(true)}
-          placeholder="Suche im Werk — etwa „Vergleich Mose Jesus“, „Paraklet“, „Daniel“ …"
+          placeholder="Suche — Thema, Vers (18,18), Gelehrter (Teeple) oder „Vergleich Mose“ …"
           aria-label="Suche im Werk"
           autoComplete="off"
         />
@@ -79,15 +86,22 @@ export default function SearchPanel() {
             role="listbox"
           >
             {hits.length > 0 ? (
-              hits.map((h) => (
-                <button key={h.entry.id} className="seek__hit" onClick={() => go(h)} role="option">
-                  <span className="seek__hit-num">{h.entry.nummer}</span>
-                  <span className="seek__hit-body">
-                    <span className="seek__hit-titel">{h.entry.label}</span>
-                    <span className="seek__hit-mod">{h.entry.kontext}</span>
-                  </span>
-                </button>
-              ))
+              hits.map((h) => {
+                const isBeleg = !!h.entry.belegRef
+                const badge = isBeleg && h.entry.typ ? TYP_LABEL[h.entry.typ] : h.entry.nummer
+                return (
+                  <button key={h.entry.id} className="seek__hit" onClick={() => go(h)} role="option">
+                    <span className={`seek__hit-num${isBeleg ? ' seek__hit-num--beleg' : ''}`}>{badge}</span>
+                    <span className="seek__hit-body">
+                      <span className="seek__hit-titel">
+                        {isBeleg && h.entry.typ && <span className="seek__hit-glyph" aria-hidden>{TYP_GLYPH[h.entry.typ]} </span>}
+                        {h.entry.label}
+                      </span>
+                      <span className="seek__hit-mod">{h.entry.kontext}</span>
+                    </span>
+                  </button>
+                )
+              })
             ) : (
               <p className="seek__empty">Nichts gefunden — versuch ein anderes Wort, z. B. „Stein", „Kedar" oder „Aḥmad".</p>
             )}

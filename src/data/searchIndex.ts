@@ -12,6 +12,8 @@ export interface IndexEntry {
   moduleId: string
   sealId: string
   anchor?: string
+  belegRef?: string // if set, the result opens this Beleg modal (sealId:key)
+  typ?: 'quran' | 'bibel' | 'quelle' // Beleg kind, for the badge
   nummer: string // "II", "Fundament", "Verteidigung"
   kontext: string // breadcrumb shown under the label
   label: string // the result title
@@ -120,7 +122,7 @@ export const searchIndex: IndexEntry[] = [
     nummer: 'II',
     kontext: 'Siegel II',
     label: 'Prophet wie Mose (5. Mose 18,18)',
-    tags: ['mose', 'moses', 'musa', 'prophet wie mose', 'deuteronomium 18', '18:18', '34:10', 'brüder', 'aus ihren brüdern', 'esau edom', 'worte in den mund', 'paraklet'],
+    tags: ['mose', 'moses', 'musa', 'prophet wie mose', 'deuteronomium 18', '18:18', '34:10', 'brüder', 'aus ihren brüdern', 'esau edom', 'worte in den mund'],
     body: 'Der verheißene Prophet gleicht Mose, kommt aber von außerhalb Israels (34,10) und aus den Brüdern — Ismaels Linie. Nur Muhammad bleibt übrig.',
   },
   {

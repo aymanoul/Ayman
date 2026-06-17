@@ -9,6 +9,48 @@
 
 import { searchIndex, type IndexEntry } from '../data/searchIndex'
 import { sealFullText } from '../data/sealText'
+import { belegList } from '../data/belegRegistry'
+import { module1 } from '../data/modules'
+
+// seal slug → its number/title, for labelling auto-generated Beleg entries
+const SEAL_META: Record<string, { nummer: string; titel: string }> = {}
+for (const s of module1.siegel) SEAL_META[s.id] = { nummer: s.nummer, titel: s.titel }
+
+const TYP_LABEL: Record<'quran' | 'bibel' | 'quelle', string> = {
+  quran: 'Koran',
+  bibel: 'Bibel',
+  quelle: 'Quelle',
+}
+
+function prettyNummer(n: string): string {
+  return /^(Fundament|Verteidigung)$/.test(n) ? n : `Siegel ${n}`
+}
+
+// Turn every Beleg into its own search target (opens the modal via belegRef).
+function belegEntries(): IndexEntry[] {
+  return belegList.map(({ ref, sealId, beleg }) => {
+    const meta = SEAL_META[sealId] ?? { nummer: '', titel: '' }
+    // Quran fundstellen read "Sure 61 (…), Vers 6" — emit a "61:6" token so a
+    // "61,6" query surfaces the exact verse.
+    const extra: string[] = []
+    if (beleg.typ === 'quran') {
+      const m = beleg.fundstelle.match(/Sure\s+(\d+).*?Vers[e]?\s+(\d+)(?:\s?[-–—]\s?(\d+))?/i)
+      if (m) extra.push(`${m[1]}:${m[2]}${m[3] ? '-' + m[3] : ''}`)
+    }
+    return {
+      id: `beleg:${ref}`,
+      moduleId: 'muhammad',
+      sealId,
+      belegRef: ref,
+      typ: beleg.typ,
+      nummer: meta.nummer,
+      kontext: `${prettyNummer(meta.nummer)} · ${beleg.fundstelle}`,
+      label: beleg.kurz,
+      tags: [beleg.fundstelle, beleg.kern ?? '', TYP_LABEL[beleg.typ], meta.titel, ...extra],
+      body: beleg.uebersetzung ?? beleg.kurz,
+    }
+  })
+}
 
 export interface SearchResult {
   entry: IndexEntry
@@ -139,7 +181,8 @@ let PREP: Prepared[] | null = null
 
 function prepare(): Prepared[] {
   if (PREP) return PREP
-  PREP = searchIndex.map((entry) => {
+  const allEntries = [...searchIndex, ...belegEntries()]
+  PREP = allEntries.map((entry) => {
     const tagTokens = new Set<string>()
     for (const tag of entry.tags) for (const t of tokenize(tag)) tagTokens.add(t)
     for (const t of tokenize(entry.label)) tagTokens.add(t)
@@ -147,7 +190,7 @@ function prepare(): Prepared[] {
     for (const t of tokenize(entry.body)) bodyTokens.add(t)
     const all = Array.from(new Set([...tagTokens, ...bodyTokens]))
     const raw = normalize([entry.label, entry.tags.join(' '), entry.body, entry.kontext].join(' '))
-    const isOverview = !entry.anchor
+    const isOverview = !entry.anchor && !entry.belegRef
     // the seal-overview entry carries the whole seal's text as a catch-all,
     // so verse numbers, scholar & book names anywhere in the seal are findable.
     const fullTokens = new Set<string>()
@@ -168,6 +211,8 @@ export function search(query: string, limit = 7): SearchResult[] {
 
   const prep = prepare()
   const results: SearchResult[] = []
+  // verse-like query tokens ("18:18", "53:3-4") — used to surface the exact Beleg
+  const qVerses = qTokens.filter((t) => /^\d{1,3}:\d/.test(t))
 
   for (const p of prep) {
     let score = 0
@@ -217,8 +262,17 @@ export function search(query: string, limit = 7): SearchResult[] {
     }
 
     if (qTokens.length > 0) score += (matched / qTokens.length) * 3 // coverage
-    if (qNorm.length >= 3 && p.raw.includes(qNorm)) score += 5 // full-phrase boost
+    if (qNorm.length >= 3 && /[a-z]/.test(qNorm) && p.raw.includes(qNorm)) score += 5 // full-phrase boost (word phrases only)
     if (p.isOverview) score += 0.4 // gently prefer the seal overview for bare names
+    // an exact verse citation should surface its own Beleg (opens the modal)
+    if (p.entry.belegRef && qVerses.length) {
+      for (const v of qVerses) {
+        if (p.tagTokens.has(v)) {
+          score += p.entry.typ === 'quelle' ? 3 : 4.5 // prefer the verse itself over a source that cites it
+          break
+        }
+      }
+    }
 
     if (score >= 2.4 && matched > 0) results.push({ entry: p.entry, score })
   }

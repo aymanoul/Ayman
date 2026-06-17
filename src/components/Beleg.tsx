@@ -1,6 +1,8 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import type { Beleg } from '../data/types'
+import { belegRegistry } from '../data/belegRegistry'
 
 // ---------------------------------------------------------------------------
 // The Beleg system. Every verse / source is a compact shimmering card; a click
@@ -20,6 +22,20 @@ export function BelegProvider({ children }: { children: ReactNode }) {
   const [beleg, setBeleg] = useState<Beleg | null>(null)
   const open = useCallback((b: Beleg) => setBeleg(b), [])
   const close = useCallback(() => setBeleg(null), [])
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  // Deep-link: ?beleg=<sealId:key> opens that verse/source modal directly,
+  // then the param is stripped so back/refresh don't reopen it.
+  useEffect(() => {
+    const ref = new URLSearchParams(location.search).get('beleg')
+    if (!ref) return
+    const b = belegRegistry[ref]
+    if (b) {
+      open(b)
+      navigate(location.pathname + location.hash, { replace: true })
+    }
+  }, [location.search, location.pathname, location.hash, open, navigate])
 
   useEffect(() => {
     if (!beleg) return

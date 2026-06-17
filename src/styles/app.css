@@ -194,6 +194,13 @@
   line-height: 1.5;
   color: var(--ink-soft);
 }
+.seek__hit-num--beleg {
+  color: var(--brass);
+  border-color: rgba(168, 132, 47, 0.4);
+}
+.seek__hit-glyph {
+  color: var(--brass);
+}
 
 /* --------------------------------------------------------------- JOURNEY */
 .journey {
