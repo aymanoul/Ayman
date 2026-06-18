@@ -28,9 +28,15 @@ Die Reihenfolge entspricht 1:1 der Aufstellung der Siegel auf der Seite:
 | 9 | `siegel/verteidigung.jpg`              | Verteidigung — Falscher Prophet?          |
 
 > **Tipp:** Wenn du die Bilder einfach als `1.jpg … 9.jpg` (in obiger Reihenfolge)
-> ablieferst, benenne ich sie auf die obigen Namen um. Der Titel (Fundament / Siegel I…VII /
-> Verteidigung) wird von der Karussell-Komponente **automatisch unter das Bild** gesetzt —
-> du musst ihn nicht ins Bild einbauen (kannst es aber, falls gewünscht).
+> ablieferst, benenne ich sie auf die obigen Namen um.
 
-**Empfohlenes Seitenverhältnis der Karten:** ~3:4 (Hochformat), z. B. 900×1200 px.
-**Hero-Bild:** Querformat ~21:9 bis 16:9, mind. 1600 px Breite.
+## Format (wichtig)
+
+Alle Titelbilder sind **Querformat im Seitenverhältnis 3:2** (wie das gelieferte
+Beispiel „Der Prophet wie Moses"), z. B. **1500×1000 px** oder **1129×752 px**.
+Der **Titel ist bereits ins Bild eingearbeitet** — die Komponenten legen daher
+**keinen** Text über das Bild. Nur falls ein Bild fehlt, zeigt die Karte einen
+gestalteten Pergament-Platzhalter mit Nummer + Titel.
+
+- **Siegel-Karten (Karussell):** 3:2 Querformat, Titel im Bild.
+- **Hero (Modul-Titelbild):** ebenfalls 3:2 Querformat, Titel im Bild.

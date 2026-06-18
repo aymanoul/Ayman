@@ -46,22 +46,13 @@ export default function ModulePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
+            {/* The title image already carries the module name — show it clean. */}
             <img
               className="mhero__img"
               src={heroSrc}
-              alt=""
+              alt={`${module.titel}${module.honorific ? ' ' + module.honorific : ''}`}
               onError={() => setHeroOk(false)}
             />
-            <span className="mhero__scrim" aria-hidden />
-            <div className="mhero__caption">
-              <h1 className="mhero__ar gilt" lang="ar" dir="rtl">
-                {module.arabic}
-              </h1>
-              <p className="mhero__titel">
-                {module.titel}
-                {module.honorific && <span className="hon">{module.honorific}</span>}
-              </p>
-            </div>
           </motion.section>
         ) : (
           /* Fallback frontispiece until the hero image is dropped in */

@@ -105,32 +105,28 @@ function Card({ moduleId, seal }: { moduleId: string; seal: SealMeta }) {
       >
         <div className="scard__frame">
           {imgOk ? (
+            // The title image already carries its own title — show it clean.
             <img
               className="scard__img"
               src={src}
-              alt=""
+              alt={seal.titel}
               loading="lazy"
               draggable={false}
               onError={() => setImgOk(false)}
             />
           ) : (
-            <div className="scard__placeholder" aria-hidden>
-              <Shamsa size={84} />
+            // Designed placeholder until the real title image is dropped in.
+            <div className="scard__placeholder">
+              <Shamsa size={72} />
               <span className="scard__placeholder-num">{seal.nummer}</span>
+              <span className="scard__placeholder-titel">{seal.titel}</span>
+              {seal.arabic && (
+                <span className="scard__placeholder-ar" lang="ar" dir="rtl">
+                  {seal.arabic}
+                </span>
+              )}
             </div>
           )}
-
-          <span className="scard__scrim" aria-hidden />
-          <span className="scard__badge">{seal.nummer}</span>
-
-          <div className="scard__caption">
-            <span className="scard__titel">{seal.titel}</span>
-            {seal.arabic && (
-              <span className="scard__ar" lang="ar" dir="rtl">
-                {seal.arabic}
-              </span>
-            )}
-          </div>
 
           {soon && <span className="scard__soon">◆ Folgt</span>}
         </div>
