@@ -28,6 +28,10 @@ export interface SealMeta {
   arabic?: string
   keywords: string[]
   status: 'ready' | 'coming'
+  // Optional title image (carousel). Path relative to /public, e.g.
+  // 'images/siegel/daniel.jpg'. If the file is missing the carousel falls
+  // back to a designed parchment placeholder card.
+  image?: string
 }
 
 export interface ModuleMeta {
@@ -37,4 +41,6 @@ export interface ModuleMeta {
   arabic: string
   status: 'available' | 'coming'
   siegel: SealMeta[]
+  // Optional hero image shown atop the module page (e.g. 'images/module/muhammad.jpg').
+  heroImage?: string
 }

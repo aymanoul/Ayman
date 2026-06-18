@@ -1,15 +1,20 @@
+import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import Shamsa from '../components/Shamsa'
-import { ArrowLeft, Chevron } from '../components/icons'
+import SiegelCarousel from '../components/SiegelCarousel'
+import { ArrowLeft } from '../components/icons'
 import { findModule } from '../data/modules'
-import { rise, stagger } from '../lib/anim'
+import { rise, stagger, EASE } from '../lib/anim'
+import '../styles/carousel.css'
 
-// The seals of a module, each as a quiet medallion row — title only.
+// A module page: a title image (hero) at the top, then the seals as a row of
+// title-image cards in the carousel.
 export default function ModulePage() {
   const { moduleId } = useParams()
   const reduce = useReducedMotion()
   const module = findModule(moduleId)
+  const [heroOk, setHeroOk] = useState(Boolean(module?.heroImage))
 
   if (!module) {
     return (
@@ -24,57 +29,71 @@ export default function ModulePage() {
     )
   }
 
+  const heroSrc = module.heroImage ? `${import.meta.env.BASE_URL}${module.heroImage}` : ''
+
   return (
     <main className="shell">
-      <div className="wrap" style={{ paddingTop: 'clamp(2rem, 7vh, 4rem)', paddingBottom: '4rem' }}>
+      <div className="wrap" style={{ paddingTop: 'clamp(1.5rem, 5vh, 2.5rem)', paddingBottom: '4rem' }}>
         <Link to="/" className="stub__back" style={{ marginTop: 0 }}>
           <ArrowLeft /> Bibliothek
         </Link>
 
-        <motion.section
-          className="front"
-          style={{ paddingTop: 'clamp(1.5rem, 5vh, 3rem)' }}
-          initial={reduce ? false : 'hidden'}
-          animate="shown"
-          variants={stagger}
-        >
-          <motion.span className="front__emblem" variants={rise}>
-            <Shamsa size={96} />
-          </motion.span>
-          <motion.h1 className="front__name gilt" variants={rise} lang="ar" dir="rtl" style={{ fontFamily: 'var(--font-arabic)', fontSize: 'clamp(2rem,7vw,3.4rem)' }}>
-            {module.arabic}
-          </motion.h1>
-          <motion.p className="plate__titel" variants={rise} style={{ marginTop: '0.6rem' }}>
-            {module.titel}
-            {module.honorific && <span className="hon">{module.honorific}</span>}
-          </motion.p>
-        </motion.section>
-
-        {module.siegel.length > 0 ? (
-          <motion.div
-            className="stub__list"
+        {/* ---- Hero: title image with the module name laid over it ---- */}
+        {heroOk ? (
+          <motion.section
+            className="mhero"
+            initial={reduce ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: EASE }}
+          >
+            <img
+              className="mhero__img"
+              src={heroSrc}
+              alt=""
+              onError={() => setHeroOk(false)}
+            />
+            <span className="mhero__scrim" aria-hidden />
+            <div className="mhero__caption">
+              <h1 className="mhero__ar gilt" lang="ar" dir="rtl">
+                {module.arabic}
+              </h1>
+              <p className="mhero__titel">
+                {module.titel}
+                {module.honorific && <span className="hon">{module.honorific}</span>}
+              </p>
+            </div>
+          </motion.section>
+        ) : (
+          /* Fallback frontispiece until the hero image is dropped in */
+          <motion.section
+            className="front"
+            style={{ paddingTop: 'clamp(1.5rem, 5vh, 3rem)' }}
             initial={reduce ? false : 'hidden'}
             animate="shown"
             variants={stagger}
-            style={{ marginTop: '2rem' }}
           >
-            {module.siegel.map((s) => (
-              <motion.div key={s.id} variants={rise}>
-                <Link to={`/modul/${module.id}/siegel/${s.id}`} className={`srow${s.status === 'coming' ? ' srow--soon' : ''}`}>
-                  <span className="srow__num">{s.nummer}</span>
-                  <span className="srow__titel">{s.titel}</span>
-                  <span className="srow__ar" lang="ar" dir="rtl">
-                    {s.arabic}
-                  </span>
-                  {s.status === 'coming' ? (
-                    <span className="srow__soon">◆ Folgt</span>
-                  ) : (
-                    <Chevron className="plate__go" style={{ opacity: 0.5 }} aria-hidden />
-                  )}
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
+            <motion.span className="front__emblem" variants={rise}>
+              <Shamsa size={96} />
+            </motion.span>
+            <motion.h1
+              className="front__name gilt"
+              variants={rise}
+              lang="ar"
+              dir="rtl"
+              style={{ fontFamily: 'var(--font-arabic)', fontSize: 'clamp(2rem,7vw,3.4rem)' }}
+            >
+              {module.arabic}
+            </motion.h1>
+            <motion.p className="plate__titel" variants={rise} style={{ marginTop: '0.6rem' }}>
+              {module.titel}
+              {module.honorific && <span className="hon">{module.honorific}</span>}
+            </motion.p>
+          </motion.section>
+        )}
+
+        {/* ---- The seals as a title-image carousel ---- */}
+        {module.siegel.length > 0 ? (
+          <SiegelCarousel module={module} />
         ) : (
           <p className="seek__note" style={{ textAlign: 'center', marginTop: '3rem' }}>
             Die Inhalte dieses Moduls folgen — im selben Siegel-System.

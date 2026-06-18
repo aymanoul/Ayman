@@ -77,13 +77,20 @@ const modul1Siegel: SealMeta[] = [
   },
 ]
 
+// Each seal gets a title image by convention: images/siegel/<id>.jpg.
+// Drop the file in public/images/siegel/ (see public/images/README.md) and it
+// appears in the carousel; until then a designed placeholder card is shown.
+const withImages = (seals: SealMeta[]): SealMeta[] =>
+  seals.map((s) => ({ ...s, image: `images/siegel/${s.id}.jpg` }))
+
 export const module1: ModuleMeta = {
   id: 'muhammad',
   titel: 'Muhammad in der Bibel',
   honorific: 'ﷺ',
   arabic: 'محمد',
   status: 'available',
-  siegel: modul1Siegel,
+  heroImage: 'images/module/muhammad.jpg',
+  siegel: withImages(modul1Siegel),
 }
 
 export const module2: ModuleMeta = {
