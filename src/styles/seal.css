@@ -56,7 +56,7 @@
   letter-spacing: 0.32em;
   font-size: 0.66rem;
   font-weight: 500;
-  color: var(--green);
+  color: var(--medina);
   margin-bottom: 0.7rem;
 }
 .sec__title {
@@ -684,7 +684,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--rubric);
-  border: 1px solid rgba(160, 78, 54, 0.4);
+  border: 1px solid rgba(122, 46, 46, 0.4);
   border-radius: 999px;
   padding: 0.2rem 0.6rem;
 }
@@ -724,13 +724,13 @@
   text-transform: uppercase;
   font-weight: 600;
   color: var(--rubric);
-  border: 1px solid rgba(160, 78, 54, 0.35);
+  border: 1px solid rgba(122, 46, 46, 0.35);
   border-radius: 999px;
   padding: 0.28rem 0.6rem;
 }
 .konter__label--k {
-  color: var(--green);
-  border-color: var(--line-strong);
+  color: var(--konter);
+  border-color: rgba(21, 107, 74, 0.35);
 }
 .konter__text {
   flex: 1;
@@ -1134,11 +1134,11 @@
   border-radius: 6px;
   background: linear-gradient(
     90deg,
-    rgba(160, 78, 54, 0.7) 0%,
+    rgba(122, 46, 46, 0.7) 0%,
     rgba(179, 135, 58, 0.55) 32%,
     var(--green-bright) 64%,
     rgba(179, 135, 58, 0.55) 86%,
-    rgba(160, 78, 54, 0.7) 100%
+    rgba(122, 46, 46, 0.7) 100%
   );
 }
 .spektrum__marker {
@@ -1757,7 +1757,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--rubric);
-  border: 1px solid rgba(160, 78, 54, 0.35);
+  border: 1px solid rgba(122, 46, 46, 0.35);
   border-radius: 999px;
   padding: 0.22rem 0.65rem;
 }
@@ -2755,4 +2755,15 @@
     display: block;
     margin-bottom: 0.15rem;
   }
+}
+
+
+/* ---- Markierungen: strong im Fließtext trägt andalusisches Rot ---- */
+.steps strong,
+.scholar strong,
+.konter__ktext strong,
+.seal__these strong,
+.sec strong {
+  color: var(--anda);
+  font-weight: 600;
 }

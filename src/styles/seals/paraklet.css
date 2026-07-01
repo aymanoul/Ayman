@@ -8,9 +8,9 @@
 .pk-ko {
   margin-top: 1.2rem;
   padding: 1.1rem 1.2rem;
-  border: 1px solid rgba(160, 78, 54, 0.3);
+  border: 1px solid rgba(122, 46, 46, 0.3);
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(160, 78, 54, 0.06), var(--paper-card));
+  background: linear-gradient(135deg, rgba(122, 46, 46, 0.06), var(--paper-card));
 }
 .pk-ko__strike {
   display: inline-block;
@@ -18,7 +18,7 @@
   font-size: 1.15rem;
   color: var(--ink-soft);
   text-decoration: line-through;
-  text-decoration-color: rgba(160, 78, 54, 0.7);
+  text-decoration-color: rgba(122, 46, 46, 0.7);
   margin-bottom: 0.7rem;
 }
 .pk-ko__list {
@@ -262,7 +262,7 @@
 .pk-bus__x {
   font-family: var(--font-display);
   font-size: 1.8rem;
-  color: var(--accent-bordeaux, #a04e36);
+  color: var(--accent-bordeaux, #7a2e2e);
 }
 .pk-bus__erkl {
   font-family: var(--font-body);

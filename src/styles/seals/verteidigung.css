@@ -80,7 +80,7 @@
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--paper-card);
-  border-top: 3px solid var(--accent-bordeaux, #a04e36);
+  border-top: 3px solid var(--accent-bordeaux, #7a2e2e);
 }
 .vt-paulus__n {
   font-family: var(--font-display);

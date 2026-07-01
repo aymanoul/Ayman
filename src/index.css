@@ -34,12 +34,20 @@
   --brass-soft: #d3b06a;
   --brass-deep: #87651f;
 
-  /* ---- Terracotta (matte brick — rubrication, "Einwand") ---- */
+  /* ---- Terracotta (matte brick) ---- */
   --terra: #a85a40;
   --terra-deep: #84432e;
   --terra-wash: rgba(168, 90, 64, 0.08);
-  --rubric: #a04e36; /* "Einwand" */
-  --konter: var(--green); /* "Konter" */
+
+  /* ---- Akzente: andalusisches Dunkelrot + Medina-Grün ---- */
+  --anda: #7a2e2e; /* dunkles andalusisches Rot (Bordeaux) — Markierungen, "Einwand" */
+  --anda-wash: rgba(122, 46, 46, 0.08);
+  --medina: #156b4a; /* das Grün der Kuppel von Medina — Kicker, "Konter", Titel */
+  --medina-bright: #2a9468;
+  --medina-deep: #0d4a32;
+  --medina-wash: rgba(21, 107, 74, 0.08);
+  --rubric: var(--anda); /* "Einwand" */
+  --konter: var(--medina); /* "Konter" */
 
   /* ---- Lines & seams (gold hairlines, Tezhip-style) ---- */
   --line: rgba(179, 135, 58, 0.26);
@@ -48,11 +56,13 @@
   --brass-line: rgba(179, 135, 58, 0.4);
 
   /* ---- Type ----
-     Latin: geometric sans. Arabic: Cairo (text) + El Messiri (monumental).
+     Kamali = alle Überschriften · Happy Time = gesamter Fließtext.
+     Montserrat/Poppins bleiben als Per-Glyph-Fallback (Diakritika ḥ ṣ ā …).
+     Arabic: Cairo (text) + El Messiri (monumental).
      Quran verses stay Amiri — geometric kufi cannot carry full taškīl. */
-  --font-display: 'Montserrat', 'Poppins', system-ui, sans-serif;
-  --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
-  --font-ui: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-display: 'Kamali', 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Happy Time', 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-ui: 'Happy Time', 'Poppins', system-ui, -apple-system, sans-serif;
   --font-arabic: 'Cairo', 'Amiri', sans-serif;
   --font-kufi: 'El Messiri', 'Cairo', sans-serif;
   --font-quran: 'Amiri Quran', 'Amiri', serif;
@@ -126,8 +136,8 @@ a {
   text-decoration: none;
 }
 ::selection {
-  background: var(--green-wash-2);
-  color: var(--green-deep);
+  background: var(--medina-wash);
+  color: var(--medina-deep);
 }
 
 /* ------------------------------------------------- the luminous ground */
@@ -168,7 +178,7 @@ a {
   letter-spacing: 0.38em;
   font-weight: 600;
   font-size: 0.68rem;
-  color: var(--green);
+  color: var(--medina);
 }
 .label-ui {
   font-family: var(--font-ui);
@@ -191,14 +201,27 @@ a {
   unicode-bidi: isolate;
 }
 
-/* display headlines: geometric sans wants tighter tracking than the old Didone */
-h1, h2, h3 {
-  letter-spacing: -0.01em;
+/* Überschriften: durchgängig Kamali */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
 }
 
-/* olive display-ink with light falling from above */
+/* Markierungen im Fließtext: andalusisches Rot / Medina-Grün */
+mark {
+  background: var(--anda-wash);
+  color: var(--anda);
+  padding: 0 0.25em;
+  border-radius: 3px;
+}
+mark.medina {
+  background: var(--medina-wash);
+  color: var(--medina);
+}
+
+/* Medina-green display-ink with light falling from above */
 .gilt {
-  background: linear-gradient(174deg, var(--green-bright) 0%, var(--green) 46%, var(--green-deep) 100%);
+  background: linear-gradient(174deg, var(--medina-bright) 0%, var(--medina) 46%, var(--medina-deep) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import Shamsa from '../components/Shamsa'
 import SiegelCarousel from '../components/SiegelCarousel'
 import { ArrowLeft } from '../components/icons'
 import { findModule } from '../data/modules'
@@ -61,9 +60,6 @@ export default function ModulePage() {
             animate="shown"
             variants={stagger}
           >
-            <motion.span className="front__emblem" variants={rise}>
-              <Shamsa size={96} />
-            </motion.span>
             <motion.h1
               className="front__name gilt"
               variants={rise}

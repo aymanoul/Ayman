@@ -144,7 +144,7 @@
   flex: none;
   font-size: 1.05rem;
   line-height: 1.6;
-  color: var(--accent-bordeaux, #a04e36);
+  color: var(--accent-bordeaux, #7a2e2e);
 }
 .sieb__mark--in {
   color: var(--green);

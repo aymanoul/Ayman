@@ -1,8 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import Shamsa from '../components/Shamsa'
 import SearchPanel from '../components/SearchPanel'
 import ModulePlate from '../components/ModulePlate'
-import { Crown, Sprig } from '../components/Ornament'
+import { Sprig } from '../components/Ornament'
 import { modules } from '../data/modules'
 import { rise, stagger, EASE } from '../lib/anim'
 
@@ -17,20 +16,12 @@ export default function Bibliothek() {
       <div className="wrap">
         {/* ---- Frontispiece ---- */}
         <motion.section className="front" initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
-          <motion.span className="front__emblem" variants={rise}>
-            <Shamsa size={118} />
-          </motion.span>
-
           {/* Placeholder — the operator replaces this with their own calligraphy */}
           <motion.h1 className="front__name gilt" variants={rise} lang="ar" dir="rtl" title="Platzhalter — Name des Betreibers">
             اسم الناشر
           </motion.h1>
 
-          <motion.span className="front__divider" variants={rise} aria-hidden>
-            <Crown width={168} />
-          </motion.span>
-
-          <motion.p className="kicker" variants={rise}>
+          <motion.p className="kicker" variants={rise} style={{ marginTop: 'clamp(1rem, 3vh, 1.5rem)' }}>
             Die Bibliothek
           </motion.p>
         </motion.section>

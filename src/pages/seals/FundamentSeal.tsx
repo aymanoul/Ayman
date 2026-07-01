@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import Shamsa from '../../components/Shamsa'
 import { ArrowLeft } from '../../components/icons'
-import { Crown } from '../../components/Ornament'
 import { BelegCard } from '../../components/Beleg'
 import { TahrifSpektrum, NameThread, Spielregeln, IbnAmrJesaja } from '../../components/exhibits/FundamentExhibits'
 import { rise, stagger } from '../../lib/anim'
@@ -76,9 +74,6 @@ export default function FundamentSeal() {
 
         {/* ---- header ---- */}
         <motion.header className="seal__head" initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
-          <motion.span className="front__emblem" variants={rise}>
-            <Shamsa size={92} />
-          </motion.span>
           <motion.span className="seal__num" variants={rise}>
             Vor den neun Siegeln
           </motion.span>
@@ -87,9 +82,6 @@ export default function FundamentSeal() {
           </motion.h1>
           <motion.span className="seal__ar arabic" variants={rise} dir="rtl" lang="ar">
             مكتوبًا
-          </motion.span>
-          <motion.span className="front__divider" variants={rise} aria-hidden>
-            <Crown width={150} />
           </motion.span>
           <motion.p className="seal__these" variants={rise}>
             {fundamentThese}

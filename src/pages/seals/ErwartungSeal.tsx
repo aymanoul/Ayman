@@ -2,9 +2,7 @@ import '../../styles/seals/erwartung.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import Shamsa from '../../components/Shamsa'
 import { ArrowLeft } from '../../components/icons'
-import { Crown } from '../../components/Ornament'
 import { BelegCard } from '../../components/Beleg'
 import {
   Pruefsteine,
@@ -86,9 +84,6 @@ export default function ErwartungSeal() {
 
         {/* ---- header ---- */}
         <motion.header className="seal__head" initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
-          <motion.span className="front__emblem" variants={rise}>
-            <Shamsa size={92} />
-          </motion.span>
           <motion.span className="seal__num" variants={rise}>
             Siegel VII
           </motion.span>
@@ -97,9 +92,6 @@ export default function ErwartungSeal() {
           </motion.h1>
           <motion.span className="seal__ar arabic" variants={rise} dir="rtl" lang="ar">
             الميزان
-          </motion.span>
-          <motion.span className="front__divider" variants={rise} aria-hidden>
-            <Crown width={150} />
           </motion.span>
           <motion.p className="seal__these" variants={rise}>
             {erwartungThese}

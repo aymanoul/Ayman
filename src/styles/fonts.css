@@ -1,5 +1,27 @@
-/* Self-hosted fonts (downloaded from Google Fonts, OFL-licensed).
-   Subsets: latin, latin-ext, arabic, hebrew. */
+/* Self-hosted fonts. Kamali + Happy Time are the operator's own faces
+   (headings / body); the Google-Fonts set below (OFL) serves as per-glyph
+   fallback and covers Arabic, Hebrew and Quran text. */
+
+/* ---- Kamali — alle Überschriften ----
+   Single-weight display face: declared as full weight range so the browser
+   never fakes a bold (faux-bold ruins display faces). */
+@font-face {
+  font-family: 'Kamali';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../assets/fonts/kamali.woff2') format('woff2'),
+       url('../assets/fonts/kamali.otf') format('opentype');
+}
+
+/* ---- Happy Time — gesamter Fließtext ---- */
+@font-face {
+  font-family: 'Happy Time';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/happytime.otf') format('opentype');
+}
 /* Montserrat 500 normal latin-ext */
 @font-face {
   font-family: 'Montserrat';
