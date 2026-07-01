@@ -9,7 +9,7 @@
   margin: 1.4rem auto 0;
   padding: 0.85rem 1.1rem;
   border-left: 3px solid var(--brass);
-  background: linear-gradient(135deg, rgba(168, 132, 47, 0.08), var(--paper-card));
+  background: linear-gradient(135deg, rgba(179, 135, 58, 0.08), var(--paper-card));
   border-radius: 0 10px 10px 0;
   font-family: var(--font-body);
   font-size: 0.95rem;

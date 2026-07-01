@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import Shamsa from '../components/Shamsa'
@@ -6,6 +5,7 @@ import SiegelCarousel from '../components/SiegelCarousel'
 import { ArrowLeft } from '../components/icons'
 import { findModule } from '../data/modules'
 import { rise, stagger, EASE } from '../lib/anim'
+import { useImageAvailable } from '../lib/useImage'
 import '../styles/carousel.css'
 
 // A module page: a title image (hero) at the top, then the seals as a row of
@@ -14,7 +14,8 @@ export default function ModulePage() {
   const { moduleId } = useParams()
   const reduce = useReducedMotion()
   const module = findModule(moduleId)
-  const [heroOk, setHeroOk] = useState(Boolean(module?.heroImage))
+  const heroSrc = module?.heroImage ? `${import.meta.env.BASE_URL}${module.heroImage}` : undefined
+  const heroOk = useImageAvailable(heroSrc)
 
   if (!module) {
     return (
@@ -28,8 +29,6 @@ export default function ModulePage() {
       </main>
     )
   }
-
-  const heroSrc = module.heroImage ? `${import.meta.env.BASE_URL}${module.heroImage}` : ''
 
   return (
     <main className="shell">
@@ -51,7 +50,6 @@ export default function ModulePage() {
               className="mhero__img"
               src={heroSrc}
               alt={`${module.titel}${module.honorific ? ' ' + module.honorific : ''}`}
-              onError={() => setHeroOk(false)}
             />
           </motion.section>
         ) : (

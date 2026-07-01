@@ -50,7 +50,7 @@
   color: var(--green);
 }
 .einsetz__verdikt.is-unsinn {
-  color: var(--accent-bordeaux, #9a3b32);
+  color: var(--accent-bordeaux, #a04e36);
 }
 .einsetz__row--hl {
   background: var(--green-wash);

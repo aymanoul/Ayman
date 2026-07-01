@@ -81,19 +81,19 @@ export default function Shamsa({
     >
       <defs>
         <radialGradient id={`glow-${uid}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#1c8a63" stopOpacity="0.08" />
-          <stop offset="60%" stopColor="#1c8a63" stopOpacity="0.05" />
-          <stop offset="100%" stopColor="#1c8a63" stopOpacity="0" />
+          <stop offset="0%" stopColor="#7d905a" stopOpacity="0.08" />
+          <stop offset="60%" stopColor="#7d905a" stopOpacity="0.05" />
+          <stop offset="100%" stopColor="#7d905a" stopOpacity="0" />
         </radialGradient>
         <linearGradient id={`green-${uid}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#1c8a63" />
-          <stop offset="55%" stopColor="#0e5b43" />
-          <stop offset="100%" stopColor="#08382a" />
+          <stop offset="0%" stopColor="#7d905a" />
+          <stop offset="55%" stopColor="#5f6f46" />
+          <stop offset="100%" stopColor="#414f2f" />
         </linearGradient>
         <linearGradient id={`brass-${uid}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#cdaa5f" />
-          <stop offset="52%" stopColor="#a8842f" />
-          <stop offset="100%" stopColor="#7e6320" />
+          <stop offset="0%" stopColor="#d3b06a" />
+          <stop offset="52%" stopColor="#b3873a" />
+          <stop offset="100%" stopColor="#87651f" />
         </linearGradient>
       </defs>
 
@@ -120,8 +120,8 @@ export default function Shamsa({
 
       {/* fixed luminous core */}
       <g>
-        <path d={starPath(16, 62, 30)} fill="rgba(14,91,67,0.06)" stroke={`url(#green-${uid})`} strokeWidth={1.5} strokeLinejoin="round" />
-        <path d={starPath(8, 44, 19)} fill="rgba(168,132,47,0.1)" stroke={`url(#brass-${uid})`} strokeWidth={1.3} strokeLinejoin="round" />
+        <path d={starPath(16, 62, 30)} fill="rgba(95,111,70,0.06)" stroke={`url(#green-${uid})`} strokeWidth={1.5} strokeLinejoin="round" />
+        <path d={starPath(8, 44, 19)} fill="rgba(179,135,58,0.1)" stroke={`url(#brass-${uid})`} strokeWidth={1.3} strokeLinejoin="round" />
         <g>
           {Array.from({ length: 8 }, (_, i) => (
             <ellipse key={i} cx={C} cy={C - 21} rx={4.6} ry={13} fill="none" stroke="var(--brass)" strokeWidth={1} transform={`rotate(${i * 45} ${C} ${C})`} opacity={0.85} />

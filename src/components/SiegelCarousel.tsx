@@ -5,6 +5,7 @@ import type { ModuleMeta, SealMeta } from '../data/types'
 import { Chevron } from './icons'
 import Shamsa from './Shamsa'
 import { rise, stagger } from '../lib/anim'
+import { useImageAvailable } from '../lib/useImage'
 
 // A Sparks-style title-image carousel for the seals of a module: a draggable,
 // snap-scrolling row of portrait cards. Each card carries the operator's title
@@ -90,8 +91,8 @@ export default function SiegelCarousel({ module }: { module: ModuleMeta }) {
 }
 
 function Card({ moduleId, seal }: { moduleId: string; seal: SealMeta }) {
-  const [imgOk, setImgOk] = useState(Boolean(seal.image))
-  const src = seal.image ? `${import.meta.env.BASE_URL}${seal.image}` : ''
+  const src = seal.image ? `${import.meta.env.BASE_URL}${seal.image}` : undefined
+  const imgOk = useImageAvailable(src)
   const soon = seal.status === 'coming'
 
   return (
@@ -112,7 +113,6 @@ function Card({ moduleId, seal }: { moduleId: string; seal: SealMeta }) {
               alt={seal.titel}
               loading="lazy"
               draggable={false}
-              onError={() => setImgOk(false)}
             />
           ) : (
             // Designed placeholder until the real title image is dropped in.

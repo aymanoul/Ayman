@@ -1,58 +1,67 @@
 @import 'tailwindcss';
+@import './styles/fonts.css';
 
 /* ============================================================================
-   DIE BIBLIOTHEK — Design System v2
-   Direction: "prophetisch / sakral", a JOURNEY through scripture on bright
-   vellum. Pigments: deep emerald + antique brass on warm paper. Ornament is
-   intentional arabesque — never background noise. Motion follows Emil Kowalski.
+   DIE BIBLIOTHEK — Design System v3
+   Direction: andalusisch-maurisch — Koran-Illumination (Tezhip) & Alhambra.
+   Warm ivory parchment, sage/olive + matte terracotta + gold. Symmetry, calm,
+   fine arabesque frames; geometric girih only as whisper-quiet watermark.
+   Latin type is geometric sans (Montserrat/Poppins); Arabic is Cairo/El Messiri;
+   Quran verses keep Amiri (naskh legibility with full diacritics).
    ========================================================================== */
 
 :root {
-  /* ---- Paper (warm, bright vellum) ---- */
-  --paper: #f3f4ec;
-  --paper-2: #f8f9f2;
-  --paper-card: #fcfdf8;
-  --paper-sink: #ecece1;
+  /* ---- Paper (warm parchment ivory) ---- */
+  --paper: #f4ecdb;
+  --paper-2: #f8f2e3;
+  --paper-card: #fbf6e9;
+  --paper-sink: #eadfc6;
 
-  /* ---- Ink (deep green-black) ---- */
-  --ink: #16201b;
-  --ink-soft: #51615a;
-  --ink-faint: #8a978f;
+  /* ---- Ink (warm sepia-black) ---- */
+  --ink: #2e2718;
+  --ink-soft: #6b5c42;
+  --ink-faint: #a3906f;
 
-  /* ---- Emerald (the primary accent) ---- */
-  --green: #0e5b43;
-  --green-deep: #08382a;
-  --green-bright: #1c8a63;
-  --green-wash: rgba(14, 91, 67, 0.06);
-  --green-wash-2: rgba(14, 91, 67, 0.1);
+  /* ---- Sage / olive (the primary accent) ---- */
+  --green: #5f6f46;
+  --green-deep: #414f2f;
+  --green-bright: #7d905a;
+  --green-wash: rgba(95, 111, 70, 0.07);
+  --green-wash-2: rgba(95, 111, 70, 0.12);
 
-  /* ---- Brass (illumination accent, used sparingly) ---- */
-  --brass: #a8842f;
-  --brass-soft: #c6a55c;
-  --brass-deep: #7e6320;
+  /* ---- Gold (illumination accent — hairlines, ornament, initials) ---- */
+  --brass: #b3873a;
+  --brass-soft: #d3b06a;
+  --brass-deep: #87651f;
 
-  /* ---- Triage / rubrication ---- */
-  --rubric: #9a3b32; /* "Einwand" */
+  /* ---- Terracotta (matte brick — rubrication, "Einwand") ---- */
+  --terra: #a85a40;
+  --terra-deep: #84432e;
+  --terra-wash: rgba(168, 90, 64, 0.08);
+  --rubric: #a04e36; /* "Einwand" */
   --konter: var(--green); /* "Konter" */
 
-  /* ---- Lines & seams ---- */
-  --line: rgba(14, 91, 67, 0.16);
-  --line-strong: rgba(14, 91, 67, 0.34);
-  --line-faint: rgba(14, 91, 67, 0.08);
-  --brass-line: rgba(168, 132, 47, 0.4);
+  /* ---- Lines & seams (gold hairlines, Tezhip-style) ---- */
+  --line: rgba(179, 135, 58, 0.26);
+  --line-strong: rgba(179, 135, 58, 0.5);
+  --line-faint: rgba(179, 135, 58, 0.13);
+  --brass-line: rgba(179, 135, 58, 0.4);
 
-  /* ---- Type ---- */
-  --font-display: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
-  --font-body: 'Newsreader', Georgia, serif;
-  --font-ui: 'Jost', system-ui, -apple-system, sans-serif;
-  --font-arabic: 'Amiri', serif;
-  --font-kufi: 'Reem Kufi', sans-serif;
+  /* ---- Type ----
+     Latin: geometric sans. Arabic: Cairo (text) + El Messiri (monumental).
+     Quran verses stay Amiri — geometric kufi cannot carry full taškīl. */
+  --font-display: 'Montserrat', 'Poppins', system-ui, sans-serif;
+  --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-ui: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-arabic: 'Cairo', 'Amiri', sans-serif;
+  --font-kufi: 'El Messiri', 'Cairo', sans-serif;
+  --font-quran: 'Amiri Quran', 'Amiri', serif;
   --font-hebrew: 'Frank Ruhl Libre', serif;
 
   /* ---- Seal palette (so the Shamsa is theme-driven) ---- */
   --seal-ink: var(--green);
   --seal-accent: var(--brass);
-  --seal-fill: #fbfcf6;
+  --seal-fill: #faf4e4;
 
   /* ---- Motion (Emil Kowalski) ---- */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -64,12 +73,12 @@
 
 /* ---- Tailwind theme bridge ---- */
 @theme {
-  --color-paper: #f3f4ec;
-  --color-ink: #16201b;
-  --color-green: #0e5b43;
-  --color-brass: #a8842f;
-  --font-display: 'Bodoni Moda', Georgia, serif;
-  --font-ui: 'Jost', system-ui, sans-serif;
+  --color-paper: #f4ecdb;
+  --color-ink: #2e2718;
+  --color-green: #5f6f46;
+  --color-brass: #b3873a;
+  --font-display: 'Montserrat', system-ui, sans-serif;
+  --font-ui: 'Poppins', system-ui, sans-serif;
 }
 
 /* ---------------------------------------------------------------- reset */
@@ -90,8 +99,8 @@ body {
   background-color: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -122,23 +131,33 @@ a {
 }
 
 /* ------------------------------------------------- the luminous ground */
-/* Dawn light falling on a page — soft, warm, never flat. */
+/* Warm light on parchment, with a whisper-quiet girih star lattice —
+   the Alhambra wall as watermark, never as noise. */
 .atmosphere {
   position: fixed;
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(135% 85% at 50% -18%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 62%),
-    radial-gradient(110% 70% at 50% -8%, rgba(14, 91, 67, 0.045) 0%, transparent 58%),
-    linear-gradient(180deg, #f7f8f0 0%, var(--paper) 52%, var(--paper-sink) 100%);
+    radial-gradient(135% 85% at 50% -18%, rgba(255, 252, 240, 0.9) 0%, rgba(255, 252, 240, 0) 62%),
+    radial-gradient(110% 70% at 50% -8%, rgba(179, 135, 58, 0.05) 0%, transparent 58%),
+    linear-gradient(180deg, #f8f2e3 0%, var(--paper) 52%, var(--paper-sink) 100%);
+}
+.atmosphere::before {
+  /* eight-point star lattice (girih), gold, ~4% — symmetric, calm */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23b3873a' stroke-width='1'%3E%3Cpath d='M48 12 57 39 84 48 57 57 48 84 39 57 12 48 39 39Z'/%3E%3Cpath d='M48 26 63.6 32.4 70 48 63.6 63.6 48 70 32.4 63.6 26 48 32.4 32.4Z' opacity='.6'/%3E%3Ccircle cx='48' cy='48' r='5' opacity='.6'/%3E%3Cpath d='M0 48h12M84 48h12M48 0v12M48 84v12' opacity='.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 96px 96px;
+  opacity: 0.045;
 }
 .atmosphere::after {
   /* faint paper grain so the light never looks plasticky */
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.4;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.45;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
   mix-blend-mode: multiply;
 }
 
@@ -146,9 +165,9 @@ a {
 .kicker {
   font-family: var(--font-ui);
   text-transform: uppercase;
-  letter-spacing: 0.4em;
-  font-weight: 500;
-  font-size: 0.7rem;
+  letter-spacing: 0.38em;
+  font-weight: 600;
+  font-size: 0.68rem;
   color: var(--green);
 }
 .label-ui {
@@ -172,7 +191,12 @@ a {
   unicode-bidi: isolate;
 }
 
-/* emerald display-ink with a whisper of brass at the base */
+/* display headlines: geometric sans wants tighter tracking than the old Didone */
+h1, h2, h3 {
+  letter-spacing: -0.01em;
+}
+
+/* olive display-ink with light falling from above */
 .gilt {
   background: linear-gradient(174deg, var(--green-bright) 0%, var(--green) 46%, var(--green-deep) 100%);
   -webkit-background-clip: text;
@@ -184,6 +208,39 @@ a {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* ------------------------------------------------ tezhip ornament frame */
+/* Reusable illumination frame: gold hairline + inset second hairline +
+   arabesque corner knots. Symmetric, matte, "printed on parchment". */
+.tezhip {
+  position: relative;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--paper-card);
+}
+.tezhip::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid var(--line-faint);
+  border-radius: 6px;
+  pointer-events: none;
+}
+.tezhip::after {
+  /* four arabesque corner knots — one SVG, pre-rotated per corner */
+  content: '';
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26' fill='none' stroke='%23b3873a' stroke-width='1.1'%3E%3Cpath d='M1 25V10C1 5 5 1 10 1h15'/%3E%3Cpath d='M6 25v-8c0-6 5-11 11-11h8' opacity='.55'/%3E%3Ccircle cx='10' cy='10' r='2.2' opacity='.8'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26' fill='none' stroke='%23b3873a' stroke-width='1.1'%3E%3Cg transform='rotate(90 13 13)'%3E%3Cpath d='M1 25V10C1 5 5 1 10 1h15'/%3E%3Cpath d='M6 25v-8c0-6 5-11 11-11h8' opacity='.55'/%3E%3Ccircle cx='10' cy='10' r='2.2' opacity='.8'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26' fill='none' stroke='%23b3873a' stroke-width='1.1'%3E%3Cg transform='rotate(-90 13 13)'%3E%3Cpath d='M1 25V10C1 5 5 1 10 1h15'/%3E%3Cpath d='M6 25v-8c0-6 5-11 11-11h8' opacity='.55'/%3E%3Ccircle cx='10' cy='10' r='2.2' opacity='.8'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26' fill='none' stroke='%23b3873a' stroke-width='1.1'%3E%3Cg transform='rotate(180 13 13)'%3E%3Cpath d='M1 25V10C1 5 5 1 10 1h15'/%3E%3Cpath d='M6 25v-8c0-6 5-11 11-11h8' opacity='.55'/%3E%3Ccircle cx='10' cy='10' r='2.2' opacity='.8'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: top left, top right, bottom right, bottom left;
+  background-size: 26px 26px;
 }
 
 /* ---------------------------------------------------------- focus ring */

@@ -50,9 +50,9 @@ export default function DanielStatue() {
           >
             <defs>
               <linearGradient id="bergG" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#27a07a" />
-                <stop offset="55%" stopColor="#0e5b43" />
-                <stop offset="100%" stopColor="#07301f" />
+                <stop offset="0%" stopColor="#8ca265" />
+                <stop offset="55%" stopColor="#5f6f46" />
+                <stop offset="100%" stopColor="#333f24" />
               </linearGradient>
             </defs>
             <path d="M200 12 C 250 70 320 150 400 240 L0 240 C 80 150 150 70 200 12 Z" fill="url(#bergG)" />

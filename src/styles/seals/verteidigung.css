@@ -80,7 +80,7 @@
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--paper-card);
-  border-top: 3px solid var(--accent-bordeaux, #9a3b32);
+  border-top: 3px solid var(--accent-bordeaux, #a04e36);
 }
 .vt-paulus__n {
   font-family: var(--font-display);
@@ -107,8 +107,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  background: linear-gradient(135deg, rgba(168, 132, 47, 0.1), var(--paper-card));
-  border-color: rgba(168, 132, 47, 0.4);
+  background: linear-gradient(135deg, rgba(179, 135, 58, 0.1), var(--paper-card));
+  border-color: rgba(179, 135, 58, 0.4);
 }
 .vt-prov__vers {
   font-family: var(--font-display);
