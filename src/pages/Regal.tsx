@@ -2,17 +2,20 @@ import { Link } from 'react-router-dom'
 import Bookshelf from '../components/Bookshelf'
 import { ArrowLeft } from '../components/icons'
 
-// Demo-Ansicht: die Buchreihe "Ar-Raheeq Al-Makhtoom" als Regal.
-// Die Bandnamen sind PLATZHALTER (Stationen der Sira) — in baende[] anpassen,
-// und `to` auf die echten Ziel-Routen zeigen lassen.
+// Die 9 Siegel des Moduls "Muhammad in der Bibel" als Bände der Reihe —
+// Bandnamen sind die arabischen Übersetzungen der Siegel-Titel, jeder Band
+// verlinkt auf sein Siegel.
+const S = '/modul/muhammad/siegel'
 const baende = [
-  { nr: 1, name: 'العهد المكي', to: '#' },
-  { nr: 2, name: 'البعثة النبوية', to: '#' },
-  { nr: 3, name: 'الهجرة', to: '#' },
-  { nr: 4, name: 'العهد المدني', to: '#' },
-  { nr: 5, name: 'الغزوات', to: '#' },
-  { nr: 6, name: 'فتح مكة', to: '#' },
-  { nr: 7, name: 'حجة الوداع', to: '#' },
+  { nr: 1, name: 'الأساس', to: `${S}/fundament` }, // Das Fundament
+  { nr: 2, name: 'ذرية إبراهيم', to: `${S}/abrahams-nachkommen` }, // Abrahams Nachkommen
+  { nr: 3, name: 'نبي مثل موسى', to: `${S}/prophet-wie-mose` }, // Prophet wie Mose
+  { nr: 4, name: 'النبوءات العربية', to: `${S}/arabische-prophezeiungen` }, // Arabische Prophezeiungen
+  { nr: 5, name: 'نشيد الأنشاد', to: `${S}/hohelied` }, // Das Hohelied
+  { nr: 6, name: 'دانيال', to: `${S}/daniel` }, // Daniel
+  { nr: 7, name: 'الفارقليط', to: `${S}/paraklet` }, // Der Paraklet
+  { nr: 8, name: 'انتظار اليهود', to: `${S}/juedische-erwartung` }, // Jüdische Erwartung
+  { nr: 9, name: 'الدفاع', to: `${S}/verteidigung` }, // Verteidigung
 ]
 
 export default function Regal() {
