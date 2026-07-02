@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { Link, useParams, useLocation } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import Shamsa from '../components/Shamsa'
 import { ArrowLeft } from '../components/icons'
 import { findModule, findSeal } from '../data/modules'
 import { rise, stagger } from '../lib/anim'
@@ -89,7 +88,6 @@ export default function SealPage() {
         variants={stagger}
       >
         <motion.span variants={rise} style={{ display: 'inline-block' }}>
-          <Shamsa size={120} />
         </motion.span>
         <motion.p className="kicker" variants={rise} style={{ marginTop: '1.5rem' }}>
           Siegel {seal.nummer}

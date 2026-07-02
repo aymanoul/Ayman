@@ -3,9 +3,13 @@
    and the immersive Beleg modal (Quran verses in glowing green + gold).
    ========================================================================== */
 
-/* ------------------------------------------------------------- seal header */
+/* ------------------------------------------------------------- seal header
+   Left-aligned editorial head: running label, title, thesis panel. */
+.seal .wrap {
+  max-width: 1000px;
+}
 .seal__head {
-  text-align: center;
+  text-align: left;
   padding-top: clamp(1rem, 3vh, 2rem);
   padding-bottom: clamp(1.5rem, 4vh, 2.5rem);
 }
@@ -13,97 +17,125 @@
   display: block;
   font-family: var(--font-ui);
   text-transform: uppercase;
-  letter-spacing: 0.36em;
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: var(--brass);
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.22em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--ink-faint);
+  margin-bottom: 0.6rem;
 }
 .seal__title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(3rem, 11vw, 6rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+  max-width: 22ch;
 }
 .seal__ar {
   display: block;
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
-  color: var(--green);
-  margin-top: 0.4rem;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  color: var(--ink-faint);
+  margin-top: 0.5rem;
+  text-align: left;
 }
 .seal__these {
-  max-width: 56ch;
-  margin: 0.5rem auto 0;
+  max-width: 70ch;
+  margin: 1.6rem 0 0;
+  padding: 1.3rem 1.6rem;
+  border-left: 3px solid var(--medina);
+  background: var(--paper-card);
+  border-radius: 0 10px 10px 0;
   font-family: var(--font-body);
-  font-size: clamp(1.05rem, 2.3vw, 1.2rem);
-  line-height: 1.7;
-  color: var(--ink-soft);
+  font-size: clamp(1.02rem, 2.2vw, 1.14rem);
+  line-height: 1.75;
+  color: var(--ink);
+  text-align: left;
+}
+.seal__these::before {
+  content: 'Die These';
+  display: block;
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--medina);
+  margin-bottom: 0.55rem;
 }
 
 /* ----------------------------------------------------------------- section */
 .sec {
-  margin-top: clamp(3rem, 8vh, 5.5rem);
+  margin-top: clamp(3.2rem, 9vh, 6rem);
 }
 .sec__head {
-  text-align: center;
-  margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
+  text-align: left;
+  border-top: 1px solid var(--line-strong);
+  padding-top: 1.1rem;
+  margin-bottom: clamp(1.4rem, 4vh, 2.2rem);
 }
 .sec__kicker {
   display: block;
   font-family: var(--font-ui);
   text-transform: uppercase;
-  letter-spacing: 0.32em;
-  font-size: 0.66rem;
-  font-weight: 500;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  font-weight: 600;
   color: var(--medina);
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.4rem;
 }
 .sec__title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.7rem, 5vw, 2.7rem);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.6rem, 4.4vw, 2.4rem);
+  line-height: 1.12;
+  letter-spacing: 0;
   color: var(--ink);
+  max-width: 30ch;
 }
 .sec__lead {
-  max-width: 60ch;
-  margin: -0.6rem auto 2rem;
-  text-align: center;
+  max-width: 70ch;
+  margin: 0.6rem 0 2rem;
+  text-align: left;
   font-family: var(--font-body);
   color: var(--ink-soft);
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   line-height: 1.7;
 }
 
 /* ------------------------------------------------------------------- steps */
 .steps {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 680px;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.2rem 3rem;
+  max-width: none;
+  margin: 0;
+}
+@media (max-width: 719px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
 }
 .step {
-  display: flex;
-  gap: 1.25rem;
-  align-items: flex-start;
-  padding: 1.3rem 1.5rem;
-  background: var(--paper-card);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  box-shadow: 0 1px 2px rgba(64, 58, 34, 0.03);
+  display: block;
+  padding: 1.1rem 0 0;
+  background: none;
+  border: none;
+  border-top: 2px solid var(--ink);
+  border-radius: 0;
+  box-shadow: none;
 }
 .step__n {
-  flex: none;
-  font-family: var(--font-display);
+  display: block;
+  font-family: var(--font-ui);
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
   line-height: 1;
-  color: var(--brass);
-  width: 2.4rem;
-  text-align: center;
+  color: var(--medina);
+  width: auto;
+  text-align: left;
+  margin-bottom: 0.55rem;
 }
 .step__h {
   font-family: var(--font-display);
@@ -693,14 +725,14 @@
 .konter-list {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  max-width: 760px;
-  margin: 0 auto;
+  gap: 0.7rem;
+  max-width: none;
+  margin: 0;
 }
 .konter {
   position: relative;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 10px;
   background: var(--paper-card);
   overflow: hidden;
 }
@@ -740,12 +772,14 @@
 }
 .konter__chev {
   flex: none;
+  display: grid;
+  place-items: center;
   color: var(--ink-faint);
-  font-size: 1.2rem;
+  transform: rotate(90deg); /* SVG points right; resting state points down */
   transition: transform 0.3s var(--ease-out);
 }
 .konter__chev.is-open {
-  transform: rotate(180deg);
+  transform: rotate(-90deg);
 }
 .konter__inner {
   padding: 0 1.3rem 1.3rem;
@@ -778,43 +812,57 @@
 }
 
 .scholar__toggle {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  margin: 0 auto;
+  margin: 0;
   font-family: var(--font-ui);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--green);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.7rem 1.4rem;
+  font-weight: 600;
+  color: #fbf6e9;
+  background: var(--medina);
+  border: 1px solid var(--medina-deep);
+  border-radius: 10px;
+  padding: 0.85rem 1.5rem;
+  min-height: 44px;
   transition: background 0.2s var(--ease-out), transform 0.14s var(--ease-out);
 }
 .scholar__toggle:hover {
-  background: var(--green-wash);
+  background: var(--medina-deep);
 }
 .scholar__toggle:active {
   transform: scale(0.98);
 }
 .scholar__chev {
+  display: grid;
+  place-items: center;
+  transform: rotate(90deg);
   transition: transform 0.3s var(--ease-out);
 }
 .scholar__chev.is-open {
-  transform: rotate(180deg);
+  transform: rotate(-90deg);
 }
 .scholar {
   display: grid;
-  gap: 1rem;
-  max-width: 760px;
-  margin: 1.5rem auto 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.9rem 3rem;
+  max-width: none;
+  margin: 1.8rem 0 0;
+}
+@media (max-width: 719px) {
+  .scholar {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 .scholar__item {
-  padding: 1.4rem 1.5rem;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--paper-card);
+  padding: 1rem 0 0;
+  border: none;
+  border-top: 1px solid var(--line-strong);
+  border-radius: 0;
+  background: none;
 }
 .scholar__h {
   font-family: var(--font-display);
@@ -830,8 +878,8 @@
 
 /* ============================================================ MASSSTAB / NETZ */
 .massstab {
-  max-width: 760px;
-  margin: clamp(3rem, 8vh, 5rem) auto 0;
+  max-width: 76ch;
+  margin: clamp(3rem, 8vh, 5rem) 0 0;
   padding: clamp(1.75rem, 4vw, 2.5rem);
   border-radius: 18px;
   border: 1px solid var(--brass-line);

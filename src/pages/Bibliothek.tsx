@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import SearchPanel from '../components/SearchPanel'
 import ModulePlate from '../components/ModulePlate'
-import { Sprig } from '../components/Ornament'
 import { modules } from '../data/modules'
 import { rise, stagger, EASE } from '../lib/anim'
 
@@ -50,22 +49,6 @@ export default function Bibliothek() {
           </motion.p>
 
           <div className="mods">
-            <motion.span
-              className="mods__start"
-              initial={reduce ? false : { scale: 0.4, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true, amount: 0.6 }}
-              transition={{ duration: 0.5, ease: EASE }}
-              aria-hidden
-            />
-            <motion.div
-              className="mods__path"
-              initial={reduce ? false : { scaleY: 0 }}
-              whileInView={{ scaleY: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
-              aria-hidden
-            />
             <motion.div
               className="mods__list"
               initial={reduce ? false : 'hidden'}
@@ -86,7 +69,6 @@ export default function Bibliothek() {
       </div>
 
       <footer className="foot">
-        <Sprig width={104} />
         <p>Die Bibliothek</p>
       </footer>
     </main>

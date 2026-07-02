@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import type { ModuleMeta, SealMeta } from '../data/types'
 import { Chevron } from './icons'
-import Shamsa from './Shamsa'
 import { rise, stagger } from '../lib/anim'
 import { useImageAvailable } from '../lib/useImage'
 
@@ -115,9 +114,8 @@ function Card({ moduleId, seal }: { moduleId: string; seal: SealMeta }) {
               draggable={false}
             />
           ) : (
-            // Designed placeholder until the real title image is dropped in.
+            // Typographic placeholder until the real title image is dropped in.
             <div className="scard__placeholder">
-              <Shamsa size={72} />
               <span className="scard__placeholder-num">{seal.nummer}</span>
               <span className="scard__placeholder-titel">{seal.titel}</span>
               {seal.arabic && (
@@ -128,7 +126,7 @@ function Card({ moduleId, seal }: { moduleId: string; seal: SealMeta }) {
             </div>
           )}
 
-          {soon && <span className="scard__soon">◆ Folgt</span>}
+          {soon && <span className="scard__soon">Folgt</span>}
         </div>
       </Link>
     </motion.div>

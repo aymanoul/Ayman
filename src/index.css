@@ -152,15 +152,6 @@ a {
     radial-gradient(110% 70% at 50% -8%, rgba(179, 135, 58, 0.05) 0%, transparent 58%),
     linear-gradient(180deg, #f8f2e3 0%, var(--paper) 52%, var(--paper-sink) 100%);
 }
-.atmosphere::before {
-  /* eight-point star lattice (girih), gold, ~4% — symmetric, calm */
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23b3873a' stroke-width='1'%3E%3Cpath d='M48 12 57 39 84 48 57 57 48 84 39 57 12 48 39 39Z'/%3E%3Cpath d='M48 26 63.6 32.4 70 48 63.6 63.6 48 70 32.4 63.6 26 48 32.4 32.4Z' opacity='.6'/%3E%3Ccircle cx='48' cy='48' r='5' opacity='.6'/%3E%3Cpath d='M0 48h12M84 48h12M48 0v12M48 84v12' opacity='.5'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 96px 96px;
-  opacity: 0.045;
-}
 .atmosphere::after {
   /* faint paper grain so the light never looks plasticky */
   content: '';
@@ -219,51 +210,12 @@ mark.medina {
   color: var(--medina);
 }
 
-/* Medina-green display-ink with light falling from above */
+/* display ink: solid Medina green — no gradient text */
 .gilt {
-  background: linear-gradient(174deg, var(--medina-bright) 0%, var(--medina) 46%, var(--medina-deep) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--medina);
 }
 .brassed {
-  background: linear-gradient(174deg, var(--brass-soft) 0%, var(--brass) 50%, var(--brass-deep) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* ------------------------------------------------ tezhip ornament frame */
-/* Reusable illumination frame: gold hairline + inset second hairline +
-   arabesque corner knots. Symmetric, matte, "printed on parchment". */
-.tezhip {
-  position: relative;
-  border: 1px solid var(--line-strong);
-  border-radius: 10px;
-  background: var(--paper-card);
-}
-.tezhip::before {
-  content: '';
-  position: absolute;
-  inset: 5px;
-  border: 1px solid var(--line-faint);
-  border-radius: 6px;
-  pointer-events: none;
-}
-.tezhip::after {
-  /* four arabesque corner knots — one SVG, pre-rotated per corner */
-  content: '';
-  position: absolute;
-  inset: -1px;
-  pointer-events: none;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26' fill='none' stroke='%23b3873a' stroke-width='1.1'%3E%3Cpath d='M1 25V10C1 5 5 1 10 1h15'/%3E%3Cpath d='M6 25v-8c0-6 5-11 11-11h8' opacity='.55'/%3E%3Ccircle cx='10' cy='10' r='2.2' opacity='.8'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26' fill='none' stroke='%23b3873a' stroke-width='1.1'%3E%3Cg transform='rotate(90 13 13)'%3E%3Cpath d='M1 25V10C1 5 5 1 10 1h15'/%3E%3Cpath d='M6 25v-8c0-6 5-11 11-11h8' opacity='.55'/%3E%3Ccircle cx='10' cy='10' r='2.2' opacity='.8'/%3E%3C/g%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26' fill='none' stroke='%23b3873a' stroke-width='1.1'%3E%3Cg transform='rotate(-90 13 13)'%3E%3Cpath d='M1 25V10C1 5 5 1 10 1h15'/%3E%3Cpath d='M6 25v-8c0-6 5-11 11-11h8' opacity='.55'/%3E%3Ccircle cx='10' cy='10' r='2.2' opacity='.8'/%3E%3C/g%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26' fill='none' stroke='%23b3873a' stroke-width='1.1'%3E%3Cg transform='rotate(180 13 13)'%3E%3Cpath d='M1 25V10C1 5 5 1 10 1h15'/%3E%3Cpath d='M6 25v-8c0-6 5-11 11-11h8' opacity='.55'/%3E%3Ccircle cx='10' cy='10' r='2.2' opacity='.8'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: top left, top right, bottom right, bottom left;
-  background-size: 26px 26px;
+  color: var(--brass-deep);
 }
 
 /* ---------------------------------------------------------- focus ring */

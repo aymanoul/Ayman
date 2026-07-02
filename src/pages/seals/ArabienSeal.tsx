@@ -2,7 +2,7 @@ import '../../styles/seals/arabien.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowLeft } from '../../components/icons'
+import { ArrowLeft, Chevron } from '../../components/icons'
 import { BelegCard } from '../../components/Beleg'
 import {
   ArabienKarte,
@@ -44,13 +44,11 @@ function KonterRow({ item }: { item: (typeof arabienKonter)[number] }) {
   const beleg = item.belegId ? arabienBelege[item.belegId] : undefined
   return (
     <motion.div className={`konter${item.tier === 'marble' ? ' is-marble' : ''}`} variants={rise}>
-      {item.tier === 'marble' && <span className="marble-tag">✦ Ergänzender Befund</span>}
+      {item.tier === 'marble' && <span className="marble-tag">Ergänzender Befund</span>}
       <button className="konter__einwand" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
         <span className="konter__label">Einwand</span>
         <span className="konter__text">{item.einwand}</span>
-        <span className={`konter__chev${open ? ' is-open' : ''}`} aria-hidden>
-          ⌄
-        </span>
+        <span className={`konter__chev${open ? ' is-open' : ''}`} aria-hidden><Chevron /></span>
       </button>
       <motion.div
         className="konter__panel"
@@ -188,9 +186,7 @@ export default function ArabienSeal() {
           <Eyebrow kicker="Gelehrten-Ebene" title="Tiefer graben" />
           <button className="scholar__toggle" onClick={() => setDeep((v) => !v)} aria-expanded={deep}>
             {deep ? 'Gelehrten-Ebene schließen' : 'Gelehrten-Ebene öffnen'}
-            <span className={`scholar__chev${deep ? ' is-open' : ''}`} aria-hidden>
-              ⌄
-            </span>
+            <span className={`scholar__chev${deep ? ' is-open' : ''}`} aria-hidden><Chevron /></span>
           </button>
           <motion.div
             initial={false}
@@ -201,7 +197,7 @@ export default function ArabienSeal() {
             <div className="scholar">
               {arabienScholar.map((s, i) => (
                 <article key={i} className={`scholar__item${s.tier === 'marble' ? ' is-marble' : ''}`}>
-                  {s.tier === 'marble' && <span className="marble-tag">✦ Ergänzender Befund</span>}
+                  {s.tier === 'marble' && <span className="marble-tag">Ergänzender Befund</span>}
                   <h3 className="scholar__h">{s.h}</h3>
                   <p className="scholar__b">{s.body}</p>
                 </article>

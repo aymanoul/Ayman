@@ -1,28 +1,16 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import type { ModuleMeta } from '../data/types'
-import Shamsa from './Shamsa'
 import { Chevron } from './icons'
 import { riseSpring } from '../lib/anim'
 
-// One module rendered as an illuminated plate. Title only — no description,
-// per the minimalist brief. Available plates lift on a spring, the seal ignites
-// and turns; forthcoming plates sit quiet with a "bald" mark.
+// One module rendered as a clean editorial row: title, meta, chevron.
+// No emblems, no ornament — structure carries the design.
 export default function ModulePlate({ module }: { module: ModuleMeta }) {
   const open = module.status === 'available'
 
   const inner = (
     <>
-      <span className="plate__frame" aria-hidden>
-        <i />
-        <i />
-        <i />
-        <i />
-      </span>
-      <span className="plate__sweep" aria-hidden />
-      <span className="plate__seal" aria-hidden>
-        <Shamsa size={72} animate={false} idle={open} glow={false} />
-      </span>
       <span className="plate__body">
         <span className="plate__titel">
           {module.titel}
