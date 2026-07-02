@@ -41,8 +41,9 @@
 .spine {
   position: relative;
   flex: none;
-  width: clamp(90px, 10.5vw, 112px);
-  height: clamp(430px, 58vh, 560px);
+  width: clamp(100px, 9.6vw, 126px);
+  aspect-ratio: 753 / 2337; /* Seitenverhältnis der gelieferten Textur */
+  height: auto;
   border-radius: 8px 8px 6px 6px / 20px 20px 9px 9px;
   overflow: hidden;
   text-decoration: none;
@@ -91,48 +92,48 @@
   line-height: 1.4;
 }
 .spine--img .spine__z--titel {
-  top: 7%;
-  height: 16%;
+  top: 8%;
+  height: 15%;
   font-size: clamp(1.05rem, 1.8vw, 1.4rem);
   font-weight: 700;
   line-height: 1.5;
 }
 .spine--img .spine__z--name {
-  top: 38%;
-  height: 10%;
+  top: 31.5%;
+  height: 8.5%;
   font-size: clamp(0.78rem, 1.25vw, 0.95rem);
   color: #eeddab;
   padding-inline: 16%;
 }
 .spine--img .spine__z--nr {
-  top: 47%;
-  height: 12%;
+  top: 40%;
+  height: 9.5%;
   font-size: clamp(1.8rem, 3.2vw, 2.5rem);
   color: #f2e3b6;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6), 0 0 14px rgba(242, 227, 182, 0.22);
 }
 .spine--img .spine__z--mujallad {
-  top: 59%;
-  height: 4.5%;
+  top: 49.5%;
+  height: 3.5%;
   font-size: 0.7rem;
   color: #d9bd83;
 }
 .spine--img .spine__z--nrseal {
-  top: 67.5%;
+  top: 59%;
   height: 5.5%;
   font-size: 0.82rem;
   color: #f2e3b6;
 }
 .spine--img .spine__z--autor {
-  top: 75.5%;
-  height: 7%;
+  top: 65.5%;
+  height: 6%;
   font-size: clamp(0.7rem, 1.05vw, 0.8rem);
   color: #e6d19c;
   padding-inline: 6%;
 }
 .spine--img .spine__z--verlag {
-  top: 84.5%;
-  height: 5.5%;
+  top: 72%;
+  height: 5%;
   font-size: 0.72rem;
   color: #eeddab;
   white-space: nowrap;
@@ -236,8 +237,7 @@
     padding-inline: 0.75rem;
   }
   .spine {
-    width: 92px;
-    height: 420px;
+    width: 96px;
   }
 }
 

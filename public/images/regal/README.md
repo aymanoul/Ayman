@@ -1,8 +1,22 @@
 # Buchrücken-Textur für das Regal (`/regal`)
 
-**Erwartete Datei:** `spine.png` (dieser Ordner) — Hochformat, **Seitenverhältnis 2:9**
-(z. B. **400 × 1800 px**). Sobald die Datei hier liegt, rendert das Regal sie
-automatisch 1:1; ohne sie erscheint ein schlichter CSS-Fallback.
+**Erwartete Datei:** `spine.png` (dieser Ordner).
+**Die passende Textur existiert bereits** (vom Betreiber generiert, dunkelgrünes
+Leder + Gold + leeres Medaillon/Raute/Kartusche) — sie muss nur noch als Datei
+hier abgelegt werden. Die CSS-Zonen sind bereits exakt auf dieses Bild
+kalibriert (Seitenverhältnis 753:2337 ≈ 1:3,1).
+
+Falls das Bild weiße Ränder hat, vorher beschneiden:
+`magick spine_raw.png -fuzz 4% -trim +repage spine.png`
+
+## Kalibrierte Textzonen (in % der Bildhöhe)
+| Zone | Position |
+|---|---|
+| Titel (leeres Leder oben) | 8–23 % |
+| Bandname + Nummer + المجلد (Medaillon) | 30–53 % |
+| Nummern-Raute | 59–65 % |
+| Autor (freies Leder) | 65,5–71,5 % |
+| Verlag (Kartusche) | 72–77 % |
 
 ## Was das Bild zeigen muss (Fath-al-Bari-Stil, OHNE Text!)
 
