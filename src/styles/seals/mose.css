@@ -239,3 +239,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Zitierte Verse in Grün */
+.aug-panel__zitat,
+.zeugen__zitat {
+  color: var(--medina);
+}

@@ -137,3 +137,8 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Zitierte Verse in Grün */
+.vt-prov__vers {
+  color: var(--medina);
+}

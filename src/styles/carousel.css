@@ -216,3 +216,8 @@
     transition: none;
   }
 }
+
+/* Titel fett */
+.scard__placeholder-titel {
+  font-weight: 700;
+}

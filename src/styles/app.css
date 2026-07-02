@@ -493,3 +493,10 @@
     display: none;
   }
 }
+
+/* Titel fett (eine Schrift, zwei Gewichte) */
+.plate__titel,
+.front__name,
+.seek__hit-titel {
+  font-weight: 700;
+}

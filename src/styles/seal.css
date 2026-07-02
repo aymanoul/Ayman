@@ -9,7 +9,7 @@
   max-width: 1000px;
 }
 .seal__head {
-  text-align: left;
+  text-align: center;
   padding-top: clamp(1rem, 3vh, 2rem);
   padding-bottom: clamp(1.5rem, 4vh, 2.5rem);
 }
@@ -21,26 +21,33 @@
   font-size: 0.74rem;
   font-weight: 600;
   color: var(--ink-faint);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
 }
 .seal__title {
+  display: block;
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(2.4rem, 7vw, 4.2rem);
-  line-height: 1.05;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 5.4vw, 3.1rem);
+  line-height: 1.15;
   letter-spacing: 0;
-  max-width: 22ch;
+  max-width: none;
+  border: 22px solid transparent;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Crect x='2.5' y='2.5' width='79' height='79' fill='none' stroke='%23b3873a' stroke-width='1'/%3E%3Crect x='9' y='9' width='66' height='66' fill='none' stroke='%232e7d54' stroke-width='8'/%3E%3Crect x='17.5' y='17.5' width='49' height='49' fill='none' stroke='%23b3873a' stroke-width='1'/%3E%3Cpath d='M42 8.5 46.5 13 42 17.5 37.5 13Z' fill='%23f6efdd'/%3E%3Cpath d='M42 66.5 46.5 71 42 75.5 37.5 71Z' fill='%23f6efdd'/%3E%3Cpath d='M8.5 42 13 37.5 17.5 42 13 46.5Z' fill='%23f6efdd'/%3E%3Cpath d='M66.5 42 71 37.5 75.5 42 71 46.5Z' fill='%23f6efdd'/%3E%3Ccircle cx='13' cy='13' r='4.2' fill='%23f6efdd'/%3E%3Ccircle cx='13' cy='13' r='1.8' fill='%23b3873a'/%3E%3Ccircle cx='71' cy='13' r='4.2' fill='%23f6efdd'/%3E%3Ccircle cx='71' cy='13' r='1.8' fill='%23b3873a'/%3E%3Ccircle cx='13' cy='71' r='4.2' fill='%23f6efdd'/%3E%3Ccircle cx='13' cy='71' r='1.8' fill='%23b3873a'/%3E%3Ccircle cx='71' cy='71' r='4.2' fill='%23f6efdd'/%3E%3Ccircle cx='71' cy='71' r='1.8' fill='%23b3873a'/%3E%3C/svg%3E") 24 round;
+  background: #f1f0da;
+  background-clip: padding-box;
+  padding: 0.35rem 1.2rem 0.5rem;
+  text-align: center;
 }
 .seal__ar {
   display: block;
   font-size: clamp(1.3rem, 4vw, 1.8rem);
   color: var(--ink-faint);
-  margin-top: 0.5rem;
-  text-align: left;
+  margin-top: 0.7rem;
+  text-align: center;
 }
 .seal__these {
   max-width: 70ch;
-  margin: 1.6rem 0 0;
+  margin: 1.6rem auto 0;
   padding: 1.3rem 1.6rem;
   border-left: 3px solid var(--medina);
   background: var(--paper-card);
@@ -68,33 +75,36 @@
   margin-top: clamp(3.2rem, 9vh, 6rem);
 }
 .sec__head {
-  text-align: left;
-  border-top: 1px solid var(--line-strong);
-  padding-top: 1.1rem;
-  margin-bottom: clamp(1.4rem, 4vh, 2.2rem);
+  text-align: center;
+  border: 18px solid transparent;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Crect x='2.5' y='2.5' width='79' height='79' fill='none' stroke='%23b3873a' stroke-width='1'/%3E%3Crect x='9' y='9' width='66' height='66' fill='none' stroke='%232e7d54' stroke-width='8'/%3E%3Crect x='17.5' y='17.5' width='49' height='49' fill='none' stroke='%23b3873a' stroke-width='1'/%3E%3Cpath d='M42 8.5 46.5 13 42 17.5 37.5 13Z' fill='%23f6efdd'/%3E%3Cpath d='M42 66.5 46.5 71 42 75.5 37.5 71Z' fill='%23f6efdd'/%3E%3Cpath d='M8.5 42 13 37.5 17.5 42 13 46.5Z' fill='%23f6efdd'/%3E%3Cpath d='M66.5 42 71 37.5 75.5 42 71 46.5Z' fill='%23f6efdd'/%3E%3Ccircle cx='13' cy='13' r='4.2' fill='%23f6efdd'/%3E%3Ccircle cx='13' cy='13' r='1.8' fill='%23b3873a'/%3E%3Ccircle cx='71' cy='13' r='4.2' fill='%23f6efdd'/%3E%3Ccircle cx='71' cy='13' r='1.8' fill='%23b3873a'/%3E%3Ccircle cx='13' cy='71' r='4.2' fill='%23f6efdd'/%3E%3Ccircle cx='13' cy='71' r='1.8' fill='%23b3873a'/%3E%3Ccircle cx='71' cy='71' r='4.2' fill='%23f6efdd'/%3E%3Ccircle cx='71' cy='71' r='1.8' fill='%23b3873a'/%3E%3C/svg%3E") 24 round;
+  background: #f1f0da;
+  background-clip: padding-box;
+  padding: 0.45rem 1rem 0.6rem;
+  margin-bottom: clamp(1.6rem, 4vh, 2.4rem);
 }
 .sec__kicker {
   display: block;
   font-family: var(--font-ui);
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 600;
   color: var(--medina);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
 }
 .sec__title {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.6rem, 4.4vw, 2.4rem);
-  line-height: 1.12;
+  font-weight: 700;
+  font-size: clamp(1.35rem, 3.6vw, 1.9rem);
+  line-height: 1.2;
   letter-spacing: 0;
   color: var(--ink);
-  max-width: 30ch;
+  max-width: none;
 }
 .sec__lead {
   max-width: 70ch;
-  margin: 0.6rem 0 2rem;
+  margin: 0.6rem auto 2rem;
   text-align: left;
   font-family: var(--font-body);
   color: var(--ink-soft);
@@ -387,7 +397,7 @@
   font-family: var(--font-body);
   font-size: 0.98rem;
   line-height: 1.55;
-  color: var(--ink);
+  color: var(--medina);
 }
 .beleg-card__open {
   font-family: var(--font-ui);
@@ -2814,4 +2824,14 @@
 .sec strong {
   color: var(--anda);
   font-weight: 600;
+}
+
+
+/* ---- Eine Schrift, Titel fett + Verse grün ---- */
+.step__h,
+.scholar__h {
+  font-weight: 700;
+}
+.abfolge__quote {
+  color: var(--medina);
 }

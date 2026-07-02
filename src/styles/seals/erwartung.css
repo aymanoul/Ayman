@@ -219,3 +219,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Zitierte Verse in Grün */
+.einge__zitat,
+.haybanner__zitat {
+  color: var(--medina);
+}

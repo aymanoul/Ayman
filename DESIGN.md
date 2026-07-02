@@ -1,10 +1,24 @@
-# Die Bibliothek — Design (v4)
+# Die Bibliothek — Design (v5)
 
-Direction: **redaktionelles Nachschlagewerk** auf warmem Pergament — die
-andalusische Palette (v3) bleibt, aber **ohne jede Symbolik/Ornamentik**:
-keine Shamsa, keine Arabesken-Ecken, kein Girih-Wasserzeichen, keine
-Trenn-Ornamente, kein Gradient-Text. Struktur trägt das Design: linksbündige
-Laufköpfe mit Oberlinien, nummerierte Raster, klare Chips.
+Direction: **Mushaf-Layout** — die Seite liest sich wie eine Quran-Seite:
+ornamentale Randbordüren links + rechts über die volle Länge (grünes Band,
+Creme-Rauten, Rosetten, goldene Außenlinien; `body::before/::after`,
+repeat-y-SVG), Titel in **Suren-Kartuschen** (`border-image`-Ornamentrahmen
+auf `.seal__title` + `.sec__head`, helle Kartuschenfläche). Die klare
+v4-Struktur darunter bleibt (These-Block, Beweiskette-Raster, Konter-Reihen,
+Gelehrten-Raster).
+
+## Schrift (v5): EINE Schriftart
+**Happy Time für alles** — Fließtext normal (400), Titel dieselbe Schrift in
+**fett** (700, synthetisiert). Kamali wird nicht mehr verwendet. Arabisch
+(Cairo/El Messiri/Amiri) und Hebräisch bleiben für ihre Schriftsysteme.
+
+## Verse (v5): Grün
+Alle zitierten Verse erscheinen in Medina-Grün: BelegCard-Kurztexte
+(`.beleg-card__kurz`) + Zitat-Elemente der Exhibits (`.abfolge__quote`,
+`.einge__zitat`, `.haybanner__zitat`, `.feind__zitat`, `.aug-panel__zitat`,
+`.zeugen__zitat`, `.vt-prov__vers`). Dunkle Modal-Tafeln behalten ihr
+Gold-auf-Dunkel (Lesbarkeit).
 
 ## Struktur (v4 — die Debatten-Ebene)
 - **Siegel-Kopf:** linksbündig — Laufmarke („Siegel II"), Kamali-Titel,
