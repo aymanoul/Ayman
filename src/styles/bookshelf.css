@@ -89,52 +89,66 @@
   color: #ecd9a4;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.55);
   font-family: var(--font-quran);
-  line-height: 1.4;
+  line-height: 1.35;
 }
+/* Pixel-vermessene Textur (558x2042):
+   leere Titelzone  ~9–29 %
+   Medaillon        35.0–63.0 % (Mitte 49.0; nutzbare Breite: 40 %→49 %, Mitte 70 %)
+   Raute            Mitte 73.2 %
+   Autor-Leder      67.8–71.0 %
+   Kartusche        83.6–88.3 % (Mitte 86.0) */
 .spine--img .spine__z--titel {
-  top: 8%;
-  height: 15%;
-  font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+  top: 11%;
+  height: 14%;
+  font-size: clamp(1.1rem, 1.9vw, 1.5rem);
   font-weight: 700;
   line-height: 1.5;
 }
 .spine--img .spine__z--name {
-  top: 31.5%;
-  height: 8.5%;
-  font-size: clamp(0.78rem, 1.25vw, 0.95rem);
+  top: 39.5%;
+  height: 6%;
+  left: 27%;
+  width: 46%;
+  font-size: clamp(0.66rem, 1vw, 0.8rem);
+  line-height: 1.25;
   color: #eeddab;
-  padding-inline: 16%;
 }
 .spine--img .spine__z--nr {
-  top: 40%;
-  height: 9.5%;
-  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  top: 45.5%;
+  height: 7.5%;
+  left: 20%;
+  width: 60%;
+  font-size: clamp(1.7rem, 2.9vw, 2.3rem);
   color: #f2e3b6;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6), 0 0 14px rgba(242, 227, 182, 0.22);
 }
 .spine--img .spine__z--mujallad {
-  top: 49.5%;
-  height: 3.5%;
-  font-size: 0.7rem;
-  color: #d9bd83;
+  top: 53.6%;
+  height: 3.6%;
+  left: 27%;
+  width: 46%;
+  font-size: clamp(0.6rem, 0.85vw, 0.7rem);
+  color: #e8d5a0;
 }
 .spine--img .spine__z--nrseal {
-  top: 59%;
-  height: 5.5%;
-  font-size: 0.82rem;
+  top: 71.2%;
+  height: 4%;
+  font-size: clamp(0.62rem, 0.85vw, 0.74rem);
   color: #f2e3b6;
 }
 .spine--img .spine__z--autor {
-  top: 65.5%;
-  height: 6%;
-  font-size: clamp(0.7rem, 1.05vw, 0.8rem);
+  top: 67.9%;
+  height: 3%;
+  font-size: clamp(0.58rem, 0.85vw, 0.7rem);
   color: #e6d19c;
-  padding-inline: 6%;
+  white-space: nowrap;
 }
 .spine--img .spine__z--verlag {
-  top: 72%;
-  height: 5%;
-  font-size: 0.72rem;
+  top: 84.2%;
+  height: 4.2%;
+  left: 22%;
+  width: 56%;
+  font-size: clamp(0.62rem, 0.9vw, 0.76rem);
   color: #eeddab;
   white-space: nowrap;
 }
