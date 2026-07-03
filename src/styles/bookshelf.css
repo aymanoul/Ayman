@@ -42,7 +42,7 @@
   position: relative;
   flex: none;
   width: clamp(100px, 9.6vw, 126px);
-  aspect-ratio: 753 / 2337; /* Seitenverhältnis der gelieferten Textur */
+  aspect-ratio: 558 / 2042; /* Seitenverhältnis der gelieferten Textur */
   height: auto;
   border-radius: 8px 8px 6px 6px / 20px 20px 9px 9px;
   overflow: hidden;
