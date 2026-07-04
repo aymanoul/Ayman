@@ -27,11 +27,30 @@ export function SendIcon(p: SVGProps<SVGSVGElement>) {
   )
 }
 
-export function Paperclip(p: SVGProps<SVGSVGElement>) {
-  // slim paperclip — matches the 1.4 line weight of the set
+export function PaperPlane(p: SVGProps<SVGSVGElement>) {
+  // outline paper-plane — the send affordance in the chat input
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="M20 11.5 12 19.4a4.4 4.4 0 0 1-6.2-6.2l8-8a2.9 2.9 0 0 1 4.1 4.1l-8 8a1.5 1.5 0 0 1-2.1-2.1l7.3-7.3" />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M21 3 10.5 13.5" />
+      <path d="M21 3 14.5 21l-4-8-8-4L21 3Z" />
+    </svg>
+  )
+}
+
+export function ImageIcon(p: SVGProps<SVGSVGElement>) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <rect x="3" y="3" width="18" height="18" rx="3" />
+      <circle cx="8.5" cy="8.5" r="1.5" />
+      <path d="m21 15-5-5L5 21" />
+    </svg>
+  )
+}
+
+export function ChevronDown(p: SVGProps<SVGSVGElement>) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="m6 9 6 6 6-6" />
     </svg>
   )
 }

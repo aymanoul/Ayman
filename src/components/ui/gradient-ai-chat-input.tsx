@@ -1,25 +1,27 @@
 import { useRef, useState, type KeyboardEvent } from 'react'
-import { SparkIcon, SendIcon, Paperclip } from '../icons'
+import { PaperPlane, ImageIcon, ChevronDown } from '../icons'
 import '../../styles/gradient-ai-chat-input.css'
 
-// Gradient-AI-Chat-Input — an Mushaf angepasst.
+// Gradient-AI-Chat-Input — 1:1 nach der gelieferten Vorlage nachgebaut.
 //
-// Ein Chat-Eingabefeld mit dem typischen "AI"-Verlaufsrahmen — hier aber nicht
-// als kaltes Neon, sondern als illuminierte Gold→Salbei→Bordeaux-Bordüre, die
-// beim Fokus sanft wandert (Tezhip statt Tech). Mitgewachsene Textarea, Enter
-// sendet, Shift+Enter = Zeilenumbruch. `prefers-reduced-motion` friert den
-// Verlauf ein. Gleiche API wie die Vorlage: placeholder / onSend / onFileAttach.
+// Großer runder Kasten mit weichem Pastell-Verlaufsrand (Pfirsich → Rosa),
+// oben die mitwachsende Textzeile + Papierflieger zum Senden, unten eine
+// Toolbar mit „Attach File" und einem Modell-Chip („Claude ⌄"). Enter sendet,
+// Shift+Enter = Zeilenumbruch. `prefers-reduced-motion` friert die Bordüre.
 
 export interface GradientAIChatInputProps {
   placeholder?: string
   onSend?: (message: string) => void
-  /** Wird nur gerendert, wenn gesetzt — im Kontext "Frage stellen" bleibt es aus. */
   onFileAttach?: () => void
   disabled?: boolean
   autoFocus?: boolean
   className?: string
   /** Maximale Zeilenhöhe, bevor die Textarea intern scrollt. */
   maxRows?: number
+  /** Beschriftung des Anhang-Buttons. */
+  attachLabel?: string
+  /** Beschriftung des Modell-Chips. Leer lassen, um ihn auszublenden. */
+  modelLabel?: string
 }
 
 export function GradientAIChatInput({
@@ -29,7 +31,9 @@ export function GradientAIChatInput({
   disabled = false,
   autoFocus = false,
   className,
-  maxRows = 6,
+  maxRows = 8,
+  attachLabel = 'Attach File',
+  modelLabel = 'Claude',
 }: GradientAIChatInputProps) {
   const [value, setValue] = useState('')
   const taRef = useRef<HTMLTextAreaElement>(null)
@@ -65,48 +69,51 @@ export function GradientAIChatInput({
     <div className={`gaci${disabled ? ' gaci--disabled' : ''}${className ? ` ${className}` : ''}`}>
       <div className="gaci__frame">
         <div className="gaci__inner">
-          {onFileAttach && (
+          <div className="gaci__top">
+            <textarea
+              ref={taRef}
+              className="gaci__input"
+              value={value}
+              rows={1}
+              placeholder={placeholder}
+              disabled={disabled}
+              autoFocus={autoFocus}
+              aria-label={placeholder}
+              autoComplete="off"
+              onChange={(e) => {
+                setValue(e.target.value)
+                grow()
+              }}
+              onKeyDown={onKeyDown}
+            />
             <button
               type="button"
-              className="gaci__btn gaci__attach"
+              className="gaci__send"
+              onClick={submit}
+              disabled={!canSend}
+              aria-label="Senden"
+            >
+              <PaperPlane aria-hidden />
+            </button>
+          </div>
+
+          <div className="gaci__bar">
+            <button
+              type="button"
+              className="gaci__pill"
               onClick={onFileAttach}
               disabled={disabled}
-              aria-label="Datei anhängen"
             >
-              <Paperclip aria-hidden />
+              <ImageIcon aria-hidden />
+              {attachLabel}
             </button>
-          )}
-
-          <span className="gaci__spark" aria-hidden>
-            <SparkIcon />
-          </span>
-
-          <textarea
-            ref={taRef}
-            className="gaci__input"
-            value={value}
-            rows={1}
-            placeholder={placeholder}
-            disabled={disabled}
-            autoFocus={autoFocus}
-            aria-label={placeholder}
-            autoComplete="off"
-            onChange={(e) => {
-              setValue(e.target.value)
-              grow()
-            }}
-            onKeyDown={onKeyDown}
-          />
-
-          <button
-            type="button"
-            className="gaci__btn gaci__send"
-            onClick={submit}
-            disabled={!canSend}
-            aria-label="Senden"
-          >
-            <SendIcon aria-hidden />
-          </button>
+            {modelLabel && (
+              <span className="gaci__pill gaci__model">
+                {modelLabel}
+                <ChevronDown aria-hidden />
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </div>
