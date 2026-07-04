@@ -1,0 +1,133 @@
+/* ============================================================================
+   Gradient-AI-Chat-Input — Mushaf-Ausgabe
+   Der "AI"-Verlaufsrahmen als illuminierte Bordüre: Gold → Salbei → Bordeaux →
+   Medina-Grün. Ruhig im Leerlauf, sanft wandernd bei Fokus. Innen bleibt es
+   Pergament. Keine Fremdfarben — alles aus den Design-Tokens (index.css).
+   ========================================================================== */
+
+.gaci {
+  position: relative;
+  width: 100%;
+}
+
+/* Der Rahmen: Padding = Bordürenstärke, Hintergrund = wandernder Verlauf. */
+.gaci__frame {
+  --gaci-radius: 15px;
+  position: relative;
+  border-radius: var(--gaci-radius);
+  padding: 1.5px;
+  background: linear-gradient(
+    115deg,
+    var(--brass-soft) 0%,
+    var(--brass) 18%,
+    var(--green-bright) 38%,
+    var(--medina-bright) 55%,
+    var(--anda) 72%,
+    var(--brass) 88%,
+    var(--brass-soft) 100%
+  );
+  background-size: 260% 260%;
+  background-position: 0% 50%;
+  /* Im Leerlauf ruhig: der Verlauf tritt zurück, nur eine Goldlinie bleibt. */
+  opacity: 0.55;
+  box-shadow: 0 1px 2px rgba(64, 58, 34, 0.04), 0 10px 24px -18px rgba(64, 58, 34, 0.25);
+  transition: opacity 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+.gaci__frame:focus-within {
+  opacity: 1;
+  box-shadow: 0 0 0 3px var(--green-wash), 0 14px 32px -16px rgba(64, 58, 34, 0.32);
+  animation: gaci-drift 7s linear infinite;
+}
+
+@keyframes gaci-drift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 260% 50%; }
+}
+
+.gaci__inner {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.7rem;
+  border-radius: calc(var(--gaci-radius) - 1.5px);
+  background: var(--paper-card);
+  padding: 0.7rem 0.7rem 0.7rem 0.95rem;
+}
+
+/* Der Funke = die "KI"-Andeutung, in Medina-Grün. */
+.gaci__spark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  color: var(--medina);
+  padding-bottom: 0.28rem;
+}
+.gaci__spark svg {
+  width: 19px;
+  height: 19px;
+}
+.gaci__frame:focus-within .gaci__spark { color: var(--medina-bright); }
+
+.gaci__input {
+  flex: 1;
+  min-width: 0;
+  resize: none;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  padding: 0.28rem 0;
+  max-height: calc(1.5em * 6 + 0.56rem);
+  overflow-y: auto;
+}
+.gaci__input::placeholder { color: var(--ink-faint); }
+.gaci__input:disabled { cursor: not-allowed; }
+
+/* Buttons — dieselbe Sprache wie .seek__send. */
+.gaci__btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  color: var(--green);
+  background: none;
+  cursor: pointer;
+  transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out),
+    color 0.2s var(--ease-out), transform 0.14s var(--ease-out), opacity 0.2s var(--ease-out);
+}
+.gaci__btn:hover:not(:disabled) {
+  background: var(--green-wash);
+  border-color: var(--green);
+}
+.gaci__btn:active:not(:disabled) { transform: scale(0.94); }
+
+.gaci__send {
+  color: var(--paper-card);
+  background: var(--green);
+  border-color: var(--green);
+}
+.gaci__send:hover:not(:disabled) {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+}
+.gaci__send:disabled {
+  color: var(--ink-faint);
+  background: none;
+  border-color: var(--line);
+  cursor: default;
+  opacity: 0.6;
+}
+
+.gaci--disabled { opacity: 0.7; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gaci__frame,
+  .gaci__frame:focus-within { animation: none; }
+}

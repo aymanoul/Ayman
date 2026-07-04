@@ -27,6 +27,15 @@ export function SendIcon(p: SVGProps<SVGSVGElement>) {
   )
 }
 
+export function Paperclip(p: SVGProps<SVGSVGElement>) {
+  // slim paperclip — matches the 1.4 line weight of the set
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M20 11.5 12 19.4a4.4 4.4 0 0 1-6.2-6.2l8-8a2.9 2.9 0 0 1 4.1 4.1l-8 8a1.5 1.5 0 0 1-2.1-2.1l7.3-7.3" />
+    </svg>
+  )
+}
+
 export function Chevron(p: SVGProps<SVGSVGElement>) {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" {...p}>

@@ -2,7 +2,8 @@ import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { search, type SearchResult } from '../lib/search'
-import { SearchIcon, SparkIcon, SendIcon } from './icons'
+import { SearchIcon } from './icons'
+import { GradientAIChatInput } from './ui/gradient-ai-chat-input'
 
 // Two ways in, one brain: a smart search that understands natural language and
 // jumps straight to the right exhibit (e.g. "Vergleich Mohammed Moses Jesus" →
@@ -15,7 +16,6 @@ export default function SearchPanel() {
   const navigate = useNavigate()
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
-  const [ask, setAsk] = useState('')
   const [askNote, setAskNote] = useState('')
   const boxRef = useRef<HTMLDivElement>(null)
 
@@ -43,10 +43,10 @@ export default function SearchPanel() {
     if (hits[0]) go(hits[0])
   }
 
-  function onAskSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!ask.trim()) return
-    const found = search(ask, 1)
+  function onAsk(message: string) {
+    const q = message.trim()
+    if (!q) return
+    const found = search(q, 1)
     if (found[0]) {
       setAskNote('')
       go(found[0])
@@ -110,22 +110,12 @@ export default function SearchPanel() {
       </AnimatePresence>
 
       {/* question box — same engine, full sentences welcome */}
-      <form className="seek seek--ask" onSubmit={onAskSubmit}>
-        <div className="seek__field">
-          <SparkIcon aria-hidden />
-          <input
-            type="text"
-            value={ask}
-            onChange={(e) => setAsk(e.target.value)}
-            placeholder="Stell eine Frage — z. B. „Warum gleicht Muhammad dem Mose mehr als Jesus?“"
-            aria-label="Stell eine Frage"
-            autoComplete="off"
-          />
-          <button type="submit" className="seek__send" aria-label="Frage senden">
-            <SendIcon aria-hidden />
-          </button>
-        </div>
-      </form>
+      <div className="seek seek--ask">
+        <GradientAIChatInput
+          placeholder="Stell eine Frage — z. B. „Warum gleicht Muhammad dem Mose mehr als Jesus?“"
+          onSend={onAsk}
+        />
+      </div>
       {askNote && <p className="seek__note">{askNote}</p>}
     </div>
   )
