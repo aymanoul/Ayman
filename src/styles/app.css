@@ -500,3 +500,58 @@
 .seek__hit-titel {
   font-weight: 700;
 }
+
+/* ------------------------------------------------ DER SAAL (Startseite) */
+/* Das Buchregal als Herzstück — bricht aus der 840px-Spalte aus. */
+.hall {
+  width: 100%;
+  max-width: 1320px;
+  margin: clamp(3rem, 8vh, 5rem) auto 0;
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+.hall__head {
+  max-width: 900px;
+  margin-inline: auto;
+  margin-bottom: clamp(1.4rem, 4vh, 2.2rem);
+}
+.hall__head .hon {
+  font-size: 0.55em;
+  color: var(--brass-deep);
+  vertical-align: 0.4em;
+  margin-left: 0.15em;
+}
+.hall__more {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.2rem, 3vh, 1.8rem);
+}
+.hall__morelink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.6rem 1.3rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--paper-card);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--medina);
+  transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out), transform 0.14s var(--ease-out);
+}
+.hall__morelink svg {
+  width: 16px;
+  height: 16px;
+}
+@media (hover: hover) {
+  .hall__morelink:hover {
+    background: var(--medina-wash);
+    border-color: var(--medina);
+  }
+}
+.hall__morelink:active {
+  transform: scale(0.97);
+}
