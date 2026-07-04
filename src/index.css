@@ -221,8 +221,11 @@ mark.medina {
 
 /* --------------------------------- Mushaf-Rahmen (voll umlaufend, Madina) */
 /* Ein fester Prachtrahmen um das Sichtfenster — wie die illuminierte Bordüre
-   einer Mushaf-Seite. Artwork: src/assets/ornaments/mushaf-frame.svg,
-   generiert von scripts/ornament.mjs (dort anpassen, nicht im SVG). */
+   einer Mushaf-Seite. Artwork: echtes, KI-generiertes Ornamentbild
+   (src/assets/ornaments/mushaf-frame-photo.webp), zugeschnitten von
+   scripts/ornament-crop.mjs aus source/frame-raw.png. Slice-Werte passen zu
+   genau diesem Bild (915×602px) — bei neuem Artwork das Skript neu laufen
+   lassen und die dort ausgegebenen Werte hier übertragen. */
 body {
   padding: 52px 50px 48px;
 }
@@ -233,7 +236,10 @@ body::before {
   z-index: 60;
   pointer-events: none;
   border: 42px solid transparent;
-  border-image: url('./assets/ornaments/mushaf-frame.svg') 72 round;
+  border-image-source: url('./assets/ornaments/mushaf-frame-photo.webp');
+  border-image-slice: 126 123 122 122;
+  border-image-width: 42px;
+  border-image-repeat: round;
 }
 @media (max-width: 720px) {
   body {

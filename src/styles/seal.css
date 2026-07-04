@@ -23,8 +23,11 @@
   color: var(--ink-faint);
   margin-bottom: 0.8rem;
 }
-/* Suren-Kartusche (Madina): Rosetten-Medaillons an den Enden, Spitzbogen-
-   Abschluss, Creme-Feld. Artwork: kartusche.svg aus scripts/ornament.mjs. */
+/* Suren-Kartusche (Madina): echtes, KI-generiertes Ornamentbild (Rosetten-
+   Medaillons an den Enden, Spitzbogen-Abschluss, Creme-Feld). Artwork:
+   src/assets/ornaments/kartusche-photo.webp, zugeschnitten von
+   scripts/ornament-crop.mjs aus source/kartusche-raw.png. Slice-Werte
+   passen zu genau diesem Bild (1320×335px). */
 .seal__title {
   display: block;
   font-family: var(--font-display);
@@ -34,7 +37,10 @@
   letter-spacing: 0;
   max-width: none;
   border: 26px solid transparent;
-  border-image: url('../assets/ornaments/kartusche.svg') 26 150 fill / 26px 118px round stretch;
+  border-image-source: url('../assets/ornaments/kartusche-photo.webp');
+  border-image-slice: 51 356 50 354 fill;
+  border-image-width: 26px 118px;
+  border-image-repeat: round stretch;
   background: #f1f0da;
   background-clip: padding-box;
   /* padding-inline ≥ border-image-Seitenbreite (118px) − border (26px) + Luft */
@@ -87,7 +93,10 @@
 .sec__head {
   text-align: center;
   border: 20px solid transparent;
-  border-image: url('../assets/ornaments/kartusche.svg') 26 150 fill / 20px 92px round stretch;
+  border-image-source: url('../assets/ornaments/kartusche-photo.webp');
+  border-image-slice: 51 356 50 354 fill;
+  border-image-width: 20px 92px;
+  border-image-repeat: round stretch;
   background: #f1f0da;
   background-clip: padding-box;
   /* padding-inline ≥ border-image-Seitenbreite (92px) − border (20px) + Luft */

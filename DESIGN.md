@@ -1,26 +1,37 @@
-# Die Bibliothek — Design (v6)
+# Die Bibliothek — Design (v7)
 
 Direction: **Mushaf-Layout** — die Seite liest sich wie eine Quran-Seite
 (Vorlage: klassischer Madina-Mushaf mit grünem Prachtrahmen).
 
-**Prachtrahmen (v6):** ein voll umlaufender, fester Fensterrahmen um das
-Sichtfeld (`body::before`, `position: fixed`, `border-image` auf
-`src/assets/ornaments/mushaf-frame.svg`): sattgrünes Band mit goldener
-Wellenranke, zweilagigen rosa Rosetten, Creme-Blüten, Perlenreihen und
-goldenen Fileten; in den vier Ecken Rosetten-Medaillons. Der Inhalt scrollt
-hinter dem Rahmen wie hinter dem Ausschnitt einer illuminierten Seite.
+**Prachtrahmen (v7 — echtes Bild, kein Vektor):** ein voll umlaufender,
+fester Fensterrahmen um das Sichtfeld (`body::before`, `position: fixed`,
+`border-image` auf `src/assets/ornaments/mushaf-frame-photo.webp`): eine
+KI-generierte, fotorealistische Mushaf-Bordüre (sattgrün, goldene Wellenranke,
+Rosetten-Medaillons in den Ecken und an den Seitenmitten, Perlenreihen). Der
+Inhalt scrollt hinter dem Rahmen wie hinter dem Ausschnitt einer illuminierten
+Seite. `border-image-repeat: round` — der Browser passt die Kachelzahl pro
+Kante automatisch an, keine sichtbaren Nähte.
 
-**Suren-Kartuschen (v6):** Titel (`.seal__title`, `.sec__head`) sitzen in
-einer Madina-Kartusche (`border-image` auf
-`src/assets/ornaments/kartusche.svg`): grüne Endblöcke mit Spitzbogen-
-Abschluss und Mandorla-Medaillon (Spitzoval — verträgt vertikale Dehnung bei
-mehrzeiligen Titeln), Wellenranken-Bänder oben/unten, Creme-Feld für den Text.
-`border-image-repeat: round stretch` (horizontal kacheln, vertikal dehnen).
+**Suren-Kartuschen (v7 — echtes Bild):** Titel (`.seal__title`, `.sec__head`)
+sitzen in `src/assets/ornaments/kartusche-photo.webp`: grüne Endblöcke mit
+Spitzbogen-Abschluss und Blüten-Medaillon, Wellenranken-Bänder oben/unten,
+Creme-Feld für den Text. `border-image-repeat: round stretch` (horizontal
+kacheln, vertikal dehnen — wichtig für mehrzeilige Titel).
 
-**Quelle der Ornamentik:** beide SVGs werden von `scripts/ornament.mjs`
-generiert — Änderungen dort vornehmen und neu generieren, nie im SVG selbst.
-WICHTIG: die SVG-Roots brauchen explizite `width`/`height`, sonst zerschneidet
-`border-image-slice` das Bild elementabhängig falsch.
+**Warum Bild statt Vektor:** Eine handgezeichnete SVG-Version (v6) wurde
+verworfen — sie wirkte zu steril/"KI-generiert" im negativen Sinn. Echte
+(prompt-generierte, aber als Bild gerenderte) Ornamentik trifft die Vorlage
+weit besser, genau wie beim Buchregal (`spine.png`).
+
+**Herkunft & Reproduzierbarkeit:** Rohbilder liegen in
+`src/assets/ornaments/source/` (`frame-raw.png`, `kartusche-raw.png` —
+generiert per ChatGPT-Bildprompt, siehe Chatverlauf für den exakten Wortlaut).
+`scripts/ornament-crop.mjs` (braucht `sharp`, ist devDependency) schneidet den
+leeren Rand automatisch weg, skaliert auf Web-Größe und exportiert als WebP;
+die `border-image-slice`-Werte in `src/index.css` / `src/styles/seal.css`
+sind auf genau diese Ausgabedateien vermessen. Bei neuem Rohmaterial: Datei in
+`source/` ersetzen, Skript anpassen (Zielgröße/Referenzfarbe) und neu laufen
+lassen, Slice-Werte aus der Konsolenausgabe übertragen.
 
 Die klare v4-Struktur darunter bleibt (These-Block, Beweiskette-Raster,
 Konter-Reihen, Gelehrten-Raster).

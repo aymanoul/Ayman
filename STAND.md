@@ -66,15 +66,22 @@ v5 Mushaf). **Aktuell gilt v5.** Tokens in `src/index.css`:
 - ⚠️ **Kamali** (`kamali.woff2/.otf`) liegt noch im Repo, wird aber **nicht mehr verwendet**
   (in v5 durch Happy Time ersetzt). Kann gelöscht werden.
 
-### Ornamentik (v6 — Madina-Prachtrahmen)
+### Ornamentik (v7 — Madina-Prachtrahmen, echtes Bild)
 - **Voller Fensterrahmen:** fester, umlaufender Prachtrahmen ums Sichtfeld
-  (`body::before`, `border-image` auf `src/assets/ornaments/mushaf-frame.svg`):
-  grünes Band, Goldranke, rosa Rosetten, Perlenreihen, Eck-Medaillons.
+  (`body::before`, `border-image` auf
+  `src/assets/ornaments/mushaf-frame-photo.webp`): grünes Band, Goldranke,
+  Rosetten, Perlenreihen, Eck-Medaillons.
 - **Titel-Rahmen:** Siegel-Titel + Sektions-Köpfe sitzen in **Madina-Kartuschen**
-  (`border-image` auf `src/assets/ornaments/kartusche.svg`: grüne Endblöcke mit
-  Spitzbogen + Mandorla-Medaillon, Wellenbänder; `.seal__title` / `.sec__head`).
-- **Generator:** beide SVGs kommen aus `scripts/ornament.mjs` — dort ändern und
-  neu generieren, nie im SVG. SVG-Roots brauchen explizite `width`/`height`.
+  (`border-image` auf `src/assets/ornaments/kartusche-photo.webp`: grüne
+  Endblöcke mit Spitzbogen + Blüten-Medaillon, Wellenbänder; `.seal__title` /
+  `.sec__head`).
+- ⚠️ **v6 (SVG-Vektor-Version) wurde verworfen** — wirkte zu steril/„KI".
+  Jetzt echte (KI-generierte, aber als Bild gerenderte) Ornamentik, analog
+  zum Buchregal (`spine.png`). Details + Reproduktions-Workflow: `DESIGN.md`.
+- **Rohmaterial + Zuschnitt:** `src/assets/ornaments/source/*-raw.png`
+  (Originale) → `scripts/ornament-crop.mjs` (braucht `sharp`, devDependency)
+  → die beiden `*-photo.webp`. Slice-Werte in `index.css`/`seal.css` sind auf
+  genau diese WebP-Maße vermessen.
 - Keine freistehenden Deko-Symbole mehr (Shamsa/Sterne/Arabesken-Trenner wurden in
   v4 entfernt). Chevrons sind SVG-Icons (`src/components/icons.tsx`).
 
