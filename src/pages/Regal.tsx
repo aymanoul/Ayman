@@ -7,15 +7,15 @@ import { ArrowLeft } from '../components/icons'
 // verlinkt auf sein Siegel.
 const S = '/modul/muhammad/siegel'
 const baende = [
-  { nr: 1, name: 'الأساس', to: `${S}/fundament` }, // Das Fundament
-  { nr: 2, name: 'ذرية إبراهيم', to: `${S}/abrahams-nachkommen` }, // Abrahams Nachkommen
-  { nr: 3, name: 'نبي مثل موسى', to: `${S}/prophet-wie-mose` }, // Prophet wie Mose
-  { nr: 4, name: 'النبوءات العربية', to: `${S}/arabische-prophezeiungen` }, // Arabische Prophezeiungen
-  { nr: 5, name: 'نشيد الأنشاد', to: `${S}/hohelied` }, // Das Hohelied
-  { nr: 6, name: 'دانيال', to: `${S}/daniel` }, // Daniel
-  { nr: 7, name: 'الفارقليط', to: `${S}/paraklet` }, // Der Paraklet
-  { nr: 8, name: 'انتظار اليهود', to: `${S}/juedische-erwartung` }, // Jüdische Erwartung
-  { nr: 9, name: 'الدفاع', to: `${S}/verteidigung` }, // Verteidigung
+  { nr: 1, name: 'الأساس', deutsch: 'Das Fundament', to: `${S}/fundament` },
+  { nr: 2, name: 'ذرية إبراهيم', deutsch: 'Abrahams Nachkommen', to: `${S}/abrahams-nachkommen` },
+  { nr: 3, name: 'نبي مثل موسى', deutsch: 'Prophet wie Mose', to: `${S}/prophet-wie-mose` },
+  { nr: 4, name: 'النبوءات العربية', deutsch: 'Arabische Prophezeiungen', to: `${S}/arabische-prophezeiungen` },
+  { nr: 5, name: 'نشيد الأنشاد', deutsch: 'Das Hohelied', to: `${S}/hohelied` },
+  { nr: 6, name: 'دانيال', deutsch: 'Daniel', to: `${S}/daniel` },
+  { nr: 7, name: 'الفارقليط', deutsch: 'Der Paraklet', to: `${S}/paraklet` },
+  { nr: 8, name: 'انتظار اليهود', deutsch: 'Jüdische Erwartung', to: `${S}/juedische-erwartung` },
+  { nr: 9, name: 'الدفاع', deutsch: 'Verteidigung', to: `${S}/verteidigung` },
 ]
 
 export default function Regal() {

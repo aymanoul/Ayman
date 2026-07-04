@@ -1,9 +1,9 @@
 /* ============================================================================
-   Digitales Buchregal — 1:1 Fath-al-Bari-Look über eine ECHTE Bildtextur
-   (public/images/regal/spine.png, Spezifikation: public/images/regal/README.md).
-   Keine Vektor-Ornamente: das Bild trägt die gesamte Ornamentik, HTML liefert
-   nur die Texte, exakt in die leeren Kartuschen der Textur positioniert.
-   Ohne Textur greift ein bewusst schlichter CSS-Fallback (nur Flächen).
+   Digitales Buchregal — 1:1 Fath-al-Bari-Look über die echte Bildtextur
+   (public/images/regal/spine.png, 558x2042, pixel-vermessen).
+   Name + Nummer + المجلد sitzen als EINE zentrierte Gruppe im Medaillon.
+   Unter dem Regalbrett: deutsche Zuordnungs-Schilder je Band (mitklickbar,
+   Hover koppelt Buch + Schild). Ohne Textur: schlichter Flächen-Fallback.
    ========================================================================== */
 
 .shelf-wrap {
@@ -11,21 +11,29 @@
   padding: 1.5rem 0 0;
 }
 
-.shelf {
-  display: flex;
-  justify-content: safe center;
-  align-items: flex-end;
-  gap: 7px;
-  padding: 0 0.5rem 0;
+/* Scroll-Hülle: Bücher, Brett und Schilder scrollen gemeinsam */
+.shelf-scroll {
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
-.shelf::-webkit-scrollbar {
+.shelf-scroll::-webkit-scrollbar {
   display: none;
 }
+.shelf-inner {
+  min-width: max-content;
+  margin-inline: auto;
+  padding-inline: 0.5rem;
+}
 
-/* Regalbrett */
+.shelf {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 7px;
+}
+
+/* Regalbrett — volle Breite der Buchreihe */
 .shelf__board {
   display: block;
   height: 14px;
@@ -37,12 +45,56 @@
     0 10px 24px -8px rgba(46, 30, 12, 0.55);
 }
 
+/* ------------------------------------- deutsche Zuordnungs-Schilder */
+.shelf-labels {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 0.9rem;
+}
+.book-label {
+  flex: none;
+  width: clamp(100px, 9.6vw, 126px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.3rem 0.15rem;
+  border-radius: 8px;
+  transition: background 0.2s var(--ease-out);
+}
+.book-label__nr {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--brass-deep);
+}
+.book-label__de {
+  font-family: var(--font-ui);
+  font-size: 0.76rem;
+  line-height: 1.3;
+  color: var(--ink-soft);
+}
+.book-label.is-hot {
+  background: var(--medina-wash);
+}
+.book-label.is-hot .book-label__de {
+  color: var(--medina);
+  font-weight: 600;
+}
+.book-label.is-hot .book-label__nr {
+  color: var(--medina);
+}
+
 /* ------------------------------------------------------------ Buchrücken */
 .spine {
   position: relative;
   flex: none;
   width: clamp(100px, 9.6vw, 126px);
-  aspect-ratio: 558 / 2042; /* Seitenverhältnis der gelieferten Textur */
+  aspect-ratio: 558 / 2042; /* Seitenverhältnis der Textur */
   height: auto;
   border-radius: 8px 8px 6px 6px / 20px 20px 9px 9px;
   overflow: hidden;
@@ -52,11 +104,12 @@
     0 2px 3px rgba(10, 20, 15, 0.5),
     0 18px 34px -14px rgba(10, 22, 16, 0.65);
   transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
-  /* Fallback-Grund (wird im Bild-Modus überdeckt) */
   background: linear-gradient(90deg, #10241c 0%, #1b3a2d 14%, #234a3a 50%, #1b3a2d 86%, #10241c 100%);
 }
+/* Anheben bei Hover auf Buch ODER Schild (Kopplung via .is-hot) */
 @media (hover: hover) {
-  .spine:hover {
+  .spine:hover,
+  .spine.is-hot {
     transform: translateY(-14px);
     box-shadow:
       0 6px 8px rgba(10, 20, 15, 0.4),
@@ -72,8 +125,6 @@
 }
 
 /* =================================================== BILD-MODUS (1:1) */
-/* Die Textur trägt Leder, Rahmen, Arabesken, Medaillon, Kartuschen —
-   die Spans setzen NUR Text in die dafür leeren Zonen. */
 .spine--img {
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -92,11 +143,9 @@
   line-height: 1.35;
 }
 /* Pixel-vermessene Textur (558x2042):
-   leere Titelzone  ~9–29 %
-   Medaillon        35.0–63.0 % (Mitte 49.0; nutzbare Breite: 40 %→49 %, Mitte 70 %)
-   Raute            Mitte 73.2 %
-   Autor-Leder      67.8–71.0 %
-   Kartusche        83.6–88.3 % (Mitte 86.0) */
+   leere Titelzone  ~9–29 %   ·   Medaillon 35.0–63.0 % (Mitte 49.0)
+   Autor-Leder 67.8–71.0 %    ·   Raute Mitte 73.2 %
+   Kartusche 83.6–88.3 % (Mitte 86.0) */
 .spine--img .spine__z--titel {
   top: 11%;
   height: 14%;
@@ -104,32 +153,42 @@
   font-weight: 700;
   line-height: 1.5;
 }
+
+/* Medaillon-Gruppe: Name + Nummer + المجلد als zentrierte Einheit */
+.spine--img .spine__med {
+  position: absolute;
+  top: 37%;
+  height: 24%;
+  left: 21%;
+  width: 58%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+}
+.spine--img .spine__med .spine__z {
+  position: static;
+  left: auto;
+  width: auto;
+  max-width: 100%;
+}
 .spine--img .spine__z--name {
-  top: 39.5%;
-  height: 6%;
-  left: 27%;
-  width: 46%;
   font-size: clamp(0.66rem, 1vw, 0.8rem);
-  line-height: 1.25;
+  line-height: 1.3;
   color: #eeddab;
 }
 .spine--img .spine__z--nr {
-  top: 45.5%;
-  height: 7.5%;
-  left: 20%;
-  width: 60%;
-  font-size: clamp(1.7rem, 2.9vw, 2.3rem);
+  font-size: clamp(1.6rem, 2.7vw, 2.15rem);
+  line-height: 1.05;
   color: #f2e3b6;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6), 0 0 14px rgba(242, 227, 182, 0.22);
 }
 .spine--img .spine__z--mujallad {
-  top: 53.6%;
-  height: 3.6%;
-  left: 27%;
-  width: 46%;
-  font-size: clamp(0.6rem, 0.85vw, 0.7rem);
+  font-size: clamp(0.58rem, 0.82vw, 0.68rem);
   color: #e8d5a0;
 }
+
 .spine--img .spine__z--nrseal {
   top: 71.2%;
   height: 4%;
@@ -154,14 +213,16 @@
 }
 
 /* ============================================= FALLBACK (ohne Textur) */
-/* Bewusst schlicht: nur Farbflächen + Goldlinien, keine Ornamente.
-   Verschwindet automatisch, sobald spine.png vorliegt. */
 .spine:not(.spine--img) {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 16px 10px 14px;
+}
+/* Gruppe im Fallback auflösen — Kinder bleiben direkte Flex-Items */
+.spine:not(.spine--img) .spine__med {
+  display: contents;
 }
 .spine:not(.spine--img)::before {
   content: '';
@@ -246,18 +307,23 @@
 
 /* ------------------------------------------------------------ Responsiv */
 @media (max-width: 720px) {
-  .shelf {
-    justify-content: flex-start;
+  .shelf-inner {
+    margin-inline: 0;
     padding-inline: 0.75rem;
   }
-  .spine {
+  .spine,
+  .book-label {
     width: 96px;
+  }
+  .book-label__de {
+    font-size: 0.68rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .spine,
-  .spine:hover {
+  .spine:hover,
+  .spine.is-hot {
     transition: none;
     transform: none;
   }
