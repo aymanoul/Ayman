@@ -66,11 +66,15 @@ v5 Mushaf). **Aktuell gilt v5.** Tokens in `src/index.css`:
 - ⚠️ **Kamali** (`kamali.woff2/.otf`) liegt noch im Repo, wird aber **nicht mehr verwendet**
   (in v5 durch Happy Time ersetzt). Kann gelöscht werden.
 
-### Ornamentik (Mushaf-Stil)
-- **Seitenränder:** grüne Ornament-Bordüren links + rechts über die volle Seitenlänge
-  (`body::before/::after`, kachelndes SVG).
-- **Titel-Rahmen:** Siegel-Titel + Sektions-Köpfe sitzen in **Suren-Kartuschen**
-  (`border-image`, `.seal__title` / `.sec__head`).
+### Ornamentik (v6 — Madina-Prachtrahmen)
+- **Voller Fensterrahmen:** fester, umlaufender Prachtrahmen ums Sichtfeld
+  (`body::before`, `border-image` auf `src/assets/ornaments/mushaf-frame.svg`):
+  grünes Band, Goldranke, rosa Rosetten, Perlenreihen, Eck-Medaillons.
+- **Titel-Rahmen:** Siegel-Titel + Sektions-Köpfe sitzen in **Madina-Kartuschen**
+  (`border-image` auf `src/assets/ornaments/kartusche.svg`: grüne Endblöcke mit
+  Spitzbogen + Mandorla-Medaillon, Wellenbänder; `.seal__title` / `.sec__head`).
+- **Generator:** beide SVGs kommen aus `scripts/ornament.mjs` — dort ändern und
+  neu generieren, nie im SVG. SVG-Roots brauchen explizite `width`/`height`.
 - Keine freistehenden Deko-Symbole mehr (Shamsa/Sterne/Arabesken-Trenner wurden in
   v4 entfernt). Chevrons sind SVG-Icons (`src/components/icons.tsx`).
 

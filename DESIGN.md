@@ -1,12 +1,29 @@
-# Die Bibliothek — Design (v5)
+# Die Bibliothek — Design (v6)
 
-Direction: **Mushaf-Layout** — die Seite liest sich wie eine Quran-Seite:
-ornamentale Randbordüren links + rechts über die volle Länge (grünes Band,
-Creme-Rauten, Rosetten, goldene Außenlinien; `body::before/::after`,
-repeat-y-SVG), Titel in **Suren-Kartuschen** (`border-image`-Ornamentrahmen
-auf `.seal__title` + `.sec__head`, helle Kartuschenfläche). Die klare
-v4-Struktur darunter bleibt (These-Block, Beweiskette-Raster, Konter-Reihen,
-Gelehrten-Raster).
+Direction: **Mushaf-Layout** — die Seite liest sich wie eine Quran-Seite
+(Vorlage: klassischer Madina-Mushaf mit grünem Prachtrahmen).
+
+**Prachtrahmen (v6):** ein voll umlaufender, fester Fensterrahmen um das
+Sichtfeld (`body::before`, `position: fixed`, `border-image` auf
+`src/assets/ornaments/mushaf-frame.svg`): sattgrünes Band mit goldener
+Wellenranke, zweilagigen rosa Rosetten, Creme-Blüten, Perlenreihen und
+goldenen Fileten; in den vier Ecken Rosetten-Medaillons. Der Inhalt scrollt
+hinter dem Rahmen wie hinter dem Ausschnitt einer illuminierten Seite.
+
+**Suren-Kartuschen (v6):** Titel (`.seal__title`, `.sec__head`) sitzen in
+einer Madina-Kartusche (`border-image` auf
+`src/assets/ornaments/kartusche.svg`): grüne Endblöcke mit Spitzbogen-
+Abschluss und Mandorla-Medaillon (Spitzoval — verträgt vertikale Dehnung bei
+mehrzeiligen Titeln), Wellenranken-Bänder oben/unten, Creme-Feld für den Text.
+`border-image-repeat: round stretch` (horizontal kacheln, vertikal dehnen).
+
+**Quelle der Ornamentik:** beide SVGs werden von `scripts/ornament.mjs`
+generiert — Änderungen dort vornehmen und neu generieren, nie im SVG selbst.
+WICHTIG: die SVG-Roots brauchen explizite `width`/`height`, sonst zerschneidet
+`border-image-slice` das Bild elementabhängig falsch.
+
+Die klare v4-Struktur darunter bleibt (These-Block, Beweiskette-Raster,
+Konter-Reihen, Gelehrten-Raster).
 
 ## Schrift (v5): EINE Schriftart
 **Happy Time für alles** — Fließtext normal (400), Titel dieselbe Schrift in

@@ -219,41 +219,28 @@ mark.medina {
   color: var(--brass-deep);
 }
 
-/* ------------------------------------------- Mushaf-Seitenränder (Quran) */
+/* --------------------------------- Mushaf-Rahmen (voll umlaufend, Madina) */
+/* Ein fester Prachtrahmen um das Sichtfenster — wie die illuminierte Bordüre
+   einer Mushaf-Seite. Artwork: src/assets/ornaments/mushaf-frame.svg,
+   generiert von scripts/ornament.mjs (dort anpassen, nicht im SVG). */
 body {
-  padding-inline: 34px;
-}
-body::before,
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 32px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='88' viewBox='0 0 32 88'%3E%3Cline x1='3.5' y1='0' x2='3.5' y2='88' stroke='%23b3873a' stroke-width='1'/%3E%3Cline x1='28.5' y1='0' x2='28.5' y2='88' stroke='%23b3873a' stroke-width='1'/%3E%3Crect x='8' y='0' width='16' height='88' fill='%232e7d54'/%3E%3Cline x1='9' y1='0' x2='9' y2='88' stroke='%23f6efdd' stroke-width='0.8' opacity='0.55'/%3E%3Cline x1='23' y1='0' x2='23' y2='88' stroke='%23f6efdd' stroke-width='0.8' opacity='0.55'/%3E%3Cpath d='M16 10 21 22 16 34 11 22Z' fill='none' stroke='%23f6efdd' stroke-width='1.2'/%3E%3Cpath d='M16 54 21 66 16 78 11 66Z' fill='none' stroke='%23f6efdd' stroke-width='1.2'/%3E%3Ccircle cx='16' cy='44' r='3' fill='%23f6efdd'/%3E%3Ccircle cx='16' cy='44' r='5' fill='none' stroke='%23f6efdd' stroke-width='0.8' opacity='0.7'/%3E%3Ccircle cx='16' cy='0' r='3' fill='%23f6efdd'/%3E%3Ccircle cx='16' cy='88' r='3' fill='%23f6efdd'/%3E%3C/svg%3E") repeat-y center top / 32px 88px;
-  pointer-events: none;
-  z-index: 3;
+  padding: 52px 50px 48px;
 }
 body::before {
-  left: 2px;
-}
-body::after {
-  right: 2px;
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  border: 42px solid transparent;
+  border-image: url('./assets/ornaments/mushaf-frame.svg') 72 round;
 }
 @media (max-width: 720px) {
   body {
-    padding-inline: 20px;
-  }
-  body::before,
-  body::after {
-    width: 18px;
-    background-size: 18px 49.5px;
+    padding: 32px 27px 30px;
   }
   body::before {
-    left: 1px;
-  }
-  body::after {
-    right: 1px;
+    border-width: 23px;
   }
 }
 
