@@ -21,14 +21,9 @@ export default function Bibliothek() {
       <div className="wrap">
         {/* ---- Frontispiz ---- */}
         <motion.section className="front" initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
-          {/* Platzhalter — der Betreiber ersetzt dies durch die eigene Kalligrafie */}
-          <motion.h1 className="front__name gilt" variants={rise} lang="ar" dir="rtl" title="Platzhalter — Name des Betreibers">
-            اسم الناشر
-          </motion.h1>
-
-          <motion.p className="kicker" variants={rise} style={{ marginTop: 'clamp(1rem, 3vh, 1.5rem)' }}>
+          <motion.h1 className="front__title gilt" variants={rise}>
             Die Bibliothek
-          </motion.p>
+          </motion.h1>
         </motion.section>
 
         {/* ---- Die zwei Wege hinein ---- */}

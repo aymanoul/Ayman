@@ -2,6 +2,11 @@
    Gradient-AI-Chat-Input — nach der gelieferten Vorlage.
    Großer runder Kasten, weicher Pastell-Verlaufsrand (Pfirsich → Creme → Rosa),
    heller Innenraum, oben Textzeile + Papierflieger, unten Attach/Modell-Leiste.
+
+   Schrift: Inter (italic, opsz-Achse 18/24pt) statt Happy Time — je Situation
+   ein anderer Schnitt/Gewicht: 18pt = kompakter Lesetext (Eingabe, Attach-
+   Label), 24pt = der einladende, etwas offenere Schnitt für Platzhalter und
+   den Modell-Chip.
    ========================================================================== */
 
 .gaci {
@@ -62,7 +67,9 @@
   border: none;
   outline: none;
   background: none;
-  font-family: var(--font-ui);
+  font-family: 'Inter 18pt', 'Poppins', system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 400;
   font-size: 1rem;
   line-height: 1.55;
   color: var(--ink);
@@ -70,7 +77,14 @@
   padding: 0.15rem 0;
   overflow-y: auto;
 }
-.gaci__input::placeholder { color: #a49f97; }
+/* Platzhalter bekommt den offeneren 24pt-Schnitt — einladender Prompt statt
+   dichter Lesetext, der Wechsel auf 18pt kommt erst mit der eigenen Eingabe. */
+.gaci__input::placeholder {
+  font-family: 'Inter 24pt', 'Poppins', system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #a49f97;
+}
 .gaci__input:disabled { cursor: not-allowed; }
 
 .gaci__send {
@@ -108,10 +122,12 @@
   border-radius: 999px;
   border: 1px solid #e7e2d9;
   background: #fff;
-  font-family: var(--font-ui);
-  font-size: 0.86rem;
+  font-family: 'Inter 18pt', 'Poppins', system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 0.84rem;
   color: #5f5a52;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
   cursor: pointer;
   transition: background 0.18s var(--ease-out), border-color 0.18s var(--ease-out), color 0.18s var(--ease-out);
 }
@@ -122,9 +138,14 @@
 }
 .gaci__pill:disabled { cursor: default; opacity: 0.6; }
 
-/* Modell-Chip ist rein visuell (wie im Original). */
+/* Modell-Chip: eigene Identität statt reiner Utility-Aktion, darum der
+   offenere 24pt-Schnitt in Medium statt ExtraBold — etwas Präsenz ohne laut
+   zu wirken. Rein visuell (wie im Original), kein Interaktionsziel. */
 .gaci__model {
   cursor: default;
+  font-family: 'Inter 24pt', 'Poppins', system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 500;
 }
 .gaci__model svg { margin-left: -0.05rem; }
 

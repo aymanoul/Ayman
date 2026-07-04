@@ -22,6 +22,39 @@
   font-display: swap;
   src: url('../assets/fonts/happytime.otf') format('opentype');
 }
+
+/* ---- Inter (italic, optical sizes 18/24pt) — Gradient-Chat-Input ----
+   18pt-Schnitt für Fließtext/Platzhalter (~1rem), 24pt-Schnitt für größere
+   UI-Akzente. Je zwei Gewichte pro Schnitt: regulär + ein schwereres Gewicht
+   für Emphase, ohne dass der Browser faux-bold erzeugen muss. */
+@font-face {
+  font-family: 'Inter 18pt';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/inter-18pt-italic-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter 18pt';
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url('../assets/fonts/inter-18pt-italic-800.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter 24pt';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/inter-24pt-italic-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter 24pt';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/inter-24pt-italic-500.woff2') format('woff2');
+}
 /* Montserrat 500 normal latin-ext */
 @font-face {
   font-family: 'Montserrat';
