@@ -242,11 +242,18 @@ body::before {
   border-image-repeat: round;
 }
 @media (max-width: 720px) {
+  /* Handy: der volle 4-Seiten-Rahmen quetscht auf ~20px Breite jedes Detail
+     zu Matsch UND frisst wertvolle Content-Breite. Lösung: oben/unten bleibt
+     ein lesbares Zierband (horizontale Kanten vertragen Verkleinerung viel
+     besser als die schmalen Seiten mit ihren Medaillons), links/rechts wird
+     zur dünnen Goldlinie reduziert — Ornament bleibt spürbar, Breite kommt
+     dem Inhalt zugute. border-image-width je Seite: oben rechts unten links. */
   body {
-    padding: 32px 27px 30px;
+    padding: 22px 9px 20px;
   }
   body::before {
-    border-width: 23px;
+    border-width: 22px 7px 20px 7px;
+    border-image-width: 22px 7px 20px 7px;
   }
 }
 

@@ -48,10 +48,14 @@
   text-align: center;
 }
 @media (max-width: 720px) {
+  /* Handy: die Enden (Medaillon+Scallop) auf 72px gestaucht dominierten bei
+     kurzen Titeln fast die halbe Kartusche und wirkten breiig. Kleinere
+     border-image-width je Seite lässt die Medaillons als kompakten,
+     erkennbaren Akzent statt matschiger Fläche wirken. */
   .seal__title {
-    border-width: 18px;
-    border-image-width: 18px 72px;
-    padding-inline: 4.2rem;
+    border-width: 14px;
+    border-image-width: 14px 40px;
+    padding-inline: 2.6rem;
   }
 }
 .seal__ar {
@@ -105,9 +109,9 @@
 }
 @media (max-width: 720px) {
   .sec__head {
-    border-width: 15px;
-    border-image-width: 15px 58px;
-    padding-inline: 3.3rem;
+    border-width: 12px;
+    border-image-width: 12px 32px;
+    padding-inline: 2.2rem;
   }
 }
 .sec__kicker {
