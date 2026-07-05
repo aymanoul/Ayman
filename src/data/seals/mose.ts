@@ -159,7 +159,7 @@ export const moseBelege: Record<string, Beleg> = {
     uebersetzung:
       '„Wenn aber jener kommt, der Geist der Wahrheit … denn er wird nicht aus sich selbst reden, sondern was er hört, das wird er reden." — Direkte Parallele zu 5. Mose 18,18 („meine Worte in seinen Mund"). Jesus verweist auf einen Kommenden nach ihm.',
     fundstelle: 'Johannes 16,13',
-    status: '= Deut 18,18 (gehört primär in Siegel V)',
+    status: '= Deut 18,18 (gehört primär in Buch 6)',
     kern: 'ὅσα ἀκούσει λαλήσει',
   },
 
@@ -401,7 +401,7 @@ export const moseBelege: Record<string, Beleg> = {
     typ: 'quelle',
     kurz: 'NIV Study Bible (Jes 42): „der Knecht wird ein neuer Moses sein (vgl. Deut 18,15-18)."',
     uebersetzung:
-      'Die NIV Study Bible notiert zu Jesaja 42: „der Knecht wird ein neuer Moses sein (vgl. 5. Mose 18,15-18)." Eine christliche Studienbibel verbindet die Knecht-Prophezeiung von Jes 42 ausdrücklich mit dem Propheten wie Mose — die Brücke zu den arabischen Prophezeiungen (Siegel III).',
+      'Die NIV Study Bible notiert zu Jesaja 42: „der Knecht wird ein neuer Moses sein (vgl. 5. Mose 18,15-18)." Eine christliche Studienbibel verbindet die Knecht-Prophezeiung von Jes 42 ausdrücklich mit dem Propheten wie Mose — die Brücke zu den arabischen Prophezeiungen (Buch 4).',
     fundstelle: 'NIV Study Bible, zu Jesaja 42',
   },
 
@@ -706,15 +706,15 @@ export const moseScholar: ScholarItem[] = [
 
 export const moseVernetzung = [
   {
-    ziel: 'Siegel I — Abrahams Nachkommen',
+    ziel: 'Buch 2 — Abrahams Nachkommen',
     text: 'Ein „großes Volk" (5. Mose 4) braucht einen Gesetzgeber — und 18,18 liefert ihn „aus der Mitte ihrer Brüder", der gesegneten Linie Ismaels.',
   },
   {
-    ziel: 'Siegel III — Arabische Prophezeiungen',
+    ziel: 'Buch 4 — Arabische Prophezeiungen',
     text: '5. Mose 33 (Paran / 10.000 Heilige) ist dieselbe Gesetzgeber-Figur; die NIV Study Bible verbindet Jesaja 42 ausdrücklich mit 5. Mose 18.',
   },
   {
-    ziel: 'Siegel VI — Der Paraklet',
+    ziel: 'Buch 7 — Der Paraklet',
     text: 'Joh 16,13 („spricht nur, was er hört") = 5. Mose 18,18 („Worte in den Mund legen") — Jesus selbst verbindet beide Verheißungen.',
   },
   {

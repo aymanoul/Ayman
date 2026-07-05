@@ -13,6 +13,8 @@ export default function App() {
         <Route path="/" element={<Bibliothek />} />
         <Route path="/regal" element={<Regal />} />
         <Route path="/modul/:moduleId" element={<ModulePage />} />
+        <Route path="/modul/:moduleId/buch/:sealId" element={<SealPage />} />
+        {/* Alias: alte /siegel/-Links bleiben gueltig */}
         <Route path="/modul/:moduleId/siegel/:sealId" element={<SealPage />} />
         <Route path="*" element={<Bibliothek />} />
       </Routes>

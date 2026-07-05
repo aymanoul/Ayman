@@ -12,7 +12,7 @@ import '../styles/bookshelf.css'
 // Medaillon zentrierte Gruppe (.spine__med).
 //
 // Zuordnung: Unter dem Regalbrett trägt jeder Band ein deutsches Schild
-// (Bandnummer + deutscher Siegel-Titel) — immer sichtbar, mitklickbar;
+// (Buchnummer + deutscher Buch-Titel) — immer sichtbar, mitklickbar;
 // beim Zeigen auf Buch ODER Schild leuchten beide zusammen auf.
 // ---------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ export default function Bookshelf({ titel, autor, verlag, baende }: BookshelfPro
                 className={`spine${imgOk ? ' spine--img' : ''}${hot === b.nr ? ' is-hot' : ''}`}
                 style={imgOk ? { backgroundImage: `url(${src})` } : undefined}
                 role="listitem"
-                aria-label={`Band ${b.nr}: ${b.deutsch}`}
+                aria-label={`Buch ${b.nr}: ${b.deutsch}`}
                 onMouseEnter={() => setHot(b.nr)}
                 onMouseLeave={() => setHot(null)}
                 onFocus={() => setHot(b.nr)}
@@ -101,7 +101,7 @@ export default function Bookshelf({ titel, autor, verlag, baende }: BookshelfPro
                 onMouseEnter={() => setHot(b.nr)}
                 onMouseLeave={() => setHot(null)}
               >
-                <span className="book-label__nr">Band {b.nr}</span>
+                <span className="book-label__nr">Buch {b.nr}</span>
                 <span className="book-label__de">{b.deutsch}</span>
               </Link>
             ))}

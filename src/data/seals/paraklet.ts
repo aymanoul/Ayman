@@ -6,7 +6,7 @@ import type { Beleg } from '../types'
 // own" (but is divinely inspired), prophesies the FUTURE, BEARS WITNESS to
 // Jesus and holds LASTING authority. That description fits not a spirit but a
 // PROPHET — and it repeats, word for word, the "prophet like Moses" (Deut
-// 18,18) of Siegel II. The Quran names him: Aḥmad (61,6) — and parakletos
+// 18,18) of Buch 3. The Quran names him: Aḥmad (61,6) — and parakletos
 // itself carries the phonetic echo of periklytos = "the highly praised" =
 // Aḥmad. The rock-solid core is the "Paraclete problem" (the description
 // bursts every spirit-reading) + the four criteria only a prophet meets; the
@@ -41,7 +41,7 @@ export interface ScholarItem {
 }
 
 export const parakletThese =
-  'Jesus selbst kündigt im Johannesevangelium einen kommenden Menschen an — den Parakleten —, der erst nach seinem Weggang kommt, der „nicht aus sich selbst" redet (sondern göttlich inspiriert), die Zukunft prophezeit, Zeugnis über Jesus ablegt und bleibende Autorität besitzt. Diese Beschreibung passt nicht auf einen Geist, sondern auf einen Propheten — und sie wiederholt Wort für Wort den „Propheten wie Mose" (5. Mose 18,18) aus Siegel 2. Der Koran nennt ihn beim Namen: Aḥmad (61,6) — und parakletos selbst trägt phonetisch den Anklang an periklytos = „der Hochgepriesene" = Aḥmad. Der felsenfeste Kern ist das „Paraklet-Problem" (die Beschreibung sprengt jede Geist-Deutung) und die vier Kriterien, die nur ein Prophet erfüllt; die periklytos↔parakletos-Linguistik ist stark, aber als Indiz zu führen — die Wucht ist kumulativ, wie bei Siegel 4.'
+  'Jesus selbst kündigt im Johannesevangelium einen kommenden Menschen an — den Parakleten —, der erst nach seinem Weggang kommt, der „nicht aus sich selbst" redet (sondern göttlich inspiriert), die Zukunft prophezeit, Zeugnis über Jesus ablegt und bleibende Autorität besitzt. Diese Beschreibung passt nicht auf einen Geist, sondern auf einen Propheten — und sie wiederholt Wort für Wort den „Propheten wie Mose" (5. Mose 18,18) aus Buch 3. Der Koran nennt ihn beim Namen: Aḥmad (61,6) — und parakletos selbst trägt phonetisch den Anklang an periklytos = „der Hochgepriesene" = Aḥmad. Der felsenfeste Kern ist das „Paraklet-Problem" (die Beschreibung sprengt jede Geist-Deutung) und die vier Kriterien, die nur ein Prophet erfüllt; die periklytos↔parakletos-Linguistik ist stark, aber als Indiz zu führen — die Wucht ist kumulativ, wie bei Buch 5.'
 
 export const parakletSteps: Step[] = [
   {
@@ -61,7 +61,7 @@ export const parakletSteps: Step[] = [
   },
   {
     n: 'IV',
-    h: 'Es ist der „Prophet wie Mose" (Brücke zu Siegel 2)',
+    h: 'Es ist der „Prophet wie Mose" (Brücke zu Buch 3)',
     body: 'Der Paraklet „spricht nur, was er hört" = 5. Mose 18,18 „Ich lege meine Worte in seinen Mund." Beide prophezeien die Zukunft korrekt (5. Mose 18,22). Da Jesus den Parakleten als separate, künftige Person ankündigt, ist Jesus selbst nicht der Prophet wie Mose — er verweist auf den, der kommt. Jesus lehnt die Rolle sogar ausdrücklich ab (Joh 6,14-15): er zieht sich zurück, als man ihn zum erwarteten Propheten/König machen will.',
   },
 ]
@@ -343,7 +343,7 @@ export const periklytosGrafik = {
   ziel: { gr: 'περικλυτός', trans: 'periklytos', sinn: '„der über die Maßen Gepriesene · Hochberühmte"' },
   arabisch: { ar: 'أَحْمَد', trans: 'Aḥmad', sinn: '„der Höchstgepriesene" (afʿal-Form, Wurzel Ḥ-M-D)' },
   verweise: [
-    { ziel: '→ Siegel 4', text: 'ḤMD = maḥamaddim (Hld 5,16): derselbe „Gepriesene", nun auf Griechisch.' },
+    { ziel: '→ Buch 5', text: 'ḤMD = maḥamaddim (Hld 5,16): derselbe „Gepriesene", nun auf Griechisch.' },
     { ziel: '→ Fundament', text: 'Koran 61,6 nennt den Namen Aḥmad — hier der griechische Beleg.' },
   ],
   pointe:
@@ -408,7 +408,7 @@ export const busfahrer = {
 // ---- Exhibit 6: Deut-18,18 bridge (Joh 16,13 ↔ Deut 18,18) ----
 export const deutBruecke = {
   intro:
-    'Das Paraklet-Profil (Joh 16,7-13) spiegelt den „Propheten wie Mose" (5. Mose 18,18) Wort für Wort — die Brücke zu Siegel 2.',
+    'Das Paraklet-Profil (Joh 16,7-13) spiegelt den „Propheten wie Mose" (5. Mose 18,18) Wort für Wort — die Brücke zu Buch 3.',
   spalten: ['Der Paraklet (Joh)', 'Prophet wie Mose (5. Mose)'],
   zeilen: [
     {
@@ -526,7 +526,7 @@ export const parakletScholar: ScholarItem[] = [
   },
   {
     tier: 'stone',
-    h: '6.6 — Der Paraklet = der Prophet wie Mose (Vernetzung mit Siegel 2)',
+    h: '6.6 — Der Paraklet = der Prophet wie Mose (Vernetzung mit Buch 3)',
     body: 'Joh 16,7-13 spiegelt 5. Mose 18,18 Wort für Wort: „spricht nur, was er hört" ↔ „ich lege meine Worte in seinen Mund"; „verkündet, was kommt" ↔ „prophezeit die Zukunft" (5. Mose 18,22). Der Koran bestätigt das Profil: „Euer Gefährte irrt nicht … noch spricht er aus eigener Neigung. Es ist nur Offenbarung" (53,2-5). Da Jesus den Parakleten als kommende, separate Person ankündigt, ist Jesus nicht der Prophet wie Mose.',
   },
   {
@@ -547,11 +547,11 @@ export const parakletScholar: ScholarItem[] = [
 ]
 
 export const parakletVernetzung = [
-  { ziel: 'Siegel 2 — Prophet wie Mose', text: 'Das Paraklet-Profil (Joh 16,13) = 5. Mose 18,18 Wort für Wort. Jesus bestätigt selbst, dass der Prophet wie Mose noch kommt — also nicht er ist.' },
+  { ziel: 'Buch 3 — Prophet wie Mose', text: 'Das Paraklet-Profil (Joh 16,13) = 5. Mose 18,18 Wort für Wort. Jesus bestätigt selbst, dass der Prophet wie Mose noch kommt — also nicht er ist.' },
   { ziel: 'Das Fundament', text: 'Hier wird 61,6 vom devotionalen zum vollen Beweis: Jesus nannte „Aḥmad" — und parakletos / periklytos ist der griechische Beleg.' },
-  { ziel: 'Siegel 4 — Maḥamaddīm', text: 'periklytos = „Hochgepriesener" = Aḥmad = Wurzel ḤMD = maḥamaddim (Hld 5,16) / ḥimdat (Haggai). Der Name spannt sich über Hebräisch und Griechisch.' },
+  { ziel: 'Buch 5 — Maḥamaddīm', text: 'periklytos = „Hochgepriesener" = Aḥmad = Wurzel ḤMD = maḥamaddim (Hld 5,16) / ḥimdat (Haggai). Der Name spannt sich über Hebräisch und Griechisch.' },
   { ziel: 'Verteidigung — falscher Prophet?', text: 'Origenes’ Schüler hielten Paulus für den Parakleten — koppelt an das Paulus-Dossier.' },
-  { ziel: 'Siegel 5 — Daniel', text: 'Gabriel-als-Mann im Gebet (Dan 9,21 ↔ Bukhārī 3235) + der „Geist der Wahrheit" als inspirierter Prophet.' },
+  { ziel: 'Buch 6 — Daniel', text: 'Gabriel-als-Mann im Gebet (Dan 9,21 ↔ Bukhārī 3235) + der „Geist der Wahrheit" als inspirierter Prophet.' },
 ]
 
 export const parakletGleicheMassstaebe =

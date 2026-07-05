@@ -1,13 +1,13 @@
 import type { Band } from '../components/Bookshelf'
 
-// Die Buchreihe "Ar-Raheeq Al-Makhtoom" — die 9 Siegel des Moduls
-// "Muhammad in der Bibel" als Bände. Genutzt von der Startseite (Saal)
+// Die Buchreihe "Der versiegelte Nektar" (Ar-Raheeq Al-Makhtoom) —
+// die 9 Buecher als Baende. Genutzt von der Startseite (Saal)
 // und der Regal-Seite.
 export const regalTitel = 'الرحيق المختوم'
 export const regalAutor = 'ابن محمد والحجي'
 export const regalVerlag = 'دار السنة'
 
-const S = '/modul/muhammad/siegel'
+const S = '/modul/muhammad/buch'
 export const regalBaende: Band[] = [
   { nr: 1, name: 'الأساس', deutsch: 'Das Fundament', to: `${S}/fundament` },
   { nr: 2, name: 'ذرية إبراهيم', deutsch: 'Abrahams Nachkommen', to: `${S}/abrahams-nachkommen` },

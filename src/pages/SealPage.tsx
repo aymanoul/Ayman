@@ -70,7 +70,7 @@ export default function SealPage() {
     return (
       <main className="stub">
         <div className="stub__inner">
-          <h1>Siegel nicht gefunden</h1>
+          <h1>Buch nicht gefunden</h1>
           <Link to="/" className="stub__back">
             <ArrowLeft /> Zur Bibliothek
           </Link>
@@ -90,11 +90,11 @@ export default function SealPage() {
         <motion.span variants={rise} style={{ display: 'inline-block' }}>
         </motion.span>
         <motion.p className="kicker" variants={rise} style={{ marginTop: '1.5rem' }}>
-          Siegel {seal.nummer}
+          Buch {seal.nummer}
         </motion.p>
         <motion.h1 variants={rise}>{seal.titel}</motion.h1>
         <motion.p className="seek__note" variants={rise} style={{ marginTop: '1rem', fontSize: '0.95rem' }}>
-          Dieses Siegel wird gerade illuminiert — es folgt in Kürze.
+          Dieses Buch wird gerade illuminiert — es folgt in Kürze.
         </motion.p>
         <motion.div variants={rise}>
           <Link to={`/modul/${module.id}`} className="stub__back">

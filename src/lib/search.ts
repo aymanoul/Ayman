@@ -23,7 +23,7 @@ const TYP_LABEL: Record<'quran' | 'bibel' | 'quelle', string> = {
 }
 
 function prettyNummer(n: string): string {
-  return /^(Fundament|Verteidigung)$/.test(n) ? n : `Siegel ${n}`
+  return `Buch ${n}`
 }
 
 // Turn every Beleg into its own search target (opens the modal via belegRef).
@@ -58,7 +58,7 @@ export interface SearchResult {
 }
 
 // ---- normalization --------------------------------------------------------
-function normalize(s: string): string {
+export function normalize(s: string): string {
   return s
     .toLowerCase()
     .replace(/ß/g, 'ss')
@@ -124,11 +124,11 @@ const SYNONYMS: Record<string, string> = {
   bukhari: 'bukhari', sahih: 'bukhari',
 }
 
-function canon(tok: string): string {
+export function canon(tok: string): string {
   return SYNONYMS[tok] ?? tok
 }
 
-function tokenize(s: string): string[] {
+export function tokenize(s: string): string[] {
   const norm = normalize(s)
   const out: string[] = []
   // verse references first: "18,18" · "16:7" · "53,3-4" → normalised "18:18", "53:3-4"

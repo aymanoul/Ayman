@@ -83,7 +83,7 @@ export default function ParakletSeal() {
         {/* ---- header ---- */}
         <motion.header className="seal__head" initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
           <motion.span className="seal__num" variants={rise}>
-            Siegel VI
+            Buch 7
           </motion.span>
           <motion.h1 className="seal__title gilt" variants={rise}>
             Der Paraklet
@@ -173,7 +173,7 @@ export default function ParakletSeal() {
 
         {/* ---- the Deut-18,18 bridge ---- */}
         <section className="sec">
-          <Eyebrow kicker="Brücke zu Siegel II" title="Wort für Wort wie Mose" />
+          <Eyebrow kicker="Brücke zu Buch 3" title="Wort für Wort wie Mose" />
           <DeutBruecke />
         </section>
 

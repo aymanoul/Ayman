@@ -42,7 +42,7 @@ export const danielThese =
 // Methodology note — the seal openly distinguishes its rock-solid core from its
 // complementary, bolder reckonings. Surfaced as a calm banner under the thesis.
 export const danielMethodik =
-  'Dieses Siegel hat einen felsenfesten Kern — Daniel 2 & 7: die vier Reiche und das Zeitfenster — und einen ergänzenden, kühneren Teil: die 350-Jahre-Rechnung und Daniel 9. Der Kern trägt allein; die Rechnungen sind das Sahnehäubchen, klar als solche markiert (✦).'
+  'Dieses Buch hat einen felsenfesten Kern — Daniel 2 & 7: die vier Reiche und das Zeitfenster — und einen ergänzenden, kühneren Teil: die 350-Jahre-Rechnung und Daniel 9. Der Kern trägt allein; die Rechnungen sind das Sahnehäubchen, klar als solche markiert (✦).'
 
 export const danielSteps: Step[] = [
   {
@@ -233,12 +233,12 @@ export const danielScholar: ScholarItem[] = [
   {
     tier: 'stone',
     h: '5.9 — 🔥 Gabriel nennt die Wurzel von Muhammads Namen (Daniel 9,21-23)',
-    body: 'Der stärkste linguistische Treffer — und die Brücke zu Siegel IV. Als Gabriel Daniel „in eilendem Flug … zur Zeit des Abendopfers" erscheint (9,21), nennt er ihn „hochgeschätzt / vielgeliebt" = hebr. חֲמוּדוֹת / ḥamudot, Wurzel Ḥ-M-D (ḥamad: begehren, ersehnen, schätzen), Strong H2530. Muhammad (محمد) / Aḥmad (أحمد) stammen aus exakt derselben semitischen Wurzel Ḥ-M-D (arab. ḥamida = preisen) → „der Gepriesene". Die Szene-Parallele ist verblüffend: Gabriel erscheint auch Muhammad ﷺ in Männergestalt (Ṣaḥīḥ Bukhārī 3235), kommt eilend, bringt frohe Botschaft im Gebet — genau wie bei Daniel. „Zwei Seiten einer Medaille: der Höchstgepriesene (Aḥmad) wird erkannt durch die große Begehrtheit (ḥamudot)." Verknüpft mit maḥamaddim (Hld 5,16) und ḥimdat (Haggai 2,7) aus Siegel IV.',
+    body: 'Der stärkste linguistische Treffer — und die Brücke zu Buch 5. Als Gabriel Daniel „in eilendem Flug … zur Zeit des Abendopfers" erscheint (9,21), nennt er ihn „hochgeschätzt / vielgeliebt" = hebr. חֲמוּדוֹת / ḥamudot, Wurzel Ḥ-M-D (ḥamad: begehren, ersehnen, schätzen), Strong H2530. Muhammad (محمد) / Aḥmad (أحمد) stammen aus exakt derselben semitischen Wurzel Ḥ-M-D (arab. ḥamida = preisen) → „der Gepriesene". Die Szene-Parallele ist verblüffend: Gabriel erscheint auch Muhammad ﷺ in Männergestalt (Ṣaḥīḥ Bukhārī 3235), kommt eilend, bringt frohe Botschaft im Gebet — genau wie bei Daniel. „Zwei Seiten einer Medaille: der Höchstgepriesene (Aḥmad) wird erkannt durch die große Begehrtheit (ḥamudot)." Verknüpft mit maḥamaddim (Hld 5,16) und ḥimdat (Haggai 2,7) aus Buch 5.',
   },
   {
     tier: 'marble',
     h: '5.10 — Habakuk 3,3 in der ältesten arabischen Bibel-Handschrift',
-    body: 'Die älteste arabische AT-Handschrift (Sinai-Kloster) übersetzt Habakuk 3,3 mit محمود / Maḥmūd („der Gepriesene", = Name Muhammads, Wurzel Ḥ-M-D) und محامده / Maḥāmidihi („seine Lobpreisungen"). „Berg Paran" = der Hidschaz / Mekka (wo Muhammad ﷺ die erste Offenbarung empfing); „sein Lob erfüllt die ganze Welt" → für die ganze Menschheit gesandt. Vorsicht: Hebräisch → Arabisch ist sprachlich nah (beide semitisch), aber eine arabische Übersetzung ist kein hebräischer Urtext-Beweis. Als bestätigendes Indiz führen, nicht als Primärbeweis — der Paran-Beweis selbst steht in Siegel III.',
+    body: 'Die älteste arabische AT-Handschrift (Sinai-Kloster) übersetzt Habakuk 3,3 mit محمود / Maḥmūd („der Gepriesene", = Name Muhammads, Wurzel Ḥ-M-D) und محامده / Maḥāmidihi („seine Lobpreisungen"). „Berg Paran" = der Hidschaz / Mekka (wo Muhammad ﷺ die erste Offenbarung empfing); „sein Lob erfüllt die ganze Welt" → für die ganze Menschheit gesandt. Vorsicht: Hebräisch → Arabisch ist sprachlich nah (beide semitisch), aber eine arabische Übersetzung ist kein hebräischer Urtext-Beweis. Als bestätigendes Indiz führen, nicht als Primärbeweis — der Paran-Beweis selbst steht in Buch 4.',
   },
 ]
 
@@ -440,7 +440,7 @@ export const danielBelege: Record<string, Beleg> = {
     typ: 'quelle',
     kurz: 'Älteste arab. Bibel-Handschrift: Habakuk 3,3 als Maḥmūd / Maḥāmidihi — Berg Paran = Hidschaz.',
     uebersetzung:
-      'Die älteste arabische AT-Handschrift (Sinai-Kloster) übersetzt Habakuk 3,3 mit محمود / Maḥmūd („der Gepriesene") und محامده / Maḥāmidihi („seine Lobpreisungen") — beide aus der Wurzel Ḥ-M-D. „Berg Paran" = der Hidschaz / Mekka. Vorsicht: eine Übersetzung ist kein Urtext-Beweis; der Paran-Beweis selbst steht in Siegel III.',
+      'Die älteste arabische AT-Handschrift (Sinai-Kloster) übersetzt Habakuk 3,3 mit محمود / Maḥmūd („der Gepriesene") und محامده / Maḥāmidihi („seine Lobpreisungen") — beide aus der Wurzel Ḥ-M-D. „Berg Paran" = der Hidschaz / Mekka. Vorsicht: eine Übersetzung ist kein Urtext-Beweis; der Paran-Beweis selbst steht in Buch 4.',
     fundstelle: 'Älteste arab. AT-Handschrift (Sinai) · vgl. Habakuk 3,3',
     status: 'Übersetzung, kein Urtext (🟡)',
   },
@@ -512,11 +512,11 @@ export const danielTimeline: TimelinePoint[] = [
 export const timelineQuellen = ['Finley', 'Nicolle', 'Crowley', 'Gibbon', 'Norwich', 'Treadgold']
 
 export const danielVernetzung = [
-  { ziel: 'Siegel IV — Maḥamaddīm', text: 'Die Statue (Gold-Haupt → Marmor-Beine) ist die Vorlage, mit der das Hohelied bewusst spielt (Bloch, Davis). Und Ḥ-M-D verbindet ḥamudot (Dan 9,23) ↔ maḥamaddim (Hld 5,16) ↔ ḥimdat (Haggai 2,7) ↔ Aḥmad.' },
-  { ziel: 'Siegel III — Arabische Prophezeiungen', text: 'Habakuk 3,3 / Berg Paran erscheint hier in der ältesten arab. Handschrift als Maḥmūd; das fünfte Reich „zermalmt Rom und Persien" = die Eroberungen aus Siegel III.' },
-  { ziel: 'Siegel II — Prophet wie Mose', text: 'Das kleine Horn „ändert Festzeiten und Gesetze" + der Gesetzgeber-Stein = der gesetzgebende Prophet.' },
+  { ziel: 'Buch 5 — Maḥamaddīm', text: 'Die Statue (Gold-Haupt → Marmor-Beine) ist die Vorlage, mit der das Hohelied bewusst spielt (Bloch, Davis). Und Ḥ-M-D verbindet ḥamudot (Dan 9,23) ↔ maḥamaddim (Hld 5,16) ↔ ḥimdat (Haggai 2,7) ↔ Aḥmad.' },
+  { ziel: 'Buch 4 — Arabische Prophezeiungen', text: 'Habakuk 3,3 / Berg Paran erscheint hier in der ältesten arab. Handschrift als Maḥmūd; das fünfte Reich „zermalmt Rom und Persien" = die Eroberungen aus Buch 4.' },
+  { ziel: 'Buch 3 — Prophet wie Mose', text: 'Das kleine Horn „ändert Festzeiten und Gesetze" + der Gesetzgeber-Stein = der gesetzgebende Prophet.' },
   { ziel: 'Verteidigung — Falscher Prophet?', text: 'Konstantins Trinitäts-Konzil = das „Sprechen gegen Gott" + die Abrogations- / Gesetzesänderungs-Thematik.' },
-  { ziel: 'Siegel VII — Jüdische Erwartung', text: '4 Esra, Rabbi Akiva, Bar Kochba und Rabbi Ben Abrahamson — Juden erwarteten aktiv das Reich Gottes und einen Krieger-Messias aus Arabien.' },
+  { ziel: 'Buch 8 — Jüdische Erwartung', text: '4 Esra, Rabbi Akiva, Bar Kochba und Rabbi Ben Abrahamson — Juden erwarteten aktiv das Reich Gottes und einen Krieger-Messias aus Arabien.' },
 ]
 
 // ---- additional exhibits ----
@@ -537,7 +537,7 @@ export const hmdBridge = {
   arabic: 'مُحَمَّد · أحْمَد',
   arabicTrans: 'Muhammad · Aḥmad',
   arabicRef: '„der Gepriesene"',
-  note: 'Dieselbe semitische Wurzel — Strong H2530. Brücke zu Siegel IV (maḥamaddīm, Hld 5,16; ḥimdat, Haggai 2,7).',
+  note: 'Dieselbe semitische Wurzel — Strong H2530. Brücke zu Buch 5 (maḥamaddīm, Hld 5,16; ḥimdat, Haggai 2,7).',
 }
 
 // The full H-M-D web across the seals (SPEC 5.9 + Vernetzung exhibit 8).
@@ -549,9 +549,9 @@ export interface HmdGlied {
   siegel: string
 }
 export const hmdGlieder: HmdGlied[] = [
-  { wort: 'חֲמוּדוֹת', translit: 'ḥamudot', stelle: 'Daniel 9,23', bedeutung: 'vielgeliebt / hochgeschätzt', siegel: 'Siegel V (hier)' },
-  { wort: 'מַחֲמַדִּים', translit: 'maḥamaddim', stelle: 'Hohelied 5,16', bedeutung: '„ganz und gar begehrenswert"', siegel: 'Siegel IV' },
-  { wort: 'חֶמְדַּת', translit: 'ḥimdat', stelle: 'Haggai 2,7', bedeutung: '„das Begehrte aller Völker"', siegel: 'Siegel IV' },
+  { wort: 'חֲמוּדוֹת', translit: 'ḥamudot', stelle: 'Daniel 9,23', bedeutung: 'vielgeliebt / hochgeschätzt', siegel: 'Buch 6 (hier)' },
+  { wort: 'מַחֲמַדִּים', translit: 'maḥamaddim', stelle: 'Hohelied 5,16', bedeutung: '„ganz und gar begehrenswert"', siegel: 'Buch 5' },
+  { wort: 'חֶמְדַּת', translit: 'ḥimdat', stelle: 'Haggai 2,7', bedeutung: '„das Begehrte aller Völker"', siegel: 'Buch 5' },
   { wort: 'أحْمَد', translit: 'Aḥmad', stelle: 'Sure 61,6', bedeutung: '„der Höchstgepriesene"', siegel: 'der Name' },
 ]
 

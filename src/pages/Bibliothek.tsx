@@ -10,7 +10,7 @@ import { rise, stagger, EASE } from '../lib/anim'
 
 // "Die Bibliothek" — der Eintritt in einen Bibliothekssaal. Frontispiz mit
 // Kalligrafie, die zwei Wege hinein (Suche/Frage), dann das physische
-// Buchregal als Herzstück: die 9 Siegel als greifbare Bände. Kommende Module
+// Buchregal als Herzstück: die 9 Bücher als greifbare Bände. Kommende Module
 // stehen als ruhige Tafeln darunter.
 export default function Bibliothek() {
   const reduce = useReducedMotion()
@@ -37,7 +37,7 @@ export default function Bibliothek() {
       </div>
 
       {/* ---- Der Saal: das Buchregal als Herzstück (Breakout-Breite) ---- */}
-      <section className="hall" aria-label="Muhammad in der Bibel — die Buchreihe">
+      <section className="hall" aria-label="Der versiegelte Nektar — die Buchreihe">
         <motion.header
           className="sec__head hall__head"
           initial={reduce ? false : { opacity: 0, y: 16 }}
@@ -45,9 +45,9 @@ export default function Bibliothek() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, ease: EASE }}
         >
-          <span className="sec__kicker">Modul I · Neun Siegel</span>
+          <span className="sec__kicker">Die Buchreihe · Neun Bücher</span>
           <h2 className="sec__title">
-            Muhammad in der Bibel <span className="hon">ﷺ</span>
+            Der versiegelte Nektar
           </h2>
         </motion.header>
 

@@ -83,7 +83,7 @@ export default function HoheliedSeal() {
         {/* ---- header ---- */}
         <motion.header className="seal__head" initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
           <motion.span className="seal__num" variants={rise}>
-            Siegel IV
+            Buch 5
           </motion.span>
           <motion.h1 className="seal__title gilt" variants={rise}>
             Das Hohelied
@@ -114,7 +114,7 @@ export default function HoheliedSeal() {
           <Eyebrow kicker="Haupt-Exhibit" title="Die Hebräisch-Wurzel-Grafik" />
           <p className="sec__lead">
             מַחֲמַדִּים (Hld 5,16) ↔ חמדת (Haggai 2,7) ↔ أحمد / محمد — alle auf eine Wurzel zurückgeführt:
-            Ḥ-M-D. Das visuelle Zentrum des Siegels.
+            Ḥ-M-D. Das visuelle Zentrum des Buches.
           </p>
           <WurzelThread />
         </section>

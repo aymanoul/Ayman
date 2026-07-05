@@ -209,6 +209,148 @@
   color: var(--brass);
 }
 
+/* ------------------------------------------------------------------ CHAT */
+/* Der Antwort-Dialog unter dem Frage-Feld: Frage als kleine Sprechblase
+   rechts, Antwort als Karte links — Papier, grüne Leiste, Quellen-Link. */
+.chat {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.chat__turn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.chat__frage {
+  align-self: flex-end;
+  max-width: 85%;
+  background: var(--medina-wash);
+  color: var(--medina-deep);
+  border: 1px solid rgba(21, 107, 74, 0.18);
+  border-radius: 14px 14px 4px 14px;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.chat__antwort {
+  align-self: flex-start;
+  max-width: 94%;
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--medina);
+  border-radius: 4px 14px 14px 14px;
+  padding: 0.9rem 1.1rem 0.8rem;
+  box-shadow: 0 1px 2px rgba(64, 58, 34, 0.04), 0 12px 28px -20px rgba(64, 58, 34, 0.25);
+}
+.chat__antwort--leer {
+  border-left-color: var(--brass);
+}
+.chat__einwand {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--anda);
+  margin-bottom: 0.4rem;
+}
+.chat__titel {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--medina);
+  margin-bottom: 0.35rem;
+}
+.chat__text {
+  font-family: var(--font-body);
+  font-size: 0.97rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.chat__text--vers {
+  color: var(--medina);
+}
+.chat__fundstelle {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--brass-deep);
+  margin-top: 0.4rem;
+}
+.chat__quelle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.7rem;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: var(--medina);
+  border: 1px solid rgba(21, 107, 74, 0.25);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  transition: background 0.18s var(--ease-out), border-color 0.18s var(--ease-out);
+}
+.chat__quelle:hover {
+  background: var(--medina-wash);
+  border-color: var(--medina);
+}
+.chat__quelle svg {
+  width: 14px;
+  height: 14px;
+}
+.chat__mehr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+.chat__mehr-label {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+.chat__chip {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  transition: background 0.18s var(--ease-out), border-color 0.18s var(--ease-out), color 0.18s var(--ease-out);
+}
+.chat__chip:hover {
+  background: var(--green-wash);
+  border-color: var(--green);
+  color: var(--green-deep);
+}
+.chat__chip i {
+  font-style: inherit;
+  color: var(--ink-faint);
+}
+.chat__foot {
+  display: flex;
+  justify-content: flex-end;
+}
+.chat__clear {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  padding: 0.2rem 0.4rem;
+  transition: color 0.18s var(--ease-out);
+}
+.chat__clear:hover {
+  color: var(--anda);
+}
+
 /* --------------------------------------------------------------- JOURNEY */
 .journey {
   margin-top: clamp(2.75rem, 8vh, 5rem);

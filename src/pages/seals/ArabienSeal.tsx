@@ -82,7 +82,7 @@ export default function ArabienSeal() {
         {/* ---- header ---- */}
         <motion.header className="seal__head" initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
           <motion.span className="seal__num" variants={rise}>
-            Siegel III
+            Buch 4
           </motion.span>
           <motion.h1 className="seal__title gilt" variants={rise}>
             Arabische Prophezeiungen

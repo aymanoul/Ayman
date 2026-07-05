@@ -89,7 +89,7 @@ export default function DanielSeal() {
         {/* ---- header ---- */}
         <motion.header className="seal__head" initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
           <motion.span className="seal__num" variants={rise}>
-            Siegel V
+            Buch 6
           </motion.span>
           <motion.h1 className="seal__title gilt" variants={rise}>
             Daniel

@@ -1,11 +1,11 @@
 import type { ModuleMeta, SealMeta } from './types'
 
-// The nine seals of Module 1. Content for each lives in its own data object
-// (added per seal); here is the spine the Bibliothek + search are built on.
+// Die neun Buecher der Buchreihe "Der versiegelte Nektar". Inhalt je Buch
+// in eigener Datendatei; dies ist das Rueckgrat fuer Bibliothek + Suche.
 const modul1Siegel: SealMeta[] = [
   {
     id: 'fundament',
-    nummer: 'Fundament',
+    nummer: '1',
     titel: 'Das Fundament',
     arabic: 'مكتوبًا',
     status: 'ready',
@@ -13,7 +13,7 @@ const modul1Siegel: SealMeta[] = [
   },
   {
     id: 'abrahams-nachkommen',
-    nummer: 'I',
+    nummer: '2',
     titel: 'Abrahams Nachkommen',
     arabic: 'إسماعيل',
     status: 'ready',
@@ -21,7 +21,7 @@ const modul1Siegel: SealMeta[] = [
   },
   {
     id: 'prophet-wie-mose',
-    nummer: 'II',
+    nummer: '3',
     titel: 'Prophet wie Mose',
     arabic: 'موسى',
     status: 'ready',
@@ -29,7 +29,7 @@ const modul1Siegel: SealMeta[] = [
   },
   {
     id: 'arabische-prophezeiungen',
-    nummer: 'III',
+    nummer: '4',
     titel: 'Arabische Prophezeiungen',
     arabic: 'فاران',
     status: 'ready',
@@ -37,7 +37,7 @@ const modul1Siegel: SealMeta[] = [
   },
   {
     id: 'hohelied',
-    nummer: 'IV',
+    nummer: '5',
     titel: 'Das Hohelied · Maḥamaddīm',
     arabic: 'محمد',
     status: 'ready',
@@ -45,7 +45,7 @@ const modul1Siegel: SealMeta[] = [
   },
   {
     id: 'daniel',
-    nummer: 'V',
+    nummer: '6',
     titel: 'Daniel',
     arabic: 'دانيال',
     status: 'ready',
@@ -53,7 +53,7 @@ const modul1Siegel: SealMeta[] = [
   },
   {
     id: 'paraklet',
-    nummer: 'VI',
+    nummer: '7',
     titel: 'Der Paraklet',
     arabic: 'أحمد',
     status: 'ready',
@@ -61,7 +61,7 @@ const modul1Siegel: SealMeta[] = [
   },
   {
     id: 'juedische-erwartung',
-    nummer: 'VII',
+    nummer: '8',
     titel: 'Jüdische Erwartung · Gleiche Maßstäbe',
     arabic: 'الميزان',
     status: 'ready',
@@ -69,7 +69,7 @@ const modul1Siegel: SealMeta[] = [
   },
   {
     id: 'verteidigung',
-    nummer: 'Verteidigung',
+    nummer: '9',
     titel: 'Falscher Prophet?',
     arabic: 'الدفاع',
     status: 'ready',
@@ -85,9 +85,8 @@ const withImages = (seals: SealMeta[]): SealMeta[] =>
 
 export const module1: ModuleMeta = {
   id: 'muhammad',
-  titel: 'Muhammad in der Bibel',
-  honorific: 'ﷺ',
-  arabic: 'محمد',
+  titel: 'Der versiegelte Nektar',
+  arabic: 'الرحيق المختوم',
   status: 'available',
   heroImage: 'images/module/muhammad.jpg',
   siegel: withImages(modul1Siegel),

@@ -29,7 +29,7 @@ export interface ScholarItem {
 }
 
 export const abrahamThese =
-  'Gott schloss den Bund mit Abrahams ganzem Samen und gab Ismael, dem Erstgeborenen, das Bundeszeichen ins Fleisch UND ein „großes Volk" (1. Mose 17,20). Und was ein „großes Volk" ist, definiert die Tora selbst: nicht Zahl oder Macht, sondern ein Volk, dem Gott nahe ist und das gerechte Gesetze hält (5. Mose 4,6-8). Vor-islamisches Arabien war heidnisch — erst mit Muhammad ﷺ wurde Ismaels Linie zu Monotheismus und Gesetz. Die Erwählung Isaaks für den einen Bund verwirft Ismael nicht für den anderen. Bevor man fragt, ob der Prophet kommt: dieses Siegel zeigt, dass die Linie, aus der er käme, gesegnet, legitim — und biblisch zum „großen Volk" bestimmt ist.'
+  'Gott schloss den Bund mit Abrahams ganzem Samen und gab Ismael, dem Erstgeborenen, das Bundeszeichen ins Fleisch UND ein „großes Volk" (1. Mose 17,20). Und was ein „großes Volk" ist, definiert die Tora selbst: nicht Zahl oder Macht, sondern ein Volk, dem Gott nahe ist und das gerechte Gesetze hält (5. Mose 4,6-8). Vor-islamisches Arabien war heidnisch — erst mit Muhammad ﷺ wurde Ismaels Linie zu Monotheismus und Gesetz. Die Erwählung Isaaks für den einen Bund verwirft Ismael nicht für den anderen. Bevor man fragt, ob der Prophet kommt: dieses Buch zeigt, dass die Linie, aus der er käme, gesegnet, legitim — und biblisch zum „großen Volk" bestimmt ist.'
 
 export const abrahamSteps: Step[] = [
   {
@@ -50,7 +50,7 @@ export const abrahamSteps: Step[] = [
   {
     n: 'IV',
     h: 'Der Bund ist übertragbar und offen',
-    body: 'Erwählung ist nicht unwiderruflich: das Priestertum wanderte nach dem goldenen Kalb (4. Mose 3,12; 1. Sam 2,30), und Jesus selbst sagt, das Reich werde „genommen und einem Volk gegeben, das Früchte bringt" (Mt 21,43). Nichts sperrt Ismaels gesegnete Linie für Prophetie — den Propheten selbst liefern die folgenden Siegel.',
+    body: 'Erwählung ist nicht unwiderruflich: das Priestertum wanderte nach dem goldenen Kalb (4. Mose 3,12; 1. Sam 2,30), und Jesus selbst sagt, das Reich werde „genommen und einem Volk gegeben, das Früchte bringt" (Mt 21,43). Nichts sperrt Ismaels gesegnete Linie für Prophetie — den Propheten selbst liefern die folgenden Bücher.',
   },
 ]
 
@@ -425,7 +425,7 @@ export const abrahamKonter: KonterItem[] = [
     tier: 'stone',
     einwand: '„Propheten kommen aus Isaaks Linie."',
     konter:
-      'Das Alte Testament kennt nicht-israelitische Propheten und Richter — etwa Obadja, oder Othniel (Richter 3,9-10). Nichts in der Schrift sperrt Prophetie für Ismaels Linie. Mose verheißt sogar einen Propheten „aus der Mitte ihrer Brüder" (5. Mose 18,18) — das entfaltet Siegel II.',
+      'Das Alte Testament kennt nicht-israelitische Propheten und Richter — etwa Obadja, oder Othniel (Richter 3,9-10). Nichts in der Schrift sperrt Prophetie für Ismaels Linie. Mose verheißt sogar einen Propheten „aus der Mitte ihrer Brüder" (5. Mose 18,18) — das entfaltet Buch 3.',
   },
   {
     tier: 'stone',
@@ -501,7 +501,7 @@ export const abrahamScholar: ScholarItem[] = [
   {
     tier: 'stone',
     h: '1.4 — Zwölf Fürsten & die Gesetzgeber-Brücke',
-    body: 'Die nesiʾim (1. Mose 25,13-16) spiegeln Israels zwölf Stämme. Israels Zwölf wurden zum Volk unter Mose; Ismaels Zwölf zum großen Volk unter Muhammad ﷺ. Ein großes Volk braucht einen Gesetzgeber — das ist die Brücke zu Siegel II.',
+    body: 'Die nesiʾim (1. Mose 25,13-16) spiegeln Israels zwölf Stämme. Israels Zwölf wurden zum Volk unter Mose; Ismaels Zwölf zum großen Volk unter Muhammad ﷺ. Ein großes Volk braucht einen Gesetzgeber — das ist die Brücke zu Buch 3.',
   },
   {
     tier: 'stone',
@@ -562,8 +562,8 @@ export const abrahamScholar: ScholarItem[] = [
 
 export const abrahamVernetzung = [
   { ziel: 'Das Fundament', text: 'Die gesegnete, legitime Linie ist der erste Baustein — der Bund (3,81) und das Gebet Abrahams (2,127-129).' },
-  { ziel: 'Siegel II — Prophet wie Mose', text: 'Ein „großes Volk" (Dtn 4) braucht einen Gesetzgeber — „aus der Mitte ihrer Brüder" (5. Mose 18,18).' },
-  { ziel: 'Siegel III — Arabische Prophezeiungen', text: 'Kedar und Paran — Ismaels Sohn und Wohnort — werden zum Schauplatz der Prophezeiung.' },
+  { ziel: 'Buch 3 — Prophet wie Mose', text: 'Ein „großes Volk" (Dtn 4) braucht einen Gesetzgeber — „aus der Mitte ihrer Brüder" (5. Mose 18,18).' },
+  { ziel: 'Buch 4 — Arabische Prophezeiungen', text: 'Kedar und Paran — Ismaels Sohn und Wohnort — werden zum Schauplatz der Prophezeiung.' },
   { ziel: 'Verteidigung — Falscher Prophet?', text: 'Mt 21,43 („Früchte") ist derselbe Test, mit dem die Verteidigung Paulus misst; das Priestertum = die Abrogations-Mechanik.' },
 ]
 

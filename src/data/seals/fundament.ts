@@ -27,7 +27,7 @@ export interface ScholarItem {
 }
 
 export const fundamentThese =
-  'Bevor ein einziges Siegel geöffnet wird, steht eine Behauptung im Raum: Der Koran sagt, Muhammad ﷺ sei „bei ihnen aufgeschrieben in Tora und Evangelium" (7,157). Das ist kein frommer Wunsch, sondern eine prüfbare — und damit widerlegbare — Aussage. Drei Fundamente müssen halten: Der Koran erhebt den Anspruch wirklich. Die Bibel ist bewahrt genug, um ihn zu prüfen. Und wir lesen nach fairen, wissenschaftlichen Maßstäben. Hält das Fundament, trägt es neun Siegel.'
+  'Bevor ein einziges Buch geöffnet wird, steht eine Behauptung im Raum: Der Koran sagt, Muhammad ﷺ sei „bei ihnen aufgeschrieben in Tora und Evangelium" (7,157). Das ist kein frommer Wunsch, sondern eine prüfbare — und damit widerlegbare — Aussage. Drei Fundamente müssen halten: Der Koran erhebt den Anspruch wirklich. Die Bibel ist bewahrt genug, um ihn zu prüfen. Und wir lesen nach fairen, wissenschaftlichen Maßstäben. Hält das Fundament, trägt es die ganze Buchreihe.'
 
 export const fundamentSteps: Step[] = [
   {
@@ -48,7 +48,7 @@ export const fundamentSteps: Step[] = [
   {
     n: 'IV',
     h: 'Die Methode',
-    body: 'Originalsprachen, anerkannte Lexika, kein Zirkelschluss — und gleiche Maßstäbe für Jesus und Muhammad ﷺ. Erst diese Regeln machen aus einer Behauptung einen Beweis. Ohne sie ist jedes Siegel verworfen, bevor man es liest.',
+    body: 'Originalsprachen, anerkannte Lexika, kein Zirkelschluss — und gleiche Maßstäbe für Jesus und Muhammad ﷺ. Erst diese Regeln machen aus einer Behauptung einen Beweis. Ohne sie ist jedes Buch verworfen, bevor man es liest.',
   },
 ]
 
@@ -229,7 +229,7 @@ export const ibnAmrJesaja = {
     { h: '„Hüter der Schriftunkundigen (ummiyyīn)"', j: '„ich gab dich … zum Licht der Völker (gôyīm)" (42,6)' },
   ],
   pointe:
-    'Sechs Züge, eine Gestalt. Die Tora-Beschreibung, die der Prophet ﷺ für sich beanspruchte, steht — lesbar — in Jesaja 42. Das entfaltet Siegel III.',
+    'Sechs Züge, eine Gestalt. Die Tora-Beschreibung, die der Prophet ﷺ für sich beanspruchte, steht — lesbar — in Jesaja 42. Das entfaltet Buch 4.',
 }
 
 // ---- The taḥrīf spectrum (centre-piece exhibit) ------------------------------
@@ -252,11 +252,11 @@ export const nameThread = {
     { ar: 'مُحَمَّد', trans: 'Muhammad', glanz: '„der Gepriesene / Vielgelobte"', ref: 'der Name des Propheten ﷺ' },
   ],
   spuren: [
-    { heb: 'חֲמוּדוֹת', wort: 'ḥamudot', sinn: '„vielgeliebt"', stelle: 'Daniel 9,23', siegel: 'Siegel V' },
-    { heb: 'מַחֲמַדִּים', wort: 'maḥamaddīm', sinn: '„ganz und gar begehrenswert"', stelle: 'Hohelied 5,16', siegel: 'Siegel IV' },
+    { heb: 'חֲמוּדוֹת', wort: 'ḥamudot', sinn: '„vielgeliebt"', stelle: 'Daniel 9,23', siegel: 'Buch 6' },
+    { heb: 'מַחֲמַדִּים', wort: 'maḥamaddīm', sinn: '„ganz und gar begehrenswert"', stelle: 'Hohelied 5,16', siegel: 'Buch 5' },
     { heb: 'חֶמְדַּת', wort: 'ḥemdat', sinn: '„das Begehrte aller Völker"', stelle: 'Haggai 2,7', siegel: '—' },
   ],
-  note: 'Eine semitische Wurzel, die im Hebräischen wie im Arabischen denselben Klang trägt: der „Gepriesene / Begehrte". Was hier eingeführt wird, wenden die Siegel IV und V am Text selbst an.',
+  note: 'Eine semitische Wurzel, die im Hebräischen wie im Arabischen denselben Klang trägt: der „Gepriesene / Begehrte". Was hier eingeführt wird, wenden die Bücher 5 und 6 am Text selbst an.',
 }
 
 // ---- The rules of fair reading ----------------------------------------------
@@ -288,7 +288,7 @@ export const fundamentKonter: KonterItem[] = [
     tier: 'stone',
     einwand: '„Das ist muslimische Rückprojektion — nachträglich hineingelesen."',
     konter:
-      'Nein: jüdische Stämme zogen schon VOR dem Islam in die lebensfeindliche Wüste um Medina, ausdrücklich in Erwartung eines arabischen Propheten, dessen Ort und Zeit ihre eigenen Schriften verrieten (Ibn Isḥāq). Sie verhöhnten ihre heidnischen Nachbarn: „Wenn unser Prophet kommt …" Die Erwartung ging dem Ereignis voraus — das entfaltet Siegel VII.',
+      'Nein: jüdische Stämme zogen schon VOR dem Islam in die lebensfeindliche Wüste um Medina, ausdrücklich in Erwartung eines arabischen Propheten, dessen Ort und Zeit ihre eigenen Schriften verrieten (Ibn Isḥāq). Sie verhöhnten ihre heidnischen Nachbarn: „Wenn unser Prophet kommt …" Die Erwartung ging dem Ereignis voraus — das entfaltet Buch 8.',
   },
   {
     tier: 'stone',
@@ -308,7 +308,7 @@ export const fundamentKonter: KonterItem[] = [
     tier: 'stone',
     einwand: '„‚Aḥmad‘ (61,6) — diesen Namen trägt kein Evangelium."',
     konter:
-      'Der Prophet ﷺ trägt mehrere Namen, darunter Aḥmad (Bukhārī 3532; Muslim 2354). Auf der Sinn-Ebene heißt Aḥmad „der Hochgepriesene" — exakt die Bedeutung des griechischen períklytos, das dem paráklētos (Joh 14–16) zum Verwechseln ähnelt (Siegel VI). Auf der Namens-Ebene zählt: der Koran nennt einen kommenden Gesandten, nachprüfbar an dem, was die Schrift über ihn sagt.',
+      'Der Prophet ﷺ trägt mehrere Namen, darunter Aḥmad (Bukhārī 3532; Muslim 2354). Auf der Sinn-Ebene heißt Aḥmad „der Hochgepriesene" — exakt die Bedeutung des griechischen períklytos, das dem paráklētos (Joh 14–16) zum Verwechseln ähnelt (Buch 7). Auf der Namens-Ebene zählt: der Koran nennt einen kommenden Gesandten, nachprüfbar an dem, was die Schrift über ihn sagt.',
     belegId: 'funfnamen',
   },
   {
@@ -365,10 +365,10 @@ export const fundamentScholar: ScholarItem[] = [
 ]
 
 export const fundamentVernetzung = [
-  { ziel: 'Siegel III — Arabische Prophezeiungen', text: 'Die Tora-Beschreibung aus Bukhārī 2125 deckt sich mit Jesaja 42 — dort wird sie zum vollen geografischen Beweis.' },
-  { ziel: 'Siegel VI — Der Paraklet', text: 'Hier devotional eingeführt, wird Aḥmad (61,6) dort zum Vollbeweis: períklytos / paráklētos (Joh 14–16).' },
+  { ziel: 'Buch 4 — Arabische Prophezeiungen', text: 'Die Tora-Beschreibung aus Bukhārī 2125 deckt sich mit Jesaja 42 — dort wird sie zum vollen geografischen Beweis.' },
+  { ziel: 'Buch 7 — Der Paraklet', text: 'Hier devotional eingeführt, wird Aḥmad (61,6) dort zum Vollbeweis: períklytos / paráklētos (Joh 14–16).' },
   { ziel: 'Verteidigung — Falscher Prophet?', text: 'Die Doppelnatur (Bewahrung nur des Koran, 15,9) ist zugleich die Antwort auf den Abrogations-Einwand.' },
 ]
 
 export const fundamentGleicheMassstaebe =
-  'Wer von der Bibel verlangt, jedes Wort sei göttlich bewahrt, ehe eine Prophezeiung gelten darf — und zugleich vom Koran nichts dergleichen fordert — misst mit zweierlei Maß. Das Fundament verlangt nur eines: lies beide Schriften nach denselben Regeln, in ihren eigenen Sprachen, mit denselben Lexika. Auf gleichen Maßstäben hält der Anspruch — und die neun Siegel dürfen sprechen.'
+  'Wer von der Bibel verlangt, jedes Wort sei göttlich bewahrt, ehe eine Prophezeiung gelten darf — und zugleich vom Koran nichts dergleichen fordert — misst mit zweierlei Maß. Das Fundament verlangt nur eines: lies beide Schriften nach denselben Regeln, in ihren eigenen Sprachen, mit denselben Lexika. Auf gleichen Maßstäben hält der Anspruch — und die neun Bücher dürfen sprechen.'

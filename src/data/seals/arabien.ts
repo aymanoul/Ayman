@@ -370,7 +370,7 @@ export const etmokhVergleich = {
   buchstabenMT: ['א', 'ת', 'מ', 'ך'],
   buchstaben1Q: ['א', 'ת', 'מ', 'כ', 'ה'],
   pointe:
-    'Linguistisch suggestiv, aber bestreitbar — als Indiz geführt, nicht als harter Namens-Beweis. Der eigentliche Namens-Beweis kommt in Siegel IV (Machamaddim). Vgl. auch 1QIsaᵃ zu Hld 5,16.',
+    'Linguistisch suggestiv, aber bestreitbar — als Indiz geführt, nicht als harter Namens-Beweis. Der eigentliche Namens-Beweis kommt in Buch 5 (Machamaddim). Vgl. auch 1QIsaᵃ zu Hld 5,16.',
 }
 
 // ---- three summary tables (Prophezeiung ↔ Erfüllung) ------------------------
@@ -489,12 +489,12 @@ export const arabienScholar: ScholarItem[] = [
   {
     tier: 'stone',
     h: '3.2 — Die Reaktion und das neue Gesetz',
-    body: '„Sela soll jauchzen, von Berggipfeln rufen" → Mekka: Pilger singen labbayka Allāhumma labbayk von den Bergen beim Hadsch; Medina: bei Muhammads ﷺ Ankunft jubelten die Bewohner („Hier ist der Gesandte Gottes!", bezeugte Anas). Niemand sonst wurde so von Medina empfangen. „Inseln hoffen auf seine torah" (42,4) — ein neues Gesetz (Zukunftsform, nicht Moses bereits existierende Tora); NIV Study Bible: „Der Knecht wird ein neuer Moses sein" (vgl. 5. Mose 18,15-18) → direkte Verbindung zu Siegel II. „Gerechtigkeit zu den Nationen" — mishpāṭ; Prof. Christopher North: im Sinn des islamischen dīn, das Glaube und Praxis umfasst. „Er wird nicht schreien noch seine Stimme auf der Gasse erheben" (42,2) — exakt Muhammads ﷺ Wesen. „Götzendienst beschämt zurückgewendet" — der Islam befreite Arabien vom Götzendienst.',
+    body: '„Sela soll jauchzen, von Berggipfeln rufen" → Mekka: Pilger singen labbayka Allāhumma labbayk von den Bergen beim Hadsch; Medina: bei Muhammads ﷺ Ankunft jubelten die Bewohner („Hier ist der Gesandte Gottes!", bezeugte Anas). Niemand sonst wurde so von Medina empfangen. „Inseln hoffen auf seine torah" (42,4) — ein neues Gesetz (Zukunftsform, nicht Moses bereits existierende Tora); NIV Study Bible: „Der Knecht wird ein neuer Moses sein" (vgl. 5. Mose 18,15-18) → direkte Verbindung zu Buch 3. „Gerechtigkeit zu den Nationen" — mishpāṭ; Prof. Christopher North: im Sinn des islamischen dīn, das Glaube und Praxis umfasst. „Er wird nicht schreien noch seine Stimme auf der Gasse erheben" (42,2) — exakt Muhammads ﷺ Wesen. „Götzendienst beschämt zurückgewendet" — der Islam befreite Arabien vom Götzendienst.',
   },
   {
     tier: 'marble',
     h: '3.2 — Der Name des Knechts (etmokh → etmokhah)',
-    body: 'MT: etmokh („den ich stütze"). Große Jesaja-Rolle (1QIsaᵃ, älteste Handschrift): etmokhah — durch Hinzufügung der Buchstaben Waw + He. Diese Konsonanten erlauben eine Lesung, die phonetisch an Aḥmad/Muhammad anklingt. Linguistisch suggestiv, aber bestreitbar — als Indiz führen, nicht als harten Namens-Beweis; der harte Namens-Beweis kommt in Siegel IV (Machamaddim).',
+    body: 'MT: etmokh („den ich stütze"). Große Jesaja-Rolle (1QIsaᵃ, älteste Handschrift): etmokhah — durch Hinzufügung der Buchstaben Waw + He. Diese Konsonanten erlauben eine Lesung, die phonetisch an Aḥmad/Muhammad anklingt. Linguistisch suggestiv, aber bestreitbar — als Indiz führen, nicht als harten Namens-Beweis; der harte Namens-Beweis kommt in Buch 5 (Machamaddim).',
   },
   {
     tier: 'stone',
@@ -525,19 +525,19 @@ export const arabienScholar: ScholarItem[] = [
 // ===========================================================================
 export const arabienVernetzung = [
   {
-    ziel: 'Siegel II — Prophet wie Mose',
+    ziel: 'Buch 3 — Prophet wie Mose',
     text: '„Feuriges Gesetz" (Deut 33) + „Inseln hoffen auf seine torah" (Jes 42) + „Gesetzgeber" (Ps 84, LXX) = der Gesetzgeber-Prophet wie Mose. Habakuk 3,3 zitiert Barnes direkt auf 5. Mose 18,15-18.',
   },
   {
-    ziel: 'Siegel I — Abrahams Nachkommen',
-    text: 'Kedar = Sohn Ismaels (1. Mose 25,13) → die arabische Linie des „großen Volkes", die Siegel I belegt, wird zum Schauplatz der Prophezeiung.',
+    ziel: 'Buch 2 — Abrahams Nachkommen',
+    text: 'Kedar = Sohn Ismaels (1. Mose 25,13) → die arabische Linie des „großen Volkes", die Buch 2 belegt, wird zum Schauplatz der Prophezeiung.',
   },
   {
-    ziel: 'Siegel IV — Machamaddim',
-    text: 'Das etmokhah-Indiz hier (1QIsaᵃ, klingt nach Aḥmad) wird in Siegel IV zum harten Namens-Beweis (Machamaddim) ausgebaut.',
+    ziel: 'Buch 5 — Machamaddim',
+    text: 'Das etmokhah-Indiz hier (1QIsaᵃ, klingt nach Aḥmad) wird in Buch 5 zum harten Namens-Beweis (Machamaddim) ausgebaut.',
   },
   {
-    ziel: 'Siegel VII — Jüdische Erwartung',
+    ziel: 'Buch 8 — Jüdische Erwartung',
     text: 'Jesaja 21 (Flucht nach Tema/Medina) leitet direkt zur Ansiedlung jüdischer Stämme in Medina über — die jüdische Erwartung eines Propheten in Arabien.',
   },
   {

@@ -4,7 +4,7 @@ import type { Beleg } from '../types'
 // VERTEIDIGUNGS-SIEGEL — „Falscher Prophet?" (Eingangstür / SPEC §6.V).
 // Kern-These: Jesus warnte vor GESETZLOSIGKEIT — und die brachte PAULUS, nicht
 // Muhammad ﷺ. Jesu eigener Früchte-Test (Mt 7) entlarvt die Inkonsistenz der
-// Ankläger. Dieses Siegel dreht den „falscher Prophet"-Vorwurf um: es misst
+// Ankläger. Dieses Buch dreht den „falscher Prophet"-Vorwurf um: es misst
 // beide Männer mit Jesu eigenem Maßstab — und zeigt, wessen Lehre Gesetzlosig-
 // keit (anomia) brachte. Enthält den Früchte-Test, das Paulus-Dossier (drei
 // faule Früchte), die anomia-Exegese, die zûd-Analyse (Dtn 18,20), die
@@ -658,19 +658,19 @@ export const verteidigungScholar: ScholarItem[] = [
 
 export const verteidigungVernetzung = [
   {
-    ziel: 'Siegel II — Prophet wie Mose',
+    ziel: 'Buch 3 — Prophet wie Mose',
     text: '5. Mose 18,18 erlaubt ausdrücklich den „Aufheber" — den Propheten „wie Mose", der Neues bringt. Es ist derselbe Abschnitt wie 18,20, mit dem man Muhammad ﷺ verurteilen will: ein Vers verurteilt nicht, was der vorige verheißt.',
   },
   {
-    ziel: 'Siegel VI / VII — Der erwartete Prophet',
+    ziel: 'Buch 7 / 8 — Der erwartete Prophet',
     text: 'Der „Prophet wie Mose" (Gesetzgeber, neuer Bund) ist genau der erwartete — nicht der Gesetzlose. Wer einen Propheten wie Mose erwartet, kann ihm Gesetzgebung nicht zum Vorwurf machen.',
   },
   {
     ziel: 'Prinzip — Gleiche Maßstäbe',
-    text: 'Dieses Siegel ist die reinste Anwendung des Grundprinzips: ein Maßstab für Paulus und Muhammad ﷺ. „Zweierlei Gewicht … ein Gräuel" (Spr 20,10).',
+    text: 'Dieses Buch ist die reinste Anwendung des Grundprinzips: ein Maßstab für Paulus und Muhammad ﷺ. „Zweierlei Gewicht … ein Gräuel" (Spr 20,10).',
   },
   {
-    ziel: 'Siegel I — Abrahams Nachkommen',
+    ziel: 'Buch 2 — Abrahams Nachkommen',
     text: 'Mt 21,43 („einem Volk gegeben, das Früchte bringt") ist derselbe Früchte-Test — dort am Bund, hier am Propheten. Und das wandernde Priestertum ist die Abrogations-Mechanik.',
   },
 ]

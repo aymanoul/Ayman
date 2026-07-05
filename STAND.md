@@ -13,8 +13,9 @@ Dieses Dokument beschreibt den **realen, verifizierten Zustand** der Website
 ## 1. Was ist das Projekt
 
 **„Die Bibliothek"** — eine mehrsprachige (DE + arab./hebr./griech. Originaltexte)
-Apologetik-Enzyklopädie. Erstes Modul: **„Muhammad in der Bibel" ﷺ** mit
-**9 Siegeln** (Fundament, I–VII, Verteidigung).
+Apologetik-Enzyklopädie. Erstes Modul: **„Der versiegelte Nektar"** — eine Buchreihe mit
+**9 Büchern** (Buch 1 = Das Fundament … Buch 9 = Verteidigung; hieß früher
+„Muhammad in der Bibel ﷺ" mit „Siegeln" — v9 hat alles umbenannt).
 
 **Stack:** React 18 · TypeScript 5.6 · Vite 5 · React Router 6 (HashRouter) ·
 framer-motion 11 · handgeschriebenes CSS (Tailwind v4 installiert, kaum genutzt).

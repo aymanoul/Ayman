@@ -36,7 +36,7 @@ export interface ScholarItem {
 }
 
 export const erwartungThese =
-  'Das ist der Schluss-Stein. Er tut zweierlei. Erstens: Die Juden erwarteten den arabischen Propheten aktiv — sie wanderten vor dem Islam in die lebensfeindliche Wüste um Medina, weil ihre eigenen Schriften (Jesaja 42 und 21, Daniel) ihnen Ort und Zeit verrieten. Zweitens: Er entlarvt die Doppelmoral — an die Belege für Muhammad ﷺ legt der Kritiker unmöglich hohe Maßstäbe, während er für Jesus vage, aus dem Kontext gerissene, sich widersprechende „Prophezeiungen" blind akzeptiert. Auf gleichen Maßstäben (al-mīzān, die Waage) gibt es genau einen Erfüller — und das davidische Messias-Narrativ besteht Gottes eigenen Test nicht (5. Mose 18,22). Siegel 1–6 liefern die Beweise; Siegel 7 zieht das Netz zu und nimmt dem Gegner die Methode, mit der er sich herauswinden will. Es ist weniger ein neues Thema als die Meta-Ebene: „Mit welchem Maßstab misst du eigentlich?"'
+  'Das ist der Schluss-Stein. Er tut zweierlei. Erstens: Die Juden erwarteten den arabischen Propheten aktiv — sie wanderten vor dem Islam in die lebensfeindliche Wüste um Medina, weil ihre eigenen Schriften (Jesaja 42 und 21, Daniel) ihnen Ort und Zeit verrieten. Zweitens: Er entlarvt die Doppelmoral — an die Belege für Muhammad ﷺ legt der Kritiker unmöglich hohe Maßstäbe, während er für Jesus vage, aus dem Kontext gerissene, sich widersprechende „Prophezeiungen" blind akzeptiert. Auf gleichen Maßstäben (al-mīzān, die Waage) gibt es genau einen Erfüller — und das davidische Messias-Narrativ besteht Gottes eigenen Test nicht (5. Mose 18,22). Bücher 2–7 liefern die Beweise; Buch 8 zieht das Netz zu und nimmt dem Gegner die Methode, mit der er sich herauswinden will. Es ist weniger ein neues Thema als die Meta-Ebene: „Mit welchem Maßstab misst du eigentlich?"'
 
 export const erwartungSteps: Step[] = [
   {
@@ -47,12 +47,12 @@ export const erwartungSteps: Step[] = [
   {
     n: 'II',
     h: 'Sie warteten auf einen Propheten',
-    body: 'Sie verhöhnten ihre heidnischen Nachbarn: „Wenn unser Prophet kommt, werden wir euch auslöschen" (Sīra des Ibn Hischām). Rabbi Ibn al-Haybān, zwei Jahre vor der Berufung aus Syrien zugewandert, kündigte sterbend „einen Propheten, dessen Zeit nahe ist … das Land seiner Auswanderung: folgt ihm!" an. Und sie begruben ihre Toten am Berg Sela in Medina (Ṭabarī) — dem Ort aus Jesaja 42,11 (Siegel 3).',
+    body: 'Sie verhöhnten ihre heidnischen Nachbarn: „Wenn unser Prophet kommt, werden wir euch auslöschen" (Sīra des Ibn Hischām). Rabbi Ibn al-Haybān, zwei Jahre vor der Berufung aus Syrien zugewandert, kündigte sterbend „einen Propheten, dessen Zeit nahe ist … das Land seiner Auswanderung: folgt ihm!" an. Und sie begruben ihre Toten am Berg Sela in Medina (Ṭabarī) — dem Ort aus Jesaja 42,11 (Buch 4).',
   },
   {
     n: 'III',
     h: 'Sie hatten Karte UND Zeitplan',
-    body: 'Jesaja 42 (Kedar, Sela) gab das Wo: Medina (Siegel 3). Jesaja 21 (Beduinisierung der Dedaniter im 3. Jh.) gab das Wann: jetzt aufbrechen — die Migration folgte historisch genau darauf. Daniel (350-Jahre- / Bar-Kochba-Rechnung) gab das Jahr 622. Rabbi Ben Abrahamson rechnet selbst auf 622 und den „wahren Krieger-Messias".',
+    body: 'Jesaja 42 (Kedar, Sela) gab das Wo: Medina (Buch 4). Jesaja 21 (Beduinisierung der Dedaniter im 3. Jh.) gab das Wann: jetzt aufbrechen — die Migration folgte historisch genau darauf. Daniel (350-Jahre- / Bar-Kochba-Rechnung) gab das Jahr 622. Rabbi Ben Abrahamson rechnet selbst auf 622 und den „wahren Krieger-Messias".',
   },
   {
     n: 'IV',
@@ -83,7 +83,7 @@ export const erwartungBelege: Record<string, Beleg> = {
     translit:
       'wa-s-samāʾa rafaʿahā wa-waḍaʿa l-mīzān · allā taṭghaw fī l-mīzān · wa-aqīmū l-wazna bi-l-qisṭi wa-lā tukhsirū l-mīzān',
     uebersetzung:
-      '„Und den Himmel hat Er erhoben und die Waage aufgestellt, damit ihr im Wägen nicht das Maß überschreitet. So haltet das Gewicht in Gerechtigkeit und mindert die Waage nicht." — al-mīzān: das Bild dieses Siegels.',
+      '„Und den Himmel hat Er erhoben und die Waage aufgestellt, damit ihr im Wägen nicht das Maß überschreitet. So haltet das Gewicht in Gerechtigkeit und mindert die Waage nicht." — al-mīzān: das Bild dieses Buches.',
     fundstelle: 'Sure 55 (ar-Raḥmān), Verse 7–9',
     kern: 'الْمِيزَانَ',
   },
@@ -181,7 +181,7 @@ export const erwartungBelege: Record<string, Beleg> = {
     translit:
       'ʾăšer yᵉdabbēr ha-nāvîʾ bᵉ-šēm YHWH wᵉ-lōʾ yihyeh ha-dāvār wᵉ-lōʾ yāvōʾ, hûʾ ha-dāvār ʾăšer lōʾ dibbᵉrô YHWH',
     uebersetzung:
-      '„Wenn der Prophet im Namen des HERRN redet und das Wort trifft nicht ein und kommt nicht, so ist es ein Wort, das der HERR nicht geredet hat." — Der Todesstoß für das davidische Narrativ: über mehrere Exile traf es nie ein. Das arabische erfüllte jeden Punkt (Siegel V).',
+      '„Wenn der Prophet im Namen des HERRN redet und das Wort trifft nicht ein und kommt nicht, so ist es ein Wort, das der HERR nicht geredet hat." — Der Todesstoß für das davidische Narrativ: über mehrere Exile traf es nie ein. Das arabische erfüllte jeden Punkt (Buch 6).',
     fundstelle: '5. Mose (Deuteronomium) 18,21-22',
     status: 'Prüfstein I — erfülltes Wort',
     kern: 'בְּשֵׁם יְהוָה',
@@ -225,13 +225,13 @@ export const erwartungBelege: Record<string, Beleg> = {
     sprache: 'he',
     translit: 'nāvîʾ miqqirbᵉḵā mē-ʾaḥeḵā kāmōnî yāqîm lᵉḵā YHWH ʾĕlōheḵā, ʾēlāw tišmāʿûn',
     uebersetzung:
-      '„Einen Propheten aus deiner Mitte, aus deinen Brüdern, wie mich, wird dir der HERR erwecken; auf ihn sollt ihr hören." — Der offene dritte Platz der Erwartung (Siegel II).',
+      '„Einen Propheten aus deiner Mitte, aus deinen Brüdern, wie mich, wird dir der HERR erwecken; auf ihn sollt ihr hören." — Der offene dritte Platz der Erwartung (Buch 3).',
     fundstelle: '5. Mose (Deuteronomium) 18,15',
     kern: 'אֵלָיו תִּשְׁמָעוּן',
   },
 
   // ============================== TEIL A — DIE AKTIVE ERWARTUNG =============
-  // ---- Isaiah 42 — the WHERE (Kedar / Sela), recap of Siegel 3 ----
+  // ---- Isaiah 42 — the WHERE (Kedar / Sela), recap of Buch 4 ----
   jes4211: {
     typ: 'bibel',
     kurz: 'Es jauchze die Steppe Kedars, die Bewohner von Sela jubeln vom Gipfel der Berge.',
@@ -241,7 +241,7 @@ export const erwartungBelege: Record<string, Beleg> = {
     translit: 'yiśʾû midbār wᵉ-ʿārāyw, ḥăṣērîm tēšēv Qēdār, yārōnnû yōšᵉvê Selaʿ, mē-rōʾš hārîm yiṣwāḥû',
     uebersetzung:
       '„Es sollen die Wüste und ihre Städte ihre Stimme erheben, die Gehöfte, die Kedar bewohnt; jubeln sollen die Bewohner von Sela, vom Gipfel der Berge sollen sie jauchzen." — Kedar = die Söhne Ismaels, Sela ein Ort in Medina: das „Wo". Genau dort begruben die Juden ihre Toten (Ṭabarī).',
-    fundstelle: 'Jesaja 42,11 · vgl. Siegel 3',
+    fundstelle: 'Jesaja 42,11 · vgl. Buch 4',
     kern: 'קֵדָר ... סֶלַע',
   },
 
@@ -343,7 +343,7 @@ export const erwartungBelege: Record<string, Beleg> = {
     typ: 'quelle',
     kurz: 'Rabbi Ben Abrahamson rechnet selbst auf 622 und den „wahren Krieger-Messias".',
     uebersetzung:
-      'Die Beduinisierung der Dedaniter im 3. Jh. (Caskel, Peters, Hoyland, Shuaib) gab das historische „Wann"; die Migration nach Medina folgte unmittelbar. Daniels 350-Jahre- / Bar-Kochba-Rechnung (Siegel 5) zeigt auf das Jahr 622. Rabbi Ben Abrahamson kommt selbst auf 622 und nennt den erwarteten „wahren Krieger-Messias" — Eltern hätten ihr Kind in dieser Hoffnung nach Daniels „Ish ḥamudot" benannt: Muḥamud. (⚠️ moderne rabbinische Einzelstimme — als Illustration, nicht als harter Beweis.)',
+      'Die Beduinisierung der Dedaniter im 3. Jh. (Caskel, Peters, Hoyland, Shuaib) gab das historische „Wann"; die Migration nach Medina folgte unmittelbar. Daniels 350-Jahre- / Bar-Kochba-Rechnung (Buch 6) zeigt auf das Jahr 622. Rabbi Ben Abrahamson kommt selbst auf 622 und nennt den erwarteten „wahren Krieger-Messias" — Eltern hätten ihr Kind in dieser Hoffnung nach Daniels „Ish ḥamudot" benannt: Muḥamud. (⚠️ moderne rabbinische Einzelstimme — als Illustration, nicht als harter Beweis.)',
     fundstelle: 'Ben Abrahamson · Caskel · Peters · Hoyland · vgl. Daniel 9-12',
   },
 
@@ -361,7 +361,7 @@ export const erwartungBelege: Record<string, Beleg> = {
     typ: 'quelle',
     kurz: 'Das davidische Messias-Narrativ: vier Propaganda-Schichten — und der Deut-18,22-Todesstoß.',
     uebersetzung:
-      'Vier Schichten. (a) Stammes-Polemik: Genesis untergräbt systematisch Esau (Edom) zugunsten Jakobs — 7 Varianten des Konflikts (Rosenberg); dasselbe Muster gegen Ismael (Siegel 1). (b) Eingefügte Davids-Texte: Jeremia 23,5-6 (davidischer „Spross"); in Sacharja 6,11-12 wurde Serubbabels Name getilgt und durch Josua ersetzt, als Serubbabel die Davids-Rolle nicht erfüllte (Reginald Fuller). Nach dem Exil verblasste die Davids-Hoffnung (James Dunn; Collins: kaum Messianismus 500–200 v. Chr.). (c) Fehl-Exegese: 2 Sam 7,25-26 (Davids Gebet) als „künftiger Messias" umgedeutet; Jes 11,1 „Stumpf Isais" — yišay = Kurzform von yišmaʿel (Encyclopaedia Biblica). (d) NT-Anpassung: zwei widersprüchliche Genealogien (Mt 1 vs. Lk 3) „beide erfunden" (Helms); Lukas führt Marias Linie auf Aaron, nicht David; Butz: Davids-Abkunft = Kirchen-Polemik (S. 288). Todesstoß: Deut 18,21-22 — das davidische Narrativ traf über mehrere Exile nie ein, das arabische jeden Punkt.',
+      'Vier Schichten. (a) Stammes-Polemik: Genesis untergräbt systematisch Esau (Edom) zugunsten Jakobs — 7 Varianten des Konflikts (Rosenberg); dasselbe Muster gegen Ismael (Buch 2). (b) Eingefügte Davids-Texte: Jeremia 23,5-6 (davidischer „Spross"); in Sacharja 6,11-12 wurde Serubbabels Name getilgt und durch Josua ersetzt, als Serubbabel die Davids-Rolle nicht erfüllte (Reginald Fuller). Nach dem Exil verblasste die Davids-Hoffnung (James Dunn; Collins: kaum Messianismus 500–200 v. Chr.). (c) Fehl-Exegese: 2 Sam 7,25-26 (Davids Gebet) als „künftiger Messias" umgedeutet; Jes 11,1 „Stumpf Isais" — yišay = Kurzform von yišmaʿel (Encyclopaedia Biblica). (d) NT-Anpassung: zwei widersprüchliche Genealogien (Mt 1 vs. Lk 3) „beide erfunden" (Helms); Lukas führt Marias Linie auf Aaron, nicht David; Butz: Davids-Abkunft = Kirchen-Polemik (S. 288). Todesstoß: Deut 18,21-22 — das davidische Narrativ traf über mehrere Exile nie ein, das arabische jeden Punkt.',
     fundstelle: 'Rosenberg · R. Fuller · Dunn · Collins · Helms · Butz S. 288 · Enc. Biblica',
   },
 
@@ -380,7 +380,7 @@ export const erwartungBelege: Record<string, Beleg> = {
     kurz: 'Augustinus (Contra Faustum): er kann die Juden mit Exegese nicht überzeugen — nur durch NT-Glauben.',
     uebersetzung:
       'In Contra Faustum gestand Augustinus, dass er die Juden nicht überzeugen könne, Jesus sei der „Prophet wie Mose" (Deut 18) — seine Position beruhe allein auf dem Glauben an das Neue Testament, nicht auf der Exegese der hebräischen Schrift selbst. Ein Kirchenvater räumt ein: ohne den NT-Glaubensschritt trägt die Exegese die These nicht.',
-    fundstelle: 'Augustinus, Contra Faustum (vgl. Siegel 2)',
+    fundstelle: 'Augustinus, Contra Faustum (vgl. Buch 3)',
   },
 
   // ---- Source: rabbinic low standards ----
@@ -388,7 +388,7 @@ export const erwartungBelege: Record<string, Beleg> = {
     typ: 'quelle',
     kurz: 'Rabbinische Tiefstmaßstäbe: „bara" → „für Abraham"; Buchstaben-Umordnung (Sanhedrin 43a).',
     uebersetzung:
-      'Rabbinische Auslegung deutet „bara" (Gen 2,4, „erschaffen") durch Buchstaben-Umordnung zu be-Abraham („für Abraham") um; Sanhedrin 43a leitet Namen durch Buchstaben-Exegese ab (Siegel 4). Wenn Rabbiner solche Maßstäbe für ihre eigene Theologie akzeptieren, ist die Ablehnung von maḥamaddīm (Hld 5,16) reine Doppelmoral — wir wenden ihre eigene Methode an, nur strenger (Eigennamen + Geografie + Zeitachse). Fairness: das Buch nennt selbst Gegenstimmen (Rabbi Eliezer ben Hyrcanus, David Ben Gurion kritisierten solche Umdeutungen) — wir behaupten nicht, alle Rabbiner täten dies, nur dass es in Mainstream-Quellen verbreitet ist.',
+      'Rabbinische Auslegung deutet „bara" (Gen 2,4, „erschaffen") durch Buchstaben-Umordnung zu be-Abraham („für Abraham") um; Sanhedrin 43a leitet Namen durch Buchstaben-Exegese ab (Buch 5). Wenn Rabbiner solche Maßstäbe für ihre eigene Theologie akzeptieren, ist die Ablehnung von maḥamaddīm (Hld 5,16) reine Doppelmoral — wir wenden ihre eigene Methode an, nur strenger (Eigennamen + Geografie + Zeitachse). Fairness: das Buch nennt selbst Gegenstimmen (Rabbi Eliezer ben Hyrcanus, David Ben Gurion kritisierten solche Umdeutungen) — wir behaupten nicht, alle Rabbiner täten dies, nur dass es in Mainstream-Quellen verbreitet ist.',
     fundstelle: 'Sanhedrin 43a · Mischna/Talmud · vgl. R. Eliezer ben Hyrcanus, Ben Gurion',
   },
 
@@ -397,8 +397,8 @@ export const erwartungBelege: Record<string, Beleg> = {
     typ: 'quelle',
     kurz: 'Muhammad ﷺ vollbrachte die Messias-Werke: Persien & Rom besiegt, Rückkehr, Tempelplatz gereinigt.',
     uebersetzung:
-      'Historisch tat Muhammad ﷺ (bzw. die frühen Muslime) genau das, was man vom davidischen Messias erwartete: Persien und Rom besiegt, den Juden die Rückkehr ins Heilige Land eröffnet, den Tempelplatz gereinigt und dort den Monotheismus wiederhergestellt (jüd. Zeuge Sefer Pitron Torah, Siegel 4). Würde man sagen „vielleicht kommt der davidische Messias erst noch", machte das Deut 18 zur Farce: der „falsche Prophet" hätte jedes einzelne Messias-Werk schon vollbracht. Die Ablehnung erfolgt allein wegen der Blutlinie (nicht-davidisch), nicht wegen mangelnder Erfüllung.',
-    fundstelle: 'Sefer Pitron Torah (vgl. Siegel 4) · vgl. Deut 18',
+      'Historisch tat Muhammad ﷺ (bzw. die frühen Muslime) genau das, was man vom davidischen Messias erwartete: Persien und Rom besiegt, den Juden die Rückkehr ins Heilige Land eröffnet, den Tempelplatz gereinigt und dort den Monotheismus wiederhergestellt (jüd. Zeuge Sefer Pitron Torah, Buch 5). Würde man sagen „vielleicht kommt der davidische Messias erst noch", machte das Deut 18 zur Farce: der „falsche Prophet" hätte jedes einzelne Messias-Werk schon vollbracht. Die Ablehnung erfolgt allein wegen der Blutlinie (nicht-davidisch), nicht wegen mangelnder Erfüllung.',
+    fundstelle: 'Sefer Pitron Torah (vgl. Buch 5) · vgl. Deut 18',
   },
 
   // ---- Source: the threefold expectation & jewish criteria ----
@@ -415,8 +415,8 @@ export const erwartungBelege: Record<string, Beleg> = {
     typ: 'quelle',
     kurz: 'Dieselbe Regel, zweierlei Anwendung — das wiederkehrende Muster der Einwände.',
     uebersetzung:
-      'Quer durch die Siegel kehrt ein Muster wieder: die Bibel gilt als Beweis, bis sie Muhammad stützt — dann heißt sie „verfälscht" (Fundament). Isaaks Segen ist „geistlich", Ismaels gleichlautender Segen „bloß zahlenmäßig" (Siegel I). „Von Seir" deutet man aufs Christentum, „vom Paran" überhört man (Siegel III). Das Hohelied liest die Kirche allegorisch, doch maḥamaddīm müsse wörtlich bleiben (Siegel IV). „Dieses Geschlecht" deutet man großzügig in die Zukunft (Siegel VI) — dem Parakleten verweigert man dieselbe Offenheit. Gleiche Maßstäbe (Sprichwort 20,10) heißt: die Regel, die man der einen Seite zugesteht, auch der anderen — und umgekehrt.',
-    fundstelle: 'Methodik · vgl. Fundament · Siegel I, III, IV, VI',
+      'Quer durch die Bücher kehrt ein Muster wieder: die Bibel gilt als Beweis, bis sie Muhammad stützt — dann heißt sie „verfälscht" (Fundament). Isaaks Segen ist „geistlich", Ismaels gleichlautender Segen „bloß zahlenmäßig" (Buch 2). „Von Seir" deutet man aufs Christentum, „vom Paran" überhört man (Buch 4). Das Hohelied liest die Kirche allegorisch, doch maḥamaddīm müsse wörtlich bleiben (Buch 5). „Dieses Geschlecht" deutet man großzügig in die Zukunft (Buch 7) — dem Parakleten verweigert man dieselbe Offenheit. Gleiche Maßstäbe (Sprichwort 20,10) heißt: die Regel, die man der einen Seite zugesteht, auch der anderen — und umgekehrt.',
+    fundstelle: 'Methodik · vgl. Fundament · Buch 2, III, IV, VI',
   },
 }
 
@@ -425,7 +425,7 @@ export const pruefsteine = {
   intro:
     'Die Tora nennt selbst die Prüfsteine eines wahren Propheten. Legt man sie unvoreingenommen an Muhammad ﷺ an:',
   tests: [
-    { test: 'Sein Wort trifft ein', ref: '5. Mose 18,21-22', sinn: 'Daniels Zeitfenster, der Fall des geteilten Rom, die Ausbreitung — eingetroffen (Siegel V). Das davidische Narrativ traf über mehrere Exile nie ein.' },
+    { test: 'Sein Wort trifft ein', ref: '5. Mose 18,21-22', sinn: 'Daniels Zeitfenster, der Fall des geteilten Rom, die Ausbreitung — eingetroffen (Buch 6). Das davidische Narrativ traf über mehrere Exile nie ein.' },
     { test: 'Er führt zu keinem anderen Gott', ref: '5. Mose 13,1-4', sinn: 'Strenger Eingottglaube (tauḥīd) — er zerbrach die Götzen, statt zu ihnen zu rufen.' },
     { test: 'Er spricht im Namen des HERRN', ref: '5. Mose 18,19', sinn: 'Jede Sure bis auf eine beginnt „Im Namen Gottes, des Erbarmers".' },
     { test: 'Er bestätigt die früheren Propheten', ref: 'vgl. Mt 7,15-20', sinn: 'Er ehrt Mose und Jesus als Gesandte, reinigt Jesus vom Vorwurf des Betrugs.' },
@@ -439,14 +439,14 @@ export const zweierlei = {
     'Die Waage zeigt das Muster: dieselbe Regel, zweierlei Anwendung. Links, was man für Jesus großzügig (vage) gelten lässt; rechts, was man Muhammad ﷺ mit Eigennamen, Geografie und Zeitachse trotzdem verweigert. Darüber Sprichwort 20,10.',
   faelle: [
     { standard: 'Die Schrift', jesus: 'Man zitiert die Bibel als Beweis.', muhammad: 'Man ruft „Fälschung", sobald sie ihn stützt.', siegel: 'Fundament' },
-    { standard: 'Abrahams Segen', jesus: 'Isaaks Segen gilt als geistlich.', muhammad: 'Ismaels gleichlautender Segen sei „bloß zahlenmäßig".', siegel: 'Siegel I' },
-    { standard: '„Wie Mose"', jesus: '5. Mose 18 gilt als in ihm erfüllt.', muhammad: 'Das Kriterium „wie Mose" (34,10) wird übergangen.', siegel: 'Siegel II' },
-    { standard: 'Die Berge', jesus: '„Von Seir" deutet man aufs Christentum.', muhammad: '„Vom Berg Paran" bleibt unbeachtet.', siegel: 'Siegel III' },
-    { standard: 'Das Sinnbild', jesus: 'Das Hohelied liest die Kirche allegorisch.', muhammad: 'maḥamaddīm müsse dagegen wörtlich bleiben.', siegel: 'Siegel IV' },
-    { standard: 'Genealogie', jesus: 'Zwei widersprüchliche Stammbäume (Mt 1 / Lk 3) stören nicht.', muhammad: 'Eine lückenlose Linie zu Ismael wird gefordert.', siegel: 'Siegel I' },
-    { standard: 'Aus-dem-Kontext', jesus: 'Hosea 11,1 (Israels Exodus) gilt als Jesus-Prophezeiung.', muhammad: 'Eigennamen im Wortlaut genügen angeblich nicht.', siegel: 'Siegel III/IV' },
-    { standard: 'Der Paraklet', jesus: 'Joh 14,26 („der Geist") entscheidet sofort.', muhammad: 'Die übrige Beschreibung soll nicht zählen.', siegel: 'Siegel VI' },
-    { standard: '„Dieses Geschlecht"', jesus: 'Man dehnt es großzügig in die Zukunft.', muhammad: 'Dem Parakleten verweigert man dieselbe Offenheit.', siegel: 'Siegel VI' },
+    { standard: 'Abrahams Segen', jesus: 'Isaaks Segen gilt als geistlich.', muhammad: 'Ismaels gleichlautender Segen sei „bloß zahlenmäßig".', siegel: 'Buch 2' },
+    { standard: '„Wie Mose"', jesus: '5. Mose 18 gilt als in ihm erfüllt.', muhammad: 'Das Kriterium „wie Mose" (34,10) wird übergangen.', siegel: 'Buch 3' },
+    { standard: 'Die Berge', jesus: '„Von Seir" deutet man aufs Christentum.', muhammad: '„Vom Berg Paran" bleibt unbeachtet.', siegel: 'Buch 4' },
+    { standard: 'Das Sinnbild', jesus: 'Das Hohelied liest die Kirche allegorisch.', muhammad: 'maḥamaddīm müsse dagegen wörtlich bleiben.', siegel: 'Buch 5' },
+    { standard: 'Genealogie', jesus: 'Zwei widersprüchliche Stammbäume (Mt 1 / Lk 3) stören nicht.', muhammad: 'Eine lückenlose Linie zu Ismael wird gefordert.', siegel: 'Buch 2' },
+    { standard: 'Aus-dem-Kontext', jesus: 'Hosea 11,1 (Israels Exodus) gilt als Jesus-Prophezeiung.', muhammad: 'Eigennamen im Wortlaut genügen angeblich nicht.', siegel: 'Buch 4/5' },
+    { standard: 'Der Paraklet', jesus: 'Joh 14,26 („der Geist") entscheidet sofort.', muhammad: 'Die übrige Beschreibung soll nicht zählen.', siegel: 'Buch 7' },
+    { standard: '„Dieses Geschlecht"', jesus: 'Man dehnt es großzügig in die Zukunft.', muhammad: 'Dem Parakleten verweigert man dieselbe Offenheit.', siegel: 'Buch 7' },
     { standard: 'Spätere Schrift', jesus: 'Dass das Neue Testament nach Jesus entstand, stört nicht.', muhammad: 'Dass der Koran später kam, gilt als Einwand.', siegel: '—' },
   ],
   pointe:
@@ -456,7 +456,7 @@ export const zweierlei = {
 // ---- Exhibit 3: Karte + Zeitplan — the MAIN exhibit -------------------------
 // A schematic map of the Jewish settlements in Arabia, with two layers:
 // Isaiah 42 = WHERE (arrow on Medina/Sela), Isaiah 21 = WHEN (Dedanite
-// bedouinisation 3rd c. → migration arrow). Ties visually to Siegel 3.
+// bedouinisation 3rd c. → migration arrow). Ties visually to Buch 4.
 export const karteZeitplan = {
   intro:
     'Das Haupt-Exhibit. Die Juden hatten Koordinaten UND Timing: Jesaja 42 (Kedar, Sela) gab das Wo — Medina; Jesaja 21 (Beduinisierung der Dedaniter im 3. Jh.) gab das Wann — jetzt aufbrechen. Die jüdische Migration in die Wüste folgte historisch genau auf die Beduinisierung der Dedaniter.',
@@ -467,14 +467,14 @@ export const karteZeitplan = {
     { id: 'khaybar', label: 'Khaybar', sub: 'von ḥeber „Bund"', x: 44, y: 52, tone: 'green' as const },
     { id: 'medina', label: 'Medina · Sela', sub: 'Jes 42,11 — das „Wo"', x: 40, y: 66, tone: 'green' as const },
     { id: 'badr', label: 'Badr', sub: '624 — „Herrlichkeit Kedars" endet', x: 30, y: 80, tone: 'muted' as const },
-    { id: 'mekka', label: 'Mekka', sub: 'Bakka (Siegel 3)', x: 34, y: 92, tone: 'muted' as const },
+    { id: 'mekka', label: 'Mekka', sub: 'Bakka (Buch 4)', x: 34, y: 92, tone: 'muted' as const },
   ],
   // the migration path: Dedan → Khaybar → Medina (the WHEN-driven move south)
   pfad: ['dedan', 'khaybar', 'medina'],
   woWann: [
-    { tag: 'Jesaja 42', frage: 'das WO', text: 'Kedar (die Söhne Ismaels) und Sela — ein Ort in Medina. Genau dort begruben die Juden ihre Toten (Ṭabarī). → Siegel 3.', ref: 'Jes 42,11' },
+    { tag: 'Jesaja 42', frage: 'das WO', text: 'Kedar (die Söhne Ismaels) und Sela — ein Ort in Medina. Genau dort begruben die Juden ihre Toten (Ṭabarī). → Buch 4.', ref: 'Jes 42,11' },
     { tag: 'Jesaja 21', frage: 'das WANN', text: '„Karawanen der Dedaniter … vor den Schwertern geflohen." Die Beduinisierung der Dedaniter (3. Jh.) war das Signal; die Migration folgte unmittelbar. „Binnen eines Jahres endet alle Herrlichkeit Kedars" = Badr (624).', ref: 'Jes 21,13-17' },
-    { tag: 'Daniel', frage: 'das JAHR', text: 'Die 350-Jahre- / Bar-Kochba-Rechnung zeigt auf 622. Rabbi Ben Abrahamson kommt selbst auf 622 und den „wahren Krieger-Messias".', ref: 'vgl. Siegel 5' },
+    { tag: 'Daniel', frage: 'das JAHR', text: 'Die 350-Jahre- / Bar-Kochba-Rechnung zeigt auf 622. Rabbi Ben Abrahamson kommt selbst auf 622 und den „wahren Krieger-Messias".', ref: 'vgl. Buch 6' },
   ],
   pointe:
     'Koordinaten aus Jesaja 42, Timing aus Jesaja 21, das Jahr aus Daniel — ein historisch nachweisbarer Migrationsstrom in die Wüste vor dem Ereignis. Niemand zieht für Komfort in die härteste Wüste der Erde.',
@@ -489,7 +489,7 @@ export const qurayzaTimeline = {
     { n: '2', titel: 'Erster Verrat — begnadigt', text: 'Die erste Treulosigkeit wurde vergeben; sie durften bleiben. Bestraft wurde erst der wiederholte Bruch.' },
     { n: '3', titel: 'Der Grabenkrieg', text: 'Beim Grabenkrieg verbündeten sich die Banū Qurayẓa mit dem Belagererheer (10.000) gegen 3.000 Muslime — existenzielle Bedrohung von innen.' },
     { n: '4', titel: 'Urteil nach eigenem Gesetz', text: 'Das Urteil fällte ihr eigener Verbündeter Saʿd ibn Muʿādh — nach Deut 20,10-14, ihrem eigenen Kriegsgesetz. Karen Armstrong: „wegen Verrats, nicht aus religiösen oder rassischen Gründen."' },
-    { n: '5', titel: 'Mose-Parallele', text: 'Beim goldenen Kalb ließ Mose ~3.000 töten (Ex 32,27-29). Gleicher Maßstab: entweder beide Propheten oder keiner. → verstärkt „Prophet wie Mose" (Siegel 2).' },
+    { n: '5', titel: 'Mose-Parallele', text: 'Beim goldenen Kalb ließ Mose ~3.000 töten (Ex 32,27-29). Gleicher Maßstab: entweder beide Propheten oder keiner. → verstärkt „Prophet wie Mose" (Buch 3).' },
   ],
   pointe:
     'Vertragsbruch, Hochverrat im Krieg, ihr eigenes Gesetz, ein Historiker und Mose selbst — wer Muhammad ﷺ deshalb verurteilt, verurteilt Mose.',
@@ -500,7 +500,7 @@ export const davidischSeziertisch = {
   intro:
     'Der Seziertisch. Das davidische Messias-Narrativ in vier Propaganda-Schichten — jede mit einem Beleg — und darunter der Deut-18,22-Todesstoß.',
   schichten: [
-    { n: 'a', titel: 'Stammes-Polemik im Text', beleg: 'Genesis untergräbt systematisch Esau (Edom) zugunsten Jakobs — 7 Varianten des Konflikts (Rosenberg). Dasselbe Muster gegen Ismael (Siegel 1).' },
+    { n: 'a', titel: 'Stammes-Polemik im Text', beleg: 'Genesis untergräbt systematisch Esau (Edom) zugunsten Jakobs — 7 Varianten des Konflikts (Rosenberg). Dasselbe Muster gegen Ismael (Buch 2).' },
     { n: 'b', titel: 'Eingefügte Davids-Texte', beleg: 'Jeremia 23,5-6 (davidischer „Spross"); in Sacharja 6,11-12 wurde Serubbabels Name getilgt und durch Josua ersetzt (Reginald Fuller). Nach dem Exil verblasste die Davids-Hoffnung (Dunn; Collins: kaum Messianismus 500–200 v. Chr.).' },
     { n: 'c', titel: 'Fehl-Exegese authentischer Texte', beleg: '2 Sam 7,25-26 (Davids Gebet) als „künftiger Messias" umgedeutet. Jes 11,1 „Stumpf Isais" — yišay = Kurzform von yišmaʿel (Encyclopaedia Biblica) + „Frucht" = Ismael.' },
     { n: 'd', titel: 'NT-Anpassung der Genealogien', beleg: 'Zwei widersprüchliche Stammbäume (Mt 1 vs. Lk 3) — „beide erfunden" (Helms). Lukas führt Marias Linie auf Aaron (Priester), nicht David. Butz: Davids-Abkunft = Kirchen-Polemik. Jesus selbst zweifelt das Kriterium an (Mt 22,41-45).' },
@@ -533,16 +533,16 @@ export const ibnAlHaybanBanner = {
 
 // ---- Exhibit 8: the rope of strands (synthesis, reuses .netz) ---------------
 export const straenge = {
-  intro: 'Kein Siegel trägt allein. Verwoben bilden sie ein Seil aus vielen Strängen — das ist, was auf der Waage liegt:',
+  intro: 'Kein Buch trägt allein. Verwoben bilden sie ein Seil aus vielen Strängen — das ist, was auf der Waage liegt:',
   items: [
     { siegel: 'Fundament', was: 'Der prüfbare Anspruch (7,157) und die Leseregeln.' },
-    { siegel: 'Siegel I', was: 'Die gesegnete, legitime Linie Ismaels — der Abstammungs-Bund.' },
-    { siegel: 'Siegel II', was: 'Der Prophet „wie Mose", aus den Brüdern.' },
-    { siegel: 'Siegel III', was: 'Paran, Kedar, Bakka — die Orte in Arabien.' },
-    { siegel: 'Siegel IV', was: 'maḥamaddīm — Wurzel und Klang des Namens.' },
-    { siegel: 'Siegel V', was: 'Daniels Zeitfenster — das Jahr 622, nach dem geteilten Rom.' },
-    { siegel: 'Siegel VI', was: 'Der Paraklet / Aḥmad — der Gepriesene.' },
-    { siegel: 'Siegel VII', was: 'Die historisch belegte jüdische Erwartung.' },
+    { siegel: 'Buch 2', was: 'Die gesegnete, legitime Linie Ismaels — der Abstammungs-Bund.' },
+    { siegel: 'Buch 3', was: 'Der Prophet „wie Mose", aus den Brüdern.' },
+    { siegel: 'Buch 4', was: 'Paran, Kedar, Bakka — die Orte in Arabien.' },
+    { siegel: 'Buch 5', was: 'maḥamaddīm — Wurzel und Klang des Namens.' },
+    { siegel: 'Buch 6', was: 'Daniels Zeitfenster — das Jahr 622, nach dem geteilten Rom.' },
+    { siegel: 'Buch 7', was: 'Der Paraklet / Aḥmad — der Gepriesene.' },
+    { siegel: 'Buch 8', was: 'Die historisch belegte jüdische Erwartung.' },
   ],
   pointe: 'Ein einzelner Strang mag sich biegen; das Seil aus sieben trägt. Die gemeinsame Wahrscheinlichkeit all dessen als Zufall ist praktisch null.',
 }
@@ -559,7 +559,7 @@ export const erwartungKonter: KonterItem[] = [
     tier: 'stone',
     einwand: '„Muhammad tötete Juden (Banū Qurayẓa) — kein Retter Israels."',
     konter:
-      'Kontext: Die Banū Qurayẓa brachen den Medina-Vertrag und verbündeten sich beim Grabenkrieg mit den Belagerern (10.000 gegen 3.000). Ihre erste Treulosigkeit wurde begnadigt; bestraft wurden sie erst beim zweiten Verrat. Das Urteil sprach ihr eigener Verbündeter Saʿd ibn Muʿādh — nach ihrem eigenen Gesetz (Deut 20,10-14). Karen Armstrong: „nicht aus religiösen oder rassischen Gründen — wegen Verrats." Und Mose tat beim goldenen Kalb dasselbe (Ex 32,27-29, ~3.000 Tote). Wer Muhammad ﷺ deshalb verurteilt, verurteilt Mose. → verstärkt sogar „Prophet wie Mose" (Siegel 2).',
+      'Kontext: Die Banū Qurayẓa brachen den Medina-Vertrag und verbündeten sich beim Grabenkrieg mit den Belagerern (10.000 gegen 3.000). Ihre erste Treulosigkeit wurde begnadigt; bestraft wurden sie erst beim zweiten Verrat. Das Urteil sprach ihr eigener Verbündeter Saʿd ibn Muʿādh — nach ihrem eigenen Gesetz (Deut 20,10-14). Karen Armstrong: „nicht aus religiösen oder rassischen Gründen — wegen Verrats." Und Mose tat beim goldenen Kalb dasselbe (Ex 32,27-29, ~3.000 Tote). Wer Muhammad ﷺ deshalb verurteilt, verurteilt Mose. → verstärkt sogar „Prophet wie Mose" (Buch 3).',
     belegId: 'qurayza',
   },
   {
@@ -587,21 +587,21 @@ export const erwartungKonter: KonterItem[] = [
     tier: 'stone',
     einwand: '„Die jüdische Erwartung erfüllte sich ganz in Jesus — mehr ist nicht offen."',
     konter:
-      'Die Erwartung kannte mehrere Gestalten: Messias, Elia und „den Propheten" (Joh 1,21; 1QS 9,11). Johannes der Täufer verneint ausdrücklich, „der Prophet" zu sein. Selbst wenn man den Messias-Platz Jesus zuschreibt, bleibt der Platz „des Propheten wie Mose" offen — und sein Maßstab führt nach Arabien (Siegel II). Und historisch wanderten die Juden vor dem Islam in die Wüste, weil sie genau diesen Propheten erwarteten.',
+      'Die Erwartung kannte mehrere Gestalten: Messias, Elia und „den Propheten" (Joh 1,21; 1QS 9,11). Johannes der Täufer verneint ausdrücklich, „der Prophet" zu sein. Selbst wenn man den Messias-Platz Jesus zuschreibt, bleibt der Platz „des Propheten wie Mose" offen — und sein Maßstab führt nach Arabien (Buch 3). Und historisch wanderten die Juden vor dem Islam in die Wüste, weil sie genau diesen Propheten erwarteten.',
     belegId: 'kriterien',
   },
   {
     tier: 'stone',
     einwand: '„5. Mose 13 schließt Muhammad aus — er brachte ein neues Gesetz."',
     konter:
-      'Der Prüfstein von 5. Mose 13 ist der Ruf zu ANDEREN GÖTTERN, nicht ein neues Gesetz. Mose selbst brachte ein Gesetz; der „Prophet wie Mose" bringt eines (Siegel II). Muhammad ﷺ rief zum einen Gott Abrahams, Moses und Jesu und zerbrach die Götzen — das genaue Gegenteil dessen, wovor 13,3 warnt. Der Stein trifft ihn nicht; er besteht ihn.',
+      'Der Prüfstein von 5. Mose 13 ist der Ruf zu ANDEREN GÖTTERN, nicht ein neues Gesetz. Mose selbst brachte ein Gesetz; der „Prophet wie Mose" bringt eines (Buch 3). Muhammad ﷺ rief zum einen Gott Abrahams, Moses und Jesu und zerbrach die Götzen — das genaue Gegenteil dessen, wovor 13,3 warnt. Der Stein trifft ihn nicht; er besteht ihn.',
     belegId: 'deut132',
   },
   {
     tier: 'stone',
     einwand: '„Ihr beruft euch auf ‚gleiche Maßstäbe‘ nur, wenn es euch nützt."',
     konter:
-      'Die Regel schneidet in beide Richtungen, und wir tragen das: Wir lehnen das Barnabas-Evangelium ab (Fundament), wir markieren die Grenzen des Parakleten und sagen selbst, dass keine Handschrift „períklytos" liest (Siegel VI), wir nennen das Hohelied einen Faden, keinen Pfeiler (Siegel IV). Wir behaupten auch nicht, alle Rabbiner verfälschten — Eliezer ben Hyrcanus und Ben Gurion kritisierten solche Umdeutungen selbst. Gleiches Maß heißt gleiches Maß.',
+      'Die Regel schneidet in beide Richtungen, und wir tragen das: Wir lehnen das Barnabas-Evangelium ab (Fundament), wir markieren die Grenzen des Parakleten und sagen selbst, dass keine Handschrift „períklytos" liest (Buch 7), wir nennen das Hohelied einen Faden, keinen Pfeiler (Buch 5). Wir behaupten auch nicht, alle Rabbiner verfälschten — Eliezer ben Hyrcanus und Ben Gurion kritisierten solche Umdeutungen selbst. Gleiches Maß heißt gleiches Maß.',
     belegId: 'doppelmass',
   },
   {
@@ -615,7 +615,7 @@ export const erwartungKonter: KonterItem[] = [
     tier: 'marble',
     einwand: '„‚Gleiche Maßstäbe‘ ist nur Rhetorik — es beweist nichts Positives."',
     konter:
-      'Stimmt, und das ist gewollt: al-mīzān ist nicht selbst der Beweis, sondern die Waage, auf der die Beweise liegen. Ihr Werk ist, das Sonderplädoyer zu entfernen, damit die Belege der Siegel I–VI ungehindert sprechen. Das positive Gewicht kommt von ihnen; dieses Siegel sorgt nur dafür, dass gerecht gewogen wird.',
+      'Stimmt, und das ist gewollt: al-mīzān ist nicht selbst der Beweis, sondern die Waage, auf der die Beweise liegen. Ihr Werk ist, das Sonderplädoyer zu entfernen, damit die Belege der Bücher 2–7 ungehindert sprechen. Das positive Gewicht kommt von ihnen; dieses Buch sorgt nur dafür, dass gerecht gewogen wird.',
   },
 ]
 
@@ -628,7 +628,7 @@ export const erwartungScholar: ScholarItem[] = [
   {
     tier: 'stone',
     h: '7.2 — Karte + Zeitplan: Jesaja 42 & 21 als Wegweiser',
-    body: 'Jesaja 42 (Kedar/Sela) gab das Wo: Medina → Siegel 3. Jesaja 21,13-17 gab das Wann: „die Dedaniter lagern im Gebüsch Arabiens" → die Beduinisierung der Dedaniter im 3. Jh. war das Signal. Historisch belegt: die jüdische Migration nach Medina folgte unmittelbar darauf (Caskel, Peters, Hoyland, Shuaib). „Innerhalb eines Jahres … endet alle Herrlichkeit Kedars" (21,16) = Schlacht von Badr (624). Daniel (350-Jahre- / Bar-Kochba-Rechnung, Siegel 5) gab das Jahr 622. Rabbi Ben Abrahamson kommt selbst auf 622 und nennt den „wahren Krieger-Messias" — Eltern hätten ihr Kind nach Daniels „Ish ḥamudot" benannt: Muḥamud.',
+    body: 'Jesaja 42 (Kedar/Sela) gab das Wo: Medina → Buch 4. Jesaja 21,13-17 gab das Wann: „die Dedaniter lagern im Gebüsch Arabiens" → die Beduinisierung der Dedaniter im 3. Jh. war das Signal. Historisch belegt: die jüdische Migration nach Medina folgte unmittelbar darauf (Caskel, Peters, Hoyland, Shuaib). „Innerhalb eines Jahres … endet alle Herrlichkeit Kedars" (21,16) = Schlacht von Badr (624). Daniel (350-Jahre- / Bar-Kochba-Rechnung, Buch 6) gab das Jahr 622. Rabbi Ben Abrahamson kommt selbst auf 622 und nennt den „wahren Krieger-Messias" — Eltern hätten ihr Kind nach Daniels „Ish ḥamudot" benannt: Muḥamud.',
   },
   {
     tier: 'stone',
@@ -643,17 +643,17 @@ export const erwartungScholar: ScholarItem[] = [
   {
     tier: 'stone',
     h: '7.5 — Das davidische Messias-Narrativ: Prophezeiung oder Propaganda?',
-    body: 'Vier Schichten. (a) Stammes-Polemik: Genesis untergräbt systematisch Esau (Edom) zugunsten Jakobs — 7 Konflikt-Varianten (Rosenberg); dasselbe gegen Ismael (Siegel 1). (b) Eingefügte Davids-Texte: Jeremia 23,5-6 (davidischer „Spross"); Sacharja 6,11-12 — Serubbabels Name getilgt und durch Josua ersetzt, als Serubbabel die Davids-Rolle nicht erfüllte (Reginald Fuller); nach dem Exil verblasste die Davids-Hoffnung (James Dunn; Collins: kaum Messianismus 500–200 v. Chr.). (c) Fehl-Exegese: 2 Sam 7,25-26 (Davids Gebet) umgedeutet; Jes 11,1 yišay = yišmaʿel (Enc. Biblica). (d) NT-Genealogien: Mt 1 vs. Lk 3 „beide erfunden" (Helms); Lukas → Aaron, nicht David; Butz: Kirchen-Polemik; Jesus zweifelt das Kriterium an (Mt 22,41-45). Todesstoß: Deut 18,21-22 — das davidische Narrativ traf nie ein, das arabische jeden Punkt.',
+    body: 'Vier Schichten. (a) Stammes-Polemik: Genesis untergräbt systematisch Esau (Edom) zugunsten Jakobs — 7 Konflikt-Varianten (Rosenberg); dasselbe gegen Ismael (Buch 2). (b) Eingefügte Davids-Texte: Jeremia 23,5-6 (davidischer „Spross"); Sacharja 6,11-12 — Serubbabels Name getilgt und durch Josua ersetzt, als Serubbabel die Davids-Rolle nicht erfüllte (Reginald Fuller); nach dem Exil verblasste die Davids-Hoffnung (James Dunn; Collins: kaum Messianismus 500–200 v. Chr.). (c) Fehl-Exegese: 2 Sam 7,25-26 (Davids Gebet) umgedeutet; Jes 11,1 yišay = yišmaʿel (Enc. Biblica). (d) NT-Genealogien: Mt 1 vs. Lk 3 „beide erfunden" (Helms); Lukas → Aaron, nicht David; Butz: Kirchen-Polemik; Jesus zweifelt das Kriterium an (Mt 22,41-45). Todesstoß: Deut 18,21-22 — das davidische Narrativ traf nie ein, das arabische jeden Punkt.',
   },
   {
     tier: 'stone',
     h: '7.6 — Gleiche Maßstäbe (das methodische Herzstück)',
-    body: 'Sprichwort 20,10: „Zweierlei Gewicht … ein Gräuel für den Herrn." Koran 2,85 (Teilglaube an die Schrift) — das Prinzip. Vage Jesus-Prophezeiungen: Hosea 11,1 (Israels Exodus, nicht Jesus); Mt 27,9 (Sacharja fälschlich „Jeremia"); „über 300" nur durch Dehnung. Dr. Michael Brown leugnet das Aus-dem-Kontext-Zitieren nicht, sondern nennt es (mit Verweis auf Qumran/Fitzmyer) „legitime Methode" — der Top-Experte gibt es selbst zu. Rabbinische Tiefstmaßstäbe: „bara" (Gen 2,4) → „für Abraham"; Buchstaben-Umordnung; Sanhedrin-43a-Namens-Exegese. FAIRNESS-Disziplin: das Buch nennt selbst Gegenbeispiele — Rabbi Eliezer ben Hyrcanus und David Ben Gurion kritisierten solche Umdeutungen. Wir behaupten NICHT, alle Rabbiner täten das — nur dass es in Mainstream-Quellen verbreitet ist. Augustinus-Eingeständnis (Contra Faustum, Siegel 2): er kann Juden nicht überzeugen; seine Position beruhe allein auf NT-Glauben, nicht auf Exegese.',
+    body: 'Sprichwort 20,10: „Zweierlei Gewicht … ein Gräuel für den Herrn." Koran 2,85 (Teilglaube an die Schrift) — das Prinzip. Vage Jesus-Prophezeiungen: Hosea 11,1 (Israels Exodus, nicht Jesus); Mt 27,9 (Sacharja fälschlich „Jeremia"); „über 300" nur durch Dehnung. Dr. Michael Brown leugnet das Aus-dem-Kontext-Zitieren nicht, sondern nennt es (mit Verweis auf Qumran/Fitzmyer) „legitime Methode" — der Top-Experte gibt es selbst zu. Rabbinische Tiefstmaßstäbe: „bara" (Gen 2,4) → „für Abraham"; Buchstaben-Umordnung; Sanhedrin-43a-Namens-Exegese. FAIRNESS-Disziplin: das Buch nennt selbst Gegenbeispiele — Rabbi Eliezer ben Hyrcanus und David Ben Gurion kritisierten solche Umdeutungen. Wir behaupten NICHT, alle Rabbiner täten das — nur dass es in Mainstream-Quellen verbreitet ist. Augustinus-Eingeständnis (Contra Faustum, Buch 3): er kann Juden nicht überzeugen; seine Position beruhe allein auf NT-Glauben, nicht auf Exegese.',
   },
   {
     tier: 'stone',
     h: '7.7 — Muhammad ﷺ vollbrachte die Messias-Werke',
-    body: 'Historisch tat Muhammad ﷺ (bzw. die frühen Muslime) genau das, was man vom davidischen Messias erwartete: Persien und Rom besiegt, den Juden die Rückkehr ins Heilige Land eröffnet, den Tempelplatz gereinigt und dort den Monotheismus wiederhergestellt (jüd. Zeuge Sefer Pitron Torah, Siegel 4). Die Ablehnung erfolgt allein wegen der Blutlinie (nicht-davidisch), nicht wegen mangelnder Erfüllung. Wer einwendet „der davidische Messias kommt erst noch", macht Deut 18 zur Farce.',
+    body: 'Historisch tat Muhammad ﷺ (bzw. die frühen Muslime) genau das, was man vom davidischen Messias erwartete: Persien und Rom besiegt, den Juden die Rückkehr ins Heilige Land eröffnet, den Tempelplatz gereinigt und dort den Monotheismus wiederhergestellt (jüd. Zeuge Sefer Pitron Torah, Buch 5). Die Ablehnung erfolgt allein wegen der Blutlinie (nicht-davidisch), nicht wegen mangelnder Erfüllung. Wer einwendet „der davidische Messias kommt erst noch", macht Deut 18 zur Farce.',
   },
   {
     tier: 'stone',
@@ -668,19 +668,19 @@ export const erwartungScholar: ScholarItem[] = [
   {
     tier: 'marble',
     h: '7.10 — Was die Waage leistet — und was nicht',
-    body: 'al-mīzān beweist nichts aus sich; sie ist die Methode, nicht die Materie. Ihre Aufgabe ist, Sonderstrenge und Sondergroßzügigkeit zu entfernen, damit die Belege gleich zählen. Gleiches Maß verpflichtet auch zur Selbstkritik (schwache Belege wie Jes 11,1=Ismael bleiben markiert, die 350-Jahre-Rechnung gilt nur ergänzend). So gelesen, ist dieses Siegel das Gewissen der übrigen — kein neuer Beweis, sondern ihre faire Wägung.',
+    body: 'al-mīzān beweist nichts aus sich; sie ist die Methode, nicht die Materie. Ihre Aufgabe ist, Sonderstrenge und Sondergroßzügigkeit zu entfernen, damit die Belege gleich zählen. Gleiches Maß verpflichtet auch zur Selbstkritik (schwache Belege wie Jes 11,1=Ismael bleiben markiert, die 350-Jahre-Rechnung gilt nur ergänzend). So gelesen, ist dieses Buch das Gewissen der übrigen — kein neuer Beweis, sondern ihre faire Wägung.',
   },
 ]
 
 export const erwartungVernetzung = [
-  { ziel: 'Siegel 1 — Abrahams Nachkommen', text: 'Die Stammes-Polemik gegen Ismael ist dieselbe Maschine wie gegen Esau; das Ismael-Vorurteil erklärt die Ablehnung.' },
-  { ziel: 'Siegel 2 — Prophet wie Mose', text: 'Banū Qurayẓa (Ex 32) verstärkt „Prophet wie Mose"; dazu das Augustinus-Eingeständnis (Contra Faustum).' },
-  { ziel: 'Siegel 3 — Arabische Prophezeiungen', text: 'Jesaja 42 (Wo) + Jesaja 21 (Wann) = die Karte, der die Juden folgten; der Berg Sela.' },
-  { ziel: 'Siegel 4 — maḥamaddīm', text: 'Ish ḥamudot → Muḥamud; die Sanhedrin-Methode als Maßstab.' },
-  { ziel: 'Siegel 5 — Daniels Fenster', text: 'Daniel / Bar-Kochba = das Jahr 622; die Tempel-Reinigung.' },
-  { ziel: 'Siegel 6 — Der Paraklet', text: '„Dieses Geschlecht"-Doppelmoral; die Paraklet-Eingeständnisse.' },
-  { ziel: 'Verteidigung — Falscher Prophet?', text: 'Der Deut-18,22-Test trifft auch das davidische Narrativ — er liefert dem nächsten Siegel den Maßstab.' },
+  { ziel: 'Buch 2 — Abrahams Nachkommen', text: 'Die Stammes-Polemik gegen Ismael ist dieselbe Maschine wie gegen Esau; das Ismael-Vorurteil erklärt die Ablehnung.' },
+  { ziel: 'Buch 3 — Prophet wie Mose', text: 'Banū Qurayẓa (Ex 32) verstärkt „Prophet wie Mose"; dazu das Augustinus-Eingeständnis (Contra Faustum).' },
+  { ziel: 'Buch 4 — Arabische Prophezeiungen', text: 'Jesaja 42 (Wo) + Jesaja 21 (Wann) = die Karte, der die Juden folgten; der Berg Sela.' },
+  { ziel: 'Buch 5 — maḥamaddīm', text: 'Ish ḥamudot → Muḥamud; die Sanhedrin-Methode als Maßstab.' },
+  { ziel: 'Buch 6 — Daniels Fenster', text: 'Daniel / Bar-Kochba = das Jahr 622; die Tempel-Reinigung.' },
+  { ziel: 'Buch 7 — Der Paraklet', text: '„Dieses Geschlecht"-Doppelmoral; die Paraklet-Eingeständnisse.' },
+  { ziel: 'Verteidigung — Falscher Prophet?', text: 'Der Deut-18,22-Test trifft auch das davidische Narrativ — er liefert dem nächsten Buch den Maßstab.' },
 ]
 
 export const erwartungGleicheMassstaebe =
-  'Dies ist nicht nur die Pointe eines Siegels, sondern des ganzen Moduls. Der Kritiker akzeptiert für Jesus Prophezeiungen, die aus dem Kontext gerissen (Hosea 11,1), falsch zugeschrieben (Mt 27,9) und in sich widersprüchlich (zwei Genealogien) sind — verlangt aber für Muhammad ﷺ den buchstäblichen Namenszug; er nimmt rabbinische Buchstaben-Umordnung und Sanhedrin-Namens-Exegese hin — verwirft aber maḥamaddīm; er deutet „dieses Geschlecht" großzügig in die Zukunft (Siegel 6) — verweigert dem Parakleten dieselbe Offenheit; er legt unmögliche Maßstäbe an islamische Belege und blinde Milde an die eigenen. Auf einer einzigen, ehrlichen Waage (Sprichwort 20,10) bleibt nur ein Erfüller stehen. Selbst die Gegenseite gibt es ein: Brown (Aus-Kontext = Methode), Augustinus (kann nicht überzeugen), Butz (Polemik), der Chumash (Islam = großes Volk, Siegel 1), North (mishpat = dīn, Siegel 3), Parkhurst (ḤMD = Aḥmad, Siegel 4), Brown & Co. (Paraklet = Mensch, Siegel 6). Geografie + Name (in zwei Sprachen) + Gesetzgeber-Profil + Weltreich-Zeitachse + Abstammungs-Bund + die historisch belegte jüdische Erwartung bilden ein Netz. Genau ein Mensch der Weltgeschichte steht im Schnittpunkt aller Fäden: Muhammad ﷺ.'
+  'Dies ist nicht nur die Pointe eines Buches, sondern der ganzen Buchreihe. Der Kritiker akzeptiert für Jesus Prophezeiungen, die aus dem Kontext gerissen (Hosea 11,1), falsch zugeschrieben (Mt 27,9) und in sich widersprüchlich (zwei Genealogien) sind — verlangt aber für Muhammad ﷺ den buchstäblichen Namenszug; er nimmt rabbinische Buchstaben-Umordnung und Sanhedrin-Namens-Exegese hin — verwirft aber maḥamaddīm; er deutet „dieses Geschlecht" großzügig in die Zukunft (Buch 7) — verweigert dem Parakleten dieselbe Offenheit; er legt unmögliche Maßstäbe an islamische Belege und blinde Milde an die eigenen. Auf einer einzigen, ehrlichen Waage (Sprichwort 20,10) bleibt nur ein Erfüller stehen. Selbst die Gegenseite gibt es ein: Brown (Aus-Kontext = Methode), Augustinus (kann nicht überzeugen), Butz (Polemik), der Chumash (Islam = großes Volk, Buch 2), North (mishpat = dīn, Buch 4), Parkhurst (ḤMD = Aḥmad, Buch 5), Brown & Co. (Paraklet = Mensch, Buch 7). Geografie + Name (in zwei Sprachen) + Gesetzgeber-Profil + Weltreich-Zeitachse + Abstammungs-Bund + die historisch belegte jüdische Erwartung bilden ein Netz. Genau ein Mensch der Weltgeschichte steht im Schnittpunkt aller Fäden: Muhammad ﷺ.'

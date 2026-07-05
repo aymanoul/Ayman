@@ -44,11 +44,11 @@ export default function SiegelCarousel({ module }: { module: ModuleMeta }) {
   }
 
   return (
-    <section className="carousel" aria-label="Siegel als Bildtafeln">
+    <section className="carousel" aria-label="Die Bücher als Bildtafeln">
       <div className="carousel__head">
         <p className="carousel__eyebrow">
           <i />
-          Die Siegel
+          Die Bücher
           <i />
         </p>
         <div className="carousel__nav" aria-hidden={false}>
@@ -97,7 +97,7 @@ function Card({ moduleId, seal }: { moduleId: string; seal: SealMeta }) {
   return (
     <motion.div variants={rise} className="scard-wrap">
       <Link
-        to={soon ? '#' : `/modul/${moduleId}/siegel/${seal.id}`}
+        to={soon ? '#' : `/modul/${moduleId}/buch/${seal.id}`}
         className={`scard${soon ? ' scard--soon' : ''}`}
         aria-disabled={soon}
         onClick={(e) => soon && e.preventDefault()}

@@ -17,7 +17,7 @@ export default function Regal() {
 
         <header className="seal__head" style={{ marginTop: '1rem' }}>
           <span className="seal__num">Buchreihe</span>
-          <h1 className="seal__title">Ar-Raheeq Al-Makhtoom</h1>
+          <h1 className="seal__title">Der versiegelte Nektar</h1>
         </header>
 
         <Bookshelf titel={regalTitel} autor={regalAutor} verlag={regalVerlag} baende={regalBaende} />

@@ -113,7 +113,7 @@ export const hoheliedBelege: Record<string, Beleg> = {
     sprache: 'he',
     translit: 'dôdî ṣaḥ wᵉ-ʾādôm, dāgûl mē-rᵉvāvāh',
     uebersetzung:
-      '„Mein Geliebter ist strahlend und rot, hervorragend (bannertragend, dāgûl) unter Zehntausend (rᵉvāvāh)." — Rashi: „von vielen Heeren umgeben"; Barnes: „Anführer von zehntausend Kriegern". Dieselbe „Zehntausend" wie die „Zehntausende Heiliger" von 5. Mose 33,2 (Siegel III) — Sifrei Devarim verbindet beide; mit Zehntausend zog der Prophet ﷺ in Mekka ein.',
+      '„Mein Geliebter ist strahlend und rot, hervorragend (bannertragend, dāgûl) unter Zehntausend (rᵉvāvāh)." — Rashi: „von vielen Heeren umgeben"; Barnes: „Anführer von zehntausend Kriegern". Dieselbe „Zehntausend" wie die „Zehntausende Heiliger" von 5. Mose 33,2 (Buch 4) — Sifrei Devarim verbindet beide; mit Zehntausend zog der Prophet ﷺ in Mekka ein.',
     fundstelle: 'Hohelied 5,10',
     kern: 'דָּגוּל מֵרְבָבָה',
   },
@@ -238,7 +238,7 @@ export const hoheliedBelege: Record<string, Beleg> = {
     typ: 'quelle',
     kurz: 'Die Orthodox Jewish Bible verbindet maḥamaddim (Hld 5,16) mit ḥimdat (Hag 2,7) als Moshiach.',
     uebersetzung:
-      'Die Orthodox Jewish Bible verknüpft maḥamaddim aus Hohelied 5,16 ausdrücklich mit dem ḥimdat kol ha-gôyim aus Haggai 2,7 und liest beide als Hinweis auf „Moshiach, das Begehren aller Nationen". Eine jüdische Bibelausgabe stellt damit selbst die textliche Verbindung her, auf der dieses Siegel ruht — beide Stellen, eine Wurzel, eine messianische Figur.',
+      'Die Orthodox Jewish Bible verknüpft maḥamaddim aus Hohelied 5,16 ausdrücklich mit dem ḥimdat kol ha-gôyim aus Haggai 2,7 und liest beide als Hinweis auf „Moshiach, das Begehren aller Nationen". Eine jüdische Bibelausgabe stellt damit selbst die textliche Verbindung her, auf der dieses Buch ruht — beide Stellen, eine Wurzel, eine messianische Figur.',
     fundstelle: 'Orthodox Jewish Bible, S. 698 (Hld 5,16 · Hag 2,7)',
   },
 
@@ -335,9 +335,9 @@ export const wurzelThread = {
     { ar: 'أَحْمَد', trans: 'Aḥmad', glanz: '„der Hochpreisende / Gepriesenste" (61,6)' },
   ],
   spuren: [
-    { heb: 'מַחֲמַדִּים', wort: 'maḥamaddim', sinn: '„ganz und gar begehrenswert"', stelle: 'Hohelied 5,16', siegel: 'Siegel IV', hl: true },
+    { heb: 'מַחֲמַדִּים', wort: 'maḥamaddim', sinn: '„ganz und gar begehrenswert"', stelle: 'Hohelied 5,16', siegel: 'Buch 5', hl: true },
     { heb: 'חֶמְדַּת', wort: 'ḥimdat', sinn: '„Begehren aller Völker"', stelle: 'Haggai 2,7', siegel: '—', hl: false },
-    { heb: 'חֲמוּדוֹת', wort: 'ḥamudot', sinn: '„vielgeliebt"', stelle: 'Daniel 9,23', siegel: 'Siegel V', hl: false },
+    { heb: 'חֲמוּדוֹת', wort: 'ḥamudot', sinn: '„vielgeliebt"', stelle: 'Daniel 9,23', siegel: 'Buch 6', hl: false },
     { heb: 'מַחְמַד', wort: 'maḥmad', sinn: '„das Begehrte (der Augen)"', stelle: 'Hesekiel 24,16', siegel: '—', hl: false },
   ],
   pointe:
@@ -555,20 +555,20 @@ export const hoheliedScholar: ScholarItem[] = [
   {
     tier: 'stone',
     h: '4.5 — Die Physiognomie: passt „wie angegossen"',
-    body: 'Hld 5,10-16 beschreibt den Geliebten im Traum/Vision (5,2: „ich schlief, aber mein Herz wachte" → symbolisch, nicht wörtlich). Treffer mit den authentischen Beschreibungen Muhammads ﷺ (Bukhārī 3561/2837, Musnad Aḥmad 946, al-Shamāʾil 122): „hervorragend unter Zehntausend" (5,10) — dāgûl = Bannerträger/Heerführer (Rashi: „von vielen Heeren umgeben"; Barnes: „Anführer von zehntausend Kriegern") → direkte Brücke zu Deut 33 (10.000 Heilige, Siegel III), und Sifrei Devarim verbindet beide. „Haupt aus feinstem Gold" (5,11) — paz = speziell ARABISCHES Gold (Gill; Tanchum Yerushalmi: höchste, „gepriesenste" Qualität; Diodorus: aus Arabien). „Haar … schwarz wie ein Rabe" (5,11) — ʿoreb (Rabe) ↔ ʿarab (Araber), Unterschied nur in den Vokalpunkten (Strong; daher als suggestiver Zusatz markiert). „Beine wie Marmorsäulen" — Hadith: große Gelenke, kraftvoller Gang. „Anblick wie der Libanon, erlesen wie seine Zedern" — Hadith: „Ich habe nichts Schöneres gesehen als den Gesandten Gottes." Koran 2,146: die Schriftkundigen erkannten ihn „wie ihre eigenen Söhne" → setzt detaillierte Beschreibungen voraus, genau wie hier.',
+    body: 'Hld 5,10-16 beschreibt den Geliebten im Traum/Vision (5,2: „ich schlief, aber mein Herz wachte" → symbolisch, nicht wörtlich). Treffer mit den authentischen Beschreibungen Muhammads ﷺ (Bukhārī 3561/2837, Musnad Aḥmad 946, al-Shamāʾil 122): „hervorragend unter Zehntausend" (5,10) — dāgûl = Bannerträger/Heerführer (Rashi: „von vielen Heeren umgeben"; Barnes: „Anführer von zehntausend Kriegern") → direkte Brücke zu Deut 33 (10.000 Heilige, Buch 4), und Sifrei Devarim verbindet beide. „Haupt aus feinstem Gold" (5,11) — paz = speziell ARABISCHES Gold (Gill; Tanchum Yerushalmi: höchste, „gepriesenste" Qualität; Diodorus: aus Arabien). „Haar … schwarz wie ein Rabe" (5,11) — ʿoreb (Rabe) ↔ ʿarab (Araber), Unterschied nur in den Vokalpunkten (Strong; daher als suggestiver Zusatz markiert). „Beine wie Marmorsäulen" — Hadith: große Gelenke, kraftvoller Gang. „Anblick wie der Libanon, erlesen wie seine Zedern" — Hadith: „Ich habe nichts Schöneres gesehen als den Gesandten Gottes." Koran 2,146: die Schriftkundigen erkannten ihn „wie ihre eigenen Söhne" → setzt detaillierte Beschreibungen voraus, genau wie hier.',
   },
   {
     tier: 'stone',
     h: '4.6 — Die Verknüpfung aller arabischen Prophezeiungen (Ellen Davis)',
-    body: 'AT-Forscherin Ellen F. Davis: Das Hohelied ist „das biblischste der Bücher" — der Dichter im ständigen Gespräch mit anderen biblischen Autoren. Querverbindungen im Hohelied: „Küsse seines Mundes" (1,2) ↔ Deut 18,18 „Worte in seinen Mund" (Artscroll Tanach: „Küsse des Mundes" = Prophetie). „meine Schwester, meine Freundin" (5,2) — der Geliebte ist „Bruder" Israels ↔ Deut 18,18 „aus ihren Brüdern". „Mund süß … süßer als Honig" ↔ Ps 19,8-10 (Gottes Gebote süßer als Honig); Tanchum Yerushalmi bezieht es auf das GESETZ. Geliebter im „Garten, wo Balsambäume wachsen" (6,2) ↔ Ps 84 „Tal Baca" (Baca = Balsambäume = Mekka, Siegel III). „Wächter … nahmen mir den Schleier" (5,7) — negativ dargestellte Jerusalemer Wächter; passt nicht zur erotischen Lesart, wohl aber zur prophetischen. „Süße seines Mundes" (5,16) = die unnachahmliche Eloquenz des Korans (Zammit; Dawood [jüd. Übersetzer]; Casanova: Muhammads einziges angefordertes Wunder war der Koran).',
+    body: 'AT-Forscherin Ellen F. Davis: Das Hohelied ist „das biblischste der Bücher" — der Dichter im ständigen Gespräch mit anderen biblischen Autoren. Querverbindungen im Hohelied: „Küsse seines Mundes" (1,2) ↔ Deut 18,18 „Worte in seinen Mund" (Artscroll Tanach: „Küsse des Mundes" = Prophetie). „meine Schwester, meine Freundin" (5,2) — der Geliebte ist „Bruder" Israels ↔ Deut 18,18 „aus ihren Brüdern". „Mund süß … süßer als Honig" ↔ Ps 19,8-10 (Gottes Gebote süßer als Honig); Tanchum Yerushalmi bezieht es auf das GESETZ. Geliebter im „Garten, wo Balsambäume wachsen" (6,2) ↔ Ps 84 „Tal Baca" (Baca = Balsambäume = Mekka, Buch 4). „Wächter … nahmen mir den Schleier" (5,7) — negativ dargestellte Jerusalemer Wächter; passt nicht zur erotischen Lesart, wohl aber zur prophetischen. „Süße seines Mundes" (5,16) = die unnachahmliche Eloquenz des Korans (Zammit; Dawood [jüd. Übersetzer]; Casanova: Muhammads einziges angefordertes Wunder war der Koran).',
   },
 ]
 
 export const hoheliedVernetzung = [
   { ziel: 'Das Fundament', text: 'Jesus nennt ihn Aḥmad (61,6) — hier der hebräische Beleg derselben Wurzel ḤMD im Alten Testament: maḥamaddim.' },
-  { ziel: 'Siegel II — Prophet wie Mose', text: '„Küsse des Mundes" (1,2) und „meine Schwester" (5,2) = Deut 18,18 („Worte in den Mund", „aus ihren Brüdern").' },
-  { ziel: 'Siegel III — Arabische Prophezeiungen', text: 'dāgûl „zehntausend" (5,10) = Deut 33 (10.000 Heilige); „Balsambäume" (6,2) = Baca/Mekka (Ps 84) — Sifrei Devarim verbindet beide.' },
-  { ziel: 'Siegel V — Daniel', text: 'Hld 5,10-15 (Statue: Haupt aus Gold → Beine aus Marmor) spielt bewusst mit Daniel 2,31-33 (Nebukadnezars Statue) — Ariel Bloch & Ellen Davis bestätigen die Parallele.' },
+  { ziel: 'Buch 3 — Prophet wie Mose', text: '„Küsse des Mundes" (1,2) und „meine Schwester" (5,2) = Deut 18,18 („Worte in den Mund", „aus ihren Brüdern").' },
+  { ziel: 'Buch 4 — Arabische Prophezeiungen', text: 'dāgûl „zehntausend" (5,10) = Deut 33 (10.000 Heilige); „Balsambäume" (6,2) = Baca/Mekka (Ps 84) — Sifrei Devarim verbindet beide.' },
+  { ziel: 'Buch 6 — Daniel', text: 'Hld 5,10-15 (Statue: Haupt aus Gold → Beine aus Marmor) spielt bewusst mit Daniel 2,31-33 (Nebukadnezars Statue) — Ariel Bloch & Ellen Davis bestätigen die Parallele.' },
 ]
 
 export const hoheliedGleicheMassstaebe =

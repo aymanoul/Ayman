@@ -72,7 +72,7 @@ export default function ModulePage() {
           <SiegelCarousel module={module} />
         ) : (
           <p className="seek__note" style={{ textAlign: 'center', marginTop: '3rem' }}>
-            Die Inhalte dieses Moduls folgen — im selben Siegel-System.
+            Die Inhalte dieser Buchreihe folgen.
           </p>
         )}
       </div>

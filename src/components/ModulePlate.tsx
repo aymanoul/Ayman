@@ -17,7 +17,7 @@ export default function ModulePlate({ module }: { module: ModuleMeta }) {
           {module.honorific && <span className="hon">{module.honorific}</span>}
         </span>
         <span className="plate__meta">
-          {open ? <span>{module.siegel.length} Siegel</span> : <span className="tag-soon">bald</span>}
+          {open ? <span>{module.siegel.length} Bücher</span> : <span className="tag-soon">bald</span>}
         </span>
       </span>
       {open && <Chevron className="plate__go" aria-hidden />}

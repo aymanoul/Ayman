@@ -75,7 +75,7 @@ export default function VerteidigungSeal() {
         {/* ---- header ---- */}
         <motion.header className="seal__head" initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
           <motion.span className="seal__num" variants={rise}>
-            Verteidigung
+            Buch 9 · Verteidigung
           </motion.span>
           <motion.h1 className="seal__title gilt" variants={rise}>
             Falscher Prophet?
