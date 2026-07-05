@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { search, type SearchResult } from '../lib/search'
-import { antworte, type Antwort } from '../lib/antwort'
+import { search, tokenize, type SearchResult } from '../lib/search'
+import { antworte, passageKey, type Antwort } from '../lib/antwort'
 import { fmt } from '../lib/fmt'
 import { SearchIcon, Chevron } from './icons'
 import { GradientAIChatInput } from './ui/gradient-ai-chat-input'
@@ -53,7 +53,21 @@ export default function SearchPanel() {
   function onAsk(message: string) {
     const q = message.trim()
     if (!q) return
-    setDialog((d) => [...d, { frage: q, antwort: antworte(q) }])
+    setDialog((d) => {
+      // Gesprächskontext: letzte beantwortete Runde liefert Buch + Thema;
+      // alle bereits gezeigten Passagen werden nicht wiederholt.
+      const letzte = [...d].reverse().find((t) => t.antwort)
+      const ctx = letzte?.antwort
+        ? {
+            sealId: letzte.antwort.passage.sealId,
+            themaTokens: tokenize(
+              [letzte.frage, letzte.antwort.passage.titel ?? '', letzte.antwort.passage.einwand ?? ''].join(' ')
+            ),
+            ausgeschlossen: d.filter((t) => t.antwort).map((t) => passageKey(t.antwort!.passage)),
+          }
+        : undefined
+      return [...d, { frage: q, antwort: antworte(q, ctx) }]
+    })
   }
 
   // neue Antwort sanft ins Bild holen
@@ -120,7 +134,11 @@ export default function SearchPanel() {
       {/* Frage-Feld — antwortet direkt aus den Inhalten der Bücher */}
       <div className="seek seek--ask">
         <GradientAIChatInput
-          placeholder="Stell eine Frage — z. B. „Warum gleicht Muhammad dem Mose mehr als Jesus?“"
+          placeholder={
+            dialog.length > 0
+              ? 'Frag weiter — z. B. „Welche Belege stützen das?“'
+              : 'Stell eine Frage — z. B. „Warum gleicht Muhammad dem Mose mehr als Jesus?“'
+          }
           onSend={onAsk}
         />
       </div>
@@ -165,6 +183,20 @@ export default function SearchPanel() {
                             {m.label} <i>({m.quelle})</i>
                           </Link>
                         ))}
+                      </div>
+                    )}
+
+                    {i === dialog.length - 1 && (
+                      <div className="chat__follow">
+                        <button type="button" className="chat__follow-btn" onClick={() => onAsk('Welche Belege stützen das?')}>
+                          Belege dazu
+                        </button>
+                        <button type="button" className="chat__follow-btn" onClick={() => onAsk('Was sagen die Gelehrten dazu?')}>
+                          Gelehrte
+                        </button>
+                        <button type="button" className="chat__follow-btn" onClick={() => onAsk('Welche Einwände gibt es dagegen?')}>
+                          Einwände
+                        </button>
                       </div>
                     )}
                   </div>

@@ -335,6 +335,33 @@
   font-style: inherit;
   color: var(--ink-faint);
 }
+.chat__follow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--line);
+}
+.chat__follow-btn {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 0.76rem;
+  color: var(--green-deep);
+  background: var(--green-wash);
+  border: 1px solid rgba(95, 111, 70, 0.25);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  transition: background 0.18s var(--ease-out), border-color 0.18s var(--ease-out), transform 0.14s var(--ease-out);
+}
+.chat__follow-btn:hover {
+  background: var(--green-wash-2);
+  border-color: var(--green);
+}
+.chat__follow-btn:active {
+  transform: scale(0.96);
+}
 .chat__foot {
   display: flex;
   justify-content: flex-end;

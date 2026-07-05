@@ -63,6 +63,21 @@ export interface Antwort {
   mehr: { label: string; quelle: string; link: string }[]
 }
 
+/** Gesprächskontext für Folgefragen („Belege dazu?", „Warum?") */
+export interface AntwortKontext {
+  /** Buch der letzten Antwort — Folgefragen bleiben bevorzugt dort */
+  sealId?: string | null
+  /** Themen-Tokens der letzten Frage/Antwort (für anaphorische Fragen) */
+  themaTokens?: string[]
+  /** Schlüssel bereits gezeigter Passagen — nicht wiederholen */
+  ausgeschlossen?: string[]
+}
+
+/** stabiler Schlüssel einer Passage (für „nicht wiederholen") */
+export function passageKey(p: Passage): string {
+  return [p.sealId, p.art, p.belegRef ?? p.titel ?? p.einwand ?? p.text.slice(0, 60)].join('|')
+}
+
 const SEAL_META: Record<string, { nummer: string; titel: string }> = {}
 for (const s of module1.siegel) SEAL_META[s.id] = { nummer: s.nummer, titel: s.titel }
 
@@ -146,18 +161,60 @@ function corpus(): Prepared[] {
   return CORPUS
 }
 
+// ---- Folgefragen: Absicht + Anapher ----------------------------------------
+// Erkannt auf dem NORMALISIERTEN Text (Umlaute → ae etc., wie tokenize).
+const INTENTS: [RegExp, PassageArt][] = [
+  [/\b(beleg|belege|beweis|beweise|quelle|quellen|vers|verse|stelle|stellen|fundstelle|woher|zitat)\b/, 'beleg'],
+  [/\b(gelehrte|gelehrten|wissenschaftler|forscher|rabbiner|professor|kommentar|autoritaet)\b/, 'gelehrte'],
+  [/\b(einwand|einwaende|kritik|kritiker|gegenargument|gegenargumente|dagegen|widerspruch|entgegnung)\b/, 'konter'],
+  [/\b(these|kernaussage|zusammenfassung|worum|kurzfassung)\b/, 'these'],
+]
+const ANAPHER = /\b(dazu|dafuer|dagegen|darauf|daran|davon|dies|dieser|diese|dieses|mehr|weiter|genauer|noch|warum|wieso|weshalb|stimmt|wirklich|sicher)\b/
+
+// Zeigewörter tragen kein Thema — nie als Themen-Token werten.
+const DEIKTIK = new Set(['dazu', 'dafuer', 'dagegen', 'darauf', 'daran', 'davon', 'dies', 'diese', 'dieser', 'dieses'])
+// Intent-Trigger (kanonisierte Formen via tokenize) — bei Folgefragen aus der
+// Themen-Wertung nehmen: "Einwände dagegen?" sagt WAS für eine Antwort gewünscht
+// ist, nicht WORÜBER; sonst zieht das Wort selbst ins falsche Buch.
+const INTENT_TRIGGER: Record<PassageArt, Set<string>> = {
+  beleg: new Set(tokenize('beleg belege beweis beweise quelle quellen vers verse stelle stellen fundstelle woher zitat')),
+  gelehrte: new Set(tokenize('gelehrte gelehrten wissenschaftler forscher rabbiner professor kommentar autoritaet')),
+  konter: new Set(tokenize('einwand einwaende kritik kritiker gegenargument gegenargumente widerspruch entgegnung')),
+  these: new Set(tokenize('these kernaussage zusammenfassung kurzfassung')),
+  schritt: new Set(),
+}
+
 // ---- die Antwort -----------------------------------------------------------
-export function antworte(frage: string): Antwort | null {
-  const qTokens = Array.from(new Set(tokenize(frage)))
+export function antworte(frage: string, ctx?: AntwortKontext): Antwort | null {
+  let qTokens = Array.from(new Set(tokenize(frage)))
   if (qTokens.length === 0) return null
   const qNorm = normalize(frage).trim()
 
+  const intent = INTENTS.find(([re]) => re.test(qNorm))?.[1] ?? null
+  // Folgefrage = es gibt Kontext UND die Frage ist kurz, hat eine erkennbare
+  // Absicht oder verweist anaphorisch zurück ("dazu", "warum", …). Lange,
+  // inhaltsreiche Fragen stehen für sich — kein klebriger Kontext.
+  const folge = !!ctx && (qTokens.length <= 3 || intent !== null || (qTokens.length <= 6 && ANAPHER.test(qNorm)))
+  const ctxSeal = folge ? ctx?.sealId ?? null : null
+  const ctxTokens = folge && ctx?.themaTokens ? new Set(ctx.themaTokens) : null
+  const ausgeschlossen = new Set(ctx?.ausgeschlossen ?? [])
+
+  // Themen-Tokens bereinigen: Zeigewörter immer raus; in Folgefragen auch die
+  // Intent-Trigger (sie beschreiben die Antwort-ART, nicht das Thema).
+  qTokens = qTokens.filter((t) => !DEIKTIK.has(t))
+  if (folge && intent) qTokens = qTokens.filter((t) => !INTENT_TRIGGER[intent].has(t))
+  if (qTokens.length === 0 && !folge) return null
+
   // Die kuratierte Suche als thematischer Kompass: ihr Top-Treffer kennt
   // Tag-Synonyme ("gleicht" → Vergleichstabelle), die reiner Prosa fehlen.
+  // Bei FOLGEFRAGEN gilt der Gesprächskontext, nicht der Kompass — sonst
+  // zieht "Welche Einwände gibt es?" ins Einwände-Buch statt beim Thema zu
+  // bleiben. (Der Exponat-Direktlink unten nutzt den Kompass trotzdem.)
   const kompass = search(frage, 1)[0]
-  const kompassSeal = kompass && kompass.score >= 6 ? kompass.entry.sealId : null
+  const kompassSeal = !folge && kompass && kompass.score >= 6 ? kompass.entry.sealId : null
 
   const scored: { p: Prepared; score: number }[] = []
+  const verdeckt: { p: Prepared; score: number }[] = [] // bereits gezeigt
   for (const p of corpus()) {
     let score = 0
     let matched = 0
@@ -175,26 +232,42 @@ export function antworte(frage: string): Antwort | null {
         matched++
       }
     }
+    // Gesprächskontext: Folgefragen bleiben im Buch der letzten Antwort und
+    // erben deren Thema — so versteht die Engine "Belege dazu?" oder "Warum?"
+    if (folge && ctxSeal && p.passage.sealId === ctxSeal) {
+      score += 3
+      matched++
+    }
+    if (ctxTokens) {
+      for (const t of ctxTokens) if (p.tokens.has(t)) score += 0.6
+    }
     if (matched === 0) continue
+    // Absicht der Folgefrage: "Belege?" → Verse, "Gelehrte?" → Notizen, …
+    if (intent && p.passage.art === intent) score += 3.5
     // Phrasen-Bonus: die Frage kommt (teilweise) wörtlich vor
     if (qNorm.length > 8 && p.raw.includes(qNorm)) score += 6
     // Abdeckungs-Bonus: viele Frage-Tokens getroffen → präzisere Passage
-    score += (matched / qTokens.length) * 4
+    if (qTokens.length > 0) score += (matched / qTokens.length) * 4
     // Bei breiten Fragen ist die These die beste Tür ins Thema
     if (p.passage.art === 'these') score += 1.5
     // Buch des Such-Kompasses bevorzugen
     if (kompassSeal && p.passage.sealId === kompassSeal) score += 2.5
     // Kurze Passagen nicht bevorzugen, aber Riesen-Texte leicht dämpfen
     if (p.passage.text.length > 900) score -= 1
-    scored.push({ p, score })
+
+    if (ausgeschlossen.has(passageKey(p.passage))) verdeckt.push({ p, score })
+    else scored.push({ p, score })
   }
+  // Nichts Neues mehr? Dann lieber eine schon gezeigte Passage als gar keine.
+  if (scored.length === 0 && verdeckt.length > 0) scored.push(...verdeckt)
   if (scored.length === 0) return null
   scored.sort((a, b) => b.score - a.score)
 
   const top = scored[0]
   // Schwelle: mindestens zwei getroffene Inhaltstoken bzw. solide Punktzahl,
   // sonst lieber ehrlich "keine Antwort" statt einer zufälligen Passage.
-  const minScore = qTokens.length >= 2 ? 6 : 4
+  // Folgefragen mit Kontext dürfen knapper sein.
+  const minScore = folge ? 4 : qTokens.length >= 2 ? 6 : 4
   if (top.score < minScore) return null
 
   const best = top.p.passage
@@ -203,7 +276,7 @@ export function antworte(frage: string): Antwort | null {
 
   // Kuratierter Exponat-Treffer (z. B. die 15-Kriterien-Tabelle) als
   // Direkt-Link — die Suche kennt diese Ziele, die Prosa-Passagen nicht.
-  if (kompassSeal && kompass.entry.anchor) {
+  if (kompass && kompass.score >= 6 && kompass.entry.anchor) {
     mehr.push({
       label: kompass.entry.label,
       quelle: quelleFuer(kompass.entry.sealId),
