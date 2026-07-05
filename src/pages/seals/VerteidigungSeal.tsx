@@ -6,6 +6,7 @@ import { ArrowLeft, Chevron } from '../../components/icons'
 import { BelegCard } from '../../components/Beleg'
 import { Synopse, Zuwd, Abrogationsliste, PaulusDossier, ProvBanner } from '../../components/exhibits/VerteidigungExhibits'
 import { rise, stagger } from '../../lib/anim'
+import { fmt } from '../../lib/fmt'
 import {
   verteidigungThese,
   verteidigungSteps,
@@ -79,11 +80,8 @@ export default function VerteidigungSeal() {
           <motion.h1 className="seal__title gilt" variants={rise}>
             Falscher Prophet?
           </motion.h1>
-          <motion.span className="seal__ar arabic" variants={rise} dir="rtl" lang="ar">
-            الدفاع
-          </motion.span>
           <motion.p className="seal__these" variants={rise}>
-            {verteidigungThese}
+            {fmt(verteidigungThese)}
           </motion.p>
         </motion.header>
 
@@ -96,7 +94,7 @@ export default function VerteidigungSeal() {
                 <span className="step__n">{s.n}</span>
                 <div>
                   <h3 className="step__h">{s.h}</h3>
-                  <p className="step__b">{s.body}</p>
+                  <p className="step__b">{fmt(s.body)}</p>
                 </div>
               </motion.li>
             ))}

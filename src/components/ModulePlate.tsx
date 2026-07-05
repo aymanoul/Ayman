@@ -17,9 +17,6 @@ export default function ModulePlate({ module }: { module: ModuleMeta }) {
           {module.honorific && <span className="hon">{module.honorific}</span>}
         </span>
         <span className="plate__meta">
-          <span className="plate__ar" lang="ar" dir="rtl">
-            {module.arabic}
-          </span>
           {open ? <span>{module.siegel.length} Siegel</span> : <span className="tag-soon">bald</span>}
         </span>
       </span>

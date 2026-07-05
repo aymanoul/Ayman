@@ -15,6 +15,7 @@ import {
   Straenge,
 } from '../../components/exhibits/ErwartungExhibits'
 import { rise, stagger } from '../../lib/anim'
+import { fmt } from '../../lib/fmt'
 import {
   erwartungThese,
   erwartungSteps,
@@ -88,11 +89,8 @@ export default function ErwartungSeal() {
           <motion.h1 className="seal__title gilt" variants={rise}>
             Jüdische Erwartung
           </motion.h1>
-          <motion.span className="seal__ar arabic" variants={rise} dir="rtl" lang="ar">
-            الميزان
-          </motion.span>
           <motion.p className="seal__these" variants={rise}>
-            {erwartungThese}
+            {fmt(erwartungThese)}
           </motion.p>
         </motion.header>
 
@@ -105,7 +103,7 @@ export default function ErwartungSeal() {
                 <span className="step__n">{s.n}</span>
                 <div>
                   <h3 className="step__h">{s.h}</h3>
-                  <p className="step__b">{s.body}</p>
+                  <p className="step__b">{fmt(s.body)}</p>
                 </div>
               </motion.li>
             ))}

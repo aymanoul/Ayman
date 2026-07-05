@@ -5,6 +5,7 @@ import { ArrowLeft, Chevron } from '../../components/icons'
 import { BelegCard } from '../../components/Beleg'
 import { TahrifSpektrum, NameThread, Spielregeln, IbnAmrJesaja } from '../../components/exhibits/FundamentExhibits'
 import { rise, stagger } from '../../lib/anim'
+import { fmt } from '../../lib/fmt'
 import {
   fundamentThese,
   fundamentSteps,
@@ -78,11 +79,8 @@ export default function FundamentSeal() {
           <motion.h1 className="seal__title gilt" variants={rise}>
             Das Fundament
           </motion.h1>
-          <motion.span className="seal__ar arabic" variants={rise} dir="rtl" lang="ar">
-            مكتوبًا
-          </motion.span>
           <motion.p className="seal__these" variants={rise}>
-            {fundamentThese}
+            {fmt(fundamentThese)}
           </motion.p>
         </motion.header>
 
@@ -95,7 +93,7 @@ export default function FundamentSeal() {
                 <span className="step__n">{s.n}</span>
                 <div>
                   <h3 className="step__h">{s.h}</h3>
-                  <p className="step__b">{s.body}</p>
+                  <p className="step__b">{fmt(s.body)}</p>
                 </div>
               </motion.li>
             ))}

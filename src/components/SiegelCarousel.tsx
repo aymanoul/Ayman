@@ -118,11 +118,6 @@ function Card({ moduleId, seal }: { moduleId: string; seal: SealMeta }) {
             <div className="scard__placeholder">
               <span className="scard__placeholder-num">{seal.nummer}</span>
               <span className="scard__placeholder-titel">{seal.titel}</span>
-              {seal.arabic && (
-                <span className="scard__placeholder-ar" lang="ar" dir="rtl">
-                  {seal.arabic}
-                </span>
-              )}
             </div>
           )}
 

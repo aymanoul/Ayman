@@ -219,6 +219,19 @@ mark.medina {
   color: var(--medina);
 }
 
+/* Automatische Text-Einfärbung wichtiger Aspekte (via lib/fmt).
+   Zurückhaltend: nur Farbe, kein Fettdruck — die Prosa bleibt ruhig. */
+.tx-q {
+  color: var(--medina);
+} /* zitierte Schrift-/Schlüsselphrasen „…" — grün, wie zitierte Verse */
+.tx-ref {
+  color: var(--brass-deep);
+  font-variant-numeric: tabular-nums;
+} /* Stellenangaben (7,157) — Gold-Ton, ruhig */
+.tx-hon {
+  color: var(--brass);
+} /* Eulogie ﷺ — Gold */
+
 /* display ink: solid Medina green — no gradient text */
 .gilt {
   color: var(--medina);

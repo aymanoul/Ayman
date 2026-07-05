@@ -13,6 +13,7 @@ import {
   SynopseTabellen,
 } from '../../components/exhibits/ArabienExhibits'
 import { rise, stagger } from '../../lib/anim'
+import { fmt } from '../../lib/fmt'
 import {
   arabienThese,
   arabienSteps,
@@ -86,11 +87,8 @@ export default function ArabienSeal() {
           <motion.h1 className="seal__title gilt" variants={rise}>
             Arabische Prophezeiungen
           </motion.h1>
-          <motion.span className="seal__ar arabic" variants={rise} dir="rtl" lang="ar">
-            فاران
-          </motion.span>
           <motion.p className="seal__these" variants={rise}>
-            {arabienThese}
+            {fmt(arabienThese)}
           </motion.p>
         </motion.header>
 
@@ -103,7 +101,7 @@ export default function ArabienSeal() {
                 <span className="step__n">{s.n}</span>
                 <div>
                   <h3 className="step__h">{s.h}</h3>
-                  <p className="step__b">{s.body}</p>
+                  <p className="step__b">{fmt(s.body)}</p>
                 </div>
               </motion.li>
             ))}

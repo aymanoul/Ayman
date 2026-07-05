@@ -14,6 +14,7 @@ import {
   PluralHoheit,
 } from '../../components/exhibits/HoheliedExhibits'
 import { rise, stagger } from '../../lib/anim'
+import { fmt } from '../../lib/fmt'
 import {
   hoheliedThese,
   hoheliedSteps,
@@ -87,11 +88,8 @@ export default function HoheliedSeal() {
           <motion.h1 className="seal__title gilt" variants={rise}>
             Das Hohelied
           </motion.h1>
-          <motion.span className="seal__ar arabic" variants={rise} dir="rtl" lang="ar">
-            محمد
-          </motion.span>
           <motion.p className="seal__these" variants={rise}>
-            {hoheliedThese}
+            {fmt(hoheliedThese)}
           </motion.p>
         </motion.header>
 
@@ -104,7 +102,7 @@ export default function HoheliedSeal() {
                 <span className="step__n">{s.n}</span>
                 <div>
                   <h3 className="step__h">{s.h}</h3>
-                  <p className="step__b">{s.body}</p>
+                  <p className="step__b">{fmt(s.body)}</p>
                 </div>
               </motion.li>
             ))}

@@ -60,19 +60,10 @@ export default function ModulePage() {
             animate="shown"
             variants={stagger}
           >
-            <motion.h1
-              className="front__name gilt"
-              variants={rise}
-              lang="ar"
-              dir="rtl"
-              style={{ fontFamily: 'var(--font-arabic)', fontSize: 'clamp(2rem,7vw,3.4rem)' }}
-            >
-              {module.arabic}
-            </motion.h1>
-            <motion.p className="plate__titel" variants={rise} style={{ marginTop: '0.6rem' }}>
+            <motion.h1 className="plate__titel" variants={rise}>
               {module.titel}
               {module.honorific && <span className="hon">{module.honorific}</span>}
-            </motion.p>
+            </motion.h1>
           </motion.section>
         )}
 

@@ -67,6 +67,19 @@ Alle zitierten Verse erscheinen in Medina-Grün: BelegCard-Kurztexte
 `.zeugen__zitat`, `.vt-prov__vers`). Dunkle Modal-Tafeln behalten ihr
 Gold-auf-Dunkel (Lesbarkeit).
 
+## Text-Einfärbung (v8) & kein dekoratives Arabisch
+- **`lib/fmt.tsx`** färbt in der Prosa automatisch wichtige Aspekte, ohne die
+  SPEC-Datenstrings zu ändern: zitierte „…"-Phrasen grün (`.tx-q`),
+  Stellenangaben wie (7,157) in Gold (`.tx-ref`), Eulogie ﷺ in Gold
+  (`.tx-hon`). Zurückhaltend — nur Farbe, kein Fettdruck. Aktuell angewendet
+  auf die **These** und die **Schritt-Texte** jeder Siegel-Seite (`{fmt(...)}`);
+  bei Bedarf auf Section-Leads/Konter/Exhibits erweiterbar.
+- **Dekorative arabische Titel-Übersetzungen entfernt** (Nutzerwunsch, wirkten
+  „KI"): der arabische Untertitel unter Siegel-Titeln (`.seal__ar`), der
+  Modul-Hero-Titel (محمد), die Karussell-Karten, die Modul-Kacheln und der
+  Regal-Untertitel. **Bleibt:** echtes arabisches Inhaltsmaterial (Exhibit-
+  Namen/Etymologien, Koran-Verse im Beleg-Modal, die Buchrücken im Regal).
+
 ## Struktur (v4 — die Debatten-Ebene)
 - **Siegel-Kopf:** linksbündig — Laufmarke („Siegel II"), Kamali-Titel,
   arabischer Untertitel gedämpft.
