@@ -29,6 +29,7 @@
 .einsetz__stelle {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   color: var(--ink-faint);
   margin-top: 0.2rem;
@@ -43,6 +44,7 @@
 .einsetz__verdikt {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.78rem;
   margin-top: 0.35rem;
 }
@@ -84,6 +86,7 @@
   align-items: baseline;
   gap: 0.5rem;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.02rem;
   color: var(--ink);
 }
@@ -124,6 +127,7 @@
 }
 .vnetz__nabe-label {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   color: var(--ink-faint);
 }
@@ -146,6 +150,7 @@
 }
 .vnetz__ziel {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1rem;
   color: var(--green);
 }
@@ -174,17 +179,20 @@
 }
 .feind__zitat {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.1rem;
   line-height: 1.5;
   color: var(--ink);
 }
 .feind__name {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1rem;
   color: var(--green);
 }
 .feind__rolle {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   color: var(--ink-faint);
 }

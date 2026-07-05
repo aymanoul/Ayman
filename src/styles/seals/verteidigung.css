@@ -30,12 +30,14 @@
 }
 .vt-zuwd__wurzel {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   letter-spacing: 0.06em;
   color: var(--ink-faint);
 }
 .vt-zuwd__bed {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.05rem;
   color: var(--ink);
   margin-top: 0.3rem;
@@ -84,6 +86,7 @@
 }
 .vt-paulus__n {
   font-family: var(--font-display);
+  font-style: italic;
   font-weight: 600;
   font-size: 1.6rem;
   line-height: 1;
@@ -91,6 +94,7 @@
 }
 .vt-paulus__titel {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.2rem;
   color: var(--ink);
 }
@@ -112,6 +116,7 @@
 }
 .vt-prov__vers {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: clamp(1.3rem, 3.5vw, 1.9rem);
   line-height: 1.4;
   color: var(--ink);
@@ -120,6 +125,7 @@
 }
 .vt-prov__ref {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;

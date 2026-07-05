@@ -55,14 +55,19 @@
   --line-faint: rgba(179, 135, 58, 0.13);
   --brass-line: rgba(179, 135, 58, 0.4);
 
-  /* ---- Type ----
-     EINE Schrift für alles: Happy Time — Fließtext normal, Titel fett (bold).
+  /* ---- Type (v8) ----
+     Happy Time ist raus (wirkte zu "KI"/dekorativ). Titel + UI laufen jetzt in
+     Inter (nur als Italic geliefert — jede Regel, die --font-display/--font-ui
+     nutzt, bekommt darum explizit font-style:italic dazu, sonst würde der
+     Browser bei angefordertem font-style:normal auf den Fallback ausweichen
+     statt Inter zu benutzen). Fließtext (--font-body) bleibt bewusst AUFRECHT
+     für lange Leseabschnitte — Poppins, bereits selbst gehostet.
      Montserrat/Poppins bleiben als Per-Glyph-Fallback (Diakritika ḥ ṣ ā …).
      Arabic: Cairo (text) + El Messiri (monumental).
      Quran verses stay Amiri — geometric kufi cannot carry full taškīl. */
-  --font-display: 'Happy Time', 'Poppins', system-ui, sans-serif;
-  --font-body: 'Happy Time', 'Poppins', system-ui, -apple-system, sans-serif;
-  --font-ui: 'Happy Time', 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-display: 'Inter 18pt', 'Poppins', system-ui, sans-serif;
+  --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-ui: 'Inter 18pt', 'Poppins', system-ui, -apple-system, sans-serif;
   --font-arabic: 'Cairo', 'Amiri', sans-serif;
   --font-kufi: 'El Messiri', 'Cairo', sans-serif;
   --font-quran: 'Amiri Quran', 'Amiri', serif;
@@ -87,8 +92,8 @@
   --color-ink: #2e2718;
   --color-green: #5f6f46;
   --color-brass: #b3873a;
-  --font-display: 'Happy Time', 'Poppins', system-ui, sans-serif;
-  --font-ui: 'Happy Time', 'Poppins', system-ui, sans-serif;
+  --font-display: 'Inter 18pt', 'Poppins', system-ui, sans-serif;
+  --font-ui: 'Inter 18pt', 'Poppins', system-ui, sans-serif;
 }
 
 /* ---------------------------------------------------------------- reset */
@@ -165,6 +170,7 @@ a {
 /* ----------------------------------------------------------- type roles */
 .kicker {
   font-family: var(--font-ui);
+  font-style: italic;
   text-transform: uppercase;
   letter-spacing: 0.38em;
   font-weight: 600;
@@ -173,6 +179,7 @@ a {
 }
 .label-ui {
   font-family: var(--font-ui);
+  font-style: italic;
   letter-spacing: 0.04em;
 }
 .arabic {
@@ -195,6 +202,7 @@ a {
 /* Überschriften: dieselbe Schrift wie der Fließtext, nur fett */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
+  font-style: italic;
   font-weight: 700;
   letter-spacing: 0.01em;
 }

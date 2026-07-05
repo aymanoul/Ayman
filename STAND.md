@@ -44,10 +44,11 @@ npx tsc --noEmit   # Typecheck (0 Fehler)
 
 ---
 
-## 4. Design-System (Stand v5 — „Mushaf")
+## 4. Design-System (Stand v8 — „Mushaf")
 
 Die Optik hat mehrere Umbaustufen durchlaufen (v3 andalusisch → v4 strukturiert →
-v5 Mushaf). **Aktuell gilt v5.** Tokens in `src/index.css`:
+v5 Mushaf → v6 Vektor-Ornamentik (verworfen) → v7 Foto-Ornamentik → v8 Schrift
+Inter statt Happy Time). **Aktuell gilt v8.** Tokens in `src/index.css`:
 
 ### Farben
 - **Papier:** `--paper #f4ecdb` (warmes Pergament-Elfenbein) · `--paper-card #fbf6e9`
@@ -57,14 +58,21 @@ v5 Mushaf). **Aktuell gilt v5.** Tokens in `src/index.css`:
 - **Andalusisches Rot:** `--anda #7a2e2e` → „Einwand", `<strong>`-Markierungen, `<mark>`
 - **Medina-Grün:** `--medina #156b4a` → Kicker, „Konter", Titel (`.gilt`), **zitierte Verse**
 
-### Schrift — EINE Schriftart
-- **Alles** läuft in **Happy Time** (`--font-display`, `--font-body`, `--font-ui`).
-  Fließtext normal, **Titel = fett (700)**. Fallback: Poppins.
+### Schrift (v8) — Inter (Titel/UI, kursiv) + Poppins (Fließtext, aufrecht)
+- Happy Time ist komplett raus (Datei gelöscht, wirkte zu dekorativ/„KI").
+- **`--font-display` / `--font-ui`** (Titel, Kicker, Buttons, Karten-Titel):
+  **Inter** (`Inter 18pt`), selbst gehostet, **nur als Italic** vorhanden —
+  jede Regel mit diesen Tokens hat darum explizit `font-style: italic`
+  danach (mechanisch eingefügt von `scripts/font-italic-insert.py`, einmalig
+  über alle CSS-Dateien gelaufen). Bei neuen Regeln immer mit ergänzen, sonst
+  weicht der Browser auf den Fallback statt Inter aus.
+- **`--font-body`** (Fließtext — Die-These, Beweisketten, Beleg-Texte): bleibt
+  bewusst **aufrecht** (Poppins) — lange Kursiv-Absätze ermüden beim Lesen.
 - **Arabisch:** Cairo (UI) · **Koran-Verse:** Amiri Quran (`.quran-script`, im Beleg-Modal).
 - **Hebräisch:** Frank Ruhl Libre.
 - Alle Fonts **selbst gehostet** (`src/assets/fonts/`, `src/styles/fonts.css`), kein CDN.
 - ⚠️ **Kamali** (`kamali.woff2/.otf`) liegt noch im Repo, wird aber **nicht mehr verwendet**
-  (in v5 durch Happy Time ersetzt). Kann gelöscht werden.
+  (schon in v5 durch Happy Time ersetzt, jetzt durch Inter/Poppins). Kann gelöscht werden.
 
 ### Ornamentik (v7 — Madina-Prachtrahmen, echtes Bild)
 - **Voller Fensterrahmen:** fester, umlaufender Prachtrahmen ums Sichtfeld

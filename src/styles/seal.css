@@ -16,6 +16,7 @@
 .seal__num {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   text-transform: uppercase;
   letter-spacing: 0.22em;
   font-size: 0.74rem;
@@ -31,6 +32,7 @@
 .seal__title {
   display: block;
   font-family: var(--font-display);
+  font-style: italic;
   font-weight: 700;
   font-size: clamp(1.9rem, 5.4vw, 3.1rem);
   line-height: 1.15;
@@ -82,6 +84,7 @@
   content: 'Die These';
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.68rem;
@@ -117,6 +120,7 @@
 .sec__kicker {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-size: 0.68rem;
@@ -126,6 +130,7 @@
 }
 .sec__title {
   font-family: var(--font-display);
+  font-style: italic;
   font-weight: 700;
   font-size: clamp(1.35rem, 3.6vw, 1.9rem);
   line-height: 1.2;
@@ -169,6 +174,7 @@
 .step__n {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   font-weight: 600;
   font-size: 1.15rem;
   letter-spacing: 0.08em;
@@ -180,6 +186,7 @@
 }
 .step__h {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.3rem;
   color: var(--ink);
   margin-bottom: 0.3rem;
@@ -260,12 +267,14 @@
 .statue__readout-reich {
   display: block;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.5rem;
   color: var(--ink);
 }
 .statue__readout-meta {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -285,6 +294,7 @@
 .statue__play {
   align-self: flex-start;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -360,11 +370,13 @@
 }
 .statue__chip-reich {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.05rem;
   color: var(--ink);
 }
 .statue__chip-mat {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.66rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -407,6 +419,7 @@
 }
 .beleg-card__label {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.64rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -416,6 +429,7 @@
 .beleg-card__ref {
   margin-left: auto;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   color: var(--ink-faint);
 }
@@ -432,6 +446,7 @@
 }
 .beleg-card__open {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.66rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -505,6 +520,7 @@
 }
 .beleg-panel__label {
   font-family: var(--font-ui);
+  font-style: italic;
   text-transform: uppercase;
   letter-spacing: 0.24em;
   font-size: 0.66rem;
@@ -512,6 +528,7 @@
 }
 .beleg-panel__ref {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   letter-spacing: 0.04em;
 }
@@ -578,6 +595,7 @@
   display: inline-block;
   margin-top: 1.25rem;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -709,6 +727,7 @@
 .tl__year {
   display: block;
   font-family: var(--font-display);
+  font-style: italic;
   font-weight: 600;
   font-size: 1.9rem;
   line-height: 1;
@@ -717,6 +736,7 @@
 .tl__title {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -753,6 +773,7 @@
   display: inline-block;
   margin-top: 0.7rem;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.6rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -792,6 +813,7 @@
 .konter__label {
   flex: none;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.6rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -846,6 +868,7 @@
   display: block;
   padding: 0.5rem 1.3rem 0;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -858,6 +881,7 @@
   gap: 0.6rem;
   margin: 0;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.82rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -907,6 +931,7 @@
 }
 .scholar__h {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.2rem;
   color: var(--ink);
   margin-bottom: 0.5rem;
@@ -930,6 +955,7 @@
 .massstab__label {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   text-transform: uppercase;
   letter-spacing: 0.24em;
   font-size: 0.68rem;
@@ -959,6 +985,7 @@
 }
 .netz__ziel {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.15rem;
   color: var(--green);
   margin-bottom: 0.5rem;
@@ -990,6 +1017,7 @@
 }
 .ex__title {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.3rem;
   color: var(--ink);
   margin-bottom: 1rem;
@@ -1015,6 +1043,7 @@
 }
 .pelach th {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.78rem;
   letter-spacing: 0.04em;
   color: var(--green);
@@ -1055,6 +1084,7 @@
 }
 .hmd__ref {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   letter-spacing: 0.04em;
   color: var(--ink-faint);
@@ -1069,6 +1099,7 @@
 }
 .hmd__root {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.66rem;
   letter-spacing: 0.18em;
   font-weight: 600;
@@ -1097,6 +1128,7 @@
 }
 .konst__mark {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.05rem;
   color: var(--green);
 }
@@ -1148,6 +1180,7 @@
 }
 .map__div {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 11px;
   letter-spacing: 0.08em;
   fill: var(--brass-deep);
@@ -1155,12 +1188,14 @@
 }
 .map__year {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 14px;
   font-weight: 600;
   fill: var(--green);
 }
 .map__city {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 13px;
   fill: var(--ink);
 }
@@ -1172,6 +1207,7 @@
   justify-content: center;
   margin-top: 1rem;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.82rem;
   color: var(--ink-soft);
 }
@@ -1250,6 +1286,7 @@
 .spektrum__flag {
   margin-top: 0.7rem;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -1269,6 +1306,7 @@
   gap: 1rem;
   margin-top: 2.9rem;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1316,6 +1354,7 @@
 }
 .namen__ref {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.64rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1333,6 +1372,7 @@
 }
 .namen__root {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -1359,6 +1399,7 @@
 .namen__spuren-h {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1396,12 +1437,14 @@
 }
 .namen__spur-stelle {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   color: var(--ink-faint);
   white-space: nowrap;
 }
 .namen__spur-siegel {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.62rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1433,6 +1476,7 @@
 .regeln__n {
   flex: none;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -1445,6 +1489,7 @@
 }
 .regeln__r {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.1rem;
   color: var(--green);
 }
@@ -1512,6 +1557,7 @@
 }
 .tree__root-name {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.5rem;
   color: var(--ink);
 }
@@ -1566,6 +1612,7 @@
 }
 .tree__col-label {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1600,6 +1647,7 @@
 }
 .tree__node--end {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.18rem;
   color: #fff;
   background: linear-gradient(180deg, var(--green-bright), var(--green));
@@ -1614,6 +1662,7 @@
 /* ------------------------------------------------------ the twelve princes */
 .zwoelf__ref {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -1637,6 +1686,7 @@
 .zwoelf__num {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.58rem;
   letter-spacing: 0.1em;
   color: var(--ink-faint);
@@ -1644,6 +1694,7 @@
 .zwoelf__name {
   display: block;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.02rem;
   color: var(--ink);
   margin-top: 0.15rem;
@@ -1658,6 +1709,7 @@
 .zwoelf__tag {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.56rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1693,12 +1745,14 @@
 }
 .gaben__gabe {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.08rem;
   color: var(--ink);
 }
 .gaben__ref {
   margin-left: auto;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   color: var(--ink-faint);
   text-align: right;
@@ -1759,6 +1813,7 @@
 .vgl__col {
   padding: 0.7rem 0.8rem;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.05rem;
   color: var(--ink);
   text-align: center;
@@ -1775,6 +1830,7 @@
 .vgl__k {
   padding: 0.7rem 0.85rem;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -1827,6 +1883,7 @@
 }
 .erwart__wer {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.12rem;
   color: var(--ink);
 }
@@ -1842,6 +1899,7 @@
 .erwart__a {
   margin-top: auto;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1876,6 +1934,7 @@
 }
 .brueder__volk {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.1rem;
   color: var(--green);
 }
@@ -1887,6 +1946,7 @@
 }
 .brueder__ref {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   color: var(--ink-faint);
   white-space: nowrap;
@@ -1976,12 +2036,14 @@
 }
 .strahl__stufe {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   color: var(--ink-faint);
 }
 .strahl__ort {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.55rem;
   line-height: 1.1;
   color: var(--ink);
@@ -2014,6 +2076,7 @@
 }
 .strahl__volk {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -2024,6 +2087,7 @@
 }
 .strahl__schrift {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.02rem;
   color: var(--brass);
   margin-top: 0.15rem;
@@ -2073,6 +2137,7 @@
 }
 .kschema__name {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 0.98rem;
   line-height: 1.1;
   color: var(--ink);
@@ -2085,6 +2150,7 @@
 }
 .kschema__sub {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.62rem;
   line-height: 1.3;
   letter-spacing: 0.04em;
@@ -2099,6 +2165,7 @@
   flex-direction: column;
   align-items: center;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   color: var(--ink-faint);
@@ -2134,6 +2201,7 @@
 }
 .baca__titel {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.7rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -2167,6 +2235,7 @@
 }
 .baca__eq {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 2rem;
   color: var(--brass);
 }
@@ -2188,6 +2257,7 @@
 }
 .baca__merkmal {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.02rem;
   color: var(--green);
 }
@@ -2310,6 +2380,7 @@
 }
 .anat__label {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2348,11 +2419,13 @@
   background: var(--green);
   color: var(--paper-card);
   font-family: var(--font-display);
+  font-style: italic;
   font-weight: 600;
   font-size: 1.3rem;
 }
 .anat__arrow {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.8rem;
   color: var(--brass);
 }
@@ -2375,6 +2448,7 @@
 }
 .anat__name-sinn {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   letter-spacing: 0.08em;
   color: var(--ink-faint);
@@ -2382,6 +2456,7 @@
 .anat__bedeutung {
   text-align: center;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.15rem;
   line-height: 1.5;
   color: var(--ink);
@@ -2427,6 +2502,7 @@
 }
 .plural__wort {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.1rem;
   color: var(--ink);
 }
@@ -2488,11 +2564,13 @@
 }
 .merkmal__h {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.08rem;
   color: var(--ink);
 }
 .merkmal__ref {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   color: var(--ink-faint);
   white-space: nowrap;
@@ -2526,6 +2604,7 @@
 .abfolge__label {
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -2561,6 +2640,7 @@
   background: var(--ink-faint);
   color: var(--paper-card);
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -2572,6 +2652,7 @@
 }
 .abfolge__ref {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   color: var(--ink-faint);
 }
@@ -2599,6 +2680,7 @@
 }
 .abfolge__quote {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.2rem;
   line-height: 1.5;
   color: var(--ink);
@@ -2664,6 +2746,7 @@
   flex: 1;
   text-align: center;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.1rem;
   color: var(--green);
 }
@@ -2690,6 +2773,7 @@
 .zmass__head span {
   padding: 0.7rem 0.95rem;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2713,12 +2797,14 @@
   gap: 0.2rem;
   padding: 0.85rem 0.95rem;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.05rem;
   color: var(--ink);
   background: var(--paper-2);
 }
 .zmass__siegel {
   font-family: var(--font-ui);
+  font-style: italic;
   font-style: normal;
   font-size: 0.64rem;
   letter-spacing: 0.08em;
@@ -2759,6 +2845,7 @@
   .zmass__cell::before {
     content: attr(data-lbl) ': ';
     font-family: var(--font-ui);
+    font-style: italic;
     font-size: 0.7rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -2792,6 +2879,7 @@
 .synopse__head span {
   padding: 0.7rem 0.95rem;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2837,6 +2925,7 @@
   .synopse__b::before {
     content: attr(data-lbl) ': ';
     font-family: var(--font-ui);
+    font-style: italic;
     font-size: 0.66rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;

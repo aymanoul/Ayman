@@ -36,10 +36,29 @@ lassen, Slice-Werte aus der Konsolenausgabe übertragen.
 Die klare v4-Struktur darunter bleibt (These-Block, Beweiskette-Raster,
 Konter-Reihen, Gelehrten-Raster).
 
-## Schrift (v5): EINE Schriftart
-**Happy Time für alles** — Fließtext normal (400), Titel dieselbe Schrift in
-**fett** (700, synthetisiert). Kamali wird nicht mehr verwendet. Arabisch
-(Cairo/El Messiri/Amiri) und Hebräisch bleiben für ihre Schriftsysteme.
+## Schrift (v8): Inter (Titel/UI, kursiv) + Poppins (Fließtext, aufrecht)
+Happy Time ist komplett raus (Datei gelöscht) — wirkte zu dekorativ/„KI".
+Zwei Rollen, konsequent auf allen Seiten (nicht nur im Chat-Feld):
+
+- **`--font-display` / `--font-ui`** (Titel, Kicker, Labels, Buttons, Karten-
+  Titel — überall, wo vorher Happy Time stand): **Inter**, selbst gehostet,
+  nur als **Italic** geliefert (`Inter 18pt`, opsz-Achse). Jede Regel, die
+  diese Tokens nutzt, bekommt darum explizit `font-style: italic` dazu
+  (`scripts/font-italic-insert.py` hat das einmalig mechanisch über alle
+  CSS-Dateien ergänzt) — sonst würde der Browser bei angefordertem
+  `font-style: normal` auf den Fallback ausweichen statt Inter zu nutzen.
+  Gewichts-Mapping: die Datei registriert nur 400 + 800 (kein echtes 700) —
+  angeforderte Werte ≥500 matchen laut CSS-Fonts-Spec auf das reale 800
+  (kein Faux-Bold mehr, echtes ExtraBold).
+- **`--font-body`** (Fließtext — Die-These-Blöcke, Beweisketten, Beleg-Texte):
+  bewusst **aufrecht**, nicht kursiv — lange Leseabschnitte in Kursivschrift
+  ermüden. **Poppins** (bereits selbst gehostet, kein neues Asset).
+
+Arabisch (Cairo/El Messiri/Amiri) und Hebräisch bleiben für ihre
+Schriftsysteme unverändert. Kamali bleibt ungenutztes Altlast-Asset (s. §8).
+
+Bei künftigen neuen Regeln: `--font-display`/`--font-ui` IMMER mit
+`font-style: italic` kombinieren, `--font-body` NIE.
 
 ## Verse (v5): Grün
 Alle zitierten Verse erscheinen in Medina-Grün: BelegCard-Kurztexte

@@ -82,6 +82,7 @@
   border: none;
   outline: none;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 1rem;
   color: var(--ink);
   letter-spacing: 0.01em;
@@ -121,6 +122,7 @@
 }
 .seek__note {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.82rem;
   color: var(--ink-soft);
   padding: 0.55rem 0.4rem 0;
@@ -160,6 +162,7 @@
 }
 .seek__hit-num {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.64rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -179,12 +182,14 @@
 }
 .seek__hit-titel {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.02rem;
   line-height: 1.25;
   color: var(--ink);
 }
 .seek__hit-mod {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   color: var(--ink-faint);
@@ -216,6 +221,7 @@
   gap: 1rem;
   margin-bottom: clamp(1.75rem, 5vh, 2.75rem);
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.34em;
@@ -264,6 +270,7 @@
 }
 .plate__titel {
   font-family: var(--font-display);
+  font-style: italic;
   font-weight: 500;
   font-size: clamp(1.5rem, 5vw, 2.5rem);
   line-height: 1.06;
@@ -282,6 +289,7 @@
   gap: 0.75rem;
   margin-top: 0.55rem;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -317,6 +325,7 @@
 }
 .tag-soon {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -333,6 +342,7 @@
   margin-top: clamp(1rem, 3vh, 1.4rem);
   padding-left: calc(var(--seal-col) - 26px);
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -370,6 +380,7 @@
 }
 .foot p {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.7rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -390,6 +401,7 @@
 }
 .stub h1 {
   font-family: var(--font-display);
+  font-style: italic;
   font-weight: 500;
   font-size: clamp(2rem, 7vw, 3.4rem);
   line-height: 1.05;
@@ -406,6 +418,7 @@
   gap: 0.5rem;
   margin-top: 2rem;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.76rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -448,6 +461,7 @@
 .srow__num {
   flex: none;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.64rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -460,6 +474,7 @@
 }
 .srow__titel {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: clamp(1.1rem, 3.5vw, 1.45rem);
   color: var(--ink);
 }
@@ -475,6 +490,7 @@
 .srow__soon {
   flex: none;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.65rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -542,6 +558,7 @@
   border-radius: 10px;
   background: var(--paper-card);
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;

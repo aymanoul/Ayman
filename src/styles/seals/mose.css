@@ -11,6 +11,7 @@
 }
 .score-row__n {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.2rem;
 }
 
@@ -46,6 +47,7 @@
 .varianten__head > span {
   padding: 0.7rem 0.95rem;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -63,6 +65,7 @@
 .varianten__z {
   padding: 0.8rem 0.95rem;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.02rem;
   color: var(--green);
   background: var(--paper-2);
@@ -90,6 +93,7 @@
 /* ---- Augustinus "Sie-sagen-es-selbst" panel ---- */
 .aug-panel__werk {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -97,6 +101,7 @@
 }
 .aug-panel__zitat {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.3rem;
   line-height: 1.5;
   color: var(--ink);
@@ -106,6 +111,7 @@
 }
 .aug-panel__autor {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.05rem;
   color: var(--green);
 }
@@ -156,6 +162,7 @@
 }
 .sieb__name {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.05rem;
   color: var(--ink);
 }
@@ -189,6 +196,7 @@
 }
 .zeugen__zitat {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.12rem;
   line-height: 1.5;
   color: var(--ink);
@@ -201,11 +209,13 @@
 }
 .zeugen__wer {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1rem;
   color: var(--green);
 }
 .zeugen__quelle {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   color: var(--ink-faint);
 }
@@ -226,6 +236,7 @@
   .varianten__mark::before {
     content: attr(data-lbl) ': ';
     font-family: var(--font-ui);
+    font-style: italic;
     font-size: 0.66rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;

@@ -15,6 +15,7 @@
 .pk-ko__strike {
   display: inline-block;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.15rem;
   color: var(--ink-soft);
   text-decoration: line-through;
@@ -35,6 +36,7 @@
 }
 .pk-ko__h {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1rem;
   color: var(--ink);
 }
@@ -124,6 +126,7 @@
 }
 .pk-verweise__ziel {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   letter-spacing: 0.04em;
   color: var(--brass);
@@ -152,6 +155,7 @@
 }
 .pk-var__typ {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -159,6 +163,7 @@
 }
 .pk-var__lesart {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.1rem;
   color: var(--ink);
 }
@@ -184,6 +189,7 @@
 }
 .pk-zeugen__name {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 0.98rem;
   color: var(--green);
 }
@@ -213,6 +219,7 @@
 }
 .pk-namen__name {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.05rem;
   color: var(--green);
 }
@@ -244,6 +251,7 @@
 }
 .pk-bus__rolle {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -251,6 +259,7 @@
 }
 .pk-bus__wort {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.6rem;
   color: var(--ink);
 }
@@ -261,6 +270,7 @@
 }
 .pk-bus__x {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.8rem;
   color: var(--accent-bordeaux, #7a2e2e);
 }
@@ -294,6 +304,7 @@
 }
 .pk-kirche__wer {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.05rem;
   color: var(--green);
 }

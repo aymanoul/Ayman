@@ -35,11 +35,13 @@
 }
 .netz-karte__buch-name {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 0.98rem;
   color: var(--green-deep);
 }
 .netz-karte__buch-ort {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -52,6 +54,7 @@
 }
 .netz-karte__stelle {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.56rem;
   letter-spacing: 0.05em;
   color: var(--brass);
@@ -61,6 +64,7 @@
 /* ----------------------------------------------- rising-light label (Deut 33) */
 .strahl__licht {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.6rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -107,6 +111,7 @@
 }
 .textvar__zeuge {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--ink);
@@ -138,6 +143,7 @@
   content: attr(data-lbl);
   display: block;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.6rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -174,6 +180,7 @@
 }
 .reihenf__lbl {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -214,12 +221,14 @@
   place-items: center;
   border-radius: 50%;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.66rem;
   color: var(--ink-soft);
   background: var(--paper-sink);
 }
 .reihenf__list li.is-verdict {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1rem;
   color: var(--ink);
 }
@@ -227,6 +236,7 @@
   content: '→';
   background: none;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1rem;
 }
 .reihenf__col--route .is-verdict {
@@ -239,6 +249,7 @@
   display: block;
   text-align: center;
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -273,6 +284,7 @@
 }
 .etmokh__titel {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.66rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -317,6 +329,7 @@
 }
 .etmokh__sinn {
   font-family: var(--font-ui);
+  font-style: italic;
   font-size: 0.74rem;
   line-height: 1.4;
   color: var(--ink-faint);
@@ -328,6 +341,7 @@
 }
 .etmokh__arrow {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.6rem;
   color: var(--brass);
   transform: rotate(90deg);
@@ -346,6 +360,7 @@
   display: block;
   padding: 0.75rem 0.95rem;
   font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.1rem;
   color: var(--green-deep);
   background: var(--green-wash-2);
@@ -370,6 +385,7 @@
   .textvar__head span {
     padding: 0.7rem 0.95rem;
     font-family: var(--font-ui);
+    font-style: italic;
     font-size: 0.68rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;

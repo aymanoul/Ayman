@@ -1,8 +1,8 @@
-/* Self-hosted fonts. Kamali + Happy Time are the operator's own faces
-   (headings / body); the Google-Fonts set below (OFL) serves as per-glyph
-   fallback and covers Arabic, Hebrew and Quran text. */
+/* Self-hosted fonts. Kamali is an unused legacy face (v4, kept for now); the
+   Google-Fonts set below (OFL) serves as per-glyph fallback and covers
+   Arabic, Hebrew and Quran text. Inter (Titel/UI) is declared further below. */
 
-/* ---- Kamali — alle Überschriften ----
+/* ---- Kamali — ungenutzt (v4-Relikt, s. STAND.md) ----
    Single-weight display face: declared as full weight range so the browser
    never fakes a bold (faux-bold ruins display faces). */
 @font-face {
@@ -12,15 +12,6 @@
   font-display: swap;
   src: url('../assets/fonts/kamali.woff2') format('woff2'),
        url('../assets/fonts/kamali.otf') format('opentype');
-}
-
-/* ---- Happy Time — gesamter Fließtext ---- */
-@font-face {
-  font-family: 'Happy Time';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('../assets/fonts/happytime.otf') format('opentype');
 }
 
 /* ---- Inter (italic, optical sizes 18/24pt) — Gradient-Chat-Input ----
