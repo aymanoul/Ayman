@@ -104,8 +104,7 @@ export default function FundamentSeal() {
         <section className="sec" id="belege">
           <Eyebrow kicker="Der Anspruch" title="Eine prüfbare Behauptung" />
           <p className="sec__lead">
-            Der Koran stellt sich selbst auf die Probe: der kommende Prophet sei „aufgeschrieben" bei den Leuten der
-            Schrift. Jeder Beleg öffnet sich groß und beleuchtet — Original, Umschrift, Übersetzung, Fundstelle.
+            Der Koran stellt sich selbst auf die Probe: der kommende Prophet sei „aufgeschrieben" bei den Leuten der Schrift.
           </p>
           <div className="belege-grid">
             <BelegCard beleg={fundamentBelege.q7157} />

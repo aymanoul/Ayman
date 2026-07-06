@@ -127,9 +127,6 @@ export default function AbrahamSeal() {
         {/* ---- the belege showcase ---- */}
         <section className="sec">
           <Eyebrow kicker="Die Belege" title="Der Segen über Ismael" />
-          <p className="sec__lead">
-            Jeder Beleg öffnet sich groß und beleuchtet — Originaltext, Umschrift, Übersetzung und Fundstelle.
-          </p>
           <div className="belege-grid">
             <BelegCard beleg={abrahamBelege.gen177} />
             <BelegCard beleg={abrahamBelege.gen1723} />

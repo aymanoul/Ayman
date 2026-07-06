@@ -128,9 +128,6 @@ export default function HoheliedSeal() {
         {/* ---- the belege showcase — ALL of them ---- */}
         <section className="sec">
           <Eyebrow kicker="Die Belege" title="Verse, Wurzel und Zeugen" />
-          <p className="sec__lead">
-            Jeder Beleg öffnet sich groß und beleuchtet — Originaltext, Umschrift, Übersetzung und Fundstelle.
-          </p>
           <div className="belege-grid">
             <BelegCard beleg={hoheliedBelege.song516} />
             <BelegCard beleg={hoheliedBelege.hag27} />

@@ -129,7 +129,7 @@ export default function ParakletSeal() {
         <section className="sec">
           <Eyebrow kicker="Die Belege" title="Verheißung, Name und Beschreibung" />
           <p className="sec__lead">
-            Jeder Beleg öffnet sich groß und beleuchtet — auch der stärkste Gegen-Vers (14,26) steht offen dabei.
+            Auch der stärkste Gegen-Vers (14,26) steht offen dabei.
           </p>
           <div className="belege-grid">
             <BelegCard beleg={parakletBelege.john1416} />

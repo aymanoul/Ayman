@@ -114,9 +114,6 @@ export default function MoseSeal() {
         {/* ---- the belege showcase ---- */}
         <section className="sec">
           <Eyebrow kicker="Die Belege" title="Verse, Quellen und Zeugen" />
-          <p className="sec__lead">
-            Jeder Beleg öffnet sich groß und beleuchtet — Originaltext, Umschrift, Übersetzung und Fundstelle.
-          </p>
           <div className="belege-grid">
             <BelegCard beleg={moseBelege.deut1818} />
             <BelegCard beleg={moseBelege.deut3410} />
