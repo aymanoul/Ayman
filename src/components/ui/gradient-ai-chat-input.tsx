@@ -1,39 +1,32 @@
 import { useRef, useState, type KeyboardEvent } from 'react'
-import { PaperPlane, ImageIcon, ChevronDown } from '../icons'
+import { PaperPlane } from '../icons'
 import '../../styles/gradient-ai-chat-input.css'
 
-// Gradient-AI-Chat-Input — 1:1 nach der gelieferten Vorlage nachgebaut.
+// Gradient-AI-Chat-Input — 1:1 nach der gelieferten Vorlage nachgebaut,
+// seitdem entschlackt: kein Datei-Anhang (die Antwort-Engine kann Bilder
+// nicht lesen, s. lib/antwort.ts), kein Modell-Chip (keine echte KI dahinter).
 //
 // Großer runder Kasten mit weichem Pastell-Verlaufsrand (Pfirsich → Rosa),
-// oben die mitwachsende Textzeile + Papierflieger zum Senden, unten eine
-// Toolbar mit „Attach File" und einem Modell-Chip („Claude ⌄"). Enter sendet,
+// mitwachsende Textzeile + Papierflieger zum Senden. Enter sendet,
 // Shift+Enter = Zeilenumbruch. `prefers-reduced-motion` friert die Bordüre.
 
 export interface GradientAIChatInputProps {
   placeholder?: string
   onSend?: (message: string) => void
-  onFileAttach?: () => void
   disabled?: boolean
   autoFocus?: boolean
   className?: string
   /** Maximale Zeilenhöhe, bevor die Textarea intern scrollt. */
   maxRows?: number
-  /** Beschriftung des Anhang-Buttons. */
-  attachLabel?: string
-  /** Beschriftung des Modell-Chips. Leer lassen, um ihn auszublenden. */
-  modelLabel?: string
 }
 
 export function GradientAIChatInput({
   placeholder = 'Send message...',
   onSend,
-  onFileAttach,
   disabled = false,
   autoFocus = false,
   className,
   maxRows = 8,
-  attachLabel = 'Attach File',
-  modelLabel = 'Claude',
 }: GradientAIChatInputProps) {
   const [value, setValue] = useState('')
   const taRef = useRef<HTMLTextAreaElement>(null)
@@ -95,24 +88,6 @@ export function GradientAIChatInput({
             >
               <PaperPlane aria-hidden />
             </button>
-          </div>
-
-          <div className="gaci__bar">
-            <button
-              type="button"
-              className="gaci__pill"
-              onClick={onFileAttach}
-              disabled={disabled}
-            >
-              <ImageIcon aria-hidden />
-              {attachLabel}
-            </button>
-            {modelLabel && (
-              <span className="gaci__pill gaci__model">
-                {modelLabel}
-                <ChevronDown aria-hidden />
-              </span>
-            )}
           </div>
         </div>
       </div>

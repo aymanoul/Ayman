@@ -37,24 +37,6 @@ export function PaperPlane(p: SVGProps<SVGSVGElement>) {
   )
 }
 
-export function ImageIcon(p: SVGProps<SVGSVGElement>) {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <rect x="3" y="3" width="18" height="18" rx="3" />
-      <circle cx="8.5" cy="8.5" r="1.5" />
-      <path d="m21 15-5-5L5 21" />
-    </svg>
-  )
-}
-
-export function ChevronDown(p: SVGProps<SVGSVGElement>) {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  )
-}
-
 export function Chevron(p: SVGProps<SVGSVGElement>) {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" {...p}>
