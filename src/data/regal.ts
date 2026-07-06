@@ -19,5 +19,5 @@ export const regalBaende: Band[] = [
   { nr: 6, name: 'دانيال', deutsch: 'Daniel', to: `${S}/daniel` },
   { nr: 7, name: 'الفارقليط', deutsch: 'Der Paraklet', to: `${S}/paraklet` },
   { nr: 8, name: 'انتظار اليهود', deutsch: 'Jüdische Erwartung', to: `${S}/juedische-erwartung` },
-  { nr: 9, name: 'الدفاع', deutsch: 'Das Urteil', to: `${S}/verteidigung` },
+  { nr: 9, name: 'الدفاع', deutsch: 'Falscher Prophet', to: `${S}/verteidigung` },
 ]
