@@ -327,3 +327,67 @@
     transform: none;
   }
 }
+
+/* ===================================== JESUS-VARIANTE (spine2.png) ==========
+   Zweite Buchreihe "Jesus, der Gesandte Gottes". Eigene Textur (navy/gold,
+   770x2042) und pixel-vermessene Zonen — Aufbau identisch zum Nektar, nur die
+   Geometrie folgt spine2.png:
+     Kopf-Feld (Navy-Panel) → arab. Reihentitel, gestapelt
+     Medaillon (Maroon-Rautenkartusche) → deutscher Bandtitel, cy 50 %
+     Raute (kleine Maroon-Raute) → Bandnummer, cy 75.0 %
+     Fuss-Kartusche (Maroon-Label) → arab. Verlag, cy 87.8 %
+   ========================================================================== */
+.shelf-wrap--jesus .spine,
+.shelf-wrap--jesus .book-label {
+  width: clamp(138px, 13vw, 176px);
+}
+.shelf-wrap--jesus .spine {
+  aspect-ratio: 770 / 2042;
+}
+/* Navy-Fallback nur OHNE Textur — das Shorthand wuerde sonst background-size
+   der .spine--img-Regel ueberschreiben und die Textur unskaliert crippen. */
+.shelf-wrap--jesus .spine:not(.spine--img) {
+  background: linear-gradient(90deg, #0a1024 0%, #141a2c 14%, #1f2740 50%, #141a2c 86%, #0a1024 100%);
+}
+
+/* Kopf-Feld — arab. Reihentitel im oberen Navy-Panel (Woerter untereinander) */
+.shelf-wrap--jesus .spine--img .spine__z--titel {
+  top: 12%;
+  height: 18%;
+  font-size: clamp(0.9rem, 1.45vw, 1.2rem);
+  color: #e9d6a2;
+}
+
+/* Medaillon — deutscher Titel in der Maroon-Kartusche (flache Mitte) */
+.shelf-wrap--jesus .spine--img .spine__med {
+  top: 41%;
+  height: 18%;
+  left: 30%;
+  width: 40%;
+}
+.shelf-wrap--jesus .spine--img .spine__med .spine__z--buch {
+  color: #f4e7bd;
+}
+
+/* Raute — Bandnummer, vertikale Mitte 75.0 % (aufrechte, gleich hohe Ziffern) */
+.shelf-wrap--jesus .spine--img .spine__z--nr {
+  top: 71.5%;
+  height: 7%;
+  color: #f3e4b7;
+}
+
+/* Fuss-Kartusche — arab. Verlag, vertikale Mitte 87.8 % */
+.shelf-wrap--jesus .spine--img .spine__z--verlag {
+  top: 85.9%;
+  height: 4%;
+  left: 29%;
+  width: 42%;
+  color: #eeddab;
+}
+
+@media (max-width: 720px) {
+  .shelf-wrap--jesus .spine,
+  .shelf-wrap--jesus .book-label {
+    width: 130px;
+  }
+}

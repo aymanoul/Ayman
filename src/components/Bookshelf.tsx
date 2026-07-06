@@ -28,9 +28,15 @@ export interface BookshelfProps {
   titel: string // Reihentitel (arabisch), Kopf jedes Ruckens
   verlag: string // Verlag (arabisch), Fuss-Kartusche
   baende: Band[]
+  // Optische Variante: waehlt Textur + Zonen-Geometrie. 'nektar' (gruen,
+  // 558x2042) ist Standard; 'jesus' nutzt spine2.png (navy/gold, 770x2042).
+  variant?: 'nektar' | 'jesus'
 }
 
-const SPINE_IMG = 'images/regal/spine.png'
+const SPINE_IMG: Record<'nektar' | 'jesus', string> = {
+  nektar: 'images/regal/spine.png',
+  jesus: 'images/regal/spine2.png',
+}
 
 // Skaliert den deutschen Titel so weit herunter, bis er ohne Ueberlauf in die
 // vermessene Medaillon-Flaeche passt — Vorrang hat kleinere Schrift vor
@@ -86,13 +92,13 @@ function SpineTitle({ text }: { text: string }) {
   )
 }
 
-export default function Bookshelf({ titel, verlag, baende }: BookshelfProps) {
-  const src = `${import.meta.env.BASE_URL}${SPINE_IMG}`
+export default function Bookshelf({ titel, verlag, baende, variant = 'nektar' }: BookshelfProps) {
+  const src = `${import.meta.env.BASE_URL}${SPINE_IMG[variant]}`
   const imgOk = useImageAvailable(src)
   const [hot, setHot] = useState<number | null>(null)
 
   return (
-    <div className="shelf-wrap">
+    <div className={`shelf-wrap${variant === 'jesus' ? ' shelf-wrap--jesus' : ''}`}>
       <div className="shelf-scroll">
         <div className="shelf-inner">
           <div className="shelf" role="list" aria-label={`Buchreihe ${titel}`}>

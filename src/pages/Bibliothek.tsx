@@ -6,6 +6,7 @@ import Bookshelf from '../components/Bookshelf'
 import { Chevron } from '../components/icons'
 import { modules } from '../data/modules'
 import { regalBaende, regalTitel, regalVerlag } from '../data/regal'
+import { regalJesusBaende, regalJesusTitel, regalJesusVerlag } from '../data/regal-jesus'
 import { rise, stagger, EASE } from '../lib/anim'
 
 // "Die Bibliothek" — der Eintritt in einen Bibliothekssaal. Frontispiz mit
@@ -67,6 +68,42 @@ export default function Bibliothek() {
           transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
         >
           <Link to="/modul/muhammad" className="hall__morelink">
+            Zu den Büchern <Chevron aria-hidden />
+          </Link>
+        </motion.div>
+      </section>
+
+      {/* ---- Der Saal: die zweite Buchreihe (Jesus, der Gesandte Gottes) ---- */}
+      <section className="hall" aria-label="Jesus, der Gesandte Gottes — die Buchreihe">
+        <motion.header
+          className="sec__head hall__head"
+          initial={reduce ? false : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: EASE }}
+        >
+          <h2 className="sec__title sec__title--green">
+            Jesus, der Gesandte Gottes
+          </h2>
+        </motion.header>
+
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 34 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.85, ease: EASE }}
+        >
+          <Bookshelf titel={regalJesusTitel} verlag={regalJesusVerlag} baende={regalJesusBaende} variant="jesus" />
+        </motion.div>
+
+        <motion.div
+          className="hall__more"
+          initial={reduce ? false : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
+        >
+          <Link to="/modul/jesus" className="hall__morelink">
             Zu den Büchern <Chevron aria-hidden />
           </Link>
         </motion.div>

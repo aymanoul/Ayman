@@ -1,8 +1,10 @@
 import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import SiegelCarousel from '../components/SiegelCarousel'
+import Bookshelf from '../components/Bookshelf'
 import { ArrowLeft } from '../components/icons'
 import { findModule } from '../data/modules'
+import { regalJesusBaende, regalJesusTitel, regalJesusVerlag } from '../data/regal-jesus'
 import { rise, stagger, EASE } from '../lib/anim'
 import { useImageAvailable } from '../lib/useImage'
 import '../styles/carousel.css'
@@ -67,8 +69,10 @@ export default function ModulePage() {
           </motion.section>
         )}
 
-        {/* ---- The seals as a title-image carousel ---- */}
-        {module.siegel.length > 0 ? (
+        {/* ---- Die Baende: als Buchregal (Jesus) oder Titelbild-Karussell ---- */}
+        {module.id === 'jesus' ? (
+          <Bookshelf titel={regalJesusTitel} verlag={regalJesusVerlag} baende={regalJesusBaende} variant="jesus" />
+        ) : module.siegel.length > 0 ? (
           <SiegelCarousel module={module} />
         ) : (
           <p className="seek__note" style={{ textAlign: 'center', marginTop: '3rem' }}>

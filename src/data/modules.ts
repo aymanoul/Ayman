@@ -92,12 +92,65 @@ export const module1: ModuleMeta = {
   siegel: withImages(modul1Siegel),
 }
 
+// Die sechs Baende der Buchreihe "Jesus, der Gesandte Gottes" (Abu Zakariya).
+// Argumente nach Oberthemen gebuendelt; Band 1 ausgearbeitet, 2-6 folgen.
+const modul2Siegel: SealMeta[] = [
+  {
+    id: 'wahrheitssuche',
+    nummer: '1',
+    titel: 'Die Wahrheitssuche',
+    arabic: 'الحق',
+    status: 'ready',
+    keywords: ['wahrheit', 'methode', 'detektiv', 'gleiche maßstäbe', 'einführung', 'jesus', 'messias', 'emotion', 'herkunft', 'vernunft', 'aufrichtigkeit', 'johannes 3,16', '16,78', 'brücke', 'abraham', '3,84'],
+  },
+  {
+    id: 'gotteskonzept',
+    nummer: '2',
+    titel: 'Das Gotteskonzept',
+    arabic: 'التوحيد',
+    status: 'coming',
+    keywords: ['dreifaltigkeit', 'trinität', 'tauhid', 'gott', 'nicäa', 'chalcedon', 'konzil', 'arius', 'athanasius', 'filioque', 'homoousios', 'monotheismus', 'al-ikhlas', 'heidnischer einfluss', 'konstantin', 'sohn gottes', '112', '5,73', '4,171'],
+  },
+  {
+    id: 'wahrer-jesus',
+    nummer: '3',
+    titel: 'Der wahre Jesus',
+    arabic: 'المسيح',
+    status: 'coming',
+    keywords: ['jesus', 'isa', 'messias', 'prophet', 'mensch', 'gesandter', 'maria', 'maryam', 'geburt', 'wunder', 'natur jesu', 'adam', '3,59', '5,75', '19,30', 'propheten', 'schrift'],
+  },
+  {
+    id: 'kreuz',
+    nummer: '4',
+    titel: 'Das Kreuz',
+    arabic: 'الصليب',
+    status: 'coming',
+    keywords: ['kreuzigung', 'kreuz', 'sühne', 'blutsühne', 'erlösung', 'vergebung', 'atonement', 'augenzeugen', 'inspiration', 'prophezeiung', 'zuverlässigkeit', '4,157', 'koran'],
+  },
+  {
+    id: 'botschaft',
+    nummer: '5',
+    titel: 'Die verlorene Botschaft',
+    arabic: 'الرسالة',
+    status: 'coming',
+    keywords: ['bewahrung', 'überlieferung', 'neues testament', 'manuskripte', 'paulus', 'gesetz', 'trennung der wege', 'inspiration', 'verfälschung', 'kanon', 'evangelium'],
+  },
+  {
+    id: 'angekuendigt',
+    nummer: '6',
+    titel: 'Der angekündigte Prophet',
+    arabic: 'البشارة',
+    status: 'coming',
+    keywords: ['prophezeiung', 'deuteronomium 33', '5. mose 33', 'jesaja 42', 'ismael', 'vertuschung', 'muhammad', 'paraklet', 'ahmad', 'prophet wie mose', 'schrift', 'bibel'],
+  },
+]
+
 export const module2: ModuleMeta = {
   id: 'jesus',
   titel: 'Jesus, der Gesandte Gottes',
   arabic: 'عيسى',
-  status: 'coming',
-  siegel: [],
+  status: 'available',
+  siegel: modul2Siegel,
 }
 
 export const modules: ModuleMeta[] = [module1, module2]

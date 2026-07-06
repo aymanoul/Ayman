@@ -14,6 +14,7 @@ import HoheliedSeal from './seals/HoheliedSeal'
 import ParakletSeal from './seals/ParakletSeal'
 import ErwartungSeal from './seals/ErwartungSeal'
 import VerteidigungSeal from './seals/VerteidigungSeal'
+import WahrheitssucheSeal from './seals/WahrheitssucheSeal'
 
 // Placeholder seal view. Built seals render their own page; the rest get a
 // graceful illuminated holding page until their content lands.
@@ -39,18 +40,25 @@ export default function SealPage() {
     return () => clearTimeout(t)
   }, [hash, sealId])
 
-  const BUILT: Record<string, () => JSX.Element> = {
-    daniel: DanielSeal,
-    fundament: FundamentSeal,
-    'abrahams-nachkommen': AbrahamSeal,
-    'prophet-wie-mose': MoseSeal,
-    'arabische-prophezeiungen': ArabienSeal,
-    hohelied: HoheliedSeal,
-    paraklet: ParakletSeal,
-    'juedische-erwartung': ErwartungSeal,
-    verteidigung: VerteidigungSeal,
+  // Fertige Buecher je Modul. Nicht gelistete Baende fallen auf die
+  // illuminierte Halteseite zurueck, bis ihr Inhalt landet.
+  const BUILT: Record<string, Record<string, () => JSX.Element>> = {
+    muhammad: {
+      daniel: DanielSeal,
+      fundament: FundamentSeal,
+      'abrahams-nachkommen': AbrahamSeal,
+      'prophet-wie-mose': MoseSeal,
+      'arabische-prophezeiungen': ArabienSeal,
+      hohelied: HoheliedSeal,
+      paraklet: ParakletSeal,
+      'juedische-erwartung': ErwartungSeal,
+      verteidigung: VerteidigungSeal,
+    },
+    jesus: {
+      wahrheitssuche: WahrheitssucheSeal,
+    },
   }
-  const Built = moduleId === 'muhammad' && sealId ? BUILT[sealId] : undefined
+  const Built = moduleId && sealId ? BUILT[moduleId]?.[sealId] : undefined
   if (Built && module && seal) {
     // Das fertige Buch + die Buch-Extras (Favorit/Notiz, Verlauf-Erfassung)
     return (

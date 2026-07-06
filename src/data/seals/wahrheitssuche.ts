@@ -34,7 +34,7 @@ export interface Regel {
 }
 
 export const wahrheitssucheThese =
-  'Bevor ein einziges Buch geöffnet wird, steht eine Entscheidung im Raum: Suchen wir die Wahrheit über Gott mit demselben Ernst, mit dem ein Detektiv einen Fall löst — oder folgen wir blind dem, in das wir hineingeboren wurden? Der Einsatz ist ein einziges Leben. Christentum und Islam teilen eine Schlüsselfigur — Jesus, den Messias —, erheben über ihn aber einander widersprechende Ansprüche. Da nicht beide recht haben können, brauchen wir Werkzeuge (Bibel, Geschichte, Vernunft), Aufrichtigkeit und vor allem gleiche Maßstäbe. Auf diesem Fundament dürfen die neun Bände sprechen.'
+  'Bevor ein einziges Buch geöffnet wird, steht eine Entscheidung im Raum: Suchen wir die Wahrheit über Gott mit demselben Ernst, mit dem ein Detektiv einen Fall löst — oder folgen wir blind dem, in das wir hineingeboren wurden? Der Einsatz ist ein einziges Leben. Christentum und Islam teilen eine Schlüsselfigur — Jesus, den Messias —, erheben über ihn aber einander widersprechende Ansprüche. Da nicht beide recht haben können, brauchen wir Werkzeuge (Bibel, Geschichte, Vernunft), Aufrichtigkeit und vor allem gleiche Maßstäbe. Auf diesem Fundament dürfen die sechs Bände sprechen.'
 
 export const wahrheitssucheSteps: Step[] = [
   {
@@ -188,9 +188,9 @@ export const wahrheitssucheScholar: ScholarItem[] = [
 ]
 
 export const wahrheitssucheVernetzung = [
-  { ziel: 'Band 2 — Die Dreifaltigkeit', text: 'Der erste Testfall: Hält der christliche Gottesbegriff der Prüfung durch Bibel, Geschichte und Vernunft stand?' },
-  { ziel: 'Band 3 — Der eine Gott', text: 'Die Gegenprobe: der reine Monotheismus (Tauhid) — und Jesus als Mensch, Gesandter und Messias.' },
-  { ziel: 'Band 9 — Der angekündigte Prophet', text: 'Am Ende schließt sich der Kreis: dieselbe Ermittlungsmethode, angewandt auf die Prophezeiungen der Schrift.' },
+  { ziel: 'Band 2 — Das Gotteskonzept', text: 'Der erste Testfall: Hält der christliche Gottesbegriff (Dreifaltigkeit) der Prüfung durch Bibel, Geschichte und Vernunft stand — und was setzt der Tauhid dagegen?' },
+  { ziel: 'Band 3 — Der wahre Jesus', text: 'Wer war Jesus wirklich? Mensch, Gesandter und Messias — im Licht von Koran und der Prophetentradition der Schrift.' },
+  { ziel: 'Band 6 — Der angekündigte Prophet', text: 'Am Ende schließt sich der Kreis: dieselbe Ermittlungsmethode, angewandt auf die Prophezeiungen der Schrift.' },
 ]
 
 export const wahrheitssucheGleicheMassstaebe =
