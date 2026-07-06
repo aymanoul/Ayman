@@ -68,7 +68,7 @@ export default function Bibliothek() {
           transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
         >
           <Link to="/modul/muhammad" className="hall__morelink">
-            Zur Modul-Übersicht <Chevron aria-hidden />
+            Zum Inhaltsverzeichnis <Chevron aria-hidden />
           </Link>
         </motion.div>
       </section>
