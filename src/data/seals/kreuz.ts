@@ -1,5 +1,5 @@
 import type { Beleg } from '../types'
-import type { Step, KonterItem, ScholarItem, Regel } from './wahrheitssuche'
+import type { Step, KonterItem, ScholarItem, Regel, Fakt } from './wahrheitssuche'
 
 // ---------------------------------------------------------------------------
 // BAND 4 — DAS KREUZ
@@ -10,7 +10,14 @@ import type { Step, KonterItem, ScholarItem, Regel } from './wahrheitssuche'
 // ---------------------------------------------------------------------------
 
 export const kreuzThese =
-  'Zwei Fragen, ein Kapitel: Kann Gott vergeben, ohne dass Blut fließt? Und: Ist Jesus überhaupt gekreuzigt worden? Der Islam kennt nur aufrichtige Reue als Bedingung der Vergebung — kein Opfer, kein Mittler. Die Bibel selbst widerspricht der Blutsühne an entscheidenden Stellen: Hesekiel weist die Idee zurück, dass ein Sohn für die Schuld des Vaters büßt; Ninive wird vergeben, ohne dass ein Tier geopfert wird; Jesus selbst lehrt, um Vergebung zu beten, nicht ums Kreuz. Und die Kreuzigungsberichte selbst — von anonymen, nicht-augenzeugenden Autoren Jahrzehnte nach den Ereignissen verfasst, nachweislich voneinander abgeschrieben und verändert — tragen nicht das Gewicht historischer Gewissheit, das ihnen zugeschrieben wird. Der Qur’an: „Sie haben ihn weder getötet noch gekreuzigt … Allah hat ihn zu Sich erhoben."'
+  'Zwei Fragen, ein Band: Kann Gott vergeben, ohne dass Blut fließt? Und: Ist Jesus überhaupt gekreuzigt worden? Die Bibel selbst widerspricht der Blutsühne — und die Kreuzigungsberichte tragen nicht das Gewicht historischer Gewissheit, das ihnen zugeschrieben wird. Der Qur’an: „Sie haben ihn weder getötet noch gekreuzigt … Allah hat ihn zu Sich erhoben."'
+
+export const kreuzFakten: Fakt[] = [
+  { wert: '120.000', label: 'Menschen in Ninive — vergeben ohne ein einziges Opfer', ton: 'gruen' },
+  { wert: '40–70 Jahre', label: 'zwischen den Ereignissen und den Evangelien', ton: 'rot' },
+  { wert: '≈ 180 n. Chr.', label: 'erst dann tragen die Evangelien Namen', ton: 'rot' },
+  { wert: '0', label: 'Augenzeugen unter den Evangelien-Autoren', ton: 'rot' },
+]
 
 export const kreuzSteps: Step[] = [
   {

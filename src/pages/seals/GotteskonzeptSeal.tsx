@@ -7,6 +7,8 @@ import { rise, stagger } from '../../lib/anim'
 import { fmt } from '../../lib/fmt'
 import {
   gotteskonzeptThese,
+  gotteskonzeptFakten,
+  gotteskonzeptZeitleiste,
   gotteskonzeptSteps,
   gotteskonzeptSpielregeln,
   gotteskonzeptKonter,
@@ -15,6 +17,7 @@ import {
   gotteskonzeptVernetzung,
   gotteskonzeptKernaussage,
 } from '../../data/seals/gotteskonzept'
+import { FaktenBand, KonzilLeiste } from '../../components/exhibits/JesusExhibits'
 
 function Eyebrow({ kicker, title }: { kicker: string; title: string }) {
   const reduce = useReducedMotion()
@@ -82,6 +85,15 @@ export default function GotteskonzeptSeal() {
             {fmt(gotteskonzeptThese)}
           </motion.p>
         </motion.header>
+
+        {/* ---- die Zahlen des Falls ---- */}
+        <FaktenBand fakten={gotteskonzeptFakten} />
+
+        {/* ---- die Konzils-Zeitleiste ---- */}
+        <section className="sec" id="konzile">
+          <Eyebrow kicker="Vier Jahrhunderte, ein Dogma" title="Wie die Trinität Orthodoxie wurde" />
+          <KonzilLeiste punkte={gotteskonzeptZeitleiste} />
+        </section>
 
         <section className="sec">
           <Eyebrow kicker="Debatten-Ebene" title="Von Nicäa bis Chalcedon — in vier Schritten" />

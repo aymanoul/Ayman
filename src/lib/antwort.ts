@@ -13,7 +13,7 @@
 
 import { tokenize, normalize, search } from './search'
 import { belegList } from '../data/belegRegistry'
-import { module1 } from '../data/modules'
+import { modules, sealInfoById } from '../data/modules'
 
 import * as fundament from '../data/seals/fundament'
 import * as abraham from '../data/seals/abraham'
@@ -24,6 +24,12 @@ import * as daniel from '../data/seals/daniel'
 import * as paraklet from '../data/seals/paraklet'
 import * as erwartung from '../data/seals/erwartung'
 import * as verteidigung from '../data/seals/verteidigung'
+import * as wahrheitssuche from '../data/seals/wahrheitssuche'
+import * as gotteskonzept from '../data/seals/gotteskonzept'
+import * as wahrerJesus from '../data/seals/wahrer-jesus'
+import * as kreuz from '../data/seals/kreuz'
+import * as botschaft from '../data/seals/botschaft'
+import * as angekuendigt from '../data/seals/angekuendigt'
 
 const SEAL_MODULES: Record<string, Record<string, unknown>> = {
   fundament,
@@ -35,6 +41,13 @@ const SEAL_MODULES: Record<string, Record<string, unknown>> = {
   paraklet,
   'juedische-erwartung': erwartung,
   verteidigung,
+  // Buchreihe "Jesus, der Gesandte Gottes"
+  wahrheitssuche,
+  gotteskonzept,
+  'wahrer-jesus': wahrerJesus,
+  kreuz,
+  botschaft,
+  angekuendigt,
 }
 
 export type PassageArt = 'these' | 'schritt' | 'konter' | 'gelehrte' | 'beleg'
@@ -78,16 +91,14 @@ export function passageKey(p: Passage): string {
   return [p.sealId, p.art, p.belegRef ?? p.titel ?? p.einwand ?? p.text.slice(0, 60)].join('|')
 }
 
-const SEAL_META: Record<string, { nummer: string; titel: string }> = {}
-for (const s of module1.siegel) SEAL_META[s.id] = { nummer: s.nummer, titel: s.titel }
-
 function quelleFuer(sealId: string): string {
-  const m = SEAL_META[sealId]
-  return m ? `Buch ${m.nummer} · ${m.titel}` : sealId
+  const info = sealInfoById[sealId]
+  return info ? `${info.zaehler} · ${info.titel}` : sealId
 }
 
 function linkFuer(p: Passage): string {
-  const base = `/modul/muhammad/buch/${p.sealId}`
+  const moduleId = sealInfoById[p.sealId]?.moduleId ?? 'muhammad'
+  const base = `/modul/${moduleId}/buch/${p.sealId}`
   return p.belegRef ? `${base}?beleg=${encodeURIComponent(p.belegRef)}` : base
 }
 
@@ -147,8 +158,10 @@ function corpus(): Prepared[] {
   if (CORPUS) return CORPUS
   // Buch-Themen-Tokens einmal je Buch (Keywords + Titel aus modules.ts)
   const sealTok: Record<string, Set<string>> = {}
-  for (const s of module1.siegel) {
-    sealTok[s.id] = new Set(tokenize([s.titel, ...s.keywords].join(' ')))
+  for (const mod of modules) {
+    for (const s of mod.siegel) {
+      sealTok[s.id] = new Set(tokenize([s.titel, ...s.keywords].join(' ')))
+    }
   }
   CORPUS = harvest().map((passage) => {
     const titelParts = [passage.titel ?? '', passage.einwand ?? '', passage.fundstelle ?? '']

@@ -93,7 +93,7 @@ export const module1: ModuleMeta = {
 }
 
 // Die sechs Baende der Buchreihe "Jesus, der Gesandte Gottes" (Abu Zakariya).
-// Argumente nach Oberthemen gebuendelt; Band 1 ausgearbeitet, 2-6 folgen.
+// Argumente nach Oberthemen gebuendelt; alle sechs Baende ausgearbeitet.
 const modul2Siegel: SealMeta[] = [
   {
     id: 'wahrheitssuche',
@@ -108,7 +108,7 @@ const modul2Siegel: SealMeta[] = [
     nummer: '2',
     titel: 'Das Gotteskonzept',
     arabic: 'التوحيد',
-    status: 'coming',
+    status: 'ready',
     keywords: ['dreifaltigkeit', 'trinität', 'tauhid', 'gott', 'nicäa', 'chalcedon', 'konzil', 'arius', 'athanasius', 'filioque', 'homoousios', 'monotheismus', 'al-ikhlas', 'heidnischer einfluss', 'konstantin', 'sohn gottes', '112', '5,73', '4,171'],
   },
   {
@@ -116,7 +116,7 @@ const modul2Siegel: SealMeta[] = [
     nummer: '3',
     titel: 'Der wahre Jesus',
     arabic: 'المسيح',
-    status: 'coming',
+    status: 'ready',
     keywords: ['jesus', 'isa', 'messias', 'prophet', 'mensch', 'gesandter', 'maria', 'maryam', 'geburt', 'wunder', 'natur jesu', 'adam', '3,59', '5,75', '19,30', 'propheten', 'schrift'],
   },
   {
@@ -124,7 +124,7 @@ const modul2Siegel: SealMeta[] = [
     nummer: '4',
     titel: 'Das Kreuz',
     arabic: 'الصليب',
-    status: 'coming',
+    status: 'ready',
     keywords: ['kreuzigung', 'kreuz', 'sühne', 'blutsühne', 'erlösung', 'vergebung', 'atonement', 'augenzeugen', 'inspiration', 'prophezeiung', 'zuverlässigkeit', '4,157', 'koran'],
   },
   {
@@ -132,7 +132,7 @@ const modul2Siegel: SealMeta[] = [
     nummer: '5',
     titel: 'Die verlorene Botschaft',
     arabic: 'الرسالة',
-    status: 'coming',
+    status: 'ready',
     keywords: ['bewahrung', 'überlieferung', 'neues testament', 'manuskripte', 'paulus', 'gesetz', 'trennung der wege', 'inspiration', 'verfälschung', 'kanon', 'evangelium'],
   },
   {
@@ -140,7 +140,7 @@ const modul2Siegel: SealMeta[] = [
     nummer: '6',
     titel: 'Der angekündigte Prophet',
     arabic: 'البشارة',
-    status: 'coming',
+    status: 'ready',
     keywords: ['prophezeiung', 'deuteronomium 33', '5. mose 33', 'jesaja 42', 'ismael', 'vertuschung', 'muhammad', 'paraklet', 'ahmad', 'prophet wie mose', 'schrift', 'bibel'],
   },
 ]
@@ -162,6 +162,26 @@ export function findModule(id: string | undefined): ModuleMeta | undefined {
 export function findSeal(moduleId: string | undefined, sealId: string | undefined) {
   const mod = findModule(moduleId)
   return mod?.siegel.find((s) => s.id === sealId)
+}
+
+// ---- Modul-uebergreifender Seal-Index --------------------------------------
+// Seal-Slugs sind ueber beide Reihen eindeutig; Suche, Antwort-Engine und
+// Offline-Buecher brauchen zu jedem Slug das Modul und die Zaehlbezeichnung
+// ("Buch 3" im Nektar, "Band 3" bei Jesus).
+export interface SealInfo {
+  moduleId: string
+  nummer: string
+  titel: string
+  /** "Buch 6" · "Band 2" — fertig formatiert fuer Labels */
+  zaehler: string
+}
+
+export const sealInfoById: Record<string, SealInfo> = {}
+for (const mod of modules) {
+  const wort = mod.id === 'jesus' ? 'Band' : 'Buch'
+  for (const s of mod.siegel) {
+    sealInfoById[s.id] = { moduleId: mod.id, nummer: s.nummer, titel: s.titel, zaehler: `${wort} ${s.nummer}` }
+  }
 }
 
 // ---- Search index: keyword → destination ----------------------------------

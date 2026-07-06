@@ -9,7 +9,7 @@ import {
   removeAlle,
   type OfflineBuch,
 } from '../lib/offlineBooks'
-import { module1 } from '../data/modules'
+import { modules } from '../data/modules'
 import { loescheNutzerdaten } from '../lib/db'
 import { CheckIcon, DownloadIcon, TrashIcon } from '../components/icons'
 import PageHead from '../components/PageHead'
@@ -84,8 +84,9 @@ export default function Einstellungen() {
     refresh()
   }, [])
 
+  const alleSeals = modules.flatMap((m) => m.siegel)
   const offlineIds = new Set(buecher.map((b) => b.sealId))
-  const alleGeladen = offlineIds.size === module1.siegel.length
+  const alleGeladen = offlineIds.size === alleSeals.length
 
   async function toggleOffline(v: boolean) {
     set('offline', v)
@@ -95,7 +96,7 @@ export default function Einstellungen() {
 
   async function ladeAlle() {
     setBusy('all')
-    for (const s of module1.siegel) if (!offlineIds.has(s.id)) await downloadBuch(s.id)
+    for (const s of alleSeals) if (!offlineIds.has(s.id)) await downloadBuch(s.id)
     await refresh()
     setBusy(null)
   }
@@ -216,31 +217,36 @@ export default function Einstellungen() {
               )}
             </div>
 
-            {module1.siegel.map((s) => {
-              const da = offlineIds.has(s.id)
-              return (
-                <div key={s.id} className="offbook">
-                  <span className="offbook__name">
-                    <span className="offbook__nr">{s.nummer}</span>
-                    {s.titel}
-                  </span>
-                  {da ? (
-                    <span className="offbook__actions">
-                      <span className="offbook__ok">
-                        <CheckIcon /> Verfügbar
+            {modules.map((mod) => (
+              <div key={mod.id}>
+                <p className="offbook__reihe">{mod.titel}</p>
+                {mod.siegel.map((s) => {
+                  const da = offlineIds.has(s.id)
+                  return (
+                    <div key={s.id} className="offbook">
+                      <span className="offbook__name">
+                        <span className="offbook__nr">{s.nummer}</span>
+                        {s.titel}
                       </span>
-                      <button className="iconbtn" aria-label="Löschen" onClick={() => entferneEines(s.id)}>
-                        <TrashIcon />
-                      </button>
-                    </span>
-                  ) : (
-                    <button className="minibtn" disabled={busy === s.id} onClick={() => ladeEines(s.id)}>
-                      <DownloadIcon /> {busy === s.id ? 'Lädt…' : 'Speichern'}
-                    </button>
-                  )}
-                </div>
-              )
-            })}
+                      {da ? (
+                        <span className="offbook__actions">
+                          <span className="offbook__ok">
+                            <CheckIcon /> Verfügbar
+                          </span>
+                          <button className="iconbtn" aria-label="Löschen" onClick={() => entferneEines(s.id)}>
+                            <TrashIcon />
+                          </button>
+                        </span>
+                      ) : (
+                        <button className="minibtn" disabled={busy === s.id} onClick={() => ladeEines(s.id)}>
+                          <DownloadIcon /> {busy === s.id ? 'Lädt…' : 'Speichern'}
+                        </button>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            ))}
           </div>
 
           <div className="offline-storage">

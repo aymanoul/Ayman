@@ -7,6 +7,8 @@ import { rise, stagger } from '../../lib/anim'
 import { fmt } from '../../lib/fmt'
 import {
   wahrerJesusThese,
+  wahrerJesusFakten,
+  wahrerJesusDuo,
   wahrerJesusSteps,
   wahrerJesusSpielregeln,
   wahrerJesusKonter,
@@ -15,6 +17,7 @@ import {
   wahrerJesusVernetzung,
   wahrerJesusKernaussage,
 } from '../../data/seals/wahrer-jesus'
+import { FaktenBand, DuoVergleich } from '../../components/exhibits/JesusExhibits'
 
 function Eyebrow({ kicker, title }: { kicker: string; title: string }) {
   const reduce = useReducedMotion()
@@ -82,6 +85,18 @@ export default function WahrerJesusSeal() {
             {fmt(wahrerJesusThese)}
           </motion.p>
         </motion.header>
+
+        {/* ---- die Anker des Falls ---- */}
+        <FaktenBand fakten={wahrerJesusFakten} />
+
+        {/* ---- Zwei Porträts, Zeile für Zeile ---- */}
+        <section className="sec" id="portraets">
+          <Eyebrow kicker="Haupt-Exhibit" title="Zwei Porträts desselben Mannes" />
+          <p className="sec__lead">
+            Derselbe Jesus, zwei Bücher — an seinen Worten entscheidet sich, welches Bild den eigenen Maßstab der Schrift erfüllt: „An ihren Früchten werdet ihr sie erkennen."
+          </p>
+          <DuoVergleich duo={wahrerJesusDuo} />
+        </section>
 
         <section className="sec">
           <Eyebrow kicker="Debatten-Ebene" title="Wer war Jesus wirklich — in vier Schritten" />

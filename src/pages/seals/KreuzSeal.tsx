@@ -7,6 +7,7 @@ import { rise, stagger } from '../../lib/anim'
 import { fmt } from '../../lib/fmt'
 import {
   kreuzThese,
+  kreuzFakten,
   kreuzSteps,
   kreuzSpielregeln,
   kreuzKonter,
@@ -15,6 +16,7 @@ import {
   kreuzVernetzung,
   kreuzKernaussage,
 } from '../../data/seals/kreuz'
+import { FaktenBand } from '../../components/exhibits/JesusExhibits'
 
 function Eyebrow({ kicker, title }: { kicker: string; title: string }) {
   const reduce = useReducedMotion()
@@ -82,6 +84,9 @@ export default function KreuzSeal() {
             {fmt(kreuzThese)}
           </motion.p>
         </motion.header>
+
+        {/* ---- die Zahlen des Falls ---- */}
+        <FaktenBand fakten={kreuzFakten} />
 
         <section className="sec">
           <Eyebrow kicker="Debatten-Ebene" title="Sühne und Kreuzigung — in vier Schritten" />

@@ -1,5 +1,5 @@
 import type { Beleg } from '../types'
-import type { Step, KonterItem, ScholarItem, Regel } from './wahrheitssuche'
+import type { Step, KonterItem, ScholarItem, Regel, Fakt, RouteStation } from './wahrheitssuche'
 
 // ---------------------------------------------------------------------------
 // BAND 6 — DER ANGEKÜNDIGTE PROPHET
@@ -9,7 +9,26 @@ import type { Step, KonterItem, ScholarItem, Regel } from './wahrheitssuche'
 // ---------------------------------------------------------------------------
 
 export const angekuendigtThese =
-  'Jesus selbst kündigt einen Beistand an, der „in die ganze Wahrheit führen" wird — jemand, der nicht aus sich selbst redet, sondern verkündet, was er hört (Johannes 16:13). Zwei alttestamentliche Prophezeiungen zeichnen dieses Kommen im Detail: Mose segnet Israel mit der Vision, dass der Herr „aus dem Gebirge Paran" — Arabien, dem Land Ismaels — strahlen wird, begleitet von „Zehntausend Heiligen" und einem „feurigen Gesetz" (Deuteronomium 33:2). Jesaja beschreibt einen Diener, der mit Kedar und Sela — beides Orte in Arabien, verbunden mit den Nachkommen Ismaels — verknüpft ist, der Götzendienst beendet und den Völkern ein neues Recht bringt (Jesaja 42). Der einzige Grund, warum diese Prophezeiungen nicht längst auf Muhammad ﷺ bezogen werden, ist ein jahrtausendealtes Missverständnis über Ismael selbst — eines, das der Bibeltext an mehreren Stellen gegen sich selbst widerlegt.'
+  'Jesus selbst kündigt einen Beistand an, der „in die ganze Wahrheit führen" wird (Johannes 16:13) — und zwei alttestamentliche Prophezeiungen zeichnen dieses Kommen im Detail: Deuteronomium 33 und Jesaja 42, beide mit Ortsangaben, die nach Arabien weisen. Der einzige Grund, sie nicht auf Muhammad ﷺ zu beziehen, ist ein Missverständnis über Ismael — eines, das der Bibeltext selbst widerlegt.'
+
+export const angekuendigtFakten: Fakt[] = [
+  { wert: '3 Orte', label: 'Sinai · Seïr · Paran — drei Offenbarungen, ein Segen (Dtn 33)' },
+  { wert: '10.000', label: 'Heilige — exakt die Zahl der Eroberung Mekkas 630 n. Chr.', ton: 'gruen' },
+  { wert: '13 Jahre', label: 'war Ismael Abrahams einziger Sohn — yachid passt nur auf ihn' },
+  { wert: '2 Namen', label: 'Kedar & Sela — Jesajas Ortsangaben liegen beide in Arabien', ton: 'gruen' },
+]
+
+// Die drei Aufstrahlungen aus Deuteronomium 33,2 — als Route gelesen.
+export const angekuendigtRoute: RouteStation[] = [
+  { ort: 'Sinai', wer: 'Mose · die Tora', sub: '„Der Herr kam hervor aus dem Sinai …"' },
+  { ort: 'Seïr', wer: 'Jesus · das Evangelium', sub: '„… er leuchtete vor ihnen auf aus Seïr …"' },
+  {
+    ort: 'Paran',
+    wer: 'Muhammad ﷺ · der Qur’an',
+    sub: '„… er strahlte aus dem Gebirge Paran, er trat heraus aus Zehntausend Heiligen."',
+    ziel: true,
+  },
+]
 
 export const angekuendigtSteps: Step[] = [
   {

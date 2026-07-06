@@ -15,6 +15,12 @@ import { danielBelege } from './seals/daniel'
 import { parakletBelege } from './seals/paraklet'
 import { erwartungBelege } from './seals/erwartung'
 import { verteidigungBelege } from './seals/verteidigung'
+import { wahrheitssucheBelege } from './seals/wahrheitssuche'
+import { gotteskonzeptBelege } from './seals/gotteskonzept'
+import { wahrerJesusBelege } from './seals/wahrer-jesus'
+import { kreuzBelege } from './seals/kreuz'
+import { botschaftBelege } from './seals/botschaft'
+import { angekuendigtBelege } from './seals/angekuendigt'
 
 const BY_SEAL: Record<string, Record<string, Beleg>> = {
   fundament: fundamentBelege,
@@ -26,6 +32,13 @@ const BY_SEAL: Record<string, Record<string, Beleg>> = {
   paraklet: parakletBelege,
   'juedische-erwartung': erwartungBelege,
   verteidigung: verteidigungBelege,
+  // Buchreihe "Jesus, der Gesandte Gottes"
+  wahrheitssuche: wahrheitssucheBelege,
+  gotteskonzept: gotteskonzeptBelege,
+  'wahrer-jesus': wahrerJesusBelege,
+  kreuz: kreuzBelege,
+  botschaft: botschaftBelege,
+  angekuendigt: angekuendigtBelege,
 }
 
 export interface BelegRef {

@@ -7,6 +7,8 @@ import { rise, stagger } from '../../lib/anim'
 import { fmt } from '../../lib/fmt'
 import {
   botschaftThese,
+  botschaftFakten,
+  botschaftDuo,
   botschaftSteps,
   botschaftSpielregeln,
   botschaftKonter,
@@ -15,6 +17,7 @@ import {
   botschaftVernetzung,
   botschaftKernaussage,
 } from '../../data/seals/botschaft'
+import { FaktenBand, DuoVergleich } from '../../components/exhibits/JesusExhibits'
 
 function Eyebrow({ kicker, title }: { kicker: string; title: string }) {
   const reduce = useReducedMotion()
@@ -82,6 +85,18 @@ export default function BotschaftSeal() {
             {fmt(botschaftThese)}
           </motion.p>
         </motion.header>
+
+        {/* ---- die Zahlen der Überlieferung ---- */}
+        <FaktenBand fakten={botschaftFakten} />
+
+        {/* ---- Zwei Stimmen zum Gesetz ---- */}
+        <section className="sec" id="gesetz">
+          <Eyebrow kicker="Haupt-Exhibit" title="Das Gesetz — zwei Stimmen im selben Buch" />
+          <p className="sec__lead">
+            Beide Aussagen stehen heute im Neuen Testament. Beide können nicht zugleich die Botschaft Jesu sein.
+          </p>
+          <DuoVergleich duo={botschaftDuo} />
+        </section>
 
         <section className="sec">
           <Eyebrow kicker="Debatten-Ebene" title="Überlieferung und Bruch — in vier Schritten" />

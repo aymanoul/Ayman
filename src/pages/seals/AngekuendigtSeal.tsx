@@ -7,6 +7,8 @@ import { rise, stagger } from '../../lib/anim'
 import { fmt } from '../../lib/fmt'
 import {
   angekuendigtThese,
+  angekuendigtFakten,
+  angekuendigtRoute,
   angekuendigtSteps,
   angekuendigtSpielregeln,
   angekuendigtKonter,
@@ -15,6 +17,7 @@ import {
   angekuendigtVernetzung,
   angekuendigtKernaussage,
 } from '../../data/seals/angekuendigt'
+import { FaktenBand, RouteBand } from '../../components/exhibits/JesusExhibits'
 
 function Eyebrow({ kicker, title }: { kicker: string; title: string }) {
   const reduce = useReducedMotion()
@@ -82,6 +85,18 @@ export default function AngekuendigtSeal() {
             {fmt(angekuendigtThese)}
           </motion.p>
         </motion.header>
+
+        {/* ---- die Anker des Falls ---- */}
+        <FaktenBand fakten={angekuendigtFakten} />
+
+        {/* ---- die drei Aufstrahlungen ---- */}
+        <section className="sec" id="drei-orte">
+          <Eyebrow kicker="Haupt-Exhibit" title="Drei Orte, drei Offenbarungen — Deuteronomium 33,2" />
+          <p className="sec__lead">
+            Moses Segen nennt drei Aufstrahlungen. Zwei sind unbestritten — die dritte weist nach Arabien, in das Land Ismaels.
+          </p>
+          <RouteBand stationen={angekuendigtRoute} />
+        </section>
 
         <section className="sec">
           <Eyebrow kicker="Debatten-Ebene" title="Von Paran nach Sela — in vier Schritten" />

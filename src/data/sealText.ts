@@ -16,8 +16,14 @@ import * as daniel from './seals/daniel'
 import * as paraklet from './seals/paraklet'
 import * as erwartung from './seals/erwartung'
 import * as verteidigung from './seals/verteidigung'
+import * as wahrheitssuche from './seals/wahrheitssuche'
+import * as gotteskonzept from './seals/gotteskonzept'
+import * as wahrerJesus from './seals/wahrer-jesus'
+import * as kreuz from './seals/kreuz'
+import * as botschaft from './seals/botschaft'
+import * as angekuendigt from './seals/angekuendigt'
 
-// sealId (route slug) → its data module
+// sealId (route slug) → its data module (beide Buchreihen)
 const MODULES: Record<string, Record<string, unknown>> = {
   fundament,
   'abrahams-nachkommen': abraham,
@@ -28,6 +34,12 @@ const MODULES: Record<string, Record<string, unknown>> = {
   paraklet,
   'juedische-erwartung': erwartung,
   verteidigung,
+  wahrheitssuche,
+  gotteskonzept,
+  'wahrer-jesus': wahrerJesus,
+  kreuz,
+  botschaft,
+  angekuendigt,
 }
 
 function collect(value: unknown, out: string[], depth: number): void {

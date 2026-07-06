@@ -10,11 +10,7 @@
 import { searchIndex, type IndexEntry } from '../data/searchIndex'
 import { sealFullText } from '../data/sealText'
 import { belegList } from '../data/belegRegistry'
-import { module1 } from '../data/modules'
-
-// seal slug → its number/title, for labelling auto-generated Beleg entries
-const SEAL_META: Record<string, { nummer: string; titel: string }> = {}
-for (const s of module1.siegel) SEAL_META[s.id] = { nummer: s.nummer, titel: s.titel }
+import { sealInfoById } from '../data/modules'
 
 const TYP_LABEL: Record<'quran' | 'bibel' | 'quelle', string> = {
   quran: 'Koran',
@@ -22,14 +18,11 @@ const TYP_LABEL: Record<'quran' | 'bibel' | 'quelle', string> = {
   quelle: 'Quelle',
 }
 
-function prettyNummer(n: string): string {
-  return `Buch ${n}`
-}
-
 // Turn every Beleg into its own search target (opens the modal via belegRef).
+// Covers BOTH book series; module + counting word come from sealInfoById.
 function belegEntries(): IndexEntry[] {
   return belegList.map(({ ref, sealId, beleg }) => {
-    const meta = SEAL_META[sealId] ?? { nummer: '', titel: '' }
+    const info = sealInfoById[sealId] ?? { moduleId: 'muhammad', nummer: '', titel: '', zaehler: '' }
     // Quran fundstellen read "Sure 61 (…), Vers 6" — emit a "61:6" token so a
     // "61,6" query surfaces the exact verse.
     const extra: string[] = []
@@ -39,14 +32,14 @@ function belegEntries(): IndexEntry[] {
     }
     return {
       id: `beleg:${ref}`,
-      moduleId: 'muhammad',
+      moduleId: info.moduleId,
       sealId,
       belegRef: ref,
       typ: beleg.typ,
-      nummer: meta.nummer,
-      kontext: `${prettyNummer(meta.nummer)} · ${beleg.fundstelle}`,
+      nummer: info.nummer,
+      kontext: `${info.zaehler} · ${beleg.fundstelle}`,
       label: beleg.kurz,
-      tags: [beleg.fundstelle, beleg.kern ?? '', TYP_LABEL[beleg.typ], meta.titel, ...extra],
+      tags: [beleg.fundstelle, beleg.kern ?? '', TYP_LABEL[beleg.typ], info.titel, ...extra],
       body: beleg.uebersetzung ?? beleg.kurz,
     }
   })

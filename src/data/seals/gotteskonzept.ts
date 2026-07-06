@@ -1,5 +1,5 @@
 import type { Beleg } from '../types'
-import type { Step, KonterItem, ScholarItem, Regel } from './wahrheitssuche'
+import type { Step, KonterItem, ScholarItem, Regel, Fakt, ZeitPunkt } from './wahrheitssuche'
 
 // ---------------------------------------------------------------------------
 // BAND 2 — DAS GOTTESKONZEPT
@@ -10,7 +10,39 @@ import type { Step, KonterItem, ScholarItem, Regel } from './wahrheitssuche'
 // ---------------------------------------------------------------------------
 
 export const gotteskonzeptThese =
-  'Bevor man fragen kann, wer Jesus ist, muss man fragen: Wer ist Gott? Die Trinitätslehre — „ein Gott in drei Personen“ — wurde 451 n. Chr. in Chalcedon fertiggestellt, über 400 Jahre nach Jesus, nach Jahrhunderten kaiserlicher Konzile, Exile und einer Verbrennung auf dem Scheiterhaufen. Das Neue Testament kennt weder das Wort noch die Formel. Der Tauhid des Islam dagegen — vier kurze Verse, keine zwanzig Wörter im Arabischen — ist von Anfang an unverändert derselbe geblieben. Ein Gott, dessen Wesen ein „Mysterium“ bleiben muss, das man „nicht vollständig verstehen“ darf, kann schwerlich der Zweck der Offenbarung sein: Rechtleitung, die verwirrt, hebt sich selbst auf.'
+  'Bevor man fragen kann, wer Jesus ist, muss man fragen: Wer ist Gott? Die Trinitätslehre wurde über Jahrhunderte kaiserlicher Konzile geschmiedet — das Neue Testament kennt weder das Wort noch die Formel. Der Tauhid dagegen ist von Anfang an unverändert derselbe geblieben. Rechtleitung, die als „Mysterium“ verwirren muss, hebt ihren eigenen Zweck auf.'
+
+export const gotteskonzeptFakten: Fakt[] = [
+  { wert: '0 ×', label: '„Trinität" in der ganzen Bibel', ton: 'rot' },
+  { wert: '451 n. Chr.', label: 'Chalcedon — die Lehre wird erst fertig', ton: 'rot' },
+  { wert: '< 20 Wörter', label: 'Sure al-Ikhlas — der ganze Tauhid', ton: 'gruen' },
+  { wert: '1450 Jahre', label: 'Tauhid unverändert, ohne ein Konzil', ton: 'gruen' },
+]
+
+// Die Konzils-Zeitleiste — jede Etappe der Lehre kam Jahrhunderte nach Jesus.
+export const gotteskonzeptZeitleiste: ZeitPunkt[] = [
+  {
+    jahr: '325',
+    titel: 'Nicäa',
+    text: 'Kaiser Konstantin schlägt das außerbiblische Homo-ousios selbst vor; 18 widerständige Bischöfe, Arius wird verbannt.',
+  },
+  {
+    jahr: '381',
+    titel: 'Konstantinopel',
+    text: 'Erst jetzt wird die Gottheit des Heiligen Geistes definiert — 350 Jahre nach Jesus, alle Jünger lange tot.',
+  },
+  {
+    jahr: '451',
+    titel: 'Chalcedon',
+    text: 'Die „Hypostatische Union" (zwei Naturen, ungetrennt) vollendet die Lehre — über 400 Jahre nach Jesus.',
+  },
+  {
+    jahr: '1531',
+    titel: 'Servetus',
+    text: 'Wer die Lehre bestreitet, brennt: Michael Servetus wird auf einem Scheiterhaufen aus seinen eigenen Büchern verbrannt.',
+    ton: 'out',
+  },
+]
 
 export const gotteskonzeptSteps: Step[] = [
   {

@@ -212,6 +212,17 @@
   color: var(--ink-soft);
   margin-bottom: 0.5rem;
 }
+.offbook__reihe {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0.9rem 0 0.2rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--line);
+}
 .offbook {
   display: flex;
   align-items: center;

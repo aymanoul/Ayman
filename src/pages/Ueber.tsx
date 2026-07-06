@@ -14,6 +14,12 @@ export default function Ueber() {
             Frage entfalten: Ist der Prophet Muhammad ﷺ in den früheren Schriften angekündigt?
           </p>
           <p>
+            Das zweite Werk, <em>Jesus, der Gesandte Gottes</em>, entfaltet in sechs Bänden die Gegenfrage: Wer war
+            Jesus wirklich — Gott, Gottes Sohn oder Mensch, Gesandter und Messias? Von der Methode der Wahrheitssuche
+            über Trinität und Tauhid, die Kreuzigung und die Überlieferung des Neuen Testaments bis zu den
+            Prophezeiungen über den Propheten, der nach ihm kommt.
+          </p>
+          <p>
             Jedes Buch führt seine These, eine Beweiskette, Einwände samt Entgegnung und die Belege im Original —
             Arabisch, Hebräisch, Griechisch — mit Umschrift, Übersetzung und Fundstelle. Das Frage-Feld antwortet
             direkt aus diesen Inhalten; nichts verlässt dein Gerät.

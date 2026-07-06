@@ -1,5 +1,5 @@
 import type { Beleg } from '../types'
-import type { Step, KonterItem, ScholarItem, Regel } from './wahrheitssuche'
+import type { Step, KonterItem, ScholarItem, Regel, Fakt, Duo } from './wahrheitssuche'
 
 // ---------------------------------------------------------------------------
 // BAND 3 — DER WAHRE JESUS
@@ -9,7 +9,36 @@ import type { Step, KonterItem, ScholarItem, Regel } from './wahrheitssuche'
 // ---------------------------------------------------------------------------
 
 export const wahrerJesusThese =
-  'Wer war Jesus wirklich? Der Qur’an zeichnet ihn als Wort und Geist von Gott, wundersam von einer Jungfrau geboren — und doch als Diener, Gesandter, Mensch. Kein Wunder, nicht einmal die jungfräuliche Geburt, macht ihn zu Gott: Auch Adam wurde ohne Vater und Mutter erschaffen, und niemand schreibt ihm Göttlichkeit zu. Der schärfste Test aber liegt woanders — im Charakter. Während die Bibel Jesus harte, fast respektlose Worte in den Mund legt und Propheten wie Aaron, David, Noah und Ijob der schwersten Sünden bezichtigt, zeichnet der Qur’an ausnahmslos das Bild, das man von Gottes Auserwählten erwarten würde: makellos, respektvoll, Vorbilder bis zum letzten Wort.'
+  'Wer war Jesus wirklich? Der Qur’an zeichnet ihn als Wort von Gott, wundersam geboren — und doch als Diener, Gesandter, Mensch. Der schärfste Test aber ist der Charakter: Wo die Bibel Jesus harte Worte in den Mund legt und Propheten schwerste Sünden zuschreibt, zeichnet der Qur’an ausnahmslos Vorbilder.'
+
+export const wahrerJesusFakten: Fakt[] = [
+  { wert: 'Sure 19', label: 'nach Maria benannt — eine Ehre, die das NT ihr nicht gibt', ton: 'gruen' },
+  { wert: '3:59', label: 'das Adam-Gleichnis: Wunder ≠ Göttlichkeit', ton: 'gruen' },
+  { wert: '5:75', label: '„sie pflegten Speise zu essen" — Bedürftigkeit schließt Gottheit aus' },
+  { wert: '4 Propheten', label: 'Aaron · David · Noah · Ijob — der Charaktertest, doppelt erzählt' },
+]
+
+// Zwei Portraets desselben Mannes — Zeile fuer Zeile gegenuebergestellt.
+export const wahrerJesusDuo: Duo = {
+  links: {
+    titel: 'Jesus in der Bibel',
+    zeilen: [
+      { text: 'Eine flehende Mutter abgewiesen: „… das Brot den Kindern wegzunehmen und den Hunden vorzuwerfen."', ref: 'Matthäus 15,26' },
+      { text: 'Zum engsten Jünger: „Weg mit dir, Satan, geh mir aus den Augen!"', ref: 'Matthäus 16,23' },
+      { text: 'Zur eigenen Mutter, distanziert: „Wer ist meine Mutter …?"', ref: 'Matthäus 12,48' },
+      { text: 'Am Kreuz, klagend: „Mein Gott, mein Gott, warum hast du mich verlassen?"', ref: 'Matthäus 27,46' },
+    ],
+  },
+  rechts: {
+    titel: 'Jesus im Qur’an',
+    zeilen: [
+      { text: 'Das erste Wort in der Wiege: „Ich bin wahrlich Allahs Diener."', ref: 'Sure 19,30' },
+      { text: '„… und gütig gegen meine Mutter zu sein. Er hat mich weder gewalttätig noch unglücklich gemacht."', ref: 'Sure 19,32' },
+      { text: 'Zu seinem Volk: „Ich komme mit der Weisheit … so fürchtet Allah und gehorcht mir."', ref: 'Sure 43,63' },
+      { text: 'Vor Gott im Endgericht: „Preis sei Dir! Es steht mir nicht zu, etwas zu sagen, wozu ich kein Recht habe."', ref: 'Sure 5,116' },
+    ],
+  },
+}
 
 export const wahrerJesusSteps: Step[] = [
   {

@@ -7,6 +7,7 @@ import { rise, stagger } from '../../lib/anim'
 import { fmt } from '../../lib/fmt'
 import {
   wahrheitssucheThese,
+  wahrheitssucheFakten,
   wahrheitssucheSteps,
   wahrheitssucheSpielregeln,
   wahrheitssucheKonter,
@@ -15,6 +16,7 @@ import {
   wahrheitssucheVernetzung,
   wahrheitssucheGleicheMassstaebe,
 } from '../../data/seals/wahrheitssuche'
+import { FaktenBand } from '../../components/exhibits/JesusExhibits'
 
 function Eyebrow({ kicker, title }: { kicker: string; title: string }) {
   const reduce = useReducedMotion()
@@ -83,6 +85,9 @@ export default function WahrheitssucheSeal() {
             {fmt(wahrheitssucheThese)}
           </motion.p>
         </motion.header>
+
+        {/* ---- die Zahlen, die den Einsatz zeigen ---- */}
+        <FaktenBand fakten={wahrheitssucheFakten} />
 
         {/* ---- the chain ---- */}
         <section className="sec">

@@ -33,8 +33,49 @@ export interface Regel {
   text: string
 }
 
+// ---- gemeinsame visuelle Bausteine der Jesus-Reihe ------------------------
+/** Ein Wert im Fakten-Band unter der These ("0 ×", "451 n. Chr.", …) */
+export interface Fakt {
+  wert: string
+  label: string
+  ton?: 'gruen' | 'rot'
+}
+
+/** Zwei Stimmen, Zeile fuer Zeile gegenuebergestellt (Bibel <-> Qur'an …) */
+export interface DuoSpalte {
+  titel: string
+  zeilen: { text: string; ref?: string }[]
+}
+export interface Duo {
+  links: DuoSpalte
+  rechts: DuoSpalte
+}
+
+/** Station im Route-Band (Sinai -> Seir -> Paran) */
+export interface RouteStation {
+  ort: string
+  wer: string
+  sub?: string
+  ziel?: boolean
+}
+
+/** Punkt auf der Konzils-Zeitleiste */
+export interface ZeitPunkt {
+  jahr: string
+  titel: string
+  text: string
+  ton?: 'islam' | 'out'
+}
+
 export const wahrheitssucheThese =
-  'Bevor ein einziges Buch geöffnet wird, steht eine Entscheidung im Raum: Suchen wir die Wahrheit über Gott mit demselben Ernst, mit dem ein Detektiv einen Fall löst — oder folgen wir blind dem, in das wir hineingeboren wurden? Der Einsatz ist ein einziges Leben. Christentum und Islam teilen eine Schlüsselfigur — Jesus, den Messias —, erheben über ihn aber einander widersprechende Ansprüche. Da nicht beide recht haben können, brauchen wir Werkzeuge (Bibel, Geschichte, Vernunft), Aufrichtigkeit und vor allem gleiche Maßstäbe. Auf diesem Fundament dürfen die sechs Bände sprechen.'
+  'Bevor ein einziges Buch geöffnet wird, steht eine Entscheidung im Raum: Suchen wir die Wahrheit über Gott mit demselben Ernst, mit dem ein Detektiv einen Fall löst — oder folgen wir blind dem, in das wir hineingeboren wurden? Christentum und Islam teilen eine Schlüsselfigur — Jesus, den Messias —, erheben über ihn aber einander widersprechende Ansprüche. Da nicht beide recht haben können, entscheidet die Methode: gleiche Maßstäbe, Aufrichtigkeit, Vernunft.'
+
+export const wahrheitssucheFakten: Fakt[] = [
+  { wert: '1 Leben', label: 'der Einsatz — eine Chance, keine zweite' },
+  { wert: '2 Religionen', label: 'ein gemeinsamer Prüfstein: Jesus, der Messias' },
+  { wert: '3 Werkzeuge', label: 'Bibel · Geschichte · Vernunft', ton: 'gruen' },
+  { wert: '6 Bände', label: 'ein Argument, Zug um Zug aufgebaut' },
+]
 
 export const wahrheitssucheSteps: Step[] = [
   {

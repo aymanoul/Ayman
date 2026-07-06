@@ -7,7 +7,7 @@
 
 import { sealFullText } from '../data/sealText'
 import { tokenize } from './search'
-import { module1 } from '../data/modules'
+import { sealInfoById } from '../data/modules'
 
 export interface OfflineBuch {
   sealId: string
@@ -50,19 +50,17 @@ function run<T>(mode: IDBTransactionMode, fn: (s: IDBObjectStore) => IDBRequest<
   )
 }
 
-const META = new Map(module1.siegel.map((s) => [s.id, s]))
-
 /** Ein Buch für Offline speichern (Volltext + Such-Index + Metadaten). */
 export async function downloadBuch(sealId: string): Promise<OfflineBuch> {
-  const meta = META.get(sealId)
+  const info = sealInfoById[sealId]
   const text = sealFullText[sealId] ?? ''
   const tokens = Array.from(new Set(tokenize(text)))
   const bytes = new Blob([text, tokens.join(' ')]).size
   const rec: OfflineBuch = {
     sealId,
-    moduleId: 'muhammad',
-    titel: meta?.titel ?? sealId,
-    nummer: meta?.nummer ?? '',
+    moduleId: info?.moduleId ?? 'muhammad',
+    titel: info?.titel ?? sealId,
+    nummer: info?.nummer ?? '',
     text,
     tokens,
     bytes,

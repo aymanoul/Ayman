@@ -1,5 +1,5 @@
 import type { Beleg } from '../types'
-import type { Step, KonterItem, ScholarItem, Regel } from './wahrheitssuche'
+import type { Step, KonterItem, ScholarItem, Regel, Fakt, Duo } from './wahrheitssuche'
 
 // ---------------------------------------------------------------------------
 // BAND 5 — DIE VERLORENE BOTSCHAFT
@@ -9,7 +9,35 @@ import type { Step, KonterItem, ScholarItem, Regel } from './wahrheitssuche'
 // ---------------------------------------------------------------------------
 
 export const botschaftThese =
-  'Zwei Fragen entscheiden, ob eine Botschaft überhaupt noch die ursprüngliche ist: Wurde der Text bewahrt? Und: Wurde die Lehre bewahrt? Das Neue Testament hat fast 6.000 griechische Handschriften, von denen keine zwei identisch sind — „kein einziger Satz", schreibt das Interpreter’s Dictionary of the Bible, „bei dem die Manuskriptüberlieferung völlig einheitlich ist". Der Vers, der die Dreifaltigkeit am klarsten nennt (1. Johannes 5:7), ist nachweislich ein Einschub aus dem 16. Jahrhundert. Und die Lehre selbst spaltete sich: Jesus predigte totalen Gehorsam gegenüber dem Gesetz Moses, sein Bruder Jakobus verlangte ihn von jüdischen Gläubigen weiter, doch Paulus — der Jesus nie persönlich begegnete — erklärte das Gesetz zum „Fluch" und stützte seine neue Theologie auf Bibelzitate, die er nachweislich aus dem Kontext gerissen hat. Der Qur’an dagegen wird bis heute von Millionen Menschen identisch auswendig rezitiert — eine Bewahrungsmethode, die dem Neuen Testament nie zur Verfügung stand.'
+  'Zwei Fragen entscheiden, ob eine Botschaft noch die ursprüngliche ist: Wurde der Text bewahrt — und wurde die Lehre bewahrt? Beim Neuen Testament lautet die Antwort zweimal Nein: kein Satz einheitlich überliefert, und zwischen Jesus und Paulus verkehrt sich die Lehre vom Gesetz in ihr Gegenteil. Der Qur’an dagegen wird bis heute von Millionen identisch auswendig rezitiert.'
+
+export const botschaftFakten: Fakt[] = [
+  { wert: '≈ 6.000', label: 'griechische NT-Handschriften — keine zwei Seiten identisch', ton: 'rot' },
+  { wert: '16. Jh.', label: 'Comma Johanneum — der einzige Trinitätsvers, ein Einschub', ton: 'rot' },
+  { wert: '180 Jahre', label: 'größte Lücke bis zum frühesten erhaltenen Fragment (Markus)', ton: 'rot' },
+  { wert: 'Millionen', label: 'Menschen, die den ganzen Qur’an auswendig tragen', ton: 'gruen' },
+]
+
+// Das Gesetz Moses — zwei Stimmen im selben Neuen Testament.
+// Links (rot) die spaetere Umkehrung, rechts (gruen) Jesu eigene Worte.
+export const botschaftDuo: Duo = {
+  links: {
+    titel: 'Paulus über das Gesetz',
+    zeilen: [
+      { text: '„Durch Werke des Gesetzes wird niemand gerecht."', ref: 'Galater 2,16' },
+      { text: '„Alle aber, die nach dem Gesetz leben, stehen unter dem Fluch."', ref: 'Galater 3,10' },
+      { text: '„Jetzt aber sind wir frei geworden von dem Gesetz … wir sind tot für das Gesetz."', ref: 'Römer 7,6' },
+    ],
+  },
+  rechts: {
+    titel: 'Jesus über das Gesetz',
+    zeilen: [
+      { text: '„Ich bin nicht gekommen, um aufzuheben, sondern um zu erfüllen."', ref: 'Matthäus 5,17' },
+      { text: '„Bis Himmel und Erde vergehen, wird auch nicht der kleinste Buchstabe des Gesetzes vergehen."', ref: 'Matthäus 5,18' },
+      { text: '„Wer sie aber hält und halten lehrt, der wird groß sein im Himmelreich."', ref: 'Matthäus 5,19' },
+    ],
+  },
+}
 
 export const botschaftSteps: Step[] = [
   {

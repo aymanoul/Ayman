@@ -2961,3 +2961,203 @@
 .abfolge__quote {
   color: var(--medina);
 }
+
+/* ================================================= JESUS-REIHE: VISUELLE BAUSTEINE
+   Fakten-Band (grosse Kennzahlen unter der These), Duo (zweispaltige
+   Gegenueberstellung Bibel <-> Qur'an bzw. Jesus <-> Paulus) und Route
+   (Stationen-Band Sinai -> Seir -> Paran). Formensprache wie .tl/.netz. */
+
+/* ---- Fakten-Band: 3-4 grosse Werte, die die Textwand am Kopf aufbrechen ---- */
+.fakten {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  max-width: 880px;
+  margin: clamp(1.6rem, 4vh, 2.4rem) auto 0;
+}
+.fakt {
+  padding: 1.2rem 1.1rem 1.05rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper-card);
+  border-top: 3px solid var(--brass);
+  text-align: center;
+}
+.fakt__wert {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3.4vw, 1.9rem);
+  line-height: 1.1;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.fakt__label {
+  display: block;
+  margin-top: 0.45rem;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+.fakt--gruen {
+  border-top-color: var(--green);
+}
+.fakt--gruen .fakt__wert {
+  color: var(--green);
+}
+.fakt--rot {
+  border-top-color: var(--rubric);
+}
+.fakt--rot .fakt__wert {
+  color: var(--rubric);
+}
+
+/* ---- Duo: zwei Spalten, zwei Stimmen — Zeile fuer Zeile gegenuebergestellt ---- */
+.duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.duo__col {
+  padding: 1.4rem 1.35rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper-card);
+}
+.duo__col--links {
+  border-top: 3px solid var(--rubric);
+}
+.duo__col--rechts {
+  border-top: 3px solid var(--green);
+}
+.duo__head {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+.duo__col--links .duo__head {
+  color: var(--rubric);
+}
+.duo__col--rechts .duo__head {
+  color: var(--green);
+}
+.duo__zeile {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink);
+  padding: 0.55rem 0 0.55rem 0.85rem;
+  border-left: 2px solid var(--line);
+}
+.duo__zeile + .duo__zeile {
+  border-top: 1px solid var(--line-faint);
+}
+.duo__col--links .duo__zeile {
+  border-left-color: rgba(122, 46, 46, 0.35);
+}
+.duo__col--rechts .duo__zeile {
+  border-left-color: rgba(46, 92, 58, 0.35);
+}
+.duo__ref {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+
+/* ---- Route: Stationen mit Pfeilen (Sinai -> Seir -> Paran) ---- */
+.route {
+  list-style: none;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.4rem;
+  max-width: 880px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.route__stop {
+  flex: 1 1 180px;
+  max-width: 250px;
+  padding: 1.3rem 1.1rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper-card);
+  text-align: center;
+  border-top: 3px solid var(--line-strong);
+}
+.route__stop--ziel {
+  border-top-color: var(--green);
+  background: linear-gradient(180deg, rgba(46, 92, 58, 0.05), var(--paper-card));
+}
+.route__ort {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.45rem;
+  color: var(--ink);
+}
+.route__stop--ziel .route__ort {
+  color: var(--green);
+}
+.route__wer {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.route__sub {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.route__arrow {
+  align-self: center;
+  flex: none;
+  font-size: 1.3rem;
+  color: var(--brass);
+  padding: 0 0.15rem;
+}
+
+@media (max-width: 760px) {
+  .duo {
+    grid-template-columns: 1fr;
+  }
+  .route {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .route__stop {
+    max-width: none;
+  }
+  .route__arrow {
+    transform: rotate(90deg);
+    padding: 0.1rem 0;
+  }
+  .fakt__wert {
+    white-space: normal;
+  }
+}
