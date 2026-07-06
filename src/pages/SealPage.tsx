@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowLeft } from '../components/icons'
 import { findModule, findSeal } from '../data/modules'
 import { rise, stagger } from '../lib/anim'
+import BuchExtras from '../components/BuchExtras'
 import DanielSeal from './seals/DanielSeal'
 import FundamentSeal from './seals/FundamentSeal'
 import AbrahamSeal from './seals/AbrahamSeal'
@@ -38,32 +39,26 @@ export default function SealPage() {
     return () => clearTimeout(t)
   }, [hash, sealId])
 
-  if (moduleId === 'muhammad' && sealId === 'daniel') {
-    return <DanielSeal />
+  const BUILT: Record<string, () => JSX.Element> = {
+    daniel: DanielSeal,
+    fundament: FundamentSeal,
+    'abrahams-nachkommen': AbrahamSeal,
+    'prophet-wie-mose': MoseSeal,
+    'arabische-prophezeiungen': ArabienSeal,
+    hohelied: HoheliedSeal,
+    paraklet: ParakletSeal,
+    'juedische-erwartung': ErwartungSeal,
+    verteidigung: VerteidigungSeal,
   }
-  if (moduleId === 'muhammad' && sealId === 'fundament') {
-    return <FundamentSeal />
-  }
-  if (moduleId === 'muhammad' && sealId === 'abrahams-nachkommen') {
-    return <AbrahamSeal />
-  }
-  if (moduleId === 'muhammad' && sealId === 'prophet-wie-mose') {
-    return <MoseSeal />
-  }
-  if (moduleId === 'muhammad' && sealId === 'arabische-prophezeiungen') {
-    return <ArabienSeal />
-  }
-  if (moduleId === 'muhammad' && sealId === 'hohelied') {
-    return <HoheliedSeal />
-  }
-  if (moduleId === 'muhammad' && sealId === 'paraklet') {
-    return <ParakletSeal />
-  }
-  if (moduleId === 'muhammad' && sealId === 'juedische-erwartung') {
-    return <ErwartungSeal />
-  }
-  if (moduleId === 'muhammad' && sealId === 'verteidigung') {
-    return <VerteidigungSeal />
+  const Built = moduleId === 'muhammad' && sealId ? BUILT[sealId] : undefined
+  if (Built && module && seal) {
+    // Das fertige Buch + die Buch-Extras (Favorit/Notiz, Verlauf-Erfassung)
+    return (
+      <>
+        <Built />
+        <BuchExtras sealId={seal.id} moduleId={module.id} titel={seal.titel} nummer={seal.nummer} />
+      </>
+    )
   }
 
   if (!module || !seal) {

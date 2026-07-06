@@ -1,0 +1,478 @@
+/* ============================================================================
+   Utility-Seiten (Einstellungen, Favoriten, Notizen, Verlauf, Über) —
+   dieselbe Mushaf-Sprache: Pergament-Karten, Gold-Hairlines, Salbei/Medina.
+   ========================================================================== */
+
+.page {
+  max-width: 720px;
+  padding-top: clamp(3.5rem, 9vh, 5rem);
+  padding-bottom: clamp(3rem, 9vh, 5rem);
+}
+
+.pagehead {
+  margin-bottom: clamp(1.5rem, 4vh, 2.2rem);
+}
+.pagehead__kicker {
+  display: block;
+  margin-top: 1.1rem;
+  font-family: var(--font-ui);
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--medina);
+}
+.pagehead__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(2rem, 6vw, 2.9rem);
+  line-height: 1.1;
+  margin-top: 0.15rem;
+}
+
+/* -------------------------------------------------------------------- Card */
+.card {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(1.2rem, 3.5vw, 1.7rem);
+  margin-bottom: 1.1rem;
+  box-shadow: 0 1px 2px rgba(64, 58, 34, 0.04), 0 16px 34px -24px rgba(64, 58, 34, 0.24);
+}
+.card__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--green-deep);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line);
+}
+.card__note {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-top: 0.7rem;
+}
+.card.prose p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 0.9rem;
+}
+.card.prose strong {
+  color: var(--medina);
+}
+
+/* ---------------------------------------------------------------- Setrow */
+.setrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line-faint);
+}
+.setrow:last-of-type {
+  border-bottom: none;
+}
+.setrow__title {
+  display: block;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--ink);
+}
+.setrow__hint {
+  display: block;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin-top: 0.1rem;
+}
+.setrow__control {
+  flex: none;
+}
+
+/* ---------------------------------------------------------------- Toggle */
+.toggle {
+  width: 48px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--paper-sink);
+  border: 1px solid var(--line-strong);
+  position: relative;
+  transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+.toggle__knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(64, 58, 34, 0.3);
+  transition: transform 0.22s var(--ease-out);
+}
+.toggle.is-on {
+  background: var(--medina);
+  border-color: var(--medina-deep);
+}
+.toggle.is-on .toggle__knob {
+  transform: translateX(20px);
+}
+
+/* --------------------------------------------------------------- Segment */
+.segment {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  background: var(--paper-sink);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.segment__opt {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  padding: 0.4rem 0.8rem;
+  border-radius: 9px;
+  transition: background 0.18s var(--ease-out), color 0.18s var(--ease-out);
+}
+.segment__opt.is-active {
+  background: var(--paper-card);
+  color: var(--green-deep);
+  box-shadow: 0 1px 2px rgba(64, 58, 34, 0.12);
+}
+.segment__opt.is-disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.segment__opt em {
+  font-style: italic;
+  font-size: 0.68em;
+  color: var(--ink-faint);
+}
+
+/* --------------------------------------------------------------- Stepper */
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.stepper button {
+  width: 38px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--green-deep);
+  transition: background 0.16s var(--ease-out), opacity 0.16s var(--ease-out);
+}
+.stepper button:disabled {
+  opacity: 0.4;
+}
+.stepper__sample {
+  min-width: 2.2rem;
+  text-align: center;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------- Offline-Liste */
+.offline-list {
+  margin-top: 0.6rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.8rem;
+}
+.offline-list__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+.offbook {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line-faint);
+}
+.offbook:last-child {
+  border-bottom: none;
+}
+.offbook__name {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  min-width: 0;
+}
+.offbook__nr {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--green-wash-2);
+  color: var(--green-deep);
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+.offbook__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: none;
+}
+.offbook__ok {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--medina);
+}
+.offbook__ok svg {
+  width: 16px;
+  height: 16px;
+}
+
+.minibtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(95, 111, 70, 0.3);
+  background: var(--green-wash);
+  color: var(--green-deep);
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.78rem;
+  transition: background 0.16s var(--ease-out), opacity 0.16s var(--ease-out);
+}
+.minibtn svg {
+  width: 15px;
+  height: 15px;
+}
+.minibtn:disabled {
+  opacity: 0.5;
+}
+.iconbtn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  color: var(--anda);
+  transition: background 0.16s var(--ease-out), border-color 0.16s var(--ease-out);
+}
+.iconbtn svg {
+  width: 16px;
+  height: 16px;
+}
+.iconbtn:hover {
+  background: var(--anda-wash);
+  border-color: var(--anda);
+}
+
+.offline-storage {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+.offline-storage__label {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  margin-right: 0.5rem;
+}
+.offline-storage__val {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.offline-storage__bar {
+  margin-top: 0.5rem;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--paper-sink);
+  overflow: hidden;
+}
+.offline-storage__bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--green) 0%, var(--medina) 100%);
+  border-radius: 999px;
+}
+
+.dangerbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(122, 46, 46, 0.3);
+  background: var(--anda-wash);
+  color: var(--anda);
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.86rem;
+  transition: background 0.16s var(--ease-out), opacity 0.16s var(--ease-out);
+}
+.dangerbtn svg {
+  width: 16px;
+  height: 16px;
+}
+.dangerbtn:disabled {
+  opacity: 0.45;
+}
+.dangerbtn:hover:not(:disabled) {
+  background: rgba(122, 46, 46, 0.13);
+}
+
+/* ------------------------------------------------------- Listen (Fav/Verlauf) */
+.page-empty {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  background: var(--paper-card);
+  border: 1px dashed var(--line-strong);
+  border-radius: 16px;
+  padding: 1.3rem 1.5rem;
+}
+.listcards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.listcard {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 1.1rem;
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  transition: border-color 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), transform 0.14s var(--ease-out);
+}
+.listcard:hover {
+  border-color: var(--green);
+  box-shadow: 0 12px 28px -20px rgba(64, 58, 34, 0.3);
+}
+.listcard__lead {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--brass);
+}
+.listcard__body {
+  flex: 1;
+  min-width: 0;
+}
+.listcard__eyebrow {
+  display: block;
+  font-family: var(--font-ui);
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--ink-faint);
+}
+.listcard__title {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-top: 0.1rem;
+}
+.listcard__go {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--ink-faint);
+}
+
+.notecard {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brass);
+  border-radius: 4px 15px 15px 4px;
+  padding: 1rem 1.1rem;
+}
+.notecard__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.notecard__head > svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--brass-deep);
+}
+.notecard__title {
+  flex: 1;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--green-deep);
+}
+.notecard__title svg {
+  width: 15px;
+  height: 15px;
+}
+.notecard__text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ink);
+  white-space: pre-wrap;
+}

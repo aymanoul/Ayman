@@ -1,0 +1,225 @@
+/* ============================================================================
+   App-Hülle: Hamburger, Side-Panel, Status-Chip/Toast. Mushaf-Sprache —
+   Pergament, Salbei/Medina-Grün, Gold-Hairlines, ruhige Rundungen.
+   ========================================================================== */
+
+.chrome-burger {
+  position: fixed;
+  top: clamp(24px, 3.4vw, 60px);
+  left: clamp(20px, 3vw, 62px);
+  z-index: 62;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  color: var(--green-deep);
+  background: var(--paper-card);
+  border: 1px solid var(--line-strong);
+  border-radius: 13px;
+  box-shadow: 0 1px 2px rgba(64, 58, 34, 0.06), 0 10px 22px -14px rgba(64, 58, 34, 0.35);
+  transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out), transform 0.14s var(--ease-out);
+}
+.chrome-burger:hover {
+  background: var(--paper-2);
+  border-color: var(--green);
+}
+.chrome-burger:active {
+  transform: scale(0.94);
+}
+
+.chrome-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(24, 30, 20, 0.42);
+  backdrop-filter: blur(2px);
+}
+
+/* -------------------------------------------------------------- Side-Panel */
+.sidepanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 85;
+  width: min(86vw, 340px);
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 100%);
+  border-right: 1px solid var(--brass-line);
+  box-shadow: 30px 0 60px -30px rgba(40, 34, 18, 0.5);
+  /* goldene Doppel-Hairline als schlichte Bordüre */
+  background-image: linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 100%);
+}
+.sidepanel::after {
+  /* dezente arabeske Randlinie innen */
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  width: 1px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--line-strong) 0 10px,
+    transparent 10px 18px
+  );
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.sidepanel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(1.4rem, 4vw, 1.9rem) 1.3rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.sidepanel__brand {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+}
+.sidepanel__close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  transition: background 0.18s var(--ease-out), color 0.18s var(--ease-out);
+}
+.sidepanel__close:hover {
+  background: var(--green-wash);
+  color: var(--green-deep);
+}
+
+.sidepanel__nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.8rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.sidenav__item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 12px;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--ink);
+  border: 1px solid transparent;
+  transition: background 0.16s var(--ease-out), border-color 0.16s var(--ease-out), color 0.16s var(--ease-out);
+}
+.sidenav__item svg {
+  flex: none;
+  color: var(--green);
+  width: 21px;
+  height: 21px;
+}
+.sidenav__item:hover {
+  background: var(--green-wash);
+}
+.sidenav__item.is-active {
+  background: var(--green-wash-2);
+  border-color: rgba(95, 111, 70, 0.3);
+  color: var(--green-deep);
+}
+.sidenav__item.is-active svg {
+  color: var(--green-deep);
+}
+
+.sidepanel__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.3rem calc(1.1rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--line);
+}
+.sidepanel__ver {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+
+/* -------------------------------------------------------------- Status */
+.statuschip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+.statuschip i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+.statuschip.is-online i {
+  background: var(--medina-bright);
+  box-shadow: 0 0 0 3px var(--medina-wash);
+}
+.statuschip.is-offline i {
+  background: var(--ink-faint);
+  box-shadow: 0 0 0 3px rgba(163, 144, 111, 0.18);
+}
+
+.statustoast {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  margin-inline: auto;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: fit-content;
+  max-width: min(92vw, 30rem);
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--ink);
+  background: var(--paper-card);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 2px 4px rgba(64, 58, 34, 0.08), 0 18px 40px -18px rgba(64, 58, 34, 0.4);
+}
+.statustoast i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+}
+.statustoast.is-online i {
+  background: var(--medina-bright);
+}
+.statustoast.is-offline i {
+  background: var(--brass);
+}
+
+@media (max-width: 720px) {
+  .sidepanel__foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+}

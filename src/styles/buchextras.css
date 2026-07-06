@@ -1,0 +1,153 @@
+/* Schwebende Buch-Aktionen (Favorit/Notiz) + Notiz-Sheet — Mushaf-Sprache. */
+
+.buchextras {
+  position: fixed;
+  top: clamp(24px, 3.4vw, 60px);
+  right: clamp(20px, 3vw, 62px);
+  z-index: 62;
+  display: flex;
+  gap: 0.5rem;
+}
+.bx-btn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  color: var(--green-deep);
+  background: var(--paper-card);
+  border: 1px solid var(--line-strong);
+  border-radius: 13px;
+  box-shadow: 0 1px 2px rgba(64, 58, 34, 0.06), 0 10px 22px -14px rgba(64, 58, 34, 0.35);
+  transition: background 0.18s var(--ease-out), border-color 0.18s var(--ease-out), transform 0.14s var(--ease-out);
+}
+.bx-btn svg {
+  width: 21px;
+  height: 21px;
+}
+.bx-btn:hover {
+  background: var(--paper-2);
+  border-color: var(--green);
+}
+.bx-btn:active {
+  transform: scale(0.94);
+}
+.bx-btn.is-active {
+  color: var(--brass-deep);
+  background: #fbf2dd;
+  border-color: var(--brass);
+}
+.bx-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brass);
+}
+
+.bx-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 92;
+  background: rgba(24, 30, 20, 0.42);
+  backdrop-filter: blur(2px);
+}
+.bx-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-inline: auto;
+  z-index: 93;
+  width: min(96vw, 40rem);
+  background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper-card) 100%);
+  border: 1px solid var(--brass-line);
+  border-bottom: none;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -20px 50px -20px rgba(40, 34, 18, 0.45);
+  padding: 1.1rem 1.2rem calc(1.2rem + env(safe-area-inset-bottom, 0px));
+}
+.bx-sheet__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+.bx-sheet__eyebrow {
+  display: block;
+  font-family: var(--font-ui);
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--medina);
+}
+.bx-sheet__title {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ink);
+  margin-top: 0.1rem;
+}
+.bx-sheet__close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+.bx-sheet__ta {
+  width: 100%;
+  min-height: 8rem;
+  resize: vertical;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  outline: none;
+}
+.bx-sheet__ta:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-wash);
+}
+.bx-sheet__foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+.bx-sheet__del {
+  padding: 0.55rem 1rem;
+  border-radius: 11px;
+  border: 1px solid rgba(122, 46, 46, 0.3);
+  background: var(--anda-wash);
+  color: var(--anda);
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.86rem;
+}
+.bx-sheet__save {
+  padding: 0.55rem 1.3rem;
+  border-radius: 11px;
+  border: 1px solid var(--medina-deep);
+  background: var(--medina);
+  color: var(--paper-card);
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.86rem;
+}
