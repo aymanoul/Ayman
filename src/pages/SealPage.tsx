@@ -15,6 +15,11 @@ import ParakletSeal from './seals/ParakletSeal'
 import ErwartungSeal from './seals/ErwartungSeal'
 import VerteidigungSeal from './seals/VerteidigungSeal'
 import WahrheitssucheSeal from './seals/WahrheitssucheSeal'
+import GotteskonzeptSeal from './seals/GotteskonzeptSeal'
+import WahrerJesusSeal from './seals/WahrerJesusSeal'
+import KreuzSeal from './seals/KreuzSeal'
+import BotschaftSeal from './seals/BotschaftSeal'
+import AngekuendigtSeal from './seals/AngekuendigtSeal'
 
 // Placeholder seal view. Built seals render their own page; the rest get a
 // graceful illuminated holding page until their content lands.
@@ -56,6 +61,11 @@ export default function SealPage() {
     },
     jesus: {
       wahrheitssuche: WahrheitssucheSeal,
+      gotteskonzept: GotteskonzeptSeal,
+      'wahrer-jesus': WahrerJesusSeal,
+      kreuz: KreuzSeal,
+      botschaft: BotschaftSeal,
+      angekuendigt: AngekuendigtSeal,
     },
   }
   const Built = moduleId && sealId ? BUILT[moduleId]?.[sealId] : undefined
