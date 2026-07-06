@@ -41,15 +41,15 @@ const SPINE_IMG: Record<'nektar' | 'jesus', string> = {
 // Skaliert den deutschen Titel so weit herunter, bis er ohne Ueberlauf in die
 // vermessene Medaillon-Flaeche passt — Vorrang hat kleinere Schrift vor
 // unsauberen Umbruechen. Binaere Suche zwischen MIN und MAX (px).
-function useFitText(text: string) {
+function useFitText(text: string, max = 12, min = 6.5) {
   const ref = useRef<HTMLSpanElement>(null)
   useLayoutEffect(() => {
     const el = ref.current
     const box = el?.parentElement
     if (!el || !box) return
 
-    const MAX = 12
-    const MIN = 6.5
+    const MAX = max
+    const MIN = min
     const fit = () => {
       const availW = box.clientWidth
       const availH = box.clientHeight
@@ -79,12 +79,15 @@ function useFitText(text: string) {
     const ro = new ResizeObserver(fit)
     ro.observe(box)
     return () => ro.disconnect()
-  }, [text])
+  }, [text, max, min])
   return ref
 }
 
-function SpineTitle({ text }: { text: string }) {
-  const ref = useFitText(text)
+function SpineTitle({ text, variant }: { text: string; variant: 'nektar' | 'jesus' }) {
+  // Jesus-Ruecken sind ~1.4x groesser als Nektar — der Titel wird entsprechend
+  // hoeher gedeckelt (MAX/MIN skaliert), damit er proportional gleich wirkt.
+  const [max, min] = variant === 'jesus' ? [17, 9] : [12, 6.5]
+  const ref = useFitText(text, max, min)
   return (
     <span ref={ref} className="spine__z spine__z--buch">
       {text}
@@ -126,7 +129,7 @@ export default function Bookshelf({ titel, verlag, baende, variant = 'nektar' }:
 
                 {/* Medaillon: deutscher Buchtitel, auto-gefittet + zentriert */}
                 <span className="spine__med">
-                  <SpineTitle text={b.deutsch} />
+                  <SpineTitle text={b.deutsch} variant={variant} />
                 </span>
 
                 {/* Raute: Bandnummer, exakt zentriert */}
