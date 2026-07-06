@@ -138,6 +138,12 @@
   color: var(--ink);
   max-width: none;
 }
+/* Reihen-Banner ("Der versiegelte Nektar"): gruen, mittig */
+.sec__title--green,
+.seal__title--green {
+  color: var(--medina);
+  text-align: center;
+}
 .sec__lead {
   max-width: 70ch;
   margin: 0.6rem auto 2rem;

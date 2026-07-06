@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Bookshelf from '../components/Bookshelf'
 import { ArrowLeft } from '../components/icons'
-import { regalBaende, regalTitel, regalAutor, regalVerlag } from '../data/regal'
+import { regalBaende, regalTitel, regalVerlag } from '../data/regal'
 
 
 export default function Regal() {
@@ -16,11 +16,10 @@ export default function Regal() {
         </Link>
 
         <header className="seal__head" style={{ marginTop: '1rem' }}>
-          <span className="seal__num">Buchreihe</span>
-          <h1 className="seal__title">Der versiegelte Nektar</h1>
+          <h1 className="seal__title seal__title--green">Der versiegelte Nektar</h1>
         </header>
 
-        <Bookshelf titel={regalTitel} autor={regalAutor} verlag={regalVerlag} baende={regalBaende} />
+        <Bookshelf titel={regalTitel} verlag={regalVerlag} baende={regalBaende} />
       </div>
     </main>
   )

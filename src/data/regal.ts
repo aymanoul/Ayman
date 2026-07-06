@@ -3,8 +3,10 @@ import type { Band } from '../components/Bookshelf'
 // Die Buchreihe "Der versiegelte Nektar" (Ar-Raheeq Al-Makhtoom) —
 // die 9 Buecher als Baende. Genutzt von der Startseite (Saal)
 // und der Regal-Seite.
+//
+// Auf dem Buchruecken traegt jeder Band den DEUTSCHEN Titel (Feld `deutsch`);
+// `name` haelt den arabischen Originaltitel als Referenz (nicht mehr gerendert).
 export const regalTitel = 'الرحيق المختوم'
-export const regalAutor = 'ابن محمد والحجي'
 export const regalVerlag = 'دار السنة'
 
 const S = '/modul/muhammad/buch'
@@ -17,5 +19,5 @@ export const regalBaende: Band[] = [
   { nr: 6, name: 'دانيال', deutsch: 'Daniel', to: `${S}/daniel` },
   { nr: 7, name: 'الفارقليط', deutsch: 'Der Paraklet', to: `${S}/paraklet` },
   { nr: 8, name: 'انتظار اليهود', deutsch: 'Jüdische Erwartung', to: `${S}/juedische-erwartung` },
-  { nr: 9, name: 'الدفاع', deutsch: 'Verteidigung', to: `${S}/verteidigung` },
+  { nr: 9, name: 'الدفاع', deutsch: 'Das Urteil', to: `${S}/verteidigung` },
 ]

@@ -5,7 +5,7 @@ import ModulePlate from '../components/ModulePlate'
 import Bookshelf from '../components/Bookshelf'
 import { Chevron } from '../components/icons'
 import { modules } from '../data/modules'
-import { regalBaende, regalTitel, regalAutor, regalVerlag } from '../data/regal'
+import { regalBaende, regalTitel, regalVerlag } from '../data/regal'
 import { rise, stagger, EASE } from '../lib/anim'
 
 // "Die Bibliothek" — der Eintritt in einen Bibliothekssaal. Frontispiz mit
@@ -45,8 +45,7 @@ export default function Bibliothek() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, ease: EASE }}
         >
-          <span className="sec__kicker">Die Buchreihe · Neun Bücher</span>
-          <h2 className="sec__title">
+          <h2 className="sec__title sec__title--green">
             Der versiegelte Nektar
           </h2>
         </motion.header>
@@ -57,7 +56,7 @@ export default function Bibliothek() {
           viewport={{ once: true, amount: 0.12 }}
           transition={{ duration: 0.85, ease: EASE }}
         >
-          <Bookshelf titel={regalTitel} autor={regalAutor} verlag={regalVerlag} baende={regalBaende} />
+          <Bookshelf titel={regalTitel} verlag={regalVerlag} baende={regalBaende} />
         </motion.div>
 
         <motion.div
