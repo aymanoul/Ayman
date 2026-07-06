@@ -16,7 +16,7 @@ import type { Band } from '../components/Bookshelf'
 //   5 Botschaft       → Kap. 6 (Bewahrung) + Kap. 7 (Paulus)
 //   6 Angekuendigt    → Kap. 8 (Prophezeiungen) + Abschluss
 export const regalJesusTitel = 'عيسى رسول الله'
-export const regalJesusVerlag = 'ابن مريم'
+export const regalJesusVerlag = 'دار السنة'
 
 const S = '/modul/jesus/buch'
 export const regalJesusBaende: Band[] = [
