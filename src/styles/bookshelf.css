@@ -330,8 +330,10 @@
 
 /* ===================================== JESUS-VARIANTE (spine2.png) ==========
    Zweite Buchreihe "Jesus, der Gesandte Gottes". Eigene Textur (navy/gold,
-   770x2042) und pixel-vermessene Zonen — Aufbau identisch zum Nektar, nur die
-   Geometrie folgt spine2.png:
+   spine2.png). Original 770x2042 hatte je ~100px weissen Seitenrand — auf
+   570x2042 beschnitten, damit das Buch (wie beim Nektar) randlos den Rahmen
+   fuellt. Zonen pixel-vermessen, Aufbau identisch zum Nektar, Geometrie
+   folgt der beschnittenen spine2.png:
      Kopf-Feld (Navy-Panel) → arab. Reihentitel, gestapelt
      Medaillon (Maroon-Rautenkartusche) → deutscher Bandtitel, cy 50 %
      Raute (kleine Maroon-Raute) → Bandnummer, cy 75.0 %
@@ -342,7 +344,7 @@
   width: clamp(138px, 13vw, 176px);
 }
 .shelf-wrap--jesus .spine {
-  aspect-ratio: 770 / 2042;
+  aspect-ratio: 570 / 2042;
 }
 /* Navy-Fallback nur OHNE Textur — das Shorthand wuerde sonst background-size
    der .spine--img-Regel ueberschreiben und die Textur unskaliert crippen. */
@@ -358,12 +360,14 @@
   color: #e9d6a2;
 }
 
-/* Medaillon — deutscher Titel in der Maroon-Kartusche (flache Mitte) */
+/* Medaillon — deutscher Titel in der Maroon-Kartusche (flache Mitte).
+   Textur beschnitten (570 statt 770 breit): weisse Seitenraender entfernt,
+   left/width entsprechend auf die neue Breite umgerechnet. */
 .shelf-wrap--jesus .spine--img .spine__med {
   top: 41%;
   height: 18%;
-  left: 30%;
-  width: 40%;
+  left: 23%;
+  width: 54%;
 }
 .shelf-wrap--jesus .spine--img .spine__med .spine__z--buch {
   color: #f4e7bd;
@@ -380,8 +384,8 @@
 .shelf-wrap--jesus .spine--img .spine__z--verlag {
   top: 85.9%;
   height: 4%;
-  left: 29%;
-  width: 42%;
+  left: 21.6%;
+  width: 56.7%;
   color: #eeddab;
 }
 
