@@ -1,24 +1,32 @@
-# 📖 Die Bibliothek — Aktueller Stand (Sichtung)
+# 📖 Die Bibliothek — Vollständiger Stand & Übergabe
 
-> **Erstellt:** 2026-07-04 · **Branch:** `claude/gracious-gates-n4j6z2` · **Remote:** `aymanoul/Ayman`
-> **Letzter Commit:** `4a7fd70` „Startseite: das Buchregal wird das Herzstück (Bibliothekssaal)"
-> **Build:** `tsc` 0 Fehler · Vite-Build grün · JS 742 kB (gzip 234) · CSS 168 kB (gzip 29)
-> Alles committet und gepusht — Arbeitsverzeichnis sauber.
+> **Stand:** 2026-07-06 · **Branch:** `claude/gracious-gates-n4j6z2` · **Remote:** `aymanoul/Ayman`
+> **Letzter Commit:** `665f0e8` „PWA + Offline-Modus"
+> **Live:** https://aymanoul.github.io/Ayman/ (öffentliches Repo, GitHub Pages)
+> **Build:** `npx tsc --noEmit` 0 Fehler · `npm run build` grün · Service Worker (53 Precache-Einträge, ~5,9 MB)
 
-Dieses Dokument beschreibt den **realen, verifizierten Zustand** der Website
-(nicht aus dem Gedächtnis — alle Angaben wurden gegen den Code geprüft).
+Dieses Dokument ist die **einzige nötige Wissensquelle für die nächste Sitzung**.
+Alle Angaben sind gegen den Code geprüft. Ergänzend: `DESIGN.md` (Design-Doku),
+`SPEC.md` (inhaltliche Wahrheit aller Bücher). `SESSION-HANDOFF.md` ist **veraltet**
+(Stand vor allen Umbauten) — ignorieren.
 
 ---
 
 ## 1. Was ist das Projekt
 
 **„Die Bibliothek"** — eine mehrsprachige (DE + arab./hebr./griech. Originaltexte)
-Apologetik-Enzyklopädie. Erstes Modul: **„Der versiegelte Nektar"** — eine Buchreihe mit
-**9 Büchern** (Buch 1 = Das Fundament … Buch 9 = Verteidigung; hieß früher
-„Muhammad in der Bibel ﷺ" mit „Siegeln" — v9 hat alles umbenannt).
+Apologetik-Enzyklopädie der vergleichenden Religion. Erstes und einziges fertiges
+Werk: die Buchreihe **„Der versiegelte Nektar"** (arab. الرحيق المختوم) —
+**9 Bücher** (Buch 1 = Das Fundament … Buch 9 = Verteidigung), die eine prüfbare
+Frage entfalten: Ist Muhammad ﷺ in den früheren Schriften angekündigt?
 
-**Stack:** React 18 · TypeScript 5.6 · Vite 5 · React Router 6 (HashRouter) ·
-framer-motion 11 · handgeschriebenes CSS (Tailwind v4 installiert, kaum genutzt).
+> ⚠️ Historie: Hieß früher Modul „Muhammad in der Bibel ﷺ" mit „Siegeln". Seit v9
+> heißt alles „Der versiegelte Nektar" / „Buch 1–9". Zweites Modul „Jesus, der
+> Gesandte Gottes" existiert als Platzhalter-Kachel (Status `coming`), ohne Inhalt.
+
+**Stack:** React 18 · TypeScript 5.6 (`strict:false`) · Vite 5 · React Router 6
+(**HashRouter** — wichtig für statisches Hosting) · framer-motion 11 · **handgeschriebenes
+CSS** (Tailwind v4 installiert, praktisch ungenutzt) · vite-plugin-pwa · sharp (nur dev).
 
 ---
 
@@ -26,195 +34,253 @@ framer-motion 11 · handgeschriebenes CSS (Tailwind v4 installiert, kaum genutzt
 
 ```bash
 npm install
-npm run dev        # Dev-Server (Vite)
-npm run build      # Production-Build (muss grün bleiben)
-npx tsc --noEmit   # Typecheck (0 Fehler)
+npm run dev          # Dev-Server
+npm run build        # Production-Build (muss grün bleiben) → erzeugt dist/ + sw.js
+npm run preview      # gebautes dist/ testen (SW funktioniert nur hier/HTTPS, nicht in dev)
+npx tsc --noEmit     # Typecheck (0 Fehler halten)
+node scripts/pwa-icons.mjs       # App-Icons neu erzeugen (nach public/icons/)
+node scripts/ornament-crop.mjs   # Mushaf-Ornament-Bilder zuschneiden (braucht sharp)
 ```
 
 ---
 
-## 3. Routen (`src/App.tsx`)
+## 3. Hosting / Deploy (WICHTIG — hier steckt die meiste Reibung)
+
+- **Workflow:** `.github/workflows/deploy-pages.yml` — baut bei jedem Push auf den
+  Branch und deployt auf GitHub Pages (`actions/deploy-pages@v4`). `base: './'` +
+  HashRouter = keine Server-Rewrites nötig, läuft im Unterpfad `/Ayman/`.
+- **Einmalige Einstellungen (alle bereits erledigt):**
+  1. Repo ist **öffentlich** (Pages gibt's für private Repos nur mit Bezahlplan).
+  2. Settings → Pages → **Source = „GitHub Actions"**.
+  3. Settings → Environments → **github-pages** → Deployment branches = **„No restriction"**
+     (sonst darf der Nicht-`main`-Branch nicht deployen → deploy-Job scheitert sofort ohne Runner).
+- **Transiente Deploy-Fehler:** GitHub Pages liefert gelegentlich
+  „Deployment failed, try again later." — das ist **kein Code-Fehler** (der `build`-Job
+  ist grün, das Artefakt gültig). Lösung: **den fehlgeschlagenen Deploy-Job erneut
+  ausführen** (Actions → Run → „Re-run failed jobs"), dann geht's live. Genau das ist
+  am 2026-07-06 beim PWA-Commit passiert.
+- Ich (Agent) kann `https://aymanoul.github.io` aus der Sandbox **nicht** selbst
+  aufrufen (Netzwerk-Whitelist blockt github.io) — nur über die GitHub-MCP-API prüfen.
+
+---
+
+## 4. Routen (`src/App.tsx`)
 
 | Pfad | Seite | Inhalt |
 |---|---|---|
-| `/` | `Bibliothek.tsx` | **Startseite / „Saal"** — Frontispiz + Suche + **Buchregal** + kommende Module |
-| `/regal` | `Regal.tsx` | Eigene Regal-Seite (Buchreihe „Ar-Raheeq Al-Makhtoom") |
-| `/modul/:moduleId` | `ModulePage.tsx` | Modul-Übersicht — Hero-Titelbild + Siegel-Bild-Karussell |
-| `/modul/:moduleId/siegel/:sealId` | `SealPage.tsx` | Dispatcher → konkrete Siegel-Seite |
+| `/` | `Bibliothek.tsx` | Startseite/„Saal": Titel, Suche + Frage-Feld, Buchregal, kommende Module |
+| `/regal` | `Regal.tsx` | Eigene Regal-Seite (dieselbe Buchreihe) |
+| `/modul/:moduleId` | `ModulePage.tsx` | Inhaltsverzeichnis — Hero + Buch-Karussell |
+| `/modul/:moduleId/buch/:sealId` | `SealPage.tsx` | Dispatcher → konkrete Buch-Seite + `BuchExtras` |
+| `/modul/:moduleId/siegel/:sealId` | `SealPage.tsx` | **Alias** — alte Links bleiben gültig |
+| `/einstellungen` `/favoriten` `/notizen` `/verlauf` `/ueber` | je eigene Seite | neu (PWA) |
 | `*` | `Bibliothek.tsx` | Fallback |
 
----
-
-## 4. Design-System (Stand v8 — „Mushaf")
-
-Die Optik hat mehrere Umbaustufen durchlaufen (v3 andalusisch → v4 strukturiert →
-v5 Mushaf → v6 Vektor-Ornamentik (verworfen) → v7 Foto-Ornamentik → v8 Schrift
-Inter statt Happy Time). **Aktuell gilt v8.** Tokens in `src/index.css`:
-
-### Farben
-- **Papier:** `--paper #f4ecdb` (warmes Pergament-Elfenbein) · `--paper-card #fbf6e9`
-- **Tinte:** `--ink #2e2718` (warmes Sepia-Schwarz)
-- **Salbei/Oliv (Primärakzent):** `--green #5f6f46`
-- **Gold (Hairlines/Ornament):** `--brass #b3873a`
-- **Andalusisches Rot:** `--anda #7a2e2e` → „Einwand", `<strong>`-Markierungen, `<mark>`
-- **Medina-Grün:** `--medina #156b4a` → Kicker, „Konter", Titel (`.gilt`), **zitierte Verse**
-
-### Schrift (v8) — Inter (Titel/UI, kursiv) + Poppins (Fließtext, aufrecht)
-- Happy Time ist komplett raus (Datei gelöscht, wirkte zu dekorativ/„KI").
-- **`--font-display` / `--font-ui`** (Titel, Kicker, Buttons, Karten-Titel):
-  **Inter** (`Inter 18pt`), selbst gehostet, **nur als Italic** vorhanden —
-  jede Regel mit diesen Tokens hat darum explizit `font-style: italic`
-  danach (mechanisch eingefügt von `scripts/font-italic-insert.py`, einmalig
-  über alle CSS-Dateien gelaufen). Bei neuen Regeln immer mit ergänzen, sonst
-  weicht der Browser auf den Fallback statt Inter aus.
-- **`--font-body`** (Fließtext — Die-These, Beweisketten, Beleg-Texte): bleibt
-  bewusst **aufrecht** (Poppins) — lange Kursiv-Absätze ermüden beim Lesen.
-- **Arabisch:** Cairo (UI) · **Koran-Verse:** Amiri Quran (`.quran-script`, im Beleg-Modal).
-- **Hebräisch:** Frank Ruhl Libre.
-- Alle Fonts **selbst gehostet** (`src/assets/fonts/`, `src/styles/fonts.css`), kein CDN.
-- ⚠️ **Kamali** (`kamali.woff2/.otf`) liegt noch im Repo, wird aber **nicht mehr verwendet**
-  (schon in v5 durch Happy Time ersetzt, jetzt durch Inter/Poppins). Kann gelöscht werden.
-
-### Ornamentik (v7 — Madina-Prachtrahmen, echtes Bild)
-- **Voller Fensterrahmen:** fester, umlaufender Prachtrahmen ums Sichtfeld
-  (`body::before`, `border-image` auf
-  `src/assets/ornaments/mushaf-frame-photo.webp`): grünes Band, Goldranke,
-  Rosetten, Perlenreihen, Eck-Medaillons.
-- **Titel-Rahmen:** Siegel-Titel + Sektions-Köpfe sitzen in **Madina-Kartuschen**
-  (`border-image` auf `src/assets/ornaments/kartusche-photo.webp`: grüne
-  Endblöcke mit Spitzbogen + Blüten-Medaillon, Wellenbänder; `.seal__title` /
-  `.sec__head`).
-- ⚠️ **v6 (SVG-Vektor-Version) wurde verworfen** — wirkte zu steril/„KI".
-  Jetzt echte (KI-generierte, aber als Bild gerenderte) Ornamentik, analog
-  zum Buchregal (`spine.png`). Details + Reproduktions-Workflow: `DESIGN.md`.
-- **Rohmaterial + Zuschnitt:** `src/assets/ornaments/source/*-raw.png`
-  (Originale) → `scripts/ornament-crop.mjs` (braucht `sharp`, devDependency)
-  → die beiden `*-photo.webp`. Slice-Werte in `index.css`/`seal.css` sind auf
-  genau diese WebP-Maße vermessen.
-- Keine freistehenden Deko-Symbole mehr (Shamsa/Sterne/Arabesken-Trenner wurden in
-  v4 entfernt). Chevrons sind SVG-Icons (`src/components/icons.tsx`).
-
-> Vollständige Design-Doku: **`DESIGN.md`** im Repo-Root.
+`sealId`-Slugs: `fundament`, `abrahams-nachkommen`, `prophet-wie-mose`,
+`arabische-prophezeiungen`, `hohelied`, `daniel`, `paraklet`, `juedische-erwartung`,
+`verteidigung`. (Achtung: Slugs sind historisch, `nummer` ist 1–9.)
 
 ---
 
-## 5. Die Startseite (`src/pages/Bibliothek.tsx`) — NEUESTE ÄNDERUNG
+## 5. Design-System (Stand v10)
 
-Von einer flachen Textliste zu einem **Bibliothekssaal** umgebaut. Reihenfolge:
+Umbaustufen: v3 andalusisch → v4 strukturiert → v5 Mushaf → v6 Vektor-Ornamentik
+(**verworfen**) → v7 Foto-Ornamentik → v8 Schrift Inter → v9 „Der versiegelte Nektar" →
+v10 PWA/Offline. Tokens in `src/index.css`. **Vollständige Doku: `DESIGN.md`.**
 
-1. **Frontispiz** — arabischer Titel `اسم الناشر` (⚠️ **Platzhalter**, s. §8) + „Die Bibliothek".
-2. **Suche + Frage-Feld** (`SearchPanel.tsx`).
-3. **Der Saal (`.hall`, Breakout auf 1320px):**
-   - Suren-Kartusche: „Modul I · Neun Siegel / **Muhammad in der Bibel ﷺ**"
-   - Darunter das **Buchregal** (Herzstück, s. §6)
-   - Button **„Zur Modul-Übersicht"** → `/modul/muhammad`
-4. **„Weitere Stationen folgen"** — kommende Module (Jesus-Modul, Badge „bald").
-5. Footer.
+### Farben (CSS-Variablen in `src/index.css`)
+- Papier `--paper #f4ecdb` · `--paper-card #fbf6e9` · Tinte `--ink #2e2718`
+- Salbei/Oliv `--green #5f6f46` · Gold `--brass #b3873a`
+- Andalusisch-Rot `--anda #7a2e2e` (Einwand/Markierung) · Medina-Grün `--medina #156b4a`
+  (Kicker/Konter/Titel `.gilt`/zitierte Verse)
 
-Scroll-Reveal per framer-motion (`whileInView`), `prefers-reduced-motion` respektiert.
+### Schrift (v8) — **Inter (Titel/UI, kursiv) + Poppins (Fließtext, aufrecht)**
+- Happy Time & Kamali **entfernt** (wirkten „KI"/dekorativ).
+- `--font-display` / `--font-ui` = **Inter 18pt**, selbst gehostet, **nur Italic** vorhanden.
+  ⚠️ **Jede Regel mit diesen Tokens MUSS `font-style: italic` mitsetzen**, sonst weicht der
+  Browser auf den Fallback aus. Bei neuen Regeln immer ergänzen. (`scripts/font-italic-insert.py`
+  hat das mechanisch über alle CSS-Dateien gemacht.)
+- `--font-body` = **Poppins**, aufrecht (lange Leseabschnitte).
+- Arabisch: Cairo · Hebräisch: Frank Ruhl Libre · Koran-Verse: Amiri Quran (im Beleg-Modal).
+- Alle Fonts selbst gehostet in `src/assets/fonts/` + `src/styles/fonts.css`, kein CDN.
 
----
+### Ornamentik (v7) — **echte Bilder, keine Vektoren**
+- Voller umlaufender **Mushaf-Prachtrahmen** ums Sichtfeld (`body::before`, `border-image`
+  auf `src/assets/ornaments/mushaf-frame-photo.webp`).
+- **Madina-Kartuschen** für Titel (`.seal__title`/`.sec__head`, `border-image` auf
+  `kartusche-photo.webp`).
+- **Herkunft/Workflow:** Rohbilder (vom Nutzer via ChatGPT-Bild erzeugt) in
+  `src/assets/ornaments/source/*-raw.png` → `scripts/ornament-crop.mjs` (sharp) schneidet zu +
+  exportiert `*-photo.webp`. **Slice-Werte in `index.css`/`seal.css` sind auf genau diese
+  WebP-Maße vermessen** — bei neuem Bild: Skript neu laufen, Slice-Werte aus Konsole übernehmen.
+- Handy: Rahmen reduziert auf Zierband oben/unten + schmale Goldlinie seitlich (sonst Matsch).
+  ⚠️ `border-image-width` MUSS in der Mobile-Media-Query mitgesetzt werden (nicht nur `border-width`).
 
-## 6. Das Buchregal (1:1 Fath-al-Bari-Stil) — jüngste große Arbeit
-
-**Komponente:** `src/components/Bookshelf.tsx` · **CSS:** `src/styles/bookshelf.css` ·
-**Daten:** `src/data/regal.ts` (geteilt von Startseite + `/regal`).
-
-- **Echte Bild-Textur, KEINE gezeichneten Vektoren:** `public/images/regal/spine.png`
-  (558×2042, vom Betreiber gelieferter dunkelgrüner Leder-Rücken mit Gold-Arabesken,
-  leerem Medaillon/Raute/Kartusche). Das Bild trägt die gesamte Ornamentik.
-- **Nur die Texte** (Werktitel, Bandname, Bandnummer, المجلد, Autor, Verlag) liegen als
-  HTML exakt in den **pixel-vermessenen** leeren Zonen der Textur (per Farbanalyse
-  kalibriert). Name + Nummer + المجلد bilden eine im Medaillon zentrierte Gruppe.
-- **9 Bände = die 9 Siegel**, arabisch übersetzt, jeder Rücken verlinkt auf sein Siegel:
-
-  | # | Rücken (arab.) | Deutsch → Route |
-  |---|---|---|
-  | ١ | الأساس | Das Fundament → `fundament` |
-  | ٢ | ذرية إبراهيم | Abrahams Nachkommen → `abrahams-nachkommen` |
-  | ٣ | نبي مثل موسى | Prophet wie Mose → `prophet-wie-mose` |
-  | ٤ | النبوءات العربية | Arabische Prophezeiungen → `arabische-prophezeiungen` |
-  | ٥ | نشيد الأنشاد | Das Hohelied → `hohelied` |
-  | ٦ | دانيال | Daniel → `daniel` |
-  | ٧ | الفارقليط | Der Paraklet → `paraklet` |
-  | ٨ | انتظار اليهود | Jüdische Erwartung → `juedische-erwartung` |
-  | ٩ | الدفاع | Verteidigung → `verteidigung` |
-
-  Werktitel `الرحيق المختوم` · Autor `ابن محمد والحجي` · Verlag `دار السنة`.
-- **Deutsche Zuordnung:** Unter dem Regalbrett trägt jeder Band ein Schild
-  „Band N · deutscher Titel" (immer sichtbar, selbst klickbar). **Hover koppelt beide
-  Richtungen:** Buch anvisiert → Schild leuchtet grün; Schild anvisiert → Buch hebt sich.
-- **Fallback:** Fehlt `spine.png`, rendert ein schlichter CSS-Rücken (aktuell nicht aktiv,
-  Datei ist vorhanden).
+### Text-Einfärbung (`src/lib/fmt.tsx`)
+`fmt(text)` färbt in Prosa automatisch, ohne die Datenstrings zu ändern: zitierte „…"-Phrasen
+grün (`.tx-q`), Stellenangaben `(7,157)` gold (`.tx-ref`), Eulogie ﷺ gold (`.tx-hon`).
+Angewendet auf **These + Schritt-Texte** jeder Buch-Seite. Erweiterbar auf Leads/Konter.
 
 ---
 
-## 7. Zwei-Ebenen-Mechanik (unverändert, nicht kaputt machen)
+## 6. Inhalts-Datenmodell
 
-Jede Siegel-Seite (`src/pages/seals/*Seal.tsx`) hat:
-- **Debatten-Ebene** (immer sichtbar): „Die These"-Block, 4-Schritt-Beweiskette
-  (2-Spalten-Raster), Einwand/Konter-Akkordeon.
-- **Gelehrten-Ebene** (hinter grünem Toggle-Button): 2-Spalten-Referenzraster.
-- **Beleg-Modal** (`src/components/Beleg.tsx`): Volltexte (Original/Translit/Übersetzung)
-  erscheinen NUR im Modal. Zitierte Verse in Grün.
-
-> Inhalte aller 9 Siegel sind fertig und SPEC-treu. Quelle der Wahrheit: **`SPEC.md`**.
-
----
-
-## 8. Offene Punkte (ehrlich — noch NICHT erledigt)
-
-1. **Betreibername:** `اسم الناشر` auf der Startseite ist ein **Platzhalter**. Sobald
-   der echte Name / die Kalligrafie geliefert wird, in `Bibliothek.tsx` ersetzen.
-2. **Handy — Regal-Scroll ohne Andeutung:** Das Regal ist auf dem Handy horizontal
-   scrollbar (man wischt durch alle 9 Bände), aber es gibt **keine sichtbare
-   Andeutung** (Scrollbar ausgeblendet). Empfehlung: Fade-Kante / Wisch-Hinweis
-   ergänzen. **← vom Nutzer angemerkt, noch offen.**
-3. **Siegel-Titelbilder fehlen:** `public/images/siegel/` ist leer → das Karussell auf
-   der Modul-Seite zeigt gestaltete Platzhalter-Karten. Format: 3:2 quer, Titel im Bild.
-   Ebenso `public/images/module/muhammad.jpg` (Hero) fehlt → Frontispiz-Fallback.
-4. **Kamali-Fontdateien** liegen ungenutzt im Repo (können entfernt werden).
-5. **Bundle > 500 kB** (JS 742 kB): bekannt, unkritisch. Optional Code-Splitting.
+- `src/data/modules.ts` — `module1` (id `muhammad`, titel „Der versiegelte Nektar", arab.
+  الرحيق المختوم) mit 9 `SealMeta` (`id`, `nummer` „1"–„9", `titel`, `arabic`, `keywords`, `status`).
+  Plus `module2` (jesus, `coming`). `findModule`, `findSeal`, `searchIndex`.
+- `src/data/seals/<name>.ts` (9 Dateien) — je Buch: `<name>These` (String), `<name>Steps`
+  (`{n,h,body}[]`), `<name>Konter` (`{einwand,konter}[]`), `<name>Scholar` (`{h,body}[]`),
+  `<name>Belege` (Objekt aus `Beleg`), plus Exhibit-Daten & `Vernetzung`. **SPEC-treu, nicht
+  frei umschreiben** — Quelle der Wahrheit ist `SPEC.md`.
+- `src/data/belegRegistry.ts` — alle Belege global, Key `sealId:key`; Modal öffnet via `?beleg=<ref>`.
+- `src/data/sealText.ts` — `sealFullText[sealId]`: rekursiv gesammelter Volltext je Buch (Basis
+  für Suche + Offline-Index).
+- `src/data/searchIndex.ts` — kuratierte Sucheinträge (Ziel + Anchor).
+- `src/data/types.ts` — `SealMeta`, `ModuleMeta`, `Beleg`.
+- ⚠️ Geschützte Begriffe, **nicht** umbenennen: „Siegel der Propheten" / „Siegel zwischen den
+  Schultern" (Hadith-Inhalte, kein Kapitelverweis).
 
 ---
 
-## 9. Wichtige Dateien auf einen Blick
+## 7. Such- & Antwort-Engine (kein Backend, alles im Browser)
+
+- `src/lib/search.ts` — Client-Suche: Normalisierung (Diakritika/ß/Umlaute), Stopwords,
+  Synonyme, Token-Scoring, Levenshtein-Fuzzy, Vers-Referenzen. Exportiert auch
+  `tokenize`/`normalize`/`canon`. `SearchPanel.tsx` Suchfeld navigiert zu Zielen.
+- `src/lib/antwort.ts` — **Antwort-Engine** des Frage-Felds. Baut Korpus aus
+  These/Schritten/Einwand→Konter/Gelehrten/Belegen aller Bücher; scort mit derselben
+  Normalisierung; die kuratierte Suche dient als thematischer Kompass + liefert Exponat-
+  Direktlinks. Einwand-artige Fragen werden mit dem **Konter** beantwortet.
+  **Konversationsmodus:** `antworte(frage, ctx)` — Folgefragen erben Buch + Thema der letzten
+  Antwort (`AntwortKontext`), Intent-Routing (Belege/Gelehrte/Konter/These), bereits gezeigte
+  Passagen werden nicht wiederholt; lange neue Fragen lösen sich vom Kontext.
+- `SearchPanel.tsx` rendert den Chat-Verlauf (Frage-Bubble + Antwort-Karte mit Quellen-Pill
+  „Aus Buch N", „Auch dazu"-Chips, Folge-Chips „Belege/Gelehrte/Einwände", „Verlauf löschen").
+  Styles: `.chat*` in `src/styles/app.css`.
+- `src/lib/offlineBooks.ts` — separate Offline-Suche in heruntergeladenen Büchern (IndexedDB).
+- Das Frage-Feld ist eine **eigene Komponente** `src/components/ui/gradient-ai-chat-input.tsx`
+  (Pastell-Verlaufsrahmen, nur Textzeile + Papierflieger; Attach/Modell-Chip wurden entfernt).
+- ⚠️ **Es ist KEINE echte KI** (kein LLM, kein API-Key). Funktioniert daher voll offline.
+
+---
+
+## 8. PWA & Offline (v10 — jüngste große Arbeit)
+
+- **PWA:** `vite-plugin-pwa` (`vite.config.ts`), `registerType: 'autoUpdate'`,
+  `injectRegister: false`. Precache des kompletten App-Shells (JS/CSS/Fonts/Bilder). Da die 9
+  Bücher im JS-Bundle stecken, ist **die ganze Bibliothek + Suche + Antwort-Engine offline nutzbar**.
+  Manifest im Plugin, Icons in `public/icons/` (`scripts/pwa-icons.mjs`, Medina-grüner Achtstern).
+  `index.html`: theme-color, apple-touch, standalone-Metas.
+- **SW-Registrierung:** manuell in `src/main.tsx` via `src/lib/pwa.ts` (`enableOffline`/
+  `disableOffline`), gekoppelt an den Offline-Schalter der Einstellungen (Default an).
+- **Lokale Nutzerdaten (IndexedDB):** `src/lib/db.ts` — DB `bibliothek`, Stores `favoriten`,
+  `notizen`, `verlauf` (keyPath `sealId`). Kein Server → keine Synchronisierung; Daten bleiben
+  auf dem Gerät.
+- **Offline-Bücher (IndexedDB):** `src/lib/offlineBooks.ts` — DB `bibliothek-offline`, Store
+  `buecher`. Jedes Buch einzeln speicherbar (Volltext + Token-Index + Metadaten) → Offline-Suche.
+- **App-Hülle:** `src/components/AppChrome.tsx` (+ `styles/chrome.css`) — Hamburger oben links →
+  Side-Panel von links (Bibliothek, Bücher, Favoriten, Notizen, Zuletzt gelesen, Einstellungen,
+  Über), Online/Offline-Statuschip + Toast bei Verbindungswechsel. In `App.tsx` global gerendert.
+- **Buch-Extras:** `src/components/BuchExtras.tsx` (+ `styles/buchextras.css`) — schwebender
+  Stern (Favorit) + Notiz-Sheet oben rechts auf jeder Buch-Seite; erfasst „Zuletzt gelesen"
+  automatisch beim Öffnen. Eingehängt in `SealPage.tsx` (Dispatcher rendert `<Built/>` + `<BuchExtras/>`).
+- **Einstellungen:** `src/pages/Einstellungen.tsx` (+ `styles/pages.css`, geteilt mit den
+  Listen-Seiten). Bereiche: **Darstellung** (Farbschema Hell aktiv / Dunkel *vorbereitet*,
+  Schriftgröße 90–130 %, Animationen reduzieren), **Sprache** (Deutsch aktiv, English/Arabisch
+  *vorbereitet*), **Offline** (Modus an/aus, 9 Bücher einzeln laden/löschen, echte Speicheranzeige
+  via `navigator.storage.estimate`, alles löschen), **Meine Daten** (Fav/Notiz/Verlauf löschen).
+- **Einstellungs-Store:** `src/lib/settings.tsx` — Context + localStorage-Key `bibliothek:settings`.
+  Wirkt sofort: `fontScale` = `:root` font-size, `theme` = `data-theme`, `reduceMotion` = `data-reduce-motion`
+  + framer `MotionConfig` (in `App.tsx`). `src/lib/useOnline.ts` = Online-Hook.
+- **Utility-Seiten:** `Favoriten.tsx`, `Notizen.tsx`, `Verlauf.tsx`, `Ueber.tsx`, gemeinsamer
+  Kopf `src/components/PageHead.tsx`.
+
+> **Bewusste Abweichungen von der PWA-Spec (ehrlich, dem Nutzer erklärt):**
+> 1. Der „KI-Chat" braucht KEIN Internet → funktioniert offline weiter, **keine** „braucht
+>    Internet"-Karte (die wäre falsch). 2. **Keine geräteübergreifende Synchronisierung** (kein
+>    Backend). 3. Beispiel-Werke „Riyad as-Salihin/Bulugh al-Maram" existieren nicht → Offline-Liste
+>    zeigt real die 9 Bücher.
+
+---
+
+## 9. Die Zwei-Ebenen-Mechanik der Buch-Seiten (nicht kaputt machen)
+
+Jede `src/pages/seals/*Seal.tsx`: **Debatten-Ebene** (These-Block, 4-Schritt-Beweiskette,
+Einwand/Konter), **Gelehrten-Ebene** (Toggle), **Beleg-Modal** (`src/components/Beleg.tsx`,
+Volltexte Original/Translit/Übersetzung, zitierte Verse grün). Inhalte aller 9 Bücher fertig.
+
+---
+
+## 10. Datei-Landkarte (das Wichtigste)
 
 ```
 src/
+  App.tsx                         Routen + AppChrome + MotionConfig
+  main.tsx                        SettingsProvider + SW-Registrierung
+  index.css                       Design-Tokens (v10) + Mushaf-Rahmen
   pages/
-    Bibliothek.tsx      ← Startseite (Saal + Regal)  [NEU]
-    Regal.tsx           ← /regal-Seite               [NEU]
-    ModulePage.tsx      ← Hero + Karussell
-    SealPage.tsx        ← Dispatcher
-    seals/*Seal.tsx     ← 9 Siegel
+    Bibliothek.tsx  Regal.tsx  ModulePage.tsx  SealPage.tsx(Dispatcher+BuchExtras)
+    Einstellungen.tsx  Favoriten.tsx  Notizen.tsx  Verlauf.tsx  Ueber.tsx   [PWA]
+    seals/*Seal.tsx (9)           die fertigen Bücher
   components/
-    Bookshelf.tsx       ← Buchregal (Bild-Textur + Text-Overlay)  [NEU]
-    SearchPanel.tsx · Beleg.tsx · ModulePlate.tsx · SiegelCarousel.tsx · icons.tsx
+    AppChrome.tsx  BuchExtras.tsx  PageHead.tsx                              [PWA]
+    SearchPanel.tsx               Suche + Frage-Feld/Chat
+    ui/gradient-ai-chat-input.tsx Frage-Eingabe
+    Beleg.tsx  Bookshelf.tsx  SiegelCarousel.tsx  ModulePlate.tsx  icons.tsx
+    exhibits/*                    interaktive Exponate pro Buch
+  lib/
+    search.ts  antwort.ts  fmt.tsx        Suche/Antwort/Einfärbung
+    settings.tsx  useOnline.ts  pwa.ts  db.ts  offlineBooks.ts               [PWA]
+    anim.ts  useImage.ts
   data/
-    regal.ts            ← Bände der Buchreihe         [NEU]
-    modules.ts · seals/*.ts · types.ts · searchIndex.ts
+    modules.ts  types.ts  searchIndex.ts  belegRegistry.ts  sealText.ts
+    regal.ts  seals/*.ts (9)
   styles/
-    bookshelf.css       ← Regal-Styles                [NEU]
-    app.css (+ .hall)   ← Shells, Startseite, Saal
-    seal.css · fonts.css · seals/*.css
-  index.css             ← Design-Tokens (v5), Mushaf-Ränder
-public/images/regal/
-    spine.png           ← echte Buchrücken-Textur (558×2042)
-    README.md           ← Zonen-Spezifikation
-DESIGN.md · SPEC.md · STAND.md (dieses Dokument)
+    app.css(+.chat, .seek, .hall)  seal.css  chrome.css[PWA]  pages.css[PWA]
+    buchextras.css[PWA]  gradient-ai-chat-input.css  bookshelf.css  carousel.css  fonts.css
+  assets/fonts/*  assets/ornaments/{*-photo.webp, source/*-raw.png}
+public/icons/*  (PWA-App-Icons)
+scripts/  pwa-icons.mjs  ornament-crop.mjs  font-italic-insert.py  seal-textstyle.py  (+ Screenshot-Helfer)
+.github/workflows/deploy-pages.yml
+DESIGN.md (Design)  SPEC.md (Inhalt, Wahrheit)  STAND.md (dieses Dokument)
 ```
 
 ---
 
-## 10. Kickoff für die nächste Session
+## 11. Offene Punkte / mögliche nächste Schritte
+
+1. **Dunkelmodus** ist verkabelt (Umschalter + `data-theme="dark"`), aber **optisch nicht
+   ausgestaltet** — kein dunkles Token-Set. Nächster logischer Schritt.
+2. **i18n (English/Arabisch)** nur als Umschalter *vorbereitet* — keine echte Übersetzung/kein
+   Übersetzungs-Layer implementiert.
+3. **Buch-Titelbilder fehlen:** `public/images/siegel/` leer → Karussell zeigt gestaltete
+   Platzhalter. `public/images/module/muhammad.jpg` (Hero) fehlt → Frontispiz-Fallback.
+4. **Betreibername** auf der Startseite wurde entfernt (früherer arabischer Platzhalter). Falls
+   ein echter Name/Kalligrafie kommt: in `Bibliothek.tsx` einsetzen.
+5. **Echte KI** (frei formulierende Antworten / Bildverständnis) bräuchte externe API + kleinen
+   Proxy (z. B. Cloudflare) + laufende Kosten — bewusst nicht gebaut. Andockstelle: `antwort.ts`.
+6. Bundle > 500 kB (JS ~773 kB, gzip 244) — bekannt/unkritisch. Optional Code-Splitting.
+7. `SESSION-HANDOFF.md` ist veraltet — kann gelöscht werden.
+
+---
+
+## 12. Kickoff für die nächste Sitzung (zum Kopieren)
 
 ```
-Lies STAND.md, DESIGN.md und SPEC.md im Repo. Branch: claude/gracious-gates-n4j6z2.
-Die Website ist eine React+TS+Vite Apologetik-Enzyklopädie im Mushaf-Design (v5).
-Startseite = Bibliothekssaal mit echtem Buchregal (9 Siegel als Bände über einer
-Bildtextur). Alle Inhalte fertig. Nächste offene Punkte stehen in STAND.md §8.
-```
+Lies STAND.md, DESIGN.md und SPEC.md im Repo-Root. Branch: claude/gracious-gates-n4j6z2,
+Remote aymanoul/Ayman, live unter https://aymanoul.github.io/Ayman/.
 
-*Hinweis: Die ältere `SESSION-HANDOFF.md` (18.06.) beschreibt den Stand VOR den
-Design-Umbauten und ist überholt — dieses Dokument (`STAND.md`) gilt.*
+Es ist eine React+TS+Vite PWA (HashRouter, handgeschriebenes CSS, Mushaf-Design v10,
+Schrift Inter italic + Poppins). Werk: „Der versiegelte Nektar", 9 Bücher (Buch 1–9),
+Routen /modul/muhammad/buch/<slug>. Das Frage-Feld antwortet client-seitig aus den
+Inhalten (lib/antwort.ts, KEIN LLM) mit Konversationsmodus. Offline-fähig: Service Worker
+(vite-plugin-pwa) + IndexedDB für Favoriten/Notizen/Verlauf + offline speicherbare Bücher.
+Side-Menü/Einstellungen/Favoriten/Notizen/Verlauf/Über sind gebaut.
+
+Arbeitsweise: alles auf Branch claude/gracious-gates-n4j6z2 committen+pushen; nach jedem
+Push baut .github/workflows/deploy-pages.yml automatisch (bei „Deployment failed, try again
+later" einfach den deploy-Job erneut ausführen — GitHub-Transient). tsc 0 Fehler + Build
+grün halten. Bei --font-display/--font-ui immer font-style:italic mitsetzen.
+
+Offene Punkte stehen in STAND.md §11 (u. a. Dunkelmodus ausgestalten, i18n, Buch-Titelbilder).
+```
