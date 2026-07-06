@@ -42,7 +42,7 @@ function useFitText(text: string) {
     const box = el?.parentElement
     if (!el || !box) return
 
-    const MAX = 15.5
+    const MAX = 12
     const MIN = 6.5
     const fit = () => {
       const availW = box.clientWidth
@@ -103,15 +103,19 @@ export default function Bookshelf({ titel, verlag, baende }: BookshelfProps) {
                 className={`spine${imgOk ? ' spine--img' : ''}${hot === b.nr ? ' is-hot' : ''}`}
                 style={imgOk ? { backgroundImage: `url(${src})` } : undefined}
                 role="listitem"
-                aria-label={`Buch ${b.nr}: ${b.deutsch}`}
+                aria-label={`Band ${b.nr}: ${b.deutsch}`}
                 onMouseEnter={() => setHot(b.nr)}
                 onMouseLeave={() => setHot(null)}
                 onFocus={() => setHot(b.nr)}
                 onBlur={() => setHot(null)}
               >
-                {/* Kopf-Feld: Reihentitel (auf allen Baenden identisch) */}
+                {/* Kopf-Feld: Reihentitel, Woerter untereinander gestapelt */}
                 <span className="spine__z spine__z--titel" lang="ar" dir="rtl">
-                  {titel}
+                  {titel.split(' ').map((wort, i) => (
+                    <span key={i} className="spine__titelzeile">
+                      {wort}
+                    </span>
+                  ))}
                 </span>
 
                 {/* Medaillon: deutscher Buchtitel, auto-gefittet + zentriert */}
@@ -145,7 +149,7 @@ export default function Bookshelf({ titel, verlag, baende }: BookshelfProps) {
                 onMouseEnter={() => setHot(b.nr)}
                 onMouseLeave={() => setHot(null)}
               >
-                <span className="book-label__nr">Buch {b.nr}</span>
+                <span className="book-label__nr">Band {b.nr}</span>
                 <span className="book-label__de">{b.deutsch}</span>
               </Link>
             ))}

@@ -156,21 +156,27 @@
    Raute (rot)       ~68–77 % (Mitte ~73.5)
    Fuss-Kartusche    ~82–89 % (Mitte ~85.5) */
 
-/* Kopf-Feld — Reihentitel (arabisch), auf allen Baenden gleich */
+/* Kopf-Feld — Reihentitel (arabisch), Woerter untereinander gestapelt */
 .spine--img .spine__z--titel {
-  top: 12%;
-  height: 12%;
-  font-size: clamp(0.98rem, 1.65vw, 1.32rem);
+  top: 9.5%;
+  height: 17%;
+  flex-direction: column;
+  gap: 0.05em;
+  font-size: clamp(0.95rem, 1.6vw, 1.3rem);
   font-weight: 700;
+  line-height: 1.1;
   color: #e9d6a2;
+}
+.spine__titelzeile {
+  display: block;
 }
 
 /* Medaillon — Feld fuer den deutschen Buchtitel. Feste Prozentmasse, damit
    das Auto-Fit (useFitText) die verfuegbare Flaeche exakt vermessen kann. */
 .spine--img .spine__med {
   position: absolute;
-  top: 34.5%;
-  height: 25%;
+  top: 37%;
+  height: 24%;
   left: 23%;
   width: 54%;
   display: flex;
@@ -194,14 +200,20 @@
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.55), 0 0 12px rgba(243, 230, 187, 0.16);
 }
 
-/* Raute — Bandnummer, exakt im roten Rhombus zentriert */
+/* Raute — Bandnummer. Auf die pixel-vermessene Rhombus-Mitte gesetzt
+   (Textur: vertikale Mitte 73.2 %, horizontal zentriert). Aufrechte, gleich
+   hohe Ziffern (Poppins, lining + tabular) — sonst sitzen Serifen-Ziffern mit
+   Unterlaengen (3,5,7,9) uneinheitlich = "schief". */
 .spine--img .spine__z--nr {
-  top: 69.9%;
-  height: 7.2%;
+  top: 69.7%;
+  height: 7%;
   left: 0;
   width: 100%;
-  font-size: clamp(0.86rem, 1.5vw, 1.15rem);
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-weight: 600;
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
   line-height: 1;
   color: #f2e3b6;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6), 0 0 12px rgba(242, 227, 182, 0.2);
