@@ -39,6 +39,13 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
         navigateFallback: 'index.html',
         cleanupOutdatedCaches: true,
+        // Ohne dies wartet ein neuer Service Worker, bis ALLE Tabs zur Seite
+        // geschlossen sind, bevor er die Kontrolle übernimmt — auf Mobil-
+        // Browsern (Tabs bleiben im Hintergrund "offen") kann das faktisch nie
+        // eintreten, und Besucher stecken dauerhaft auf dem alten Stand fest.
+        // skipWaiting+clientsClaim erzwingen die Übernahme beim naechsten Laden.
+        skipWaiting: true,
+        clientsClaim: true,
       },
     }),
   ],
