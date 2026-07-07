@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
+import Home from './pages/Home'
 import Bibliothek from './pages/Bibliothek'
 import ModulePage from './pages/ModulePage'
 import SealPage from './pages/SealPage'
@@ -21,7 +22,8 @@ export default function App() {
         <div className="atmosphere" aria-hidden />
         <AppChrome />
         <Routes>
-          <Route path="/" element={<Bibliothek />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/bibliothek" element={<Bibliothek />} />
           <Route path="/regal" element={<Regal />} />
           <Route path="/modul/:moduleId" element={<ModulePage />} />
           <Route path="/modul/:moduleId/buch/:sealId" element={<SealPage />} />
@@ -32,7 +34,7 @@ export default function App() {
           <Route path="/notizen" element={<Notizen />} />
           <Route path="/verlauf" element={<Verlauf />} />
           <Route path="/ueber" element={<Ueber />} />
-          <Route path="*" element={<Bibliothek />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </BelegProvider>
     </MotionConfig>

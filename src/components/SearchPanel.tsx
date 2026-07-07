@@ -41,7 +41,7 @@ function Folgefragen({ onAsk }: { onAsk: (msg: string) => void }) {
   )
 }
 
-export default function SearchPanel() {
+export default function SearchPanel({ exampleFragen }: { exampleFragen?: string[] } = {}) {
   const navigate = useNavigate()
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
@@ -171,6 +171,16 @@ export default function SearchPanel() {
           onSend={onAsk}
         />
       </div>
+
+      {exampleFragen && exampleFragen.length > 0 && dialog.length === 0 && (
+        <div className="seek__examples">
+          {exampleFragen.map((f) => (
+            <button key={f} type="button" className="seek__example" onClick={() => onAsk(f)}>
+              {f}
+            </button>
+          ))}
+        </div>
+      )}
 
       {dialog.length > 0 && (
         <div className="chat" aria-live="polite">

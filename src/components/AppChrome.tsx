@@ -16,8 +16,8 @@ import {
 import '../styles/chrome.css'
 
 const NAV = [
-  { to: '/', label: 'Bibliothek', icon: HomeIcon, end: true },
-  { to: '/modul/muhammad', label: 'Bücher', icon: BooksIcon, end: false },
+  { to: '/', label: 'Startseite', icon: HomeIcon, end: true },
+  { to: '/bibliothek', label: 'Bibliothek', icon: BooksIcon, end: false },
   { to: '/favoriten', label: 'Favoriten', icon: StarIcon, end: false },
   { to: '/notizen', label: 'Notizen', icon: NoteIcon, end: false },
   { to: '/verlauf', label: 'Zuletzt gelesen', icon: ClockIcon, end: false },

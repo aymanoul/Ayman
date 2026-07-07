@@ -23,7 +23,7 @@ export default function ModulePage() {
       <main className="stub">
         <div className="stub__inner">
           <h1>Nicht gefunden</h1>
-          <Link to="/" className="stub__back">
+          <Link to="/bibliothek" className="stub__back">
             <ArrowLeft /> Zur Bibliothek
           </Link>
         </div>
@@ -34,7 +34,7 @@ export default function ModulePage() {
   return (
     <main className="shell">
       <div className="wrap" style={{ paddingTop: 'clamp(1.5rem, 5vh, 2.5rem)', paddingBottom: '4rem' }}>
-        <Link to="/" className="stub__back" style={{ marginTop: 0 }}>
+        <Link to="/bibliothek" className="stub__back" style={{ marginTop: 0 }}>
           <ArrowLeft /> Bibliothek
         </Link>
 

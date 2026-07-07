@@ -84,7 +84,7 @@ export default function SealPage() {
       <main className="stub">
         <div className="stub__inner">
           <h1>Buch nicht gefunden</h1>
-          <Link to="/" className="stub__back">
+          <Link to="/bibliothek" className="stub__back">
             <ArrowLeft /> Zur Bibliothek
           </Link>
         </div>

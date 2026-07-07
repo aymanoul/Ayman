@@ -11,7 +11,7 @@ export default function Regal() {
         className="wrap"
         style={{ maxWidth: 1320, paddingTop: 'clamp(1.5rem, 5vh, 2.5rem)', paddingBottom: '4rem' }}
       >
-        <Link to="/" className="stub__back" style={{ marginTop: 0 }}>
+        <Link to="/bibliothek" className="stub__back" style={{ marginTop: 0 }}>
           <ArrowLeft /> Bibliothek
         </Link>
 

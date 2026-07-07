@@ -6,7 +6,7 @@ import { ArrowLeft } from './icons'
 export default function PageHead({ kicker, title }: { kicker: string; title: string }) {
   return (
     <header className="pagehead">
-      <Link to="/" className="stub__back" style={{ marginTop: 0 }}>
+      <Link to="/bibliothek" className="stub__back" style={{ marginTop: 0 }}>
         <ArrowLeft /> Bibliothek
       </Link>
       <span className="pagehead__kicker">{kicker}</span>

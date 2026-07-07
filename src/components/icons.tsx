@@ -192,6 +192,30 @@ export function Diamond(p: SVGProps<SVGSVGElement>) {
   )
 }
 
+export function ShareIcon(p: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...p}>
+      <circle cx="18" cy="6" r="2.4" />
+      <circle cx="6" cy="12" r="2.4" />
+      <circle cx="18" cy="18" r="2.4" />
+      <path d="M8.1 10.8 15.9 7.2M8.1 13.2l7.8 3.6" />
+    </svg>
+  )
+}
+
+export function DiceIcon(p: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...p}>
+      <rect x="4" y="4" width="16" height="16" rx="4" />
+      <circle cx="8.3" cy="8.3" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="15.7" cy="8.3" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="8.3" cy="15.7" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="15.7" cy="15.7" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
 export function ArabesqueDivider(p: SVGProps<SVGSVGElement>) {
   return (
     <svg width="180" height="22" viewBox="0 0 180 22" fill="none" stroke="currentColor" strokeWidth="1" {...p}>
