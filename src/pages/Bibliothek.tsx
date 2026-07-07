@@ -1,9 +1,7 @@
-import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import SearchPanel from '../components/SearchPanel'
 import ModulePlate from '../components/ModulePlate'
 import Bookshelf from '../components/Bookshelf'
-import { Chevron } from '../components/icons'
 import { modules } from '../data/modules'
 import { regalBaende, regalTitel, regalVerlag } from '../data/regal'
 import { regalJesusBaende, regalJesusTitel, regalJesusVerlag } from '../data/regal-jesus'
@@ -59,18 +57,6 @@ export default function Bibliothek() {
         >
           <Bookshelf titel={regalTitel} verlag={regalVerlag} baende={regalBaende} />
         </motion.div>
-
-        <motion.div
-          className="hall__more"
-          initial={reduce ? false : { opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
-        >
-          <Link to="/modul/muhammad" className="hall__morelink">
-            Zu den Büchern <Chevron aria-hidden />
-          </Link>
-        </motion.div>
       </section>
 
       {/* ---- Der Saal: die zweite Buchreihe (Jesus, der Gesandte Gottes) ---- */}
@@ -94,18 +80,6 @@ export default function Bibliothek() {
           transition={{ duration: 0.85, ease: EASE }}
         >
           <Bookshelf titel={regalJesusTitel} verlag={regalJesusVerlag} baende={regalJesusBaende} variant="jesus" />
-        </motion.div>
-
-        <motion.div
-          className="hall__more"
-          initial={reduce ? false : { opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
-        >
-          <Link to="/modul/jesus" className="hall__morelink">
-            Zu den Büchern <Chevron aria-hidden />
-          </Link>
         </motion.div>
       </section>
 
