@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { search, tokenize, type SearchResult } from '../lib/search'
-import { antworte, passageKey, type Antwort } from '../lib/antwort'
+import { antworte, komponiere, istKompositionsAnfrage, passageKey, type Antwort, type Komposition } from '../lib/antwort'
 import { fmt } from '../lib/fmt'
 import { SearchIcon, Chevron } from './icons'
 import { GradientAIChatInput } from './ui/gradient-ai-chat-input'
@@ -10,12 +10,35 @@ import { GradientAIChatInput } from './ui/gradient-ai-chat-input'
 // Zwei Wege hinein: die Suche navigiert zu Kapiteln/Belegen; das Frage-Feld
 // ANTWORTET direkt im Chat — aus den Inhalten der Bücher (lib/antwort), mit
 // Quellenangabe und Link. Keine externe KI, nichts verlässt den Browser.
+//
+// Zwei Antwort-Formen: eine einzelne passende Passage (`antwort`) für normale
+// Fragen, oder ein KOMPONIERTER Text (`komposition`) — mehrere Bausteine
+// desselben Buches (These, Schritte, Belege, Konter, Schluss) zu einem
+// zusammenhängenden Text zusammengestellt —, wenn die Frage nach einem
+// verfassten Text klingt ("Schreib mir einen Text, der erläutert, dass …").
 const TYP_LABEL = { quran: 'Koran', bibel: 'Bibel', quelle: 'Quelle' } as const
 const TYP_GLYPH = { quran: '۝', bibel: '✦', quelle: '❝' } as const
 
 interface ChatTurn {
   frage: string
   antwort: Antwort | null
+  komposition?: Komposition | null
+}
+
+function Folgefragen({ onAsk }: { onAsk: (msg: string) => void }) {
+  return (
+    <div className="chat__follow">
+      <button type="button" className="chat__follow-btn" onClick={() => onAsk('Welche Belege stützen das?')}>
+        Belege dazu
+      </button>
+      <button type="button" className="chat__follow-btn" onClick={() => onAsk('Was sagen die Gelehrten dazu?')}>
+        Gelehrte
+      </button>
+      <button type="button" className="chat__follow-btn" onClick={() => onAsk('Welche Einwände gibt es dagegen?')}>
+        Einwände
+      </button>
+    </div>
+  )
 }
 
 export default function SearchPanel() {
@@ -56,17 +79,23 @@ export default function SearchPanel() {
     setDialog((d) => {
       // Gesprächskontext: letzte beantwortete Runde liefert Buch + Thema;
       // alle bereits gezeigten Passagen werden nicht wiederholt.
-      const letzte = [...d].reverse().find((t) => t.antwort)
-      const ctx = letzte?.antwort
+      const letzte = [...d].reverse().find((t) => t.antwort || t.komposition)
+      const ctx = letzte
         ? {
-            sealId: letzte.antwort.passage.sealId,
+            sealId: letzte.antwort?.passage.sealId ?? letzte.komposition?.sealId ?? null,
             themaTokens: tokenize(
-              [letzte.frage, letzte.antwort.passage.titel ?? '', letzte.antwort.passage.einwand ?? ''].join(' ')
+              [letzte.frage, letzte.antwort?.passage.titel ?? '', letzte.antwort?.passage.einwand ?? ''].join(' ')
             ),
             ausgeschlossen: d.filter((t) => t.antwort).map((t) => passageKey(t.antwort!.passage)),
           }
         : undefined
-      return [...d, { frage: q, antwort: antworte(q, ctx) }]
+
+      // Verfassungs-Absicht ("Schreib mir einen Text über …") → komponierter
+      // Text aus mehreren Bausteinen desselben Buches statt einer Einzel-Passage.
+      if (istKompositionsAnfrage(q)) {
+        return [...d, { frage: q, antwort: null, komposition: komponiere(q, ctx) }]
+      }
+      return [...d, { frage: q, antwort: antworte(q, ctx), komposition: null }]
     })
   }
 
@@ -137,7 +166,7 @@ export default function SearchPanel() {
           placeholder={
             dialog.length > 0
               ? 'Frag weiter — z. B. „Welche Belege stützen das?“'
-              : 'Stell eine Frage — z. B. „Warum gleicht Muhammad dem Mose mehr als Jesus?“'
+              : 'Frag oder lass einen Text verfassen — z. B. „Schreib einen Text über 5. Mose 18,18“'
           }
           onSend={onAsk}
         />
@@ -156,7 +185,48 @@ export default function SearchPanel() {
               >
                 <p className="chat__frage">{t.frage}</p>
 
-                {t.antwort ? (
+                {t.komposition ? (
+                  <div className="chat__antwort chat__komposition">
+                    <p className="chat__komp-label">Verfasster Text — zusammengestellt aus {t.komposition.quelle}</p>
+                    {t.komposition.abschnitte.map((a, ai) => {
+                      if (a.art === 'konter') {
+                        return (
+                          <div key={ai} className="chat__komp-block">
+                            {a.einwand && <p className="chat__einwand">Einwand: {a.einwand}</p>}
+                            <p className="chat__text">{fmt(a.text)}</p>
+                          </div>
+                        )
+                      }
+                      if (a.art === 'beleg') {
+                        return (
+                          <div key={ai} className="chat__komp-block">
+                            <p className="chat__text chat__text--vers">{fmt(a.text)}</p>
+                            {a.fundstelle && <p className="chat__fundstelle">{a.fundstelle}</p>}
+                          </div>
+                        )
+                      }
+                      if (a.art === 'schluss') {
+                        return (
+                          <p key={ai} className="chat__text chat__komp-schluss">
+                            {fmt(a.text)}
+                          </p>
+                        )
+                      }
+                      return (
+                        <div key={ai} className="chat__komp-block">
+                          {a.titel && <p className="chat__titel">{a.titel}</p>}
+                          <p className="chat__text">{fmt(a.text)}</p>
+                        </div>
+                      )
+                    })}
+
+                    <Link className="chat__quelle" to={t.komposition.link}>
+                      Aus {t.komposition.quelle} — weiterlesen <Chevron aria-hidden />
+                    </Link>
+
+                    {i === dialog.length - 1 && <Folgefragen onAsk={onAsk} />}
+                  </div>
+                ) : t.antwort ? (
                   <div className="chat__antwort">
                     {t.antwort.passage.art === 'konter' && t.antwort.passage.einwand && (
                       <p className="chat__einwand">Einwand: {t.antwort.passage.einwand}</p>
@@ -186,25 +256,14 @@ export default function SearchPanel() {
                       </div>
                     )}
 
-                    {i === dialog.length - 1 && (
-                      <div className="chat__follow">
-                        <button type="button" className="chat__follow-btn" onClick={() => onAsk('Welche Belege stützen das?')}>
-                          Belege dazu
-                        </button>
-                        <button type="button" className="chat__follow-btn" onClick={() => onAsk('Was sagen die Gelehrten dazu?')}>
-                          Gelehrte
-                        </button>
-                        <button type="button" className="chat__follow-btn" onClick={() => onAsk('Welche Einwände gibt es dagegen?')}>
-                          Einwände
-                        </button>
-                      </div>
-                    )}
+                    {i === dialog.length - 1 && <Folgefragen onAsk={onAsk} />}
                   </div>
                 ) : (
                   <div className="chat__antwort chat__antwort--leer">
                     <p className="chat__text">
-                      Dazu finde ich in der Bibliothek noch keine Antwort. Versuch es konkreter — z. B.
-                      „Wurde die Bibel verfälscht?", „Was bedeutet maḥamaddīm?" oder „Welche vier Reiche sah Daniel?".
+                      {istKompositionsAnfrage(t.frage)
+                        ? 'Dazu finde ich in der Bibliothek kein passendes Buch, aus dem sich ein Text zusammenstellen ließe. Versuch es mit einem konkreteren Thema — z. B. „Schreib einen Text darüber, dass Muhammad mit 5. Mose 18,18 gemeint ist".'
+                        : 'Dazu finde ich in der Bibliothek noch keine Antwort. Versuch es konkreter — z. B. „Wurde die Bibel verfälscht?", „Was bedeutet maḥamaddīm?" oder „Welche vier Reiche sah Daniel?".'}
                     </p>
                   </div>
                 )}

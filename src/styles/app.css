@@ -335,6 +335,31 @@
   font-style: inherit;
   color: var(--ink-faint);
 }
+/* ---- komponierter Text: mehrere Bausteine desselben Buches, ein Text ---- */
+.chat__komposition {
+  border-left-color: var(--brass);
+}
+.chat__komp-label {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brass-deep);
+  margin-bottom: 0.7rem;
+}
+.chat__komp-block + .chat__komp-block {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line-faint);
+}
+.chat__komp-schluss {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--line);
+  font-style: italic;
+  color: var(--ink-soft);
+}
 .chat__follow {
   display: flex;
   flex-wrap: wrap;

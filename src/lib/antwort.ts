@@ -50,7 +50,7 @@ const SEAL_MODULES: Record<string, Record<string, unknown>> = {
   angekuendigt,
 }
 
-export type PassageArt = 'these' | 'schritt' | 'konter' | 'gelehrte' | 'beleg'
+export type PassageArt = 'these' | 'schritt' | 'konter' | 'gelehrte' | 'beleg' | 'schluss'
 
 export interface Passage {
   art: PassageArt
@@ -142,6 +142,10 @@ function harvest(): Passage[] {
         for (const k of value) out.push({ art: 'konter', sealId, einwand: k.einwand, text: k.konter })
       } else if (/Scholar$/.test(key) && isScholar(value)) {
         for (const g of value) out.push({ art: 'gelehrte', sealId, titel: g.h, text: g.body })
+      } else if (/(GleicheMassstaebe|Kernaussage)$/.test(key) && typeof value === 'string') {
+        // Der Schlusssatz jedes Buches — "Gleiche Maßstäbe" (Nektar-Reihe)
+        // bzw. "Kernaussage" (Jesus-Reihe). Dient als Fazit in komponierten Texten.
+        out.push({ art: 'schluss', sealId, text: value })
       }
     }
   }
@@ -195,6 +199,7 @@ const INTENT_TRIGGER: Record<PassageArt, Set<string>> = {
   konter: new Set(tokenize('einwand einwaende kritik kritiker gegenargument gegenargumente widerspruch entgegnung')),
   these: new Set(tokenize('these kernaussage zusammenfassung kurzfassung')),
   schritt: new Set(),
+  schluss: new Set(),
 }
 
 // ---- die Antwort -----------------------------------------------------------
@@ -312,4 +317,168 @@ export function antworte(frage: string, ctx?: AntwortKontext): Antwort | null {
   }
 
   return { passage: best, quelle: quelleFuer(best.sealId), link: linkFuer(best), mehr }
+}
+
+// ---------------------------------------------------------------------------
+// KOMPOSITION: "Schreib mir einen Text über …" verlangt mehr als eine einzelne
+// Passage — die Engine stellt hier mehrere kuratierte Bausteine DESSELBEN
+// Buches (These → Beweisschritte → Belege → Einwand/Konter → Kernaussage) zu
+// einem zusammenhängenden, mehrabsätzigen Text zusammen. Weiterhin keine
+// externe KI: nichts wird generiert, was nicht bereits in den Büchern steht —
+// nur Auswahl und Reihenfolge sind neu.
+// ---------------------------------------------------------------------------
+
+export type KompositionsArt = 'einleitung' | 'schritt' | 'beleg' | 'konter' | 'schluss'
+
+export interface KompositionsAbschnitt {
+  art: KompositionsArt
+  titel?: string
+  /** nur bei art='konter' */
+  einwand?: string
+  text: string
+  fundstelle?: string
+  belegRef?: string
+}
+
+export interface Komposition {
+  sealId: string
+  titel: string
+  quelle: string
+  link: string
+  abschnitte: KompositionsAbschnitt[]
+}
+
+// Woerter, die eine Verfassungs-Absicht signalisieren, aber selbst kein Thema
+// tragen ("schreib", "text", "kurzen", "indem", …) — fuer die Themenerkennung
+// aus der Frage herausgefiltert, damit sie nicht versehentlich auf ein
+// falsches Buch ziehen (kein Buch traegt "text" als Tag).
+const KOMPOSITIONS_TRIGGER = new Set(
+  tokenize(
+    'schreib schreibe schreiben verfasse verfassen erstelle erstellen formuliere formulieren ' +
+      'text texte abschnitt abschnitte absatz aufsatz beitrag erklaerung erklaerungen ' +
+      'erlaeuterung erlaeuterungen erklaere erklaerst erklaerest erlaeutere erlaeuterst ' +
+      'kurz kurze kurzen kurzes ausfuehrlich ausfuehrliche indem mithilfe anhand'
+  )
+)
+
+const KOMPOSITION_INTENT = /\b(schreib\w*|verfass\w*|erstell\w*|formulier\w*)\b[\s\S]{0,40}?\b(text|abschnitt|absatz|aufsatz|beitrag)\b/
+
+/** Erkennt "Schreib/Verfasse/Erstelle/Formuliere … einen Text/Abschnitt/Aufsatz …" */
+export function istKompositionsAnfrage(frage: string): boolean {
+  return KOMPOSITION_INTENT.test(normalize(frage))
+}
+
+function themenTokens(frage: string): string[] {
+  return Array.from(new Set(tokenize(frage))).filter((t) => !DEIKTIK.has(t) && !KOMPOSITIONS_TRIGGER.has(t))
+}
+
+function ueberlapp(p: Prepared, qTokens: string[]): number {
+  let score = 0
+  for (const t of qTokens) {
+    if (p.titelTokens.has(t)) score += 3
+    else if (p.tokens.has(t)) score += 2
+  }
+  return score
+}
+
+/** Bestimmt das Ziel-Buch: Such-Kompass zuerst, dann Themen-Tokens im Korpus, dann Gesprächskontext. */
+function zielBuch(frage: string, thema: string, ctx?: AntwortKontext): string | null {
+  const kompass = search(thema || frage, 5)[0]
+  if (kompass && kompass.score >= 4) return kompass.entry.sealId
+
+  const qTokens = Array.from(new Set(tokenize(thema || frage)))
+  if (qTokens.length > 0) {
+    const punkte = new Map<string, number>()
+    for (const p of corpus()) {
+      let s = 0
+      for (const t of qTokens) {
+        if (p.titelTokens.has(t)) s += 3
+        else if (p.tokens.has(t)) s += 2
+        else if (p.sealTokens.has(t)) s += 1
+      }
+      if (s > 0) punkte.set(p.passage.sealId, (punkte.get(p.passage.sealId) ?? 0) + s)
+    }
+    let bestSeal: string | null = null
+    let bestScore = 0
+    for (const [id, s] of punkte) {
+      if (s > bestScore) {
+        bestScore = s
+        bestSeal = id
+      }
+    }
+    if (bestSeal && bestScore >= 6) return bestSeal
+  }
+
+  return ctx?.sealId ?? null
+}
+
+/** Verfasst einen zusammenhängenden Text aus den kuratierten Bausteinen eines Buches. */
+export function komponiere(frage: string, ctx?: AntwortKontext): Komposition | null {
+  const thema = themenTokens(frage).join(' ')
+  const sealId = zielBuch(frage, thema, ctx)
+  if (!sealId) return null
+
+  const qTokens = Array.from(new Set(tokenize(frage))).filter((t) => !DEIKTIK.has(t))
+  const passagen = corpus().filter((p) => p.passage.sealId === sealId)
+  if (passagen.length === 0) return null
+
+  const these = passagen.find((p) => p.passage.art === 'these')
+  const schluss = passagen.find((p) => p.passage.art === 'schluss')
+
+  // Beweisschritte: die zwei am besten passenden, sonst die ersten zwei
+  // (Ur-Reihenfolge bleibt erhalten, damit der Text nicht willkürlich springt).
+  const schritte = passagen.filter((p) => p.passage.art === 'schritt')
+  let schrittWahl = schritte
+    .map((p) => ({ p, score: ueberlapp(p, qTokens) }))
+    .sort((a, b) => b.score - a.score)
+    .filter((x) => x.score > 0)
+    .slice(0, 2)
+  if (schrittWahl.length < 2) {
+    const fehlend = 2 - schrittWahl.length
+    const rest = schritte.filter((p) => !schrittWahl.some((x) => x.p === p)).slice(0, fehlend)
+    schrittWahl = schrittWahl.concat(rest.map((p) => ({ p, score: 0 })))
+  }
+  schrittWahl.sort((a, b) => schritte.indexOf(a.p) - schritte.indexOf(b.p))
+
+  // Belege & Konter: nur aufnehmen, wenn sie inhaltlich zur Frage passen —
+  // sonst bleibt der Text schlank statt mit unpassenden Zitaten aufgebläht.
+  const belege = passagen.filter((p) => p.passage.art === 'beleg')
+  const belegWahl = belege
+    .map((p) => ({ p, score: ueberlapp(p, qTokens) }))
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 2)
+
+  const konter = passagen.filter((p) => p.passage.art === 'konter')
+  const konterWahl = konter
+    .map((p) => ({ p, score: ueberlapp(p, qTokens) }))
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 1)
+
+  const abschnitte: KompositionsAbschnitt[] = []
+  if (these) abschnitte.push({ art: 'einleitung', text: these.passage.text })
+  for (const { p } of schrittWahl) abschnitte.push({ art: 'schritt', titel: p.passage.titel, text: p.passage.text })
+  for (const { p } of belegWahl) {
+    abschnitte.push({
+      art: 'beleg',
+      titel: p.passage.titel,
+      text: p.passage.text,
+      fundstelle: p.passage.fundstelle,
+      belegRef: p.passage.belegRef,
+    })
+  }
+  for (const { p } of konterWahl) abschnitte.push({ art: 'konter', einwand: p.passage.einwand, text: p.passage.text })
+  if (schluss) abschnitte.push({ art: 'schluss', text: schluss.passage.text })
+
+  if (abschnitte.length === 0) return null
+
+  const info = sealInfoById[sealId]
+  return {
+    sealId,
+    titel: info?.titel ?? sealId,
+    quelle: quelleFuer(sealId),
+    link: `/modul/${info?.moduleId ?? 'muhammad'}/buch/${sealId}`,
+    abschnitte,
+  }
 }
