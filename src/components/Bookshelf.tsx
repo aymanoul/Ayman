@@ -83,11 +83,8 @@ function useFitText(text: string, max = 12, min = 6.5) {
   return ref
 }
 
-function SpineTitle({ text, variant }: { text: string; variant: 'nektar' | 'jesus' }) {
-  // Jesus-Ruecken sind ~1.4x groesser als Nektar — der Titel wird entsprechend
-  // hoeher gedeckelt (MAX/MIN skaliert), damit er proportional gleich wirkt.
-  const [max, min] = variant === 'jesus' ? [17, 9] : [12, 6.5]
-  const ref = useFitText(text, max, min)
+function SpineTitle({ text }: { text: string; variant: 'nektar' | 'jesus' }) {
+  const ref = useFitText(text, 12, 6.5)
   return (
     <span ref={ref} className="spine__z spine__z--buch">
       {text}

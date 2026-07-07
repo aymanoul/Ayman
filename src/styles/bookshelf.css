@@ -341,7 +341,7 @@
    ========================================================================== */
 .shelf-wrap--jesus .spine,
 .shelf-wrap--jesus .book-label {
-  width: clamp(138px, 13vw, 176px);
+  width: clamp(100px, 9.6vw, 126px);
 }
 .shelf-wrap--jesus .spine {
   aspect-ratio: 570 / 2042;
@@ -354,12 +354,12 @@
 
 /* Kopf-Feld — arab. Reihentitel im oberen Navy-Panel (Woerter untereinander).
    Zone deckt das Navy-Panel (9.5–30.9 %) ab, damit der Titel exakt mittig darin
-   sitzt. Schrift ~1.4x groesser als Nektar-Basis, weil der Jesus-Ruecken selbst
-   ~1.4x groesser ist — so wirkt der Titel proportional identisch. */
+   sitzt. Schriftgroesse identisch zur Nektar-Basis, damit beide Regale gleich
+   gross wirken. */
 .shelf-wrap--jesus .spine--img .spine__z--titel {
   top: 9.5%;
   height: 21%;
-  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  font-size: clamp(0.95rem, 1.6vw, 1.3rem);
   color: #e9d6a2;
 }
 
@@ -377,11 +377,11 @@
 }
 
 /* Raute — Bandnummer, vertikale Mitte 75.0 % (aufrechte, gleich hohe Ziffern).
-   Schrift ~1.4x groesser als Nektar-Basis (proportional zum groesseren Ruecken). */
+   Schriftgroesse identisch zur Nektar-Basis. */
 .shelf-wrap--jesus .spine--img .spine__z--nr {
   top: 71.5%;
   height: 7%;
-  font-size: clamp(1.1rem, 1.95vw, 1.4rem);
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
   color: #f3e4b7;
 }
 
@@ -391,13 +391,13 @@
   height: 4%;
   left: 21.6%;
   width: 56.7%;
-  font-size: clamp(0.82rem, 1.25vw, 1.04rem);
+  font-size: clamp(0.6rem, 0.9vw, 0.74rem);
   color: #eeddab;
 }
 
 @media (max-width: 720px) {
   .shelf-wrap--jesus .spine,
   .shelf-wrap--jesus .book-label {
-    width: 130px;
+    width: 96px;
   }
 }
