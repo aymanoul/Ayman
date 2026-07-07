@@ -44,22 +44,22 @@ export const wahrerJesusSteps: Step[] = [
   {
     n: 'I',
     h: 'Die wunderbare Geburt',
-    body: 'Ein Engel verkündet Maria „ein Wort von Gott" — al-Masih ʿĪsā (3:45). Sie ist verwundert, „wo mich doch kein menschliches Wesen berührt hat" — und die Antwort lautet: „Allah erschafft, was Er will" (3:47). Als sie mit dem Kind zu ihrem Volk zurückkehrt, wird sie der Unzucht bezichtigt (19:27–28) — bis das Kind in der Wiege spricht und selbst sein Prophetentum verkündet (19:30–33).',
+    body: 'Ein Engel verkündet Maria „ein Wort von Gott" — al-Masih ʿĪsā (3:45); die Antwort auf ihr Staunen: „Allah erschafft, was Er will" (3:47). Als ihr Volk sie beschuldigt, spricht das Kind in der Wiege — und verkündet selbst: „Ich bin wahrlich Allahs Diener" (19:30).',
   },
   {
     n: 'II',
     h: 'Wunder machen nicht göttlich',
-    body: 'Jesus heilt Blinde und Aussätzige, erweckt Tote — „mit Allahs Erlaubnis" (3:49). Der Qur’an stellt klar: Alle Gesandten erhielten Zeichen, um ihr Volk zu überzeugen (57:25); Moses teilte das Meer, ohne dass ihm jemand Göttlichkeit zuschriebe. Das stärkste Gegenargument: „Das Gleichnis ʿĪsās ist bei Allah wie das Gleichnis Adams" (3:59) — Adam hatte weder Vater noch Mutter, und niemand nennt ihn Gott.',
+    body: 'Jesus heilt und erweckt Tote — „mit Allahs Erlaubnis" (3:49); alle Gesandten erhielten Zeichen (57:25). Das stärkste Gegenargument: „Das Gleichnis ʿĪsās ist wie das Gleichnis Adams" (3:59) — Adam hatte weder Vater noch Mutter, und niemand nennt ihn Gott.',
   },
   {
     n: 'III',
     h: 'Ein Gesandter, der isst',
-    body: '„Al-Masih, der Sohn Maryams, war doch nur ein Gesandter, vor dem bereits Gesandte vorübergegangen waren … sie (beide, er und seine Mutter) pflegten Speise zu essen" (5:75). Ein Bedürfnis nach Nahrung — und damit Verletzlichkeit, Sterblichkeit — schließt Göttlichkeit aus. Was isst, muss sich auch erleichtern; ein solcher Gedanke über Gott wäre blasphemisch.',
+    body: '„Al-Masih war doch nur ein Gesandter … sie beide pflegten Speise zu essen" (5:75). Ein schlichtes, vollständiges Argument: Wer Nahrung braucht, ist bedürftig — und Bedürftigkeit schließt Allmacht aus.',
   },
   {
     n: 'IV',
     h: 'Der Charaktertest',
-    body: 'Die Bibel lässt Jesus eine Frau „Hund" nennen (Matthäus 15:26), Petrus „Satan" (16:23), seine Mutter distanziert abweisen (12:47–49) und am Kreuz Gott der Verlassenheit anklagen (27:46). Im Qur’an spricht Jesus durchgehend respektvoll — zu seiner Mutter, zu Fremden, zu Gott selbst (19:30–32; 43:63; 5:116–117). Dasselbe Muster zeigt sich bei Aaron, David, Noah und Ijob: Wo die Bibel sie der schwersten Sünden bezichtigt, zeichnet der Qur’an makellose Propheten.',
+    body: 'Die Bibel lässt Jesus eine bittende Frau „Hund" nennen und Petrus „Satan"; im Qur’an spricht derselbe Jesus durchgehend respektvoll — bis ins Endgericht (5:116). Dasselbe Muster bei Aaron, David, Noah und Ijob: Wo die Bibel schwerste Sünden erzählt, zeichnet der Qur’an Vorbilder.',
   },
 ]
 
@@ -239,7 +239,7 @@ export const wahrerJesusKonter: KonterItem[] = [
     tier: 'stone',
     einwand: '„Auch Propheten sind nur Menschen — warum sollten ihre Fehler die Bibel diskreditieren?"',
     konter:
-      'Ehrliche Fehler sind menschlich, auch Propheten machen sie — der Qur’an bestreitet das nicht (David: ein voreiliges Urteil, sofort bereut). Aber Götzendienst (Aaron), Ehebruch und Mord (David), Trunkenheit (Noah) oder wiederholte Gotteslästerung (Ijob) sind etwas anderes: Sie widersprechen der Funktion des Propheten als „Sprecher" (hebr. navi) Gottes und der Erwartung, dass Schrift „nützlich zur Erziehung in der Gerechtigkeit" ist (2. Timotheus 3:16). Welche Moral lässt sich aus Gotteslästerung lernen?',
+      'Ehrliche Fehler sind menschlich — der Qur’an bestreitet das nicht (David urteilt vorschnell und bereut sofort). Aber Götzendienst (Aaron), Ehebruch und Mord (David), Trunkenheit (Noah) sind etwas anderes: Sie zerstören die Funktion des Propheten als „Sprecher" Gottes (hebr. navi). Welche „Erziehung in der Gerechtigkeit" (2. Timotheus 3:16) läge in solchen Geschichten?',
     belegId: 'davidBibel',
   },
   {

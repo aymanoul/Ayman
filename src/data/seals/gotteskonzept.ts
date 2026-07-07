@@ -48,22 +48,22 @@ export const gotteskonzeptSteps: Step[] = [
   {
     n: 'I',
     h: 'Kein Wort, keine Formel',
-    body: 'Der Begriff „Trinität“ kommt in der Bibel kein einziges Mal vor — er taucht erstmals um 180 n. Chr. bei Theophilus von Antiochia auf, in lateinischer Form dann bei Tertullian. Das Oxford Companion to the Bible, mit über 260 Bibelgelehrten als Beitragende, hält fest: Das Konzept „kann innerhalb der Grenzen des Kanons nicht klar erkannt werden“. Eine Lehre, die als das „zentrale Geheimnis des christlichen Glaubens“ gilt, aber im Neuen Testament fehlt, verlangt eine Erklärung.',
+    body: 'Der Begriff „Trinität“ kommt in der Bibel kein einziges Mal vor — er taucht erst um 180 n. Chr. bei Theophilus von Antiochia auf. Auch das Konzept fehlt: Das Oxford Companion to the Bible (über 260 Gelehrte) hält fest, es könne „innerhalb der Grenzen des Kanons nicht klar erkannt werden“.',
   },
   {
     n: 'II',
     h: 'Vier Jahrhunderte, drei Konzile, ein Kaiser',
-    body: 'Nicäa (325) verurteilte den Arianismus mit dem außerbiblischen Begriff Homo-ousios — vorgeschlagen von Kaiser Konstantin, nicht aus der Schrift. Rimini/Seleukia (359) kehrten die Mehrheit zurück zum Arianismus. Konstantinopel (381) definierte erst die Gottheit des Heiligen Geistes — 350 Jahre nach Jesus. Chalcedon (451) formulierte die „Hypostatische Union“. Jede Etappe war politisch erzwungen: Achtzehn widerständige Bischöfe wurden nach Nicäa ins Exil geschickt, der Ketzer Servetus 1531 lebendig verbrannt.',
+    body: 'Nicäa (325), Konstantinopel (381), Chalcedon (451): Jede Etappe der Lehre wurde auf kaiserlich einberufenen Konzilen durchgesetzt — den Schlüsselbegriff Homo-ousios schlug Kaiser Konstantin selbst vor, Verweigerer gingen ins Exil — und wer die fertige Lehre später bestritt, brannte.',
   },
   {
     n: 'III',
     h: 'Die Beweistexte halten nicht',
-    body: 'Kolosser 2:9 spricht auch davon, dass Gläubige „mit der ganzen Fülle Gottes erfüllt“ werden (Epheser 3:19) — das macht sie nicht zu Gott. Johannes 1:1 fehlt im Griechischen der bestimmte Artikel; Origenes selbst liest „und das Wort war ein Gott“, nicht „der Gott“. Matthäus 28:19 wird von Eusebius durchgehend als „in meinem Namen“ zitiert — und genau so, nie trinitarisch, taufen die Apostel in der Apostelgeschichte. Jesus selbst zitiert das Sch’ma („der Herr, unser Gott, ist der einzige Herr“, Markus 12:29) und nennt in Johannes 17:3 den Vater „den einzigen wahren Gott“ — unter Ausschluss seiner selbst.',
+    body: 'Johannes 1:1 fehlt im Griechischen der Artikel — Origenes: Der wahre Gott ist „der Gott“, beim Logos lässt Johannes ihn weg. Matthäus 28:19 zitiert Eusebius stets als „in meinem Namen“ — genau so tauften die Apostel (Apg 10,48). Und Jesus selbst nennt den Vater „den einzigen wahren Gott“ (Joh 17,3).',
   },
   {
     n: 'IV',
     h: 'Tauhid: vier Verse, keine Entwicklung',
-    body: 'Sure al-Ikhlas (112) sagt in weniger als zwanzig arabischen Wörtern, was die Kirche in 400 Jahren nicht bündig formulieren konnte: Gott ist einer, ewig, zeugt nicht und ist nicht gezeugt, niemand ist Ihm gleich. Seit der Offenbarung an Muhammad ﷺ hat der Tauhid keine einzige historische Entwicklung durchgemacht — kein Konzil, kein Kaiser, keine Verbrennung war nötig, um ihn zu definieren.',
+    body: 'Sure al-Ikhlas (112) sagt in weniger als zwanzig arabischen Wörtern, wofür die Kirche 400 Jahre brauchte: Gott ist einer, ewig, zeugt nicht, niemand ist Ihm gleich. Seither keine einzige Entwicklung — kein Konzil, kein Kaiser, kein Scheiterhaufen war nötig.',
   },
 ]
 
@@ -190,7 +190,7 @@ export const gotteskonzeptKonter: KonterItem[] = [
     tier: 'stone',
     einwand: '„Die Dreieinigkeit ist eben ein heiliges Geheimnis — das ist doch kein Widerspruch."',
     konter:
-      'Ein Geheimnis, das laut der katholischen Kirche selbst „im Schleier des Glaubens verborgen" bleibt, kollidiert mit dem Zweck der Offenbarung: Rechtleitung. Harold Lindsell und Charles Woodbridge bringen es auf den Punkt: „Wer versucht, das Geheimnis vollständig zu verstehen, wird seinen Verstand verlieren; wer aber die Trinität leugnet, wird seine Seele verlieren." Eine Lehre, an deren Verständnis man scheitern muss, aber deren Ablehnung die Seele kostet — das ist keine Rechtleitung, das ist ein Dilemma.',
+      'Ein Geheimnis, das laut katholischer Kirche „im Schleier des Glaubens verborgen" bleibt, kollidiert mit dem Zweck der Offenbarung: Rechtleitung. Lindsell/Woodbridge: „Wer versucht, das Geheimnis vollständig zu verstehen, wird seinen Verstand verlieren; wer die Trinität leugnet, seine Seele." Eine Lehre, an der man scheitern muss, deren Ablehnung aber die Seele kostet, ist keine Rechtleitung — sie ist ein Dilemma.',
     belegId: 'faelschungstest',
   },
   {
@@ -204,7 +204,7 @@ export const gotteskonzeptKonter: KonterItem[] = [
     tier: 'stone',
     einwand: '„Der Vergleich mit heidnischen Gottmenschen ist unfair — das Christentum ist doch monotheistisch entstanden."',
     konter:
-      'Genau das ist der Punkt: Das Christentum begann als jüdische, streng monotheistische Bewegung. Erst als die Botschaft in die hellenistisch-römische Welt eindrang — mit ihren Gottmenschen wie Herkules, Perseus, dem vergöttlichten Julius Caesar („Nachfahre von Ares und Aphrodite, der Gott, der sich manifestiert hat") — begann sich der jüdische Begriff „Sohn Gottes" in eine buchstäbliche Göttlichkeit zu wandeln. Gregor von Nyssa selbst beschreibt die Trinitätslehre als Mittelweg zwischen jüdischem Monotheismus und griechischem Polytheismus.',
+      'Genau das ist der Punkt: Das Christentum begann streng monotheistisch-jüdisch. Erst in der griechisch-römischen Welt — voller Gottmenschen wie Herkules und dem vergöttlichten Caesar („der Gott, der sich manifestiert hat") — wurde aus dem jüdischen Ehrentitel „Sohn Gottes" buchstäbliche Göttlichkeit. Gregor von Nyssa selbst nennt die Trinität einen Mittelweg zwischen jüdischem Monotheismus und griechischem Polytheismus.',
     belegId: 'eusebiusTaufe',
   },
   {

@@ -28,17 +28,17 @@ export const kreuzSteps: Step[] = [
   {
     n: 'II',
     h: 'Die Bibel widerspricht der Blutsühne selbst',
-    body: 'Hesekiel weist ausdrücklich zurück, dass ein Sohn für die Schuld des Vaters büßt (18:19-23). König Salomo verspricht den Israeliten Vergebung durch bloße Umkehr (1. Könige 8:46-50). Ninive — mehr als 120.000 Menschen — wird verschont, weil es fastet und bereut, nicht weil es opfert (Jona 3:6-10). Jesus selbst lehrt im Vaterunser: „Erlass uns unsere Schulden, wie auch wir sie unseren Schuldnern erlassen haben" (Matthäus 6:12) — Vergebung durch Erlass, nicht durch Übertragung der Schuld auf einen Dritten.',
+    body: 'Hesekiel weist zurück, dass einer für die Schuld eines anderen büßt (18,19–23). Ninive — 120.000 Menschen — wird durch bloße Umkehr verschont, ohne ein einziges Opfer (Jona 3). Und Jesus lehrt im Vaterunser Vergebung durch Erlass — nicht durch Übertragung der Schuld auf einen Dritten.',
   },
   {
     n: 'III',
     h: 'Keine göttliche Inspiration, keine Augenzeugen',
-    body: 'Die Evangelien sind anonym — die Namen Matthäus, Markus, Lukas, Johannes tauchen erst um 180 n. Chr. auf. Markus entstand um 70, Matthäus/Lukas um 80-85, Johannes um 90-100 n. Chr. — Jahrzehnte nach den Ereignissen, von Autoren in der dritten Person, in literarischer Abhängigkeit voneinander (identische Redaktionskommentare wie „der Leser begreife" in Matthäus 24:15 und Markus 13:14) und mit nachweisbaren Widersprüchen (Kreuzigungsdatum bei Johannes verschoben; Maria Magdalenas Bericht bei Matthäus und Johannes unvereinbar; die Auferstehung „vieler Heiliger" nur bei Matthäus, von keinem Historiker der Zeit, nicht einmal Josephus, bestätigt).',
+    body: 'Die Evangelien sind anonym — ihre Namen tauchen erst um 180 n. Chr. auf — und entstanden 40–70 Jahre nach den Ereignissen. Identische Redaktionskommentare („der Leser begreife", Mt 24,15 = Mk 13,14) beweisen Abschreiben; Johannes verschiebt sogar das Kreuzigungsdatum.',
   },
   {
     n: 'IV',
     h: 'Nicht getötet, nicht gekreuzigt',
-    body: 'Der Qur’an: „Aber sie haben ihn weder getötet noch gekreuzigt, sondern es erschien ihnen so" (4:157-158). Jesus selbst betet kurz vor der Verhaftung: „Mein Vater, wenn es möglich ist, gehe dieser Kelch an mir vorüber" (Matthäus 26:39) — kaum die Bitte eines Mannes, dessen Sendung im Kreuzestod bestehen soll. Psalm 91 verspricht dem Gesalbten, dass ihm „kein Unheil" begegnet und die Engel ihn „tragen" — dieselbe Prophezeiung, die Jesus in Matthäus 4:5-7 auf sich selbst bezieht.',
+    body: 'Der Qur’an: „Sie haben ihn weder getötet noch gekreuzigt, sondern es erschien ihnen so" (4:157–158). Die Bibel stützt das: Psalm 91 — von Jesus auf sich selbst bezogen (Mt 4,5–7) — verspricht dem Gesalbten Schutz, und in Gethsemane bittet Jesus, der Kelch möge vorübergehen (Mt 26,39).',
   },
 ]
 
@@ -167,21 +167,21 @@ export const kreuzKonter: KonterItem[] = [
     tier: 'stone',
     einwand: '„Die Kreuzigung ist doch eine der bestbezeugten Tatsachen der Geschichte."',
     konter:
-      'Die vier Evangelien sind anonym verfasst — die Zuschreibungen an Matthäus, Markus, Lukas und Johannes tauchen erst um 180 n. Chr. auf, laut Justin dem Märtyrer noch um 150 n. Chr. schlicht „Memoiren der Apostel". Sie entstanden 40 bis 70 Jahre nach den Ereignissen, in literarischer Abhängigkeit voneinander (identische redaktionelle Kommentare wie „der Leser begreife"), mit nachweislichen Widersprüchen bei Datum, Ablauf und Zeugen. Das ist nicht das Profil unabhängiger Augenzeugenberichte.',
+      'Die vier Evangelien sind anonym — die Zuschreibungen tauchen erst um 180 n. Chr. auf; Justin nennt sie um 150 nur „Memoiren der Apostel". Sie entstanden Jahrzehnte nach den Ereignissen, schrieben nachweislich voneinander ab und widersprechen sich bei Datum, Ablauf und Zeugen. Das ist nicht das Profil unabhängiger Augenzeugenberichte.',
     belegId: 'basiliden',
   },
   {
     tier: 'stone',
     einwand: '„Der Qur’an behauptet doch nur 600 Jahre später das Gegenteil, ohne jede Grundlage."',
     konter:
-      'Psalm 91 — von Jesus selbst als Prophezeiung über sich bestätigt (Matthäus 4:5–7) — verspricht dem Gesalbten, dass ihm „kein Unheil" begegnet und die Engel ihn „tragen". Jesus betet in Gethsemane ausdrücklich, der Kreuzestod möge an ihm vorübergehen (Matthäus 26:39). Und bereits im 1. und 2. Jahrhundert leugneten christliche Gruppen wie die Basiliden die tatsächliche Kreuzigung Jesu. Der Qur’an steht damit nicht allein gegen, sondern in Übereinstimmung mit älteren Fäden der eigenen Tradition.',
+      'Psalm 91 — von Jesus selbst auf sich bezogen (Matthäus 4:5–7) — verspricht dem Gesalbten, dass ihm „kein Unheil" begegnet. In Gethsemane bittet Jesus ausdrücklich, der Kelch möge vorübergehen. Und schon im 1. Jahrhundert leugneten Gruppen wie die Basiliden die Kreuzigung. Der Qur’an steht nicht gegen, sondern in Übereinstimmung mit den ältesten Fäden der Tradition.',
     belegId: 'psalm91',
   },
   {
     tier: 'marble',
     einwand: '„Die Auferstehung vieler Heiliger in Matthäus 27 zeigt doch die Macht der Kreuzigung."',
     konter:
-      'Kein anderes Evangelium erwähnt dieses Ereignis — nicht einmal Markus, dessen Bericht sonst fast wortgleich ist. Paulus, der die Gelegenheit gehabt hätte, es gegen Auferstehungsskeptiker zu verwenden (1. Korinther 15:12), erwähnt es nie. Der Historiker Josephus, Zeitgenosse und Chronist Jerusalems, schweigt ebenfalls. Selbst konservative Apologeten wie Mike Licona nennen die Passage eine „Legende" und „Spezialeffekte"; William Lane Craig räumt ein, kaum ein zeitgenössischer konservativer Gelehrter behandle sie als historisch.',
+      'Kein anderes Evangelium erwähnt das Ereignis — nicht einmal Markus, dessen Bericht sonst fast wortgleich ist. Paulus schweigt, obwohl er es gegen Auferstehungs-Skeptiker hätte nutzen können (1. Korinther 15:12); der Historiker Josephus ebenso. Selbst konservative Apologeten wie Mike Licona nennen die Passage „Legende" und „Spezialeffekte".',
     belegId: 'jesaja53Kinder',
   },
 ]

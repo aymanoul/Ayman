@@ -34,22 +34,22 @@ export const angekuendigtSteps: Step[] = [
   {
     n: 'I',
     h: 'Der Beistand nach Jesus',
-    body: 'Jesus verspricht: „Ich werde den Vater bitten, und er wird euch einen anderen Beistand geben … Wenn aber jener kommt, der Geist der Wahrheit, wird er euch in die ganze Wahrheit führen. Denn er wird nicht aus sich selbst heraus reden, sondern … euch verkünden, was kommen wird" (Johannes 14:16, 16:13). Diese Beschreibung — jemand, der lehrt, erinnert und ausschließlich verkündet, was ihm eingegeben wurde — passt exakt auf die Offenbarung des Qur’an durch den Engel Gabriel.',
+    body: 'Jesus verspricht einen Beistand, der „euch in die ganze Wahrheit führen" wird und „nicht aus sich selbst heraus reden" (Joh 14,16; 16,13) — die Beschreibung eines Boten, der nur weitergibt, was er empfängt. Genau so beschreibt der Qur’an seine eigene Offenbarung (53,3–4).',
   },
   {
     n: 'II',
     h: 'Deuteronomium 33: Sinai, Seïr, Paran',
-    body: 'Mose segnet Israel: „Der Herr kam hervor aus dem Sinai (Moses), er leuchtete vor ihnen auf aus Seïr (Jesus, Palästina), er strahlte aus dem Gebirge Paran (Arabien, Ismaels Wohnort) … er trat heraus aus Zehntausend Heiligen. Ihm zur Rechten flammte das Feuer des Gesetzes" (33:1-2). Paran wird von Strong’s Dictionary, Clarke’s Commentary und der Encyclopaedia Biblica übereinstimmend als arabische Wüste identifiziert. Im Jahr 630 n. Chr. betrat Muhammad ﷺ Mekka mit exakt zehntausend Gefährten — der Eroberung Mekkas — und brachte den Qur’an, das „feurige Gesetz".',
+    body: 'Moses Segen nennt drei Aufstrahlungen: Sinai (Tora), Seïr (Evangelium) — und Paran, laut Genesis 21,21 der Wohnort Ismaels in Arabien. Im Jahr 630 betrat Muhammad ﷺ Mekka mit exakt zehntausend Gefährten und dem Qur’an — dem „feurigen Gesetz".',
   },
   {
     n: 'III',
     h: 'Jesaja 42: Diener, Kedar, Sela',
-    body: '„Mein Knecht, den ich stütze … mein Erwählter" — im Arabischen: Abd-Allah, Mustafa, Habibullah, allesamt Beinamen Muhammads. Jesaja verortet diesen Diener bei „Kedar" (Sohn Ismaels, Stammvater arabischer Stämme) und „Sela" (ein Berg bei Medina). Er wird Götzendienst beenden („meinen Ruhm nicht den Götzen", 42:8) und als Krieger auftreten (42:13) — beides trifft auf Muhammad zu, nicht auf den pazifistischen, unter jüdischen Monotheisten wirkenden Jesus (Matthäus 26:52, Johannes 18:36).',
+    body: '„Mein Knecht … mein Erwählter" — Abd-Allah und Mustafa, Beinamen Muhammads ﷺ. Jesaja verortet den Diener bei Kedar (Sohn Ismaels) und Sela (Berg bei Medina), lässt ihn Götzendienst beenden und als Krieger triumphieren (42,13.17) — nichts davon passt auf den pazifistischen Jesus.',
   },
   {
     n: 'IV',
     h: 'Die Ismael-Vertuschung',
-    body: 'Das hebräische yachid („einziger Sohn") in Genesis 22:2 kann sich nur auf Ismael beziehen, der 13 Jahre älter war als Isaak — Isaak war nie Abrahams „einziger" Sohn. Der jüdische Konvertit, den Umar ibn al-Khattab befragte, bestätigt: „Ismael. Die Juden wissen dies, aber sie waren eifersüchtig." Genesis 16:12 („Wildesel") widerspricht dem hebräischen Kontext (pere’/para’, „fruchtbar") und wird von der samaritanischen Tora anders gelesen: „ein fruchtbarer Mann … die Hand aller wird mit ihm sein."',
+    body: 'Genesis 22 nennt den Opfersohn yachid — „einzig gezeugt". Das passt nur auf Ismael, der 13 Jahre lang Abrahams einziger Sohn war. Und der „Wildesel" von Genesis 16,12 lautet in der samaritanischen Tora: „ein fruchtbarer Mann … die Hand aller wird mit ihm sein".',
   },
 ]
 
@@ -162,7 +162,7 @@ export const angekuendigtKonter: KonterItem[] = [
     tier: 'marble',
     einwand: '„Das ist doch reine muslimische Wunschinterpretation, um Muhammad nachträglich in die Bibel hineinzulesen."',
     konter:
-      'Die textkritischen Anomalien existieren unabhängig von islamischer Auslegung: Der Widerspruch zwischen „einziger Sohn" und der Erwähnung Ismaels als älterem Bruder: Ismaels Alter beim Wüstenvorfall (Genesis 21 beschreibt einen Säugling, obwohl er laut Chronologie ein Teenager gewesen sein müsste), und der plötzliche Wechsel von Segen zu Fluch in Genesis 16:12 sind alles Beobachtungen, die auch nicht-muslimische Bibelkommentare (Interpreter’s Bible) als „widersprüchlich" einstufen.',
+      'Die textkritischen Anomalien existieren unabhängig von islamischer Auslegung: der Widerspruch um den „einzigen Sohn", Ismaels Alter beim Wüstenvorfall (Genesis 21 beschreibt einen Säugling — chronologisch wäre er ein Teenager) und der Segen-zu-Fluch-Bruch in Genesis 16,12. Befunde, die auch die Interpreter’s Bible als „widersprüchlich" einstuft.',
     belegId: 'genesis1612',
   },
 ]

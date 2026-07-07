@@ -43,22 +43,22 @@ export const botschaftSteps: Step[] = [
   {
     n: 'I',
     h: 'Handschriften ohne Original',
-    body: 'Das früheste Fragment des Neuen Testaments (P52) datiert auf ~125 n. Chr. — Jahrzehnte nach der Abfassung der Evangelien. Fast 6.000 griechische Handschriften existieren, „von denen keine zwei Seiten identisch sind" (Interpreter’s Dictionary of the Bible). Ohne das Original gibt es keine Methode, mit Sicherheit festzustellen, welche Lesart die ursprüngliche ist — wie selbst der führende Textkritiker Bruce Metzger bei Lukas 10:1 (70 oder 72 Jünger?) eingesteht: „Es ist nicht möglich, mit Sicherheit zu entscheiden."',
+    body: 'Fast 6.000 griechische Handschriften — und „kein einziger Satz", so das Interpreter’s Dictionary, ist einheitlich überliefert. Ohne Original bleibt jede Lesart Schätzung; selbst Bruce Metzger gesteht bei Lukas 10,1: „nicht möglich, mit Sicherheit zu entscheiden".',
   },
   {
     n: 'II',
     h: 'Theologisch folgenreiche Einschübe',
-    body: 'Das Comma Johanneum (1. Johannes 5:7) — der einzige Vers, der die Dreifaltigkeit ausdrücklich nennt — findet sich in keinem griechischen Manuskript vor dem 16. Jahrhundert. Die Geschichte der Ehebrecherin (Johannes 7:53-8:11) fehlt vor dem 5. Jahrhundert. Die Schlangen-Verse (Markus 16:9-20) fehlen in den ältesten vollständigen Codizes. Und 1. Korinther 14:34-35 (Frauen sollen schweigen) widerspricht Paulus’ eigenem Vers 11:5 und wandert in verschiedenen Handschriften an verschiedene Stellen — ein klassisches Zeichen späteren Einschubs.',
+    body: 'Das Comma Johanneum (1 Joh 5,7) — der einzige explizite Trinitätsvers — fehlt in jedem griechischen Manuskript vor dem 16. Jahrhundert. Auch die Ehebrecherin-Geschichte (Joh 8), das Schlangen-Ende von Markus 16 und der Frauen-Schweigebefehl (1 Kor 14,34) sind spätere Zusätze.',
   },
   {
     n: 'III',
     h: 'Der Qur’an: Bewahrung durch Auswendiglernen',
-    body: '„Wir sind es, die Wir die Ermahnung offenbart haben, und Wir werden wahrlich ihr Hüter sein" (15:9). Millionen Muslime weltweit kennen den gesamten Qur’an auswendig, in einer ununterbrochenen Kette bis zum Propheten Muhammad ﷺ zurück — verstärkt durch Tajwid (Ausspracheregeln) und die Isnad-Wissenschaft der Hadith-Überprüfung. Fälschungen wie die des Comma Johanneum wären sofort von tausenden unabhängigen Rezitatoren entdeckt worden.',
+    body: '„Wir werden wahrlich ihr Hüter sein" (15:9): Millionen tragen den ganzen Qur’an auswendig, in ununterbrochener Kette bis zum Propheten ﷺ — gesichert durch Tajwid und die Isnad-Wissenschaft. Ein Einschub wie das Comma Johanneum wäre sofort von tausenden Rezitatoren entdeckt worden.',
   },
   {
     n: 'IV',
     h: 'Paulus contra Jesus',
-    body: 'Jesus: „Ich bin nicht gekommen, um aufzuheben, sondern um zu erfüllen … bis Himmel und Erde vergehen" (Matthäus 5:17-19). Paulus: „Durch Werke des Gesetzes wird niemand gerecht" (Galater 2:16), das Gesetz sei ein „Fluch" (Galater 3:10). Das Jerusalemer Konzil (Apostelgeschichte 15) verlangte von Heiden weiterhin, sich an vier Speisegesetze zu halten — Paulus erklärte später Götzenopferfleisch für unbedenklich (1. Korinther 8:4-8) und geriet in offenen Konflikt mit der Jerusalemer Gemeinde um Jakobus.',
+    body: 'Jesus: „Ich bin nicht gekommen, um aufzuheben, sondern um zu erfüllen" (Mt 5,17). Paulus: Das Gesetz sei ein „Fluch" (Gal 3,10). Beide Stimmen stehen im selben Neuen Testament — und die Apostelgeschichte zeigt den offenen Konflikt zwischen Paulus und der Gemeinde um Jakobus.',
   },
 ]
 
