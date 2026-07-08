@@ -7,6 +7,8 @@ import {
   CloseIcon,
   HomeIcon,
   BooksIcon,
+  BookOpenIcon,
+  PersonIcon,
   StarIcon,
   NoteIcon,
   ClockIcon,
@@ -23,6 +25,15 @@ const NAV = [
   { to: '/verlauf', label: 'Zuletzt gelesen', icon: ClockIcon, end: false },
   { to: '/einstellungen', label: 'Einstellungen', icon: GearIcon, end: false },
   { to: '/ueber', label: 'Über das Projekt', icon: InfoIcon, end: false },
+]
+
+// Untere Tab-Bar (mobil): die vier Hauptziele — "Profil" führt zu den
+// Einstellungen (persönlicher Bereich: Schrift, Offline, Daten).
+const TABS = [
+  { to: '/', label: 'Start', icon: HomeIcon, end: true },
+  { to: '/bibliothek', label: 'Bibliothek', icon: BookOpenIcon, end: false },
+  { to: '/verlauf', label: 'Verlauf', icon: ClockIcon, end: false },
+  { to: '/einstellungen', label: 'Profil', icon: PersonIcon, end: false },
 ]
 
 // Globale App-Hülle: Hamburger oben links → Side-Panel von links, plus die
@@ -118,6 +129,21 @@ export default function AppChrome() {
           </>
         )}
       </AnimatePresence>
+
+      {/* untere Tab-Bar — nur mobil sichtbar (chrome.css) */}
+      <nav className="bottomnav" aria-label="Hauptnavigation">
+        {TABS.map(({ to, label, icon: Icon, end }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={end}
+            className={({ isActive }) => `bottomnav__item${isActive ? ' is-active' : ''}`}
+          >
+            <Icon aria-hidden />
+            <span>{label}</span>
+          </NavLink>
+        ))}
+      </nav>
 
       <AnimatePresence>
         {toast && (

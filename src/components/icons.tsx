@@ -192,6 +192,44 @@ export function Diamond(p: SVGProps<SVGSVGElement>) {
   )
 }
 
+export function PersonIcon(p: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...p}>
+      <circle cx="12" cy="8" r="3.6" />
+      <path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5" />
+    </svg>
+  )
+}
+
+export function MosqueIcon(p: SVGProps<SVGSVGElement>) {
+  // Kuppel + Torbogen — das Emblem der Startseite
+  return (
+    <svg {...base} {...p}>
+      <path d="M12 4c2.6 1.6 5.5 3.4 5.5 6.5H6.5C6.5 7.4 9.4 5.6 12 4Z" />
+      <path d="M5 10.5h14v9.5H5z" />
+      <path d="M10 20v-2.8c0-1.2.9-2.2 2-2.2s2 1 2 2.2V20" />
+      <path d="M12 2.2V4" />
+    </svg>
+  )
+}
+
+export function BookOpenIcon(p: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M12 6C10.2 4.6 7.9 4 4.5 4v14.5c3.4 0 5.7.6 7.5 2 1.8-1.4 4.1-2 7.5-2V4C16.1 4 13.8 4.6 12 6Z" />
+      <path d="M12 6v14.5" />
+    </svg>
+  )
+}
+
+export function FilterIcon(p: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M4.5 7.5h15M7.5 12h9M10 16.5h4" />
+    </svg>
+  )
+}
+
 export function ShareIcon(p: SVGProps<SVGSVGElement>) {
   return (
     <svg {...base} {...p}>

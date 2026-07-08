@@ -2,7 +2,18 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import SearchPanel from '../components/SearchPanel'
-import { Chevron, ClockIcon, StarIcon, NoteIcon, DownloadIcon, ShareIcon, DiceIcon } from '../components/icons'
+import {
+  Chevron,
+  ClockIcon,
+  StarIcon,
+  NoteIcon,
+  DownloadIcon,
+  ShareIcon,
+  DiceIcon,
+  SparkIcon,
+  MosqueIcon,
+  BookOpenIcon,
+} from '../components/icons'
 import { favoriten, notizen, verlauf, type VerlaufEintrag } from '../lib/db'
 import { speicherInfo, formatBytes } from '../lib/pwa'
 import { wann } from '../lib/zeit'
@@ -61,6 +72,13 @@ export default function Home() {
     favoriten.alle().then((l) => setFavCount(l.length))
     notizen.alle().then((l) => setNoteCount(l.length))
     speicherInfo().then(setSpeicher)
+  }, [])
+
+  // Der Mushaf-Prachtrahmen (body::before) bleibt den Buch-Seiten vorbehalten —
+  // die Startseite ist eine cleane App-Fläche (siehe home.css body.is-home).
+  useEffect(() => {
+    document.body.classList.add('is-home')
+    return () => document.body.classList.remove('is-home')
   }, [])
 
   useEffect(() => {
@@ -133,17 +151,30 @@ export default function Home() {
 
   return (
     <main className="shell home">
+      {/* Emblem oben rechts — Gegenstück zum Hamburger */}
+      <Link to="/" className="home-emblem" aria-label="Haus der Sunnah — Startseite">
+        <MosqueIcon aria-hidden />
+      </Link>
+
       {/* ---- Hero ---- */}
       <section className="home-hero">
-        <div className="home-hero__sun" aria-hidden />
+        <div className="home-hero__rays" aria-hidden />
         <div className="wrap home-hero__inner">
           <motion.div initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
+            <motion.p className="home-hero__star" variants={rise} aria-hidden>
+              <i />
+              <SparkIcon />
+              <i />
+            </motion.p>
             <motion.h1 className="home-hero__title" variants={rise}>
               Haus der Sunnah
             </motion.h1>
+            <motion.p className="home-hero__kicker" variants={rise}>
+              Wissen · Verstehen · Leben
+            </motion.p>
             <motion.div className="home-hero__ctas" variants={rise}>
-              <Link to="/bibliothek" className="btn-home btn-home--primary">
-                Zur Bibliothek <Chevron aria-hidden />
+              <Link to="/bibliothek" className="btn-home btn-home--primary btn-home--hero">
+                <BookOpenIcon aria-hidden /> Zur Bibliothek <Chevron aria-hidden />
               </Link>
             </motion.div>
           </motion.div>
@@ -171,27 +202,33 @@ export default function Home() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: EASE }}
           >
-            {letztes ? (
-              <Link to={`/modul/${letztes.moduleId}/buch/${letztes.sealId}`} className="home-card home-weiter">
-                <ClockIcon className="home-weiter__icon" aria-hidden />
+            <div className="home-card home-weiter">
+              <div className="home-weiter__head">
+                <span className="home-weiter__label">{letztes ? 'Weiterlesen' : 'Erster Besuch'}</span>
+                {letztes && (
+                  <span className="home-weiter__when">
+                    <ClockIcon aria-hidden /> {wann(letztes.ts)}
+                  </span>
+                )}
+              </div>
+              <Link
+                to={letztes ? `/modul/${letztes.moduleId}/buch/${letztes.sealId}` : '/modul/muhammad/buch/fundament'}
+                className="home-weiter__row"
+              >
+                <span className="home-weiter__tile" aria-hidden>
+                  <BookOpenIcon />
+                </span>
                 <span className="home-weiter__body">
                   <span className="home-weiter__eyebrow">
-                    Weiterlesen · {sealInfoById[letztes.sealId]?.zaehler ?? `Buch ${letztes.nummer}`} · {wann(letztes.ts)}
+                    {letztes
+                      ? `${sealInfoById[letztes.sealId]?.zaehler ?? `Buch ${letztes.nummer}`} · ${wann(letztes.ts)}`
+                      : 'Buch 1'}
                   </span>
-                  <span className="home-weiter__titel">{letztes.titel}</span>
+                  <span className="home-weiter__titel">{letztes ? letztes.titel : 'Das Fundament'}</span>
                 </span>
                 <Chevron className="home-weiter__go" aria-hidden />
               </Link>
-            ) : (
-              <Link to="/modul/muhammad/buch/fundament" className="home-card home-weiter">
-                <ClockIcon className="home-weiter__icon" aria-hidden />
-                <span className="home-weiter__body">
-                  <span className="home-weiter__eyebrow">Erster Besuch</span>
-                  <span className="home-weiter__titel">Beginne mit Buch 1 — Das Fundament</span>
-                </span>
-                <Chevron className="home-weiter__go" aria-hidden />
-              </Link>
-            )}
+            </div>
           </motion.section>
         )}
 

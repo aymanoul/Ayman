@@ -223,3 +223,69 @@
     gap: 0.4rem;
   }
 }
+
+/* ------------------------------------------------------ Untere Tab-Bar */
+/* Schwebende App-Leiste (nur mobil): Start · Bibliothek · Verlauf · Profil.
+   Bewusst in festem Navy/Gold gehalten, damit sie auf jeder Seite gleich
+   aussieht — unabhängig von der Reihen-Farbwelt der jeweiligen Seite. */
+.bottomnav {
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  z-index: 70;
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  background: #fffdf8;
+  border: 1px solid rgba(194, 160, 85, 0.32);
+  border-radius: 22px;
+  box-shadow: 0 2px 4px rgba(64, 58, 34, 0.06), 0 20px 44px -18px rgba(40, 34, 18, 0.35);
+  padding: 0.55rem 0.4rem 0.5rem;
+}
+.bottomnav__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.22rem;
+  padding: 0.2rem 0;
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  color: #565d68;
+  transition: color 0.18s var(--ease-out);
+}
+.bottomnav__item svg {
+  width: 22px;
+  height: 22px;
+}
+.bottomnav__item.is-active {
+  color: #1c4e7e;
+}
+.bottomnav__item.is-active::before {
+  content: '';
+  position: absolute;
+  top: -0.58rem;
+  width: 26px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: #1c4e7e;
+}
+.bottomnav__item:active {
+  transform: scale(0.96);
+}
+@media (max-width: 720px) {
+  .bottomnav {
+    display: grid;
+  }
+  /* Platz für die schwebende Leiste, damit sie nichts verdeckt */
+  .shell {
+    padding-bottom: 96px;
+  }
+  /* Status-Toast über die Tab-Bar heben */
+  .statustoast {
+    bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+}

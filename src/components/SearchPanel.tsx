@@ -4,8 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { search, tokenize, type SearchResult } from '../lib/search'
 import { antworte, komponiere, istKompositionsAnfrage, passageKey, type Antwort, type Komposition } from '../lib/antwort'
 import { fmt } from '../lib/fmt'
-import { SearchIcon, Chevron } from './icons'
-import { GradientAIChatInput } from './ui/gradient-ai-chat-input'
+import { SearchIcon, Chevron, SparkIcon, PaperPlane, BookOpenIcon, FilterIcon } from './icons'
 
 // Zwei Wege hinein: die Suche navigiert zu Kapiteln/Belegen; das Frage-Feld
 // ANTWORTET direkt im Chat — aus den Inhalten der Bücher (lib/antwort), mit
@@ -45,8 +44,10 @@ export default function SearchPanel({ exampleFragen }: { exampleFragen?: string[
   const navigate = useNavigate()
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
+  const [frage, setFrage] = useState('')
   const [dialog, setDialog] = useState<ChatTurn[]>([])
   const boxRef = useRef<HTMLDivElement>(null)
+  const searchRef = useRef<HTMLInputElement>(null)
   const chatEndRef = useRef<HTMLDivElement>(null)
 
   const hits: SearchResult[] = query.trim() ? search(query, 8) : []
@@ -106,81 +107,105 @@ export default function SearchPanel({ exampleFragen }: { exampleFragen?: string[
     }
   }, [dialog.length])
 
+  function onAskSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!frage.trim()) return
+    onAsk(frage)
+    setFrage('')
+  }
+
   return (
     <div className="seek" ref={boxRef}>
-      {/* smart search */}
-      <form className="seek__field" onSubmit={onSearchSubmit} role="search">
-        <SearchIcon aria-hidden />
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => {
-            setQuery(e.target.value)
-            setOpen(true)
-          }}
-          onFocus={() => setOpen(true)}
-          placeholder="Suche — Thema, Vers (18,18), Gelehrter (Teeple) oder „Vergleich Mose“ …"
-          aria-label="Suche im Werk"
-          autoComplete="off"
-        />
-      </form>
+      {/* ---- Such-Karte ---- */}
+      <div className="hseek">
+        <form className="hseek__field" onSubmit={onSearchSubmit} role="search">
+          <SearchIcon aria-hidden />
+          <input
+            ref={searchRef}
+            type="text"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value)
+              setOpen(true)
+            }}
+            onFocus={() => setOpen(true)}
+            placeholder="Suche — Thema, Vers (18,18), Gelehrter …"
+            aria-label="Suche im Werk"
+            autoComplete="off"
+          />
+          <button type="button" className="hseek__filter" aria-label="Suche fokussieren" onClick={() => searchRef.current?.focus()}>
+            <FilterIcon aria-hidden />
+          </button>
+        </form>
 
-      <AnimatePresence>
-        {open && query.trim() && (
-          <motion.div
-            className="seek__results"
-            initial={{ opacity: 0, scale: 0.98, y: -4 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.98, y: -4 }}
-            transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
-            style={{ transformOrigin: 'top' }}
-            role="listbox"
-          >
-            {hits.length > 0 ? (
-              hits.map((h) => {
-                const isBeleg = !!h.entry.belegRef
-                const badge = isBeleg && h.entry.typ ? TYP_LABEL[h.entry.typ] : h.entry.nummer
-                return (
-                  <button key={h.entry.id} className="seek__hit" onClick={() => go(h)} role="option">
-                    <span className={`seek__hit-num${isBeleg ? ' seek__hit-num--beleg' : ''}`}>{badge}</span>
-                    <span className="seek__hit-body">
-                      <span className="seek__hit-titel">
-                        {isBeleg && h.entry.typ && <span className="seek__hit-glyph" aria-hidden>{TYP_GLYPH[h.entry.typ]} </span>}
-                        {h.entry.label}
+        <AnimatePresence>
+          {open && query.trim() && (
+            <motion.div
+              className="seek__results"
+              initial={{ opacity: 0, scale: 0.98, y: -4 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98, y: -4 }}
+              transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
+              style={{ transformOrigin: 'top' }}
+              role="listbox"
+            >
+              {hits.length > 0 ? (
+                hits.map((h) => {
+                  const isBeleg = !!h.entry.belegRef
+                  const badge = isBeleg && h.entry.typ ? TYP_LABEL[h.entry.typ] : h.entry.nummer
+                  return (
+                    <button key={h.entry.id} className="seek__hit" onClick={() => go(h)} role="option">
+                      <span className={`seek__hit-num${isBeleg ? ' seek__hit-num--beleg' : ''}`}>{badge}</span>
+                      <span className="seek__hit-body">
+                        <span className="seek__hit-titel">
+                          {isBeleg && h.entry.typ && <span className="seek__hit-glyph" aria-hidden>{TYP_GLYPH[h.entry.typ]} </span>}
+                          {h.entry.label}
+                        </span>
+                        <span className="seek__hit-mod">{h.entry.kontext}</span>
                       </span>
-                      <span className="seek__hit-mod">{h.entry.kontext}</span>
-                    </span>
-                  </button>
-                )
-              })
-            ) : (
-              <p className="seek__empty">Nichts gefunden — versuch ein anderes Wort, z. B. „Stein", „Kedar" oder „Aḥmad".</p>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Frage-Feld — antwortet direkt aus den Inhalten der Bücher */}
-      <div className="seek seek--ask">
-        <GradientAIChatInput
-          placeholder={
-            dialog.length > 0
-              ? 'Frag weiter — z. B. „Welche Belege stützen das?“'
-              : 'Frag oder lass einen Text verfassen — z. B. „Schreib einen Text über 5. Mose 18,18“'
-          }
-          onSend={onAsk}
-        />
+                    </button>
+                  )
+                })
+              ) : (
+                <p className="seek__empty">Nichts gefunden — versuch ein anderes Wort, z. B. „Stein", „Kedar" oder „Aḥmad".</p>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {exampleFragen && exampleFragen.length > 0 && dialog.length === 0 && (
-        <div className="seek__examples">
-          {exampleFragen.map((f) => (
-            <button key={f} type="button" className="seek__example" onClick={() => onAsk(f)}>
-              {f}
-            </button>
-          ))}
-        </div>
-      )}
+      {/* ---- Frage-Karte — antwortet direkt aus den Inhalten der Bücher ---- */}
+      <div className="hask">
+        <p className="hask__head">
+          <SparkIcon aria-hidden /> Frag oder lass einen Text verfassen
+        </p>
+        <form className="hask__row" onSubmit={onAskSubmit}>
+          <input
+            type="text"
+            className="hask__input"
+            value={frage}
+            onChange={(e) => setFrage(e.target.value)}
+            placeholder={
+              dialog.length > 0 ? 'Frag weiter — z. B. „Welche Belege stützen das?“' : 'Stell deine Frage oder gib einen Text ein …'
+            }
+            aria-label="Frage stellen"
+            autoComplete="off"
+          />
+          <button type="submit" className="hask__send" aria-label="Senden" disabled={!frage.trim()}>
+            <PaperPlane aria-hidden />
+          </button>
+        </form>
+
+        {exampleFragen && exampleFragen.length > 0 && dialog.length === 0 && (
+          <div className="hask__chips">
+            {exampleFragen.map((f) => (
+              <button key={f} type="button" className="hask__chip" onClick={() => onAsk(f)}>
+                <BookOpenIcon aria-hidden /> {f}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
       {dialog.length > 0 && (
         <div className="chat" aria-live="polite">
