@@ -1,0 +1,243 @@
+/* ============================================================================
+   QIBLA FINDER — gleiche Azurblau/Gold/Creme-Sprache wie die Startseite
+   (home.css liefert --azur/--gold/--line etc. über die .home-Klasse).
+   ========================================================================== */
+
+.qibla__back,
+.qibla__locate {
+  position: fixed;
+  top: clamp(24px, 3.4vw, 60px);
+  z-index: 62;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: #fffdf8;
+  border: 1px solid rgba(194, 160, 85, 0.4);
+  border-radius: 16px;
+  color: var(--ink-soft);
+  box-shadow: 0 1px 2px rgba(64, 58, 34, 0.06), 0 10px 22px -14px rgba(64, 58, 34, 0.35);
+  transition: background 0.2s var(--ease-out), transform 0.14s var(--ease-out);
+}
+.qibla__back {
+  left: clamp(20px, 3vw, 62px);
+}
+.qibla__back:active,
+.qibla__locate:active {
+  transform: scale(0.94);
+}
+.qibla__locate {
+  border-radius: 50%;
+  color: var(--gold-deep);
+}
+
+.qibla__inner {
+  max-width: 640px;
+  padding-top: clamp(4.6rem, 13vh, 7rem);
+  padding-bottom: clamp(2rem, 6vh, 3rem);
+}
+
+.qibla__head {
+  text-align: center;
+  margin-bottom: clamp(1.6rem, 4vh, 2.2rem);
+}
+.qibla__title {
+  font-family: var(--font-serif);
+  font-style: normal;
+  font-weight: 500;
+  font-size: clamp(2rem, 7vw, 2.7rem);
+  color: var(--azur-deep);
+}
+.qibla__lead {
+  max-width: 42ch;
+  margin: 0.3rem auto 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------------ KOMPASS */
+.qc {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2.6rem;
+  overflow: visible;
+}
+.qc__badge-wrap {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 2;
+}
+.qc__badge {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fffdf8;
+  border: 2px solid rgba(194, 160, 85, 0.5);
+  box-shadow: 0 1px 2px rgba(64, 58, 34, 0.06), 0 10px 22px -14px rgba(64, 58, 34, 0.4);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.qc__badge.is-aligned {
+  border-color: #2f8f5b;
+  box-shadow: 0 0 0 6px rgba(47, 143, 91, 0.14), 0 10px 22px -14px rgba(64, 58, 34, 0.4);
+}
+.qc__svg {
+  width: 100%;
+  max-width: 320px;
+}
+.qc__label {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 20px;
+  fill: var(--azur-deep);
+}
+.qc__needle {
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.qc__enable {
+  margin-top: 0.8rem;
+}
+.qc__hinweis {
+  margin-top: 0.8rem;
+  max-width: 40ch;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* -------------------------------------------------------------- STANDORT */
+.qibla__ort {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: clamp(1.2rem, 3.5vh, 1.7rem);
+}
+.qibla__ort-icon {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--azur-deep);
+}
+.qibla__ort-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.qibla__ort-label {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.qibla__ort-wert {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+.qibla__ort-refresh {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--azur-wash);
+  color: var(--azur-deep);
+  transition: background 0.18s var(--ease-out);
+}
+.qibla__ort-refresh svg {
+  width: 18px;
+  height: 18px;
+}
+.qibla__ort-refresh:hover {
+  background: var(--azur-wash-2);
+}
+
+/* ------------------------------------------------------------- RICHTUNG */
+.qibla__richtung {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.9rem;
+}
+.qibla__richtung-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.qibla__richtung-label {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+.qibla__richtung-deg {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 8vw, 2.8rem);
+  line-height: 1;
+  color: var(--azur-deep);
+}
+.qibla__richtung-deg--warten {
+  color: var(--ink-faint);
+}
+.qibla__richtung-deg small {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin-left: 0.2rem;
+}
+.qibla__richtung-km {
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+
+/* ----------------------------------------------------------------- INFO */
+.qibla__info {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-top: 0.9rem;
+  padding: 0.9rem 1.1rem;
+  background: rgba(46, 126, 184, 0.08);
+  border: 1px solid rgba(46, 126, 184, 0.18);
+  border-radius: 16px;
+}
+.qibla__info svg {
+  flex: none;
+  width: 19px;
+  height: 19px;
+  margin-top: 0.1rem;
+  color: var(--azur-deep);
+}
+.qibla__info p {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--azur-deep);
+}
+
+.qibla__methode {
+  margin-top: 1.1rem;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-style: italic;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}

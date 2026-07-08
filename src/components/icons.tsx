@@ -230,6 +230,25 @@ export function FilterIcon(p: SVGProps<SVGSVGElement>) {
   )
 }
 
+export function LocateIcon(p: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...p}>
+      <circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="12" r="7" />
+      <path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+export function MapPinIcon(p: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12Z" />
+      <circle cx="12" cy="9" r="2.4" />
+    </svg>
+  )
+}
+
 export function ShareIcon(p: SVGProps<SVGSVGElement>) {
   return (
     <svg {...base} {...p}>

@@ -152,7 +152,7 @@ export default function Home() {
   return (
     <main className="shell home">
       {/* Emblem oben rechts — Gegenstück zum Hamburger */}
-      <Link to="/" className="home-emblem" aria-label="Haus der Sunnah — Startseite">
+      <Link to="/qibla" className="home-emblem" aria-label="Qibla Finder öffnen">
         <MosqueIcon aria-hidden />
       </Link>
 

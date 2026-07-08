@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
 import Home from './pages/Home'
+import Qibla from './pages/Qibla'
 import Bibliothek from './pages/Bibliothek'
 import ModulePage from './pages/ModulePage'
 import SealPage from './pages/SealPage'
@@ -23,6 +24,7 @@ export default function App() {
         <AppChrome />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/qibla" element={<Qibla />} />
           <Route path="/bibliothek" element={<Bibliothek />} />
           <Route path="/regal" element={<Regal />} />
           <Route path="/modul/:moduleId" element={<ModulePage />} />
