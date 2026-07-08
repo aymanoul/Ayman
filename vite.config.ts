@@ -17,10 +17,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: false, // Registrierung passiert manuell (Offline-Schalter)
       manifest: {
-        name: 'Die Bibliothek',
-        short_name: 'Bibliothek',
+        name: 'Haus der Sunnah',
+        short_name: 'Haus der Sunnah',
         description:
-          'Der versiegelte Nektar — eine Buchreihe mit neun Büchern. Vollständig offline lesbar.',
+          'Haus der Sunnah — zwei Buchreihen, vollständig offline lesbar.',
         lang: 'de',
         dir: 'ltr',
         display: 'standalone',

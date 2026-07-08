@@ -91,10 +91,6 @@ export default function Home() {
   const jesusGelesen = reihenFortschritt(regalJesusBaende, gelesen)
   const vers = tagesBeleg()
 
-  function scrollToAsk() {
-    document.getElementById('ask')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
-  }
-
   function zufallsBand() {
     const alle = [...regalBaende, ...regalJesusBaende]
     const b = alle[Math.floor(Math.random() * alle.length)]
@@ -142,24 +138,13 @@ export default function Home() {
         <div className="home-hero__sun" aria-hidden />
         <div className="wrap home-hero__inner">
           <motion.div initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
-            <motion.p className="home-hero__kicker" variants={rise}>
-              Zwei Buchreihen · 15 Bände · vollständig offline
-            </motion.p>
             <motion.h1 className="home-hero__title" variants={rise}>
-              Die Bibliothek
+              Haus der Sunnah
             </motion.h1>
-            <motion.p className="home-hero__lead" variants={rise}>
-              »Der versiegelte Nektar« und »Jesus, der Gesandte Gottes« — durchsuchbar, mit einer Frage-Funktion,
-              die Texte direkt aus den Büchern verfasst. Ohne Internet nutzbar, ohne dass etwas deinen Browser
-              verlässt.
-            </motion.p>
             <motion.div className="home-hero__ctas" variants={rise}>
               <Link to="/bibliothek" className="btn-home btn-home--primary">
                 Zur Bibliothek <Chevron aria-hidden />
               </Link>
-              <button type="button" className="btn-home btn-home--ghost" onClick={scrollToAsk}>
-                Frage stellen
-              </button>
             </motion.div>
           </motion.div>
         </div>
@@ -168,7 +153,6 @@ export default function Home() {
       <div className="wrap home-content">
         {/* ---- Suche + Frage ---- */}
         <motion.section
-          id="ask"
           className="home-section"
           initial={reduce ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -368,8 +352,8 @@ export default function Home() {
                 <span className="home-install__titel">Als App installieren</span>
                 <span className="home-install__text">
                   {installPrompt
-                    ? 'Auf den Homescreen legen — startet dann wie eine App, vollständig offline.'
-                    : 'Über das Teilen- bzw. Browser-Menü zum Homescreen hinzufügen — danach startet die Bibliothek wie eine App, vollständig offline.'}
+                    ? 'Auf den Homescreen legen — startet wie eine App, vollständig offline.'
+                    : 'Im Browser über „Teilen" → „Zum Home-Bildschirm" hinzufügen — vollständig offline.'}
                 </span>
               </span>
               {installPrompt && (
@@ -383,7 +367,7 @@ export default function Home() {
       </div>
 
       <footer className="foot home-foot">
-        <p>Die Bibliothek</p>
+        <p>Haus der Sunnah</p>
         {speicher && (
           <p className="home-foot__storage">
             Vollständig offline verfügbar · {formatBytes(speicher.used)} auf deinem Gerät

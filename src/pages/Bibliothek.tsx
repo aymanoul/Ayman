@@ -1,5 +1,4 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import SearchPanel from '../components/SearchPanel'
 import ModulePlate from '../components/ModulePlate'
 import Bookshelf from '../components/Bookshelf'
 import { modules } from '../data/modules'
@@ -7,10 +6,9 @@ import { regalBaende, regalTitel, regalVerlag } from '../data/regal'
 import { regalJesusBaende, regalJesusTitel, regalJesusVerlag } from '../data/regal-jesus'
 import { rise, stagger, EASE } from '../lib/anim'
 
-// "Die Bibliothek" — der Eintritt in einen Bibliothekssaal. Frontispiz mit
-// Kalligrafie, die zwei Wege hinein (Suche/Frage), dann das physische
-// Buchregal als Herzstück: die 9 Bücher als greifbare Bände. Kommende Module
-// stehen als ruhige Tafeln darunter.
+// "Die Bibliothek" — der Bibliothekssaal: beide Buchreihen als physische
+// Regale. Suche + Frage-Feld wohnen auf der Startseite (Home). Kommende
+// Module stehen als ruhige Tafeln darunter.
 export default function Bibliothek() {
   const reduce = useReducedMotion()
   const kommend = modules.filter((m) => m.status !== 'available')
@@ -24,15 +22,6 @@ export default function Bibliothek() {
             Die Bibliothek
           </motion.h1>
         </motion.section>
-
-        {/* ---- Die zwei Wege hinein ---- */}
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: reduce ? 0 : 0.55, ease: EASE }}
-        >
-          <SearchPanel />
-        </motion.div>
       </div>
 
       {/* ---- Der Saal: das Buchregal als Herzstück (Breakout-Breite) ---- */}
