@@ -11,11 +11,11 @@
    ========================================================================== */
 
 :root {
-  /* ---- Paper (helles Elfenbein-Creme) ---- */
-  --paper: #f6f1e6;
+  /* ---- Paper (helles Elfenbein-Creme, Ton der Girih-Textur) ---- */
+  --paper: #f7f0e1;
   --paper-2: #faf5ea;
   --paper-card: #fffdf9;
-  --paper-sink: #ece1c5;
+  --paper-sink: #eee3c9;
 
   /* ---- Ink (warm sepia-black) ---- */
   --ink: #24262e;
@@ -146,16 +146,20 @@ a {
 }
 
 /* ------------------------------------------------- the luminous ground */
-/* Warm light on parchment, with a whisper-quiet girih star lattice —
-   the Alhambra wall as watermark, never as noise. */
+/* Einheitlicher Grund der ganzen Website: warmes Creme mit dem nahtlos
+   gekachelten Girih-Sterngitter (assets/ornaments/girih-tile.svg) als
+   zartem Wasserzeichen — die Textur der Vorlage, als SVG gestochen scharf
+   auf jedem Display. Dazu ein weiches Licht von oben. */
 .atmosphere {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background:
-    radial-gradient(135% 85% at 50% -18%, rgba(255, 253, 245, 0.9) 0%, rgba(255, 253, 245, 0) 62%),
-    radial-gradient(110% 70% at 50% -8%, rgba(184, 137, 47, 0.05) 0%, transparent 58%),
-    linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 52%, var(--paper-sink) 100%);
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(135% 85% at 50% -18%, rgba(255, 253, 245, 0.85) 0%, rgba(255, 253, 245, 0) 62%),
+    url('./assets/ornaments/girih-tile.svg');
+  background-size: auto, 168px 168px;
+  background-repeat: no-repeat, repeat;
 }
 .atmosphere::after {
   /* faint paper grain so the light never looks plasticky */

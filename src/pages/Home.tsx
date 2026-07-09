@@ -158,7 +158,6 @@ export default function Home() {
 
       {/* ---- Hero: der Mihrab-Bogen als Rahmen für Titel und Strahlenkranz ---- */}
       <section className="home-hero">
-        <div className="home-hero__pattern" aria-hidden />
         <div className="home-hero__arch-wrap" aria-hidden>
           <div
             className="home-hero__raysclip"
