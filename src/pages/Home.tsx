@@ -182,9 +182,6 @@ export default function Home() {
             <motion.h1 className="home-hero__title" variants={rise}>
               Dar as-Sunnah
             </motion.h1>
-            <motion.p className="home-hero__kicker" variants={rise}>
-              Wissen · Verstehen · Leben
-            </motion.p>
             <motion.div className="home-hero__ctas" variants={rise}>
               <Link to="/bibliothek" className="btn-home btn-home--primary btn-home--hero">
                 <BookOpenIcon aria-hidden /> Zur Bibliothek <Chevron aria-hidden />

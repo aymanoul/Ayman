@@ -128,26 +128,23 @@ body.is-home .chrome-burger svg {
 .home-hero__inner {
   position: relative;
   z-index: 1;
-  /* Titel sitzt IM Bogen: Inhalt ueberlappt die Bogenflaeche von unten */
-  margin-top: calc(min(940px, 100vw) * -0.42);
+  /* Titel sitzt tiefer im Bogen, mit Abstand zu den Flanken (kein Beruehren
+     der Goldlinie an den Raendern), seit der Kicker-Zeile darunter entfaellt */
+  margin-top: calc(min(940px, 100%) * -0.34);
   padding-bottom: clamp(1.4rem, 4vh, 2.2rem);
 }
 
 /* Mobil: hoeherer Bogen (gestreckte Proportion wie im Entwurf), Titel
-   tiefer im Bogen mit deutlich mehr Luft zu den Buttons, groessere
-   Abstaende zwischen Titel, Kicker und CTA. */
+   tiefer im Bogen mit deutlich mehr Luft zu den Buttons. */
 @media (max-width: 720px) {
   .home-hero__arch-wrap {
     aspect-ratio: 800 / 640;
   }
   .home-hero__inner {
-    margin-top: calc(100vw * -0.35);
-  }
-  .home-hero__kicker {
-    margin-top: 1rem;
+    margin-top: calc(100% * -0.26);
   }
   .home-hero__ctas {
-    margin-top: 1.8rem;
+    margin-top: 2.2rem;
   }
 }
 .home-hero__star {
@@ -177,16 +174,6 @@ body.is-home .chrome-burger svg {
   letter-spacing: 0.002em;
   color: var(--azur-deep);
   text-shadow: 0 2px 6px rgba(60, 52, 30, 0.08);
-}
-.home-hero__kicker {
-  margin-top: 0.8rem;
-  font-family: var(--font-ui);
-  font-style: normal;
-  text-transform: uppercase;
-  letter-spacing: 0.34em;
-  font-weight: 700;
-  font-size: 0.82rem;
-  color: var(--gold-deep);
 }
 .home-hero__ctas {
   display: flex;
