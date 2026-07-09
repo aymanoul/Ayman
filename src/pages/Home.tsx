@@ -17,14 +17,15 @@ import type { Band } from '../components/Bookshelf'
 import { rise, stagger, EASE } from '../lib/anim'
 import '../styles/home.css'
 
-// Ogee-Spitzbogen (Mihrab-Silhouette) über den ganzen Hero: Schultern steigen
-// von den Bildschirmraendern auf und laufen oben in eine klare Spitze zu.
-// Derselbe Pfad dient als CSS-Maske für den Strahlenkranz, damit die Strahlen
-// exakt im Bogen enden — eine Quelle, keine Drift zwischen Linie und Maske.
+// Zwiebel-/Ogee-Kuppel über den ganzen Hero: volle runde Schultern, klare
+// Spitze oben, die Flanken laufen in einer S-Kurve zu den Bildschirmraendern
+// aus und treten dort seitlich aus (keine senkrechten Schienen — wie im
+// Entwurf). Derselbe Pfad dient als CSS-Maske für Innenraum-Glow und
+// Strahlenkranz — eine Quelle, keine Drift zwischen Linie und Maske.
 const ARCH_PATH =
-  'M20,560 L20,300 C20,180 150,95 330,60 C365,53 390,42 400,16 C410,42 435,53 470,60 C650,95 780,180 780,300 L780,560'
+  'M0,415 C30,398 70,362 100,302 C145,232 240,168 345,118 C375,96 392,58 400,18 C408,58 425,96 455,118 C560,168 655,232 700,302 C730,362 770,398 800,415'
 const ARCH_MASK = `url("data:image/svg+xml,${encodeURIComponent(
-  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 560' preserveAspectRatio='none'><path d='${ARCH_PATH} Z' fill='black'/></svg>`
+  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 560' preserveAspectRatio='none'><path d='${ARCH_PATH} L800,560 L0,560 Z' fill='black'/></svg>`
 )}")`
 
 interface BeforeInstallPromptEvent extends Event {

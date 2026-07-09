@@ -86,29 +86,40 @@ body.is-home .chrome-burger svg {
 .home-hero__raysclip {
   position: absolute;
   inset: 0;
+  /* Der Innenraum des Bogens ist heller und REIN — das globale Girih-Muster
+     bleibt nur AUSSERHALB des Bogens sichtbar (wie im Entwurf). Nach aussen
+     laeuft der Glow weich aus, damit keine harte Kante entsteht. */
+  background: radial-gradient(
+    72% 88% at 50% 34%,
+    #fffdf6 0%,
+    #faf4e6 52%,
+    rgba(250, 244, 230, 0.8) 74%,
+    rgba(250, 244, 230, 0) 100%
+  );
 }
 .home-hero__rays {
   position: absolute;
   inset: 0;
   /* from 2.3deg: kein Strahl exakt senkrecht — sonst doppelt sich die Linie
-     an der 0°/360°-Naht zu einem auffälligen Mittelstrich über dem Titel */
+     an der 0°/360°-Naht zu einem auffälligen Mittelstrich über dem Titel.
+     Hauchzart: klingt weit vor der Bogenlinie aus. */
   background: repeating-conic-gradient(
-    from 2.3deg at 50% 56%,
-    rgba(184, 137, 47, 0.34) 0deg 0.4deg,
-    transparent 0.4deg 4.6deg
+    from 2.3deg at 50% 60%,
+    rgba(184, 137, 47, 0.22) 0deg 0.4deg,
+    transparent 0.4deg 5.2deg
   );
-  -webkit-mask-image: radial-gradient(circle at 50% 56%, transparent 0 4%, black 14%, rgba(0, 0, 0, 0.55) 45%, transparent 78%);
-  mask-image: radial-gradient(circle at 50% 56%, transparent 0 4%, black 14%, rgba(0, 0, 0, 0.55) 45%, transparent 78%);
+  -webkit-mask-image: radial-gradient(circle at 50% 60%, transparent 0 4%, black 13%, rgba(0, 0, 0, 0.4) 34%, transparent 53%);
+  mask-image: radial-gradient(circle at 50% 60%, transparent 0 4%, black 13%, rgba(0, 0, 0, 0.4) 34%, transparent 53%);
 }
 .home-hero__arch-line {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.85;
-  /* Seiten laufen unten weich aus statt hart zu enden */
-  -webkit-mask-image: linear-gradient(180deg, black 0 78%, transparent 98%);
-  mask-image: linear-gradient(180deg, black 0 78%, transparent 98%);
+  opacity: 0.9;
+  /* Flanken-Enden loesen sich weich auf statt hart zu stoppen */
+  -webkit-mask-image: linear-gradient(180deg, black 0 80%, transparent 99%);
+  mask-image: linear-gradient(180deg, black 0 80%, transparent 99%);
 }
 .home-hero__inner {
   position: relative;
@@ -123,10 +134,10 @@ body.is-home .chrome-burger svg {
    Abstaende zwischen Titel, Kicker und CTA. */
 @media (max-width: 720px) {
   .home-hero__arch-wrap {
-    aspect-ratio: 800 / 700;
+    aspect-ratio: 800 / 640;
   }
   .home-hero__inner {
-    margin-top: calc(100vw * -0.52);
+    margin-top: calc(100vw * -0.35);
   }
   .home-hero__kicker {
     margin-top: 1rem;
@@ -157,8 +168,8 @@ body.is-home .chrome-burger svg {
   font-family: var(--font-serif);
   font-style: normal;
   font-weight: 700;
-  font-size: clamp(2.7rem, 11.5vw, 4.6rem);
-  line-height: 1.06;
+  font-size: clamp(2.5rem, 11vw, 5rem);
+  line-height: 1.05;
   letter-spacing: 0.002em;
   color: var(--azur-deep);
   text-shadow: 0 2px 6px rgba(60, 52, 30, 0.08);
