@@ -78,7 +78,11 @@ body.is-home .chrome-burger svg {
    Pfad-Maske (ARCH_MASK in Home.tsx). */
 .home-hero__arch-wrap {
   position: relative;
-  width: min(940px, 100vw);
+  /* 100% statt 100vw: 100vw zaehlt die Breite EINSCHLIESSLICH einer
+     eventuellen Scrollbar mit, wodurch die Box aus der echten Mitte
+     rutscht (asymmetrischer/"schiefer" Bogen). 100% folgt dem
+     tatsaechlichen Elternelement und bleibt garantiert zentriert. */
+  width: min(940px, 100%);
   aspect-ratio: 800 / 560;
   margin: 0 auto;
   pointer-events: none;
