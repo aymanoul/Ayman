@@ -11,49 +11,49 @@
    ========================================================================== */
 
 :root {
-  /* ---- Paper (warm parchment ivory) ---- */
-  --paper: #f4ecdb;
-  --paper-2: #f8f2e3;
-  --paper-card: #fbf6e9;
-  --paper-sink: #eadfc6;
+  /* ---- Paper (helles Elfenbein-Creme) ---- */
+  --paper: #f6f1e6;
+  --paper-2: #faf5ea;
+  --paper-card: #fffdf9;
+  --paper-sink: #ece1c5;
 
   /* ---- Ink (warm sepia-black) ---- */
-  --ink: #2e2718;
-  --ink-soft: #6b5c42;
-  --ink-faint: #a3906f;
+  --ink: #24262e;
+  --ink-soft: #5b5f6b;
+  --ink-faint: #93968f;
 
-  /* ---- Sage / olive (the primary accent) ---- */
-  --green: #5f6f46;
-  --green-deep: #414f2f;
-  --green-bright: #7d905a;
-  --green-wash: rgba(95, 111, 70, 0.07);
-  --green-wash-2: rgba(95, 111, 70, 0.12);
+  /* ---- Königsblau (der Hauptakzent) ---- */
+  --green: #1d4a8f;
+  --green-deep: #123868;
+  --green-bright: #3568b0;
+  --green-wash: rgba(29, 74, 143, 0.07);
+  --green-wash-2: rgba(29, 74, 143, 0.13);
 
   /* ---- Gold (illumination accent — hairlines, ornament, initials) ---- */
-  --brass: #b3873a;
-  --brass-soft: #d3b06a;
-  --brass-deep: #87651f;
+  --brass: #b8892f;
+  --brass-soft: #d9b467;
+  --brass-deep: #8a6a22;
 
   /* ---- Terracotta (matte brick) ---- */
   --terra: #a85a40;
   --terra-deep: #84432e;
   --terra-wash: rgba(168, 90, 64, 0.08);
 
-  /* ---- Akzente: andalusisches Dunkelrot + Medina-Grün ---- */
+  /* ---- Akzente: andalusisches Dunkelrot + Königsblau ---- */
   --anda: #7a2e2e; /* dunkles andalusisches Rot (Bordeaux) — Markierungen, "Einwand" */
   --anda-wash: rgba(122, 46, 46, 0.08);
-  --medina: #156b4a; /* das Grün der Kuppel von Medina — Kicker, "Konter", Titel */
-  --medina-bright: #2a9468;
-  --medina-deep: #0d4a32;
-  --medina-wash: rgba(21, 107, 74, 0.08);
+  --medina: #1d4a8f; /* Königsblau — Kicker, "Konter", Titel */
+  --medina-bright: #3568b0;
+  --medina-deep: #123868;
+  --medina-wash: rgba(29, 74, 143, 0.08);
   --rubric: var(--anda); /* "Einwand" */
   --konter: var(--medina); /* "Konter" */
 
   /* ---- Lines & seams (gold hairlines, Tezhip-style) ---- */
-  --line: rgba(179, 135, 58, 0.26);
-  --line-strong: rgba(179, 135, 58, 0.5);
-  --line-faint: rgba(179, 135, 58, 0.13);
-  --brass-line: rgba(179, 135, 58, 0.4);
+  --line: rgba(184, 137, 47, 0.28);
+  --line-strong: rgba(184, 137, 47, 0.52);
+  --line-faint: rgba(184, 137, 47, 0.14);
+  --brass-line: rgba(184, 137, 47, 0.42);
 
   /* ---- Type (v8) ----
      Happy Time ist raus (wirkte zu "KI"/dekorativ). Titel + UI laufen jetzt in
@@ -88,10 +88,10 @@
 
 /* ---- Tailwind theme bridge ---- */
 @theme {
-  --color-paper: #f4ecdb;
-  --color-ink: #2e2718;
-  --color-green: #5f6f46;
-  --color-brass: #b3873a;
+  --color-paper: #f6f1e6;
+  --color-ink: #24262e;
+  --color-green: #1d4a8f;
+  --color-brass: #b8892f;
   --font-display: 'Inter 18pt', 'Poppins', system-ui, sans-serif;
   --font-ui: 'Inter 18pt', 'Poppins', system-ui, sans-serif;
 }
@@ -153,9 +153,9 @@ a {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(135% 85% at 50% -18%, rgba(255, 252, 240, 0.9) 0%, rgba(255, 252, 240, 0) 62%),
-    radial-gradient(110% 70% at 50% -8%, rgba(179, 135, 58, 0.05) 0%, transparent 58%),
-    linear-gradient(180deg, #f8f2e3 0%, var(--paper) 52%, var(--paper-sink) 100%);
+    radial-gradient(135% 85% at 50% -18%, rgba(255, 253, 245, 0.9) 0%, rgba(255, 253, 245, 0) 62%),
+    radial-gradient(110% 70% at 50% -8%, rgba(184, 137, 47, 0.05) 0%, transparent 58%),
+    linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 52%, var(--paper-sink) 100%);
 }
 .atmosphere::after {
   /* faint paper grain so the light never looks plasticky */

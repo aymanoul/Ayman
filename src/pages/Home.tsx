@@ -2,18 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import SearchPanel from '../components/SearchPanel'
-import {
-  Chevron,
-  ClockIcon,
-  StarIcon,
-  NoteIcon,
-  DownloadIcon,
-  ShareIcon,
-  DiceIcon,
-  SparkIcon,
-  MosqueIcon,
-  BookOpenIcon,
-} from '../components/icons'
+import { Chevron, ClockIcon, StarIcon, NoteIcon, DownloadIcon, ShareIcon, DiceIcon, BookOpenIcon } from '../components/icons'
+import { KaabaEmblem } from '../components/KaabaArt'
 import { favoriten, notizen, verlauf, type VerlaufEintrag } from '../lib/db'
 import { speicherInfo, formatBytes } from '../lib/pwa'
 import { wann } from '../lib/zeit'
@@ -26,6 +16,11 @@ import { belegList } from '../data/belegRegistry'
 import type { Band } from '../components/Bookshelf'
 import { rise, stagger, EASE } from '../lib/anim'
 import '../styles/home.css'
+
+// Zweizentriger Spitzbogen (Mihrab-Silhouette) als Goldlinie über dem Hero —
+// dieselbe Pfad-Form dient als CSS-Maske für den Strahlenkranz darunter, damit
+// die Strahlen exakt im Bogen enden statt darüber hinauszuragen.
+const ARCH_PATH = 'M60,360 L60,190 A300,300 0 0 1 400,20 A300,300 0 0 1 740,190 L740,360'
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>
@@ -151,23 +146,23 @@ export default function Home() {
 
   return (
     <main className="shell home">
-      {/* Emblem oben rechts — Gegenstück zum Hamburger */}
+      {/* Emblem oben rechts — die goldene Kaaba, Gegenstück zum Hamburger */}
       <Link to="/qibla" className="home-emblem" aria-label="Qibla Finder öffnen">
-        <MosqueIcon aria-hidden />
+        <KaabaEmblem />
       </Link>
 
-      {/* ---- Hero ---- */}
+      {/* ---- Hero: der Mihrab-Bogen als Rahmen für Titel und Strahlenkranz ---- */}
       <section className="home-hero">
-        <div className="home-hero__rays" aria-hidden />
+        <div className="home-hero__arch-wrap" aria-hidden>
+          <div className="home-hero__rays" />
+          <svg className="home-hero__arch-line" viewBox="0 0 800 360" preserveAspectRatio="none">
+            <path d={ARCH_PATH} fill="none" stroke="var(--brass)" strokeWidth="2" />
+          </svg>
+        </div>
         <div className="wrap home-hero__inner">
           <motion.div initial={reduce ? false : 'hidden'} animate="shown" variants={stagger}>
-            <motion.p className="home-hero__star" variants={rise} aria-hidden>
-              <i />
-              <SparkIcon />
-              <i />
-            </motion.p>
             <motion.h1 className="home-hero__title" variants={rise}>
-              Haus der Sunnah
+              Dar as-Sunnah
             </motion.h1>
             <motion.p className="home-hero__kicker" variants={rise}>
               Wissen · Verstehen · Leben
@@ -404,7 +399,7 @@ export default function Home() {
       </div>
 
       <footer className="foot home-foot">
-        <p>Haus der Sunnah</p>
+        <p>Dar as-Sunnah</p>
         {speicher && (
           <p className="home-foot__storage">
             Vollständig offline verfügbar · {formatBytes(speicher.used)} auf deinem Gerät

@@ -1,10 +1,9 @@
 /* ============================================================================
-   STARTSEITE — "Die Bibliothek" als Portal. Eigene Farbwelt (Creme/Azurblau/
-   Gold, nach dem Emblem der Islamischen Universität Medina), abgesetzt von
-   den Reihenfarben der Unterseiten (Nektar-Grün, Jesus-Navy). Die Umfärbung
-   läuft über CSS-Custom-Properties: `.home` überschreibt --green/--medina/
-   --brass/--line lokal, sodass Suche, Chat und Karten (die diese Variablen
-   nutzen) hier automatisch in Azurblau/Gold erscheinen — ohne Duplikation.
+   STARTSEITE — "Dar as-Sunnah" als Portal. Die Startseite nutzt dieselbe
+   Königsblau/Gold/Creme-Palette wie der Rest der Website (siehe :root in
+   index.css) — --azur-*/--gold-* sind hier nur lokale Aliase, damit diese
+   und die Qibla-Seite mit sprechenden Namen arbeiten können, ohne von den
+   globalen Werten abzuweichen.
    ========================================================================== */
 
 /* Auf der Startseite weicht der Mushaf-Prachtrahmen einer cleanen
@@ -17,31 +16,16 @@ body.is-home::before {
 }
 
 .home {
-  --azur: #2e7eb8;
-  --azur-deep: #1c4e7e;
-  --azur-bright: #4fa0d9;
-  --azur-wash: rgba(46, 126, 184, 0.08);
-  --azur-wash-2: rgba(46, 126, 184, 0.14);
-  --gold: #c2a055;
-  --gold-deep: #93732f;
+  --azur: var(--green);
+  --azur-deep: var(--green-deep);
+  --azur-bright: var(--green-bright);
+  --azur-wash: var(--green-wash);
+  --azur-wash-2: var(--green-wash-2);
+  --gold: var(--brass);
+  --gold-deep: var(--brass-deep);
   /* Serifen-Stimme der Startseite (Frank Ruhl Libre ist selbst gehostet) */
   --font-serif: 'Frank Ruhl Libre', Georgia, 'Times New Roman', serif;
-
-  --green: var(--azur);
-  --green-deep: var(--azur-deep);
-  --green-bright: var(--azur-bright);
-  --green-wash: var(--azur-wash);
-  --green-wash-2: var(--azur-wash-2);
-  --medina: var(--azur);
-  --medina-bright: var(--azur-bright);
-  --medina-deep: var(--azur-deep);
-  --medina-wash: var(--azur-wash);
-  --brass: var(--gold);
-  --brass-deep: var(--gold-deep);
-  --line: rgba(194, 160, 85, 0.32);
-  --line-strong: rgba(194, 160, 85, 0.55);
-  --line-faint: rgba(194, 160, 85, 0.15);
-  --paper-card: #fffdf8;
+  --paper-card: #fffdf9;
 }
 
 /* --------------------------------------------------------------------- HERO */
@@ -67,34 +51,53 @@ body.is-home::before {
   transform: scale(0.94);
 }
 .home-emblem svg {
-  width: 22px;
-  height: 22px;
+  width: 27px;
+  height: 27px;
 }
 
 .home-hero {
   position: relative;
   overflow: clip;
   text-align: center;
-  padding-top: clamp(5rem, 15vh, 8.5rem);
+  padding-top: clamp(4.6rem, 13vh, 7rem);
   padding-bottom: clamp(1.6rem, 5vh, 2.6rem);
 }
-.home-hero__rays {
-  /* zentriert auf dem Stern-Ornament (Hero-Padding + halbe Sternzeile) */
-  position: absolute;
-  top: calc(clamp(5rem, 15vh, 8.5rem) + 8px);
-  left: 50%;
-  translate: -50% -50%;
-  width: min(640px, 130vw);
-  aspect-ratio: 1;
-  background: repeating-conic-gradient(from 0deg, rgba(194, 160, 85, 0.5) 0deg 0.5deg, transparent 0.5deg 6deg);
-  -webkit-mask-image: radial-gradient(circle at center, transparent 0 9%, black 12%, rgba(0, 0, 0, 0.5) 22%, transparent 40%);
-  mask-image: radial-gradient(circle at center, transparent 0 9%, black 12%, rgba(0, 0, 0, 0.5) 22%, transparent 40%);
+
+/* Mihrab-Bogen: goldene Linien-Silhouette über dem Hero, Strahlenkranz
+   maskiert auf exakt dieselbe Bogenform (siehe ARCH_PATH in Home.tsx). */
+.home-hero__arch-wrap {
+  position: relative;
+  width: min(880px, 96vw);
+  aspect-ratio: 800 / 360;
+  margin: 0 auto;
   pointer-events: none;
-  z-index: 0;
+}
+.home-hero__rays {
+  position: absolute;
+  inset: 0;
+  background: repeating-conic-gradient(
+    from 0deg at 50% 92%,
+    rgba(184, 137, 47, 0.4) 0deg 0.5deg,
+    transparent 0.5deg 4.5deg
+  );
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 360' preserveAspectRatio='none'%3E%3Cpath d='M60,360 L60,190 A300,300 0 0 1 400,20 A300,300 0 0 1 740,190 L740,360 Z' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 360' preserveAspectRatio='none'%3E%3Cpath d='M60,360 L60,190 A300,300 0 0 1 400,20 A300,300 0 0 1 740,190 L740,360 Z' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.home-hero__arch-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.75;
 }
 .home-hero__inner {
   position: relative;
   z-index: 1;
+  margin-top: clamp(-4.4rem, -11vh, -2.6rem);
 }
 .home-hero__star {
   display: flex;

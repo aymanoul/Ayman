@@ -98,7 +98,7 @@ export default function AppChrome() {
               transition={{ type: 'tween', duration: 0.32, ease: [0.32, 0.72, 0, 1] }}
             >
               <div className="sidepanel__head">
-                <span className="sidepanel__brand gilt">Haus der Sunnah</span>
+                <span className="sidepanel__brand gilt">Dar as-Sunnah</span>
                 <button className="sidepanel__close" aria-label="Schließen" onClick={() => setOpen(false)}>
                   <CloseIcon />
                 </button>

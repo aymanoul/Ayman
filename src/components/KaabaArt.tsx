@@ -1,5 +1,17 @@
 // Eigens gezeichnete, respektvoll-schlichte Kaaba-Ikonografie — kein
-// Fremdbild, zwei Größen für die Kompass-Plakette und die Richtungs-Karte.
+// Fremdbild, in drei Varianten: das goldene Emblem (Startseiten-Button),
+// die dunkle Kompass-Plakette und die grössere Richtungs-Illustration.
+
+export function KaabaEmblem() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 40 40" aria-hidden>
+      <rect x="7" y="12" width="26" height="22" rx="1.5" fill="var(--brass)" />
+      <rect x="7" y="17" width="26" height="5.5" fill="var(--brass-deep)" />
+      <rect x="17" y="24" width="6" height="10" rx="0.5" fill="var(--brass-soft)" />
+      <path d="M7 12 13 6h14l6 6Z" fill="var(--brass-deep)" />
+    </svg>
+  )
+}
 
 export function KaabaBadge() {
   return (
