@@ -29,75 +29,106 @@ body.is-home::before {
 }
 
 /* --------------------------------------------------------------------- HERO */
-/* Der Blick des Mockups: rundes Emblem oben rechts, feiner Strahlenkranz um
-   ein Stern-Ornament, Serifen-Titel, Kicker darunter, eine grosse Pill-CTA. */
-.home-emblem {
+/* Exakt nach Vorlage: runde weisse Buttons ohne Rand, ein Ogee-Spitzbogen als
+   Goldlinie ueber die volle Breite, zarter Strahlenkranz hinter dem Titel,
+   Girih-Muster-Wasserzeichen in den Ecken, fetter Serifen-Titel im Bogen. */
+.home-emblem,
+body.is-home .chrome-burger {
   position: fixed;
-  top: clamp(24px, 3.4vw, 60px);
-  right: clamp(20px, 3vw, 62px);
+  top: clamp(20px, 3vw, 48px);
   z-index: 62;
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   display: grid;
   place-items: center;
-  color: var(--gold-deep);
-  background: #fffdf8;
-  border: 1px solid rgba(194, 160, 85, 0.4);
+  color: var(--brass-deep);
+  background: #fffdf9;
+  border: none;
   border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(64, 58, 34, 0.06), 0 10px 22px -14px rgba(64, 58, 34, 0.35);
+  box-shadow: 0 2px 5px rgba(60, 52, 30, 0.08), 0 14px 30px -14px rgba(60, 52, 30, 0.3);
   transition: background 0.2s var(--ease-out), transform 0.14s var(--ease-out);
 }
-.home-emblem:active {
+.home-emblem {
+  right: clamp(18px, 3vw, 56px);
+}
+body.is-home .chrome-burger {
+  left: clamp(18px, 3vw, 56px);
+}
+.home-emblem:active,
+body.is-home .chrome-burger:active {
   transform: scale(0.94);
 }
 .home-emblem svg {
-  width: 27px;
-  height: 27px;
+  width: 28px;
+  height: 28px;
+}
+body.is-home .chrome-burger svg {
+  width: 24px;
+  height: 24px;
 }
 
 .home-hero {
   position: relative;
   overflow: clip;
   text-align: center;
-  padding-top: clamp(4.6rem, 13vh, 7rem);
-  padding-bottom: clamp(1.6rem, 5vh, 2.6rem);
 }
 
-/* Mihrab-Bogen: goldene Linien-Silhouette über dem Hero, Strahlenkranz
-   maskiert auf exakt dieselbe Bogenform (siehe ARCH_PATH in Home.tsx). */
+/* Girih-Wasserzeichen: zartes geometrisches Sterngitter hinter dem Bogen,
+   nach unten hin ausgeblendet. */
+.home-hero__pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23b8892f' stroke-width='0.8' opacity='0.16'%3E%3Cpath d='M48 6 60 24 78 24 68 40 78 56 60 56 48 74 36 56 18 56 28 40 18 24 36 24Z'/%3E%3Cpath d='M0 48 12 40M96 48 84 40M48 96 40 84M48 0 40 12'/%3E%3Ccircle cx='48' cy='40' r='7'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 96px 96px;
+  -webkit-mask-image: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.5) 55%, transparent 82%);
+  mask-image: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.5) 55%, transparent 82%);
+}
+
+/* Der Bogen ueberspannt die volle Hero-Breite (Desktop gedeckelt), die
+   Strahlen liegen in einem eigenen Clip-Element mit exakt derselben
+   Pfad-Maske (ARCH_MASK in Home.tsx). */
 .home-hero__arch-wrap {
   position: relative;
-  width: min(880px, 96vw);
-  aspect-ratio: 800 / 360;
+  width: min(940px, 100vw);
+  aspect-ratio: 800 / 560;
   margin: 0 auto;
   pointer-events: none;
+}
+.home-hero__raysclip {
+  position: absolute;
+  inset: 0;
 }
 .home-hero__rays {
   position: absolute;
   inset: 0;
+  /* from 2.3deg: kein Strahl exakt senkrecht — sonst doppelt sich die Linie
+     an der 0°/360°-Naht zu einem auffälligen Mittelstrich über dem Titel */
   background: repeating-conic-gradient(
-    from 0deg at 50% 92%,
-    rgba(184, 137, 47, 0.4) 0deg 0.5deg,
-    transparent 0.5deg 4.5deg
+    from 2.3deg at 50% 56%,
+    rgba(184, 137, 47, 0.34) 0deg 0.4deg,
+    transparent 0.4deg 4.6deg
   );
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 360' preserveAspectRatio='none'%3E%3Cpath d='M60,360 L60,190 A300,300 0 0 1 400,20 A300,300 0 0 1 740,190 L740,360 Z' fill='black'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 360' preserveAspectRatio='none'%3E%3Cpath d='M60,360 L60,190 A300,300 0 0 1 400,20 A300,300 0 0 1 740,190 L740,360 Z' fill='black'/%3E%3C/svg%3E");
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+  -webkit-mask-image: radial-gradient(circle at 50% 56%, transparent 0 4%, black 14%, rgba(0, 0, 0, 0.55) 45%, transparent 78%);
+  mask-image: radial-gradient(circle at 50% 56%, transparent 0 4%, black 14%, rgba(0, 0, 0, 0.55) 45%, transparent 78%);
 }
 .home-hero__arch-line {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.75;
+  opacity: 0.85;
+  /* Seiten laufen unten weich aus statt hart zu enden */
+  -webkit-mask-image: linear-gradient(180deg, black 0 78%, transparent 98%);
+  mask-image: linear-gradient(180deg, black 0 78%, transparent 98%);
 }
 .home-hero__inner {
   position: relative;
   z-index: 1;
-  margin-top: clamp(-4.4rem, -11vh, -2.6rem);
+  /* Titel sitzt IM Bogen: Inhalt ueberlappt die Bogenflaeche von unten */
+  margin-top: calc(min(940px, 100vw) * -0.42);
+  padding-bottom: clamp(1.4rem, 4vh, 2.2rem);
 }
 .home-hero__star {
   display: flex;
@@ -120,20 +151,21 @@ body.is-home::before {
 .home-hero__title {
   font-family: var(--font-serif);
   font-style: normal;
-  font-weight: 500;
-  font-size: clamp(2.6rem, 9vw, 4rem);
-  line-height: 1.08;
-  letter-spacing: 0.005em;
+  font-weight: 700;
+  font-size: clamp(2.7rem, 11.5vw, 4.6rem);
+  line-height: 1.06;
+  letter-spacing: 0.002em;
   color: var(--azur-deep);
+  text-shadow: 0 2px 6px rgba(60, 52, 30, 0.08);
 }
 .home-hero__kicker {
-  margin-top: 0.7rem;
+  margin-top: 0.8rem;
   font-family: var(--font-ui);
   font-style: normal;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
-  font-weight: 600;
-  font-size: 0.76rem;
+  letter-spacing: 0.34em;
+  font-weight: 700;
+  font-size: 0.82rem;
   color: var(--gold-deep);
 }
 .home-hero__ctas {

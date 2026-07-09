@@ -17,10 +17,15 @@ import type { Band } from '../components/Bookshelf'
 import { rise, stagger, EASE } from '../lib/anim'
 import '../styles/home.css'
 
-// Zweizentriger Spitzbogen (Mihrab-Silhouette) als Goldlinie über dem Hero —
-// dieselbe Pfad-Form dient als CSS-Maske für den Strahlenkranz darunter, damit
-// die Strahlen exakt im Bogen enden statt darüber hinauszuragen.
-const ARCH_PATH = 'M60,360 L60,190 A300,300 0 0 1 400,20 A300,300 0 0 1 740,190 L740,360'
+// Ogee-Spitzbogen (Mihrab-Silhouette) über den ganzen Hero: Schultern steigen
+// von den Bildschirmraendern auf und laufen oben in eine klare Spitze zu.
+// Derselbe Pfad dient als CSS-Maske für den Strahlenkranz, damit die Strahlen
+// exakt im Bogen enden — eine Quelle, keine Drift zwischen Linie und Maske.
+const ARCH_PATH =
+  'M20,560 L20,300 C20,180 150,95 330,60 C365,53 390,42 400,16 C410,42 435,53 470,60 C650,95 780,180 780,300 L780,560'
+const ARCH_MASK = `url("data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 560' preserveAspectRatio='none'><path d='${ARCH_PATH} Z' fill='black'/></svg>`
+)}")`
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>
@@ -153,10 +158,23 @@ export default function Home() {
 
       {/* ---- Hero: der Mihrab-Bogen als Rahmen für Titel und Strahlenkranz ---- */}
       <section className="home-hero">
+        <div className="home-hero__pattern" aria-hidden />
         <div className="home-hero__arch-wrap" aria-hidden>
-          <div className="home-hero__rays" />
-          <svg className="home-hero__arch-line" viewBox="0 0 800 360" preserveAspectRatio="none">
-            <path d={ARCH_PATH} fill="none" stroke="var(--brass)" strokeWidth="2" />
+          <div
+            className="home-hero__raysclip"
+            style={{
+              WebkitMaskImage: ARCH_MASK,
+              maskImage: ARCH_MASK,
+              WebkitMaskSize: '100% 100%',
+              maskSize: '100% 100%',
+              WebkitMaskRepeat: 'no-repeat',
+              maskRepeat: 'no-repeat',
+            }}
+          >
+            <div className="home-hero__rays" />
+          </div>
+          <svg className="home-hero__arch-line" viewBox="0 0 800 560" preserveAspectRatio="none">
+            <path d={ARCH_PATH} fill="none" stroke="var(--brass)" strokeWidth="2.2" />
           </svg>
         </div>
         <div className="wrap home-hero__inner">
