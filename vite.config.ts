@@ -17,12 +17,12 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: false, // Registrierung passiert manuell (Offline-Schalter)
       manifest: {
-        name: 'Dar as-Sunnah',
-        short_name: 'Dar as-Sunnah',
+        name: 'دار السنة',
+        short_name: 'دار السنة',
         description:
           'Dar as-Sunnah — zwei Buchreihen, vollständig offline lesbar.',
         lang: 'de',
-        dir: 'ltr',
+        dir: 'auto',
         display: 'standalone',
         start_url: '.',
         scope: '.',
