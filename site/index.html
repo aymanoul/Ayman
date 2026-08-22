@@ -71,65 +71,31 @@
   <header class="site-header" id="site-header">
     <div class="site-header__inner">
       <a href="#" class="site-header__logo">
-        <img src="../assets/logo.png" alt="Fahrstation Düsseldorf">
+        <img src="../assets/logo-header.png" alt="Fahrstation Düsseldorf">
       </a>
 
-      <nav class="nav" aria-label="Hauptnavigation">
-        <ul class="nav__list">
-          <li class="nav__item"><a class="nav__link" href="#hero">Home</a></li>
-          <li class="nav__item"><a class="nav__link" href="#vertrauen">Fahrschule</a></li>
-          <li class="nav__item nav__item--dropdown">
-            <button class="nav__link nav__dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="klassen-dropdown">
-              Klassen
-              <svg class="nav__dropdown-icon" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
-                <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            <ul class="nav__dropdown" id="klassen-dropdown">
-              <li><a href="#">Klasse A</a></li>
-              <li><a href="#">Klasse B</a></li>
-              <li><a href="#">Klasse C</a></li>
-              <li><a href="#">Klasse D</a></li>
-            </ul>
-          </li>
-          <li class="nav__item"><a class="nav__link" href="#ablauf">Theorie</a></li>
-          <li class="nav__item"><a class="nav__link" href="#ablauf">Seminare</a></li>
-          <li class="nav__item"><a class="nav__link" href="#kontakt">Kontakt</a></li>
-        </ul>
-      </nav>
-
-      <a class="btn-primary site-header__phone" href="tel:+4921115828104">0211 15828104</a>
-
-      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menü öffnen">
-        <svg class="nav-toggle__icon" width="44" height="36" viewBox="0 0 44 36" aria-hidden="true">
-          <g class="nav-toggle__bar nav-toggle__bar--top">
-            <polygon class="nav-toggle__bar-fill" points="2,8 6,5 38,5 42,8 38,11 6,11"/>
-            <polygon class="nav-toggle__bar-frame" points="5,8 7,6.5 37,6.5 39,8 37,9.5 7,9.5"/>
-          </g>
-          <g class="nav-toggle__bar nav-toggle__bar--mid">
-            <polygon class="nav-toggle__bar-fill" points="0,18 4,15 40,15 44,18 40,21 4,21"/>
-            <polygon class="nav-toggle__bar-frame" points="3,18 5,16.5 39,16.5 41,18 39,19.5 5,19.5"/>
-          </g>
-          <g class="nav-toggle__bar nav-toggle__bar--bottom">
-            <polygon class="nav-toggle__bar-fill" points="9,28 13,25 31,25 35,28 31,31 13,31"/>
-            <polygon class="nav-toggle__bar-frame" points="12,28 14,26.5 30,26.5 32,28 30,29.5 14,29.5"/>
-          </g>
-        </svg>
-      </button>
+      <div class="site-header__bar">
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menü öffnen">
+          <svg class="nav-toggle__icon" width="44" height="36" viewBox="0 0 44 36" aria-hidden="true">
+            <g class="nav-toggle__bar nav-toggle__bar--top">
+              <polygon class="nav-toggle__bar-fill" points="2,8 6,5 38,5 42,8 38,11 6,11"/>
+              <polygon class="nav-toggle__bar-frame" points="5,8 7,6.5 37,6.5 39,8 37,9.5 7,9.5"/>
+            </g>
+            <g class="nav-toggle__bar nav-toggle__bar--mid">
+              <polygon class="nav-toggle__bar-fill" points="0,18 4,15 40,15 44,18 40,21 4,21"/>
+              <polygon class="nav-toggle__bar-frame" points="3,18 5,16.5 39,16.5 41,18 39,19.5 5,19.5"/>
+            </g>
+            <g class="nav-toggle__bar nav-toggle__bar--bottom">
+              <polygon class="nav-toggle__bar-fill" points="9,28 13,25 31,25 35,28 31,31 13,31"/>
+              <polygon class="nav-toggle__bar-frame" points="12,28 14,26.5 30,26.5 32,28 30,29.5 14,29.5"/>
+            </g>
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 
   <div class="mobile-menu" id="mobile-menu" hidden>
-    <div class="mobile-menu__header">
-      <a href="#" class="site-header__logo">
-        <img src="../assets/logo.png" alt="Fahrstation Düsseldorf">
-      </a>
-      <button class="mobile-menu__close" id="mobile-menu-close" type="button" aria-label="Menü schließen">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 4l16 16M20 4L4 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
     <nav class="mobile-menu__nav" aria-label="Mobile Hauptnavigation">
       <ul class="mobile-menu__list">
         <li><a class="mobile-menu__link" href="#hero">Home</a></li>
@@ -137,7 +103,7 @@
         <li class="mobile-menu__item--dropdown">
           <button class="mobile-menu__link mobile-menu__dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="klassen-dropdown-mobile">
             Klassen
-            <svg class="nav__dropdown-icon" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
+            <svg class="mobile-menu__dropdown-icon" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
               <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>

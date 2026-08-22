@@ -69,7 +69,11 @@ body.has-open-menu {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  /* Höher als .mobile-menu (200): der Header bleibt sichtbar, wenn das
+     Overlay offen ist, damit das Balken-zu-X-Icon auch wirklich zu sehen
+     ist und als Schließen-Button funktioniert — sonst würde das Overlay
+     es komplett verdecken. */
+  z-index: 300;
   background-color: var(--text-light);
   transition: box-shadow var(--transition-base), height var(--transition-base);
 }
@@ -77,7 +81,7 @@ body.has-open-menu {
 .site-header__inner {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: 0;
   height: var(--header-height);
 }
 
@@ -89,10 +93,15 @@ body.has-open-menu {
   height: var(--header-height-sticky);
 }
 
+/* 41px ist keine Design-Token-Zahl, sondern aus dem Logo-Bild selbst
+   abgemessen (siehe .site-header__bar unten) — die Balken-Fortsetzung
+   in CSS muss exakt auf diese Höhe passen, damit die Naht unsichtbar
+   bleibt. „Feste Breite“ laut Vorgabe entsteht dadurch, dass Höhe +
+   Seitenverhältnis des Bildes die Breite automatisch festlegen. */
 .site-header__logo {
   display: flex;
   align-items: center;
-  height: var(--space-10);
+  height: 41px;
   flex-shrink: 0;
 }
 
@@ -101,17 +110,50 @@ body.has-open-menu {
   width: auto;
 }
 
-/* Desktop-Nav ist ab 768px sichtbar, siehe Media-Query unten */
-.nav {
-  display: none;
+/* --------------------------------------------------------------------------
+   Header-Balken — CSS-Fortsetzung des Logos
+   --------------------------------------------------------------------------
+   assets/logo-header.png endet exakt an der Pfeilspitze des Schriftzugs
+   (1470×399px im Original, der Balkenteil darin verläuft von y=104 bis
+   y=284). Skaliert auf die gerenderte Logohöhe (41px) ergibt das:
+   Balken 10,7px von oben, 18,5px hoch, Rand 2,4px. Der ~1px schwarze
+   Außenrand aus dem Bild ist hier in den Rand mit eingerechnet statt als
+   eigene Ebene nachgebaut — bei dieser Größe wäre er ohnehin nicht mehr
+   wahrnehmbar.
+   -------------------------------------------------------------------------- */
+.site-header__bar {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 24px;
+  height: 41px;
 }
 
-.site-header__phone {
-  display: none;
+.site-header__bar::before {
+  content: "";
+  position: absolute;
+  top: 10.7px;
+  left: 0;
+  right: 0;
+  height: 18.5px;
+  background-color: var(--primary);
+  border-top: 2.4px solid var(--accent);
+  border-bottom: 2.4px solid var(--accent);
+  /* Spitz zulaufendes rechtes Ende, in derselben Winkel-Logik wie die
+     Pfeilspitze des Logos selbst — reuses --badge-notch. */
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--badge-notch)) 0,
+    100% 50%,
+    calc(100% - var(--badge-notch)) 100%,
+    0 100%
+  );
 }
 
 .nav-toggle {
-  margin-left: auto;
+  position: absolute;
+  top: 19.95px;
+  right: calc(var(--badge-notch) + var(--space-2));
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,13 +174,16 @@ body.has-open-menu {
   transition: transform 250ms ease-out, opacity 250ms ease-out;
 }
 
+/* Das Icon sitzt jetzt immer auf dem schwarzen Balken (nie mehr auf
+   weißem Grund) — Füllung und Rahmen daher gegenüber der Ursprungsversion
+   getauscht: gelb dominant, schwarze Innenlinie als Kontrast. */
 .nav-toggle__bar-fill {
-  fill: var(--primary);
+  fill: var(--accent);
 }
 
 .nav-toggle__bar-frame {
   fill: none;
-  stroke: var(--accent);
+  stroke: var(--primary);
   stroke-width: 1.2;
 }
 
@@ -154,70 +199,6 @@ body.has-open-menu {
   transform: translateY(-10px) rotate(-45deg);
 }
 
-/* --------------------------------------------------------------------------
-   Dropdown „Klassen“ (Desktop)
-   -------------------------------------------------------------------------- */
-.nav__item--dropdown {
-  position: relative;
-}
-
-.nav__dropdown-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-}
-
-.nav__dropdown-icon {
-  transition: transform var(--transition-base);
-}
-
-.nav__dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 160px;
-  margin-top: var(--space-2);
-  padding: var(--space-2);
-  background-color: var(--text-light);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-card-hover);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-4px);
-  transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
-}
-
-.nav__item--dropdown:hover .nav__dropdown,
-.nav__item--dropdown:focus-within .nav__dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.nav__item--dropdown:hover .nav__dropdown-icon,
-.nav__item--dropdown:focus-within .nav__dropdown-icon {
-  transform: rotate(180deg);
-}
-
-.nav__dropdown a {
-  display: block;
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  font-size: var(--font-size-small);
-}
-
-.nav__dropdown a:hover {
-  background-color: var(--background-light);
-}
-
-.nav__link {
-  text-decoration: none;
-  font-size: var(--font-size-small);
-  font-weight: 500;
-}
-
-.nav__link:focus-visible,
 .nav-toggle:focus-visible,
 .btn-primary:focus-visible {
   outline: none;
@@ -225,7 +206,9 @@ body.has-open-menu {
 }
 
 /* --------------------------------------------------------------------------
-   Mobile-Overlay-Menü
+   Overlay-Menü — jetzt auf allen Bildschirmgrößen die einzige Navigation
+   (Nav-Links und Telefonnummer sind aus der Kopfzeile selbst entfernt,
+   Logo + durchgehender Balken + Menü-Icon ersetzen sie überall).
    -------------------------------------------------------------------------- */
 .mobile-menu {
   position: fixed;
@@ -235,26 +218,12 @@ body.has-open-menu {
   flex-direction: column;
   background-color: var(--primary);
   color: var(--text-light);
+  /* Platz für den Header, der jetzt darüber sichtbar bleibt. */
+  padding-top: var(--header-height);
 }
 
 .mobile-menu[hidden] {
   display: none;
-}
-
-.mobile-menu__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-4);
-}
-
-.mobile-menu__close {
-  width: var(--tap-target);
-  height: var(--tap-target);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-light);
 }
 
 .mobile-menu__nav {
@@ -281,6 +250,10 @@ body.has-open-menu {
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-display);
   text-decoration: none;
+}
+
+.mobile-menu__dropdown-icon {
+  transition: transform var(--transition-base);
 }
 
 .mobile-menu__dropdown {
@@ -514,26 +487,6 @@ section {
    Breakpoint ≥ 768px — Tablet/Desktop
    ========================================================================== */
 @media (min-width: 768px) {
-  .nav {
-    display: block;
-    margin-left: var(--space-8);
-  }
-
-  .nav__list {
-    display: flex;
-    gap: var(--space-6);
-  }
-
-  .site-header__phone {
-    display: inline-flex;
-    margin-left: auto;
-  }
-
-  .nav-toggle,
-  .mobile-menu {
-    display: none;
-  }
-
   .hero-section__title {
     max-width: 62%;
   }
@@ -583,8 +536,6 @@ section {
 @media (prefers-reduced-motion: reduce) {
   .site-header,
   .site-header__inner,
-  .nav__dropdown,
-  .nav__dropdown-icon,
   .nav-toggle__bar,
   .hero-section__cta-arrow {
     transition: none;
