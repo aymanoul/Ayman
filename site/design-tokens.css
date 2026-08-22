@@ -43,11 +43,18 @@
   --font-size-h3: 20px;
   --font-size-body: 16px;
   --font-size-small: 14px;
+  --font-size-micro: 13px;         /* Chips, Ticker */
+
+  /* Hero-Headline: bewusst größer als --font-size-h1, damit sie auf
+     Desktop die volle Wucht einer Ansage bekommt. */
+  --font-size-hero-h1: clamp(40px, 9vw, 88px);
 
   --line-height-tight: 1.1;       /* Headlines */
   --line-height-base: 1.6;        /* Fließtext */
+  --line-height-hero: 0.92;       /* Hero-Headline, dicht gesetzt */
   --letter-spacing-display: 0.01em;
   --letter-spacing-badge: 0.06em;
+  --letter-spacing-hero: -0.01em;
 
   /* ---------------------------------------------------------------------
      Abstände — 4px-Raster, die Zahl ist der Faktor (--space-6 = 6 × 4px)
@@ -88,6 +95,7 @@
   --focus-ring: 0 0 0 3px var(--primary), 0 0 0 6px var(--accent);
 
   --transition-base: 0.2s ease;
+  --marquee-duration: 30s;
 }
 
 /* Wer Bewegung reduziert haben möchte, bekommt sie über den Token global
@@ -251,10 +259,16 @@
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 100svh;
+  min-height: 88svh;
   overflow: hidden;
   background-color: var(--primary);
   color: var(--text-light);
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    min-height: 100svh;
+  }
 }
 
 .hero-section__video {
@@ -264,14 +278,37 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background-color: var(--primary);
 }
 
+/* Verlaufs-Scrim: hält Text über jedem Videobild lesbar, wird unten
+   dunkler, wo die Buttons sitzen. Über color-mix() aus --primary
+   abgeleitet, damit keine neue Farbe eingeführt wird. */
 .hero-section::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-color: var(--overlay-dark);
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--primary) 35%, transparent) 0%,
+    color-mix(in srgb, var(--primary) 55%, transparent) 45%,
+    color-mix(in srgb, var(--primary) 85%, transparent) 100%
+  );
+}
+
+/* Dezenter gelber Lichtschimmer unten, damit die dunkle Fläche nicht
+   tot wirkt. */
+.hero-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: radial-gradient(
+    ellipse at bottom,
+    color-mix(in srgb, var(--accent) 6%, transparent) 0%,
+    transparent 60%
+  );
 }
 
 .hero-section__content {
@@ -282,4 +319,164 @@
   max-width: var(--max-width);
   margin-inline: auto;
   padding: var(--space-24) var(--space-6);
+}
+
+/* --------------------------------------------------------------------------
+   .btn-secondary — Zurückhaltender Signage-Button: transparent, gelber
+   Rand. Füllt sich bei Hover mit --accent, passend zu .btn-primary.
+   -------------------------------------------------------------------------- */
+.btn-secondary {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap-target);
+  padding: var(--space-3) var(--space-6);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--text-light);
+  font-family: var(--font-display);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-display);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent);
+  color: var(--primary);
+}
+
+.btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* --------------------------------------------------------------------------
+   .class-chip — kleiner, antippbarer Filter-Chip (Klasse A/B/C/D).
+   Nutzt dieselbe Signage-Silhouette wie .signage-badge, aber als
+   zweistufiger Zustand (Standard / aktiv) statt als reines Label.
+   -------------------------------------------------------------------------- */
+/* Border + clip-path zusammen funktionieren nicht: der Rand folgt dem
+   rechteckigen Kasten, nicht der geschnittenen Form, und verschwindet an
+   den Spitzen. Deshalb zwei gestapelte Ebenen: die äußere ist komplett
+   gelb (= der sichtbare Rand), ::before liegt 1px eingerückt darüber und
+   trägt die eigentliche Füllfarbe — zusammen ergibt das einen 1px-Rahmen,
+   der der Sechseck-Silhouette folgt. */
+.class-chip {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: var(--space-1) var(--space-6);
+  background-color: var(--accent);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  font-size: var(--font-size-micro);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-badge);
+  text-decoration: none;
+  white-space: nowrap;
+  clip-path: polygon(
+    0 50%,
+    var(--badge-notch) 0,
+    calc(100% - var(--badge-notch)) 0,
+    100% 50%,
+    calc(100% - var(--badge-notch)) 100%,
+    var(--badge-notch) 100%
+  );
+}
+
+.class-chip::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background-color: color-mix(in srgb, var(--primary) 45%, transparent);
+  clip-path: polygon(
+    0 50%,
+    var(--badge-notch) 0,
+    calc(100% - var(--badge-notch)) 0,
+    100% 50%,
+    calc(100% - var(--badge-notch)) 100%,
+    var(--badge-notch) 100%
+  );
+  transition: background-color var(--transition-base);
+}
+
+.class-chip__label {
+  position: relative;
+  z-index: 1;
+}
+
+.class-chip:hover::before {
+  background-color: color-mix(in srgb, var(--primary) 70%, transparent);
+}
+
+.class-chip--active::before {
+  background-color: var(--accent);
+}
+
+.class-chip--active .class-chip__label {
+  color: var(--primary);
+}
+
+/* box-shadow (wie --focus-ring) würde von clip-path mit weggeschnitten —
+   outline liegt außerhalb der Schnittfläche und bleibt sichtbar. */
+.class-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   .hero-ticker — durchlaufendes Proof-Band. Der Inhalt muss im Markup
+   zweimal hintereinander stehen (.hero-ticker__item ×2), damit die
+   Schleife bei -50% Verschiebung nahtlos ist.
+   -------------------------------------------------------------------------- */
+.hero-ticker {
+  overflow: hidden;
+  background-color: var(--accent);
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.hero-ticker__track {
+  display: inline-flex;
+  animation: marquee var(--marquee-duration) linear infinite;
+}
+
+.hero-ticker__item {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--font-size-micro);
+  letter-spacing: var(--letter-spacing-badge);
+  text-transform: uppercase;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Muss nach den Komponenten-Regeln stehen: bei gleicher Spezifität
+   gewinnt die spätere Regel im Quelltext, unabhängig von der
+   Media-Query. Ein früherer Versuch, das hier oben bei :root
+   mitzuregeln, wurde von der späteren .hero-ticker__track-Basisregel
+   überschrieben und lief trotz reduzierter Bewegung weiter. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-ticker__track {
+    animation: none;
+  }
 }

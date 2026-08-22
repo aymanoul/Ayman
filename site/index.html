@@ -101,9 +101,20 @@
       <a class="btn-primary site-header__phone" href="tel:+4921115828104">0211 15828104</a>
 
       <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menü öffnen">
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
+        <svg class="nav-toggle__icon" width="44" height="36" viewBox="0 0 44 36" aria-hidden="true">
+          <g class="nav-toggle__bar nav-toggle__bar--top">
+            <polygon class="nav-toggle__bar-fill" points="2,8 6,5 38,5 42,8 38,11 6,11"/>
+            <polygon class="nav-toggle__bar-frame" points="5,8 7,6.5 37,6.5 39,8 37,9.5 7,9.5"/>
+          </g>
+          <g class="nav-toggle__bar nav-toggle__bar--mid">
+            <polygon class="nav-toggle__bar-fill" points="0,18 4,15 40,15 44,18 40,21 4,21"/>
+            <polygon class="nav-toggle__bar-frame" points="3,18 5,16.5 39,16.5 41,18 39,19.5 5,19.5"/>
+          </g>
+          <g class="nav-toggle__bar nav-toggle__bar--bottom">
+            <polygon class="nav-toggle__bar-fill" points="9,28 13,25 31,25 35,28 31,31 13,31"/>
+            <polygon class="nav-toggle__bar-frame" points="12,28 14,26.5 30,26.5 32,28 30,29.5 14,29.5"/>
+          </g>
+        </svg>
       </button>
     </div>
   </header>
@@ -146,7 +157,39 @@
   </div>
 
   <main>
-    <section id="hero"><!-- Etappe 2 --></section>
+    <section id="hero" class="hero-section">
+      <div class="hero-section__video" id="hero-video" aria-hidden="true"></div>
+
+      <div class="hero-section__content">
+        <ul class="hero-chips" aria-label="Führerscheinklasse wählen">
+          <li><a class="class-chip" href="#"><span class="class-chip__label">A</span></a></li>
+          <li><a class="class-chip class-chip--active" href="#"><span class="class-chip__label">B</span></a></li>
+          <li><a class="class-chip" href="#"><span class="class-chip__label">C</span></a></li>
+          <li><a class="class-chip" href="#"><span class="class-chip__label">D</span></a></li>
+        </ul>
+
+        <h1 class="hero-section__title">Fahrschule,<br>die Spaß macht.</h1>
+
+        <p class="hero-section__subline">Alle Klassen · Theorie mehrfach die Woche · Deutsch, English, عربي</p>
+
+        <div class="hero-section__actions">
+          <a class="btn-primary hero-section__cta" href="#kontakt">
+            Jetzt voranmelden <span class="hero-section__cta-arrow" aria-hidden="true">&raquo;</span>
+          </a>
+          <a class="btn-secondary" href="tel:+4921115828104">Anrufen</a>
+        </div>
+      </div>
+
+      <span class="scroll-hint" aria-hidden="true"></span>
+    </section>
+
+    <div class="hero-ticker" aria-hidden="true">
+      <div class="hero-ticker__track">
+        <span class="hero-ticker__item">5,0 ★ bei 199 Bewertungen ◆ Theorie mehrfach die Woche ◆ Crashkurs in 7 Abenden ◆ Seit 10 Jahren in Düsseldorf ◆</span>
+        <span class="hero-ticker__item">5,0 ★ bei 199 Bewertungen ◆ Theorie mehrfach die Woche ◆ Crashkurs in 7 Abenden ◆ Seit 10 Jahren in Düsseldorf ◆</span>
+      </div>
+    </div>
+
     <section id="vertrauen"><!-- Etappe 3 --></section>
     <section id="klassen"><!-- Etappe 4 --></section>
     <section id="ablauf"><!-- Etappe 5 --></section>
