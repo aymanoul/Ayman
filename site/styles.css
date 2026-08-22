@@ -1,0 +1,431 @@
+/* ==========================================================================
+   Fahrstation Düsseldorf — Grundgerüst
+   --------------------------------------------------------------------------
+   Mobile-first: Basis-Styles gelten für Mobile, @media (min-width: …) legt
+   für größere Screens nach. Ausschließlich Werte aus design-tokens.css —
+   keine Farbe, Schrift oder Abstand wird hier neu erfunden.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Reset / Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--text-light);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-base);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Solange das Mobile-Menü offen ist, darf der Hintergrund nicht scrollen. */
+body.has-open-menu {
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Layout-Container
+   -------------------------------------------------------------------------- */
+.site-header__inner,
+.site-footer__inner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--text-light);
+  transition: box-shadow var(--transition-base), height var(--transition-base);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: var(--header-height);
+}
+
+.site-header.is-scrolled {
+  box-shadow: var(--shadow-header);
+}
+
+.site-header.is-scrolled .site-header__inner {
+  height: var(--header-height-sticky);
+}
+
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  height: var(--space-10);
+  flex-shrink: 0;
+}
+
+.site-header__logo img {
+  height: 100%;
+  width: auto;
+}
+
+/* Desktop-Nav ist ab 768px sichtbar, siehe Media-Query unten */
+.nav {
+  display: none;
+}
+
+.site-header__phone {
+  display: none;
+}
+
+.nav-toggle {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: var(--tap-target);
+  height: var(--tap-target);
+}
+
+.nav-toggle__bar {
+  display: block;
+  height: 2px;
+  width: var(--space-6);
+  background-color: var(--text-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Dropdown „Klassen“ (Desktop)
+   -------------------------------------------------------------------------- */
+.nav__item--dropdown {
+  position: relative;
+}
+
+.nav__dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.nav__dropdown-icon {
+  transition: transform var(--transition-base);
+}
+
+.nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  margin-top: var(--space-2);
+  padding: var(--space-2);
+  background-color: var(--text-light);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card-hover);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
+}
+
+.nav__item--dropdown:hover .nav__dropdown,
+.nav__item--dropdown:focus-within .nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav__item--dropdown:hover .nav__dropdown-icon,
+.nav__item--dropdown:focus-within .nav__dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.nav__dropdown a {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: var(--font-size-small);
+}
+
+.nav__dropdown a:hover {
+  background-color: var(--background-light);
+}
+
+.nav__link {
+  text-decoration: none;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+}
+
+.nav__link:focus-visible,
+.nav-toggle:focus-visible,
+.btn-primary:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* --------------------------------------------------------------------------
+   Mobile-Overlay-Menü
+   -------------------------------------------------------------------------- */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary);
+  color: var(--text-light);
+}
+
+.mobile-menu[hidden] {
+  display: none;
+}
+
+.mobile-menu__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+}
+
+.mobile-menu__header .site-header__logo img {
+  filter: invert(1) brightness(2);
+}
+
+.mobile-menu__close {
+  width: var(--tap-target);
+  height: var(--tap-target);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+}
+
+.mobile-menu__nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu__list {
+  flex: 1;
+}
+
+.mobile-menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--tap-target);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.15);
+  font-family: var(--font-display);
+  font-size: var(--font-size-h3);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-display);
+  text-decoration: none;
+}
+
+.mobile-menu__dropdown {
+  display: none;
+  padding-bottom: var(--space-2);
+}
+
+.mobile-menu__dropdown-toggle[aria-expanded="true"] + .mobile-menu__dropdown {
+  display: block;
+}
+
+.mobile-menu__dropdown a {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-target);
+  padding-left: var(--space-4);
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  text-decoration: none;
+}
+
+.mobile-menu__phone {
+  margin-top: var(--space-6);
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Sections
+   -------------------------------------------------------------------------- */
+section {
+  scroll-margin-top: var(--header-height-sticky);
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--primary);
+  color: var(--text-light);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+  padding-block: var(--space-8);
+}
+
+.site-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.site-footer__logo {
+  height: 28px;
+  width: auto;
+  filter: invert(1) brightness(2);
+}
+
+.site-footer__address {
+  margin: 0;
+  font-size: var(--font-size-small);
+  color: var(--text-light);
+  opacity: 0.8;
+}
+
+.site-footer__links {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.site-footer__links a {
+  font-size: var(--font-size-small);
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.site-footer__links a:hover {
+  opacity: 1;
+}
+
+.site-footer__social {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.site-footer__social a {
+  display: flex;
+  color: var(--text-light);
+  opacity: 0.8;
+}
+
+.site-footer__social a:hover {
+  opacity: 1;
+}
+
+.site-footer__copyright {
+  margin: 0;
+  font-size: var(--font-size-small);
+  color: var(--text-light);
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   Breakpoint ≥ 768px — Tablet/Desktop
+   ========================================================================== */
+@media (min-width: 768px) {
+  .nav {
+    display: block;
+    margin-left: var(--space-8);
+  }
+
+  .nav__list {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .site-header__phone {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .nav-toggle,
+  .mobile-menu {
+    display: none;
+  }
+
+  .site-footer__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .site-footer__links {
+    order: 2;
+  }
+
+  .site-footer__social {
+    order: 3;
+  }
+
+  .site-footer__copyright {
+    order: 4;
+    margin-left: var(--space-4);
+  }
+}
+
+/* ==========================================================================
+   Breakpoint ≥ 1024px — Desktop breit
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .site-header__inner,
+  .site-footer__inner {
+    padding-inline: var(--space-6);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reduzierte Bewegung
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header__inner,
+  .nav__dropdown,
+  .nav__dropdown-icon {
+    transition: none;
+  }
+}
