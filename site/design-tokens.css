@@ -97,6 +97,19 @@
   --channel-mid: 0.48597;
   --tip-w: 0.3367;
 
+  /* Der gerade Balken als eigene Ebene. Die Einzüge halten ihn von beiden
+     Enden fern, damit er nicht um die Pfeilspitzen herum hervorschaut: links
+     deckt die Platte den Balken erst ab Einheit 75 vollständig ab, rechts
+     beginnt die Verjüngung 91 Einheiten vor der Kante. Balken y 100–279,
+     gelbe Konturen bei 108 und 256, je 17 Einheiten stark. */
+  --bar-y: 0.25510;         /* 100/392 */
+  --bar-h: 0.45918;         /* 180/392 */
+  --bar-edge-top: 0.27551;  /* 108/392 */
+  --bar-edge-bot: 0.65306;  /* 256/392 */
+  --bar-edge-h: 0.04337;    /*  17/392 */
+  --bar-inset-l: 0.25510;   /* 100/392 — sicher hinter der Platte */
+  --bar-inset-r: 0.27551;   /* 108/392 — sicher vor der Verjüngung */
+
   /* ---------------------------------------------------------------------
      Rahmen, Radien, Schatten, Bewegung
      --------------------------------------------------------------------- */

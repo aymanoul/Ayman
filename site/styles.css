@@ -73,25 +73,21 @@ body.has-open-menu {
    Header
    --------------------------------------------------------------------------
    Das Banner ist EIN Inline-SVG (index.html), vollständig vektorisiert aus
-   assets/logo.png. Es besteht aus zwei verschachtelten <svg>, die sich
-   dieselbe viewBox-Höhe (392) teilen und beide auf 100 % Bannerhöhe
-   skalieren — dadurch haben sie exakt denselben Maßstab:
+   assets/logo.png, und besteht aus drei Ebenen in einer Zeichenfläche:
 
+     .banner__bar  Rechtecke im äußeren SVG (Nutzereinheiten = px), an beiden
+                   Enden eingezogen — der gerade Mittelteil, der sich dehnt
      .banner__cap  preserveAspectRatio="xMinYMid meet"  — Schriftzug, linksbündig
      .banner__tip  preserveAspectRatio="xMaxYMid meet"  — Spitze, rechtsbündig
 
-   Beide tragen zusätzlich den geraden Balken, jeweils 8000 viewBox-Einheiten
-   über ihren Ausschnitt hinaus verlängert. Sie überlappen sich also über die
-   gesamte Breite, statt auf Stoß zu liegen — deshalb gibt es keine Naht mehr,
-   die auseinanderlaufen könnte. Der Mittelteil dehnt sich, Schriftzug und
-   Spitze behalten ihr Seitenverhältnis.
+   Cap und Tip teilen sich dieselbe viewBox-Höhe (392) und skalieren beide auf
+   100 % der Bannerhöhe, haben also exakt denselben Maßstab. Der Balken wird
+   zuerst gezeichnet, Cap und Tip decken seine Schnittkanten ab — eine
+   Überlappung statt eines Stoßes, deshalb gibt es keine Naht, die
+   auseinanderlaufen könnte. Schriftzug und Spitze behalten ihr
+   Seitenverhältnis, nur der Balken ändert seine Länge.
 
-   Die Zahlen unten sind aus dem Logo ausgemessen, nicht geschätzt
-   (Bannerhöhe = 392 Einheiten):
-     Balken               y 100–279
-     gelbe Kontur         17 Einheiten stark
-     schwarzer Innenkanal y 125–255  → 31,888 % bis 65,306 %, Mitte 48,597 %
-     Spitze               132 Einheiten breit
+   Alle Anteile stammen aus design-tokens.css und sind am Logo ausgemessen.
    -------------------------------------------------------------------------- */
 .site-header {
   position: sticky;
@@ -128,16 +124,45 @@ body.has-open-menu {
   height: var(--banner-h);
 }
 
-/* --------------------------------------------------------------------------
-   Menü-Icon — drei identische Balken
-   --------------------------------------------------------------------------
-   Proportionen aus der Referenz vermessen: Balken 9,15 : 1, gelbe Kontur
-   15,3 % der Balkenhöhe, Spitzentiefe 43,3 %, Abstand zwischen den Balken
-   61 %. viewBox 915 × 422, alle drei Balken exakt gleich lang und hoch.
+/* Geometrie-Eigenschaften (x/y/width/height) werden hier per CSS gesetzt,
+   damit der Balken an beiden Enden einen festen Einzug bekommt — als
+   Attribute ließe sich das nicht ausdrücken, weil der linke Einzug von der
+   linken, der rechte von der rechten Kante aus zählt. */
+.banner__bar {
+  x: calc(var(--banner-h) * var(--bar-inset-l));
+  width: calc(100% - var(--banner-h) * (var(--bar-inset-l) + var(--bar-inset-r)));
+}
 
-   Der Abstand zur gelben Innenkontur ist proportional (10 % des Kanals)
-   statt fixer 12px: bei 56/112px Bannerhöhe ist der Kanal nur 18,7 bzw.
-   37,4px hoch — 2 × 12px fester Abstand ließe davon 0 übrig.
+.banner__bar--body {
+  y: calc(var(--banner-h) * var(--bar-y));
+  height: calc(var(--banner-h) * var(--bar-h));
+  fill: var(--primary);
+}
+
+.banner__bar--edge-top {
+  y: calc(var(--banner-h) * var(--bar-edge-top));
+  height: calc(var(--banner-h) * var(--bar-edge-h));
+  fill: var(--accent);
+}
+
+.banner__bar--edge-bottom {
+  y: calc(var(--banner-h) * var(--bar-edge-bot));
+  height: calc(var(--banner-h) * var(--bar-edge-h));
+  fill: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   Menü-Icon — drei identische, vollflächig gelbe Balken
+   --------------------------------------------------------------------------
+   Auf der schwarzen Balkenfläche verschwand die frühere Variante mit
+   schwarzem Kern fast; vollflächig gelb liest sie sich sofort als
+   antippbares Element. Sechseckform (beide Enden spitz) bleibt, jetzt
+   schlanker: viewBox 760 × 296, Balken 70 hoch, Abstand 43 (61 % der
+   Balkenhöhe, wie in der Referenz), Spitzentiefe 30 (43 %).
+
+   Der Abstand zur gelben Innenkontur ist proportional (19 % des Kanals oben
+   wie unten) statt fixer 12px: bei 56/112px Bannerhöhe ist der Kanal nur
+   18,7 bzw. 37,4px hoch — 2 × 12px fester Abstand ließe davon nichts übrig.
    -------------------------------------------------------------------------- */
 .nav-toggle {
   position: absolute;
@@ -146,15 +171,16 @@ body.has-open-menu {
   transform: translateY(-50%);
   display: grid;
   place-items: center;
-  /* Tap-Fläche bleibt 48×48px, auch wenn das sichtbare Icon kleiner ist —
-     die Fläche ist transparent und darf über den Balken hinausragen. */
+  /* Die sichtbare Grafik darf kleiner sein als die Tap-Fläche: das Icon
+     schrumpft, der Button bleibt mindestens 48 × 48px und ragt dabei
+     unsichtbar über den Balken hinaus. */
   min-width: var(--tap-target);
   min-height: var(--tap-target);
 }
 
 .nav-toggle__icon {
   display: block;
-  height: calc(var(--banner-h) * var(--channel-h) * 0.8);
+  height: calc(var(--banner-h) * var(--channel-h) * 0.62);
   width: auto;
   overflow: visible;
 }
@@ -163,31 +189,17 @@ body.has-open-menu {
    eigenen Zentrum statt zum Ursprung des <svg> — sonst würde der Balken um
    die Ecke der Zeichenfläche kippen statt um sich selbst. */
 .nav-toggle__bar {
+  fill: var(--accent);
   transform-box: fill-box;
   transform-origin: center;
   transition: transform 250ms ease-out, opacity 250ms ease-out;
 }
 
-.nav-toggle__bar-fill {
-  fill: var(--accent);
-}
-
-.nav-toggle__bar-core {
-  fill: var(--primary);
-}
-
-/* Unter 768px wäre die schwarze Innenfläche nur 0,5px breit — nicht
-   darstellbar. Die Balken sind dort durchgehend gelb. */
-@media (max-width: 767px) {
-  .nav-toggle__bar-core {
-    display: none;
-  }
-}
-
-/* scaleX verkürzt die Balken beim Morphen, sonst ragte das X weit über den
-   Kanal hinaus (ein 915 Einheiten langer Balken spannt gedreht 647). */
+/* 113 = Balkenhöhe + Abstand: der obere und der untere Balken wandern damit
+   exakt auf die Mitte. scaleX verkürzt sie, sonst spannte das X gedreht
+   537 Einheiten und ragte weit über den Kanal hinaus. */
 .nav-toggle[aria-expanded="true"] .nav-toggle__bar--top {
-  transform: translateY(161px) rotate(45deg) scaleX(0.6);
+  transform: translateY(113px) rotate(45deg) scaleX(0.5);
 }
 
 .nav-toggle[aria-expanded="true"] .nav-toggle__bar--mid {
@@ -195,7 +207,7 @@ body.has-open-menu {
 }
 
 .nav-toggle[aria-expanded="true"] .nav-toggle__bar--bottom {
-  transform: translateY(-161px) rotate(-45deg) scaleX(0.6);
+  transform: translateY(-113px) rotate(-45deg) scaleX(0.5);
 }
 
 .nav-toggle:focus-visible,
