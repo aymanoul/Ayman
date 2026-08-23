@@ -19,16 +19,20 @@
   /* ---------------------------------------------------------------------
      Farben
      --------------------------------------------------------------------- */
-  --primary: #0A0A0A;             /* Schwarz — Signage-Körper, dunkle Flächen */
-  --accent: #FFD100;              /* Signalgelb — CTA, Akzente, Rahmen        */
+  /* Schwarz und Gelb sind direkt aus assets/logo.png ausgelesen (Median über
+     die flächigen Bereiche), damit das vektorisierte Header-Banner und alle
+     übrigen Elemente exakt denselben Ton tragen. Zuvor standen hier #0A0A0A
+     und #FFD100 — das Logo-Gelb wich davon mit ΔE 8,3 sichtbar ab. */
+  --primary: #161514;             /* Schwarz — Signage-Körper, dunkle Flächen */
+  --accent: #FDDE01;              /* Signalgelb — CTA, Akzente, Rahmen        */
   --text-light: #FFFFFF;          /* Text auf dunklem Grund                   */
   --text-dark: #1A1A1A;           /* Text auf hellem Grund                    */
   --background-light: #F5F5F5;    /* Helle Flächen                            */
 
   /* Abgeleitet — keine neuen Farben, nur Varianten der obigen */
-  --accent-hover: #EAC000;                /* --accent, 8 % abgedunkelt        */
+  --accent-hover: #E8CB01;                /* --accent, 8 % abgedunkelt        */
   --text-muted: #6B6B6B;                  /* Sekundärtext auf hell (4.8:1)    */
-  --overlay-dark: rgb(10 10 10 / 0.65);   /* --primary mit Alpha — Video-Scrim */
+  --overlay-dark: rgb(22 21 20 / 0.65);   /* --primary mit Alpha — Video-Scrim */
 
   /* ---------------------------------------------------------------------
      Typografie
@@ -74,10 +78,24 @@
      Layout
      --------------------------------------------------------------------- */
   --max-width: 1200px;
-  --header-height: 88px;
-  --header-height-sticky: 64px;
   --tap-target: 48px;             /* Mindestgröße für Touch-Ziele */
   --badge-notch: 16px;            /* Tiefe der Pfeilspitze in .signage-badge */
+
+  /* Header und Logo-Banner. Das Banner ist niedriger als die Kopfzeile und
+     darin vertikal zentriert. Auf Mobile ist das zwingend: die Wortmarke hat
+     ein Seitenverhältnis von 3,94:1, wäre bei 96px also 378px breit und
+     passte auf kein gängiges Telefon. Bei 56px sind es 221px. */
+  --header-h: 96px;
+  --banner-h: 56px;
+  --header-pad: 20px;             /* seitlicher Rand des Banners */
+
+  /* Anteile der Bannerhöhe, aus assets/logo.png ausgemessen (Banner = 392
+     viewBox-Einheiten): schwarzer Innenkanal y 125–255, Spitze 132 breit.
+     Das Menü-Icon wird daraus positioniert und skaliert. */
+  --channel-top: 0.31888;
+  --channel-h: 0.33418;
+  --channel-mid: 0.48597;
+  --tip-w: 0.3367;
 
   /* ---------------------------------------------------------------------
      Rahmen, Radien, Schatten, Bewegung
@@ -86,9 +104,9 @@
   --radius-md: 10px;
   --border-signage: 3px solid var(--accent);
 
-  --shadow-header: 0 2px 12px rgb(10 10 10 / 0.12);
-  --shadow-card: 0 2px 8px rgb(10 10 10 / 0.08);
-  --shadow-card-hover: 0 8px 20px rgb(10 10 10 / 0.14);
+  --shadow-header: 0 2px 12px rgb(22 21 20 / 0.12);
+  --shadow-card: 0 2px 8px rgb(22 21 20 / 0.08);
+  --shadow-card-hover: 0 8px 20px rgb(22 21 20 / 0.14);
 
   /* Doppelring: außen gelb, innen schwarz — dadurch auf hellem UND dunklem
      Hintergrund sichtbar. */
@@ -100,6 +118,16 @@
 
 /* Wer Bewegung reduziert haben möchte, bekommt sie über den Token global
    abgeschaltet — jede Komponente unten nutzt --transition-base. */
+/* Desktop: das Banner darf deutlich größer werden. 112px in einer
+   128px-Zeile lässt 8px Luft oben und unten. */
+@media (min-width: 768px) {
+  :root {
+    --header-h: 128px;
+    --banner-h: 112px;
+    --header-pad: 4%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root {
     --transition-base: 0s;

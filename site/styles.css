@@ -56,139 +56,138 @@ body.has-open-menu {
 /* --------------------------------------------------------------------------
    Layout-Container
    -------------------------------------------------------------------------- */
-.site-header__inner,
 .site-footer__inner {
   max-width: var(--max-width);
   margin-inline: auto;
   padding-inline: var(--space-4);
 }
 
+/* Das Banner läuft bewusst über die volle Breite und folgt NICHT dem
+   1200px-Container der übrigen Sektionen — Vorgabe: 20px Rand auf Mobile,
+   4 % auf Desktop. Es ist damit breiter als der Inhalt darunter. */
+.site-header__inner {
+  padding-inline: var(--header-pad);
+}
+
 /* --------------------------------------------------------------------------
    Header
+   --------------------------------------------------------------------------
+   Das Banner ist EIN Inline-SVG (index.html), vollständig vektorisiert aus
+   assets/logo.png. Es besteht aus zwei verschachtelten <svg>, die sich
+   dieselbe viewBox-Höhe (392) teilen und beide auf 100 % Bannerhöhe
+   skalieren — dadurch haben sie exakt denselben Maßstab:
+
+     .banner__cap  preserveAspectRatio="xMinYMid meet"  — Schriftzug, linksbündig
+     .banner__tip  preserveAspectRatio="xMaxYMid meet"  — Spitze, rechtsbündig
+
+   Beide tragen zusätzlich den geraden Balken, jeweils 8000 viewBox-Einheiten
+   über ihren Ausschnitt hinaus verlängert. Sie überlappen sich also über die
+   gesamte Breite, statt auf Stoß zu liegen — deshalb gibt es keine Naht mehr,
+   die auseinanderlaufen könnte. Der Mittelteil dehnt sich, Schriftzug und
+   Spitze behalten ihr Seitenverhältnis.
+
+   Die Zahlen unten sind aus dem Logo ausgemessen, nicht geschätzt
+   (Bannerhöhe = 392 Einheiten):
+     Balken               y 100–279
+     gelbe Kontur         17 Einheiten stark
+     schwarzer Innenkanal y 125–255  → 31,888 % bis 65,306 %, Mitte 48,597 %
+     Spitze               132 Einheiten breit
    -------------------------------------------------------------------------- */
 .site-header {
   position: sticky;
   top: 0;
   /* Höher als .mobile-menu (200): der Header bleibt sichtbar, wenn das
      Overlay offen ist, damit das Balken-zu-X-Icon auch wirklich zu sehen
-     ist und als Schließen-Button funktioniert — sonst würde das Overlay
-     es komplett verdecken. */
+     ist und als Schließen-Button funktioniert. */
   z-index: 300;
   background-color: var(--text-light);
-  transition: box-shadow var(--transition-base), height var(--transition-base);
+  transition: box-shadow var(--transition-base);
 }
 
 .site-header__inner {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0;
-  height: var(--header-height);
+  height: var(--header-h);
+  transition: height var(--transition-base);
 }
 
 .site-header.is-scrolled {
   box-shadow: var(--shadow-header);
 }
 
-.site-header.is-scrolled .site-header__inner {
-  height: var(--header-height-sticky);
+.site-header__banner {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
-/* 41px ist keine Design-Token-Zahl, sondern aus dem Logo-Bild selbst
-   abgemessen (siehe .site-header__bar unten) — die Balken-Fortsetzung
-   in CSS muss exakt auf diese Höhe passen, damit die Naht unsichtbar
-   bleibt. „Feste Breite“ laut Vorgabe entsteht dadurch, dass Höhe +
-   Seitenverhältnis des Bildes die Breite automatisch festlegen. */
-.site-header__logo {
-  display: flex;
-  align-items: center;
-  height: 41px;
-  flex-shrink: 0;
-}
-
-.site-header__logo img {
-  height: 100%;
-  width: auto;
+.banner {
+  display: block;
+  width: 100%;
+  height: var(--banner-h);
 }
 
 /* --------------------------------------------------------------------------
-   Header-Balken — CSS-Fortsetzung des Logos
+   Menü-Icon — drei identische Balken
    --------------------------------------------------------------------------
-   assets/logo-header.png endet exakt an der Pfeilspitze des Schriftzugs
-   (1470×399px im Original, der Balkenteil darin verläuft von y=104 bis
-   y=284). Skaliert auf die gerenderte Logohöhe (41px) ergibt das:
-   Balken 10,7px von oben, 18,5px hoch, Rand 2,4px. Der ~1px schwarze
-   Außenrand aus dem Bild ist hier in den Rand mit eingerechnet statt als
-   eigene Ebene nachgebaut — bei dieser Größe wäre er ohnehin nicht mehr
-   wahrnehmbar.
+   Proportionen aus der Referenz vermessen: Balken 9,15 : 1, gelbe Kontur
+   15,3 % der Balkenhöhe, Spitzentiefe 43,3 %, Abstand zwischen den Balken
+   61 %. viewBox 915 × 422, alle drei Balken exakt gleich lang und hoch.
+
+   Der Abstand zur gelben Innenkontur ist proportional (10 % des Kanals)
+   statt fixer 12px: bei 56/112px Bannerhöhe ist der Kanal nur 18,7 bzw.
+   37,4px hoch — 2 × 12px fester Abstand ließe davon 0 übrig.
    -------------------------------------------------------------------------- */
-.site-header__bar {
-  position: relative;
-  flex: 1 1 auto;
-  min-width: 24px;
-  height: 41px;
-}
-
-.site-header__bar::before {
-  content: "";
-  position: absolute;
-  top: 10.7px;
-  left: 0;
-  right: 0;
-  height: 18.5px;
-  background-color: var(--primary);
-  border-top: 2.4px solid var(--accent);
-  border-bottom: 2.4px solid var(--accent);
-  /* Spitz zulaufendes rechtes Ende, in derselben Winkel-Logik wie die
-     Pfeilspitze des Logos selbst — reuses --badge-notch. */
-  clip-path: polygon(
-    0 0,
-    calc(100% - var(--badge-notch)) 0,
-    100% 50%,
-    calc(100% - var(--badge-notch)) 100%,
-    0 100%
-  );
-}
-
 .nav-toggle {
   position: absolute;
-  top: 19.95px;
-  right: calc(var(--badge-notch) + var(--space-2));
+  top: calc(var(--banner-h) * var(--channel-mid) + (var(--header-h) - var(--banner-h)) / 2);
+  right: calc(var(--header-pad) + var(--banner-h) * var(--tip-w));
   transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--tap-target);
-  height: var(--tap-target);
+  display: grid;
+  place-items: center;
+  /* Tap-Fläche bleibt 48×48px, auch wenn das sichtbare Icon kleiner ist —
+     die Fläche ist transparent und darf über den Balken hinausragen. */
+  min-width: var(--tap-target);
+  min-height: var(--tap-target);
 }
 
 .nav-toggle__icon {
   display: block;
+  height: calc(var(--banner-h) * var(--channel-h) * 0.8);
+  width: auto;
+  overflow: visible;
 }
 
-/* transform-box: fill-box macht die Rotationsmitte jedes Balkens zu
-   seinem eigenen Zentrum statt zum Ursprung des <svg> — sonst würde
-   der Balken um die Ecke der Zeichenfläche kippen statt um sich selbst. */
+/* transform-box: fill-box macht die Rotationsmitte jedes Balkens zu seinem
+   eigenen Zentrum statt zum Ursprung des <svg> — sonst würde der Balken um
+   die Ecke der Zeichenfläche kippen statt um sich selbst. */
 .nav-toggle__bar {
   transform-box: fill-box;
   transform-origin: center;
   transition: transform 250ms ease-out, opacity 250ms ease-out;
 }
 
-/* Das Icon sitzt jetzt immer auf dem schwarzen Balken (nie mehr auf
-   weißem Grund) — Füllung und Rahmen daher gegenüber der Ursprungsversion
-   getauscht: gelb dominant, schwarze Innenlinie als Kontrast. */
 .nav-toggle__bar-fill {
   fill: var(--accent);
 }
 
-.nav-toggle__bar-frame {
-  fill: none;
-  stroke: var(--primary);
-  stroke-width: 1.2;
+.nav-toggle__bar-core {
+  fill: var(--primary);
 }
 
+/* Unter 768px wäre die schwarze Innenfläche nur 0,5px breit — nicht
+   darstellbar. Die Balken sind dort durchgehend gelb. */
+@media (max-width: 767px) {
+  .nav-toggle__bar-core {
+    display: none;
+  }
+}
+
+/* scaleX verkürzt die Balken beim Morphen, sonst ragte das X weit über den
+   Kanal hinaus (ein 915 Einheiten langer Balken spannt gedreht 647). */
 .nav-toggle[aria-expanded="true"] .nav-toggle__bar--top {
-  transform: translateY(10px) rotate(45deg);
+  transform: translateY(161px) rotate(45deg) scaleX(0.6);
 }
 
 .nav-toggle[aria-expanded="true"] .nav-toggle__bar--mid {
@@ -196,7 +195,7 @@ body.has-open-menu {
 }
 
 .nav-toggle[aria-expanded="true"] .nav-toggle__bar--bottom {
-  transform: translateY(-10px) rotate(-45deg);
+  transform: translateY(-161px) rotate(-45deg) scaleX(0.6);
 }
 
 .nav-toggle:focus-visible,
@@ -219,7 +218,7 @@ body.has-open-menu {
   background-color: var(--primary);
   color: var(--text-light);
   /* Platz für den Header, der jetzt darüber sichtbar bleibt. */
-  padding-top: var(--header-height);
+  padding-top: var(--header-h);
 }
 
 .mobile-menu[hidden] {
@@ -285,7 +284,7 @@ body.has-open-menu {
    Sections
    -------------------------------------------------------------------------- */
 section {
-  scroll-margin-top: var(--header-height-sticky);
+  scroll-margin-top: var(--header-h);
 }
 
 /* --------------------------------------------------------------------------
@@ -524,7 +523,6 @@ section {
    Breakpoint ≥ 1024px — Desktop breit
    ========================================================================== */
 @media (min-width: 1024px) {
-  .site-header__inner,
   .site-footer__inner {
     padding-inline: var(--space-6);
   }
