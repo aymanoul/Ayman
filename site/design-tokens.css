@@ -63,11 +63,21 @@
   /* Großer Buchstabe (A/B/C/D) in .class-tile — dominantes Element. */
   --font-size-tile-letter: clamp(56px, 12vw, 88px);
 
+  /* #ablauf — Schrittnummern (01–04) und ihre Beschriftung. */
+  --font-size-step-number: clamp(40px, 8vw, 56px);
+  --font-size-step-title: 18px;
+  --font-size-step-desc: 15px;
+  /* Kantenlänge von .step-number, aus der Zahlengröße abgeleitet statt neu
+     erfunden — wächst mit demselben clamp() wie die Ziffer selbst. */
+  --step-badge-size: calc(var(--font-size-step-number) + var(--space-8));
+
   --line-height-tight: 1.1;       /* Headlines */
   --line-height-base: 1.6;        /* Fließtext */
+  --line-height-relaxed: 1.5;     /* Etwas lockerer als --line-height-base, für kurze Beschreibungstexte */
   --line-height-hero: 0.92;       /* Hero-Headline, dicht gesetzt */
   --letter-spacing-display: 0.01em;
   --letter-spacing-loose: 0.04em; /* Kachel-Bezeichnungen, z. B. .class-tile__label */
+  --letter-spacing-step-title: 0.03em;
   --letter-spacing-badge: 0.06em;
   --letter-spacing-hero: -0.01em;
 
@@ -638,6 +648,38 @@
 
 .class-tile:focus-visible::before {
   inset: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   .step-number — Nummern-Badge (01–04) in #ablauf. Dieselbe
+   Sechseck-Silhouette wie .class-tile, aber einlagig: hell gefüllt statt
+   gelb gerahmt, damit die durchlaufende Verbindungslinie sauber dahinter
+   verschwindet. Kein Link, kein Fokus-Zustand nötig — rein informativ.
+   -------------------------------------------------------------------------- */
+.step-number {
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--step-badge-size);
+  height: var(--step-badge-size);
+  background-color: var(--text-light);
+  box-shadow: var(--shadow-card);
+  clip-path: polygon(
+    0 50%,
+    var(--badge-notch) 0,
+    calc(100% - var(--badge-notch)) 0,
+    100% 50%,
+    calc(100% - var(--badge-notch)) 100%,
+    var(--badge-notch) 100%
+  );
+  font-family: var(--font-display);
+  font-size: var(--font-size-step-number);
+  line-height: 1;
+  color: var(--accent);
 }
 
 /* --------------------------------------------------------------------------
