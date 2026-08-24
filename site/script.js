@@ -92,10 +92,59 @@
     el.textContent = new Date().getFullYear();
   }
 
+  function initTrustStats() {
+    var group = document.getElementById('trust-stats');
+    if (!group) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var numbers = group.querySelectorAll('.trust-stat__number');
+    var duration = 900;
+
+    function animateNumber(el, delay) {
+      var target = parseFloat(el.getAttribute('data-count-to'));
+      var decimals = parseInt(el.getAttribute('data-decimals'), 10) || 0;
+
+      setTimeout(function () {
+        var start = null;
+
+        function step(timestamp) {
+          if (start === null) start = timestamp;
+          var progress = Math.min((timestamp - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var value = target * eased;
+          el.textContent = decimals
+            ? value.toFixed(decimals).replace('.', ',')
+            : String(Math.round(value));
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        }
+
+        window.requestAnimationFrame(step);
+      }, delay);
+    }
+
+    group.classList.add('trust-stats--ready');
+
+    var observer = new IntersectionObserver(
+      function (entries, obs) {
+        if (!entries[0].isIntersecting) return;
+        obs.disconnect();
+        group.classList.add('trust-stats--visible');
+        animateNumber(numbers[0], 0);
+        animateNumber(numbers[1], 120);
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(group);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initStickyHeader();
     initMobileMenu();
     initDropdown();
     initCurrentYear();
+    initTrustStats();
   });
 })();

@@ -424,6 +424,126 @@ section {
 }
 
 /* --------------------------------------------------------------------------
+   Vertrauen (#vertrauen)
+   --------------------------------------------------------------------------
+   Beantwortet "Kann ich denen vertrauen?" ausschließlich mit Zahlen — bewusst
+   ohne Sektionsüberschrift, die Kennzahlen sind die Überschrift. Das gelbe
+   Ticker-Band davor grenzt direkt an, ohne zusätzlichen Rand.
+   -------------------------------------------------------------------------- */
+.trust {
+  background-color: var(--background-light);
+  padding-block: var(--space-20);
+}
+
+.trust__inner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+/* --- Kennzahlen ------------------------------------------------------- */
+.trust-stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.trust-stat {
+  position: relative;
+  padding-block: var(--space-6);
+  text-align: center;
+}
+
+/* Gestrichelte Trennlinie zwischen den Kennzahlen, wie eine
+   Fahrbahnmarkierung — 2px breit, 8px Strich, 8px Lücke, 50% Deckkraft.
+   repeating-linear-gradient statt border-style: dashed, weil dessen
+   Strich-/Lückenlänge sich nicht exakt vorgeben lässt. Auf Mobile
+   waagerecht am oberen Rand jeder Kennzahl außer der ersten, auf Desktop
+   senkrecht am linken Rand. */
+.trust-stat:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  background-image: repeating-linear-gradient(
+    to right,
+    color-mix(in srgb, var(--accent) 50%, transparent) 0 8px,
+    transparent 8px 16px
+  );
+  top: 0;
+  left: 20%;
+  width: 60%;
+  height: 2px;
+}
+
+.trust-stat__value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-stat);
+  line-height: var(--line-height-tight);
+  color: var(--text-dark);
+}
+
+.trust-stat__label {
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-size-small);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--text-dark) 60%, transparent);
+}
+
+/* Die Flaggen sind die dritte Kennzahl — kein Zahlenwert, deshalb kein
+   .trust-stat__number darin. font-size skaliert sie auf die optische
+   Höhe der Zahlen daneben, statt in nativer Emoji-Größe zu wirken. */
+.trust-stat__flags {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: calc(var(--font-size-stat) * 0.6);
+  line-height: 1;
+}
+
+.trust-stat__flag {
+  display: inline-block;
+}
+
+/* Vor der Freigabe durch IntersectionObserver unsichtbar — siehe
+   initTrustStats() in script.js. Nur JS setzt --ready, damit ohne
+   JavaScript (oder bei reduzierter Bewegung) die Flaggen von Anfang an
+   sichtbar bleiben, statt für immer ausgeblendet zu sein. */
+.trust-stats--ready .trust-stat__flag {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.trust-stats--visible .trust-stat__flag {
+  animation: flag-in 300ms ease-out both;
+}
+
+.trust-stat__flag:nth-child(1) { animation-delay: 0ms; }
+.trust-stat__flag:nth-child(2) { animation-delay: 60ms; }
+.trust-stat__flag:nth-child(3) { animation-delay: 120ms; }
+.trust-stat__flag:nth-child(4) { animation-delay: 180ms; }
+.trust-stat__flag:nth-child(5) { animation-delay: 240ms; }
+.trust-stat__flag:nth-child(6) { animation-delay: 300ms; }
+
+@keyframes flag-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Zitate ------------------------------------------------------------ */
+.trust-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-top: var(--space-18);
+}
+
+/* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */
 .site-footer {
@@ -509,6 +629,42 @@ section {
 
   .hero-section__actions > a {
     width: auto;
+  }
+
+  .trust {
+    padding-block: var(--space-30);
+  }
+
+  .trust-stats {
+    flex-direction: row;
+  }
+
+  .trust-stat {
+    flex: 1;
+  }
+
+  /* Trennlinie kippt auf Desktop von waagerecht (oben) auf senkrecht
+     (links) — gleiche Strich-/Lückenmaße, andere Richtung. */
+  .trust-stat:not(:first-child)::before {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--accent) 50%, transparent) 0 8px,
+      transparent 8px 16px
+    );
+    top: 20%;
+    left: 0;
+    width: 2px;
+    height: 60%;
+  }
+
+  .trust-quotes {
+    flex-direction: row;
+    align-items: stretch;
+    margin-top: var(--space-24);
+  }
+
+  .trust-quotes .testimonial {
+    flex: 1;
   }
 
   .site-footer__inner {

@@ -53,6 +53,10 @@
      Desktop die volle Wucht einer Ansage bekommt. */
   --font-size-hero-h1: clamp(40px, 9vw, 88px);
 
+  /* Kennzahlen in #vertrauen — lautestes Element der Sektion. */
+  --font-size-stat: clamp(38px, 9vw, 64px);
+  --font-size-quote-mark: 48px;
+
   --line-height-tight: 1.1;       /* Headlines */
   --line-height-base: 1.6;        /* Fließtext */
   --line-height-hero: 0.92;       /* Hero-Headline, dicht gesetzt */
@@ -68,11 +72,15 @@
   --space-3: 12px;
   --space-4: 16px;
   --space-6: 24px;
+  --space-7: 28px;
   --space-8: 32px;
   --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
+  --space-18: 72px;
+  --space-20: 80px;
   --space-24: 96px;
+  --space-30: 120px;
 
   /* ---------------------------------------------------------------------
      Layout
@@ -120,6 +128,7 @@
   --shadow-header: 0 2px 12px rgb(22 21 20 / 0.12);
   --shadow-card: 0 2px 8px rgb(22 21 20 / 0.08);
   --shadow-card-hover: 0 8px 20px rgb(22 21 20 / 0.14);
+  --shadow-testimonial: 0 2px 12px rgb(22 21 20 / 0.06);
 
   /* Doppelring: außen gelb, innen schwarz — dadurch auf hellem UND dunklem
      Hintergrund sichtbar. */
@@ -257,37 +266,62 @@
 }
 
 /* --------------------------------------------------------------------------
-   .testimonial — Bewertungskarte auf weißem Grund.
+   .testimonial — Bewertungskarte auf reinem Weiß, hebt sich damit vom
+   --background-light der umgebenden Sektion ab. Kein border-radius — die
+   Formsprache ist die abgeschrägte Signage-Kante (rechts oben, per
+   clip-path). Border-left bleibt ein normaler border, weil der Schnitt nur
+   die gegenüberliegende obere rechte Ecke betrifft und die linke Kante
+   dadurch nicht berührt (anders als bei .class-chip, wo alle sechs Seiten
+   einer Form geschnitten werden — dort braucht es die Zwei-Ebenen-Technik).
    -------------------------------------------------------------------------- */
 .testimonial {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-6);
-  border-radius: var(--radius-md);
+  padding: var(--space-7);
+  border-left: 4px solid var(--accent);
   background-color: var(--text-light);
   color: var(--text-dark);
   font-family: var(--font-body);
   font-size: var(--font-size-body);
   line-height: var(--line-height-base);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-testimonial);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--badge-notch)) 0,
+    100% var(--badge-notch),
+    100% 100%,
+    0 100%
+  );
 }
 
-.testimonial__stars {
-  color: var(--accent);
-  font-size: var(--font-size-h3);
+.testimonial__mark {
+  display: block;
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--font-size-quote-mark);
   line-height: 1;
-  letter-spacing: var(--letter-spacing-badge);
+  color: color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
+/* flex: 1 lässt das Zitat den verbleibenden Raum füllen, sobald die Karte
+   durch align-items: stretch (Desktop) höher wird als ihr Inhalt — dadurch
+   sitzt der Name in allen drei Karten bündig unten, ohne dass margin-top:
+   auto nötig wäre (das hätte auf Mobile, wo die Karten nur ihre eigene
+   Inhaltshöhe haben, keinen Effekt und den 16px-Abstand gekostet). */
 .testimonial__quote {
-  margin: 0;
+  flex: 1;
+  margin: 0 0 var(--space-4);
+  font-style: normal;
 }
 
 .testimonial__author {
-  color: var(--text-muted);
+  margin: 0;
+  font-style: normal;
   font-size: var(--font-size-small);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-badge);
+  color: color-mix(in srgb, var(--text-dark) 55%, transparent);
 }
 
 /* --------------------------------------------------------------------------
