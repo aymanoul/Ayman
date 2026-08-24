@@ -512,11 +512,15 @@
   color: var(--primary);
 }
 
-/* box-shadow (wie --focus-ring) würde von clip-path mit weggeschnitten —
-   outline liegt außerhalb der Schnittfläche und bleibt sichtbar. */
+/* clip-path schneidet outline und box-shadow mit weg — sichtbar bleibt nur,
+   was der Form folgt. Der gelbe Rahmen wird deshalb dicker (siehe
+   .class-tile). */
 .class-chip:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: none;
+}
+
+.class-chip:focus-visible::before {
+  inset: 3px;
 }
 
 /* --------------------------------------------------------------------------
@@ -532,7 +536,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
   min-height: 120px;
   padding: var(--space-8) var(--space-6) var(--space-6);
   background-color: var(--accent);
@@ -565,12 +568,11 @@
   transition: inset var(--transition-hover);
 }
 
-.class-tile__letter,
-.class-tile__label,
-.class-tile__info,
-.class-tile__chevron {
+/* position: relative hebt den Inhalt über das absolut positionierte
+   ::before — ein z-index ist dafür nicht nötig, weil positionierte
+   Geschwister in Baumreihenfolge gestapelt werden. */
+.class-tile > * {
   position: relative;
-  z-index: 1;
 }
 
 .class-tile__letter {
@@ -624,11 +626,18 @@
   }
 }
 
-/* box-shadow (wie --focus-ring) würde von clip-path mit weggeschnitten —
-   outline liegt außerhalb der Schnittfläche und bleibt sichtbar. */
+/* clip-path schneidet ALLES weg, was das Element außerhalb der Form malt —
+   outline und box-shadow gleichermaßen. Auch ein inset-Schatten hilft nicht:
+   an den schrägen Seiten wird er mit abgeschnitten und bleibt nur als
+   Haarlinie oben und unten übrig. Sichtbar bleibt allein, was der Form
+   folgt — deshalb wird der gelbe Rahmen selbst dicker, indem ::before
+   weiter einrückt. */
 .class-tile:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: none;
+}
+
+.class-tile:focus-visible::before {
+  inset: 8px;
 }
 
 /* --------------------------------------------------------------------------

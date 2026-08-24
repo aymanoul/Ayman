@@ -371,12 +371,12 @@ section {
   transition: transform var(--transition-base);
 }
 
-/* box-shadow (--focus-ring) wird von clip-path mit weggeschnitten —
-   outline liegt außerhalb der Schnittfläche und bleibt sichtbar. */
+/* clip-path schneidet outline und äußeren box-shadow mit weg. Der CTA hat
+   keine innere Ebene wie .class-tile, deshalb zeichnet ein inset-Schatten
+   den Ring direkt in die gelbe Fläche — dunkel, damit er auf Gelb trägt. */
 .hero-section__cta:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  box-shadow: none;
+  outline: none;
+  box-shadow: inset 0 0 0 3px var(--primary);
 }
 
 .hero-section__cta:hover .hero-section__cta-arrow {
@@ -484,7 +484,7 @@ section {
 .trust-stat__label {
   margin: var(--space-2) 0 0;
   font-size: var(--font-size-small);
-  letter-spacing: 0.04em;
+  letter-spacing: var(--letter-spacing-loose);
   text-transform: uppercase;
   color: color-mix(in srgb, var(--text-dark) 60%, transparent);
 }
@@ -571,21 +571,26 @@ section {
   color: var(--text-light);
 }
 
+/* grid-auto-rows: 1fr gibt allen Zeilen dieselbe Höhe. Ohne das richtet
+   sich jede Zeile nur nach ihrer eigenen höchsten Kachel — sobald eine
+   Kurzinfo umbricht (z. B. Klasse A auf Tablet), wäre Zeile 1 höher als
+   Zeile 2. */
 .classes__grid {
   display: grid;
   grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
   gap: var(--space-6);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* Macht die einzige li-Kindebene (das <a class="class-tile">) auf volle
-   Zeilenhöhe strecken, damit alle vier Kacheln gleich hoch sind — Grids
-   Standard-align-items: stretch reicht bis zum li, flex übernimmt den
-   letzten Schritt bis zum a. */
+/* display: grid statt flex: ein Grid-Item wird per Voreinstellung in BEIDEN
+   Achsen gestreckt. Mit flex wurde nur die Querachse (Höhe) gestreckt, die
+   Breite blieb inhaltsabhängig — die vier Kacheln waren dadurch
+   unterschiedlich breit (332/287/174/176px statt je 572px). */
 .classes__grid li {
-  display: flex;
+  display: grid;
 }
 
 /* --------------------------------------------------------------------------
