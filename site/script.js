@@ -186,6 +186,113 @@
     }
   }
 
+  /* Live-Status "Jetzt geöffnet" / "Öffnet [Wochentag] um [Zeit]" in
+     #kontakt, berechnet aus der aktuellen Uhrzeit. getDay() liefert 0 für
+     Sonntag (nicht 7) — SCHEDULE enthält deshalb bewusst keinen Eintrag für
+     0, und die Suche nach dem nächsten Öffnungstag überspringt jeden Tag
+     ohne Eintrag automatisch. */
+  function initOpeningStatus() {
+    var statusEl = document.getElementById('opening-status');
+    var textEl = document.getElementById('opening-status-text');
+    if (!statusEl || !textEl) return;
+
+    var WEEKDAYS = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+    var SCHEDULE = {
+      1: { open: 10 * 60 + 30, close: 18 * 60 },
+      2: { open: 10 * 60 + 30, close: 18 * 60 },
+      3: { open: 10 * 60 + 30, close: 18 * 60 },
+      4: { open: 10 * 60 + 30, close: 18 * 60 },
+      5: { open: 10 * 60 + 30, close: 18 * 60 },
+      6: { open: 11 * 60, close: 15 * 60 }
+    };
+
+    function formatTime(minutes) {
+      var h = Math.floor(minutes / 60);
+      var m = minutes % 60;
+      return h + ':' + (m < 10 ? '0' : '') + m;
+    }
+
+    var now = new Date();
+    var day = now.getDay();
+    var minutes = now.getHours() * 60 + now.getMinutes();
+    var today = SCHEDULE[day];
+
+    if (today && minutes >= today.open && minutes < today.close) {
+      statusEl.classList.add('contact-hours__status--open');
+      textEl.textContent = 'Jetzt geöffnet';
+    } else {
+      var next = null;
+      for (var i = 0; i <= 7; i++) {
+        var d = (day + i) % 7;
+        var sched = SCHEDULE[d];
+        if (!sched) continue;
+        if (i === 0 && minutes >= sched.close) continue;
+        next = { day: d, open: sched.open };
+        break;
+      }
+      statusEl.classList.add('contact-hours__status--closed');
+      if (next) {
+        textEl.textContent = 'Öffnet ' + WEEKDAYS[next.day] + ' um ' + formatTime(next.open);
+      }
+    }
+
+    statusEl.hidden = false;
+
+    var todayKey = day === 0 ? 'sun' : day === 6 ? 'sat' : 'mon-fri';
+    var todayRow = document.querySelector('.contact-hours__row[data-day="' + todayKey + '"]');
+    if (todayRow) todayRow.classList.add('contact-hours__row--today');
+  }
+
+  /* Formular in #kontakt: standardmäßig sichtbar im Markup (funktioniert
+     ohne JavaScript), wird hier erst zu einem aufklappbaren Panel mit
+     Höhen-Animation. Der Submit-Handler verhindert das Absenden, weil noch
+     kein Backend angebunden ist — ein scheinbar erfolgreiches Absenden ins
+     Leere wäre schlimmer als kein Formular. */
+  function initContactForm() {
+    var trigger = document.getElementById('contact-form-trigger');
+    var panel = document.getElementById('contact-form-panel');
+
+    if (trigger && panel) {
+      panel.classList.add('contact-form-panel--js');
+      panel.style.maxHeight = '0px';
+      panel.setAttribute('inert', '');
+      trigger.setAttribute('aria-expanded', 'false');
+
+      trigger.addEventListener('click', function () {
+        var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+        if (isOpen) {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          window.requestAnimationFrame(function () {
+            panel.style.maxHeight = '0px';
+          });
+          panel.setAttribute('inert', '');
+          trigger.setAttribute('aria-expanded', 'false');
+        } else {
+          panel.removeAttribute('inert');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      panel.addEventListener('transitionend', function (event) {
+        if (event.propertyName !== 'max-height') return;
+        if (trigger.getAttribute('aria-expanded') === 'true') {
+          panel.style.maxHeight = 'none';
+        }
+      });
+    }
+
+    var form = document.getElementById('contact-form');
+    var notice = document.getElementById('contact-form-notice');
+    if (!form) return;
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (notice) notice.hidden = false;
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initStickyHeader();
     initMobileMenu();
@@ -193,5 +300,7 @@
     initCurrentYear();
     initTrustStats();
     initAblaufLine();
+    initOpeningStatus();
+    initContactForm();
   });
 })();

@@ -34,6 +34,14 @@
   --text-muted: #6B6B6B;                  /* Sekundärtext auf hell (4.8:1)    */
   --overlay-dark: rgb(22 21 20 / 0.65);   /* --primary mit Alpha — Video-Scrim */
 
+  /* Einzige echte Farbneuheit in dieser Datei: Grün kommt in der bisherigen
+     Palette nirgendwo vor (Schwarz/Gelb/Weiß lassen sich nicht zu Grün
+     mischen) und #kontakt braucht es zwingend für den Live-Status-Punkt
+     "Jetzt geöffnet" — dieselbe Ampel-Farbe, die auch Google in den
+     Suchergebnissen für offene Standorte zeigt. Bewusst nicht am
+     Markenschema hergeleitet, nur für diesen einen Zweck bestimmt. */
+  --status-open: #34D399;
+
   /* ---------------------------------------------------------------------
      Typografie
      --------------------------------------------------------------------- */
@@ -70,6 +78,10 @@
   /* Kantenlänge von .step-number, aus der Zahlengröße abgeleitet statt neu
      erfunden — wächst mit demselben clamp() wie die Ziffer selbst. */
   --step-badge-size: calc(var(--font-size-step-number) + var(--space-8));
+
+  /* #kontakt — "BEREIT?", die letzte Ansage der Seite. Kleinere Untergrenze
+     als --font-size-hero-h1, gleiche Obergrenze wie --font-size-stat. */
+  --font-size-contact-heading: clamp(36px, 9vw, 64px);
 
   --line-height-tight: 1.1;       /* Headlines */
   --line-height-base: 1.6;        /* Fließtext */
@@ -153,6 +165,7 @@
 
   --transition-base: 0.2s ease;
   --transition-hover: 0.2s ease-out; /* Hover-Lift auf klickbaren Kacheln */
+  --transition-panel: 0.3s ease;      /* Aufklapp-Animation des Kontaktformulars */
   --marquee-duration: 30s;
 }
 
@@ -172,6 +185,7 @@
   :root {
     --transition-base: 0s;
     --transition-hover: 0s;
+    --transition-panel: 0s;
   }
 }
 
@@ -680,6 +694,147 @@
   font-size: var(--font-size-step-number);
   line-height: 1;
   color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   .contact-action — die zwei großen Direktweg-Flächen in #kontakt (Anrufen /
+   WhatsApp). Dieselbe Sechseck-Silhouette wie .class-tile. Anrufen ist eine
+   einfache volle Füllung (kein Rahmen nötig); WhatsApp braucht die
+   Zwei-Ebenen-Technik aus .class-tile/.class-chip, weil "transparent mit
+   2px gelbem Rand" + clip-path sich nicht als normaler CSS-border umsetzen
+   lässt — die innere Ebene ist mit --primary gefüllt, täuscht also
+   Transparenz auf dem dunklen Sektionshintergrund nur vor.
+   -------------------------------------------------------------------------- */
+.contact-action {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--space-24);
+  padding: var(--space-6);
+  text-decoration: none;
+  clip-path: polygon(
+    0 50%,
+    var(--badge-notch) 0,
+    calc(100% - var(--badge-notch)) 0,
+    100% 50%,
+    calc(100% - var(--badge-notch)) 100%,
+    var(--badge-notch) 100%
+  );
+  transition: transform var(--transition-hover);
+}
+
+.contact-action > * {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-action--call {
+  background-color: var(--accent);
+  color: var(--primary);
+}
+
+.contact-action--whatsapp {
+  background-color: var(--accent);
+  color: var(--text-light);
+}
+
+.contact-action--whatsapp::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background-color: var(--primary);
+  clip-path: polygon(
+    0 50%,
+    var(--badge-notch) 0,
+    calc(100% - var(--badge-notch)) 0,
+    100% 50%,
+    calc(100% - var(--badge-notch)) 100%,
+    var(--badge-notch) 100%
+  );
+}
+
+.contact-action__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.contact-action__icon {
+  width: var(--space-7);
+  height: var(--space-7);
+  flex-shrink: 0;
+}
+
+.contact-action__label {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-display);
+  text-transform: uppercase;
+}
+
+.contact-action__sub {
+  font-size: var(--font-size-small);
+}
+
+.contact-action--call .contact-action__sub {
+  color: color-mix(in srgb, var(--primary) 70%, transparent);
+}
+
+.contact-action--whatsapp .contact-action__sub {
+  color: color-mix(in srgb, var(--text-light) 70%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-action:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* clip-path schneidet auch box-shadow weg — nicht nur an den Spitzen wie
+   bisher dokumentiert, sondern (bei einer so tief eingekerbten Form wie
+   dieser) über weite Teile der Ober- und Unterkante: ein 3px-Inset-Ring
+   liegt dort komplett außerhalb der schon 16px eingekerbten Silhouette und
+   verschwindet fast vollständig — sichtbar bleibt nur ein kurzes Stück an
+   der Spitze. .contact-action--whatsapp hat dank ihres ::before bereits
+   eine der Form folgende Lösung (dickerer Rahmen); .contact-action--call
+   bekommt für den Fokus-Zustand eigens dieselbe Ebene nachgebaut, weil sie
+   im Normalzustand keine braucht (einfarbige Füllung ohne Rahmen). */
+.contact-action:focus-visible {
+  outline: none;
+}
+
+/* Die Ebene ist dunkel gefüllt (wie bei WhatsApp), also muss auch die
+   sonst dunkle Schrift/Icon-Farbe von Anrufen mitkippen — sonst
+   verschwindet der dunkle Text auf dem jetzt ebenfalls dunklen Grund. */
+.contact-action--call:focus-visible {
+  color: var(--text-light);
+}
+
+.contact-action--call:focus-visible .contact-action__sub {
+  color: color-mix(in srgb, var(--text-light) 70%, transparent);
+}
+
+.contact-action--call:focus-visible::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background-color: var(--primary);
+  clip-path: polygon(
+    0 50%,
+    var(--badge-notch) 0,
+    calc(100% - var(--badge-notch)) 0,
+    100% 50%,
+    calc(100% - var(--badge-notch)) 100%,
+    var(--badge-notch) 100%
+  );
+}
+
+.contact-action--whatsapp:focus-visible::before {
+  inset: 5px;
 }
 
 /* --------------------------------------------------------------------------
