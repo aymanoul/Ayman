@@ -318,12 +318,29 @@
     video.appendChild(source);
     video.load();
 
+    // TEMPORÄR — Diagnose für das Autoplay-Problem auf iPhone/Safari.
+    // Wird entfernt, sobald die Ursache am Gerät bestätigt ist.
+    ['loadstart', 'loadedmetadata', 'canplay', 'playing', 'error', 'stalled'].forEach(function (ev) {
+      video.addEventListener(ev, function () {
+        console.log('[hero-video]', ev, {
+          readyState: video.readyState,
+          networkState: video.networkState,
+          currentSrc: video.currentSrc,
+          errorCode: video.error ? video.error.code : null
+        });
+      });
+    });
+
     // Manche Browser blockieren Autoplay trotz muted/playsinline (seltene
     // Ausnahmefälle). Schlägt play() fehl, bleibt einfach das poster-Bild
     // sichtbar — kein Fehler, keine Meldung für Besucher:innen.
     var playPromise = video.play();
     if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(function () {});
+      playPromise
+        .then(function () { console.log('[hero-video] play() resolved'); })
+        .catch(function (err) {
+          console.log('[hero-video] play() rejected', err && err.name, err && err.message);
+        });
     }
   }
 
