@@ -293,6 +293,40 @@
     });
   }
 
+  /* Hero-Video: das <video> im Markup hat bewusst keine <source> — ohne
+     JavaScript (oder bei reduzierter Bewegung/Data-Saver) bleibt einfach
+     das poster-Bild stehen, statt Bandbreite für ein Video zu verbrauchen,
+     das niemand zu sehen bekommt. Nur wenn beides erlaubt ist, hängt diese
+     Funktion die echte Quelle an und versucht die Wiedergabe zu starten. */
+  function initHeroVideo() {
+    var video = document.getElementById('hero-video');
+    var posterImg = document.getElementById('hero-poster-img');
+    if (!video) return;
+
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var saveData = !!(navigator.connection && navigator.connection.saveData);
+
+    if (reducedMotion || saveData) {
+      video.remove();
+      if (posterImg) posterImg.hidden = false;
+      return;
+    }
+
+    var source = document.createElement('source');
+    source.src = '../assets/hero.mp4';
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    video.load();
+
+    // Manche Browser blockieren Autoplay trotz muted/playsinline (seltene
+    // Ausnahmefälle). Schlägt play() fehl, bleibt einfach das poster-Bild
+    // sichtbar — kein Fehler, keine Meldung für Besucher:innen.
+    var playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(function () {});
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initStickyHeader();
     initMobileMenu();
@@ -302,5 +336,6 @@
     initAblaufLine();
     initOpeningStatus();
     initContactForm();
+    initHeroVideo();
   });
 })();

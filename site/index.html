@@ -106,7 +106,12 @@
 
   <main>
     <section id="hero" class="hero-section">
-      <div class="hero-section__video" id="hero-video" aria-hidden="true"></div>
+      <!-- Kein <source> im Markup: initHeroVideo() in script.js hängt die
+           Quelle nur an, wenn weder prefers-reduced-motion:reduce noch
+           Data-Saver aktiv ist — ohne JavaScript zeigt das Video allein
+           sein poster-Bild, exakt wie die reduzierte Variante darunter. -->
+      <video class="hero-section__video" id="hero-video" autoplay muted loop playsinline preload="auto" poster="../assets/hero-poster.jpg" aria-hidden="true"></video>
+      <img class="hero-section__video" id="hero-poster-img" src="../assets/hero-poster.jpg" alt="" aria-hidden="true" hidden>
 
       <div class="hero-section__content">
         <ul class="hero-chips" aria-label="Führerscheinklasse wählen">
