@@ -382,6 +382,16 @@
     }
 
     setTimeout(function () { logState('Status nach 3s'); }, 3000);
+
+    // Prüft, ob die Zeit im Video tatsächlich fortschreitet (nicht nur der
+    // "playing"-Status stimmt) — steckt currentTime bei 0.000 fest, obwohl
+    // playing gefeuert hat, liefert die Datei keine fortschreitenden Frames.
+    var elapsed = 0;
+    var currentTimeInterval = setInterval(function () {
+      elapsed += 500;
+      log('currentTime=' + video.currentTime.toFixed(3) + 's (t+' + elapsed + 'ms)');
+      if (elapsed >= 3000) clearInterval(currentTimeInterval);
+    }, 500);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
