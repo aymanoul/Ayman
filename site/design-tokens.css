@@ -219,11 +219,14 @@
   transition: background-color var(--transition-base), transform var(--transition-base);
 }
 
-.btn-primary:hover {
-  background-color: var(--accent-hover);
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background-color: var(--accent-hover);
+  }
 }
 
 .btn-primary:active {
+  background-color: var(--accent-hover);
   transform: translateY(1px);
 }
 
@@ -284,9 +287,21 @@
   transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
-.card-class:hover {
-  transform: translateY(-4px);
+@media (hover: hover) and (pointer: fine) {
+  .card-class:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+.card-class:active {
+  transform: translateY(-2px);
   box-shadow: var(--shadow-card-hover);
+}
+
+.card-class:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 .card-class__title {
@@ -456,7 +471,14 @@
   transition: background-color var(--transition-base), color var(--transition-base);
 }
 
-.btn-secondary:hover {
+@media (hover: hover) and (pointer: fine) {
+  .btn-secondary:hover {
+    background-color: var(--accent);
+    color: var(--primary);
+  }
+}
+
+.btn-secondary:active {
   background-color: var(--accent);
   color: var(--primary);
 }
@@ -519,12 +541,32 @@
   transition: background-color var(--transition-base);
 }
 
+/* Unsichtbare Tap-Fläche: die sichtbare Kachel bleibt 30px hoch (Vorgabe
+   aus dem Hero-Design), die tatsächliche Trefferfläche wird per ::after
+   auf mindestens 48×48px zentriert vergrößert — ::before trägt bereits die
+   Füllfarbe, deshalb die zweite Pseudo-Ebene. */
+.class-chip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--tap-target));
+  height: max(100%, var(--tap-target));
+  transform: translate(-50%, -50%);
+}
+
 .class-chip__label {
   position: relative;
   z-index: 1;
 }
 
-.class-chip:hover::before {
+@media (hover: hover) and (pointer: fine) {
+  .class-chip:hover::before {
+    background-color: color-mix(in srgb, var(--primary) 70%, transparent);
+  }
+}
+
+.class-chip:active::before {
   background-color: color-mix(in srgb, var(--primary) 70%, transparent);
 }
 
@@ -648,6 +690,20 @@
   .class-tile:hover .class-tile__chevron {
     transform: translateX(4px);
   }
+}
+
+/* Touch-Pendant zum Hover oben: ohne pointer:fine bekommt der Tap sonst nur
+   den (jetzt unterdrückten) grauen Browser-Flash statt einer Rückmeldung. */
+.class-tile:active {
+  transform: translateY(-2px);
+}
+
+.class-tile:active::before {
+  inset: 5px;
+}
+
+.class-tile:active .class-tile__chevron {
+  transform: translateX(4px);
 }
 
 /* clip-path schneidet ALLES weg, was das Element außerhalb der Form malt —
@@ -794,6 +850,10 @@
   }
 }
 
+.contact-action:active {
+  transform: translateY(-2px);
+}
+
 /* clip-path schneidet auch box-shadow weg — nicht nur an den Spitzen wie
    bisher dokumentiert, sondern (bei einer so tief eingekerbten Form wie
    dieser) über weite Teile der Ober- und Unterkante: ein 3px-Inset-Ring
@@ -876,9 +936,28 @@
    gewinnt die spätere Regel im Quelltext, unabhängig von der
    Media-Query. Ein früherer Versuch, das hier oben bei :root
    mitzuregeln, wurde von der späteren .hero-ticker__track-Basisregel
-   überschrieben und lief trotz reduzierter Bewegung weiter. */
+   überschrieben und lief trotz reduzierter Bewegung weiter.
+
+   Die Animation zu stoppen reicht allein nicht: .hero-ticker__track hat
+   zwei identische .hero-ticker__item-Kopien für die nahtlose Schleife, und
+   im Ruhezustand (kein transform) zeigt overflow:hidden nur den Anfang der
+   ERSTEN Kopie — bei den meisten Viewport-Breiten mitten im Satz
+   abgeschnitten. Deshalb: zweite Kopie ausblenden und die verbleibende auf
+   mehrere Zeilen umbrechen lassen, statt sie einzeilig abzuschneiden. */
 @media (prefers-reduced-motion: reduce) {
   .hero-ticker__track {
     animation: none;
+    display: block;
+    width: 100%;
+  }
+
+  .hero-ticker__item {
+    display: block;
+    width: 100%;
+    white-space: normal;
+  }
+
+  .hero-ticker__item:nth-child(2) {
+    display: none;
   }
 }

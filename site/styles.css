@@ -13,6 +13,10 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  /* Unterdrückt das graue Antipp-Rechteck auf iOS/Android — jedes Element
+     mit eigenem Hover bekommt weiter unten einen echten :active-Zustand,
+     damit Touch-Nutzer:innen trotzdem eine Rückmeldung sehen. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -241,6 +245,10 @@ body.has-open-menu {
   flex: 1;
   overflow-y: auto;
   padding: var(--space-4);
+  /* env() ist 0, wo es kein Notch/Home-Indicator gibt — das Menü bleibt
+     dort exakt wie vorher, nur auf iPhones mit Home-Indicator kommt die
+     Telefonnummer nicht mehr darunter zu liegen. */
+  padding-bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
 }
@@ -319,6 +327,14 @@ section {
 .hero-section__title {
   margin: 0 0 var(--space-6);
   max-width: 100%;
+  /* Ohne das wird "FAHRSCHULE," bei 320px 9,7px breiter als der verfügbare
+     Platz und dann von .hero-section (overflow: hidden) unsichtbar
+     abgeschnitten, statt umzubrechen — gemessen via Range.getClientRects().
+     hyphens:auto (mit lang="de" auf <html>) bricht an einer echten
+     Silbengrenze statt mitten im Wort, overflow-wrap bleibt als Netz für
+     den Fall, dass der Browser keine Trennstelle findet. */
+  hyphens: auto;
+  overflow-wrap: break-word;
   font-family: var(--font-display);
   font-size: var(--font-size-hero-h1);
   line-height: var(--line-height-hero);
@@ -379,7 +395,13 @@ section {
   box-shadow: inset 0 0 0 3px var(--primary);
 }
 
-.hero-section__cta:hover .hero-section__cta-arrow {
+@media (hover: hover) and (pointer: fine) {
+  .hero-section__cta:hover .hero-section__cta-arrow {
+    transform: translateX(4px);
+  }
+}
+
+.hero-section__cta:active .hero-section__cta-arrow {
   transform: translateX(4px);
 }
 
@@ -814,7 +836,14 @@ section {
   color: color-mix(in srgb, var(--text-light) 65%, transparent);
 }
 
+/* position: relative + die beiden ::before darunter vergrößern die Tap-
+   Fläche unsichtbar auf 48px Höhe, ohne die Zeile selbst höher zu machen.
+   Route öffnet nur nach OBEN (in die nicht-antippbare Adresszeile darüber),
+   E-Mail nur nach UNTEN (in freien Raum vor dem Formular-Trigger) — so
+   wächst keine der beiden Flächen in die jeweils andere hinein, und der
+   bestehende 8px-Abstand zwischen beiden Links bleibt erhalten. */
 .contact-address__route {
+  position: relative;
   display: inline-block;
   margin-bottom: var(--space-2);
   font-size: var(--font-size-small);
@@ -822,19 +851,60 @@ section {
   text-decoration: none;
 }
 
-.contact-address__route:hover {
+.contact-address__route::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--tap-target);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-address__route:hover {
+    text-decoration: underline;
+  }
+}
+
+.contact-address__route:active {
   text-decoration: underline;
 }
 
+.contact-address__route:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .contact-address__email {
+  position: relative;
   display: block;
   font-size: var(--font-size-small);
   text-decoration: none;
   color: color-mix(in srgb, var(--text-light) 65%, transparent);
 }
 
-.contact-address__email:hover {
+.contact-address__email::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--tap-target);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-address__email:hover {
+    color: var(--text-light);
+  }
+}
+
+.contact-address__email:active {
   color: var(--text-light);
+}
+
+.contact-address__email:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* --- Block 3: Formular, aufklappbar ------------------------------------ */
@@ -844,16 +914,26 @@ section {
 }
 
 .contact-form-toggle__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap-target);
+  padding: var(--space-2) 0;
   background: none;
   border: none;
-  padding: var(--space-2) 0;
   font-family: var(--font-body);
   font-size: var(--font-size-small);
   color: color-mix(in srgb, var(--text-light) 70%, transparent);
   cursor: pointer;
 }
 
-.contact-form-toggle__trigger:hover {
+@media (hover: hover) and (pointer: fine) {
+  .contact-form-toggle__trigger:hover {
+    color: var(--text-light);
+  }
+}
+
+.contact-form-toggle__trigger:active {
   color: var(--text-light);
 }
 
@@ -1011,13 +1091,37 @@ section {
 }
 
 .site-footer__links a {
+  position: relative;
   font-size: var(--font-size-small);
   text-decoration: none;
   opacity: 0.8;
 }
 
-.site-footer__links a:hover {
+/* Unsichtbare Tap-Fläche statt sichtbar größerer Box — "Impressum" und
+   "Datenschutz" sind schon breiter als 48px, nur die Höhe wächst. */
+.site-footer__links a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--tap-target));
+  height: max(100%, var(--tap-target));
+  transform: translate(-50%, -50%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-footer__links a:hover {
+    opacity: 1;
+  }
+}
+
+.site-footer__links a:active {
   opacity: 1;
+}
+
+.site-footer__links a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .site-footer__social {
@@ -1025,14 +1129,42 @@ section {
   gap: var(--space-4);
 }
 
+/* Die 16px-Lücke (--space-4) zwischen den beiden Icons lässt pro Seite nur
+   4px unsichtbaren Zuwachs zu, ohne dass sich die vergrößerten Tap-Flächen
+   der Nachbarn überlappen (sonst < 8px Abstand zwischen ihnen) — 48×48px
+   ist damit hier nicht ohne größeren Icon-Abstand erreichbar, siehe Bericht.
+   Die Höhe kann trotzdem voll auf 48px wachsen, dort gibt es keinen
+   Nachbarn in der Reihe. */
 .site-footer__social a {
+  position: relative;
   display: flex;
   color: var(--text-light);
   opacity: 0.8;
 }
 
-.site-footer__social a:hover {
+.site-footer__social a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, 30px);
+  height: max(100%, var(--tap-target));
+  transform: translate(-50%, -50%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-footer__social a:hover {
+    opacity: 1;
+  }
+}
+
+.site-footer__social a:active {
   opacity: 1;
+}
+
+.site-footer__social a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .site-footer__copyright {
@@ -1217,6 +1349,16 @@ section {
   .hero-section__title,
   .hero-section__subline,
   .hero-section__actions {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Zusätzliche Absicherung: initTrustStats() in script.js bricht unter
+     reduzierter Bewegung bereits vorher ab und setzt --visible nie, diese
+     Regel greift also im Normalfall gar nicht erst — falls doch (z. B. ein
+     künftiger Aufruf ohne den Guard), bleibt die Animation trotzdem aus. */
+  .trust-stats--visible .trust-stat__flag {
     animation: none;
     opacity: 1;
     transform: none;
