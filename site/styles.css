@@ -1406,16 +1406,15 @@ section {
   padding: var(--space-16) var(--space-4);
 }
 
-/* Einziger Wert in diesem Abschnitt, der nicht aus design-tokens.css stammt:
-   die vorgegebene Größe clamp(30px, 7vw, 52px) entspricht keinem
-   bestehenden Token (am nächsten: --font-size-h1, clamp(32px, 8vw, 48px)).
-   design-tokens.css durfte in dieser Etappe laut Auftrag nicht geändert
-   werden — deshalb hier als literaler Wert, nicht als eigener Token. */
+/* Aktualisierter Wert (war zuvor 52px): exakte Vorgabe für die Fahrzeugfoto-
+   Variante, liegt jetzt genau auf der Obergrenze von --font-size-h1
+   (clamp(32px, 8vw, 48px)) — trotzdem literal statt Token, weil
+   design-tokens.css außerhalb des erlaubten Änderungsbereichs lag. */
 .page-header__title {
   margin: var(--space-3) 0 0;
   overflow-wrap: break-word;
   font-family: var(--font-display);
-  font-size: clamp(30px, 7vw, 52px);
+  font-size: clamp(30px, 7vw, 48px);
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-display);
   text-transform: uppercase;
@@ -1427,6 +1426,108 @@ section {
   font-family: var(--font-body);
   font-size: var(--font-size-body);
   color: color-mix(in srgb, var(--text-light) 70%, transparent);
+}
+
+/* --- .page-header--with-photo -----------------------------------------
+   Variante für die vier Klassen-Seiten: Fahrzeugfoto im Signage-Rahmen,
+   auf Mobile unter dem Text, ab 900px daneben (Grund für den eigenen
+   900px-Bruchpunkt statt 768/1024: erst ab da hat ein 5:4-Bild neben dem
+   Text genug Breite, ohne verkrampft zu wirken). Rein additiv über eine
+   Modifier-Klasse — .page-header ohne sie (z. B. site/404.html) bleibt exakt
+   wie zuvor. */
+.page-header--with-photo {
+  border-bottom: 3px solid var(--accent);
+}
+
+.page-header--with-photo .page-header__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 900px) {
+  .page-header--with-photo .page-header__inner {
+    grid-template-columns: 45fr 55fr;
+    align-items: center;
+    gap: var(--space-10);
+  }
+}
+
+/* min-width: 0 überschreibt den Grid-Item-Default (auto), der Textzeilen
+   sonst auf ihre ungebrochene Breite aufbläht, statt sie im Grid-Track
+   umzubrechen — sonst würde .page-header__title trotz overflow-wrap den
+   Viewport horizontal sprengen. */
+.page-header__text {
+  min-width: 0;
+}
+
+/* --- .signage-frame -----------------------------------------------------
+   Fotorahmen im Signage-Look: derselbe Zwei-Ebenen-Aufbau wie .class-tile
+   (border + clip-path funktionieren nicht zusammen — siehe Kommentar dort),
+   hier mit demselben Sechseck-Polygon, nicht neu erfunden. Das Foto selbst
+   wird nicht beschnitten (object-fit: contain); der Rahmen ist die
+   gestalterische Antwort auf die dadurch entstehenden Ränder. */
+.page-header__photo {
+  margin: 0;
+}
+
+.signage-frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 5 / 4;
+  width: 100%;
+  max-height: 45vh;
+  background-color: var(--accent);
+  clip-path: polygon(
+    0 50%,
+    var(--badge-notch) 0,
+    calc(100% - var(--badge-notch)) 0,
+    100% 50%,
+    calc(100% - var(--badge-notch)) 100%,
+    var(--badge-notch) 100%
+  );
+}
+
+.signage-frame::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background-color: var(--primary);
+  clip-path: polygon(
+    0 50%,
+    var(--badge-notch) 0,
+    calc(100% - var(--badge-notch)) 0,
+    100% 50%,
+    calc(100% - var(--badge-notch)) 100%,
+    var(--badge-notch) 100%
+  );
+}
+
+/* Wie bei .class-tile: position: relative hebt Bild/<picture> über das
+   absolut positionierte ::before, ohne z-index, weil positionierte
+   Geschwister in Baumreihenfolge gestapelt werden. */
+.signage-frame > * {
+  position: relative;
+}
+
+.signage-frame picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.signage-frame__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (min-width: 900px) {
+  .signage-frame {
+    max-width: 620px;
+    max-height: none;
+  }
 }
 
 /* --- .page-body -----------------------------------------------------------

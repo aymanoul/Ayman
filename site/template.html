@@ -115,19 +115,45 @@
   </div>
 
   <main id="page-content">
-    <section class="page-header">
+    <!-- page-header--with-photo ist nur für die vier Klassen-Seiten gedacht
+         (Fahrzeugfoto vorhanden). Für Seiten ohne Foto (z. B. Theorie, Über
+         uns) die Modifier-Klasse hier UND den kompletten
+         .page-header__photo-Block weiter unten entfernen — .page-header
+         funktioniert auch ohne beides unverändert wie zuvor (siehe
+         site/404.html). -->
+    <section class="page-header page-header--with-photo">
       <div class="page-header__inner">
-        <nav class="breadcrumb" aria-label="Brotkrumen">
-          <a class="breadcrumb__link" href="/">Start</a>
-          <span class="breadcrumb__sep" aria-hidden="true">/</span>
-          <!-- ===== PRO SEITE ANPASSEN ===== -->
-          <span class="breadcrumb__current" aria-current="page">[SEITENNAME]</span>
-        </nav>
+        <div class="page-header__text">
+          <nav class="breadcrumb" aria-label="Brotkrumen">
+            <a class="breadcrumb__link" href="/">Start</a>
+            <span class="breadcrumb__sep" aria-hidden="true">/</span>
+            <!-- ===== PRO SEITE ANPASSEN ===== -->
+            <span class="breadcrumb__current" aria-current="page">[SEITENNAME]</span>
+          </nav>
 
-        <h1 class="page-header__title">[SEITENÜBERSCHRIFT]</h1>
+          <h1 class="page-header__title">[SEITENÜBERSCHRIFT]</h1>
 
-        <!-- Untertitel ist optional — die ganze <p> entfernen, falls nicht gebraucht -->
-        <p class="page-header__subtitle">[OPTIONALER UNTERTITEL]</p>
+          <!-- Untertitel ist optional — die ganze <p> entfernen, falls nicht gebraucht -->
+          <p class="page-header__subtitle">[OPTIONALER UNTERTITEL]</p>
+          <!-- ===== ENDE ANPASSEN ===== -->
+        </div>
+
+        <!-- TEMPORÄR: Motorrad- und Auto-Foto werden später an derselben
+             Location wie LKW/Bus neu fotografiert und ausgetauscht. Beim
+             Austausch nur die Dateien in assets/vehicles/ ersetzen,
+             Dateinamen beibehalten — dann ist kein Code-Eingriff nötig.
+             LKW- und Bus-Foto bleiben bestehen. -->
+        <!-- ===== PRO SEITE ANPASSEN: srcset/src/alt der drei folgenden
+             Zeilen auf das Fahrzeugfoto dieser Klasse setzen — sonst nichts
+             an diesem Block ändern. ===== -->
+        <figure class="page-header__photo">
+          <span class="signage-frame">
+            <picture>
+              <source srcset="../assets/vehicles/klasse-a-motorrad.webp" type="image/webp">
+              <img class="signage-frame__img" src="../assets/vehicles/klasse-a-motorrad.jpg" alt="Fahrschulmotorrad der Fahrstation vor dem Ladenlokal an der Kölner Straße in Düsseldorf" fetchpriority="high">
+            </picture>
+          </span>
+        </figure>
         <!-- ===== ENDE ANPASSEN ===== -->
       </div>
     </section>

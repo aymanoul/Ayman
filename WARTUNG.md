@@ -67,3 +67,13 @@ hiervon nicht betroffen.
   Unterseiten bekommen stattdessen optional ein eigenes Course-/Service-
   Schema (in `template.html` auskommentiert vorbereitet).
 - **E-Mail-Adresse** — nur in `site/index.html`.
+
+## TEMPORÄR — Platzhalter-Fotos in `assets/vehicles/`
+
+Motorrad- und Auto-Foto (`klasse-a-motorrad.jpg`/`.webp`,
+`klasse-b-auto.jpg`/`.webp`) werden später an derselben Location wie
+LKW/Bus neu fotografiert und ausgetauscht. Beim Austausch nur die Dateien
+in `assets/vehicles/` ersetzen, Dateinamen beibehalten — dann ist kein
+Code-Eingriff in `site/template.html` oder in einer daraus erzeugten
+Klassen-Seite nötig. LKW- (`klasse-c-lkw.*`) und Bus-Foto
+(`klasse-d-bus.*`) bleiben bestehen.
