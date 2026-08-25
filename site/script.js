@@ -298,47 +298,15 @@
      das poster-Bild stehen, statt Bandbreite für ein Video zu verbrauchen,
      das niemand zu sehen bekommt. Nur wenn beides erlaubt ist, hängt diese
      Funktion die echte Quelle an und versucht die Wiedergabe zu starten. */
-  // TEMPORÄR — sichtbares Debug-Overlay für das Hero-Video-Problem auf
-  // iPad/iPhone, da dort keine Konsole erreichbar ist. Wird entfernt,
-  // sobald die Ursache am Gerät bestätigt ist.
-  var MEDIA_ERROR_MEANINGS = {
-    1: 'MEDIA_ERR_ABORTED — Abspielen wurde abgebrochen',
-    2: 'MEDIA_ERR_NETWORK — Netzwerkfehler beim Laden',
-    3: 'MEDIA_ERR_DECODE — Fehler beim Dekodieren der Datei',
-    4: 'MEDIA_ERR_SRC_NOT_SUPPORTED — Format/Quelle nicht unterstützt'
-  };
-
-  function createHeroVideoDebugPanel() {
-    var panel = document.createElement('div');
-    panel.id = 'hero-video-debug';
-    panel.style.cssText = [
-      'position:fixed', 'top:0', 'left:0', 'right:0', 'z-index:9999',
-      'max-height:45vh', 'overflow-y:auto', 'background:#000', 'color:#fff',
-      'font:11px/1.5 ui-monospace,Menlo,Consolas,monospace', 'padding:8px 10px',
-      'box-sizing:border-box', 'white-space:pre-wrap', 'word-break:break-all'
-    ].join(';');
-    document.body.appendChild(panel);
-    return function log(line) {
-      var row = document.createElement('div');
-      row.textContent = line;
-      panel.appendChild(row);
-      console.log('[hero-video]', line);
-    };
-  }
-
   function initHeroVideo() {
     var video = document.getElementById('hero-video');
     var posterImg = document.getElementById('hero-poster-img');
     if (!video) return;
 
-    var log = createHeroVideoDebugPanel();
-
     var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var saveData = !!(navigator.connection && navigator.connection.saveData);
-    log('reducedMotion=' + reducedMotion + ' saveData=' + saveData);
 
     if (reducedMotion || saveData) {
-      log('Abbruch: Video wird entfernt, Poster-Bild wird gezeigt (reducedMotion/saveData aktiv).');
       video.remove();
       if (posterImg) posterImg.hidden = false;
       return;
@@ -348,50 +316,15 @@
     source.src = '../assets/hero.mp4';
     source.type = 'video/mp4';
     video.appendChild(source);
-    log('source.src gesetzt auf: ' + source.src);
     video.load();
-    log('load() aufgerufen. currentSrc=' + video.currentSrc);
-
-    function logState(prefix) {
-      var msg = prefix + ' — readyState=' + video.readyState + ' networkState=' + video.networkState;
-      if (video.error) {
-        msg += ' | error.code=' + video.error.code + ' (' + (MEDIA_ERROR_MEANINGS[video.error.code] || 'unbekannt') + ')';
-      }
-      log(msg);
-    }
-
-    ['loadstart', 'loadedmetadata', 'canplay', 'playing', 'error', 'stalled', 'abort', 'emptied', 'suspend'].forEach(function (ev) {
-      video.addEventListener(ev, function () {
-        logState('event: ' + ev);
-      });
-    });
 
     // Manche Browser blockieren Autoplay trotz muted/playsinline (seltene
     // Ausnahmefälle). Schlägt play() fehl, bleibt einfach das poster-Bild
     // sichtbar — kein Fehler, keine Meldung für Besucher:innen.
     var playPromise = video.play();
-    log('play() aufgerufen.');
     if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise
-        .then(function () { log('play() resolved'); })
-        .catch(function (err) {
-          log('play() rejected: ' + (err && err.name) + ': ' + (err && err.message));
-        });
-    } else {
-      log('play() lieferte kein Promise (sehr alter Browser).');
+      playPromise.catch(function () {});
     }
-
-    setTimeout(function () { logState('Status nach 3s'); }, 3000);
-
-    // Prüft, ob die Zeit im Video tatsächlich fortschreitet (nicht nur der
-    // "playing"-Status stimmt) — steckt currentTime bei 0.000 fest, obwohl
-    // playing gefeuert hat, liefert die Datei keine fortschreitenden Frames.
-    var elapsed = 0;
-    var currentTimeInterval = setInterval(function () {
-      elapsed += 500;
-      log('currentTime=' + video.currentTime.toFixed(3) + 's (t+' + elapsed + 'ms)');
-      if (elapsed >= 3000) clearInterval(currentTimeInterval);
-    }, 500);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
