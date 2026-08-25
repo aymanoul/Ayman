@@ -369,7 +369,8 @@
   font-size: var(--font-size-small);
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-badge);
-  color: color-mix(in srgb, var(--text-dark) 55%, transparent);
+  /* 65% statt 55%: 3,90:1 verfehlte WCAG AA für normalen Text (4,5:1). */
+  color: color-mix(in srgb, var(--text-dark) 65%, transparent);
 }
 
 /* --------------------------------------------------------------------------

@@ -508,7 +508,8 @@ section {
   font-size: var(--font-size-small);
   letter-spacing: var(--letter-spacing-loose);
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--text-dark) 60%, transparent);
+  /* 68% statt 60%: 4,41:1 verfehlte WCAG AA für normalen Text (4,5:1) knapp. */
+  color: color-mix(in srgb, var(--text-dark) 68%, transparent);
 }
 
 /* Die Flaggen sind die dritte Kennzahl — kein Zahlenwert, deshalb kein
@@ -1124,17 +1125,18 @@ section {
   outline-offset: 2px;
 }
 
+/* Abstand nur an dieser Stelle auf --space-6 angehoben (lokal auf diesem
+   Selektor, --space-4 bleibt überall sonst unangetastet) — vergrößert die
+   maximal mögliche Tap-Fläche der Icons darunter von 30px auf 38px Breite.
+   Volle 48px wären erst ab --space-10 (40px Lücke) möglich: bei 22px
+   Icon-Breite ist der Mitte-zu-Mitte-Abstand icon+gap, und die größte
+   Trefferbreite, die noch ≥8px Lücke zur Nachbarfläche lässt, ist
+   (icon+gap−8) — bei 24px Lücke also 22+24−8 = 38px, nicht 48px. */
 .site-footer__social {
   display: flex;
-  gap: var(--space-4);
+  gap: var(--space-6);
 }
 
-/* Die 16px-Lücke (--space-4) zwischen den beiden Icons lässt pro Seite nur
-   4px unsichtbaren Zuwachs zu, ohne dass sich die vergrößerten Tap-Flächen
-   der Nachbarn überlappen (sonst < 8px Abstand zwischen ihnen) — 48×48px
-   ist damit hier nicht ohne größeren Icon-Abstand erreichbar, siehe Bericht.
-   Die Höhe kann trotzdem voll auf 48px wachsen, dort gibt es keinen
-   Nachbarn in der Reihe. */
 .site-footer__social a {
   position: relative;
   display: flex;
@@ -1147,7 +1149,7 @@ section {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: max(100%, 30px);
+  width: max(100%, 38px);
   height: max(100%, var(--tap-target));
   transform: translate(-50%, -50%);
 }
