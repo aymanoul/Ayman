@@ -1,3 +1,33 @@
+# GitHub-Pages-Spiegel (zusätzlich zu Vercel)
+
+Die Website läuft zusätzlich auf GitHub Pages, als robusterer Ersatz für
+das zeitweise kaputte Vercel-Deployment — **nicht** als Ablösung von
+Vercel, das bleibt die eigentliche Zielumgebung.
+
+- **Live-URL:** https://aymanoul.github.io/fahrstation-/
+- **Separates Repository:** `aymanoul/fahrstation-` (Endet bewusst mit
+  Bindestrich — beim Anlegen so entstanden, nicht mehr geändert, um die
+  URL nicht ein zweites Mal zu verschieben.) Bewusst ein **eigenes**
+  Repository und nicht einfach der bestehende Pages-Slot von
+  `aymanoul/Ayman`: Dort läuft bereits eine andere, aktiv genutzte App
+  ("Dar as-Sunnah", Branch `claude/gracious-gates-n4j6z2`) über GitHub
+  Pages — die durfte nicht angetastet oder überschrieben werden.
+- **Kein automatischer Sync.** `aymanoul/fahrstation-` enthält einen
+  statischen Build aus `site/` + `assets/`, umgebaut für GitHub Pages
+  (jede Unterseite als `name/index.html` statt `name.html`, damit
+  `/klasse-b` & Co. ohne Vercels `cleanUrls` funktionieren; die vier
+  gemeinsamen Dateien `design-tokens.css`/`styles.css`/`script.js`/
+  `manifest.json` über wurzel-absolute Pfade eingebunden;
+  `template.html` bewusst ausgeschlossen). **Bei jeder künftigen
+  Änderung an `site/` oder `assets/` muss dieser Build manuell neu
+  erzeugt und nach `aymanoul/fahrstation-` gepusht werden** — sonst
+  läuft die Pages-Version aus dem Ruder. Bislang übernehme ich das als
+  Teil derselben Session, in der ich die Änderung mache.
+- **Manueller Schritt für den Betreiber:** In den Settings von
+  `aymanoul/fahrstation-` unter „Pages" die Source auf „Deploy from a
+  branch" → `main` → `/ (root)` stellen, falls das nicht schon so
+  eingestellt ist.
+
 # VOR DEM LIVE-GANG ZWINGEND ERLEDIGEN
 
 - ~~`/impressum` existiert noch nicht~~ — **erledigt.** `site/impressum.html`
