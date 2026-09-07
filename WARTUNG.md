@@ -1,13 +1,20 @@
 # VOR DEM LIVE-GANG ZWINGEND ERLEDIGEN
 
-- **`/impressum` existiert noch nicht.** `site/index.html` (Footer,
-  Formular-Checkbox) und `site/template.html` (Footer) verlinken bereits
-  korrekt auf `/impressum` — die Zielseite selbst fehlt aber noch. Ein
-  Impressum ist in Deutschland (§ 5 DDG, vormals TMG) für eine öffentlich
-  erreichbare Website **gesetzlich vorgeschrieben**. Bevor die Domain
-  öffentlich freigegeben wird, muss diese Seite stehen. (`/datenschutz`
-  existiert seit dem Entwurf `site/datenschutz.html` — siehe die vier
-  Punkte weiter unten zu genau dieser Seite.)
+- ~~`/impressum` existiert noch nicht~~ — **erledigt.** `site/impressum.html`
+  ist angelegt, Inhalt wortwörtlich aus dem alten Impressum übernommen.
+  Die Footer-Links auf `/impressum` und `/datenschutz` wurden in allen 10
+  HTML-Dateien geprüft — überall korrekte, funktionierende Ziele, keine
+  Platzhalter mehr.
+- **ODR-Verweis im Impressum prüfen** — die EU-Plattform zur
+  Online-Streitbeilegung wurde möglicherweise eingestellt, wodurch der
+  Verweis in `site/impressum.html` (Abschnitt „Online-Streitbeilegung")
+  ins Leere laufen könnte. Formulierung ggf. anpassen oder streichen.
+- **Urheberrechts-Absatz im Impressum ist unvollständig** — der Absatz
+  in `site/impressum.html` besteht nur aus einem Satz und wirkt
+  abgeschnitten (üblicherweise folgen dort noch Sätze zu
+  Vervielfältigung, Bearbeitung und Downloads). Wortwörtlich aus dem
+  alten Impressum übernommen, nichts ergänzt — vom Betreiber prüfen und
+  ggf. vervollständigen lassen.
 - ~~Facebook-Seite ungeklärt~~ — **erledigt.** Die Fahrschule hat
   `https://www.facebook.com/fahrstationduesseldorf` bestätigt. Das Icon war
   nur in `index.html` auskommentiert (alle anderen Dateien hatten es bereits
