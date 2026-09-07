@@ -1,11 +1,13 @@
 # VOR DEM LIVE-GANG ZWINGEND ERLEDIGEN
 
-- **`/impressum` und `/datenschutz` existieren noch nicht.** `site/index.html`
-  (Footer, Formular-Checkbox) und `site/template.html` (Footer) verlinken
-  bereits korrekt auf `/impressum` und `/datenschutz` — die Zielseiten selbst
-  fehlen aber noch. Ein Impressum ist in Deutschland (§ 5 DDG, vormals TMG)
-  für eine öffentlich erreichbare Website **gesetzlich vorgeschrieben**.
-  Bevor die Domain öffentlich freigegeben wird, müssen beide Seiten stehen.
+- **`/impressum` existiert noch nicht.** `site/index.html` (Footer,
+  Formular-Checkbox) und `site/template.html` (Footer) verlinken bereits
+  korrekt auf `/impressum` — die Zielseite selbst fehlt aber noch. Ein
+  Impressum ist in Deutschland (§ 5 DDG, vormals TMG) für eine öffentlich
+  erreichbare Website **gesetzlich vorgeschrieben**. Bevor die Domain
+  öffentlich freigegeben wird, muss diese Seite stehen. (`/datenschutz`
+  existiert seit dem Entwurf `site/datenschutz.html` — siehe die vier
+  Punkte weiter unten zu genau dieser Seite.)
 - ~~Facebook-Seite ungeklärt~~ — **erledigt.** Die Fahrschule hat
   `https://www.facebook.com/fahrstationduesseldorf` bestätigt. Das Icon war
   nur in `index.html` auskommentiert (alle anderen Dateien hatten es bereits
@@ -15,6 +17,38 @@
   `https://www.instagram.com/fahrschule_fahrstation` bestätigt (mit „www.").
   `index.html` verlinkte abweichend ohne „www." — jetzt auf die „www."-Form
   vereinheitlicht, die alle anderen Dateien bereits verwendeten.
+- ~~Google Fonts wurden extern von fonts.googleapis.com/fonts.gstatic.com
+  geladen~~ — **erledigt.** Beide Schriften (Anton, Inter) liegen jetzt
+  lokal unter `assets/fonts/` und werden per `@font-face` in
+  `design-tokens.css` eingebunden. Kein `<link>` zu einer Google-Domain
+  mehr in irgendeiner der 9 HTML-Dateien. Mit Playwright/Chromium
+  verifiziert: keine Google-Requests, beide `.woff2` werden lokal
+  geladen.
+- **`site/datenschutz.html` ist ein Entwurf, kein geprüfter Rechtstext.**
+  Basiert auf einer alten Datenschutzerklärung, wurde an die tatsächlich
+  eingesetzte Technik dieser Website angepasst (siehe Commit-Historie für
+  die Prüfung: keine Cookies, kein Tracking, kein eingebettetes Google
+  Maps, Kontaktformular überträgt aktuell keine Daten). **Vor
+  Veröffentlichung von einer fachkundigen Stelle prüfen lassen** — dies
+  ist keine Rechtsberatung.
+- **Datenschutzbeauftragter — offen, in `site/datenschutz.html` als
+  HTML-Kommentar markiert** (Abschnitt „Datenschutzbeauftragter"). Ist
+  einer bestellt? Falls ja: Name/Anschrift/E-Mail dort ergänzen. Falls
+  nein: den Unterpunkt ersatzlos streichen. Nicht geraten.
+- **Anschrift der Aufsichtsbehörde — offen, in `site/datenschutz.html`
+  als HTML-Kommentar markiert** (Abschnitt „Ihre Rechte als betroffene
+  Person" → „Recht auf Beschwerde bei einer Aufsichtsbehörde"). Zuständig
+  ist die Landesbeauftragte für Datenschutz und Informationsfreiheit
+  Nordrhein-Westfalen — aktuelle Anschrift/Telefon/E-Mail vor dem
+  Live-Gang aus einer offiziellen Quelle ergänzen, nicht recherchiert
+  oder geraten.
+- **Auftragsverarbeitungsvertrag (AVV/DPA) mit dem Hosting-Anbieter
+  (Vercel Inc.) abschließen bzw. prüfen, ob er automatisch Bestandteil
+  der Nutzungsbedingungen ist.** `site/datenschutz.html` beschreibt im
+  Abschnitt „Erhebung von Daten beim Besuch dieser Website (Hosting)"
+  bereits, dass eine Auftragsverarbeitung und eine Datenübermittlung in
+  die USA stattfindet — das operative Nachhalten (AVV vorhanden ja/nein)
+  muss der Betreiber übernehmen.
 
 # Wartungshinweise — doppelt gepflegte Angaben
 
