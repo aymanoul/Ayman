@@ -13,15 +13,24 @@ Vercel, das bleibt die eigentliche Zielumgebung.
   ("Dar as-Sunnah", Branch `claude/gracious-gates-n4j6z2`) über GitHub
   Pages — die durfte nicht angetastet oder überschrieben werden.
 - **Kein automatischer Sync.** `aymanoul/fahrstation-` enthält einen
-  statischen Build aus `site/` + `assets/`, umgebaut für GitHub Pages
-  (jede Unterseite als `name/index.html` statt `name.html`, damit
-  `/klasse-b` & Co. ohne Vercels `cleanUrls` funktionieren; die vier
-  gemeinsamen Dateien `design-tokens.css`/`styles.css`/`script.js`/
-  `manifest.json` über wurzel-absolute Pfade eingebunden;
-  `template.html` bewusst ausgeschlossen). **Bei jeder künftigen
-  Änderung an `site/` oder `assets/` muss dieser Build manuell neu
-  erzeugt und nach `aymanoul/fahrstation-` gepusht werden** — sonst
-  läuft die Pages-Version aus dem Ruder. Bislang übernehme ich das als
+  statischen Build aus `site/` + `assets/`, erzeugt von
+  `scripts/build-github-pages.py` (in diesem Repo, siehe dessen
+  Docstring für alle Details). Kurzfassung: jede Unterseite wird als
+  `name/index.html` statt `name.html` ausgegeben, damit `/klasse-b` &
+  Co. ohne Vercels `cleanUrls` funktionieren; alle internen Links und
+  die vier gemeinsamen Dateien (`design-tokens.css`/`styles.css`/
+  `script.js`/`manifest.json`) sind **komplett relativ** verlinkt statt
+  root-absolut — GitHub-Pages-Projektseiten laufen unter einem
+  Unterpfad (`/fahrstation-/...`), root-absolute Pfade wie
+  `/styles.css` würden diesen Präfix verlieren und ins Leere laufen
+  (genau das ist beim ersten Build passiert: komplett unstyled Seite,
+  seitdem behoben und mit einem echten Pfad-Präfix lokal
+  nachgestellt/verifiziert, nicht nur am Root getestet).
+  `template.html` wird bewusst nicht mit veröffentlicht. **Bei jeder
+  künftigen Änderung an `site/` oder `assets/` muss
+  `python3 scripts/build-github-pages.py` erneut laufen und das
+  Ergebnis nach `aymanoul/fahrstation-` gepusht werden** — sonst läuft
+  die Pages-Version aus dem Ruder. Bislang übernehme ich das als
   Teil derselben Session, in der ich die Änderung mache.
 - **Manueller Schritt für den Betreiber:** In den Settings von
   `aymanoul/fahrstation-` unter „Pages" die Source auf „Deploy from a
