@@ -6,25 +6,15 @@
   fehlen aber noch. Ein Impressum ist in Deutschland (§ 5 DDG, vormals TMG)
   für eine öffentlich erreichbare Website **gesetzlich vorgeschrieben**.
   Bevor die Domain öffentlich freigegeben wird, müssen beide Seiten stehen.
-- **Facebook-Seite ungeklärt.** Es ist nicht bestätigt, ob überhaupt eine
-  Facebook-Seite zur Fahrschule existiert. Der zuvor im Code hinterlegte Link
-  (`https://www.facebook.com/fahrstationduesseldorf`) wurde nicht verifiziert
-  und ist auf `index.html` als unbestätigt eingestuft worden. Das
-  Facebook-Icon im Footer von `index.html` ist deshalb vorerst auskommentiert
-  (nicht gelöscht) und im JSON-LD `sameAs` entfernt worden. Sobald geklärt
-  ist, ob/welche Facebook-Seite existiert: Icon wieder einkommentieren (oder
-  entfernen) und ggf. `sameAs` ergänzen — **in `index.html` UND, falls dort
-  ebenfalls unverändert übernommen, in `template.html`** (dort steht der
-  alte, unbestätigte Link aktuell noch unverändert, siehe Abweichungs-Hinweis
-  unten).
-- **Instagram-URL-Abweichung zwischen `index.html` und `template.html`.**
-  `index.html` verlinkt jetzt bewusst ohne „www." auf
-  `https://instagram.com/fahrschule_fahrstation` (explizite Vorgabe).
-  `template.html` verwendet an derselben Stelle weiterhin
-  `https://www.instagram.com/fahrschule_fahrstation` (mit „www."). Nicht
-  eigenmächtig angeglichen — bitte entscheiden, welche Variante für alle
-  Unterseiten gelten soll, dann einmalig in `template.html` und allen bereits
-  daraus erzeugten Seiten nachziehen.
+- ~~Facebook-Seite ungeklärt~~ — **erledigt.** Die Fahrschule hat
+  `https://www.facebook.com/fahrstationduesseldorf` bestätigt. Das Icon war
+  nur in `index.html` auskommentiert (alle anderen Dateien hatten es bereits
+  aktiv) — jetzt überall aktiv, plus in `index.html`s JSON-LD `sameAs`
+  ergänzt.
+- ~~Instagram-URL-Abweichung~~ — **erledigt.** Die Fahrschule hat
+  `https://www.instagram.com/fahrschule_fahrstation` bestätigt (mit „www.").
+  `index.html` verlinkte abweichend ohne „www." — jetzt auf die „www."-Form
+  vereinheitlicht, die alle anderen Dateien bereits verwendeten.
 
 # Wartungshinweise — doppelt gepflegte Angaben
 
@@ -77,14 +67,14 @@ hiervon nicht betroffen.
 
 ## Social-Links (Instagram, Facebook)
 
-- `site/index.html` — Footer, JSON-LD (`sameAs`). **Stand jetzt abweichend**
-  von den übrigen Dateien: Instagram ohne „www.", Facebook-Icon
-  auskommentiert und aus `sameAs` entfernt (unbestätigte URL) — Details und
-  offene Entscheidung siehe „VOR DEM LIVE-GANG ZWINGEND ERLEDIGEN" oben.
-- `site/template.html` — Footer (noch der alte Stand: Instagram mit „www.",
-  Facebook-Link aktiv/unbestätigt)
-- `site/404.html` — Footer (vermutlich ebenfalls alter Stand, nicht Teil
-  dieser Aufgabe geprüft)
+Beide URLs sind bestätigt (Instagram `https://www.instagram.com/fahrschule_fahrstation`,
+Facebook `https://www.facebook.com/fahrstationduesseldorf`) und stehen jetzt
+einheitlich in allen Dateien: Footer überall, JSON-LD `sameAs` nur in
+`site/index.html` (einzige Datei mit Organization-Schema).
+
+- `site/index.html` — Footer, JSON-LD (`sameAs`)
+- `site/template.html` — Footer
+- `site/404.html` — Footer
 - **Jede aus `template.html` erzeugte Unterseite** — Footer, erbt den Stand
   von `template.html`
 
