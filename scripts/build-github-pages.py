@@ -44,15 +44,19 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_OUT
 
 NESTED_PAGES = [
     "klasse-a", "klasse-b", "klasse-c", "klasse-d",
-    "theorie", "ueber-uns", "impressum", "datenschutz",
+    "theorie", "ueber-uns", "impressum", "datenschutz", "seminare",
 ]
 
 # (Original-Attribut) -> (Ersatz für Root-Seiten, Ersatz für eine Ebene tief)
+# Hinweis für künftige Nav-Änderungen: taucht hier ein "Erwartet mindestens
+# 1 Treffer"-Fehler auf, heißt das i. d. R. genau das, was gerade passiert
+# ist -- ein Linkziel in site/ hat sich geändert (z. B. Platzhalter-Anker
+# durch eine echte Unterseite ersetzt) und diese Liste muss nachgezogen
+# werden: alten Eintrag anpassen/entfernen, ggf. neue Unterseite oben in
+# NESTED_PAGES ergänzen.
 NAV_REWRITES = [
     ('href="/"',            'href="./"',            'href="../"'),
-    ('href="/#ablauf"',     'href="#ablauf"',        'href="../#ablauf"'),
     ('href="/#kontakt"',    'href="#kontakt"',       'href="../#kontakt"'),
-    ('href="/#vertrauen"',  'href="#vertrauen"',     'href="../#vertrauen"'),
     ('href="/datenschutz"', 'href="datenschutz/"',   'href="../datenschutz/"'),
     ('href="/impressum"',   'href="impressum/"',     'href="../impressum/"'),
     ('href="/klasse-a"',    'href="klasse-a/"',      'href="../klasse-a/"'),
@@ -60,6 +64,8 @@ NAV_REWRITES = [
     ('href="/klasse-c"',    'href="klasse-c/"',      'href="../klasse-c/"'),
     ('href="/klasse-d"',    'href="klasse-d/"',      'href="../klasse-d/"'),
     ('href="/theorie"',     'href="theorie/"',       'href="../theorie/"'),
+    ('href="/ueber-uns"',   'href="ueber-uns/"',     'href="../ueber-uns/"'),
+    ('href="/seminare"',    'href="seminare/"',      'href="../seminare/"'),
 ]
 
 # Die vier gemeinsamen Dateien: am Root bleiben sie bare-relativ (die
