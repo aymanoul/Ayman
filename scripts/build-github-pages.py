@@ -45,6 +45,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_OUT
 NESTED_PAGES = [
     "klasse-a", "klasse-b", "klasse-c", "klasse-d",
     "theorie", "ueber-uns", "impressum", "datenschutz", "seminare",
+    "kontakt",
 ]
 
 # (Original-Attribut) -> (Ersatz für Root-Seiten, Ersatz für eine Ebene tief)
@@ -56,7 +57,7 @@ NESTED_PAGES = [
 # NESTED_PAGES ergänzen.
 NAV_REWRITES = [
     ('href="/"',            'href="./"',            'href="../"'),
-    ('href="/#kontakt"',    'href="#kontakt"',       'href="../#kontakt"'),
+    ('href="/kontakt"',     'href="kontakt/"',       'href="../kontakt/"'),
     ('href="/datenschutz"', 'href="datenschutz/"',   'href="../datenschutz/"'),
     ('href="/impressum"',   'href="impressum/"',     'href="../impressum/"'),
     ('href="/klasse-a"',    'href="klasse-a/"',      'href="../klasse-a/"'),

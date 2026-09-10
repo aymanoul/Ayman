@@ -39,6 +39,21 @@ Vercel, das bleibt die eigentliche Zielumgebung.
 
 # VOR DEM LIVE-GANG ZWINGEND ERLEDIGEN
 
+- **OFFEN: Kontaktformular-Dienst wählen und Datenschutzerklärung nachziehen.**
+  `site/kontakt.html` ist fertig gebaut, sendet aber noch nichts: die
+  Endpunkt-URL in `site/script.js` (Konstante `CONTACT_FORM_ENDPOINT`, ganz
+  oben, die einzige Stelle) ist leer. Solange sie leer ist, prüft das
+  Formular nur die Eingaben und zeigt den Hinweis, stattdessen anzurufen.
+
+  Sobald ein Dienst (z. B. Formspree, Web3Forms) eingetragen ist, **muss**
+  der Abschnitt „Kontaktformular" in `site/datenschutz.html` angepasst
+  werden. Dort steht derzeit sinngemäß, dass keine Daten übertragen werden —
+  das stimmt dann nicht mehr. Zu ergänzen sind:
+  Name des Auftragsverarbeiters, Serverstandort, Rechtsgrundlage
+  (Art. 6 Abs. 1 lit. b bzw. f DSGVO), Speicherdauer und der Hinweis auf den
+  abgeschlossenen AV-Vertrag. Ohne diese Ergänzung ist das Formular nicht
+  DSGVO-konform.
+
 - ~~`/impressum` existiert noch nicht~~ — **erledigt.** `site/impressum.html`
   ist angelegt, Inhalt wortwörtlich aus dem alten Impressum übernommen.
   Die Footer-Links auf `/impressum` und `/datenschutz` wurden in allen 10
