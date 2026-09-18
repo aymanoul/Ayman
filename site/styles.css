@@ -343,8 +343,9 @@ section {
   color: var(--text-light);
   animation: hero-enter-title 400ms ease-out both;
   animation-delay: 80ms;
-  /* STUFE-1-VORSCHAU, noch nicht committet: Schräg-Effekt exemplarisch nur
-     hier getestet, bevor er projektweit in eine zentrale Klasse wandert.
+  /* STUFE-1-VORSCHAU, noch nicht für den Rollout freigegeben: Schräg-Effekt
+     exemplarisch nur hier getestet, bevor er projektweit in eine zentrale
+     Klasse wandert.
      transform-origin: left bottom verankert die Grundlinie der ERSTEN Zeile
      an ihrer eigenen linken Kante statt an der Blockmitte (Standardwert),
      sonst würde der zweizeilige Text als Ganzes nach links aus dem
