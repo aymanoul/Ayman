@@ -111,6 +111,25 @@ Vercel, das bleibt die eigentliche Zielumgebung.
   die USA stattfindet — das operative Nachhalten (AVV vorhanden ja/nein)
   muss der Betreiber übernehmen.
 
+# Offene Inhaltspunkte
+
+- ~~„12 Jahre“ (Kennzahl) vs. „Seit 10 Jahren“ (Laufband)~~ — **erledigt.**
+  Die Fahrschule gibt es seit **2018**. Überall steht jetzt „Seit 2018 in
+  Düsseldorf“ statt einer Anzahl von Jahren (die wäre sonst jedes Jahr
+  veraltet) — Stellen siehe „Gründungsjahr (2018)“ weiter unten.
+- **Sprachenliste — offen.** Die Startseite zeigt in der Bewertungs-Karte
+  Flaggen für Deutschland, Großbritannien, Palästina, Türkei, Kroatien und
+  Marokko (Screenreader: Deutsch, Englisch, Arabisch, Türkisch, Kroatisch,
+  Marokkanisch), `site/ueber-uns.html` nennt dagegen nur Deutsch, Englisch
+  und Arabisch. Zu klären mit der Fahrschule: Welche Sprachen werden
+  tatsächlich angeboten, und welche Flagge steht für Arabisch bzw. den
+  marokkanischen Dialekt (Palästina/Marokko)? Die Liste steht außerdem als
+  HTML-Kommentar in `#vertrauen` (`site/index.html`).
+- **Quelle der Bewertungszahlen 5,0 / 1200+ — offen.** Die Werte stehen nur
+  im Markup (Bewertungs-Karte in `#vertrauen`, Laufband, Meta-Beschreibung
+  „5,0 Sterne“), ohne dokumentierte Quelle und ohne Stand-Datum. Klären,
+  woher sie stammen und wie sie aktuell gehalten werden.
+
 # Wartungshinweise — doppelt gepflegte Angaben
 
 Header und Footer werden bewusst auf jeder Seite als eigenes HTML dupliziert
@@ -179,6 +198,16 @@ einheitlich in allen Dateien: Footer überall, JSON-LD `sameAs` nur in
 - `site/template.html` — Footer-Copyright
 - `site/404.html` — Footer-Copyright
 - **Jede aus `template.html` erzeugte Unterseite** — Footer-Copyright
+
+## Gründungsjahr (Seit 2018 in Düsseldorf)
+
+Bewusst als „seit 2018“ formuliert, nicht als Anzahl von Jahren.
+
+- `site/index.html` — Laufband (`.hero-ticker`, zwei identische Kopien),
+  Bewertungs-Karte in `#vertrauen` (Unterzeile und Screenreader-Satz),
+  JSON-LD (`foundingDate`)
+- `site/ueber-uns.html` — Meta-Description und Fließtext („Seit 2018 in
+  Düsseldorf haben wir vieles erlebt …“)
 
 ## Nicht dupliziert (bewusst nur an einer Stelle)
 
