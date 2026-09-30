@@ -133,6 +133,24 @@ Vercel, das bleibt die eigentliche Zielumgebung.
   `https://clickclickdrive.de/school/fahrstation-duesseldorf` (dort sind alle
   Bewertungen einsehbar; öffnet in neuem Tab, ohne sichtbaren Hinweis).
 
+# Schimmer je Sektion (`.shine`)
+
+Jede Sektion außer Hero, Navigation, Footer und den Textkörpern
+(`.page-body`) trägt einen eigenen Lichtschein, nur per Klassen am
+vorhandenen `<section>` gesetzt (Regeln in `site/styles.css`, Abschnitt
+„Schimmer“; Bewegung/Sichtbarkeit in `initAurora()` in `site/script.js`):
+
+- `shine` + `shine--gold` (dunkle Sektion, gelbe Bänder, wandern langsam,
+  nur im Sichtbereich, höchstens zwei gleichzeitig) oder `shine--silver`
+  (helle Sektion, statischer Glanz, Grauschleier höchstens 4 %).
+- Ecke: `shine--tl` / `--tr` / `--bl` / `--br`. Sie wechselt von Sektion zu
+  Sektion.
+- `shine--soft` dämpft Gold dort, wo Text über dem Schimmer steht — der
+  Kontrast Text/Hintergrund muss an der hellsten Stelle mindestens 4,5:1
+  bleiben. Bei neuen Sektionen oder geändertem Text neu prüfen.
+- Neue dunkle/helle Sektion? Klassen ergänzen, sonst nichts. Der Schimmer
+  läuft zu allen Kanten weich aus; die Kante zur Nachbarsektion bleibt hart.
+
 # Wartungshinweise — doppelt gepflegte Angaben
 
 Header und Footer werden bewusst auf jeder Seite als eigenes HTML dupliziert
