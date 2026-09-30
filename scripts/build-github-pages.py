@@ -31,7 +31,9 @@ Aufruf: python3 scripts/build-github-pages.py [ZIEL-VERZEICHNIS]
   README.md im Ziel werden nicht angefasst -- alles andere wird geleert
   und neu geschrieben.
 """
+import hashlib
 import os
+import re
 import shutil
 import sys
 
@@ -111,6 +113,26 @@ def replace_min(text, old, new, minimum=1):
     return text.replace(old, new)
 
 
+def version_tag(path):
+    """Kurzer Inhalts-Hash: ändert sich genau dann, wenn sich die Datei ändert."""
+    with open(path, "rb") as f:
+        return hashlib.sha1(f.read()).hexdigest()[:8]
+
+
+def add_cache_busters(html, versions):
+    """Hängt ?v=<Hash> an CSS/JS-Verweise. GitHub Pages liefert Dateien mit
+    max-age=600; ohne Versionsnummer bekommen Besucher nach einem Update bis
+    zu 10 Minuten lang neues HTML mit altem CSS/JS (z. B. neuer Link, aber
+    noch das alte Unterstreichen-Verhalten). Nur im Spiegel -- site/ bleibt
+    unverändert."""
+    def repl(m):
+        return '%s="%s%s?v=%s"' % (m.group(1), m.group(2), m.group(3), versions[m.group(3)])
+    html, n = re.subn(r'(href|src)="((?:\.\./)?)(design-tokens\.css|styles\.css|script\.js)"', repl, html)
+    if n != 3:
+        raise SystemExit(f"Cache-Buster: erwartet 3 Verweise pro Seite, gefunden {n}")
+    return html
+
+
 def rewrite_page(html, depth):
     """depth: 0 = Root-Seite (index.html, 404.html), 1 = eine Ebene tief."""
     for old, root_new, nested_new in NAV_REWRITES:
@@ -162,12 +184,17 @@ def main():
 
     shutil.copytree(ASSETS, os.path.join(OUT, "assets"))
 
+    versions = {
+        f: version_tag(os.path.join(OUT, f))
+        for f in ("design-tokens.css", "styles.css", "script.js")
+    }
+
     for name in ["index.html", "404.html"]:
-        html = rewrite_page(read(os.path.join(SITE, name)), depth=0)
+        html = add_cache_busters(rewrite_page(read(os.path.join(SITE, name)), depth=0), versions)
         write(os.path.join(OUT, name), html)
 
     for name in NESTED_PAGES:
-        html = rewrite_page(read(os.path.join(SITE, f"{name}.html")), depth=1)
+        html = add_cache_busters(rewrite_page(read(os.path.join(SITE, f"{name}.html")), depth=1), versions)
         write(os.path.join(OUT, name, "index.html"), html)
 
     # Verhindert, dass GitHub die Dateien durch Jekyll verarbeitet.
