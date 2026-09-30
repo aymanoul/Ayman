@@ -129,6 +129,9 @@ Vercel, das bleibt die eigentliche Zielumgebung.
   im Markup (Bewertungs-Karte in `#vertrauen`, Laufband, Meta-Beschreibung
   „5,0 Sterne“), ohne dokumentierte Quelle und ohne Stand-Datum. Klären,
   woher sie stammen und wie sie aktuell gehalten werden.
+  Die Bewertungs-Karte verlinkt auf
+  `https://clickclickdrive.de/school/fahrstation-duesseldorf` (dort sind alle
+  Bewertungen einsehbar; öffnet in neuem Tab, ohne sichtbaren Hinweis).
 
 # Wartungshinweise — doppelt gepflegte Angaben
 
