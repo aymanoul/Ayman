@@ -133,7 +133,7 @@ Vercel, das bleibt die eigentliche Zielumgebung.
   `https://clickclickdrive.de/school/fahrstation-duesseldorf` (dort sind alle
   Bewertungen einsehbar; öffnet in neuem Tab, ohne sichtbaren Hinweis).
 
-# Schimmer je Sektion (`.shine`)
+# Schimmer je Sektion (`.shine`) und gefaste Sektionsecken (`.notch-*`)
 
 Jede Sektion außer Hero, Navigation, Footer und den Textkörpern
 (`.page-body`) trägt einen eigenen Lichtschein, nur per Klassen am
@@ -145,11 +145,20 @@ vorhandenen `<section>` gesetzt (Regeln in `site/styles.css`, Abschnitt
   (helle Sektion, statischer Glanz, Grauschleier höchstens 4 %).
 - Ecke: `shine--tl` / `--tr` / `--bl` / `--br`. Sie wechselt von Sektion zu
   Sektion.
-- `shine--soft` dämpft Gold dort, wo Text über dem Schimmer steht — der
+- `shine--strong` (Gold kräftiger, ab 768 px) nur dort, wo kein Text
+  davorsteht; `shine--soft` dämpft Gold dort, wo Text darüber steht — der
   Kontrast Text/Hintergrund muss an der hellsten Stelle mindestens 4,5:1
   bleiben. Bei neuen Sektionen oder geändertem Text neu prüfen.
+- Grenzen zwei gleichfarbige Sektionen aneinander, laufen sie ineinander:
+  `shine--join-b` an der oberen, `shine--join-t` an der unteren Sektion
+  (gleiche Ecke spiegelbildlich, z. B. `--br` und `--tr`). `initAurora()`
+  richtet dann das Streifenmuster an der Naht aus (`--shine-phase`).
+- Gefaste Ecken (Fase = `--badge-notch`) haben dunkle Sektionen nur dort,
+  wo sie an eine helle Fläche grenzen: `notch-t` (oben), `notch-b` (unten),
+  `notch-tb` (beides). Hinter der Fase scheint auf den Unterseiten das
+  weiße `body` durch, auf der Startseite `main.home-main`.
 - Neue dunkle/helle Sektion? Klassen ergänzen, sonst nichts. Der Schimmer
-  läuft zu allen Kanten weich aus; die Kante zur Nachbarsektion bleibt hart.
+  läuft zu allen Kanten weich aus, außer an `join`-Kanten.
 
 # Wartungshinweise — doppelt gepflegte Angaben
 
