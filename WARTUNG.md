@@ -133,7 +133,7 @@ Vercel, das bleibt die eigentliche Zielumgebung.
   `https://clickclickdrive.de/school/fahrstation-duesseldorf` (dort sind alle
   Bewertungen einsehbar; öffnet in neuem Tab, ohne sichtbaren Hinweis).
 
-# Schimmer je Sektion (`.shine`) und gefaste Sektionsecken (`.notch-*`)
+# Schimmer je Sektion (`.shine`) und abgerundete Sektionsecken (`.round-*`)
 
 Jede Sektion außer Hero, Navigation, Footer und den Textkörpern
 (`.page-body`) trägt einen eigenen Lichtschein, nur per Klassen am
@@ -153,10 +153,12 @@ vorhandenen `<section>` gesetzt (Regeln in `site/styles.css`, Abschnitt
   `shine--join-b` an der oberen, `shine--join-t` an der unteren Sektion
   (gleiche Ecke spiegelbildlich, z. B. `--br` und `--tr`). `initAurora()`
   richtet dann das Streifenmuster an der Naht aus (`--shine-phase`).
-- Gefaste Ecken (Fase = `--badge-notch`) haben dunkle Sektionen nur dort,
-  wo sie an eine helle Fläche grenzen: `notch-t` (oben), `notch-b` (unten),
-  `notch-tb` (beides). Hinter der Fase scheint auf den Unterseiten das
-  weiße `body` durch, auf der Startseite `main.home-main`.
+- Abgerundete Ecken (`--section-radius`, 24 px mobil / 40 px ab 768 px, bewusst
+  kein Halbkreis) haben dunkle Sektionen nur dort, wo sie an eine helle
+  Fläche grenzen: `round-t` (oben), `round-b` (unten). Ganz oben unter der
+  Kopfleiste bleiben Hero und Seitenkopf glatt. Den Zwickel hinter der
+  Rundung füllt ein Box-Shadow in der Farbe der Nachbarfläche
+  (`--wedge-above` / `--wedge-below`, Startseite Hellgrau, sonst Weiß).
 - Neue dunkle/helle Sektion? Klassen ergänzen, sonst nichts. Der Schimmer
   läuft zu allen Kanten weich aus, außer an `join`-Kanten.
 
