@@ -270,3 +270,4 @@ Alle Buttons (keine Textlinks, `.nav-toggle` ausgenommen) sind im Gold-Metall-Lo
 - Zustände: Hover nur mit Maus (Lichtstreifen einmal 600 ms), gedrückt (2,5 px einsinken, Touch: Blitz 250 ms), Fokus per Tastatur als Doppelring; unter `prefers-reduced-motion` ohne Streifen/Einsinken.
 - Hero-Maße sind fixiert: 1440px 243,33×56 / 195,91×56, 390px 167,5×44 / 131,94×44. Beim Ändern von Padding/Border der `.ghost-btn` neu messen.
 - `.contact-action` nutzt `metal--chamfer`: Rechteck mit vier Fasen (`--badge-notch`, wie `.location-card`). Innenfase = Außenfase − 0,586 × Randbreite, im CSS mit `--c1`/`--c2` umgesetzt.
+- „Absenden“ (`.contact-form__submit`) ist `metal--chamfer metal--wide`: volle Breite, Fase `--badge-notch`, Pfeil `.contact-form__arrow` (4 px nach rechts bei Maus-Hover, nicht bei reduced-motion). Die Formular-Logik greift per `.contact-form__submit` auf den Button zu — Klasse und `type="submit"` beibehalten.
