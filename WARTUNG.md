@@ -257,3 +257,15 @@ in `assets/vehicles/` ersetzen, Dateinamen beibehalten — dann ist kein
 Code-Eingriff in `site/template.html` oder in einer daraus erzeugten
 Klassen-Seite nötig. LKW- (`klasse-c-lkw.*`) und Bus-Foto
 (`klasse-d-bus.*`) bleiben bestehen.
+
+## Gold-Metall-Buttons
+
+Alle Buttons (keine Textlinks, `.nav-toggle` ausgenommen) sind im Gold-Metall-Look. Stile am Ende von `site/styles.css`, Abschnitt „Gold-Metall-Buttons“.
+
+- Drei Stufen über Klassen am Wrapper: `metal--p1` (Primär, Gold), `metal--p2` (Schwarz-Chrom), `metal--p3` (Icon/Pfeile).
+- **Runde Buttons** (`.ghost-btn`, `.btn-primary`): direkt gestylt, keine Markup-Änderung nötig.
+- **Geschnittene Buttons** (`.btn-signage`, `.contact-action`, Karussell-Pfeile): `<span class="metal metal--hex metal--sig|metal--block metal--pN"><a class="metal__btn …">…</a></span>`. Der Wrapper ist ungeschnitten und trägt Schatten, Rahmen und Zustände, weil `clip-path` am Element selbst `filter`/`box-shadow` abschneidet. Neuer Button = Wrapper + `metal__btn` an das Innenelement.
+- Pfeile baut `makeArrow()` in `script.js` samt Wrapper; `setArrow()` schaltet `is-hidden` am Wrapper.
+- Mobile Anruf-Leiste: nur Metall-Fläche, kein Rahmen/Schatten/Einsinken.
+- Zustände: Hover nur mit Maus (Lichtstreifen einmal 600 ms), gedrückt (2,5 px einsinken, Touch: Blitz 250 ms), Fokus per Tastatur als Doppelring; unter `prefers-reduced-motion` ohne Streifen/Einsinken.
+- Hero-Maße sind fixiert: 1440px 243,33×56 / 195,91×56, 390px 167,5×44 / 131,94×44. Beim Ändern von Padding/Border der `.ghost-btn` neu messen.
