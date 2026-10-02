@@ -272,3 +272,14 @@ Alle Buttons (keine Textlinks, `.nav-toggle` ausgenommen) sind im Gold-Metall-Lo
 - `.contact-action` nutzt `metal--chamfer`: Rechteck mit vier Fasen (`--badge-notch`, wie `.location-card`). Innenfase = Außenfase − 0,586 × Randbreite, im CSS mit `--c1`/`--c2` umgesetzt.
 - „Absenden“ (`.contact-form__submit`) ist `metal--chamfer metal--wide`: volle Breite, Fase `--badge-notch`, Pfeil `.contact-form__arrow` (4 px nach rechts bei Maus-Hover, nicht bei reduced-motion). Die Formular-Logik greift per `.contact-form__submit` auf den Button zu — Klasse und `type="submit"` beibehalten.
 - „Jetzt voranmelden“ (`.kb-cta`, 7 Unterseiten) nutzt denselben Stil: `<span class="metal metal--chamfer metal--cta metal--p1"><a class="metal__btn btn-signage …">Label + <span class="metal__arrow" aria-hidden="true">→</span></a></span>` — Fase, kein Schrägstreifen, Pfeil gleitet bei Maus-Hover 4 px. `metal--wide` = volle Breite (Formular), `metal--cta` = Inhaltsbreite.
+
+## FAQ „Häufige Fragen“ (nur Startseite)
+
+Abschnitt `#faq` in `site/index.html` zwischen Kontaktbereich und Footer; Regeln am Ende von `site/styles.css` („FAQ …“), Funktion `initFaq()` in `site/script.js`.
+
+- **Texte stehen an zwei Stellen** und müssen gemeinsam geändert werden: sichtbar im HTML (5 `<details class="faq-item">`) und als `FAQPage`-JSON-LD im `<head>` (zweiter `application/ld+json`-Block, Klartext ohne Links, identisch zum sichtbaren Text).
+- **Offener Punkt:** Die FAQ-Texte müssen von der Fahrschule freigegeben werden. Auf der übrigen Seite nicht belegt: gültiger Ausweis und biometrisches Passfoto für den Antrag, „Beim Antrag helfen wir dir gerne“, Sonderfahrten (Überland, Autobahn, Nacht), „in deinem Tempo / ehrlich sagen, wann du bereit bist“ und das persönliche Angebot statt Preisangabe.
+- Telefon-/WhatsApp-Links in der Antwort „Wann erreiche ich euch?“ haben dieselben Ziele wie die Kontakt-Links der Seite; die Klassen-Links zeigen auf `/klasse-a` … `/klasse-d`.
+- Aufbau: native `<details>`/`<summary>` (läuft ohne JS, mehrere Karten gleichzeitig offen). Karte = Zwei-Ebenen-Technik mit Fasen (`--badge-notch`), Schein und Fokus-Ring als `drop-shadow` am ungeschnittenen `<details>`.
+- Animation: Auf-/Zuklappen per CSS (`::details-content` + `interpolate-size`), in Safari/iOS animiert `initFaq()` die Höhe per Web Animations. Dazu Text-Einblendung, federndes Plus, gestaffelter Eintritt beim Scrollen (`.faq--pending` → `.is-inview`). Mit reduzierter Bewegung steht alles sofort da.
+- Helle Sektion zwischen zwei dunklen: der Kontaktbereich trägt deshalb zusätzlich `round-b`, der Footer `round-t` (Zwickelfarbe `--wedge-above` in `styles.css`).
