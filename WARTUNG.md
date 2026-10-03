@@ -283,3 +283,9 @@ Abschnitt `#faq` in `site/index.html` zwischen Kontaktbereich und Footer; Regeln
 - Aufbau: native `<details>`/`<summary>` (läuft ohne JS). Die erste Frage ist per `open`-Attribut vorgeöffnet; mit JS ist immer nur eine Antwort offen (`initFaq()` schließt die anderen über das `toggle`-Event), ohne JS können mehrere offen sein. Karte = Zwei-Ebenen-Technik mit Fasen (`--badge-notch`), Schein und Fokus-Ring als `drop-shadow` am ungeschnittenen `<details>`.
 - Animation: Auf-/Zuklappen per CSS (`::details-content` + `interpolate-size`), in Safari/iOS animiert `initFaq()` die Höhe per Web Animations. Dazu Text-Einblendung, federndes Plus, gestaffelter Eintritt beim Scrollen (`.faq--pending` → `.is-inview`). Mit reduzierter Bewegung steht alles sofort da.
 - Helle Sektion zwischen zwei dunklen: der Kontaktbereich trägt deshalb zusätzlich `round-b`, der Footer `round-t` (Zwickelfarbe `--wedge-above` in `styles.css`).
+
+## Hero „Jetzt anrufen“ als Milchglas (`.ghost-btn--glass`)
+
+- Nur dieser Button (`index.html`, Hero) ist Milchglas: halbtransparentes Weiß (16 %, Hover 24 %), `backdrop-filter: blur(12px) saturate(140%)` (mit `-webkit-`), dunkler Schleier `--veil` (`--primary` 20 %) für den Kontrast, 2px-Goldrand als echter `border`, Glanz in `::before`. Schatten und Fokus-Ring per `box-shadow`.
+- **Der Blur funktioniert nur, solange kein `filter`, `clip-path`, `mask`, `opacity < 1`, `will-change` oder eine gehaltene opacity/transform-Animation am Button oder an einem Elternelement bis zum Video liegt** (Backdrop-Root). Deshalb steht `.hero-section__actions` auf `animation: hero-enter … backwards` statt `both` — bitte nicht zurückstellen.
+- Ohne `backdrop-filter`-Unterstützung greift `@supports not`: `--primary` 45 % statt Glas.
