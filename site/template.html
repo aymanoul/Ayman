@@ -111,13 +111,30 @@
   </div>
 
   <main id="page-content">
-    <!-- page-header--with-photo ist nur für die vier Klassen-Seiten gedacht
+    <!-- page-header--cover ist nur für die vier Klassen-Seiten gedacht
          (Fahrzeugfoto vorhanden). Für Seiten ohne Foto (z. B. Theorie, Über
-         uns) die Modifier-Klasse hier UND den kompletten
-         .page-header__photo-Block weiter unten entfernen — .page-header
-         funktioniert auch ohne beides unverändert wie zuvor (siehe
-         site/404.html). -->
-    <section class="page-header page-header--with-photo shine shine--gold shine--soft shine--tr round-b">
+         uns) stattdessen <section class="page-header"> ohne
+         .page-header__bg-Block und ohne .page-header__facts verwenden —
+         .page-header funktioniert auch ohne beides (siehe site/404.html).
+         Die Modifier-Klasse page-header--klasse-X wählt den Bildausschnitt
+         (Werte in styles.css, Abschnitt „Kopfbereich der Klassen-Seiten“). -->
+    <!-- ===== PRO SEITE ANPASSEN: page-header--klasse-a/-b/-c/-d ===== -->
+    <section class="page-header page-header--cover page-header--klasse-a">
+      <!-- TEMPORÄR: Motorrad- und Auto-Foto werden später an derselben
+           Location wie LKW/Bus neu fotografiert und ausgetauscht. Beim
+           Austausch nur die Dateien in assets/vehicles/ ersetzen,
+           Dateinamen beibehalten — dann ist kein Code-Eingriff nötig.
+           LKW- und Bus-Foto bleiben bestehen. -->
+      <!-- ===== PRO SEITE ANPASSEN: srcset/src/alt der drei folgenden
+           Zeilen auf das Fahrzeugfoto dieser Klasse setzen — sonst nichts
+           an diesem Block ändern. ===== -->
+      <figure class="page-header__bg">
+        <picture>
+          <source srcset="../assets/vehicles/klasse-a-motorrad.webp" type="image/webp">
+          <img src="../assets/vehicles/klasse-a-motorrad.jpg" alt="Fahrschulmotorrad der Fahrstation vor dem Ladenlokal an der Kölner Straße in Düsseldorf" fetchpriority="high">
+        </picture>
+      </figure>
+      <!-- ===== ENDE ANPASSEN ===== -->
       <div class="page-header__inner">
         <div class="page-header__text">
           <nav class="breadcrumb" aria-label="Brotkrumen">
@@ -131,26 +148,15 @@
 
           <!-- Untertitel ist optional — die ganze <p> entfernen, falls nicht gebraucht -->
           <p class="page-header__subtitle">[OPTIONALER UNTERTITEL]</p>
+          <!-- Info-Schilder: 2–3 kurze Fakten, NUR aus Text, der auf derselben
+               Seite steht (z. B. Mindestalter). Ohne passende Fakten die ganze
+               <ul> entfernen. -->
+          <ul class="page-header__facts" aria-label="Auf einen Blick">
+            <li>[FAKT 1]</li>
+            <li>[FAKT 2]</li>
+          </ul>
           <!-- ===== ENDE ANPASSEN ===== -->
         </div>
-
-        <!-- TEMPORÄR: Motorrad- und Auto-Foto werden später an derselben
-             Location wie LKW/Bus neu fotografiert und ausgetauscht. Beim
-             Austausch nur die Dateien in assets/vehicles/ ersetzen,
-             Dateinamen beibehalten — dann ist kein Code-Eingriff nötig.
-             LKW- und Bus-Foto bleiben bestehen. -->
-        <!-- ===== PRO SEITE ANPASSEN: srcset/src/alt der drei folgenden
-             Zeilen auf das Fahrzeugfoto dieser Klasse setzen — sonst nichts
-             an diesem Block ändern. ===== -->
-        <figure class="page-header__photo">
-          <span class="signage-frame">
-            <picture>
-              <source srcset="../assets/vehicles/klasse-a-motorrad.webp" type="image/webp">
-              <img class="signage-frame__img" src="../assets/vehicles/klasse-a-motorrad.jpg" alt="Fahrschulmotorrad der Fahrstation vor dem Ladenlokal an der Kölner Straße in Düsseldorf" fetchpriority="high">
-            </picture>
-          </span>
-        </figure>
-        <!-- ===== ENDE ANPASSEN ===== -->
       </div>
     </section>
 
