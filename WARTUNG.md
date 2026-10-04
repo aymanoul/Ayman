@@ -132,6 +132,10 @@ Vercel, das bleibt die eigentliche Zielumgebung.
   Die Bewertungs-Karte verlinkt auf
   `https://clickclickdrive.de/school/fahrstation-duesseldorf` (dort sind alle
   Bewertungen einsehbar; öffnet in neuem Tab, ohne sichtbaren Hinweis).
+- Warum Fahrstation: Sprachen (Englisch, Arabisch) und Quelle 5,0 vom Inhaber
+  bestätigen lassen; weitere mögliche Punkte erst nach seinem Ja aufnehmen.
+  (Startseite, Abschnitt `#warum`, Karte 3 — dort als HTML-Kommentar
+  `OFFEN` markiert.)
 
 # Schimmer je Sektion (`.shine`) und abgerundete Sektionsecken (`.round-*`)
 
