@@ -1,0 +1,35 @@
+1:"$Sreact.fragment"
+2:I[5014,["/Ayman/_next/static/chunks/3ri-4e-wwkzmk.js","/Ayman/_next/static/chunks/192c79n6pgeth.js","/Ayman/_next/static/chunks/1dcw84i24zfqu.js"],"default"]
+3:I[63733,["/Ayman/_next/static/chunks/3ri-4e-wwkzmk.js","/Ayman/_next/static/chunks/192c79n6pgeth.js","/Ayman/_next/static/chunks/1dcw84i24zfqu.js"],"PrayerMonth"]
+4:I[97367,["/Ayman/_next/static/chunks/3ri-4e-wwkzmk.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+9:I[97367,["/Ayman/_next/static/chunks/3ri-4e-wwkzmk.js"],"ViewportBoundary"]
+a:I[97367,["/Ayman/_next/static/chunks/3ri-4e-wwkzmk.js"],"MetadataBoundary"]
+8:X
+1a:X
+1a:C
+0:{"buildId":"kb5zDG6DQJqMo97Uvd0js","data":[{"rsc":["$","$1","c",{"children":[[["$","section",null,{"className":"on-dark relative overflow-hidden bg-navy text-white pt-20 no-print","children":["$","div",null,{"className":"mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28","children":["$","div",null,{"className":"grid items-center gap-10 lg:grid-cols-12 lg:gap-16","children":[["$","div",null,{"className":"lg:col-span-7","children":[["$","p",null,{"className":"inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-gold-light ","children":[["$","span",null,{"aria-hidden":true,"className":"h-px w-8 bg-gold-light"}],"Gebetszeiten"]}],["$","h1",null,{"className":"font-extrabold tracking-tight text-[2.5rem] leading-[1.05] sm:text-6xl lg:text-7xl text-white mt-6","children":["Unser"," ",["$","span",null,{"className":"text-gold","children":"Gebetsplan"}],null,"$undefined"]}],["$","p",null,{"className":"mt-6 max-w-xl text-white/85","children":"Beginn und Iqāma für jeden Tag. Die Iqāma ist der zweite Aufruf, mit ihr beginnt das gemeinsame Gebet."}],["$","div",null,{"className":"mt-8 flex flex-wrap items-center gap-x-8 gap-y-4","children":["$","a",null,{"href":"https://mawaqit.net/de/msjd-lsn-ratingen-40878-germany","className":"inline-flex items-center justify-center gap-2 rounded-sm font-semibold tracking-wide transition-colors min-h-12 px-6 text-sm border-2 border-white/70 text-white hover:bg-white hover:text-navy ","target":"_blank","rel":"noopener noreferrer","children":["Zeiten auch in der MAWAQIT-App",["$","$L2",null,{"icon":{"name":"arrow-up-right","size":24,"node":[["path",{"d":"M7 7h10v10","key":"1tivn9"}],["path",{"d":"M7 17 17 7","key":"1vkiza"}]]},"className":"size-4","aria-hidden":true}]]}]}]]}],["$","div",null,{"className":"lg:col-span-5","children":["$","div",null,{"className":"aspect-[4/3] w-full overflow-hidden","children":["$","img",null,{"src":"/Ayman/images/gebetsraum-1280.webp","srcSet":"/Ayman/images/gebetsraum-640.webp 640w, /Ayman/images/gebetsraum-960.webp 960w, /Ayman/images/gebetsraum-1280.webp 1280w, /Ayman/images/gebetsraum-1920.webp 1920w","sizes":"(min-width: 1024px) 440px, 100vw","width":1920,"height":1081,"alt":"Gebetsraum der Masjid As-Sunnah: eine helle Gebetsnische mit blauem Gebetsteppich davor, links ein Tisch mit Mikrofon, rechts ein Aufsteller zum Projekt Neubau.","className":"h-full w-full object-cover ","loading":"lazy","decoding":"async"}]}]}]]}]}]}],["$","section",null,{"className":"bg-paper ","children":["$","div",null,{"className":"mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28","children":[["$","$L3",null,{"buildDate":"2026-10-04"}],["$","div",null,{"className":"mt-12 grid gap-8 text-sm md:grid-cols-2 no-print","children":[["$","p",null,{"children":"Die Zeiten pflegen wir in MAWAQIT und übernehmen sie automatisch. Das Hijri-Datum folgt dem Umm-al-Qura-Kalender, gezählt nach Kalendertag."}],["$","p",null,{"children":"Jumuʻa: Die Uhrzeit steht im Plan an jedem Freitag. Bei der Umstellung auf Winterzeit am 25.10.2026 wechselt sie von 14:00 auf 13:00 Uhr."}]]}],["$","p",null,{"className":"mt-6 text-xs text-ink/70 no-print","children":["Alle Zeiten in Berliner Zeit. ",["$","a",null,{"href":"https://mawaqit.net/de/msjd-lsn-ratingen-40878-germany","target":"_blank","rel":"noopener noreferrer","className":"underline underline-offset-4","children":"Zur MAWAQIT-Seite der Moschee"}],"."]}]]}]}]],[["$","script","script-0",{"src":"/Ayman/_next/static/chunks/192c79n6pgeth.js","async":true}],["$","script","script-1",{"src":"/Ayman/_next/static/chunks/1dcw84i24zfqu.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":"$@7","staleTime":"$8","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L9",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#212242"}]]}],["$","div",null,{"hidden":true,"children":["$","$La",null,{"children":["$","$5",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Gebetszeiten · Masjid As-Sunnah Ratingen"}],"$Lb","$Lc","$Ld","$Le","$Lf","$L10","$L11","$L12","$L13","$L14","$L15"]}]}]}],"$L16"]}],"isPartial":"$@17","staleTime":"$8","varyParams":null},{"rsc":"$L18","isPartial":"$@19","staleTime":"$8","varyParams":"$1a"}],"isUpgradeableISRFallback":false,"a":"$@1b","rootVaryParams":null,"needsRuntimeRequest":"$@1c"}
+1d:I[27201,["/Ayman/_next/static/chunks/3ri-4e-wwkzmk.js"],"IconMark"]
+1e:I[39756,["/Ayman/_next/static/chunks/3ri-4e-wwkzmk.js"],"default"]
+1f:I[37457,["/Ayman/_next/static/chunks/3ri-4e-wwkzmk.js"],"default"]
+6:null
+b:["$","meta","1",{"name":"description","content":"Gebetszeiten der Masjid As-Sunnah in Ratingen: Monatsplan mit Beginn und Iqāma, Jumuʻa und Hijri-Datum."}]
+c:["$","meta","2",{"name":"application-name","content":"Masjid As-Sunnah"}]
+d:["$","link","3",{"rel":"manifest","href":"/Ayman/manifest.webmanifest"}]
+e:["$","meta","4",{"name":"robots","content":"noindex, nofollow"}]
+f:["$","meta","5",{"name":"mobile-web-app-capable","content":"yes"}]
+10:["$","meta","6",{"name":"apple-mobile-web-app-title","content":"Masjid As-Sunnah"}]
+11:["$","meta","7",{"name":"apple-mobile-web-app-status-bar-style","content":"black-translucent"}]
+12:["$","link","8",{"rel":"icon","href":"/Ayman/icons/favicon-32.png","sizes":"32x32","type":"image/png"}]
+13:["$","link","9",{"rel":"icon","href":"/Ayman/icons/favicon-16.png","sizes":"16x16","type":"image/png"}]
+14:["$","link","10",{"rel":"apple-touch-icon","href":"/Ayman/icons/apple-touch-icon.png"}]
+15:["$","$L1d","11",{}]
+16:["$","meta",null,{"name":"next-size-adjust","content":""}]
+18:["$","$1","c",{"children":[null,["$","$L1e",null,{"parallelRouterKey":"children","template":["$","$L1f",null,{}]}]]}]
+1c:true
+8:300
+8:C
+1b:0
+17:"$undefined"
+19:"$undefined"
+7:"$undefined"
