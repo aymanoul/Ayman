@@ -43,7 +43,7 @@ export function Header() {
       >
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6 px-5 sm:px-8">
           <Link href="/" aria-label="Masjid As-Sunnah Ratingen, Startseite" className="shrink-0">
-            <Logo tone="white" height={56} className="max-sm:!h-12 max-sm:!w-auto" />
+            <Logo tone="white" height={64} className="max-sm:!h-[52px] max-sm:!w-auto" />
           </Link>
 
           <nav aria-label="Hauptmenü" className="hidden items-center gap-8 lg:flex">

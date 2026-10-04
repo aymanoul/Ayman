@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUp, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowUp, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Logo } from "./Logo";
 import { Email } from "./Email";
 import { InstagramIcon, TiktokIcon, YoutubeIcon } from "./icons";
@@ -52,7 +52,7 @@ export function Footer() {
               <a href={site.phone.href} className="hover:text-gold">{site.phone.display}</a></p>
             <p className="flex gap-3"><MessageCircle className="size-5 shrink-0 text-gold" strokeWidth={1.5} aria-hidden />
               <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-gold">WhatsApp schreiben</a></p>
-            <p className="flex gap-3"><span className="size-5 shrink-0" aria-hidden /><Email className="hover:text-gold" /></p>
+            <p className="flex gap-3"><Mail className="size-5 shrink-0 text-gold" strokeWidth={1.5} aria-hidden /><Email className="hover:text-gold" /></p>
           </address>
         </div>
       </div>

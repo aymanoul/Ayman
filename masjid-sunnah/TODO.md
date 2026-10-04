@@ -31,7 +31,17 @@ Im Code sind dieselben Stellen als sichtbares `TODO:` markiert.
 - [ ] Favicons/Manifest: Icons geliefert, Manifest in Phase 6.
 
 ## Phase 2 (Design-System)
-- [ ] `masjid-sunnah.de.html` (alte Seite) liegt nicht als Datei in `_incoming/`, sie kam nur als Nachrichtentext. Ohne Datei keine Screenshots der alten Seite. Datei dort ablegen, dann rendere ich sie bei 1440 und 390 px.
-- [ ] Social-URLs in `src/content/site.ts` (Instagram, TikTok, YouTube @sunnahmoschee) sind aus dem Handle abgeleitet und nicht geprüft.
+- [x] Screenshots der alten Seite gestrichen (Entscheidung Ayman). Phase 1 gilt als abgeschlossen, Texte aus `_incoming/alte-seite-text.txt`.
+- [ ] **Social-URLs vor Livegang prüfen:** `src/content/site.ts` (Instagram, TikTok, YouTube @sunnahmoschee) sind aus dem Handle abgeleitet und nicht geprüft.
 - [ ] `/styleguide/` vor dem Livegang entfernen (ist `noindex`).
 - [ ] Mobile-Menü und Header sind nur mit Platzhalterseiten getestet. Zielseiten (`/gebetszeiten/`, `/unterricht/`, `/neubau/`, `/kontakt/`, `/spenden/`, `/impressum/`, `/datenschutz/`) entstehen in den Phasen 3–5. Bis dahin 404.
+
+## Phase 3 (Startseite)
+- [ ] **Fotos (Platzhalter mit sichtbarem „TODO: echtes Foto“):** Hero (Querformat), Über uns (Hochformat), Neubau-Render (Querformat, volle Auflösung). In `src/app/page.tsx` über `<Photo src=… />` einsetzen. Keine erkennbaren Personen, keine Kinder.
+- [ ] **Karte (Anfahrt):** Platzhalter. Klick-zum-Laden-Karte erst nach Klärung des Datenschutzes. Bis dahin Link zu OpenStreetMap (lädt nichts vorab).
+- [ ] **Gebetszeiten:** Karte läuft mit **Beispieldaten** (`src/content/prayer-calendar.json`, erzeugt von `scripts/sample-prayer-data.mjs`, astronomisch berechnet, nicht MAWAQIT). Der sichtbare Hinweis „Beispieldaten“ verschwindet mit echten Daten (Phase 4). Iqāma folgt in Phase 4.
+- [ ] **Jumuʻa:** Einstellung in `src/content/settings.ts` (14:00 bis 24.10.2026, ab 25.10.2026 13:00).
+- [ ] **Aktuelles:** `src/content/events.ts` ist leer, die Sektion ist ausgeblendet. Ein Eintrag mit Datum blendet sie ein.
+- [ ] Hero-Headline, Angebots- und Neubau-Texte sind aus den Texten der alten Seite gekürzt/umformuliert (nicht die Rechtstexte). Bitte gegenlesen.
+- [ ] Hijri-Datum: kalendarisches Datum nach Umm al-Qura plus `hijriAdjustment`. Der Tageswechsel erfolgt um Mitternacht, nicht um Maghrib. Mit dem gedruckten Plan abgleichen (Phase 4).
+- [ ] Schreibweise: im Text steht `ʻ` (U+02BB) statt `ʿ`, weil Montserrat dieses Zeichen sauber darstellt.

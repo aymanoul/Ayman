@@ -144,7 +144,7 @@ export default function Styleguide() {
 
         <Block title="Karten & Line-Icons">
           <div className="grid gap-6 md:grid-cols-3">
-            <Card tone="stone"><IconBadge><Clock /></IconBadge><h3 className="mt-6 text-xl">Fünf Gebete</h3><p className="mt-2 text-sm">Täglich und Jumuʿa. Zeiten stehen aktuell auf der Gebetszeiten-Seite.</p></Card>
+            <Card tone="stone"><IconBadge><Clock /></IconBadge><h3 className="mt-6 text-xl">Fünf Gebete</h3><p className="mt-2 text-sm">Täglich und Jumuʻa. Zeiten stehen aktuell auf der Gebetszeiten-Seite.</p></Card>
             <Card tone="paper"><IconBadge><GraduationCap /></IconBadge><h3 className="mt-6 text-xl">Unterricht</h3><p className="mt-2 text-sm">Arabisch in drei Stufen, Qur&apos;an jeden Sonntag.</p></Card>
             <Card tone="navy"><IconBadge on="dark"><Landmark /></IconBadge><h3 className="mt-6 text-xl !text-white">Neubau</h3><p className="mt-2 text-sm text-white/80">Ein Gemeindezentrum für Gebet, Bildung und Gemeinschaft.</p></Card>
           </div>
@@ -163,10 +163,10 @@ export default function Styleguide() {
         </Block>
 
         <Block title="Logo">
-          <p className="max-w-2xl text-sm">Das Logo ist ein Bild: nicht umfärben, nicht verzerren, keine Effekte. Navy auf hellem Grund, Weiß auf dunklem. Header-Höhe 48–56 px.</p>
+          <p className="max-w-2xl text-sm">Das Logo ist ein Bild: nicht umfärben, nicht verzerren, keine Effekte. Navy auf hellem Grund, Weiß auf dunklem. Header-Höhe 64 px (mobil 52 px).</p>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
-            <div className="flex flex-wrap items-center gap-8 bg-white p-8"><Logo tone="navy" height={56} /><Logo tone="navy" height={160} /></div>
-            <div className="on-dark flex flex-wrap items-center gap-8 bg-navy p-8"><Logo tone="white" height={56} /><Logo tone="white" height={160} /></div>
+            <div className="flex flex-wrap items-center gap-8 bg-white p-8"><Logo tone="navy" height={64} /><Logo tone="navy" height={160} /></div>
+            <div className="on-dark flex flex-wrap items-center gap-8 bg-navy p-8"><Logo tone="white" height={64} /><Logo tone="white" height={160} /></div>
             <div className="flex flex-wrap items-center gap-8 bg-stone p-8"><Logo variant="stacked" tone="navy" height={160} /><Logo variant="calligraphy" tone="navy" height={120} /></div>
             <div className="on-dark flex flex-wrap items-center gap-8 bg-navy-900 p-8"><Logo variant="stacked" tone="white" height={160} /><Logo variant="calligraphy" tone="white" height={120} /></div>
           </div>

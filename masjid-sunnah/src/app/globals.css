@@ -13,7 +13,7 @@
   --color-blue: #345ca0;
   --color-ink: #24284a;
 
-  --font-sans: "Montserrat Variable", "Amiri", ui-sans-serif, system-ui, sans-serif; /* Amiri als Fallback für ʿ und ﷺ */
+  --font-sans: "Montserrat Variable", "Amiri", ui-sans-serif, system-ui, sans-serif; /* Amiri als Fallback für ʻ und ﷺ */
   --font-serif: "Prata", Georgia, serif;
   --font-arabic: "Amiri", "Geeza Pro", serif;
 
