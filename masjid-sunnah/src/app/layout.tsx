@@ -7,6 +7,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/content/site";
+import { asset } from "@/lib/base";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -14,12 +15,16 @@ export const metadata: Metadata = {
   description: "Masjid As-Sunnah in Ratingen: Gebetszeiten, Unterricht und Neubau-Projekt.",
   icons: {
     icon: [
-      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/icons/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: asset("/icons/favicon-32.png"), sizes: "32x32", type: "image/png" },
+      { url: asset("/icons/favicon-16.png"), sizes: "16x16", type: "image/png" },
     ],
-    apple: "/icons/apple-touch-icon.png",
+    apple: asset("/icons/apple-touch-icon.png"),
   },
-  // TODO (Phase 6): manifest, Open-Graph-Bild /og-image.png pro Seite, Schema.org Mosque
+  applicationName: "Masjid As-Sunnah",
+  appleWebApp: { capable: true, title: "Masjid As-Sunnah", statusBarStyle: "black-translucent" },
+  // Vorschau-Builds (GitHub Pages) werden nicht von Suchmaschinen indexiert.
+  robots: process.env.NEXT_PUBLIC_NOINDEX ? { index: false, follow: false } : undefined,
+  // TODO (Phase 6): Open-Graph-Bild /og-image.png pro Seite, Schema.org Mosque
 };
 
 export const viewport: Viewport = { themeColor: "#212242", width: "device-width", initialScale: 1 };

@@ -1,3 +1,5 @@
+import { asset } from "@/lib/base";
+
 // Das Logo ist ein Bild: nicht umfärben, nicht verzerren, keine Effekte.
 // Navy auf hellem Grund, Weiß auf dunklem Grund. Maße = Seitenverhältnis der SVG-Dateien.
 const files = {
@@ -24,7 +26,7 @@ export function Logo({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={`/brand/${f.base}-${tone === "navy" ? "navy" : "weiss"}.svg`}
+      src={asset(`/brand/${f.base}-${tone === "navy" ? "navy" : "weiss"}.svg`)}
       width={width}
       height={height}
       alt={decorative ? "" : "Masjid As-Sunnah Ratingen"}
@@ -48,7 +50,7 @@ export function Watermark({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={`/brand/kalligrafie-${tone === "navy" ? "navy" : "weiss"}.svg`}
+      src={asset(`/brand/kalligrafie-${tone === "navy" ? "navy" : "weiss"}.svg`)}
       alt=""
       aria-hidden
       className={`pointer-events-none absolute select-none ${className}`}
