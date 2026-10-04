@@ -6,6 +6,10 @@ import { Watermark } from "./Logo";
  */
 export function Photo({
   src,
+  srcSet,
+  sizes,
+  width,
+  height,
   alt = "",
   todo,
   className = "",
@@ -13,6 +17,10 @@ export function Photo({
   chipText,
 }: {
   src?: string;
+  srcSet?: string;
+  sizes?: string;
+  width?: number;
+  height?: number;
   alt?: string;
   todo: string; // Beschreibung, was hier hin soll
   className?: string;
@@ -21,7 +29,7 @@ export function Photo({
 }) {
   if (src) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={src} alt={alt} className={`h-full w-full object-cover ${className}`} loading="lazy" />;
+    return <img src={src} srcSet={srcSet} sizes={sizes} width={width} height={height} alt={alt} className={`h-full w-full object-cover ${className}`} loading="lazy" decoding="async" />;
   }
   return (
     <div className={`relative h-full w-full overflow-hidden bg-stone ${className}`} role="img" aria-label={`Platzhalter: ${todo}`}>

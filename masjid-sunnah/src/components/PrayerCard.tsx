@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { addDays, berlinNow, data, fmtLeft, hijri, isSample, nextPrayer, prayers } from "@/lib/prayer";
+import { berlinNow, data, fmtLeft, hijri, nextPrayer, prayers, SHURUQ } from "@/lib/prayer";
 import { jumuaFor } from "@/content/settings";
 
 /** Heutige Gebetszeiten mit Live-Countdown. Alles clientseitig, keine Daten an Dritte. */
@@ -40,25 +40,22 @@ export function PrayerCard({ buildDate }: { buildDate: string }) {
           return (
             <li key={p.key} className={`px-1 py-5 text-center sm:py-6 ${active ? "bg-navy text-white" : ""}`} aria-current={active ? "true" : undefined}>
               <p className={`text-[0.65rem] font-semibold uppercase tracking-[0.12em] sm:text-xs sm:tracking-[0.18em] ${active ? "text-gold-light" : "text-ink/70"}`}>{p.name}</p>
-              <p className="mt-2 text-base font-bold tabular-nums sm:text-xl">{times?.[p.idx] ?? "--:--"}</p>
+              <p className="mt-2 text-base font-bold tabular-nums sm:text-xl">{times?.[p.begin] ?? "--:--"}</p>
+              <p className={`mt-1 text-[0.65rem] tabular-nums sm:text-xs ${active ? "text-white/75" : "text-ink/70"}`}>Iqāma {times?.[p.iq] ?? "--:--"}</p>
             </li>
           );
         })}
       </ul>
 
       <dl className="grid grid-cols-2 gap-x-8 gap-y-5 p-6 text-sm sm:grid-cols-[auto_auto_1fr] sm:p-8">
-        <div><dt className="text-xs font-semibold uppercase tracking-[0.18em] text-ink/70">Shurūq</dt><dd className="mt-1 text-lg font-bold tabular-nums">{times?.[1] ?? "--:--"}</dd></div>
+        <div><dt className="text-xs font-semibold uppercase tracking-[0.18em] text-ink/70">Shurūq</dt><dd className="mt-1 text-lg font-bold tabular-nums">{times?.[SHURUQ] ?? "--:--"}</dd></div>
         <div><dt className="text-xs font-semibold uppercase tracking-[0.18em] text-ink/70">Jumuʻa</dt><dd className="mt-1 text-lg font-bold tabular-nums">{jumuaFor(date)} Uhr</dd></div>
         <div className="col-span-2 sm:col-span-1"><dt className="text-xs font-semibold uppercase tracking-[0.18em] text-ink/70">Hijri-Datum</dt><dd className="mt-1 text-lg font-bold">{hijri(date)}</dd></div>
       </dl>
 
-      {isSample ? (
-        <p className="border-t border-navy/10 bg-stone px-6 py-3 text-xs font-semibold text-gold-ink sm:px-8">
-          TODO: Beispieldaten, nicht von MAWAQIT. Wird in Phase 4 durch die echten Zeiten ersetzt.
-        </p>
-      ) : null}
+      <p className="border-t border-navy/10 px-6 py-3 text-xs text-ink/70 sm:px-8">
+        Zeiten laut MAWAQIT, Berliner Zeit.
+      </p>
     </div>
   );
 }
-
-export { addDays };

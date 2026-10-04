@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "prebuild": "node scripts/mawaqit.mjs",
+    "mawaqit": "node scripts/mawaqit.mjs",
+    "test": "node scripts/mawaqit.test.mjs"
   },
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.3.0",
@@ -22,6 +25,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "postcss": "^8.5.28",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2"
   }

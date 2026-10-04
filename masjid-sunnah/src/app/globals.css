@@ -74,3 +74,13 @@
   .js .reveal { opacity: 1; transform: none; transition: none; }
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* Druck: nur der Plan, ohne Navigation */
+@media print {
+  header, footer, #mobile-menu, .no-print { display: none !important; }
+  body { background: #fff; }
+  main section > div { padding: 0 !important; max-width: none !important; }
+  table { font-size: 9pt; }
+  tr, th, td { break-inside: avoid; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

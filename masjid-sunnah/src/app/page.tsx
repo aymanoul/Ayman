@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Clock, GraduationCap, HandHeart, Landmark, Mail, 
 import { Arches, Button, Card, Heading, IconBadge, Label, Section } from "@/components/ui";
 import { Watermark } from "@/components/Logo";
 import { Photo } from "@/components/Photo";
+import { photos } from "@/content/photos";
 import { PrayerCard } from "@/components/PrayerCard";
 import { JumuaTime } from "@/components/JumuaTime";
 import { Reveal } from "@/components/Reveal";
@@ -72,10 +73,10 @@ export default function Home() {
       {/* 3 · Über uns */}
       <Section id="ueber-uns" tone="paper">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-20">
-          <Reveal className="lg:col-span-5">
-            <div className="aspect-[4/5] w-full"><Photo todo="Gemeinde oder Moschee von außen/innen (Hochformat, keine erkennbaren Personen)" /></div>
+          <Reveal className="lg:col-span-6">
+            <div className="aspect-[4/3] w-full overflow-hidden"><Photo {...photos.gebetsraum} sizes="(min-width: 1024px) 560px, 100vw" todo="Gebetsraum" /></div>
           </Reveal>
-          <Reveal className="lg:col-span-7" delay={120}>
+          <Reveal className="lg:col-span-6" delay={120}>
             <Label>Über uns</Label>
             <Heading className="mt-6" first="Eine Gemeinde im" accent="Herzen" after="Ratingens" />
             <p className="mt-8 max-w-xl">
