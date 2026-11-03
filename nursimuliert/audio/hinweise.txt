@@ -1,0 +1,6 @@
+Sprachspur aus den 12 ElevenLabs-Aufnahmen (in Zeitstempel-Reihenfolge = Satz 1-12; Satz 3 mit der Stimme "Mark").
+Kein Stimmklon noetig, keine Saetze verworfen.
+Wortzeiten: faster-whisper konnte sein Modell nicht laden (huggingface.co gesperrt). Die Woerter des bekannten
+Sprechertexts wurden am Signal ausgerichtet (Pausen, Huellkurven-Minima, erwartete Wortlaengen) und an den
+kritischen Stellen per Hand geprueft (Satz 3, 4, 11: Grenze vor "null" und "losgelassen").
+Einzelnen Satz tauschen: Datei nach audio/saetze/satz_XX.wav, dann tools/sprachspur.py zusammensetzen und neu bauen.

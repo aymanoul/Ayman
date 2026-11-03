@@ -1,22 +1,22 @@
-Zeiten aus audio/transkript.json (faster-whisper auf audio/stimme.wav)
+Zeiten aus audio/transkript.json: Signal-Ausrichtung (Silbenkerne, Pausen) am bekannten Text. Die Woerter sind der bekannte Sprechertext, am Signal ausgerichtet (keine Spracherkennung).
 
 00:00:04,945 - 00:00:07,340  er hat gesagt, er hält dich fest.
-    erkannt: Er hat gesagt, er hält dich fest.
+    Woerter: Er hat gesagt, er hält dich fest.
 00:00:08,055 - 00:00:10,400  ‚ich hab dich. ich hab dich.‘
-    erkannt: Ich hab dich. Ich hab dich.
+    Woerter: Ich hab dich. Ich hab dich.
 00:00:11,075 - 00:00:13,200  bei null hat er losgelassen.
-    erkannt: Bei null hat er losgelassen.
+    Woerter: Bei null hat er losgelassen.
 00:00:14,020 - 00:00:16,420  er ist noch zehn schritte mitgerannt. nur für den fall.
-    erkannt: Er ist noch zehn Schritte mitgerannt. Nur für den Fall.
+    Woerter: Er ist noch zehn Schritte mitgerannt. Nur für den Fall.
 00:00:17,170 - 00:00:20,020  du hast nicht gemerkt, dass er losgelassen hat.
-    erkannt: Du hast nicht gemerkt, dass er losgelassen hat.
+    Woerter: Du hast nicht gemerkt, dass er losgelassen hat.
 00:00:25,161 - 00:00:29,186  heute hast du deinen führerschein bekommen.
-    erkannt: Heute hast du deinen Führerschein bekommen.
+    Woerter: Heute hast du deinen Führerschein bekommen.
 00:00:29,836 - 00:00:32,596  und diesmal hast du ihn mitgenommen.
-    erkannt: Und diesmal hast du ihn mitgenommen.
+    Woerter: Und diesmal hast du ihn mitgenommen.
 00:00:33,311 - 00:00:35,091  er hat sich festgehalten.
-    erkannt: Er hat sich festgehalten.
+    Woerter: Er hat sich festgehalten.
 00:00:35,806 - 00:00:38,456  und irgendwann hat er losgelassen.
-    erkannt: Und irgendwann hat er losgelassen.
+    Woerter: Und irgendwann hat er losgelassen.
 00:00:41,498 - 00:00:47,883  früher ist er neben dir hergerannt. heute sitzt er neben dir.
-    erkannt: Früher ist er neben dir hergerannt. Heute sitzt er neben dir.
+    Woerter: Früher ist er neben dir hergerannt. Heute sitzt er neben dir.
