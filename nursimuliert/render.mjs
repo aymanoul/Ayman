@@ -310,8 +310,13 @@ async function cmdExport() {
   const cues = await page.evaluate(() => window.subtitleCues());
   const srt = cues.map((c, i) => `${i + 1}\n${srtTime(c.start)} --> ${srtTime(c.end)}\n${c.text}\n`).join('\n');
   writeFileSync('out/untertitel.srt', srt);
-  const lines = [story.timing.draft ? 'ENTWURF: Zeiten geschaetzt, noch keine Stimme.\n' : 'Zeiten aus audio/transkript.json (faster-whisper auf audio/stimme.wav)\n'];
-  for (const c of cues) lines.push(`${srtTime(c.start)} - ${srtTime(c.end)}  ${c.text}\n    erkannt: ${c.words.join(' ')}`);
+  const tr = existsSync('audio/transkript.json') ? JSON.parse(readFileSync('audio/transkript.json', 'utf8')) : null;
+  const viaWhisper = tr && !tr.method;
+  const head = story.timing.draft ? 'ENTWURF: Zeiten geschaetzt, noch keine Stimme.'
+    : viaWhisper ? 'Zeiten aus audio/transkript.json (faster-whisper auf audio/stimme.wav).'
+      : `Zeiten aus audio/transkript.json: ${tr.method}. Die Woerter sind der bekannte Sprechertext, am Signal ausgerichtet (keine Spracherkennung).`;
+  const lines = [head + '\n'];
+  for (const c of cues) lines.push(`${srtTime(c.start)} - ${srtTime(c.end)}  ${c.text}\n    ${viaWhisper ? 'erkannt' : 'Woerter'}: ${c.words.join(' ')}`);
   writeFileSync('out/abgleich.txt', lines.join('\n') + '\n');
   const track = await page.evaluate(() => window.motionTrack(1 / 60));
   const events = [];

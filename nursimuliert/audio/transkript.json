@@ -1,0 +1,577 @@
+{
+ "source": "audio/stimme.wav",
+ "method": "Signal-Ausrichtung (Silbenkerne, Pausen) am bekannten Text",
+ "duration": 45.628,
+ "sentences": [
+  {
+   "id": 1,
+   "start": 0.1,
+   "end": 3.625,
+   "words": [
+    {
+     "word": "Was",
+     "start": 0.1,
+     "end": 0.29,
+     "prob": null
+    },
+    {
+     "word": "dein",
+     "start": 0.325,
+     "end": 0.605,
+     "prob": null
+    },
+    {
+     "word": "Vater",
+     "start": 0.605,
+     "end": 0.905,
+     "prob": null
+    },
+    {
+     "word": "gemacht",
+     "start": 0.905,
+     "end": 1.225,
+     "prob": null
+    },
+    {
+     "word": "hat,",
+     "start": 1.265,
+     "end": 1.435,
+     "prob": null
+    },
+    {
+     "word": "als",
+     "start": 1.5,
+     "end": 1.815,
+     "prob": null
+    },
+    {
+     "word": "du",
+     "start": 1.82,
+     "end": 1.895,
+     "prob": null
+    },
+    {
+     "word": "Fahrradfahren",
+     "start": 1.925,
+     "end": 2.44,
+     "prob": null
+    },
+    {
+     "word": "gelernt",
+     "start": 2.47,
+     "end": 3.185,
+     "prob": null
+    },
+    {
+     "word": "hast.",
+     "start": 3.21,
+     "end": 3.625,
+     "prob": null
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "start": 4.625,
+   "end": 6.69,
+   "words": [
+    {
+     "word": "Er",
+     "start": 4.625,
+     "end": 4.845,
+     "prob": null
+    },
+    {
+     "word": "hat",
+     "start": 4.895,
+     "end": 5.06,
+     "prob": null
+    },
+    {
+     "word": "gesagt,",
+     "start": 5.06,
+     "end": 5.37,
+     "prob": null
+    },
+    {
+     "word": "er",
+     "start": 5.425,
+     "end": 5.63,
+     "prob": null
+    },
+    {
+     "word": "hält",
+     "start": 5.66,
+     "end": 5.975,
+     "prob": null
+    },
+    {
+     "word": "dich",
+     "start": 6.025,
+     "end": 6.275,
+     "prob": null
+    },
+    {
+     "word": "fest.",
+     "start": 6.275,
+     "end": 6.69,
+     "prob": null
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "start": 7.735,
+   "end": 9.75,
+   "words": [
+    {
+     "word": "Ich",
+     "start": 7.735,
+     "end": 7.88,
+     "prob": null
+    },
+    {
+     "word": "hab",
+     "start": 7.88,
+     "end": 8.04,
+     "prob": null
+    },
+    {
+     "word": "dich.",
+     "start": 8.15,
+     "end": 8.455,
+     "prob": null
+    },
+    {
+     "word": "Ich",
+     "start": 9.025,
+     "end": 9.18,
+     "prob": null
+    },
+    {
+     "word": "hab",
+     "start": 9.18,
+     "end": 9.335,
+     "prob": null
+    },
+    {
+     "word": "dich.",
+     "start": 9.455,
+     "end": 9.75,
+     "prob": null
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "start": 10.755,
+   "end": 12.55,
+   "words": [
+    {
+     "word": "Bei",
+     "start": 10.755,
+     "end": 10.975,
+     "prob": null
+    },
+    {
+     "word": "null",
+     "start": 10.975,
+     "end": 11.395,
+     "prob": null
+    },
+    {
+     "word": "hat",
+     "start": 11.395,
+     "end": 11.56,
+     "prob": null
+    },
+    {
+     "word": "er",
+     "start": 11.61,
+     "end": 11.825,
+     "prob": null
+    },
+    {
+     "word": "losgelassen.",
+     "start": 11.825,
+     "end": 12.55,
+     "prob": null
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "start": 13.7,
+   "end": 15.77,
+   "words": [
+    {
+     "word": "Er",
+     "start": 13.7,
+     "end": 13.82,
+     "prob": null
+    },
+    {
+     "word": "ist",
+     "start": 13.82,
+     "end": 13.975,
+     "prob": null
+    },
+    {
+     "word": "noch",
+     "start": 14.03,
+     "end": 14.205,
+     "prob": null
+    },
+    {
+     "word": "zehn",
+     "start": 14.29,
+     "end": 14.595,
+     "prob": null
+    },
+    {
+     "word": "Schritte",
+     "start": 14.595,
+     "end": 14.865,
+     "prob": null
+    },
+    {
+     "word": "mitgerannt.",
+     "start": 14.895,
+     "end": 15.195,
+     "prob": null
+    },
+    {
+     "word": "Nur",
+     "start": 15.235,
+     "end": 15.37,
+     "prob": null
+    },
+    {
+     "word": "für",
+     "start": 15.37,
+     "end": 15.55,
+     "prob": null
+    },
+    {
+     "word": "den",
+     "start": 15.56,
+     "end": 15.575,
+     "prob": null
+    },
+    {
+     "word": "Fall.",
+     "start": 15.63,
+     "end": 15.77,
+     "prob": null
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "start": 16.85,
+   "end": 19.37,
+   "words": [
+    {
+     "word": "Du",
+     "start": 16.85,
+     "end": 16.95,
+     "prob": null
+    },
+    {
+     "word": "hast",
+     "start": 16.95,
+     "end": 17.15,
+     "prob": null
+    },
+    {
+     "word": "nicht",
+     "start": 17.205,
+     "end": 17.385,
+     "prob": null
+    },
+    {
+     "word": "gemerkt,",
+     "start": 17.46,
+     "end": 17.86,
+     "prob": null
+    },
+    {
+     "word": "dass",
+     "start": 17.875,
+     "end": 18.045,
+     "prob": null
+    },
+    {
+     "word": "er",
+     "start": 18.055,
+     "end": 18.25,
+     "prob": null
+    },
+    {
+     "word": "losgelassen",
+     "start": 18.25,
+     "end": 18.95,
+     "prob": null
+    },
+    {
+     "word": "hat.",
+     "start": 18.96,
+     "end": 19.37,
+     "prob": null
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "start": 21.395,
+   "end": 22.815,
+   "words": [
+    {
+     "word": "Zwölf",
+     "start": 21.395,
+     "end": 21.87,
+     "prob": null
+    },
+    {
+     "word": "Jahre",
+     "start": 21.87,
+     "end": 22.295,
+     "prob": null
+    },
+    {
+     "word": "später.",
+     "start": 22.34,
+     "end": 22.815,
+     "prob": null
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "start": 24.841,
+   "end": 28.536,
+   "words": [
+    {
+     "word": "Heute",
+     "start": 24.841,
+     "end": 25.416,
+     "prob": null
+    },
+    {
+     "word": "hast",
+     "start": 25.461,
+     "end": 26.071,
+     "prob": null
+    },
+    {
+     "word": "du",
+     "start": 26.071,
+     "end": 26.461,
+     "prob": null
+    },
+    {
+     "word": "deinen",
+     "start": 26.491,
+     "end": 26.751,
+     "prob": null
+    },
+    {
+     "word": "Führerschein",
+     "start": 26.821,
+     "end": 26.841,
+     "prob": null
+    },
+    {
+     "word": "bekommen.",
+     "start": 27.561,
+     "end": 28.536,
+     "prob": null
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "start": 29.516,
+   "end": 31.946,
+   "words": [
+    {
+     "word": "Und",
+     "start": 29.516,
+     "end": 29.671,
+     "prob": null
+    },
+    {
+     "word": "diesmal",
+     "start": 29.776,
+     "end": 30.421,
+     "prob": null
+    },
+    {
+     "word": "hast",
+     "start": 30.441,
+     "end": 30.461,
+     "prob": null
+    },
+    {
+     "word": "du",
+     "start": 30.751,
+     "end": 30.951,
+     "prob": null
+    },
+    {
+     "word": "ihn",
+     "start": 31.001,
+     "end": 31.421,
+     "prob": null
+    },
+    {
+     "word": "mitgenommen.",
+     "start": 31.466,
+     "end": 31.946,
+     "prob": null
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "start": 32.991,
+   "end": 34.441,
+   "words": [
+    {
+     "word": "Er",
+     "start": 32.991,
+     "end": 33.241,
+     "prob": null
+    },
+    {
+     "word": "hat",
+     "start": 33.286,
+     "end": 33.606,
+     "prob": null
+    },
+    {
+     "word": "sich",
+     "start": 33.606,
+     "end": 33.786,
+     "prob": null
+    },
+    {
+     "word": "festgehalten.",
+     "start": 33.861,
+     "end": 34.441,
+     "prob": null
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "start": 35.486,
+   "end": 37.806,
+   "words": [
+    {
+     "word": "Und",
+     "start": 35.486,
+     "end": 35.666,
+     "prob": null
+    },
+    {
+     "word": "irgendwann",
+     "start": 35.686,
+     "end": 36.176,
+     "prob": null
+    },
+    {
+     "word": "hat",
+     "start": 36.181,
+     "end": 36.556,
+     "prob": null
+    },
+    {
+     "word": "er",
+     "start": 36.556,
+     "end": 36.856,
+     "prob": null
+    },
+    {
+     "word": "losgelassen.",
+     "start": 36.891,
+     "end": 37.806,
+     "prob": null
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "start": 41.178,
+   "end": 45.483,
+   "words": [
+    {
+     "word": "Früher",
+     "start": 41.178,
+     "end": 41.819,
+     "prob": null
+    },
+    {
+     "word": "ist",
+     "start": 41.858,
+     "end": 42.169,
+     "prob": null
+    },
+    {
+     "word": "er",
+     "start": 42.178,
+     "end": 42.438,
+     "prob": null
+    },
+    {
+     "word": "neben",
+     "start": 42.438,
+     "end": 42.834,
+     "prob": null
+    },
+    {
+     "word": "dir",
+     "start": 42.834,
+     "end": 42.983,
+     "prob": null
+    },
+    {
+     "word": "hergerannt.",
+     "start": 43.089,
+     "end": 43.199,
+     "prob": null
+    },
+    {
+     "word": "Heute",
+     "start": 43.629,
+     "end": 43.824,
+     "prob": null
+    },
+    {
+     "word": "sitzt",
+     "start": 43.873,
+     "end": 44.114,
+     "prob": null
+    },
+    {
+     "word": "er",
+     "start": 44.349,
+     "end": 44.529,
+     "prob": null
+    },
+    {
+     "word": "neben",
+     "start": 44.589,
+     "end": 45.038,
+     "prob": null
+    },
+    {
+     "word": "dir.",
+     "start": 45.089,
+     "end": 45.483,
+     "prob": null
+    }
+   ]
+  }
+ ]
+}

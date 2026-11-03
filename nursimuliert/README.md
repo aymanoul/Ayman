@@ -38,6 +38,15 @@ node render.mjs frames            # frames/%05d.jpg (ca. 1 s pro Frame ohne Graf
 node render.mjs video             # out/video.mp4, out/cover.jpg, out/kontaktbogen.jpg
 ```
 
+**Fertige Aufnahmen statt Klon (z. B. ElevenLabs):** 12 Dateien in Satz-Reihenfolge übergeben.
+Wenn faster-whisper sein Modell nicht laden kann, richtet das Skript den bekannten Text am
+Signal aus (Pausen, Hüllkurven-Minima, erwartete Wortlängen).
+
+```bash
+.venv-stimme/bin/python tools/sprachspur.py importieren satz01.mp3 ... satz12.mp3
+.venv-stimme/bin/python tools/sprachspur.py zusammensetzen    # audio/stimme.wav + audio/transkript.json
+```
+
 Einzelne Sätze austauschen: eine andere Version nach `audio/saetze/satz_XX.wav`
 kopieren, dann `tools/stimme.py zusammensetzen` und ab Schritt 2 neu bauen.
 
@@ -94,6 +103,7 @@ hinter dem Zähler (x 96–440, y 690–900) und nie in den TikTok-Bereichen.
 | `story/shots.json` | **Die Story**: Sprechertext, Titel, Zähler, Zeitsprung, Figuren, Einstellungen |
 | `tools/zeitplan.mjs` | Wortzeiten -> absolute Zeiten (Einstellungen, Untertitel, Zähler, Länge) |
 | `tools/stimme.py` | Stimmprobe, Chatterbox-Klon, faster-whisper-Prüfung, Sprachspur, Transkript |
+| `tools/sprachspur.py` | fertige Satz-Aufnahmen importieren, Sprachspur (-16 LUFS), Wortzeiten per Signal-Ausrichtung |
 | `tools/ton.py` | Geräusche und Endmischung |
 | `src/main.js` | Szene, Licht, Nachbearbeitung, `renderAt(t)`, Prüf- und Optimierfunktionen |
 | `src/timeline.js` | Keyframes, Gangzyklus, IK, Einsteigen (Sitzpunkt-Versatz), Kamera |

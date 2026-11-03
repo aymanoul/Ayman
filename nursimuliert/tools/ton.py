@@ -19,6 +19,7 @@ from scipy import signal
 from scipy.io import wavfile
 
 SR = 48000
+SFX_GAIN_DB = 10.0   # Geraeusche relativ zur Stimme (-16 LUFS): waehrend der Stimme ca. 23 dB darunter
 RNG = np.random.default_rng(20261103)
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -542,7 +543,7 @@ def main():
         vv[: min(n, len(v))] = v[:n]
         words = data['words']   # bereits mit Versatz
         duck = 1 - (1 - db(-9)) * voice_mask(words, n)
-        mix = vv + sfx * duck[:, None]
+        mix = vv + sfx * db(SFX_GAIN_DB) * duck[:, None]
     else:
         print('HINWEIS: keine Stimme (audio/stimme.wav fehlt oder Zeiten sind ein Entwurf) - Mischung nur mit Geraeuschen.')
         mix = sfx.copy()

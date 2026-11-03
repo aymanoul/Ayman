@@ -1,39 +1,39 @@
 1
-00:00:05,756 --> 00:00:08,425
+00:00:04,945 --> 00:00:07,340
 er hat gesagt, er hält dich fest.
 
 2
-00:00:09,095 --> 00:00:11,408
+00:00:08,055 --> 00:00:10,400
 ‚ich hab dich. ich hab dich.‘
 
 3
-00:00:12,078 --> 00:00:14,466
+00:00:11,075 --> 00:00:13,200
 bei null hat er losgelassen.
 
 4
-00:00:15,136 --> 00:00:19,281
+00:00:14,020 --> 00:00:16,420
 er ist noch zehn schritte mitgerannt. nur für den fall.
 
 5
-00:00:19,951 --> 00:00:23,588
+00:00:17,170 --> 00:00:20,020
 du hast nicht gemerkt, dass er losgelassen hat.
 
 6
-00:00:28,515 --> 00:00:31,872
+00:00:25,161 --> 00:00:29,186
 heute hast du deinen führerschein bekommen.
 
 7
-00:00:32,542 --> 00:00:35,445
+00:00:29,836 --> 00:00:32,596
 und diesmal hast du ihn mitgenommen.
 
 8
-00:00:36,115 --> 00:00:38,215
+00:00:33,311 --> 00:00:35,091
 er hat sich festgehalten.
 
 9
-00:00:38,885 --> 00:00:41,728
+00:00:35,806 --> 00:00:38,456
 und irgendwann hat er losgelassen.
 
 10
-00:00:44,798 --> 00:00:51,662
+00:00:41,498 --> 00:00:47,883
 früher ist er neben dir hergerannt. heute sitzt er neben dir.
