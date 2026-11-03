@@ -173,8 +173,8 @@ def quality(x, sr, words, expected):
     if peak > 0.99:
         why.append('Uebersteuerung')
     d = np.abs(np.diff(x))
-    loc = np.convolve(np.abs(x), np.ones(240) / 240, 'same')[1:]
-    clicks = int(np.sum((d > 0.25) & (d > 8 * loc + 0.05)))
+    rms_d = np.sqrt(np.convolve(d ** 2, np.ones(480) / 480, 'same'))
+    clicks = int(np.sum((d > 0.15) & (d > 6 * rms_d + 0.1)))
     if clicks:
         why.append(f'{clicks} Knackser')
     if words:
