@@ -1,0 +1,15 @@
+@import "@fontsource/dm-serif-display/400.css";
+@import "@fontsource/cormorant-garamond/500-italic.css";
+html, body { margin: 0; background: #fff; overflow: hidden; }
+/* Heller Hintergrund: warmes Elfenbein mit sanftem Licht in der Mitte */
+#stage { position: relative; width: 1080px; height: 1080px; overflow: hidden;
+  background: radial-gradient(circle at 50% 42%, #ffffff 0%, #fbf7f0 38%, #f1e9dc 72%, #e7dccb 100%); }
+/* goldener Ring hinter dem Kopf (Kanalfarbe #f2c14e) */
+#ring { position: absolute; border-radius: 50%; border: 16px solid #f2c14e; box-sizing: border-box;
+  background: radial-gradient(circle at 50% 40%, #fffdf8 0%, #f6efe2 60%, #eadfcb 100%); box-shadow: 0 18px 40px rgba(120,90,40,.18); }
+#gl { position: absolute; inset: 0; width: 1080px; height: 1080px; }
+#mark { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; display: none;
+  font-family: "DM Serif Display", serif; font-size: 112px; line-height: 1; color: #1f2a44; letter-spacing: .005em; }
+#mark .w1 { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 500; color: #b8892a; margin-right: 6px; }
+/* Pruefhilfe: Kreis, den TikTok als Profilbild zeigt */
+#guide { position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 0 4px rgba(255,0,0,.8) inset; display: none; }

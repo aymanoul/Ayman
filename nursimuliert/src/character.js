@@ -521,7 +521,20 @@ export class Character {
     up.position.y = B.torsoUp / 2;
     this.chest.add(up);
     // Bund / Saum
-    if (top.type !== 'tshirt') {
+    if (top.type === 'suit') {
+      // Sakko reicht ueber den Hosenbund: Schoss setzt den Rumpf leicht ausgestellt fort,
+      // der Beckenkasten verschwindet darunter
+      const skirtH = 0.16 * (B.thigh / 0.36);
+      const skirt = mesh(new THREE.CylinderGeometry(B.rBot, B.rBot * 1.08, skirtH, 9), mat(topColor), 'jacket_skirt');
+      skirt.scale.z = B.depth * 1.04;
+      skirt.position.y = 0.012 - skirtH / 2;
+      this.spine.add(skirt);
+      pel.visible = false;
+      const btn = mesh(new THREE.CylinderGeometry(0.011, 0.011, 0.006, 10), mat(shade(topColor, 0.72)), 'jacket_button', { cast: false });
+      btn.rotation.x = Math.PI / 2;
+      btn.position.set(0, B.torsoLow * 0.62, (B.rBot + (B.rMid - B.rBot) * 0.62) * B.depth + 0.004);
+      this.spine.add(btn);
+    } else if (top.type !== 'tshirt') {
       const hem = mesh(new THREE.CylinderGeometry(B.rBot * 1.03, B.rBot * 1.035, 0.04 * (B.thigh / 0.36), 9), mat(shade(topColor, 0.86)), 'hem');
       hem.scale.z = B.depth * 1.02;
       hem.position.y = 0.012;
@@ -529,11 +542,13 @@ export class Character {
     }
 
     // Kleidungsdetails
-    const collar = mesh(new THREE.TorusGeometry(B.neckR * 1.15, B.neckR * 0.32, 5, 10), mat(shade(topColor, 0.85)), 'collar');
+    const isSuit = top.type === 'suit';
+    const collar = mesh(new THREE.TorusGeometry(B.neckR * 1.15, B.neckR * 0.32, 5, 10), mat(isSuit ? (top.shirt || '#f4f2ee') : shade(topColor, 0.85)), 'collar');
     collar.rotation.x = Math.PI / 2;
     collar.scale.y = B.depth * 1.4;
     collar.position.y = B.torsoUp - 0.004;
     this.chest.add(collar);
+    if (isSuit) this.buildSuitFront(B, top);
     if (top.type === 'hoodie') {
       const hood = mesh(new THREE.SphereGeometry(B.rTop * 0.62, 10, 6), mat(shade(topColor, 0.9)), 'hood');
       hood.scale.set(1.25, 0.55, 0.75);
@@ -569,7 +584,7 @@ export class Character {
       elbow.add(ball(B.foreR * 1.08, sleeveLong ? topColor : skin, 'elbow_ball', 7));
       elbow.add(limbCyl(B.foreR, B.foreR * 0.9, B.foreArm, sleeveLong ? topColor : skin, 'forearm'));
       if (sleeveLong) {
-        const cuff = limbCyl(B.foreR * 1.02, B.foreR * 1.0, B.foreArm * 0.16, shade(topColor, 0.86), 'cuff');
+        const cuff = limbCyl(B.foreR * 1.02, B.foreR * 1.0, B.foreArm * 0.16, isSuit ? (top.shirt || '#f4f2ee') : shade(topColor, 0.86), 'cuff');
         cuff.position.y = -B.foreArm * 0.84;
         elbow.add(cuff);
       }
@@ -605,6 +620,49 @@ export class Character {
     this._v = new THREE.Vector3();
     this.stoop = spec.stoop || 0;
     this.applyPose({ ...DEFAULT_POSE });
+  }
+
+  // Anzug: weisser Hemd-Ausschnitt (V), Revers und Krawatte auf der Brust
+  buildSuitFront(B, top) {
+    const shirt = top.shirt || '#f4f2ee', tie = top.tie || '#f2c14e', lapel = shade(top.color, 1.35);
+    const H = B.torsoUp, vH = H * 0.78, vW = B.rTop * 0.5;
+    const zAt = (y) => (B.rMid + (B.rTop - B.rMid) * (y / H)) * B.depth;
+    const facet = 0.35;   // Rumpf ist 9-eckig: die Vorderseite knickt in der Mitte
+    const half = (sx, shape, color, name, lift, thick) => {
+      const g = new THREE.ExtrudeGeometry(shape, { depth: thick, bevelEnabled: false });
+      g.translate(0, -H, 0);
+      const m = mesh(g, mat(color), name, { cast: false });
+      const piv = new THREE.Group();
+      piv.rotation.order = 'YXZ';
+      piv.position.set(0, H, zAt(H) + lift);
+      piv.rotation.set(Math.atan2(zAt(H) - zAt(H - vH), vH), sx * facet, 0);
+      piv.add(m);
+      this.chest.add(piv);
+      return piv;
+    };
+    for (const sx of [1, -1]) {
+      // Hemd-Ausschnitt (je Haelfte), Spitze unten in der Mitte
+      const v = new THREE.Shape();
+      v.moveTo(0, H); v.lineTo(sx * vW, H); v.lineTo(0, H - vH); v.closePath();
+      half(sx, v, shirt, 'shirt_v', 0.002, 0.004);
+      // Revers: Streifen entlang der Ausschnittkante
+      const l = new THREE.Shape();
+      l.moveTo(sx * vW, H); l.lineTo(sx * (vW + B.rTop * 0.2), H - 0.02); l.lineTo(sx * B.rTop * 0.12, H - vH * 0.92); l.lineTo(0, H - vH); l.closePath();
+      half(sx, l, lapel, 'lapel', 0.004, 0.008);
+    }
+    // Krawatte: Knoten am Kragen, Blatt bis unter die Ausschnittspitze
+    const t = new THREE.Shape();
+    const kw = B.rTop * 0.11, bw = B.rTop * 0.15;
+    t.moveTo(-kw, H - 0.005); t.lineTo(kw, H - 0.005); t.lineTo(kw * 0.6, H - 0.045);
+    t.lineTo(bw, H - vH * 0.95); t.lineTo(0, H - vH * 1.08); t.lineTo(-bw, H - vH * 0.95); t.lineTo(-kw * 0.6, H - 0.045); t.closePath();
+    const tg = new THREE.ExtrudeGeometry(t, { depth: 0.01, bevelEnabled: true, bevelSize: 0.003, bevelThickness: 0.003, bevelSegments: 1 });
+    tg.translate(0, -H, 0);
+    const tm = mesh(tg, mat(tie), 'tie', { cast: false });
+    const tp = new THREE.Group();
+    tp.position.set(0, H, zAt(H) + 0.008);
+    tp.rotation.x = Math.atan2(zAt(H) - zAt(H - vH), vH);
+    tp.add(tm);
+    this.chest.add(tp);
   }
 
   // Grundhaltung aus Parametern (Grad) setzen

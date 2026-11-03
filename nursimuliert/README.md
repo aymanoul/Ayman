@@ -96,6 +96,26 @@ hinter dem Zähler (x 96–440, y 690–900) und nie in den TikTok-Bereichen.
   (`camera.adjust`), damit alles frei liegt; `camera.must` hält Pflichtpunkte im Bild,
   `camera.solve` begrenzt den Suchraum.
 
+## Logo für TikTok
+
+```bash
+node tools/logo.mjs stills        # Standbilder
+node tools/logo.mjs alles         # zusätzlich 4-s-Schleife als MP4 und GIF
+```
+
+Figur im dunkelblauen Anzug (weißes Hemd, gelbe Krawatte), ohne Augen, im goldenen Ring auf
+hellem Elfenbein-Hintergrund. Unten schneidet der Kreis die Figur ab, oben ragt der Kopf über den Ring. In der
+Schleife hebt die Figur die rechte Hand und winkt mit offener Handfläche zur Kamera.
+Szene: `src/logo/` (Pose und Kamera in `logo.js`), Anzug: `top.type: 'suit'` in `src/character.js`.
+
+| Datei | Zweck |
+|---|---|
+| `out/logo/profilbild.png` | 1080 × 1080, Profilbild (TikTok zeigt es rund, alles liegt im Kreis) |
+| `out/logo/profilbild_ruhig.png` | Profilbild ohne Winken |
+| `out/logo/logo_mit_schrift.png` | Figur + Schriftzug „nursimuliert“ (Intro, Endkarte, andere Kanäle) |
+| `out/logo/logo_animiert.mp4` / `.gif` | 4-s-Schleife, 30 fps (TikTok-Profilbilder selbst sind immer Standbilder) |
+| `out/logo/pruefung_kreis.png` | Profilbild mit rotem Kreis = Ausschnitt in der App |
+
 ## Aufbau
 
 | Datei | Inhalt |
