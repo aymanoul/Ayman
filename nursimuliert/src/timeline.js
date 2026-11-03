@@ -317,7 +317,8 @@ export class Timeline {
     const frames = [];
     for (let t = 0; t <= dur + 1e-9; t += dt) {
       const { shot, tau } = this.evaluate(t);
-      const f = { t: +t.toFixed(4), shot: shot.id, a: {} };
+      const cp = this.camera(shot, tau).pos;
+      const f = { t: +t.toFixed(4), shot: shot.id, cam: [+cp.x.toFixed(2), +cp.y.toFixed(2), +cp.z.toFixed(2)], a: {} };
       for (const [id, tr] of Object.entries(shot.actors || {})) {
         const actor = this.world.actors[id];
         const p = new THREE.Vector3();

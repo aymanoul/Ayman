@@ -4,12 +4,16 @@
   "scripts": {
     "build": "node build.mjs",
     "serve": "npx http-server dist -p 8080 -s -c-1",
+    "stimme:setup": "uv venv -p 3.11 .venv-stimme && uv pip install --python .venv-stimme/bin/python chatterbox-tts faster-whisper",
+    "stimme": ".venv-stimme/bin/python tools/stimme.py alles",
     "sheet": "node build.mjs && node render.mjs sheet",
     "preview": "node build.mjs && node render.mjs preview",
+    "frame": "node build.mjs && node render.mjs frame && node build.mjs",
     "check": "node build.mjs && node render.mjs check",
+    "ton": "node render.mjs export && python3 tools/ton.py",
     "frames": "node render.mjs frames",
     "video": "node render.mjs video",
-    "all": "node build.mjs && node render.mjs all"
+    "all": "node build.mjs && node render.mjs check && node render.mjs export && python3 tools/ton.py && node render.mjs frames && node render.mjs video"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",

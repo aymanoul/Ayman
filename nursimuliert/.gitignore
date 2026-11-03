@@ -9,3 +9,8 @@ out/.tile/
 out/.ks/
 audio/stimmprobe_original.*
 audio/work/
+.venv-stimme/
+out/bewegung.json
+out/mix.wav
+out/preview/
+audio/geraeusche.wav

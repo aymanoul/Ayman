@@ -1,0 +1,22 @@
+ENTWURF: Zeiten geschaetzt, noch keine Stimme.
+
+00:00:05,756 - 00:00:08,425  er hat gesagt, er hält dich fest.
+    erkannt: Er hat gesagt, er hält dich fest.
+00:00:09,095 - 00:00:11,408  ‚ich hab dich. ich hab dich.‘
+    erkannt: Ich hab dich. Ich hab dich.
+00:00:12,078 - 00:00:14,466  bei null hat er losgelassen.
+    erkannt: Bei null hat er losgelassen.
+00:00:15,136 - 00:00:19,281  er ist noch zehn schritte mitgerannt. nur für den fall.
+    erkannt: Er ist noch zehn Schritte mitgerannt. Nur für den Fall.
+00:00:19,951 - 00:00:23,588  du hast nicht gemerkt, dass er losgelassen hat.
+    erkannt: Du hast nicht gemerkt, dass er losgelassen hat.
+00:00:28,515 - 00:00:31,872  heute hast du deinen führerschein bekommen.
+    erkannt: Heute hast du deinen Führerschein bekommen.
+00:00:32,542 - 00:00:35,445  und diesmal hast du ihn mitgenommen.
+    erkannt: Und diesmal hast du ihn mitgenommen.
+00:00:36,115 - 00:00:38,215  er hat sich festgehalten.
+    erkannt: Er hat sich festgehalten.
+00:00:38,885 - 00:00:41,728  und irgendwann hat er losgelassen.
+    erkannt: Und irgendwann hat er losgelassen.
+00:00:44,798 - 00:00:51,662  früher ist er neben dir hergerannt. heute sitzt er neben dir.
+    erkannt: Früher ist er neben dir hergerannt. Heute sitzt er neben dir.

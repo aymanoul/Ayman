@@ -362,12 +362,13 @@ async function cmdVideo() {
   ffmpeg(['-framerate', '30', '-i', 'frames/%05d.jpg', '-i', audio, '-c:v', 'libx264', '-preset', 'medium', '-crf', '22', '-pix_fmt', 'yuv420p',
     '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', opt('out', 'out/video.mp4')]);
   const video = opt('out', 'out/video.mp4');
-  ffmpeg(['-i', 'frames/00045.jpg', '-q:v', '2', 'out/cover.jpg']);
+  const base = video === 'out/video.mp4' ? 'out/' : video.replace(/\.mp4$/, '_');
+  ffmpeg(['-i', 'frames/00045.jpg', '-q:v', '2', base + 'cover.jpg']);
   rmSync('out/.ks', { recursive: true, force: true });
   mkdirSync('out/.ks', { recursive: true });
   ffmpeg(['-i', video, '-vf', 'fps=1,scale=216:384', path.join('out/.ks', '%03d.png')]);
   const n = readdirSync('out/.ks').length;
-  ffmpeg(['-framerate', '1', '-i', 'out/.ks/%03d.png', '-vf', `tile=8x${Math.ceil(n / 8)}:padding=4:margin=4:color=0x111111`, '-frames:v', '1', '-q:v', '3', 'out/kontaktbogen.jpg']);
+  ffmpeg(['-framerate', '1', '-i', 'out/.ks/%03d.png', '-vf', `tile=8x${Math.ceil(n / 8)}:padding=4:margin=4:color=0x111111`, '-frames:v', '1', '-q:v', '3', base + 'kontaktbogen.jpg']);
   rmSync('out/.ks', { recursive: true, force: true });
   console.log(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'stream=codec_name,width,height,r_frame_rate,sample_rate,channels:format=duration,size', '-of', 'default=nw=1', video]).toString().trim());
 }
