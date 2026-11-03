@@ -90,7 +90,7 @@ export const DEFAULT_POSE = {
   wrL: 0, wrR: 0, wtL: 0, wtR: 0, thumbL: 0, thumbR: 0,
   hipL: 0, hipR: 0, kneeL: 0, kneeR: 0, hipAbL: 0, hipAbR: 0,
   browIn: 0.1, browUp: 0, smile: 0.15, open: 0, press: 0, talk: 0, breath: 0.25,
-  tearL: 0, tearR: 0,
+  tearL: 0, tearR: 0, wind: 0,
 };
 
 export const POSES = {
@@ -181,7 +181,9 @@ function tube(points, radius, color, name, closed = false, seg = 24) {
 // die Brauen hoch an der Stirn, sind gerade, laufen nach aussen spitz zu und sind
 // innen leicht angehoben ("/ \"). Darunter bis zur Nase ist nur glatte Haut.
 export const FACE = {
-  browX: 0.31, browY: 0.46, browLen: 0.27, browIn: 0.075, browOut: 0.035, browArch: 0, browDrop: 0, browTilt: 16,
+  // Brauen bei 57 % des Kopfradius ueber der Kopfmitte, direkt unter dem Haaransatz:
+  // kurz, dick, fast gerade (nie als nach unten offener Bogen).
+  browX: 0.29, browY: 0.57, browLen: 0.24, browIn: 0.115, browOut: 0.09, browArch: 0, browDrop: 0, browTilt: 4,
   noseY: 0.0, noseR: 0.13, mouthY: -0.3, mouthW: 0.19, cheekX: 0.53, cheekY: -0.13,
 };
 
@@ -363,7 +365,7 @@ function updateBrowsAndTears(face, P) {
   const r = face.r;
   for (const b of face.brows) {
     const x = b.s * r * face.F.browX;
-    const y = r * (face.F.browY + clamp(P.browUp, -0.5, 1.2) * 0.05 + clamp(P.browIn, -1, 1) * 0.008);
+    const y = r * (face.F.browY + clamp(P.browUp, -0.5, 1.2) * 0.035 + clamp(P.browIn, -1, 1) * 0.006);
     const zz = Math.sqrt(Math.max(0, r * r - x * x - y * y));
     const n = new THREE.Vector3(x, y, zz).normalize();
     b.holder.position.copy(n.multiplyScalar(r * 1.012));
@@ -391,38 +393,47 @@ function updateBrowsAndTears(face, P) {
 function buildHair(skull, r, spec) {
   const color = spec.hair.color;
   const style = spec.hair.style || 'short';
-  const front = spec.hair.front ?? (style === 'receding' ? 0.385 : 0.43);
+  const front = spec.hair.front ?? (style === 'receding' ? 0.41 : 0.43);
   const g = new THREE.SphereGeometry(r * 1.075, 16, 9, 0, Math.PI * 2, 0, front * Math.PI);
   const hair = mesh(g, mat(color, { side: THREE.DoubleSide }), 'hair', { cast: true, receive: false });
   hair.rotation.x = -0.42;
   hair.scale.set(1.0, 1.04, 1.0);
   skull.add(hair);
-  // Kleine Haarbuescheln fuer Kinder/Jugendliche
-  if (spec.hair.tuft) {
-    for (let i = 0; i < 3; i++) {
-      const t = mesh(new THREE.ConeGeometry(r * 0.13, r * 0.28, 5), mat(color), 'hair_tuft', { cast: true, receive: false });
-      const a = -0.5 + i * 0.5;
-      t.position.set(Math.sin(a) * r * 0.35, r * 1.02, r * 0.28 + Math.cos(a) * r * 0.05);
-      t.rotation.set(0.6, 0, -a * 0.8);
-      skull.add(t);
-    }
+  // Haarbuescheln (wehen im Fahrtwind, Pose-Parameter "wind")
+  const tufts = [];
+  const nTop = spec.hair.tuft === true ? 3 : Math.min(3, spec.hair.tuft || 0);
+  const ids = [...Array(nTop).keys(), ...[3, 4].slice(0, spec.hair.tuftBack || 0)];
+  for (const i of ids) {
+    const piv = new THREE.Group();
+    piv.name = 'hair_tuft_pivot';
+    const a = -0.5 + (i % 3) * 0.5;
+    const back = i >= 3;
+    piv.position.set(Math.sin(a) * r * 0.35, r * (back ? 0.85 : 1.0), back ? -r * 0.5 : r * 0.22 + Math.cos(a) * r * 0.05);
+    const baseX = back ? -0.9 : 0.6;
+    piv.rotation.set(baseX, 0, -a * 0.8);
+    const t = mesh(new THREE.ConeGeometry(r * 0.13, r * 0.3, 5), mat(color), 'hair_tuft', { cast: true, receive: false });
+    t.position.y = r * 0.1;
+    piv.add(t);
+    skull.add(piv);
+    tufts.push({ piv, baseX, baseZ: -a * 0.8, i });
   }
+  return tufts;
 }
 
 function buildHelmet(skull, r, color) {
   const h = new THREE.Group();
   h.name = 'helmet';
-  const g = new THREE.SphereGeometry(r * 1.13, 14, 7, 0, Math.PI * 2, 0, 0.42 * Math.PI);
+  const g = new THREE.SphereGeometry(r * 1.13, 14, 7, 0, Math.PI * 2, 0, 0.4 * Math.PI);
   const shell = mesh(g, mat(color, { side: THREE.DoubleSide }), 'helmet_shell', { cast: true, receive: false });
   shell.scale.set(1, 0.88, 1.1);
   h.add(shell);
   for (let i = -1; i <= 1; i++) {
     const v = mesh(new THREE.BoxGeometry(r * 0.09, r * 0.05, r * 0.9), mat('#1d2b4a'), 'helmet_vent', { cast: false, receive: false });
-    v.position.set(i * r * 0.3, r * 0.99, -r * 0.05);
+    v.position.set(i * r * 0.3, r * 0.97, -r * 0.05);
     v.rotation.z = -i * 0.28;
     h.add(v);
   }
-  h.position.y = r * 0.07;
+  h.position.y = r * 0.15;
   h.rotation.x = -0.3;
   skull.add(h);
   for (const s of [1, -1]) {
@@ -587,7 +598,7 @@ export class Character {
     const r = B.head;
     this.skull = group('skull', this.headPivot, 0, r * 0.88, r * 0.02);
     this.face = buildFace(this.skull, r, { ...spec, hair: spec.hair || { color: '#333' } }, DEFAULT_POSE);
-    buildHair(this.skull, r, { ...spec, hair: spec.hair || { color: '#333' } });
+    this.tufts = buildHair(this.skull, r, { ...spec, hair: spec.hair || { color: '#333' } });
     if (spec.helmet) buildHelmet(this.skull, r, spec.helmet);
 
     this.root.traverse((o) => { o.userData.actor = id; });
@@ -620,6 +631,12 @@ export class Character {
       lg.hip.rotation.set(-P['hip' + L] * D2R, 0, s * (P['hipAb' + L] || 0) * D2R);
       lg.knee.rotation.set(P['knee' + L] * D2R, 0, 0);
       lg.ankle.rotation.set((P['hip' + L] - P['knee' + L]) * D2R * 0.85, 0, 0);
+    }
+    // Haare im Wind
+    if (this.tufts) for (const tf of this.tufts) {
+      const w = P.wind || 0;
+      tf.piv.rotation.x = tf.baseX - w * 0.5 + w * 0.32 * Math.sin(time * 23 + tf.i * 1.7) + w * 0.12 * Math.sin(time * 41 + tf.i);
+      tf.piv.rotation.z = tf.baseZ + w * 0.2 * Math.sin(time * 17 + tf.i * 2.3);
     }
     // Gesicht
     const talk = P.talk > 0 ? P.talk * (0.35 + 0.3 * Math.sin(time * 19.0) + 0.25 * Math.sin(time * 7.3 + 1.1)) : 0;
@@ -719,6 +736,11 @@ export class Character {
       case 'handL': return this.arms.L.hand.localToWorld(out.set(0, -this.B.hand[1] * 0.5, 0));
       case 'handR': return this.arms.R.hand.localToWorld(out.set(0, -this.B.hand[1] * 0.5, 0));
       case 'root': return this.root.localToWorld(out.set(0, 0, 0));
+      // Ruecken (fuer Umarmungen): links/rechts aus Sicht der Figur
+      case 'backL': return this.chest.localToWorld(out.set(this.B.rTop * 0.55, this.B.torsoUp * 0.55, -this.B.rTop * this.B.depth * 1.15));
+      case 'backR': return this.chest.localToWorld(out.set(-this.B.rTop * 0.55, this.B.torsoUp * 0.55, -this.B.rTop * this.B.depth * 1.15));
+      case 'shoulderL': return this.arms.L.sh.localToWorld(out.set(0, 0.04, 0));
+      case 'shoulderR': return this.arms.R.sh.localToWorld(out.set(0, 0.04, 0));
       default: throw new Error('Unbekannter Anker ' + name + ' an ' + this.id);
     }
   }

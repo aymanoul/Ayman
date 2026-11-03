@@ -1,18 +1,18 @@
 // Deterministisches Rendern mit Playwright (Chromium headless).
 //
-//   node render.mjs sheet                 Figuren-Standbilder (vorn/seitlich/hinten) -> out/figuren.jpg
-//   node render.mjs stills 1.5 4.2 ...    Einzelbilder -> out/stills/
-//   node render.mjs preview               Bild aus der Mitte jeder Einstellung -> out/vorschau.jpg
-//   node render.mjs check                 Augen-Pruefung (Namen), Textbereich, Determinismus
-//   node render.mjs frames [--workers 3]  alle Frames -> frames/%05d.png
-//   node render.mjs video                 ffmpeg -> out/video.mp4, out/cover.jpg, out/kontaktbogen.jpg
-//   node render.mjs all                   check + frames + video
+//   node render.mjs sheet                 Figuren (vorn/seitlich/hinten) -> out/figuren.jpg, out/koepfe.jpg
+//   node render.mjs heads id1 id2 ...     Koepfe einzelner Figuren -> out/koepfe_test.jpg
+//   node render.mjs stills 1.5 4.2 ...    Einzelbilder -> out/stills/   (--zones: TikTok-Bereiche rot)
+//   node render.mjs preview [--n 3] [--shots 2,4]   Bild(er) je Einstellung mit roten Zonen -> out/vorschau.jpg
+//   node render.mjs check                 Pruefungen (Augen-Namen, Textbereiche, Gesichter, Kontrast, Untertitel, Zaehler, Determinismus)
+//   node render.mjs export                out/untertitel.srt, out/abgleich.txt, out/bewegung.json (fuer den Ton)
+//   node render.mjs frames                alle Frames -> frames/%05d.jpg (Qualitaet 93)
+//   node render.mjs video                 ffmpeg (frames + out/mix.wav) -> out/video.mp4, out/cover.jpg, out/kontaktbogen.jpg
 //
-// Vorher: node build.mjs (oder npm run build). Der Server (http-server dist -p 8080 -s)
-// wird bei Bedarf automatisch gestartet.
+// Vorher: node build.mjs. Der Server (http-server dist -p 8080 -s) startet bei Bedarf automatisch.
 import { chromium } from 'playwright';
 import { spawn, execFileSync } from 'node:child_process';
-import { mkdirSync, rmSync, existsSync, readdirSync, readFileSync } from 'node:fs';
+import { mkdirSync, rmSync, readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import http from 'node:http';
 import path from 'node:path';
@@ -25,6 +25,7 @@ const FORBIDDEN = /(eye|pupil|iris|lid|lash)/i;
 const args = process.argv.slice(2);
 const cmd = args[0] || 'help';
 const opt = (name, def) => { const i = args.indexOf('--' + name); return i >= 0 ? args[i + 1] : def; };
+const flag = (name) => args.includes('--' + name);
 
 function ping() {
   return new Promise((res) => {
@@ -37,7 +38,7 @@ function ping() {
 let server = null;
 async function ensureServer() {
   if (await ping()) return;
-  server = spawn('npx', ['http-server', 'dist', '-p', String(PORT), '-s', '-c-1'], { stdio: 'ignore', detached: false });
+  server = spawn('npx', ['http-server', 'dist', '-p', String(PORT), '-s', '-c-1'], { stdio: 'ignore' });
   for (let i = 0; i < 60; i++) {
     if (await ping()) return;
     await new Promise((r) => setTimeout(r, 250));
@@ -51,7 +52,7 @@ async function openPage(browser) {
   page.on('pageerror', (e) => errors.push(String(e)));
   page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
   await page.goto(URL);
-  await page.waitForFunction(() => window.ready === true || window.initError, null, { timeout: 120000 });
+  await page.waitForFunction(() => window.ready === true || window.initError, null, { timeout: 180000 });
   const err = await page.evaluate(() => window.initError);
   if (err) throw new Error('Init-Fehler:\n' + err);
   if (errors.length) console.warn('Konsole:', errors.join('\n'));
@@ -63,15 +64,15 @@ async function launch() {
   return chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 }
 
-async function shot(page, t, file) {
-  await page.evaluate((tt) => window.renderAt(tt), t);
-  await page.screenshot({ path: file, type: file.endsWith('.jpg') ? 'jpeg' : 'png', quality: file.endsWith('.jpg') ? 92 : undefined, clip: { x: 0, y: 0, width: W, height: H }, animations: 'disabled', caret: 'hide' });
+async function shot(page, t, file, zones = false) {
+  await page.evaluate(([tt, z]) => { window.showZones(z); window.renderAt(tt); }, [t, zones]);
+  const jpg = file.endsWith('.jpg');
+  await page.screenshot({ path: file, type: jpg ? 'jpeg' : 'png', quality: jpg ? 93 : undefined, clip: { x: 0, y: 0, width: W, height: H }, animations: 'disabled', caret: 'hide' });
 }
 
 function ffmpeg(a) { execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', ...a], { stdio: 'inherit' }); }
 
 function tileSheet(inputs, out, cols, cellW, cellH) {
-  // Kontaktbogen aus Einzelbildern
   const tmp = 'out/.tile';
   rmSync(tmp, { recursive: true, force: true });
   mkdirSync(tmp, { recursive: true });
@@ -81,6 +82,13 @@ function tileSheet(inputs, out, cols, cellW, cellH) {
   rmSync(tmp, { recursive: true, force: true });
 }
 
+const srtTime = (t) => {
+  const ms = Math.max(0, Math.round(t * 1000));
+  const h = Math.floor(ms / 3600000), m = Math.floor(ms / 60000) % 60, s = Math.floor(ms / 1000) % 60;
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')},${String(ms % 1000).padStart(3, '0')}`;
+};
+const norm = (w) => w.toLowerCase().normalize('NFC').replace(/[^\p{L}\p{N}]/gu, '');
+
 // ------------------------------------------------------------ Befehle
 
 async function cmdSheet() {
@@ -89,7 +97,7 @@ async function cmdSheet() {
   mkdirSync('out/turnaround', { recursive: true });
   const browser = await launch();
   const page = await openPage(browser);
-  const files = [];
+  const files = [], heads = [];
   for (const id of people) {
     for (const view of ['front', 'side', 'back']) {
       const f = `out/turnaround/${id}_${view}.png`;
@@ -98,10 +106,6 @@ async function cmdSheet() {
       await page.screenshot({ path: f, clip: { x: 0, y: 0, width: W, height: H } });
       files.push(f);
     }
-  }
-  const heads = [];
-  // Nahaufnahmen der Koepfe (vorn und schraeg) zur Augen-Pruefung
-  for (const id of people) {
     for (const view of ['front', 'threequarter']) {
       const f = `out/turnaround/${id}_kopf_${view}.png`;
       const h = story.cast[id].build === 'child' ? 1.0 : 1.55;
@@ -116,7 +120,6 @@ async function cmdSheet() {
   console.log('out/figuren.jpg, out/koepfe.jpg');
 }
 
-// Koepfe ausgewaehlter Figuren (vorn, schraeg, aus 3 m Entfernung) -> out/koepfe_test.jpg
 async function cmdHeads(ids) {
   const story = JSON.parse(readFileSync('dist/story.json', 'utf8'));
   mkdirSync('out/turnaround', { recursive: true });
@@ -142,16 +145,16 @@ async function cmdStills(times) {
   const browser = await launch();
   const page = await openPage(browser);
   for (const t of times) {
-    const f = `out/stills/t_${Number(t).toFixed(2).padStart(6, '0')}.png`;
+    const f = `out/stills/t_${Number(t).toFixed(2).padStart(6, '0')}.jpg`;
     const t0 = Date.now();
-    await shot(page, Number(t), f);
+    await shot(page, Number(t), f, flag('zones'));
     console.log(f, (Date.now() - t0) + ' ms');
   }
   await browser.close();
 }
 
 async function cmdPreview() {
-  mkdirSync('out/preview', { recursive: true });
+  mkdirSync('out/pruefung', { recursive: true });
   const browser = await launch();
   const page = await openPage(browser);
   const meta = await page.evaluate(() => window.storyMeta());
@@ -161,67 +164,171 @@ async function cmdPreview() {
   for (const s of meta.shots) {
     if (only.length && !only.includes(s.id)) continue;
     for (let j = 0; j < n; j++) {
-      const k = n === 1 ? 0.5 : 0.08 + (0.84 * j) / (n - 1);
+      const k = n === 1 ? 0.55 : 0.08 + (0.84 * j) / (n - 1);
       const t = Math.round((s.start + (s.end - s.start) * k) * 30) / 30;
-      const f = `out/preview/einstellung_${String(s.id).padStart(2, '0')}_${j}.png`;
-      await shot(page, t, f);
+      const f = `out/pruefung/einstellung_${String(s.id).padStart(2, '0')}${n > 1 ? '_' + j : ''}.jpg`;
+      await shot(page, t, f, true);
       files.push(f);
       console.log(f, 't=' + t.toFixed(2));
     }
   }
   await browser.close();
   const out = n === 1 && !only.length ? 'out/vorschau.jpg' : 'out/vorschau_detail.jpg';
-  tileSheet(files, out, n === 1 ? 5 : Math.min(n * 2, 6), 324, 576);
+  tileSheet(files, out, n === 1 ? 7 : Math.min(n * 2, 6), 270, 480);
   console.log(out);
 }
 
 async function cmdCheck() {
   let fail = 0;
-  // 1) Quelltext: kein Mesh/Objekt mit verbotenem Namen
+  const story = JSON.parse(readFileSync('dist/story.json', 'utf8'));
+  // 1) Augen: kein Objekt mit verbotenem Namen (Quelltext und Szene)
   const srcFiles = [];
   const walk = (d) => { for (const f of readdirSync(d, { withFileTypes: true })) { const p = path.join(d, f.name); if (f.isDirectory()) walk(p); else if (p.endsWith('.js')) srcFiles.push(p); } };
   walk('src');
   for (const f of srcFiles) {
-    const lines = readFileSync(f, 'utf8').split('\n');
-    lines.forEach((ln, i) => {
-      for (const m of ln.matchAll(/['"`]([A-Za-z0-9_\-]+)['"`]/g)) {
-        if (FORBIDDEN.test(m[1])) { console.log(`FEHLER Quelltext ${f}:${i + 1}: Name "${m[1]}"`); fail++; }
-      }
-      if (/\.name\s*=\s*.*(eye|pupil|iris|lid|lash)/i.test(ln)) { console.log(`FEHLER Quelltext ${f}:${i + 1}: ${ln.trim()}`); fail++; }
+    readFileSync(f, 'utf8').split('\n').forEach((ln, i) => {
+      for (const m of ln.matchAll(/['"`]([A-Za-z0-9_\-]+)['"`]/g)) if (FORBIDDEN.test(m[1])) { console.log(`FEHLER ${f}:${i + 1}: Name "${m[1]}"`); fail++; }
     });
   }
   const browser = await launch();
   const page = await openPage(browser);
-  // 2) Szene: alle Objektnamen zur Laufzeit
   const names = await page.evaluate(() => window.meshNames());
   const bad = [...new Set(names.filter((n) => FORBIDDEN.test(n)))];
   if (bad.length) { console.log('FEHLER Szene: verbotene Namen', bad); fail++; }
-  console.log(`Augen-Pruefung: ${srcFiles.length} Quelldateien, ${names.length} Szene-Objekte, verbotene Namen: ${bad.length}`);
-  // 3) Texte im sicheren Bereich
+  console.log(`Augen-Namen: ${srcFiles.length} Quelldateien, ${names.length} Objekte, verbotene Namen: ${bad.length}`);
   const meta = await page.evaluate(() => window.storyMeta());
+  if (meta.draft) console.log('HINWEIS: Zeiten sind ein ENTWURF (keine Stimme vorhanden).');
+
+  // 2) Texte ausserhalb der TikTok-Bereiche (alle 0,1 s)
   let layoutBad = 0;
   for (let t = 0; t <= meta.duration; t += 0.1) {
     const out = await page.evaluate((tt) => window.checkLayout(tt), t);
-    if (out.length) { layoutBad++; if (layoutBad < 6) console.log('FEHLER Textbereich bei t=' + t.toFixed(2), JSON.stringify(out)); }
+    if (out.length) { layoutBad++; if (layoutBad <= 5) console.log('FEHLER Text in TikTok-Bereich bei t=' + t.toFixed(2), JSON.stringify(out[0])); }
   }
   if (layoutBad) fail++;
-  console.log('Text-Pruefung (alle 0,1 s):', layoutBad ? layoutBad + ' Zeitpunkte ausserhalb' : 'alles im sicheren Bereich');
-  // 4) Determinismus: gleicher Zeitpunkt zweimal -> gleiche Pixel
+  console.log('Texte:', layoutBad ? layoutBad + ' Zeitpunkte mit Ueberschneidung' : 'alle ausserhalb der TikTok-Bereiche');
+
+  // 3) Gesichter, Haende, Fuehrerschein nicht unter Texten / TikTok-Elementen (alle 0,2 s)
+  let kpBad = 0;
+  const kpSeen = new Set();
+  for (let t = 0; t <= meta.duration; t += 0.2) {
+    const out = await page.evaluate((tt) => window.keyPointCheck(tt), t);
+    for (const b of out) {
+      const key = b.name + '|' + b.where;
+      kpBad++;
+      if (!kpSeen.has(key)) { kpSeen.add(key); console.log(`FEHLER t=${t.toFixed(1)} ${b.name} unter ${b.where} (x ${b.x}, y ${b.y})`); }
+    }
+  }
+  if (kpBad) fail++;
+  console.log('Gesichter/Haende:', kpBad ? kpBad + ' Treffer' : 'frei von Texten und TikTok-Bereichen');
+
+  // 4) Kontrast des Titels (mind. 4,5 : 1)
+  const tt = story.title.end;
+  let minRatio = 99;
+  for (const t of [0.2, tt * 0.5, tt - 0.1]) {
+    const res = await page.evaluate((x) => window.titleContrast(x), t);
+    for (const r of res) minRatio = Math.min(minRatio, r.ratio);
+    console.log(`Titel-Kontrast t=${t.toFixed(1)}: ` + res.map((r) => `"${r.text}" ${r.ratio}:1`).join(', '));
+  }
+  if (minRatio < 4.5) { console.log('FEHLER Titel-Kontrast unter 4,5 : 1'); fail++; }
+
+  // 5) Untertitel Wort fuer Wort = Sprechertext
+  const cues = await page.evaluate(() => window.subtitleCues());
+  for (const s of story.script) {
+    if (s.subtitle === false) continue;
+    const want = s.display ?? s.text.toLowerCase();
+    const got = cues.filter((c) => c.text && want.includes(c.text)).map((c) => c.text).join(' ');
+    if (got !== want) { console.log(`FEHLER Untertitel Satz ${s.id}: "${got}" statt "${want}"`); fail++; }
+  }
+  console.log(`Untertitel: ${cues.length} Eintraege, Text gegen Sprechertext geprueft`);
+
+  // 6) Zaehler: 0:00 genau beim Wortanfang
+  for (const c of story.counters) {
+    const w = story.timing.sentences.find((s) => s.id === c.zeroAt.sentence).words.find((x) => norm(x.word) === norm(c.zeroAt.word));
+    const f0 = Math.ceil(w.start * 30 - 1e-6);
+    const vals = await page.evaluate(([a, b]) => [a, b].map((f) => { window.renderAt(f / 30); return document.querySelector('.c-num').textContent; }), [f0 - 1, f0]);
+    const ok = vals[1] === '0:00' && vals[0] === '0:01';
+    console.log(`Zaehler "${c.zeroAt.word}" (Wort ab ${w.start.toFixed(3)} s): Frame ${f0 - 1} ${vals[0]}, Frame ${f0} ${vals[1]} ${ok ? 'OK' : 'FEHLER'}`);
+    if (!ok) fail++;
+  }
+
+  // 7) Determinismus
   const hashes = [];
   for (let i = 0; i < 2; i++) {
-    await page.evaluate(() => window.renderAt(7.3));
+    await page.evaluate(() => window.renderAt(9.3));
     hashes.push(createHash('md5').update(await page.screenshot({ clip: { x: 0, y: 0, width: W, height: H } })).digest('hex'));
-    await page.evaluate(() => window.renderAt(23.1));
+    await page.evaluate(() => window.renderAt(30.1));
   }
   console.log('Determinismus:', hashes[0] === hashes[1] ? 'gleich' : 'UNTERSCHIEDLICH');
   if (hashes[0] !== hashes[1]) fail++;
   await browser.close();
-  if (fail) { console.log('PRUEFUNG FEHLGESCHLAGEN'); process.exitCode = 1; } else console.log('PRUEFUNG OK');
+  if (fail) { console.log('PRUEFUNG FEHLGESCHLAGEN (' + fail + ')'); process.exitCode = 1; } else console.log('PRUEFUNG OK');
+}
+
+// Bildausschnitt-Optimierer: schreibt camera.adjust in story/shots.json
+async function cmdFrame() {
+  const only = (args[1] || '').split(',').filter(Boolean).map(Number);
+  const browser = await launch();
+  const page = await openPage(browser);
+  const meta = await page.evaluate(() => window.storyMeta());
+  const story = JSON.parse(readFileSync('story/shots.json', 'utf8'));
+  for (const s of meta.shots) {
+    if (only.length && !only.includes(s.id)) continue;
+    const r = await page.evaluate((id) => window.solveFraming(id), s.id);
+    const sh = story.shots.find((x) => x.id === s.id);
+    const adj = r.best;
+    if (adj.pan === 0 && adj.tilt === 0 && adj.zoom === 1) delete sh.camera.adjust; else sh.camera.adjust = adj;
+    console.log(`Einstellung ${s.id}: vorher ${r.before} Treffer -> pan ${adj.pan}, tilt ${adj.tilt}, zoom ${adj.zoom}, Rest: ${r.issues.length ? r.issues.join(' | ') : 'keine'}`);
+  }
+  writeFileSync('story/shots.json', JSON.stringify(story, null, 1));
+  await browser.close();
+}
+
+// Schnellpruefung: Gesichter/Haende je Einstellung (alle 0,2 s)
+async function cmdKeypoints() {
+  const browser = await launch();
+  const page = await openPage(browser);
+  const meta = await page.evaluate(() => window.storyMeta());
+  const only = (args[1] || '').split(',').filter(Boolean).map(Number);
+  for (const s of meta.shots) {
+    if (only.length && !only.includes(s.id)) continue;
+    const seen = new Map();
+    for (let t = s.start + 0.02; t < s.end; t += 0.2) {
+      const out = await page.evaluate((tt) => window.keyPointCheck(tt), t);
+      for (const b of out) { const k = b.name + ' ' + b.where; if (!seen.has(k)) seen.set(k, `t=${t.toFixed(1)} (${b.x},${b.y})`); else seen.set(k, seen.get(k).replace(/ \+\d+$/, '') + ' +'); }
+    }
+    console.log(`Einstellung ${s.id}: ` + (seen.size ? [...seen].map(([k, v]) => k + ' ' + v).join(' | ') : 'OK'));
+  }
+  await browser.close();
+}
+
+async function cmdExport() {
+  mkdirSync('out', { recursive: true });
+  const story = JSON.parse(readFileSync('dist/story.json', 'utf8'));
+  const browser = await launch();
+  const page = await openPage(browser);
+  const cues = await page.evaluate(() => window.subtitleCues());
+  const srt = cues.map((c, i) => `${i + 1}\n${srtTime(c.start)} --> ${srtTime(c.end)}\n${c.text}\n`).join('\n');
+  writeFileSync('out/untertitel.srt', srt);
+  const lines = [story.timing.draft ? 'ENTWURF: Zeiten geschaetzt, noch keine Stimme.\n' : 'Zeiten aus audio/transkript.json (faster-whisper auf audio/stimme.wav)\n'];
+  for (const c of cues) lines.push(`${srtTime(c.start)} - ${srtTime(c.end)}  ${c.text}\n    erkannt: ${c.words.join(' ')}`);
+  writeFileSync('out/abgleich.txt', lines.join('\n') + '\n');
+  const track = await page.evaluate(() => window.motionTrack(1 / 60));
+  const events = [];
+  for (const sh of story.shots) for (const fx of sh.sfx || []) events.push({ ...fx, t: sh.start + fx.t, until: fx.until !== undefined ? sh.start + fx.until : undefined, shot: sh.id });
+  writeFileSync('out/bewegung.json', JSON.stringify({
+    duration: story.timing.duration, draft: story.timing.draft,
+    shots: story.shots.map((s) => ({ id: s.id, start: s.start, end: s.end, set: s.set, light: s.light, black: !!s.black })),
+    ambience: story.ambience, events, frames: track,
+    words: story.timing.sentences.flatMap((s) => s.words.map((w) => [w.start, w.end])),
+  }));
+  await browser.close();
+  console.log(`out/untertitel.srt (${cues.length} Untertitel), out/abgleich.txt, out/bewegung.json (${track.length} Schritte)`);
 }
 
 async function cmdFrames() {
-  const workers = Number(opt('workers', 3));
-  rmSync('frames', { recursive: true, force: true });
+  const workers = Number(opt('workers', 1));
+  if (!flag('keep')) rmSync('frames', { recursive: true, force: true });
   mkdirSync('frames', { recursive: true });
   const browser = await launch();
   const first = await openPage(browser);
@@ -235,46 +342,48 @@ async function cmdFrames() {
   await Promise.all(pages.map(async (page) => {
     while (next < to) {
       const f = next++;
-      await shot(page, f / meta.fps, `frames/${String(f).padStart(5, '0')}.png`);
+      const file = `frames/${String(f).padStart(5, '0')}.jpg`;
+      if (flag('keep') && existsSync(file)) { done++; continue; }
+      await shot(page, f / meta.fps, file, false);
       done++;
-      if (done % 30 === 0) {
+      if (done % 60 === 0) {
         const el = (Date.now() - t0) / 1000;
         console.log(`${done}/${to - from} Frames, ${(el / done).toFixed(2)} s/Frame, Rest ca. ${Math.round((el / done) * (to - from - done))} s`);
       }
     }
   }));
   await browser.close();
-  console.log('Frames fertig in', Math.round((Date.now() - t0) / 1000), 's');
+  console.log(`Frames fertig: ${to - from} in ${Math.round((Date.now() - t0) / 1000)} s (Dauer ${meta.duration} s)`);
 }
 
 async function cmdVideo() {
   mkdirSync('out', { recursive: true });
-  ffmpeg(['-framerate', '30', '-i', 'frames/%05d.png', '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo', '-shortest',
-    '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-movflags', '+faststart', 'out/video.mp4']);
-  // Cover bei 1,5 s (mit Titel)
-  ffmpeg(['-i', 'frames/00045.png', '-q:v', '2', 'out/cover.jpg']);
-  // Kontaktbogen: ein Bild pro Sekunde aus dem fertigen Video
+  const audio = opt('audio', 'out/mix.wav');
+  ffmpeg(['-framerate', '30', '-i', 'frames/%05d.jpg', '-i', audio, '-c:v', 'libx264', '-preset', 'medium', '-crf', '22', '-pix_fmt', 'yuv420p',
+    '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', opt('out', 'out/video.mp4')]);
+  const video = opt('out', 'out/video.mp4');
+  ffmpeg(['-i', 'frames/00045.jpg', '-q:v', '2', 'out/cover.jpg']);
   rmSync('out/.ks', { recursive: true, force: true });
   mkdirSync('out/.ks', { recursive: true });
-  ffmpeg(['-i', 'out/video.mp4', '-vf', 'fps=1,scale=216:384', path.join('out/.ks', '%03d.png')]);
+  ffmpeg(['-i', video, '-vf', 'fps=1,scale=216:384', path.join('out/.ks', '%03d.png')]);
   const n = readdirSync('out/.ks').length;
-  const cols = 8, rows = Math.ceil(n / cols);
-  ffmpeg(['-framerate', '1', '-i', 'out/.ks/%03d.png', '-vf', `tile=${cols}x${rows}:padding=4:margin=4:color=0x111111`, '-frames:v', '1', '-q:v', '3', 'out/kontaktbogen.jpg']);
+  ffmpeg(['-framerate', '1', '-i', 'out/.ks/%03d.png', '-vf', `tile=8x${Math.ceil(n / 8)}:padding=4:margin=4:color=0x111111`, '-frames:v', '1', '-q:v', '3', 'out/kontaktbogen.jpg']);
   rmSync('out/.ks', { recursive: true, force: true });
-  const probe = execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=codec_name,width,height,r_frame_rate,nb_frames:format=duration', '-of', 'default=nw=1', 'out/video.mp4']).toString();
-  console.log(probe.trim());
+  console.log(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'stream=codec_name,width,height,r_frame_rate,sample_rate,channels:format=duration,size', '-of', 'default=nw=1', video]).toString().trim());
 }
 
 try {
   if (cmd === 'sheet') await cmdSheet();
-  else if (cmd === 'heads') await cmdHeads(args.slice(1));
-  else if (cmd === 'stills') await cmdStills(args.slice(1).filter((a) => !a.startsWith('--')));
+  else if (cmd === 'heads') await cmdHeads(args.slice(1).filter((a) => !a.startsWith('--')));
+  else if (cmd === 'stills') await cmdStills(args.slice(1).filter((a) => !a.startsWith('--') && !isNaN(Number(a))));
   else if (cmd === 'preview') await cmdPreview();
   else if (cmd === 'check') await cmdCheck();
+  else if (cmd === 'export') await cmdExport();
+  else if (cmd === 'kp') await cmdKeypoints();
+  else if (cmd === 'frame') await cmdFrame();
   else if (cmd === 'frames') await cmdFrames();
   else if (cmd === 'video') await cmdVideo();
-  else if (cmd === 'all') { await cmdCheck(); if (!process.exitCode) { await cmdFrames(); await cmdVideo(); } }
-  else console.log(readFileSync(new URL(import.meta.url), 'utf8').split('\n').slice(0, 12).join('\n'));
+  else console.log(readFileSync(new URL(import.meta.url), 'utf8').split('\n').slice(0, 13).join('\n'));
 } finally {
   if (server) server.kill();
 }

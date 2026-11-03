@@ -9,8 +9,8 @@ import { DEFAULT_POSE, POSES, resolvePose } from './character.js';
 import { D2R, EASE, clamp, lerp, hermiteScalar, findSeg } from './util.js';
 
 const PLACE_FIELDS = new Set(['t', 's', 'off', 'p', 'y', 'h', 'pose', 'ease', 'hold', 'ikL', 'ikR', 'ikFL', 'ikFR', 'look', 'note']);
-const PROP_FIELDS = new Set(['wobble', 'lean', 'hatch', 'crank0', 'ry', 'rx', 'rz']);
-const POSE_EXTRA = { walk: 0, run: 0, swingL: 1, swingR: 1, ikLw: 1, ikRw: 1, ikFLw: 1, ikFRw: 1, lookW: 1, levelFeet: 0 };
+const PROP_FIELDS = new Set(['wobble', 'lean', 'hatch', 'crank0', 'ry', 'rx', 'rz', 'door', 'window', 'blink', 'steer', 'ax', 'ay', 'az']);
+const POSE_EXTRA = { walk: 0, run: 0, swingL: 1, swingR: 1, ikLw: 1, ikRw: 1, ikFLw: 1, ikFRw: 1, lookW: 1, levelFeet: 0, mox: 0, moy: 0, moz: 0, moh: 0 };
 const IK_KEYS = ['ikL', 'ikR', 'ikFL', 'ikFR', 'look'];
 
 function fillForward(keys, field) {
@@ -238,13 +238,24 @@ export class Timeline {
   }
 
   evalProp(shot, tr, tau, set, actor, t) {
-    const pl = this.placement(shot, tr, tau, set);
     const root = actor.obj.root;
-    if (root.parent !== this.world.scene) this.world.scene.add(root);
     const num = (f, d = 0) => (tr.keys[0][f] !== undefined ? hermiteScalarEase(tr.keys, tau, f) : d);
+    if (tr.attach) {
+      // In der Hand einer Figur (z.B. Fuehrerschein): Versatz ax/ay/az, Drehung rx/ry/rz relativ zur Hand
+      const [pid, hand] = tr.attach.split(':');
+      const holder = this.world.actors[pid].char.arms[hand === 'handL' ? 'L' : 'R'].hand;
+      if (root.parent !== holder) holder.add(root);
+      root.position.set(num('ax'), num('ay'), num('az'));
+      root.rotation.set(num('rx') * D2R, num('ry') * D2R, num('rz') * D2R);
+      actor.obj.update({}, t);
+      return;
+    }
+    const pl = this.placement(shot, tr, tau, set);
+    if (root.parent !== this.world.scene) this.world.scene.add(root);
     root.position.set(pl.x, pl.y, pl.z);
     root.rotation.set(num('rx') * D2R, pl.heading + num('ry') * D2R, num('rz') * D2R);
-    const state = { dist: this.lookupTable(tr.dist, tr, tau), wobble: num('wobble'), lean: num('lean'), hatch: num('hatch'), crank0: num('crank0') };
+    const state = { dist: this.lookupTable(tr.dist, tr, tau), wobble: num('wobble'), lean: num('lean'), hatch: num('hatch'), crank0: num('crank0'),
+      door: num('door'), window: num('window'), blink: num('blink'), steer: num('steer') };
     actor.obj.update(state, t);
     if (actor.kind === 'bike' && state.wobble > 0) root.rotation.y += (actor.obj.steer || 0) * 0.25;
   }
@@ -256,10 +267,12 @@ export class Timeline {
     if (tr.mount) {
       const [mid, mname] = tr.mount.split(':');
       const host = this.world.actors[mid].obj;
-      const holder = mname === 'seat' ? host.seat : host.driver;
+      const holder = (host.mounts && host.mounts[mname]) || (mname === 'seat' ? host.seat : host.driver);
       if (ch.root.parent !== holder) holder.add(ch.root);
-      ch.root.position.set(0, 0.05 - ch.hipY + (P.y || 0) * 0, 0.0);
-      ch.root.rotation.set(0, 0, 0);
+      // mox/moy/moz/moh: Versatz zum Sitzpunkt (z.B. Einsteigen ins Auto)
+      ch.root.position.set(P.mox || 0, 0.05 - ch.hipY + (P.moy || 0), P.moz || 0);
+      ch.root.rotation.set(0, (P.moh || 0) * D2R, 0);
+      if ((P.walk || 0) + (P.run || 0) > 0.01) this.applyGait(P, (shot.start + tau) * 2 * Math.PI * 0.9);
     } else {
       if (ch.root.parent !== this.world.scene) this.world.scene.add(ch.root);
       const pl = this.placement(shot, tr, tau, set);
@@ -287,6 +300,46 @@ export class Timeline {
     if (lk && lk.w > 0.001) ch.lookAt(lk.pos, lk.w * (P.lookW ?? 1));
   }
 
+  // Animierte Teile des Ortes (z.B. Haustuer): shot.setKeys = { frontDoor: [{t, v}] }
+  setState(shot, tau) {
+    const out = {};
+    for (const [name, keys] of Object.entries(shot.setKeys || {})) {
+      const ks = keys.map((k) => ({ ...k })).sort((a, b) => a.t - b.t);
+      out[name] = hermiteScalarEase(ks, tau, 'v');
+    }
+    return out;
+  }
+
+  // Bewegungsspur fuer die Geraeusche: pro Zeitschritt Einstellung, Positionen,
+  // Schrittphase (Personen), Weg (Fahrrad/Auto) und Zustaende (Tuer, Fenster, Blinker)
+  motionTrack(dt) {
+    const dur = this.story.timing.duration;
+    const frames = [];
+    for (let t = 0; t <= dur + 1e-9; t += dt) {
+      const { shot, tau } = this.evaluate(t);
+      const f = { t: +t.toFixed(4), shot: shot.id, a: {} };
+      for (const [id, tr] of Object.entries(shot.actors || {})) {
+        const actor = this.world.actors[id];
+        const p = new THREE.Vector3();
+        actor.obj.root.getWorldPosition(p);
+        const e = { x: +p.x.toFixed(3), y: +p.y.toFixed(3), z: +p.z.toFixed(3) };
+        if (actor.kind === 'person') {
+          const P = this.poseAt(tr, tau);
+          e.phase = tr.mount ? 0 : +this.lookupTable(tr.phase, tr, tau).toFixed(4);
+          e.walk = +(P.walk || 0).toFixed(3); e.run = +(P.run || 0).toFixed(3); e.mounted = !!tr.mount;
+          e.breath = +(P.breath || 0).toFixed(3); e.wind = +(P.wind || 0).toFixed(3);
+        } else if (!tr.attach) {
+          const num = (fl) => (tr.keys[0][fl] !== undefined ? hermiteScalarEase(tr.keys, tau, fl) : 0);
+          e.dist = +this.lookupTable(tr.dist, tr, tau).toFixed(4);
+          if (actor.kind === 'car') { e.door = +num('door').toFixed(3); e.window = +num('window').toFixed(3); e.blink = num('blink') > 0.5 ? 1 : 0; }
+        }
+        f.a[id] = e;
+      }
+      frames.push(f);
+    }
+    return frames;
+  }
+
   // Kamera fuer Zeit t
   camera(shot, tau) {
     const cam = shot.camera;
@@ -303,6 +356,14 @@ export class Timeline {
       hermiteScalar(keys, tau, (k) => k.pos[0]), hermiteScalar(keys, tau, (k) => k.pos[1]), hermiteScalar(keys, tau, (k) => k.pos[2]));
     const look = new THREE.Vector3(
       hermiteScalar(keys, tau, (k) => k.look[0]), hermiteScalar(keys, tau, (k) => k.look[1]), hermiteScalar(keys, tau, (k) => k.look[2]));
+    if (cam.rel && cam.relYaw) {
+      // Versatz dreht mit der Fahrtrichtung (Kamera faehrt mit dem Auto mit)
+      const q = new THREE.Quaternion();
+      this.world.actors[cam.rel].obj.root.getWorldQuaternion(q);
+      const e = new THREE.Euler().setFromQuaternion(q, 'YXZ');
+      const qy = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), e.y);
+      pos.applyQuaternion(qy); look.applyQuaternion(qy);
+    }
     if (cam.rel) { pos.add(relPos); look.add(relPos); }
     if (cam.lookAnchor) look.add(this.anchorPos(cam.lookAnchor, new THREE.Vector3()));
     const fov = keys[0].fov !== undefined ? hermiteScalar(keys, tau, (k) => k.fov ?? cam.fov) : cam.fov;
@@ -315,7 +376,7 @@ export class Timeline {
 }
 
 function rank(actor, tr) {
-  if (actor.kind !== 'person') return 0;
+  if (actor.kind !== 'person') return tr.attach ? 3 : 0;
   if (tr.mount) return 1;
   return 2;
 }

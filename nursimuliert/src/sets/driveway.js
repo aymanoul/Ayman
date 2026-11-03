@@ -87,10 +87,12 @@ export function buildDriveway() {
   dorm.add(dr);
   // Haustuer
   box(1.1, 2.15, 0.1, '#f6f4ee', 'door_frame', -0.8, 1.07, -5.96, root);
-  box(0.92, 2.02, 0.08, '#2f5d50', 'front_door', -0.8, 1.04, -5.9, root);
-  const knob = mesh(new THREE.SphereGeometry(0.04, 6, 4), mat('#c9a45a'), 'door_knob');
-  knob.position.set(-0.45, 1.05, -5.84);
-  root.add(knob);
+  // Haustuer: dunkle Oeffnung dahinter, Tuerblatt mit Scharnier links, oeffnet nach aussen
+  box(0.92, 2.02, 0.02, '#1a1714', 'doorway_dark', -0.8, 1.04, -5.945, root);
+  const frontDoor = grp('front_door_hinge', root, -1.26, 0, -5.9);
+  box(0.92, 2.02, 0.08, '#2f5d50', 'front_door', 0.46, 1.04, 0, frontDoor);
+  box(0.14, 0.03, 0.05, '#b8955a', 'door_lever', 0.82, 1.05, 0.06, frontDoor);
+  for (let i = 0; i < 3; i++) box(0.6, 0.02, 0.02, '#264d42', 'door_panel_line', 0.46, 0.5 + i * 0.55, 0.05, frontDoor);
   box(1.5, 0.16, 0.7, '#cfc9bd', 'door_step', -0.8, 0.08, -5.6, root);
   box(1.6, 0.08, 0.8, '#8f8a82', 'door_canopy', -0.8, 2.45, -5.6, root);
   // Lampe neben der Tuer, Hausnummer-Schild (ohne Text), Pflanzen
@@ -146,7 +148,7 @@ export function buildDriveway() {
   }
   // Baum im Vorgarten, Blumenbeet
   const t = makeTree(rand, { height: 3.6, crown: 1.7, blobs: 2 });
-  t.position.set(-4.6, 0, 0.6);
+  t.position.set(-7.6, 0, 2.6);
   root.add(t);
   const fl = makeFlowers(rand, 26, 2.2);
   fl.position.set(-3.0, 0, -4.7);
@@ -202,7 +204,10 @@ export function buildDriveway() {
     root,
     paths: { carOut: { at: (s, off) => drive.at(s, off), length: drive.length } },
     lamps: [],
-    sun: { morning: new THREE.Vector3(0.55, 0.62, 0.55).normalize(), evening: new THREE.Vector3(-0.9, 0.22, 0.4).normalize(), night: new THREE.Vector3(0.2, 0.7, 0.3).normalize() },
+    animate(state) {
+      frontDoor.rotation.y = -(state.frontDoor || 0) * 95 * Math.PI / 180;
+    },
+    sun: { afternoon: new THREE.Vector3(0.45, 0.55, 0.75).normalize(), morning: new THREE.Vector3(0.55, 0.62, 0.55).normalize(), evening: new THREE.Vector3(-0.9, 0.22, 0.4).normalize(), night: new THREE.Vector3(0.2, 0.7, 0.3).normalize() },
     sky: {
       morning: { top: '#5a8fd8', horizon: '#d3e3f5', bottom: '#b9c8da', sun: '#f4f8ff', glow: 0.25, disc: 3 },
     },

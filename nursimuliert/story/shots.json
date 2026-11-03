@@ -1,1366 +1,1995 @@
 {
-  "meta": {
-    "title": "Was dein Vater gemacht hat, als du Fahrradfahren gelernt hast",
-    "fps": 30,
-    "width": 1080,
-    "height": 1920,
-    "duration": 31.5
+ "meta": {
+  "title": "Was dein Vater gemacht hat, als du Fahrradfahren gelernt hast",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "tail": 2,
+  "fadeOut": 1
+ },
+ "voice": {
+  "offset": 0.4,
+  "gap": 0.8,
+  "pauseBefore": {
+   "7": 1.8,
+   "8": 1.8,
+   "12": 3.2
   },
-  "layout": {
-    "subtitleBaseline": 1140
+  "draftSyllablesPerSecond": 4.4,
+  "shotLead": 0.25
+ },
+ "script": [
+  {
+   "id": 1,
+   "text": "Was dein Vater gemacht hat, als du Fahrradfahren gelernt hast.",
+   "subtitle": false
   },
-  "title": {
-    "lines": [
-      "Was dein Vater gemacht hat,",
-      "als du Fahrradfahren",
-      "gelernt hast"
-    ],
-    "highlight": "Fahrradfahren",
-    "start": 0.0,
-    "end": 3.2,
-    "fadeOut": 0.4
+  {
+   "id": 2,
+   "text": "Er hat gesagt, er hält dich fest."
   },
-  "counters": [
-    {
-      "start": 0.0,
-      "label": "BIS ER LOSLÄSST",
-      "from": 30,
-      "to": 0,
-      "countStart": 0.0,
-      "countEnd": 11.0,
-      "line3": "18:42 UHR",
-      "line4": "DU BIST 6"
-    },
-    {
-      "start": 20.9,
-      "label": "BIS DU LOSFÄHRST",
-      "from": 30,
-      "to": 0,
-      "countStart": 21.8,
-      "countEnd": 27.5,
-      "line3": "7:10 UHR",
-      "line4": "DU BIST 18"
-    }
+  {
+   "id": 3,
+   "text": "„Ich hab dich. Ich hab dich.“",
+   "display": "‚ich hab dich. ich hab dich.‘",
+   "speak": "Ich hab dich. Ich hab dich."
+  },
+  {
+   "id": 4,
+   "text": "Bei null hat er losgelassen."
+  },
+  {
+   "id": 5,
+   "text": "Er ist noch zehn Schritte mitgerannt. Nur für den Fall."
+  },
+  {
+   "id": 6,
+   "text": "Du hast nicht gemerkt, dass er losgelassen hat."
+  },
+  {
+   "id": 7,
+   "text": "Zwölf Jahre später.",
+   "subtitle": false
+  },
+  {
+   "id": 8,
+   "text": "Heute hast du deinen Führerschein bekommen."
+  },
+  {
+   "id": 9,
+   "text": "Und diesmal hast du ihn mitgenommen."
+  },
+  {
+   "id": 10,
+   "text": "Er hat sich festgehalten."
+  },
+  {
+   "id": 11,
+   "text": "Und irgendwann hat er losgelassen."
+  },
+  {
+   "id": 12,
+   "text": "Früher ist er neben dir hergerannt. Heute sitzt er neben dir."
+  }
+ ],
+ "subtitleRules": {
+  "lead": 0.08,
+  "tail": 0.25,
+  "gap": 0.05,
+  "fade": 0.15,
+  "maxLines": 2,
+  "pause": 0.25
+ },
+ "title": {
+  "sentence": 1,
+  "after": 0.4,
+  "min": 3.5,
+  "fadeOut": 0.4,
+  "lines": [
+   {
+    "text": "Was dein Vater gemacht hat,",
+    "style": "small"
+   },
+   {
+    "text": "als du",
+    "style": "big"
+   },
+   {
+    "text": "Fahrradfahren",
+    "style": "big",
+    "gold": true
+   },
+   {
+    "text": "gelernt hast",
+    "style": "small"
+   }
+  ]
+ },
+ "counters": [
+  {
+   "label": "BIS ER LOSLÄSST",
+   "from": 30,
+   "fromShot": 1,
+   "toShot": 6,
+   "zeroAt": {
+    "sentence": 4,
+    "word": "null"
+   },
+   "line3": "18:42 UHR",
+   "line4": "DU BIST 6"
+  },
+  {
+   "label": "BIS ER LOSLÄSST",
+   "from": 20,
+   "hold": 20,
+   "fromShot": 8,
+   "countFromShot": 10,
+   "zeroAt": {
+    "sentence": 11,
+    "word": "losgelassen"
+   },
+   "line3": "16:30 UHR",
+   "line4": "DU BIST 18"
+  }
+ ],
+ "timeskip": {
+  "sentence": 7,
+  "lines": [
+   "12 JAHRE",
+   "SPÄTER"
   ],
-  "timeskip": {
-    "lines": [
-      "12 JAHRE",
-      "SPÄTER"
+  "after": 0.3
+ },
+ "cast": {
+  "papa": {
+   "type": "person",
+   "build": "adult",
+   "skin": "#e8b48e",
+   "hair": {
+    "color": "#3a2618",
+    "style": "short",
+    "tuft": 0,
+    "tuftBack": 2
+   },
+   "top": {
+    "type": "sweater",
+    "color": "#2f6f5e"
+   },
+   "bottom": {
+    "type": "jeans",
+    "color": "#2b3a55"
+   },
+   "shoes": "#6b4428"
+  },
+  "papaAlt": {
+   "type": "person",
+   "build": "adult",
+   "skin": "#e6b18d",
+   "hair": {
+    "color": "#a9a6a2",
+    "style": "receding",
+    "tuft": 0,
+    "tuftBack": 2
+   },
+   "browColor": "#8e8b87",
+   "beard": {
+    "color": "#a9a6a2"
+   },
+   "top": {
+    "type": "sweater",
+    "color": "#2f6f5e"
+   },
+   "bottom": {
+    "type": "jeans",
+    "color": "#2b3a55"
+   },
+   "shoes": "#6b4428",
+   "stoop": 0.15
+  },
+  "kind": {
+   "type": "person",
+   "build": "child",
+   "skin": "#efc19d",
+   "hair": {
+    "color": "#6b4226",
+    "tuft": 0
+   },
+   "top": {
+    "type": "tshirt",
+    "color": "#d7263d"
+   },
+   "bottom": {
+    "type": "shorts",
+    "color": "#3561b0"
+   },
+   "shoes": "#f1f1ee",
+   "shoeSole": "#3561b0",
+   "socks": "#ffffff",
+   "helmet": "#2f6fd0"
+  },
+  "kind18": {
+   "type": "person",
+   "build": "teen",
+   "skin": "#efc19d",
+   "hair": {
+    "color": "#6b4226",
+    "tuft": 3,
+    "tuftBack": 2
+   },
+   "top": {
+    "type": "hoodie",
+    "color": "#d7263d"
+   },
+   "bottom": {
+    "type": "jeans",
+    "color": "#34496e"
+   },
+   "shoes": "#f1f1ee",
+   "shoeSole": "#9a9a9a"
+  },
+  "rad": {
+   "type": "bike",
+   "color": "#d7263d"
+  },
+  "auto": {
+   "type": "car",
+   "color": "#3e6db5"
+  },
+  "schein": {
+   "type": "license",
+   "photoOf": "kind18",
+   "size": [
+    0.11,
+    0.07
+   ]
+  }
+ },
+ "shots": [
+  {
+   "id": 1,
+   "sentence": 1,
+   "set": "park",
+   "light": "evening",
+   "desc": "Totale Parkweg, Kamera faehrt langsam heran. Kind wackelig, Papa gebueckt dahinter, Hand am Sattel. Figuren unter y 800 (Titel).",
+   "camera": {
+    "fov": 34,
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       -21.5,
+       4.4,
+       5.2
+      ],
+      "look": [
+       -38.5,
+       0.55,
+       0
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       -24.5,
+       4,
+       4.4
+      ],
+      "look": [
+       -36.4,
+       0.5,
+       0
+      ]
+     }
+    ]
+   },
+   "shadow": {
+    "center": [
+     -36,
+     0
     ],
-    "start": 20.0,
-    "end": 21.8,
-    "dim": 0.62,
-    "hideCounter": true
-  },
-  "fadeOut": {
-    "start": 30.8,
-    "end": 31.5
-  },
-  "cast": {
-    "papa": {
-      "type": "person",
-      "build": "adult",
-      "skin": "#e8b48e",
-      "hair": {
-        "color": "#3a2618",
-        "style": "short"
+    "size": 14
+   },
+   "actors": {
+    "rad": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 3.6,
+       "off": 0,
+       "wobble": 1
       },
-      "top": {
-        "type": "sweater",
-        "color": "#2f6f5e"
-      },
-      "bottom": {
-        "type": "jeans",
-        "color": "#2b3a55"
-      },
-      "shoes": "#6b4428"
-    },
-    "papaAlt": {
-      "type": "person",
-      "build": "adult",
-      "skin": "#e6b18d",
-      "hair": {
-        "color": "#9b9b9b",
-        "style": "receding"
-      },
-      "browColor": "#7d7d7d",
-      "beard": {
-        "color": "#9b9b9b"
-      },
-      "glasses": {
-        "color": "#38383d"
-      },
-      "top": {
-        "type": "sweater",
-        "color": "#2f6f5e"
-      },
-      "bottom": {
-        "type": "jeans",
-        "color": "#2b3a55"
-      },
-      "shoes": "#6b4428",
-      "stoop": 0.6
+      {
+       "t": "end",
+       "s": 9.6,
+       "wobble": 1
+      }
+     ]
     },
     "kind": {
-      "type": "person",
-      "build": "child",
-      "skin": "#efc19d",
-      "hair": {
-        "color": "#6b4226",
-        "tuft": true
+     "mount": "rad:seat",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "ride",
+       "ikFL": "rad:pedalL",
+       "ikFR": "rad:pedalR",
+       "ikL": "rad:gripL",
+       "ikR": "rad:gripR",
+       "levelFeet": 1,
+       "browUp": 0.7,
+       "browIn": 0.45,
+       "press": 0.5
+      }
+     ]
+    },
+    "papa": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 2.88,
+       "off": -0.34,
+       "pose": "bentHold",
+       "ikL": "rad:saddleBack",
+       "walk": 0.9,
+       "look": "kind:head",
+       "lookW": 0.5
       },
-      "top": {
-        "type": "tshirt",
-        "color": "#d7263d"
+      {
+       "t": "end",
+       "s": 8.88
+      }
+     ]
+    }
+   },
+   "sfx": []
+  },
+  {
+   "id": 2,
+   "sentence": 2,
+   "set": "park",
+   "light": "evening",
+   "desc": "Nah seitlich: Papas Hand am Sattel, er rennt gebueckt mit.",
+   "camera": {
+    "fov": 34,
+    "rel": "rad",
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       -0.15,
+       1.1,
+       3.7
+      ],
+      "look": [
+       -0.15,
+       0.65,
+       0.1
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       -0.1,
+       1.08,
+       3.45
+      ],
+      "look": [
+       -0.15,
+       0.65,
+       0.1
+      ]
+     }
+    ],
+    "adjust": {
+     "pan": 0,
+     "tilt": 1,
+     "zoom": 1
+    }
+   },
+   "shadow": {
+    "follow": "rad",
+    "size": 8
+   },
+   "actors": {
+    "rad": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 10,
+       "off": 0,
+       "wobble": 0.7
       },
-      "bottom": {
-        "type": "shorts",
-        "color": "#3561b0"
+      {
+       "t": "end",
+       "s": 16.4,
+       "wobble": 0.5
+      }
+     ]
+    },
+    "kind": {
+     "mount": "rad:seat",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "ride",
+       "ikFL": "rad:pedalL",
+       "ikFR": "rad:pedalR",
+       "ikL": "rad:gripL",
+       "ikR": "rad:gripR",
+       "levelFeet": 1,
+       "browUp": 0.7,
+       "browIn": 0.4,
+       "press": 0.6
+      }
+     ]
+    },
+    "papa": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 9.28,
+       "off": -0.34,
+       "pose": "runBent",
+       "ikL": "rad:saddleBack",
+       "run": 0.55,
+       "look": "kind:head",
+       "lookW": 0.4
       },
-      "shoes": "#f1f1ee",
-      "shoeSole": "#3561b0",
-      "socks": "#ffffff",
-      "helmet": "#2f6fd0"
+      {
+       "t": "end",
+       "s": 15.68,
+       "run": 0.75
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": 3,
+   "sentence": 3,
+   "set": "park",
+   "light": "evening",
+   "desc": "Von vorn auf Kinderhoehe, Kamera faehrt rueckwaerts mit. Kind konzentriert, Papa dahinter mit offenem Mund.",
+   "camera": {
+    "fov": 34,
+    "rel": "rad",
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       3.6,
+       0.95,
+       1.35
+      ],
+      "look": [
+       0,
+       0.74,
+       0.1
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       3.1,
+       0.92,
+       1.15
+      ],
+      "look": [
+       0,
+       0.74,
+       0.1
+      ]
+     }
+    ]
+   },
+   "shadow": {
+    "follow": "rad",
+    "size": 8
+   },
+   "actors": {
+    "rad": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 16.8,
+       "off": 0,
+       "wobble": 0.45
+      },
+      {
+       "t": "end",
+       "s": 24.6,
+       "wobble": 0.4
+      }
+     ]
+    },
+    "kind": {
+     "mount": "rad:seat",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "ride",
+       "ikFL": "rad:pedalL",
+       "ikFR": "rad:pedalR",
+       "ikL": "rad:gripL",
+       "ikR": "rad:gripR",
+       "levelFeet": 1,
+       "browUp": 1,
+       "browIn": 0.15,
+       "press": 1,
+       "headPitch": -12
+      }
+     ]
+    },
+    "papa": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 16.08,
+       "off": -0.34,
+       "pose": "runBent",
+       "ikL": "rad:saddleBack",
+       "run": 0.8,
+       "talk": 1,
+       "smile": 0.35,
+       "browIn": 0.35,
+       "browUp": 0.5,
+       "headPitch": -40
+      },
+      {
+       "t": "end",
+       "s": 23.88
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": 4,
+   "sentence": 4,
+   "set": "park",
+   "light": "evening",
+   "desc": "Halbnah von hinten-seitlich: Hand, Sattel und Ruecken des Kindes. Bei 'null' oeffnet sich die Hand und bleibt in der Luft.",
+   "camera": {
+    "fov": 34,
+    "rel": "papa",
+    "must": [
+     "papa:handL"
+    ],
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       -1.48,
+       2,
+       0.11
+      ],
+      "look": [
+       0.72,
+       0.62,
+       -0.39
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       -1.38,
+       1.96,
+       0.1
+      ],
+      "look": [
+       0.72,
+       0.62,
+       -0.39
+      ]
+     }
+    ],
+    "solve": {
+     "pans": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+     ],
+     "tilts": [
+      -4.5,
+      -4,
+      -3.5,
+      -3,
+      -2.5,
+      -2
+     ],
+     "zooms": [
+      1.1,
+      1.2,
+      1.3
+     ]
+    },
+    "adjust": {
+     "pan": 0,
+     "tilt": -4,
+     "zoom": 1.1
+    }
+   },
+   "shadow": {
+    "follow": "papa",
+    "size": 7
+   },
+   "actors": {
+    "rad": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 25,
+       "off": 0,
+       "wobble": 0.3
+      },
+      {
+       "t": "@null",
+       "s": 29.6
+      },
+      {
+       "t": "end",
+       "s": 35,
+       "wobble": 0.35
+      }
+     ]
+    },
+    "kind": {
+     "mount": "rad:seat",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "ride",
+       "ikFL": "rad:pedalL",
+       "ikFR": "rad:pedalR",
+       "ikL": "rad:gripL",
+       "ikR": "rad:gripR",
+       "levelFeet": 1,
+       "browUp": 0.8,
+       "press": 0.8
+      }
+     ]
+    },
+    "papa": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 24.28,
+       "off": -0.34,
+       "pose": "runBent",
+       "ikL": "rad:saddleBack",
+       "run": 0.85,
+       "smile": 0.3
+      },
+      {
+       "t": "@null",
+       "s": 28.88,
+       "thumbL": 0,
+       "wrL": 0
+      },
+      {
+       "t": "@null+0.9",
+       "ikLw": 0,
+       "shL": 88,
+       "abL": 4,
+       "elL": 10,
+       "wrL": -30,
+       "thumbL": 1,
+       "swingL": 0,
+       "run": 0.6,
+       "lean": 22
+      },
+      {
+       "t": "end",
+       "s": 34.3,
+       "run": 0.5,
+       "lean": 18,
+       "shL": 90
+      }
+     ]
+    }
+   },
+   "sfx": [
+    {
+     "t": "@null",
+     "type": "whoosh"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "sentence": 5,
+   "set": "park",
+   "light": "evening",
+   "desc": "Seitlich weit, Kamera gleitet mit. Kind faehrt allein und klingelt, Papa rennt mit ausgestreckter Hand nach und wird langsamer.",
+   "camera": {
+    "fov": 32,
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       -6.6,
+       1.2,
+       20
+      ],
+      "look": [
+       -6.6,
+       2.9,
+       0
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       1,
+       1.2,
+       20
+      ],
+      "look": [
+       1,
+       2.9,
+       0
+      ]
+     }
+    ]
+   },
+   "shadow": {
+    "center": [
+     -2,
+     0
+    ],
+    "size": 16
+   },
+   "actors": {
+    "rad": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 38.4,
+       "off": 0,
+       "wobble": 0.3
+      },
+      {
+       "t": "end",
+       "s": 51,
+       "wobble": 0.2
+      }
+     ]
+    },
+    "kind": {
+     "mount": "rad:seat",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "ride",
+       "ikFL": "rad:pedalL",
+       "ikFR": "rad:pedalR",
+       "ikL": "rad:gripL",
+       "ikR": "rad:gripR",
+       "levelFeet": 1,
+       "browUp": 0.5,
+       "smile": 0.55
+      },
+      {
+       "t": "30%",
+       "thumbL": 0
+      },
+      {
+       "t": "36%",
+       "thumbL": 1
+      },
+      {
+       "t": "44%",
+       "thumbL": 0
+      }
+     ]
+    },
+    "papa": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 36,
+       "off": -0.34,
+       "pose": "reachRun",
+       "run": 0.85
+      },
+      {
+       "t": "50%",
+       "s": 41.6,
+       "run": 0.6
+      },
+      {
+       "t": "end",
+       "s": 44,
+       "run": 0,
+       "walk": 0.6,
+       "shL": 30,
+       "elL": 30,
+       "lean": 8
+      }
+     ]
+    }
+   },
+   "sfx": [
+    {
+     "t": "33%",
+     "type": "bell"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "sentence": 6,
+   "set": "park",
+   "light": "evening",
+   "desc": "Halbnah auf Papa: Haende auf den Knien, er laechelt, Brauen weich. Kind klein im Hintergrund.",
+   "camera": {
+    "fov": 30,
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       -3.6,
+       1.32,
+       3.6
+      ],
+      "look": [
+       -6.2,
+       1.04,
+       0.3
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       -3.7,
+       1.31,
+       3.48
+      ],
+      "look": [
+       -6.2,
+       1.04,
+       0.3
+      ]
+     }
+    ],
+    "adjust": {
+     "pan": 0,
+     "tilt": -1,
+     "zoom": 1
+    }
+   },
+   "shadow": {
+    "center": [
+     -6,
+     0
+    ],
+    "size": 8
+   },
+   "actors": {
+    "rad": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 83,
+       "off": 0,
+       "wobble": 0.15
+      },
+      {
+       "t": "end",
+       "s": 99
+      }
+     ]
+    },
+    "kind": {
+     "mount": "rad:seat",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "ride",
+       "ikFL": "rad:pedalL",
+       "ikFR": "rad:pedalR",
+       "ikL": "rad:gripL",
+       "ikR": "rad:gripR",
+       "levelFeet": 1,
+       "smile": 0.6
+      }
+     ]
+    },
+    "papa": {
+     "path": "main",
+     "keys": [
+      {
+       "t": 0,
+       "s": 38.7,
+       "off": -0.34,
+       "h": -10,
+       "pose": "handsOnKnees",
+       "walk": 0.3,
+       "lean": 28,
+       "smile": 0.3,
+       "browIn": 0.4,
+       "headPitch": -24
+      },
+      {
+       "t": 0.7,
+       "s": 38.85,
+       "h": -30,
+       "pose": "handsOnKnees",
+       "smile": 0.35,
+       "headPitch": -20
+      },
+      {
+       "t": "55%",
+       "headPitch": -40,
+       "smile": 0.62,
+       "browIn": 0.7
+      },
+      {
+       "t": "end",
+       "headPitch": -42,
+       "smile": 0.7,
+       "browIn": 0.72
+      }
+     ]
+    }
+   },
+   "sfx": [
+    {
+     "t": 1,
+     "type": "exhaleDeep"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "sentence": 7,
+   "set": "park",
+   "light": "evening",
+   "black": true,
+   "desc": "Schwarz, 12 JAHRE / SPAETER, Zaehler aus, Stille.",
+   "camera": {
+    "fov": 34,
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       0,
+       1.5,
+       5
+      ],
+      "look": [
+       0,
+       1,
+       0
+      ]
+     }
+    ]
+   },
+   "actors": {}
+  },
+  {
+   "id": 8,
+   "sentence": 8,
+   "set": "driveway",
+   "light": "afternoon",
+   "desc": "Einfahrt, Totale. Sohn haelt stolz den Fuehrerschein hoch. Papa kommt aus der Haustuer, reisst die Arme hoch, lacht und umarmt ihn.",
+   "camera": {
+    "fov": 34,
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       -4.9,
+       1.75,
+       0.4
+      ],
+      "look": [
+       -2.55,
+       1.72,
+       -3.9
+      ]
+     },
+     {
+      "t": "22%",
+      "pos": [
+       -5,
+       1.76,
+       0.7
+      ],
+      "look": [
+       -2.45,
+       1.7,
+       -3.95
+      ]
+     },
+     {
+      "t": "58%",
+      "pos": [
+       -5.3,
+       1.8,
+       1.5
+      ],
+      "look": [
+       -2,
+       1.68,
+       -4.2
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       -5.2,
+       1.8,
+       1.3
+      ],
+      "look": [
+       -2,
+       1.68,
+       -4.2
+      ]
+     }
+    ],
+    "must": [
+     "kind18:face",
+     "papaAlt:face"
+    ],
+    "solve": {
+     "pans": [
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "tilts": [
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "zooms": [
+      0.9,
+      1,
+      1.1,
+      1.2
+     ]
+    },
+    "adjust": {
+     "pan": 1,
+     "tilt": -4,
+     "zoom": 1.2
+    }
+   },
+   "shadow": {
+    "center": [
+     -1.5,
+     -4
+    ],
+    "size": 8
+   },
+   "setKeys": {
+    "frontDoor": [
+     {
+      "t": 0,
+      "v": 0
+     },
+     {
+      "t": "24%",
+      "v": 0
+     },
+     {
+      "t": "34%",
+      "v": 1
+     }
+    ]
+   },
+   "actors": {
+    "auto": {
+     "keys": [
+      {
+       "t": 0,
+       "p": [
+        4.8,
+        -1.5
+       ],
+       "h": 0,
+       "door": 0,
+       "window": 0
+      }
+     ]
     },
     "kind18": {
-      "type": "person",
-      "build": "teen",
-      "skin": "#efc19d",
-      "hair": {
-        "color": "#6b4226",
-        "tuft": true
+     "keys": [
+      {
+       "t": 0,
+       "p": [
+        -2.35,
+        -3.8
+       ],
+       "h": 335,
+       "pose": "stand",
+       "shL": 165,
+       "abL": 8,
+       "elL": 28,
+       "shR": 160,
+       "abR": 10,
+       "elR": 34,
+       "smile": 0.85,
+       "browUp": 0.75,
+       "browIn": 0.2
       },
-      "top": {
-        "type": "hoodie",
-        "color": "#d7263d"
+      {
+       "t": "30%",
+       "shL": 158,
+       "shR": 150,
+       "abL": 10
       },
-      "bottom": {
-        "type": "jeans",
-        "color": "#34496e"
+      {
+       "t": "48%",
+       "h": 80,
+       "p": [
+        -2.3,
+        -3.85
+       ],
+       "shL": 150,
+       "shR": 40,
+       "elR": 30,
+       "look": "papaAlt:head",
+       "lookW": 0.7
       },
-      "shoes": "#f1f1ee",
-      "shoeSole": "#9a9a9a"
+      {
+       "t": "72%",
+       "p": [
+        -2.25,
+        -3.88
+       ],
+       "h": 88,
+       "pose": "stand",
+       "ikL": "papaAlt:backR",
+       "ikR": "papaAlt:backL",
+       "smile": 0.9,
+       "open": 0.25,
+       "browUp": 0.6,
+       "headYaw": -28,
+       "headRoll": -8,
+       "headPitch": 5
+      },
+      {
+       "t": "end",
+       "ikL": "papaAlt:backR",
+       "ikR": "papaAlt:backL"
+      }
+     ]
     },
-    "rad": {
-      "type": "bike",
-      "color": "#d7263d"
+    "schein": {
+     "attach": "kind18:handL",
+     "faceCamera": true,
+     "tilt": 6,
+     "keys": [
+      {
+       "t": 0,
+       "ax": 0,
+       "ay": -0.16,
+       "az": 0
+      }
+     ]
     },
-    "auto": {
-      "type": "car",
-      "color": "#3e6db5"
-    },
-    "karton": {
-      "type": "box",
-      "size": [
-        0.46,
-        0.34,
-        0.36
-      ]
+    "papaAlt": {
+     "keys": [
+      {
+       "t": 0,
+       "p": [
+        -0.8,
+        -6.35
+       ],
+       "h": 0,
+       "pose": "standRelaxed",
+       "smile": 0.4,
+       "browUp": 0.5
+      },
+      {
+       "t": "26%",
+       "p": [
+        -0.8,
+        -6.25
+       ]
+      },
+      {
+       "t": "36%",
+       "p": [
+        -1,
+        -5.15
+       ],
+       "walk": 0.6,
+       "open": 0.3,
+       "swingL": 0.3
+      },
+      {
+       "t": "46%",
+       "p": [
+        -1.25,
+        -4.45
+       ],
+       "h": -60,
+       "shL": 160,
+       "shR": 160,
+       "abL": 4,
+       "abR": 14,
+       "elL": 22,
+       "elR": 22,
+       "open": 0.75,
+       "smile": 0.9,
+       "browUp": 1,
+       "browIn": 0.1,
+       "walk": 0.3
+      },
+      {
+       "t": "60%",
+       "p": [
+        -1.6,
+        -3.98
+       ],
+       "h": -80,
+       "walk": 0.6
+      },
+      {
+       "t": "72%",
+       "p": [
+        -1.87,
+        -3.88
+       ],
+       "h": -90,
+       "pose": "stand",
+       "ikL": "kind18:backR",
+       "ikR": "kind18:backL",
+       "walk": 0,
+       "open": 0.45,
+       "smile": 0.9,
+       "browUp": 0.8,
+       "headYaw": 28,
+       "headRoll": 8,
+       "headPitch": 5
+      },
+      {
+       "t": "end",
+       "p": [
+        -1.88,
+        -3.88
+       ],
+       "ikL": "kind18:backR",
+       "ikR": "kind18:backL"
+      }
+     ]
     }
+   },
+   "sfx": [
+    {
+     "t": "24%",
+     "type": "frontDoor"
+    },
+    {
+     "t": "72%",
+     "type": "clothRustle"
+    }
+   ]
   },
-  "shots": [
-    {
-      "id": 1,
-      "start": 0.0,
-      "end": 3.5,
-      "set": "park",
-      "light": "evening",
-      "desc": "Totale Ort A, Kamera faehrt langsam heran. Kind wackelig auf dem Rad, Papa gebueckt dahinter, Hand am Sattel.",
-      "camera": {
-        "fov": 32,
-        "focus": "kind:head",
-        "aperture": 0.0005,
-        "maxblur": 0.005,
-        "keys": [
-          {
-            "t": 0.0,
-            "pos": [
-              -26.6,
-              1.15,
-              2.65
-            ],
-            "look": [
-              -38.0,
-              1.0,
-              0.1
-            ]
-          },
-          {
-            "t": 3.5,
-            "pos": [
-              -29.6,
-              1.05,
-              2.05
-            ],
-            "look": [
-              -36.6,
-              0.9,
-              0.05
-            ]
-          }
-        ]
+  {
+   "id": 9,
+   "sentence": 9,
+   "set": "driveway",
+   "light": "afternoon",
+   "desc": "Beifahrerseite: Sohn haelt die Tuer auf, einladende Geste. Papa zoegert, lacht, steigt ein, Tuer geht zu.",
+   "camera": {
+    "fov": 34,
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       -2.1,
+       1.85,
+       -5.4
+      ],
+      "look": [
+       2.6,
+       1.6,
+       -1.4
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       -1.8,
+       1.84,
+       -5.1
+      ],
+      "look": [
+       2.7,
+       1.6,
+       -1.4
+      ]
+     }
+    ],
+    "adjust": {
+     "pan": 5.5,
+     "tilt": -7,
+     "zoom": 1.15
+    },
+    "must": [
+     "papaAlt:face",
+     "kind18:face"
+    ]
+   },
+   "shadow": {
+    "center": [
+     3.5,
+     -1.5
+    ],
+    "size": 7
+   },
+   "actors": {
+    "auto": {
+     "keys": [
+      {
+       "t": 0,
+       "p": [
+        4.8,
+        -1.5
+       ],
+       "h": 0,
+       "door": 0
       },
-      "shadow": {
-        "center": [
-          -36,
-          0
-        ],
-        "size": 14
+      {
+       "t": "14%",
+       "door": 1
       },
-      "actors": {
-        "rad": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 6.0,
-              "off": 0,
-              "wobble": 1.0
-            },
-            {
-              "t": 3.5,
-              "s": 9.6,
-              "wobble": 1.0
-            }
-          ]
-        },
-        "kind": {
-          "mount": "rad:seat",
-          "keys": [
-            {
-              "t": 0,
-              "pose": "ride",
-              "ikFL": "rad:pedalL",
-              "ikFR": "rad:pedalR",
-              "ikL": "rad:gripL",
-              "ikR": "rad:gripR",
-              "browUp": 0.7,
-              "browIn": 0.45,
-              "press": 0.5,
-              "levelFeet": 1
-            },
-            {
-              "t": 3.5,
-              "headPitch": -8
-            }
-          ]
-        },
-        "papa": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 5.28,
-              "off": -0.34,
-              "pose": "bentHold",
-              "ikL": "rad:saddleBack",
-              "walk": 0.9,
-              "look": "kind:head",
-              "lookW": 0.5
-            },
-            {
-              "t": 3.5,
-              "s": 8.88
-            }
-          ]
-        }
+      {
+       "t": "80%",
+       "door": 1
+      },
+      {
+       "t": "end-0.12",
+       "door": 0
       }
+     ]
     },
-    {
-      "id": 2,
-      "start": 3.5,
-      "end": 6.5,
-      "set": "park",
-      "light": "evening",
-      "desc": "Nah von hinten-seitlich: Papas Hand am Sattel, er rennt gebueckt mit.",
-      "camera": {
-        "fov": 34,
-        "rel": "rad",
-        "focus": "papa:handL",
-        "aperture": 0.0016,
-        "maxblur": 0.008,
-        "keys": [
-          {
-            "t": 0.0,
-            "pos": [
-              -2.95,
-              1.75,
-              -1.15
-            ],
-            "look": [
-              0.0,
-              0.62,
-              0.15
-            ]
-          },
-          {
-            "t": 3.0,
-            "pos": [
-              -2.6,
-              1.65,
-              -1.05
-            ],
-            "look": [
-              0.0,
-              0.6,
-              0.15
-            ]
-          }
-        ]
+    "kind18": {
+     "keys": [
+      {
+       "t": 0,
+       "p": [
+        2.2,
+        -1.75
+       ],
+       "h": 30,
+       "pose": "stand",
+       "ikL": "auto:doorEdge",
+       "smile": 0.6,
+       "browUp": 0.4,
+       "look": "papaAlt:head",
+       "lookW": 0.6
       },
-      "shadow": {
-        "follow": "rad",
-        "size": 8
+      {
+       "t": "20%",
+       "shR": 40,
+       "abR": 38,
+       "elR": 35,
+       "wtR": 60,
+       "wrR": -20,
+       "smile": 0.75,
+       "open": 0.15
       },
-      "actors": {
-        "rad": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 10.0,
-              "off": 0,
-              "wobble": 0.7
-            },
-            {
-              "t": 3.0,
-              "s": 16.0,
-              "wobble": 0.5
-            }
-          ]
-        },
-        "kind": {
-          "mount": "rad:seat",
-          "keys": [
-            {
-              "t": 0,
-              "pose": "ride",
-              "ikFL": "rad:pedalL",
-              "ikFR": "rad:pedalR",
-              "ikL": "rad:gripL",
-              "ikR": "rad:gripR",
-              "browUp": 0.7,
-              "browIn": 0.4,
-              "press": 0.6,
-              "levelFeet": 1
-            }
-          ]
-        },
-        "papa": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 9.28,
-              "off": -0.34,
-              "pose": "runBent",
-              "ikL": "rad:saddleBack",
-              "run": 0.55,
-              "look": "kind:head",
-              "lookW": 0.4
-            },
-            {
-              "t": 3.0,
-              "s": 15.28,
-              "run": 0.75
-            }
-          ]
-        }
+      {
+       "t": "60%",
+       "shR": 20,
+       "abR": 15,
+       "elR": 20
       },
-      "subtitle": "er hat gesagt, er hält dich fest."
-    },
-    {
-      "id": 3,
-      "start": 6.5,
-      "end": 9.5,
-      "set": "park",
-      "light": "evening",
-      "desc": "Von vorn auf Kinderhoehe, Kamera faehrt rueckwaerts mit. Kind konzentriert, Papa dahinter mit offenem Mund.",
-      "camera": {
-        "fov": 36,
-        "rel": "rad",
-        "focus": "kind:head",
-        "aperture": 0.0012,
-        "maxblur": 0.007,
-        "keys": [
-          {
-            "t": 0.0,
-            "pos": [
-              3.1,
-              0.92,
-              0.66
-            ],
-            "look": [
-              0.0,
-              0.92,
-              0.12
-            ]
-          },
-          {
-            "t": 3.0,
-            "pos": [
-              2.55,
-              0.88,
-              0.52
-            ],
-            "look": [
-              0.0,
-              0.9,
-              0.1
-            ]
-          }
-        ]
-      },
-      "shadow": {
-        "follow": "rad",
-        "size": 8
-      },
-      "actors": {
-        "rad": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 16.5,
-              "off": 0,
-              "wobble": 0.45
-            },
-            {
-              "t": 3.0,
-              "s": 24.0,
-              "wobble": 0.4
-            }
-          ]
-        },
-        "kind": {
-          "mount": "rad:seat",
-          "keys": [
-            {
-              "t": 0,
-              "pose": "ride",
-              "ikFL": "rad:pedalL",
-              "ikFR": "rad:pedalR",
-              "ikL": "rad:gripL",
-              "ikR": "rad:gripR",
-              "browUp": 1.0,
-              "browIn": 0.15,
-              "press": 1.0,
-              "headPitch": -14,
-              "levelFeet": 1
-            },
-            {
-              "t": 3.0,
-              "headPitch": -10
-            }
-          ]
-        },
-        "papa": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 15.78,
-              "off": -0.34,
-              "pose": "runBent",
-              "ikL": "rad:saddleBack",
-              "run": 0.8,
-              "talk": 1.0,
-              "smile": 0.35,
-              "browIn": 0.35,
-              "browUp": 0.45,
-              "headPitch": -38
-            },
-            {
-              "t": 3.0,
-              "s": 23.28
-            }
-          ]
-        }
-      },
-      "subtitle": "‚ich hab dich. ich hab dich.‘"
-    },
-    {
-      "id": 4,
-      "start": 9.5,
-      "end": 13.0,
-      "set": "park",
-      "light": "evening",
-      "desc": "Gross auf Hand und Sattel. Bei 11,0 s (Zaehler 0:00) loest sich die Hand langsam und bleibt in der Luft.",
-      "camera": {
-        "fov": 30,
-        "rel": "papa",
-        "focus": "papa:handL",
-        "aperture": 0.003,
-        "maxblur": 0.009,
-        "keys": [
-          {
-            "t": 0.0,
-            "pos": [
-              0.66,
-              0.8,
-              -1.26
-            ],
-            "look": [
-              0.42,
-              0.57,
-              -0.34
-            ]
-          },
-          {
-            "t": 3.5,
-            "pos": [
-              0.62,
-              0.8,
-              -1.18
-            ],
-            "look": [
-              0.42,
-              0.6,
-              -0.34
-            ]
-          }
-        ]
-      },
-      "shadow": {
-        "follow": "papa",
-        "size": 6
-      },
-      "actors": {
-        "rad": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 24.5,
-              "off": 0,
-              "wobble": 0.3
-            },
-            {
-              "t": 1.5,
-              "s": 28.5
-            },
-            {
-              "t": 3.5,
-              "s": 34.4,
-              "wobble": 0.35
-            }
-          ]
-        },
-        "kind": {
-          "mount": "rad:seat",
-          "keys": [
-            {
-              "t": 0,
-              "pose": "ride",
-              "ikFL": "rad:pedalL",
-              "ikFR": "rad:pedalR",
-              "ikL": "rad:gripL",
-              "ikR": "rad:gripR",
-              "browUp": 0.8,
-              "press": 0.8,
-              "levelFeet": 1
-            }
-          ]
-        },
-        "papa": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 23.78,
-              "off": -0.34,
-              "pose": "runBent",
-              "ikL": "rad:saddleBack",
-              "run": 0.85,
-              "smile": 0.3
-            },
-            {
-              "t": 1.5,
-              "s": 27.78,
-              "thumbL": 0.0,
-              "wrL": 0
-            },
-            {
-              "t": 2.6,
-              "ikLw": 0.0,
-              "shL": 56,
-              "abL": 4,
-              "elL": 16,
-              "wrL": -30,
-              "thumbL": 1.0,
-              "swingL": 0,
-              "run": 0.6,
-              "lean": 26
-            },
-            {
-              "t": 3.5,
-              "s": 32.3,
-              "run": 0.5,
-              "lean": 22,
-              "shL": 58
-            }
-          ]
-        }
-      },
-      "subtitle": "bei null hat er losgelassen."
-    },
-    {
-      "id": 5,
-      "start": 13.0,
-      "end": 17.0,
-      "set": "park",
-      "light": "evening",
-      "desc": "Seitlich weit, Kamera gleitet mit. Kind faehrt allein, Papa rennt mit ausgestreckter Hand weiter und wird langsamer.",
-      "camera": {
-        "fov": 32,
-        "focus": "papa:head",
-        "aperture": 0.0002,
-        "maxblur": 0.003,
-        "keys": [
-          {
-            "t": 0.0,
-            "pos": [
-              -11.2,
-              1.2,
-              20.0
-            ],
-            "look": [
-              -11.2,
-              2.9,
-              0.0
-            ]
-          },
-          {
-            "t": 4.0,
-            "pos": [
-              -4.2,
-              1.2,
-              20.0
-            ],
-            "look": [
-              -4.2,
-              2.9,
-              0.0
-            ]
-          }
-        ]
-      },
-      "shadow": {
-        "center": [
-          -7,
-          0
-        ],
-        "size": 14
-      },
-      "actors": {
-        "rad": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 34.6,
-              "off": 0,
-              "wobble": 0.3
-            },
-            {
-              "t": 4.0,
-              "s": 44.2,
-              "wobble": 0.2
-            }
-          ]
-        },
-        "kind": {
-          "mount": "rad:seat",
-          "keys": [
-            {
-              "t": 0,
-              "pose": "ride",
-              "ikFL": "rad:pedalL",
-              "ikFR": "rad:pedalR",
-              "ikL": "rad:gripL",
-              "ikR": "rad:gripR",
-              "browUp": 0.5,
-              "smile": 0.55,
-              "levelFeet": 1
-            }
-          ]
-        },
-        "papa": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 32.7,
-              "off": -0.34,
-              "pose": "reachRun",
-              "run": 0.85
-            },
-            {
-              "t": 2.0,
-              "s": 37.0,
-              "run": 0.6
-            },
-            {
-              "t": 4.0,
-              "s": 38.6,
-              "run": 0.0,
-              "walk": 0.6,
-              "shL": 30,
-              "elL": 30,
-              "lean": 8
-            }
-          ]
-        }
-      },
-      "subtitle": "er ist noch zehn schritte mitgerannt. nur für den fall."
-    },
-    {
-      "id": 6,
-      "start": 17.0,
-      "end": 20.0,
-      "set": "park",
-      "light": "evening",
-      "desc": "Halbnah auf Papa, Kind klein im Hintergrund. Papa bleibt stehen, Haende auf den Knien, laechelt, Augenbrauen weich.",
-      "camera": {
-        "fov": 30,
-        "focus": "papa:head",
-        "aperture": 0.0014,
-        "maxblur": 0.006,
-        "keys": [
-          {
-            "t": 0.0,
-            "pos": [
-              -3.6,
-              1.3,
-              3.6
-            ],
-            "look": [
-              -6.2,
-              0.92,
-              0.3
-            ]
-          },
-          {
-            "t": 3.0,
-            "pos": [
-              -3.9,
-              1.25,
-              3.25
-            ],
-            "look": [
-              -6.2,
-              0.92,
-              0.3
-            ]
-          }
-        ]
-      },
-      "shadow": {
-        "center": [
-          -6,
-          0
-        ],
-        "size": 8
-      },
-      "actors": {
-        "rad": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 84.0,
-              "off": 0,
-              "wobble": 0.15
-            },
-            {
-              "t": 3.0,
-              "s": 92.5
-            }
-          ]
-        },
-        "kind": {
-          "mount": "rad:seat",
-          "keys": [
-            {
-              "t": 0,
-              "pose": "ride",
-              "ikFL": "rad:pedalL",
-              "ikFR": "rad:pedalR",
-              "ikL": "rad:gripL",
-              "ikR": "rad:gripR",
-              "smile": 0.6,
-              "levelFeet": 1
-            }
-          ]
-        },
-        "papa": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 38.75,
-              "off": -0.34,
-              "h": -10,
-              "pose": "standRelaxed",
-              "walk": 0.3,
-              "lean": 14,
-              "smile": 0.3,
-              "browIn": 0.4
-            },
-            {
-              "t": 0.8,
-              "s": 38.85,
-              "h": -30,
-              "pose": "handsOnKnees",
-              "smile": 0.35,
-              "headPitch": -20
-            },
-            {
-              "t": 2.0,
-              "headPitch": -40,
-              "smile": 0.62,
-              "browIn": 0.7
-            },
-            {
-              "t": 3.0,
-              "headPitch": -42,
-              "smile": 0.68,
-              "browIn": 0.72
-            }
-          ]
-        }
-      },
-      "subtitle": "du hast nicht gemerkt, dass er losgelassen hat."
-    },
-    {
-      "id": 7,
-      "start": 20.0,
-      "end": 21.8,
-      "set": "park",
-      "light": "evening",
-      "desc": "Bild wird dunkel, Zeitsprung 12 JAHRE / SPAETER. Zaehler springt auf Teil 2.",
-      "camera": {
-        "fov": 34,
-        "focus": "papa:head",
-        "aperture": 0.0008,
-        "maxblur": 0.005,
-        "keys": [
-          {
-            "t": 0.0,
-            "pos": [
-              -1.0,
-              1.1,
-              2.6
-            ],
-            "look": [
-              -8.5,
-              1.1,
-              0.0
-            ]
-          },
-          {
-            "t": 1.8,
-            "pos": [
-              -1.25,
-              1.1,
-              2.5
-            ],
-            "look": [
-              -8.5,
-              1.1,
-              0.0
-            ]
-          }
-        ]
-      },
-      "shadow": {
-        "center": [
-          -8,
-          -4
-        ],
-        "size": 16
-      },
-      "actors": {
-        "rad": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 95.0,
-              "off": 0,
-              "wobble": 0.1
-            },
-            {
-              "t": 1.8,
-              "s": 99.5
-            }
-          ]
-        },
-        "kind": {
-          "mount": "rad:seat",
-          "keys": [
-            {
-              "t": 0,
-              "pose": "ride",
-              "ikFL": "rad:pedalL",
-              "ikFR": "rad:pedalR",
-              "ikL": "rad:gripL",
-              "ikR": "rad:gripR",
-              "smile": 0.6,
-              "levelFeet": 1
-            }
-          ]
-        },
-        "papa": {
-          "path": "main",
-          "keys": [
-            {
-              "t": 0,
-              "s": 38.85,
-              "off": -0.34,
-              "h": 145,
-              "pose": "standRelaxed",
-              "smile": 0.5,
-              "browIn": 0.6,
-              "look": "kind:head"
-            }
-          ]
-        }
+      {
+       "t": "end",
+       "p": [
+        2.3,
+        -1.6
+       ]
       }
+     ]
     },
-    {
-      "id": 8,
-      "start": 21.8,
-      "end": 25.5,
-      "set": "driveway",
-      "light": "morning",
-      "desc": "Ort B, Totale, Kamera faehrt langsam heran. Kind (18) laedt den letzten Karton ein, Papa (alt) steht daneben, Haende in den Taschen.",
-      "camera": {
-        "fov": 34,
-        "focus": "kind18:head",
-        "aperture": 0.0006,
-        "maxblur": 0.005,
-        "keys": [
-          {
-            "t": 0.0,
-            "pos": [
-              5.0,
-              1.5,
-              12.5
-            ],
-            "look": [
-              5.25,
-              1.3,
-              0.5
-            ]
-          },
-          {
-            "t": 3.7,
-            "pos": [
-              5.05,
-              1.45,
-              10.8
-            ],
-            "look": [
-              5.25,
-              1.28,
-              0.5
-            ]
-          }
-        ]
+    "papaAlt": {
+     "mount": "auto:passenger",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "standRelaxed",
+       "mox": -2.6,
+       "moy": 0.24,
+       "moz": -1.9,
+       "moh": 60,
+       "walk": 0.6,
+       "smile": 0.4,
+       "browUp": 0.3
       },
-      "shadow": {
-        "center": [
-          4,
-          -1
-        ],
-        "size": 12
+      {
+       "t": "30%",
+       "mox": -1.05,
+       "moy": 0.24,
+       "moz": -0.75,
+       "moh": -60,
+       "walk": 0,
+       "shL": 25,
+       "shR": 25,
+       "abL": 25,
+       "abR": 25,
+       "elL": 60,
+       "elR": 60,
+       "open": 0.55,
+       "smile": 0.85,
+       "browUp": 0.9,
+       "browIn": 0.35,
+       "headRoll": 6
       },
-      "actors": {
-        "auto": {
-          "keys": [
-            {
-              "t": 0,
-              "p": [
-                4.8,
-                -1.8
-              ],
-              "h": 180,
-              "hatch": 1.0
-            },
-            {
-              "t": 2.5,
-              "hatch": 1.0
-            },
-            {
-              "t": 3.5,
-              "hatch": 0.08
-            }
-          ]
-        },
-        "karton": {
-          "keys": [
-            {
-              "t": 0.0,
-              "p": [
-                4.8,
-                0.5
-              ],
-              "y": 0.82,
-              "h": 180
-            },
-            {
-              "t": 0.9,
-              "p": [
-                4.8,
-                0.25
-              ],
-              "y": 1.02
-            },
-            {
-              "t": 1.7,
-              "p": [
-                4.95,
-                -0.35
-              ],
-              "y": 0.98
-            },
-            {
-              "t": 2.1,
-              "p": [
-                5.0,
-                -0.42
-              ],
-              "y": 0.56
-            }
-          ]
-        },
-        "kind18": {
-          "keys": [
-            {
-              "t": 0.0,
-              "p": [
-                4.8,
-                0.95
-              ],
-              "h": 180,
-              "pose": "carryBox",
-              "ikL": "karton:sideL",
-              "ikR": "karton:sideR",
-              "smile": 0.25
-            },
-            {
-              "t": 1.5,
-              "p": [
-                4.8,
-                0.72
-              ],
-              "walk": 0.4
-            },
-            {
-              "t": 2.0,
-              "lean": 18,
-              "walk": 0
-            },
-            {
-              "t": 2.3,
-              "p": [
-                4.8,
-                0.85
-              ],
-              "ikLw": 0,
-              "ikRw": 0,
-              "pose": "standRelaxed",
-              "lean": 4
-            },
-            {
-              "t": 2.7,
-              "ikR": "auto:hatchEdge",
-              "ikRw": 1,
-              "shR": 120
-            },
-            {
-              "t": 3.7,
-              "p": [
-                4.75,
-                0.9
-              ]
-            }
-          ]
-        },
-        "papaAlt": {
-          "keys": [
-            {
-              "t": 0,
-              "p": [
-                5.9,
-                1.4
-              ],
-              "h": 285,
-              "pose": "handsInPockets",
-              "look": "kind18:head",
-              "smile": 0.22,
-              "browIn": 0.55
-            }
-          ]
-        }
+      {
+       "t": "52%",
+       "mox": -0.95,
+       "moy": 0.24,
+       "moz": -0.1,
+       "moh": -90,
+       "open": 0.2,
+       "smile": 0.7,
+       "browUp": 0.4
       },
-      "subtitle": "du ziehst heute aus."
-    },
-    {
-      "id": 9,
-      "start": 25.5,
-      "end": 29.0,
-      "set": "driveway",
-      "light": "morning",
-      "desc": "Halbnah, Papa im Vordergrund, Auto dahinter. Auto rollt los, Papa macht zwei Schritte mit, hebt die Hand halb, bleibt stehen. Zaehler 0:00 bei 27,5 s.",
-      "camera": {
-        "fov": 34,
-        "focus": "papaAlt:head",
-        "aperture": 0.0012,
-        "maxblur": 0.006,
-        "keys": [
-          {
-            "t": 0.0,
-            "pos": [
-              2.4,
-              1.5,
-              -2.7
-            ],
-            "look": [
-              4.6,
-              1.15,
-              6.0
-            ]
-          },
-          {
-            "t": 3.5,
-            "pos": [
-              2.5,
-              1.48,
-              -2.3
-            ],
-            "look": [
-              4.5,
-              1.15,
-              6.0
-            ]
-          }
-        ]
+      {
+       "t": "74%",
+       "pose": "sitDrive",
+       "mox": -0.25,
+       "moy": 0,
+       "moz": 0,
+       "moh": -75,
+       "smile": 0.6,
+       "browIn": 0.4
       },
-      "shadow": {
-        "center": [
-          4,
-          3
-        ],
-        "size": 12
-      },
-      "actors": {
-        "auto": {
-          "keys": [
-            {
-              "t": 0.0,
-              "p": [
-                4.8,
-                -1.8
-              ],
-              "h": 180,
-              "hatch": 0,
-              "hold": true
-            },
-            {
-              "t": 1.7,
-              "p": [
-                4.8,
-                3.6
-              ],
-              "h": 180
-            },
-            {
-              "t": 2.6,
-              "p": [
-                5.8,
-                7.6
-              ],
-              "h": 240
-            },
-            {
-              "t": 3.1,
-              "p": [
-                5.5,
-                8.8
-              ],
-              "h": 270,
-              "hold": true
-            },
-            {
-              "t": 3.5,
-              "p": [
-                4.7,
-                8.85
-              ],
-              "h": 270
-            }
-          ]
-        },
-        "kind18": {
-          "mount": "auto:driver",
-          "keys": [
-            {
-              "t": 0,
-              "pose": "sitDrive",
-              "headYaw": 20
-            }
-          ]
-        },
-        "papaAlt": {
-          "keys": [
-            {
-              "t": 0.0,
-              "p": [
-                3.3,
-                1.35
-              ],
-              "h": 80,
-              "pose": "handsInPockets",
-              "look": "auto:driverHead",
-              "smile": 0.2,
-              "browIn": 0.6,
-              "hold": true
-            },
-            {
-              "t": 0.9,
-              "p": [
-                3.32,
-                1.45
-              ],
-              "h": 30
-            },
-            {
-              "t": 1.9,
-              "p": [
-                3.4,
-                2.55
-              ],
-              "h": 20,
-              "walk": 0.6
-            },
-            {
-              "t": 2.0,
-              "pose": "waveHalf",
-              "ikR": {
-                "local": [
-                  -0.17,
-                  0.86,
-                  0.065
-                ]
-              },
-              "look": "auto:driverHead",
-              "walk": 0.0
-            },
-            {
-              "t": 3.5,
-              "p": [
-                3.4,
-                2.6
-              ],
-              "smile": 0.3,
-              "browIn": 0.75
-            }
-          ]
-        }
-      },
-      "subtitle": {
-        "text": "diesmal konnte er nicht mitrennen.",
-        "end": 30.8,
-        "fade": 0.25
+      {
+       "t": "end",
+       "pose": "sitDrive",
+       "mox": 0,
+       "moy": 0,
+       "moz": 0,
+       "moh": 0,
+       "smile": 0.55,
+       "browIn": 0.4
       }
-    },
-    {
-      "id": 10,
-      "start": 29.0,
-      "end": 31.5,
-      "set": "driveway",
-      "light": "morning",
-      "desc": "Gross auf Papas Hand, leere Strasse unscharf dahinter. Die Hand sinkt langsam. Ab 30,8 s Abblende ins Schwarze.",
-      "camera": {
-        "fov": 28,
-        "focus": "papaAlt:handL",
-        "aperture": 0.008,
-        "maxblur": 0.015,
-        "keys": [
-          {
-            "t": 0.0,
-            "pos": [
-              4.12,
-              1.37,
-              2.25
-            ],
-            "look": [
-              3.86,
-              1.27,
-              2.98
-            ]
-          },
-          {
-            "t": 2.5,
-            "pos": [
-              4.13,
-              1.3,
-              2.3
-            ],
-            "look": [
-              3.84,
-              1.0,
-              2.98
-            ]
-          }
-        ]
-      },
-      "shadow": {
-        "center": [
-          3.5,
-          3
-        ],
-        "size": 6
-      },
-      "actors": {
-        "papaAlt": {
-          "keys": [
-            {
-              "t": 0.0,
-              "p": [
-                3.4,
-                2.6
-              ],
-              "h": 20,
-              "pose": "waveHalf",
-              "ikR": {
-                "local": [
-                  -0.17,
-                  0.86,
-                  0.065
-                ]
-              },
-              "smile": 0.3,
-              "browIn": 0.75
-            },
-            {
-              "t": 0.4,
-              "shL": 62
-            },
-            {
-              "t": 2.5,
-              "shL": 14,
-              "elL": 20,
-              "abL": 9,
-              "wrL": 0,
-              "thumbL": 0.1,
-              "ease": "sine"
-            }
-          ]
-        }
-      }
+     ]
     }
-  ]
+   },
+   "sfx": [
+    {
+     "t": 0.05,
+     "type": "carDoorOpen"
+    },
+    {
+     "t": "end-0.12",
+     "type": "carDoorClose"
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "sentence": 10,
+   "set": "driveway",
+   "light": "afternoon",
+   "desc": "Im Auto von vorn durch die Windschutzscheibe: Sohn faehrt, Papa haelt sich am Haltegriff fest, halb nervoes, halb stolz. Zaehler laeuft.",
+   "camera": {
+    "fov": 34,
+    "rel": "auto",
+    "relYaw": true,
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       0.05,
+       1.82,
+       4.2
+      ],
+      "look": [
+       0.1,
+       1.44,
+       0.1
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       0.05,
+       1.8,
+       4
+      ],
+      "look": [
+       0.1,
+       1.44,
+       0.1
+      ]
+     }
+    ],
+    "adjust": {
+     "pan": 0,
+     "tilt": -3,
+     "zoom": 1
+    },
+    "must": [
+     "papaAlt:face",
+     "kind18:face"
+    ]
+   },
+   "shadow": {
+    "follow": "auto",
+    "size": 8
+   },
+   "actors": {
+    "auto": {
+     "keys": [
+      {
+       "t": 0,
+       "p": [
+        -8,
+        11.25
+       ],
+       "h": 90,
+       "blink": 0,
+       "steer": 0
+      },
+      {
+       "t": "end",
+       "p": [
+        16,
+        11.25
+       ],
+       "h": 90
+      }
+     ]
+    },
+    "kind18": {
+     "mount": "auto:driver",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "sitDrive",
+       "ikL": "auto:wheelL",
+       "ikR": "auto:wheelR",
+       "smile": 0.6,
+       "browUp": 0.3,
+       "headYaw": -6
+      }
+     ]
+    },
+    "papaAlt": {
+     "mount": "auto:passenger",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "sitDrive",
+       "ikR": "auto:handle",
+       "shL": 30,
+       "elL": 60,
+       "smile": 0.25,
+       "browIn": 0.85,
+       "browUp": 0.3,
+       "press": 0.4,
+       "headPitch": -4,
+       "headYaw": 8
+      },
+      {
+       "t": "50%",
+       "smile": 0.45,
+       "press": 0.1,
+       "headYaw": -12
+      },
+      {
+       "t": "end",
+       "smile": 0.5,
+       "browIn": 0.75,
+       "headYaw": -16
+      }
+     ]
+    }
+   },
+   "sfx": [
+    {
+     "t": 0,
+     "type": "seatbelt"
+    },
+    {
+     "t": 0.25,
+     "type": "engineStart"
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "sentence": 11,
+   "set": "driveway",
+   "light": "afternoon",
+   "desc": "Nah auf Papas Hand am Haltegriff (wie Einstellung 4). Bei 'losgelassen' loest sich die Hand und sinkt entspannt.",
+   "camera": {
+    "fov": 34,
+    "rel": "auto",
+    "relYaw": true,
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       -3.25,
+       1.6,
+       0.04
+      ],
+      "look": [
+       -0.55,
+       1.38,
+       0.06
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       -3.15,
+       1.58,
+       0.06
+      ],
+      "look": [
+       -0.55,
+       1.36,
+       0.06
+      ]
+     }
+    ],
+    "adjust": {
+     "pan": -2,
+     "tilt": -7,
+     "zoom": 1.15
+    },
+    "must": [
+     "papaAlt:handR",
+     "papaAlt:face"
+    ]
+   },
+   "shadow": {
+    "follow": "auto",
+    "size": 8
+   },
+   "actors": {
+    "auto": {
+     "keys": [
+      {
+       "t": 0,
+       "p": [
+        18,
+        11.25
+       ],
+       "h": 90
+      },
+      {
+       "t": "end",
+       "p": [
+        44,
+        11.25
+       ],
+       "h": 90
+      }
+     ]
+    },
+    "kind18": {
+     "mount": "auto:driver",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "sitDrive",
+       "ikL": "auto:wheelL",
+       "ikR": "auto:wheelR",
+       "smile": 0.6
+      }
+     ]
+    },
+    "papaAlt": {
+     "mount": "auto:passenger",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "sitDrive",
+       "ikR": "auto:handle",
+       "shL": 30,
+       "elL": 60,
+       "smile": 0.45,
+       "browIn": 0.7
+      },
+      {
+       "t": "@losgelassen",
+       "ikRw": 1,
+       "thumbR": 0
+      },
+      {
+       "t": "@losgelassen+1.1",
+       "ikRw": 0,
+       "shR": 12,
+       "abR": 8,
+       "elR": 38,
+       "wrR": 5,
+       "thumbR": 0.5,
+       "smile": 0.75,
+       "browIn": 0.45,
+       "headPitch": 3,
+       "ease": "sine"
+      },
+      {
+       "t": "end",
+       "shR": 10
+      }
+     ]
+    }
+   },
+   "sfx": []
+  },
+  {
+   "id": 12,
+   "sentence": null,
+   "afterSentence": 0.5,
+   "minDuration": 2.5,
+   "set": "park",
+   "light": "golden",
+   "desc": "Aussen, seitlich mitfahrend, goldenes Abendlicht, Allee. Fenster faehrt runter, Papa haelt den Arm hinaus, beide lachen, Haare im Wind.",
+   "camera": {
+    "fov": 34,
+    "rel": "auto",
+    "relYaw": true,
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       -2.75,
+       1.3,
+       0.8
+      ],
+      "look": [
+       0.3,
+       1.3,
+       0
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       -2.7,
+       1.3,
+       0.7
+      ],
+      "look": [
+       0.3,
+       1.3,
+       0
+      ]
+     }
+    ],
+    "must": [
+     "papaAlt:face"
+    ]
+   },
+   "shadow": {
+    "follow": "auto",
+    "size": 9
+   },
+   "actors": {
+    "auto": {
+     "keys": [
+      {
+       "t": 0,
+       "p": [
+        14.4,
+        -70
+       ],
+       "h": 0,
+       "window": 0
+      },
+      {
+       "t": 0.9,
+       "window": 1
+      },
+      {
+       "t": "end",
+       "p": [
+        14.4,
+        -44
+       ],
+       "window": 1
+      }
+     ]
+    },
+    "kind18": {
+     "mount": "auto:driver",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "sitDrive",
+       "ikL": "auto:wheelL",
+       "ikR": "auto:wheelR",
+       "smile": 0.8,
+       "open": 0.5,
+       "browUp": 0.9,
+       "wind": 0.6,
+       "headYaw": -22
+      }
+     ]
+    },
+    "papaAlt": {
+     "mount": "auto:passenger",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "sitDrive",
+       "shL": 30,
+       "elL": 60,
+       "smile": 0.7,
+       "open": 0.3,
+       "browUp": 0.6,
+       "wind": 0.4,
+       "headYaw": -20,
+       "shR": 12,
+       "abR": 8,
+       "elR": 38,
+       "ikR": "auto:sill"
+      },
+      {
+       "t": 0.85,
+       "ikR": "auto:windowOut",
+       "smile": 0.9,
+       "open": 0.7,
+       "browUp": 1,
+       "browIn": 0.1,
+       "wind": 1,
+       "headYaw": -48
+      },
+      {
+       "t": "end",
+       "ikR": "auto:windowOut",
+       "open": 0.6,
+       "headYaw": -48
+      }
+     ]
+    }
+   },
+   "sfx": [
+    {
+     "t": 0,
+     "type": "windowMotor",
+     "until": 0.9
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "sentence": 12,
+   "set": "park",
+   "light": "sunset",
+   "sun": [
+    -0.28,
+    0.07,
+    1
+   ],
+   "desc": "Totale: Das Auto faehrt am Park mit der Laterne vorbei in den Sonnenuntergang, kurzes Doppelhupen. Letzter Untertitel bis zum Ende.",
+   "camera": {
+    "fov": 34,
+    "keys": [
+     {
+      "t": 0,
+      "pos": [
+       14.1,
+       2,
+       -10
+      ],
+      "look": [
+       14.3,
+       1.5,
+       30
+      ]
+     },
+     {
+      "t": "end",
+      "pos": [
+       14.1,
+       2,
+       -9
+      ],
+      "look": [
+       14.3,
+       1.5,
+       31
+      ]
+     }
+    ]
+   },
+   "shadow": {
+    "center": [
+     14,
+     15
+    ],
+    "size": 22
+   },
+   "actors": {
+    "auto": {
+     "keys": [
+      {
+       "t": 0,
+       "p": [
+        14.4,
+        7
+       ],
+       "h": 0,
+       "window": 1
+      },
+      {
+       "t": "end",
+       "p": [
+        14.4,
+        62
+       ],
+       "window": 1
+      }
+     ]
+    },
+    "kind18": {
+     "mount": "auto:driver",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "sitDrive",
+       "ikL": "auto:wheelL",
+       "ikR": "auto:wheelR",
+       "smile": 0.8
+      }
+     ]
+    },
+    "papaAlt": {
+     "mount": "auto:passenger",
+     "keys": [
+      {
+       "t": 0,
+       "pose": "sitDrive",
+       "ikR": "auto:windowOut",
+       "smile": 0.8,
+       "wind": 1
+      }
+     ]
+    }
+   },
+   "sfx": [
+    {
+     "t": "40%",
+     "type": "honkDouble"
+    }
+   ]
+  }
+ ],
+ "ambience": {
+  "park/evening": "parkEvening",
+  "park/golden": "roadGolden",
+  "park/sunset": "roadGolden",
+  "driveway/afternoon": "suburbAfternoon"
+ }
 }
