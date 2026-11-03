@@ -14,3 +14,4 @@ out/bewegung.json
 out/mix.wav
 out/preview/
 audio/geraeusche.wav
+__pycache__/
