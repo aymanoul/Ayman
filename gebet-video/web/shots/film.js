@@ -36,7 +36,7 @@ function groupWords(ws) {
   const len = (a) => a.reduce((n, w) => n + w.w.length, 0) + Math.max(0, a.length - 1);
   for (const w of ws) {
     const endOfSentence = cur.length && /[.?!:…]$|[.?!]“$/.test(cur[cur.length - 1].w);
-    if (cur.length && (cur.length >= 3 || len([...cur, w]) > 18 || /^[„‚]/.test(w.w) || endOfSentence)) { groups.push(cur); cur = []; }
+    if (cur.length && (cur.length >= 3 || len([...cur, w]) > 20 || /^[„‚]/.test(w.w) || endOfSentence)) { groups.push(cur); cur = []; }
     cur.push(w);
   }
   if (cur.length) groups.push(cur);
