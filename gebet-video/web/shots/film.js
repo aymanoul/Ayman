@@ -12,10 +12,9 @@ const lerp = (a, b, k) => a + (b - a) * k;
 
 // Bewegung je Einstellung. figs: Index wie in board.js. Zeiten u = 0..1 innerhalb des Shots.
 const MOTION = {
-  S01: { figs: { 0: { walk: { speed: 1.6, hurry: 1 } } } },
-  S02: { cam: { dolly: 0.35 }, figs: { 0: { breathe: 1 } } },
-  S03: { cam: { zoomTo: 20 }, figs: { 1: { walk: { speed: 1.4, hurry: 1 } } } },
-  S04: { cam: { pan: -0.06, dolly: 1.2 }, figs: { 0: { walk: { speed: 1.4, hurry: 1 } } } },
+  S01: { cam: { dolly: 0.7, pan: -0.05 }, figs: { 1: { walk: { speed: 1.4, hurry: 1 } } } },
+  S02: { cam: { zoomTo: 20 }, figs: { 1: { walk: { speed: 1.4, hurry: 1 } } } },
+  S03: { figs: { 0: { walk: { speed: 1.6, hurry: 1 } } } },
   S05: { cam: { dolly: 0.25 }, figs: { 0: { stepIn: 0.5, blendFrom: { mouth: 'closed' }, blend: [0.15, 0.55], talk: [0.3, 0.9] } } },
   S06: { figs: { 1: { blendFrom: ['handy'], blend: [0.0, 0.35], talk: [0.15, 0.9] } } },
   S07: { cam: { dolly: 0.2 }, figs: { 0: { blendFrom: {}, blend: [0, 0.4], talk: [0.05, 0.95] } } },
@@ -48,7 +47,7 @@ const MOTION = {
 };
 
 // Zeitplan aus den echten Stimmen (Hook + Straße). Dauer je Shot in Sekunden; Stimmen: [Zeile, Startzeit absolut].
-const DUR = { S01: 1.0, S02: 1.05, S03: 1.1, S04: 2.2, S05: 1.95, S06: 3.75, S07: 1.55, S08: 1.95, S09: 2.65, S10: 3.3, S11: 1.1, S12: 2.0 };
+const DUR = { S01: 3.15, S02: 1.1, S03: 1.1, S05: 1.95, S06: 3.75, S07: 1.55, S08: 1.95, S09: 2.65, S10: 3.3, S11: 1.1, S12: 2.0 };
 let VOICE = [['A01', 0.0], ['A02', 5.45], ['B01', 7.45], ['A03', 11.15], ['B02', 14.65], ['A04', 17.35], ['B03', 20.65]];
 let SCHED = (() => { let t = 0; return SHOTS.map((s) => { const o = { ...s, t: DUR[s.id] ?? s.t, t0: t }; t += o.t; return o; }); })();
 let CARD_EVENTS = [];

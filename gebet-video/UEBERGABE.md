@@ -51,10 +51,21 @@ Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Absc
    Ergebnis: `out/phase7/gebet_video_entwurf.mp4` (1080×1920, 2:27, −14,1 LUFS, ~157 MB, nicht im Repo wegen 100-MB-Grenze –
    neu erzeugen mit dem Befehl in docs/phase7.md) und `out/phase7/gebet_video_entwurf_vorschau.mp4` (720p, 15 MB, im Repo).
    **An Ayman geschickt.** Antwort: Titelbild **Variante 1** (Gebetsreihe) ✅ · Beschreibung **passt so** ✅ ·
-   Video: **„Erst Änderungen“** – welche genau, hat er noch nicht geschrieben → nachfragen.
+   Video: **„Erst Änderungen“** (Wünsche von Ayman, umgesetzt):
+   a) **Erste Szene neu:** S01 = Totale schräg von der Straße, Schild „Masjid As-Sunnah“ sichtbar, A an der Tür,
+      B läuft vorne (vor den Pollern) mit dem Handy vorbei, 3,15 s, Hook-Titel darüber. Dann S02 = Zoom über A auf B
+      (alter S03), S03 = Detail Füße (alter S01). Alter S02 (Silhouette) und S04 (Totale) entfallen. Zeiten danach unverändert.
+   b) **Beim Hineingehen Moschee von außen:** S12 = Totale von der Straße, beide gehen auf die Fassade mit Schild zu.
+   c) **Imam vorne:** in S46–S49 `IMAM` (EXTRAS[6], heller Qamis, Kufi, langer Bart) bei [0, 0, −5,25] vor dem Mihrab.
+      Kameras S46/S48/S49 etwas höher, damit er zwischen A und B sichtbar ist.
+   d) **Adhan:** Aymans Aufnahme `assets/audio/roh/adhan_neu.mp3` (77,6 s: 2× Allāhu akbar, 2× Schahāda, 2× Muhammad
+      rasūlullāh; Transkript `assets/audio/transkript/adhan_neu.json`). Im Film ab 0,75 s der Datei, 0–25,4 s, gain −13,
+      Tiefpass + Hall, blendet nach dem 2. „Allāhu akbar“-Paar beim Eintreten aus. **Iqāma bleibt (laut Ayman passt sie).**
+   Render: `teil_0.mp4` (0–23,6, ersetzt probe_video.mp4 im Zusammenbau) + teil_a/b (unverändert) + `teil_c.mp4` (neu)
+   → `gebet_video_entwurf.mp4` + `_vorschau.mp4`. Danach prüfen und Ayman schicken.
 3. Phase 9 vorbereitet: Titelbilder `out/phase9/titelbild_variante1.png` (Gebetsreihe) und `_variante2.png` (Neubau),
    Shot `web/shots/cover.js`; Beschreibung `docs/phase9-beschreibung.md`. Ayman wählt eins.
-4. Phase 8: Belege nochmals gegen Quelle; Ayman an Hadith-Nummern (sunnah.com) und Adhan/Iqāma-Rechte erinnern.
+4. Phase 8: Belege nochmals gegen Quelle; Ayman an Hadith-Nummern (sunnah.com) erinnern; Adhan ist jetzt Aymans eigene Datei, Iqāma-Platzhalter von ihm akzeptiert.
 5. Phase 9: Endfassung, Titelbild, Beschreibung, Projekt-ZIP.
 
 ---
@@ -620,3 +631,8 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - Neue Probe freigegeben. Gesamt-Ton und Zeitplan (2:27) gebaut, ganzes Video gerendert (−14,1 LUFS).
 - Eigene Prüfung per Kontaktbogen: Nahaufnahmen zu eng, ein paar Detail-Shots leer/unklar, ﷻ in Untertiteln abgetrennt.
   Alles korrigiert (siehe „AKTUELLER STAND“), zweiter Render läuft. Ayman hat den ersten Render nicht bekommen; der zweite (korrigierte) ging als Vorschau an ihn.
+
+### 14p. Änderungswünsche zum Entwurf (10./11.11.2026)
+
+- Titelbild Variante 1, Beschreibung passt. Video: neuer Einstieg mit Schild und beiden Personen, Moschee von außen
+  beim Hineingehen, Imam vorne in der Schlussreihe, neue Adhan-Aufnahme von Ayman; Iqāma bleibt. Umgesetzt, Render läuft.

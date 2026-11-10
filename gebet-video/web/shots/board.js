@@ -14,6 +14,7 @@ const EXTRAS = [
   null, null,
   { qamis: '#4f6b57', skin: '#b3804f', kufi: true, height: 0.95, beard: 'full' },
   { qamis: '#6b5444', skin: '#ddb088', kufi: false, height: 0.88, beard: 'short' },
+  { qamis: '#ece3cf', skin: '#c48c5f', kufi: true, height: 0.93, beard: 'full', beardLen: 0.6, footwear: 'socks' },   // 6: Imam
 ];
 
 // Pose aus Name, Objekt oder Liste (spätere Einträge überschreiben frühere)

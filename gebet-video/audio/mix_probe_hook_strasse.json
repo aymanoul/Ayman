@@ -59,42 +59,39 @@
    "fadeOut": 1.5
   },
   {
-   "file": "assets/audio/roh/adhan_bildschirmaufnahme.wav",
+   "file": "assets/audio/roh/adhan_neu.wav",
    "at": 0.0,
-   "dur": 11.5,
+   "from": 0.75,
+   "dur": 25.4,
    "gain": -13,
-   "lowpass": 3200,
-   "reverb": 0.35,
+   "lowpass": 3600,
+   "reverb": 0.3,
    "fadeIn": 0.05,
-   "fadeOut": 2.5
-  },
-  {
-   "file": "assets/sfx/whoosh_kurz.wav",
-   "at": 0.92,
-   "gain": -18
-  },
-  {
-   "file": "assets/sfx/whoosh_kurz.wav",
-   "at": 1.97,
-   "gain": -18
+   "fadeOut": 1.6
   },
   {
    "file": "assets/sfx/whoosh.wav",
-   "at": 2.95,
+   "at": 3.05,
    "gain": -16
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 4.17,
+   "gain": -18
   },
   {
    "file": "assets/sfx/schritte_gehweg_eilig.wav",
    "at": 0.0,
-   "dur": 1.0,
-   "gain": -20
+   "dur": 3.15,
+   "gain": -25,
+   "fadeIn": 0.3
   },
   {
    "file": "assets/sfx/schritte_gehweg_eilig.wav",
-   "at": 2.05,
+   "at": 3.15,
    "from": 1.0,
-   "dur": 3.3,
-   "gain": -22,
+   "dur": 2.2,
+   "gain": -21,
    "fadeOut": 0.6
   },
   {

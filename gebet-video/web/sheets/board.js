@@ -13,22 +13,20 @@ const B_WALK = (ph) => ({ walk: ph, walkOpt: { hurry: 1 }, neck: [0.14, 0, 0], h
 const sitHead = (h, extra = {}) => ['sitzen', { head: h, ...extra }];
 const ROW = (who, i) => ({ who, pos: [(i - 2.5) * 0.6, 0, -4.25], ry: Math.PI, footwear: 'socks', pose: { head: [0.1, 0, 0] } });
 const ROW_EXTRAS = [0, 1, 4, 5].map((i) => ({ extra: i, pos: [(i - 2.5) * 0.6, 0, -4.25], ry: Math.PI, pose: { head: [0.1, 0, 0] } }));
+// Imam: allein vorn vor dem Mihrab, Blick zur Qibla
+const IMAM = { extra: 6, pos: [0, 0, -5.25], ry: Math.PI, footwear: 'socks', pose: { head: [0.05, 0, 0] } };
 
 export const SHOTS = [
   // ---------------------------------------------------------------- 1 Hook
-  { id: 'S01', teil: 1, t: 1.0, zeile: 'A01', kamera: 'Detail, tief am Boden, seitlich', handlung: 'Turnschuhe und blauer Saum von B hasten über den Gehweg', einbl: 'Hook-Titel oben',
-    scene: 'out', figs: [{ who: 'B', pos: [-0.9, 0.07, 3.6], ry: Math.PI / 2, phone: true, pose: B_WALK(1.0) }],
-    cam: { pos: [0.6, 0.2, 5.4], look: [-0.9, 0.28, 3.6], fov: 40 } },
-  { id: 'S02', teil: 1, t: 1.0, zeile: 'A01', kamera: 'aus dem Vorraum durch die offene Tür nach draußen', handlung: 'A steht als Silhouette im Gegenlicht in der Tür', einbl: 'Hook-Titel oben',
-    scene: 'out', figs: [{ who: 'A', pos: [0.15, 0.07, 0.55], ry: 0, pose: { head: [0.05, -0.2, 0] } }],
-    cam: { pos: [-0.3, 1.45, -2.4], look: [0.3, 1.2, 5], fov: 48 } },
-  { id: 'S03', teil: 1, t: 1.0, zeile: 'A01', kamera: 'schneller Zoom über die Schulter von A auf B', handlung: 'B läuft mit dem Handy vorbei', einbl: 'Hook-Titel oben',
+  { id: 'S01', teil: 1, t: 3.15, zeile: 'A01', kamera: 'Totale schräg von der Straße, langsame Fahrt', handlung: 'Neubau mit Schild „Masjid As-Sunnah“ über der Tür; A steht an der Tür, B läuft mit dem Handy vorne vorbei', einbl: 'Hook-Titel oben',
+    scene: 'out', figs: [{ who: 'A', pos: [0.45, 0.07, 1.45], ry: 0.35, pose: { head: [0.05, -0.25, 0] } }, { who: 'B', pos: [0.4, 0.07, 6.3], ry: Math.PI / 2, phone: true, pose: B_WALK(0.6) }],
+    cam: { pos: [3.6, 1.45, 11.6], look: [-0.5, 2.45, 1.6], fov: 50 }, sun: [0, 0, 3, 9] },
+  { id: 'S02', teil: 1, t: 1.1, zeile: 'A01', kamera: 'schneller Zoom über die Schulter von A auf B', handlung: 'B läuft mit dem Handy vorbei', einbl: '–',
     scene: 'out', figs: [{ who: 'A', pos: [0.3, 0.07, 1.5], ry: -0.55 }, { who: 'B', pos: [-1.1, 0.07, 3.9], ry: Math.PI / 2, phone: true, pose: B_WALK(2.2) }],
     cam: { over: 'A', at: 'B', fov: 26 } },
-  // ---------------------------------------------------------------- 2 Straße
-  { id: 'S04', teil: 2, t: 2.5, zeile: '(Adhan)', kamera: 'Totale des Neubaus, langsamer Schwenk', handlung: 'Abendsonne, B läuft von links ins Bild', einbl: '–',
-    scene: 'out', figs: [{ who: 'B', pos: [-5.5, 0.07, 3.6], ry: Math.PI / 2, phone: true, pose: B_WALK(0.5) }],
-    cam: { pos: [-11.5, 1.6, 20], look: [0.2, 6.2, 0], fov: 52 }, sun: [0, 0, 5, 24] },
+  { id: 'S03', teil: 2, t: 1.1, zeile: '(Adhan)', kamera: 'Detail, tief am Boden, seitlich', handlung: 'Turnschuhe und blauer Saum von B hasten über den Gehweg', einbl: '–',
+    scene: 'out', figs: [{ who: 'B', pos: [-0.9, 0.07, 3.6], ry: Math.PI / 2, phone: true, pose: B_WALK(1.0) }],
+    cam: { pos: [0.6, 0.2, 5.4], look: [-0.9, 0.28, 3.6], fov: 40 } },
   { id: 'S05', teil: 2, t: 2.0, zeile: 'A02', kamera: 'halbnah von vorn', handlung: 'A tritt aus der Tür ins warme Licht und hebt grüßend die Hand', einbl: 'Untertitel',
     scene: 'out', figs: [{ who: 'A', pos: [0.2, 0.07, 1.4], ry: -0.45, pose: { mouth: 'smile', head: [0, -0.15, 0.05], R: { reach: [-0.4, 0.74, 0.18], pole: [-1, -0.3, -0.4], palm: [0, 0.1, 1], hand: 'open' } } }],
     cam: { pos: [-0.6, 1.5, 4.6], look: [0.2, 1.5, 1.3], fov: 40 } },
@@ -50,9 +48,9 @@ export const SHOTS = [
   { id: 'S11', teil: 2, t: 1.5, zeile: 'B03', kamera: 'Detail Brust', handlung: 'B steckt das Handy in die Brusttasche', einbl: 'Untertitel',
     scene: 'out', figs: [{ who: 'B', pos: [-1.0, 0.07, 3.9], ry: 2.68, phone: true, pose: { head: [0.35, 0, 0], R: { reach: [0.08, 0.37, 0.21], pole: [-1, -1, 0], palm: [0, 0, -1], hand: 'hold' } } }],
     cam: { on: 'B', part: 'chest', dist: 0.8, yaw: 0.2, up: 0.05, fov: 38 } },
-  { id: 'S12', teil: 2, t: 2.0, zeile: '–', kamera: 'Fahrt hinter beiden her zur Tür', handlung: 'A und B gehen nebeneinander hinein', einbl: '–',
-    scene: 'out', figs: [{ who: 'A', pos: [0.4, 0.07, 2.5], ry: Math.PI, pose: { walk: 0.8 } }, { who: 'B', pos: [-0.35, 0.07, 2.7], ry: Math.PI, pose: { walk: 2.4 } }],
-    cam: { pos: [0.1, 1.6, 5.6], look: [0, 1.35, 0.9], fov: 44 } },
+  { id: 'S12', teil: 2, t: 2.0, zeile: '–', kamera: 'Totale von der Straße, beide gehen auf die Moschee zu', handlung: 'A und B gehen nebeneinander hinein, Fassade mit Schild und Bogenfenster im Bild', einbl: '–',
+    scene: 'out', figs: [{ who: 'A', pos: [0.4, 0.07, 3.3], ry: Math.PI, pose: { walk: 0.8 } }, { who: 'B', pos: [-0.35, 0.07, 3.5], ry: Math.PI, pose: { walk: 2.4 } }],
+    cam: { pos: [1.6, 1.5, 10.5], look: [0, 3.6, 0.9], fov: 52 }, sun: [0, 0, 3, 9] },
   // ---------------------------------------------------------------- 3 Moschee
   { id: 'S13', teil: 3, t: 1.0, zeile: '–', kamera: 'Detail, tief', handlung: 'B stellt die Turnschuhe ins Schuhregal', einbl: '–',
     scene: 'in', figs: [{ who: 'B', pos: [0.5, 0, 5.15], ry: -0.5, footwear: 'socks', pose: { spine: [0.35, 0, 0], head: [0.3, 0, 0], R: { reach: [-0.15, 0.05, 0.42], pole: [-1, -1, 0], palm: [0, -1, 0.3], hand: 'hold' } } }],
@@ -152,13 +150,13 @@ export const SHOTS = [
       { ...B_SIT, pose: sitHead([-0.2, 0.1, 0], { R: { reach: [-0.08, 0.45, 0.36], pole: [-1, -0.6, -0.4], palm: [0, -0.4, 1], hand: 'open' } }) }],
     cam: { pos: [1.15, 1.25, -1.25], look: [0.25, 0.85, -3.1], fov: 44 } },
   { id: 'S46', teil: 5, t: 3.0, zeile: '(Iqāma)', kamera: 'halbnah von hinten', handlung: 'die Reihe bildet sich, A und B in der Mitte', einbl: '–',
-    scene: 'in', figs: [ROW('A', 2), ROW('B', 3), ...ROW_EXTRAS], cam: { pos: [0.15, 1.6, -2.0], look: [0, 1.1, -5.5], fov: 44 }, sun: [0, 0, -4.25, 4.5] },
+    scene: 'in', figs: [ROW('A', 2), ROW('B', 3), ...ROW_EXTRAS, IMAM], cam: { pos: [0.15, 2.05, -2.0], look: [0, 1.05, -5.5], fov: 44 }, sun: [0, 0, -4.25, 4.5] },
   { id: 'S47', teil: 5, t: 3.0, zeile: '(Iqāma)', kamera: 'Detail Füße von hinten', handlung: 'Säume Seite an Seite auf der Reihenlinie', einbl: '–',
-    scene: 'in', figs: [ROW('A', 2), ROW('B', 3), ...ROW_EXTRAS], cam: { pos: [0.0, 0.26, -3.55], look: [0, 0.05, -4.35], fov: 46 }, sun: [0, 0, -4.25, 4.5] },
+    scene: 'in', figs: [ROW('A', 2), ROW('B', 3), ...ROW_EXTRAS, IMAM], cam: { pos: [0.0, 0.26, -3.55], look: [0, 0.05, -4.35], fov: 46 }, sun: [0, 0, -4.25, 4.5] },
   { id: 'S48', teil: 5, t: 3.0, zeile: '(Iqāma)', kamera: 'Fahrt zurück bis zur Totale', handlung: 'Reihe vor dem Mihrab, Licht durch das Milchglas', einbl: '–',
-    scene: 'in', figs: [ROW('A', 2), ROW('B', 3), ...ROW_EXTRAS], cam: { pos: [0.3, 1.8, 1.2], look: [0, 1.25, -6], fov: 50 }, sun: [0, 0, -3, 6] },
+    scene: 'in', figs: [ROW('A', 2), ROW('B', 3), ...ROW_EXTRAS, IMAM], cam: { pos: [0.3, 2.3, 1.2], look: [0, 1.15, -6], fov: 50 }, sun: [0, 0, -3, 6] },
   { id: 'S49', teil: 5, t: 5.0, zeile: 'A14', kamera: 'Schlussbild von hinten, steht 2 s', handlung: 'Reihe von hinten, A und B Schulter an Schulter', einbl: 'Schlusssatz groß in der Mitte',
-    scene: 'in', figs: [ROW('A', 2), ROW('B', 3), ...ROW_EXTRAS], cam: { pos: [0.0, 1.7, -1.4], look: [0, 1.3, -6], fov: 46 }, sun: [0, 0, -4.25, 4.5] },
+    scene: 'in', figs: [ROW('A', 2), ROW('B', 3), ...ROW_EXTRAS, IMAM], cam: { pos: [0.4, 2.15, -1.3], look: [0.1, 1.2, -6], fov: 46 }, sun: [0, 0, -4.25, 4.5] },
 ];
 
 const TEILE = { 1: 'Hook', 2: 'Straße', 3: 'Moschee', 4: 'Hoffnung', 5: 'Schluss' };

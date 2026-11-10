@@ -14,7 +14,7 @@ GAP = 0.35                      # Pause zwischen zwei Zeilen
 LINES = json.load(open(os.path.join(ROOT, 'assets/audio/zeilen/lines.json')))
 shots = json.loads(subprocess.run(['node', '-e', "import('./web/sheets/board.js').then(m=>console.log(JSON.stringify(m.SHOTS.map(s=>({id:s.id,t:s.t,zeile:s.zeile,teil:s.teil})))))"],
                                   cwd=ROOT, capture_output=True, text=True, check=True).stdout)
-HOOK = {'S01': 1.0, 'S02': 1.05, 'S03': 1.1, 'S04': 2.2, 'S05': 1.95, 'S06': 3.75, 'S07': 1.55, 'S08': 1.95, 'S09': 2.65, 'S10': 3.3, 'S11': 1.1, 'S12': 2.0}
+HOOK = {'S01': 3.15, 'S02': 1.1, 'S03': 1.1, 'S05': 1.95, 'S06': 3.75, 'S07': 1.55, 'S08': 1.95, 'S09': 2.65, 'S10': 3.3, 'S11': 1.1, 'S12': 2.0}
 HOOK_VOICE = [['A01', 0.0], ['A02', 5.45], ['B01', 7.45], ['A03', 11.15], ['B02', 14.65], ['A04', 17.35], ['B03', 20.65]]
 CARDS = {'A05': ['Q1'], 'A06': ['Q4'], 'A07': ['Q5'], 'A08': ['H2'], 'A09': ['H7'], 'A10': ['H1'], 'A12': ['H4a', 'H4b']}
 
