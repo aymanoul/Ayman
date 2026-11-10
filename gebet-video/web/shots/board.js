@@ -68,6 +68,30 @@ export async function build({ W, H }) {
     }
   }
 
+  // Kamera nach Angabe setzen: {pos, look} | {on, part, dist, yaw, up, lookUp} | {over, at, side}
+  shot.placeCam = (k) => {
+    camera.fov = k.fov || 40;
+    if (k.pos) { camera.position.set(...k.pos); camera.lookAt(...k.look); }
+    else if (k.on) {
+      const f = figs[k.on];
+      const t = partPoint(f, k.part);
+      const ry = (f._d ? f._d.ry : f.root.rotation.y) + (k.yaw || 0);   // nicht aus der Euler-Drehung lesen (kippt bei |y| > 90°)
+      camera.position.copy(t).addScaledVector(fwd(ry), k.dist).add(V([0, k.up || 0, 0]));
+      camera.lookAt(t.clone().add(V([0, k.lookUp || 0, 0])));
+    } else if (k.over) {
+      const a = figs[k.over], b = figs[k.at];
+      const ha = a.headCenter(), hb = b.headCenter();
+      const dir = hb.clone().sub(ha).setY(0).normalize();
+      const r = new THREE.Vector3(-dir.z, 0, dir.x).multiplyScalar(k.side || 1);
+      camera.position.copy(ha).addScaledVector(dir, -0.6).addScaledVector(r, 0.32).add(V([0, 0.06, 0]));
+      camera.lookAt(hb.clone().add(V([0, -0.05, 0])));
+    }
+    camera.updateProjectionMatrix();
+  };
+  shot.figs = () => figs;
+  shot.allFigs = () => all;
+  shot.P = P;
+
   shot.setCell = (id) => {
     const c = ALL_CELLS.find((x) => x.id === id);
     for (const f of all) f.root.parent.remove(f.root);
@@ -103,25 +127,7 @@ export async function build({ W, H }) {
       f.setHand(side, 'relaxed');
     }
 
-    // Kamera
-    const k = c.cam;
-    camera.fov = k.fov || 40;
-    if (k.pos) { camera.position.set(...k.pos); camera.lookAt(...k.look); }
-    else if (k.on) {
-      const f = figs[k.on];
-      const t = partPoint(f, k.part);
-      const ry = f._d.ry + (k.yaw || 0);
-      camera.position.copy(t).addScaledVector(fwd(ry), k.dist).add(V([0, k.up || 0, 0]));
-      camera.lookAt(t.clone().add(V([0, k.lookUp || 0, 0])));
-    } else if (k.over) {
-      const a = figs[k.over], b = figs[k.at];
-      const ha = a.headCenter(), hb = b.headCenter();
-      const dir = hb.clone().sub(ha).setY(0).normalize();
-      const r = new THREE.Vector3(-dir.z, 0, dir.x).multiplyScalar(k.side || 1);   // rechts vom Blick
-      camera.position.copy(ha).addScaledVector(dir, -0.6).addScaledVector(r, 0.32).add(V([0, 0.06, 0]));
-      camera.lookAt(hb.clone().add(V([0, -0.05, 0])));
-    }
-    camera.updateProjectionMatrix();
+    shot.placeCam(c.cam);
 
     // Licht: Schattenbereich um die Handlung, Glut dunkelt den Raum ab
     const L = c.scene === 'out' ? outL : inL;

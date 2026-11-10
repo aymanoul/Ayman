@@ -1,0 +1,135 @@
+{
+ "duration": 23.6,
+ "events": [
+  {
+   "file": "assets/audio/zeilen/A01.wav",
+   "at": 0.0,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A02.wav",
+   "at": 5.45,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B01.wav",
+   "at": 7.45,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A03.wav",
+   "at": 11.15,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B02.wav",
+   "at": 14.65,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A04.wav",
+   "at": 17.35,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B03.wav",
+   "at": 20.65,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/sfx/strasse.wav",
+   "at": 0,
+   "dur": 23.6,
+   "gain": -24,
+   "fadeIn": 0.3,
+   "fadeOut": 1.5
+  },
+  {
+   "file": "assets/audio/roh/adhan_bildschirmaufnahme.wav",
+   "at": 0.0,
+   "dur": 11.5,
+   "gain": -13,
+   "lowpass": 3200,
+   "reverb": 0.35,
+   "fadeIn": 0.05,
+   "fadeOut": 2.5
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 0.92,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 1.97,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/whoosh.wav",
+   "at": 2.95,
+   "gain": -16
+  },
+  {
+   "file": "assets/sfx/schritte_gehweg_eilig.wav",
+   "at": 0.0,
+   "dur": 1.0,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/schritte_gehweg_eilig.wav",
+   "at": 2.05,
+   "from": 1.0,
+   "dur": 3.3,
+   "gain": -22,
+   "fadeOut": 0.6
+  },
+  {
+   "file": "assets/sfx/schritte_gehweg_ruhig.wav",
+   "at": 5.35,
+   "dur": 0.9,
+   "gain": -22
+  },
+  {
+   "file": "assets/sfx/stoff.wav",
+   "at": 17.5,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/stoff.wav",
+   "at": 20.6,
+   "gain": -22
+  },
+  {
+   "file": "assets/sfx/schritte_gehweg_ruhig.wav",
+   "at": 21.6,
+   "dur": 1.6,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/tuer.wav",
+   "at": 22.6,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/raumklang_moschee.wav",
+   "at": 22.7,
+   "dur": 0.9,
+   "gain": -28,
+   "fadeIn": 0.5
+  }
+ ]
+}

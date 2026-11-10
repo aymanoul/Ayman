@@ -536,3 +536,15 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - Ayman nimmt A und B **neu auf** mit `docs/elevenlabs-A-zum-einfuegen.txt` / `-B-…` (1,5 s Pausen per break-Tag).
 - Adhan/Iqāma = **Platzhalter** (Rechte vor Veröffentlichung klären oder eigene Aufnahme).
 - Bis dahin: Bewegungsprobe Hook + Straße ohne Stimme vorbereiten (Phase 7), Zeiten später an die Aufnahmen anpassen.
+
+### 14k. Phase 7 begonnen (10.11.2026)
+
+- Bewegungsprobe Hook + Straße ohne Stimmen: `web/shots/film.js`, `tools/mix.py`, `audio/mix_bewegungsprobe.json`,
+  Ergebnis `out/phase7/bewegungsprobe.mp4`. Ablauf nach Eingang der neuen Stimmen: `docs/phase7.md`.
+
+### 14l. Neue Stimmen da, Probe mit Ton (10.11.2026)
+
+- Neue Aufnahme passt zum Drehbuch, zerlegt in A01–A14/B01–B09 (`docs/phase5.md`), Prüf-Clips `out/phase5/anhoeren/`.
+- Probe Hook + Straße mit Stimmen, Lippen und Untertiteln: `out/phase7/probe_hook_strasse.mp4` (23,6 s). Details `docs/phase7.md`.
+- **Wartet auf Ayman:** Freigabe der Probe, kurzes Anhören von A07/A08/A09/A14. Danach Teil 3–5 Shot für Shot
+  (Zeitplan aus VOICE für alle Zeilen erweitern, MOTION für S13–S49, Beweis-Karten einsetzen).

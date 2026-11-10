@@ -1,0 +1,419 @@
+[
+ {
+  "start": 103.76,
+  "end": 104.98,
+  "text": "War alaykum as-salam.",
+  "words": [
+   {
+    "w": "War",
+    "start": 103.76,
+    "end": 104.06
+   },
+   {
+    "w": "alaykum",
+    "start": 104.06,
+    "end": 104.44
+   },
+   {
+    "w": "as",
+    "start": 104.44,
+    "end": 104.62
+   },
+   {
+    "w": "-salam.",
+    "start": 104.62,
+    "end": 104.98
+   }
+  ]
+ },
+ {
+  "start": 105.54,
+  "end": 107.0,
+  "text": "Sorry, ich hab's eilig.",
+  "words": [
+   {
+    "w": "Sorry,",
+    "start": 105.54,
+    "end": 106.0
+   },
+   {
+    "w": "ich",
+    "start": 106.32,
+    "end": 106.42
+   },
+   {
+    "w": "hab's",
+    "start": 106.42,
+    "end": 106.64
+   },
+   {
+    "w": "eilig.",
+    "start": 106.64,
+    "end": 107.0
+   }
+  ]
+ },
+ {
+  "start": 107.6,
+  "end": 107.96,
+  "text": "Jetzt?",
+  "words": [
+   {
+    "w": "Jetzt?",
+    "start": 107.6,
+    "end": 107.96
+   }
+  ]
+ },
+ {
+  "start": 108.64,
+  "end": 109.8,
+  "text": "Ich muss eigentlich weiter.",
+  "words": [
+   {
+    "w": "Ich",
+    "start": 108.64,
+    "end": 108.82
+   },
+   {
+    "w": "muss",
+    "start": 108.82,
+    "end": 109.0
+   },
+   {
+    "w": "eigentlich",
+    "start": 109.0,
+    "end": 109.36
+   },
+   {
+    "w": "weiter.",
+    "start": 109.36,
+    "end": 109.8
+   }
+  ]
+ },
+ {
+  "start": 110.54,
+  "end": 111.02,
+  "text": "Na gut.",
+  "words": [
+   {
+    "w": "Na",
+    "start": 110.54,
+    "end": 110.74
+   },
+   {
+    "w": "gut.",
+    "start": 110.74,
+    "end": 111.02
+   }
+  ]
+ },
+ {
+  "start": 111.86,
+  "end": 112.82,
+  "text": "Ich bete nicht oft.",
+  "words": [
+   {
+    "w": "Ich",
+    "start": 111.86,
+    "end": 112.04
+   },
+   {
+    "w": "bete",
+    "start": 112.04,
+    "end": 112.36
+   },
+   {
+    "w": "nicht",
+    "start": 112.36,
+    "end": 112.48
+   },
+   {
+    "w": "oft.",
+    "start": 112.48,
+    "end": 112.82
+   }
+  ]
+ },
+ {
+  "start": 113.3,
+  "end": 114.28,
+  "text": "Ich hol's später nach.",
+  "words": [
+   {
+    "w": "Ich",
+    "start": 113.3,
+    "end": 113.44
+   },
+   {
+    "w": "hol's",
+    "start": 113.44,
+    "end": 113.66
+   },
+   {
+    "w": "später",
+    "start": 113.66,
+    "end": 113.88
+   },
+   {
+    "w": "nach.",
+    "start": 113.88,
+    "end": 114.28
+   }
+  ]
+ },
+ {
+  "start": 114.28,
+  "end": 115.24,
+  "text": "Reicht das nicht?",
+  "words": [
+   {
+    "w": "Reicht",
+    "start": 114.28,
+    "end": 114.88
+   },
+   {
+    "w": "das",
+    "start": 114.88,
+    "end": 115.02
+   },
+   {
+    "w": "nicht?",
+    "start": 115.02,
+    "end": 115.24
+   }
+  ]
+ },
+ {
+  "start": 115.7,
+  "end": 116.76,
+  "text": "Aber ich hatte Schule.",
+  "words": [
+   {
+    "w": "Aber",
+    "start": 115.7,
+    "end": 116.0
+   },
+   {
+    "w": "ich",
+    "start": 116.0,
+    "end": 116.18
+   },
+   {
+    "w": "hatte",
+    "start": 116.18,
+    "end": 116.36
+   },
+   {
+    "w": "Schule.",
+    "start": 116.36,
+    "end": 116.76
+   }
+  ]
+ },
+ {
+  "start": 117.26,
+  "end": 118.14,
+  "text": "Und danach Arbeit.",
+  "words": [
+   {
+    "w": "Und",
+    "start": 117.26,
+    "end": 117.42
+   },
+   {
+    "w": "danach",
+    "start": 117.42,
+    "end": 117.7
+   },
+   {
+    "w": "Arbeit.",
+    "start": 117.7,
+    "end": 118.14
+   }
+  ]
+ },
+ {
+  "start": 118.8,
+  "end": 121.26,
+  "text": "Und wenn jemand gar nicht betet?",
+  "words": [
+   {
+    "w": "Und",
+    "start": 118.8,
+    "end": 119.06
+   },
+   {
+    "w": "wenn",
+    "start": 119.06,
+    "end": 119.98
+   },
+   {
+    "w": "jemand",
+    "start": 119.98,
+    "end": 120.28
+   },
+   {
+    "w": "gar",
+    "start": 120.28,
+    "end": 120.62
+   },
+   {
+    "w": "nicht",
+    "start": 120.62,
+    "end": 120.82
+   },
+   {
+    "w": "betet?",
+    "start": 120.82,
+    "end": 121.26
+   }
+  ]
+ },
+ {
+  "start": 121.9,
+  "end": 122.3,
+  "text": "Puh.",
+  "words": [
+   {
+    "w": "Puh.",
+    "start": 121.9,
+    "end": 122.3
+   }
+  ]
+ },
+ {
+  "start": 122.98,
+  "end": 125.16,
+  "text": "Aber Allah ist doch barmherzig, oder?",
+  "words": [
+   {
+    "w": "Aber",
+    "start": 122.98,
+    "end": 123.36
+   },
+   {
+    "w": "Allah",
+    "start": 123.36,
+    "end": 123.84
+   },
+   {
+    "w": "ist",
+    "start": 123.84,
+    "end": 124.04
+   },
+   {
+    "w": "doch",
+    "start": 124.04,
+    "end": 124.2
+   },
+   {
+    "w": "barmherzig,",
+    "start": 124.2,
+    "end": 124.86
+   },
+   {
+    "w": "oder?",
+    "start": 124.96,
+    "end": 125.16
+   }
+  ]
+ },
+ {
+  "start": 125.98,
+  "end": 127.54,
+  "text": "Ich hab so viele verpasst.",
+  "words": [
+   {
+    "w": "Ich",
+    "start": 125.98,
+    "end": 126.18
+   },
+   {
+    "w": "hab",
+    "start": 126.18,
+    "end": 126.3
+   },
+   {
+    "w": "so",
+    "start": 126.3,
+    "end": 126.56
+   },
+   {
+    "w": "viele",
+    "start": 126.56,
+    "end": 126.88
+   },
+   {
+    "w": "verpasst.",
+    "start": 126.88,
+    "end": 127.54
+   }
+  ]
+ },
+ {
+  "start": 128.0,
+  "end": 128.94,
+  "text": "Wie fang ich wieder an?",
+  "words": [
+   {
+    "w": "Wie",
+    "start": 128.0,
+    "end": 128.14
+   },
+   {
+    "w": "fang",
+    "start": 128.14,
+    "end": 128.34
+   },
+   {
+    "w": "ich",
+    "start": 128.34,
+    "end": 128.46
+   },
+   {
+    "w": "wieder",
+    "start": 128.46,
+    "end": 128.66
+   },
+   {
+    "w": "an?",
+    "start": 128.66,
+    "end": 128.94
+   }
+  ]
+ },
+ {
+  "start": 129.72,
+  "end": 130.88,
+  "text": "Dann fang ich heute an.",
+  "words": [
+   {
+    "w": "Dann",
+    "start": 129.72,
+    "end": 129.88
+   },
+   {
+    "w": "fang",
+    "start": 129.88,
+    "end": 130.16
+   },
+   {
+    "w": "ich",
+    "start": 130.16,
+    "end": 130.34
+   },
+   {
+    "w": "heute",
+    "start": 130.34,
+    "end": 130.56
+   },
+   {
+    "w": "an.",
+    "start": 130.56,
+    "end": 130.88
+   }
+  ]
+ }
+]

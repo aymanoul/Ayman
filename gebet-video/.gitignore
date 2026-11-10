@@ -2,5 +2,6 @@ node_modules/
 out/tmp/
 out/stills/
 out/sheets/
-out/clips/*.part*.mp4
+out/**/*.part*.mp4
+out/**/*.parts.txt
 *.log

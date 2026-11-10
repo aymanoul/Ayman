@@ -61,3 +61,14 @@ Fremde Aufnahmen → vor Veröffentlichung Erlaubnis klären oder eigene Aufnahm
 - Adhan und Iqāma: **vorerst Platzhalter** (YouTube-Bildschirmaufnahmen). Vor der Veröffentlichung klärt Ayman die Rechte
   oder liefert eigene Aufnahmen.
 - Die erste Aufnahme bleibt als Referenz in `assets/audio/roh/` (wird nicht verwendet).
+
+## Neue Aufnahme (10.11.2026) – übernommen
+
+- `assets/audio/roh/stimme_AB_neu.mp3` (131 s, A01–A14, dann B01–B09) folgt dem freigegebenen Text.
+- Zerlegt mit `tools/split_voices.py` (lückenlose Aufteilung aller erkannten Wörter auf die Zeilen nach bestem Textabgleich;
+  die 1,5-s-Pausen hat ElevenLabs nicht eingehalten) → `assets/audio/zeilen/A01.wav …`, Übersicht `A.json`, `B.json`.
+- `tools/prep_lines.py` → `lines.json`: Lautstärke-Hüllkurve (30/s) für die Lippen, Untertitel im Drehbuch-Wortlaut mit
+  echten Wortzeiten (Schreibweise: Saqar, alaikum).
+- Reine Sprechzeit ≈ 2:05 (A ≈ 99 s, B ≈ 26 s) → Video ≈ 2:25 mit Adhan, Iqāma und Pausen.
+- Bitte anhören (Spracherkennung hörte evtl. anders): A09 „Barmherzigste“ (erkannt: „warmherzigste“), A14 „ist dein Neuanfang“
+  (erkannt: „ist ein Neuanfang“), A07 „Saqar“ (erkannt: „Sarkar“), A08 „Kufr“ (erkannt: „Kuffer“). Clips: `out/phase5/anhoeren/`.
