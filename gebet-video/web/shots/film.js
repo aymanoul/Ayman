@@ -29,12 +29,12 @@ const MOTION = {
   S15: { cam: { dolly: 0.35, pan: 0.04 } },
   S18: { cam: { zoomTo: 32 } },
   S21: { cam: { pan: 0.08 } },
-  S23: { cam: { dolly: 0.55 } },
+  S23: { cam: { dolly: 0.35 } },
   S24: { cam: { dolly: 0.2, tilt: 0.8 } },
   S25: { cam: { dolly: 0.2, tilt: 0.8 } },
-  S27: { cam: { dolly: 0.3 } },
+  S27: { cam: { dolly: 0.3, tilt: 0 } },
   S31: { cam: { dolly: 0.45 } },
-  S33: { cam: { zoomTo: 26 } },
+  S33: { cam: { zoomTo: 36 } },
   S34: { cam: { dolly: -0.3, tilt: 0.35 } },
   S36: { cam: { dolly: 0.2 }, figs: { 1: { reachBlend: [0.1, 0.45] } } },
   S39: { cam: { dolly: 1.6 } },
@@ -67,10 +67,11 @@ function honor(ws) {
 // Untertitel-Gruppen aus echten Wortzeiten: höchstens 3 Wörter / 18 Zeichen, Zitatanfang beginnt neue Gruppe
 function groupWords(ws) {
   const groups = []; let cur = [];
-  const len = (a) => a.reduce((n, w) => n + w.w.length, 0) + Math.max(0, a.length - 1);
+  const len = (a) => a.filter((w) => !/^[\uFDFA\uFDFB]$/.test(w.w)).reduce((n, w) => n + w.w.length + 1, -1);
   for (const w of ws) {
+    if (/^[\uFDFA\uFDFB]$/.test(w.w) && cur.length) { cur.push(w); continue; }   // ﷻ/ﷺ bleiben am vorigen Wort
     const endOfSentence = cur.length && /[.?!:…]$|[.?!]“$/.test(cur[cur.length - 1].w);
-    if (cur.length && (cur.length >= 3 || len([...cur, w]) > 20 || /^[„‚]/.test(w.w) || endOfSentence)) { groups.push(cur); cur = []; }
+    if (cur.length && (cur.filter((x) => !/^[\uFDFA\uFDFB]$/.test(x.w)).length >= 3 || len([...cur, w]) > 20 || /^[„‚]/.test(w.w) || endOfSentence)) { groups.push(cur); cur = []; }
     cur.push(w);
   }
   if (cur.length) groups.push(cur);
@@ -113,6 +114,22 @@ export async function build(ctx) {
     f.setHand(side, 'relaxed');
   }
 
+  // Bildausschnitt fürs fertige Video: Nahaufnahmen etwas weiter (Kopf + Schultern, Kopf im oberen Drittel),
+  // Über-Schulter-Blicke mit mehr Abstand, Detail-Einstellungen nicht zu eng
+  const FRAME = {
+    S26: { part: 'chest', dist: 1.9, up: 0.2 },
+    S27: { pos: [0.95, 2.35, -1.15], look: [0.05, 0.3, -3.4], fov: 46 },
+    S33: { pos: [-1.95, 2.0, -4.6] },
+    S47: { pos: [0.05, 0.55, -2.4], look: [0, 0.3, -4.3], fov: 48 },
+  };
+  function frame(k) {
+    if (+curId.slice(1) <= 12) return k;                 // Hook ist freigegeben und bleibt wie er ist
+    const c = { ...k, ...(FRAME[curId] || {}) };
+    if (c.on && c.part === 'head') { c.dist = Math.max(c.dist, 1.75); c.lookUp = (c.lookUp || 0) - 0.16; c.up = Math.max(c.up || 0, -0.1); }
+    if (c.on && c.part === 'chest') c.dist = Math.max(c.dist, 1.8);
+    if (c.over) { c.back = 1.0; c.sideOff = 0.45; c.up = 0.1; c.fov = Math.max(c.fov, 38); }
+    return c;
+  }
   shot.duration = total;
   shot.update = (t) => {
     const s = SCHED.find((x) => t >= x.t0 && t < x.t0 + x.t) || SCHED[SCHED.length - 1];
@@ -169,7 +186,7 @@ export async function build(ctx) {
     });
 
     // Kamera: Grundeinstellung + Bewegung
-    shot.placeCam(s.cam);
+    shot.placeCam(frame(s.cam));
     const c = m.cam || {};
     const k = ease(u);
     if (c.zoomTo) { camera.fov = lerp(s.cam.fov || 40, c.zoomTo, ease(u * 1.6)); camera.updateProjectionMatrix(); }
@@ -181,7 +198,8 @@ export async function build(ctx) {
       const kin = ease((t - ce.t0 + 0.2) / 0.6), kout = ease((ce.t1 - t) / 0.5);
       if (t > ce.t0 - 0.2 && t < ce.t1) show = Math.max(show, kin * kout);
     }
-    if (show > 0) camera.rotateX(-0.17 * show * (c.tilt ?? 1) * (40 / (camera.fov || 40)));
+    const headShot = +s.id.slice(1) > 12 && s.cam.on && s.cam.part === 'head';   // Nahaufnahme: Kopf steht schon im oberen Drittel
+    if (show > 0) camera.rotateX(-0.17 * show * (headShot ? 0 : (c.tilt ?? 1)) * (40 / (camera.fov || 40)));
   };
   shot.overlay = (g, t) => {
     drawTitle(g, 1080, 1920, t, ['Du hörst den Adhan –', 'und gehst weiter?'], { t0: 0.05, t1: 3.1, y: 470, style: 'b' });

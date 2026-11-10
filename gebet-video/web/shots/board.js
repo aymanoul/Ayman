@@ -83,7 +83,7 @@ export async function build({ W, H }) {
       const ha = a.headCenter(), hb = b.headCenter();
       const dir = hb.clone().sub(ha).setY(0).normalize();
       const r = new THREE.Vector3(-dir.z, 0, dir.x).multiplyScalar(k.side || 1);
-      camera.position.copy(ha).addScaledVector(dir, -0.6).addScaledVector(r, 0.32).add(V([0, 0.06, 0]));
+      camera.position.copy(ha).addScaledVector(dir, -(k.back || 0.6)).addScaledVector(r, k.sideOff || 0.32).add(V([0, k.up || 0.06, 0]));
       camera.lookAt(hb.clone().add(V([0, -0.05, 0])));
     }
     camera.updateProjectionMatrix();

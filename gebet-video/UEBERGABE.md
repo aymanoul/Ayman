@@ -7,7 +7,7 @@
 
 ---
 
-## ⚡ AKTUELLER STAND (zuletzt aktualisiert: 10.11.2026, abends) – IMMER ZUERST LESEN
+## ⚡ AKTUELLER STAND (zuletzt aktualisiert: 10.11.2026, spätabends) – IMMER ZUERST LESEN
 
 Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Abschnitt 14 ist das Tagebuch (14a–14n).
 **Achtung:** Punkt 4 in Abschnitt 0 („nicht mit Phase 3 anfangen“) ist überholt – Phase 3 bis 6 sind fertig und freigegeben.
@@ -37,15 +37,23 @@ Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Absc
 - Fertig: `out/phase7/probe_hook_strasse.mp4` (0–23,6 s, freigegeben).
 
 **Nächste Schritte:**
-1. ✅ Kameraneigung bei nahen Karten-Shots angepasst (S24/S25 Abstand 1,9 m, `tilt` in MOTION).
-2. ⏳ Gesamt-Ton `audio/mix_film.json` (`tools/build_mix.py`) → `out/phase7/film_ton.wav` ✅. Teil 3–5 rendert in Abschnitten
-   (`teil_a/b/c.mp4`), wird mit `probe_video.mp4` zu `film_video.mp4` verbunden → **`out/phase7/gebet_video_entwurf.mp4`**.
-   Falls abgebrochen: Befehl siehe docs/phase7.md (Abschnitte einzeln neu rendern, dann concat + mux).
-   Danach Ayman schicken.
-- Phase 9 vorbereitet: Titelbilder `out/phase9/titelbild_variante1.png` (Gebetsreihe) und `_variante2.png` (Neubau),
-  Shot `web/shots/cover.js`; Beschreibung `docs/phase9-beschreibung.md`.
-3. Phase 8: Standbilder alle 0,5 s prüfen (keine Augen, Texte, sichere Bereiche), Belege nochmals gegen Quelle.
-4. Phase 9: Titelbild 9:16, Beschreibung mit Hashtags, Projekt-ZIP.
+1. ✅ Erster Gesamt-Render (2:27, −14,1 LUFS) fertig und Bild für Bild geprüft (Kontaktbögen alle 0,5 s; keine Augen gefunden).
+   Gefunden und behoben (Ayman hat diesen ersten Render **nicht** gesehen):
+   - Nahaufnahmen viel zu eng (Gesicht füllte das Bild, Kopf oben abgeschnitten) → `frame()` in `web/shots/film.js`:
+     Kopf-Nahaufnahmen mind. 1,75 m Abstand, Blick etwas tiefer (Kopf im oberen Drittel), Brust-Shots mind. 1,8 m,
+     Über-Schulter-Blicke weiter zurück (`back`/`sideOff` in `placeCam`, board.js). Gilt nur ab S13 – Hook bleibt wie freigegeben.
+   - Kameraneigung bei Karten: bei Kopf-Nahaufnahmen aus (0), sonst wie vorher.
+   - Eigene Ausschnitte in `FRAME`: S26 (Brust statt Hände), S27 (von schräg oben, beide sichtbar), S33 (Uhr nicht so eng,
+     zoomTo 36), S47 (Reihe von hinten, Fuß an Fuß). S23 dolly 0.35.
+   - Untertitel: ﷻ wurde von „Allah“ in die nächste Gruppe getrennt → bleibt jetzt am vorigen Wort (`groupWords`).
+     „Puh…“ / „Und…“ behalten die Auslassungspunkte (`tools/prep_lines.py`), allein stehendes „…“ fällt weg.
+2. ⏳ Zweiter Render läuft (Teil ab 23,6 s, `teil_a/b/c.mp4` → `film_video.mp4` + `film_ton.wav` →
+   **`out/phase7/gebet_video_entwurf.mp4`**). Befehl siehe docs/phase7.md. Danach kurz Kontaktbogen prüfen und Ayman schicken
+   (Datei ist ~140 MB; für das iPad ggf. eine kleinere Vorschau-Kopie erstellen).
+3. Phase 9 vorbereitet: Titelbilder `out/phase9/titelbild_variante1.png` (Gebetsreihe) und `_variante2.png` (Neubau),
+   Shot `web/shots/cover.js`; Beschreibung `docs/phase9-beschreibung.md`. Ayman wählt eins.
+4. Phase 8: Belege nochmals gegen Quelle; Ayman an Hadith-Nummern (sunnah.com) und Adhan/Iqāma-Rechte erinnern.
+5. Phase 9: Endfassung, Titelbild, Beschreibung, Projekt-ZIP.
 
 ---
 
@@ -604,3 +612,9 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 
 - **Cairo Black** (Vorschlag 7) für Untertitel und Titel, Layout bestätigt. Probe wird neu gerendert
   (`out/phase7/probe_hook_strasse.mp4`) → danach erneut zur Freigabe schicken.
+
+### 14o. Ganzes Video, erster Render geprüft (10.11.2026)
+
+- Neue Probe freigegeben. Gesamt-Ton und Zeitplan (2:27) gebaut, ganzes Video gerendert (−14,1 LUFS).
+- Eigene Prüfung per Kontaktbogen: Nahaufnahmen zu eng, ein paar Detail-Shots leer/unklar, ﷻ in Untertiteln abgetrennt.
+  Alles korrigiert (siehe „AKTUELLER STAND“), zweiter Render läuft. Ayman hat den ersten Render nicht bekommen.

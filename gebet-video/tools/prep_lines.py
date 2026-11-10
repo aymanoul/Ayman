@@ -24,7 +24,7 @@ for who in 'AB':
         rms = np.array([np.sqrt(np.mean(x[i:i + hop * 2] ** 2)) for i in range(0, len(x), hop)])
         env = np.clip(rms / (np.percentile(rms, 95) + 1e-9), 0, 1)
         # Untertitel: Drehbuch-Wörter mit Zeiten der erkannten Wörter
-        script = [SPELL.get(w, w) for w in z['text'].replace('…', ' ').split() if w not in ('–', '-')]
+        script = [SPELL.get(w, w) for w in re.sub(r'\s*…', '…', z['text']).split() if w not in ('–', '-', '…')]
         asr = z['woerter']
         sm = difflib.SequenceMatcher(None, [norm(w) for w in script], [norm(w['w']) for w in asr])
         times = [None] * len(script)
