@@ -444,3 +444,20 @@ Kurz bestätigen: „Ich habe den Stand übernommen: Phase 0–2 fertig, Figuren
 Dann fragen (als kurze Auswahl), ob es jetzt mit **Phase 3 (Drehbuch)** losgehen soll oder ob er vorher noch etwas
 an Figuren oder Orten ändern möchte (z. B. Lichtkegel deutlicher). Erst nach seinem „weiter“ mit Phase 3 beginnen,
 und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
+
+---
+
+## 14. Nachtrag: Phase 3 begonnen (nach Aymans „Weiter machen“)
+
+- Neue Umgebung **„Ayman“** angelegt (persönlich, für Repo `aymanoul/Ayman`) mit freigegebenen Hosts:
+  quranenc.com, sunnah.com, dorar.net, www.dorar.net, hadeethenc.com, api.hadeethenc.com.
+- **quranenc.com** und **hadeethenc.com** (offizielle API) funktionieren. **sunnah.com und dorar.net** zeigen eine
+  Cloudflare-Bot-Sperre → **nicht umgehen** (wurde vom System als Bot-Umgehung abgelehnt).
+- Rohdaten in `docs/quellen/` (sura_*.json, he_*.json). Beweisliste: **`docs/phase3-beweisliste.md`**.
+- Geprüft: Q1–Q5 (4:103, 2:238, 19:59, 107:4–5, 74:42–43) wörtlich; H1–H6 Wortlaut + Gradierung von hadeethenc
+  (IDs 3365, 65093, 65094, 4968, 11287, 3591); H7 „Das Erste, worüber abgerechnet wird“ nur arabisch
+  (Tamim ad-Dari, Abu Dawud/Ibn Maja/ad-Darimi, ḥasan, hadeethenc 65424), deutsche Übersetzung = eigener Vorschlag.
+- **Nicht geprüft:** Hadith-Nummern (aus dem Auftrag bzw. Gedächtnis: Muslim 653, Muslim 233), Tirmidhi 413
+  (Abu Huraira-Fassung), alle drei Sahaba-Aussagen (S1 ʿUmar, S2 Ibn Schaqiq, S3 Ibn Masʿud).
+- **Wartet auf Ayman:** Freigabe der Beweisliste und Entscheidung, wie mit den ungeprüften Stellen umgegangen wird.
+  Erst danach Drehbuch-Tabelle, 3 Hook-Varianten und Sprechertext (A01, B01 …) schreiben.
