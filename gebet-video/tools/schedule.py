@@ -50,6 +50,8 @@ while i < len(shots):
         i += len(grp)
     else:
         out_shots.append({'id': s['id'], 't0': round(t, 3), 't': s['t']}); t += s['t']; i += 1
+# Schlussbild 2 s stehen lassen
+out_shots[-1]['t'] = round(out_shots[-1]['t'] + 2.0, 3); t += 2.0
 # Karten dürfen sich nicht überlappen
 for a, b in zip(cards, cards[1:]):
     if a['t1'] > b['t0'] - 0.1: a['t1'] = round(b['t0'] - 0.1, 3)

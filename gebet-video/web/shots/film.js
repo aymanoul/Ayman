@@ -3,7 +3,8 @@
 import * as THREE from 'three';
 import { build as buildBoard } from './board.js';
 import { applyPose } from '../lib/poses.js';
-import { drawTitle, drawSubtitles } from '../lib/overlay.js';
+import { drawTitle, drawSubtitles, drawCard, subtitleY } from '../lib/overlay.js';
+import { CARDS } from '../lib/cards-data.js';
 import { SHOTS } from '../sheets/board.js';
 
 const ease = (x) => { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); };
@@ -23,12 +24,45 @@ const MOTION = {
   S10: { cam: { dolly: 0.25 }, figs: { 1: { reachBlend: [0.05, 0.4], talk: [0.3, 0.95] }, 0: { nod: [0.55, 0.85] } } },
   S11: { figs: { 0: { blendFrom: ['handy', { neck: [0, 0, 0], head: [0.1, 0, 0] }], blend: [0, 0.7], talk: [0.0, 0.3] } } },
   S12: { cam: { dolly: 1.4 }, figs: { 0: { walk: { speed: 0.95 } }, 1: { walk: { speed: 1.0 } } } },
+  S13: { cam: { dolly: 0.2 } },
+  S14: { cam: { dolly: 0.3 }, figs: { 0: { walk: { speed: 0.8 } }, 1: { walk: { speed: 0.8 } } } },
+  S15: { cam: { dolly: 0.35, pan: 0.04 } },
+  S18: { cam: { zoomTo: 32 } },
+  S21: { cam: { pan: 0.08 } },
+  S23: { cam: { dolly: 0.55 } },
+  S24: { cam: { dolly: 0.2 } },
+  S25: { cam: { zoomTo: 30 } },
+  S27: { cam: { dolly: 0.3 } },
+  S31: { cam: { dolly: 0.45 } },
+  S33: { cam: { zoomTo: 26 } },
+  S34: { cam: { dolly: 0.3 } },
+  S36: { cam: { dolly: 0.2 }, figs: { 1: { reachBlend: [0.1, 0.45] } } },
+  S39: { cam: { dolly: 1.6 } },
+  S40: { cam: { pan: 0.12, dolly: 0.4 } },
+  S42: { cam: { dolly: 1.6 } },
+  S45: { cam: { dolly: 0.2 }, figs: { 0: { blendFrom: { spine: [0.3, 0, 0], head: [0.3, 0, 0] }, blend: [0, 0.5] } } },
+  S46: { cam: { dolly: 0.3 }, figs: { 0: { stepIn: 0.35 }, 1: { stepIn: 0.35 }, 2: { stepIn: 0.2 }, 3: { stepIn: 0.25 } } },
+  S47: { cam: { dolly: 0.1 } },
+  S48: { cam: { dolly: -2.4 } },
+  S49: { cam: { dolly: 0.15 } },
 };
 
 // Zeitplan aus den echten Stimmen (Hook + Straße). Dauer je Shot in Sekunden; Stimmen: [Zeile, Startzeit absolut].
 const DUR = { S01: 1.0, S02: 1.05, S03: 1.1, S04: 2.2, S05: 1.95, S06: 3.75, S07: 1.55, S08: 1.95, S09: 2.65, S10: 3.3, S11: 1.1, S12: 2.0 };
-export const VOICE = [['A01', 0.0], ['A02', 5.45], ['B01', 7.45], ['A03', 11.15], ['B02', 14.65], ['A04', 17.35], ['B03', 20.65]];
-const SCHED = (() => { let t = 0; return SHOTS.map((s) => { const o = { ...s, t: DUR[s.id] ?? s.t, t0: t }; t += o.t; return o; }); })();
+let VOICE = [['A01', 0.0], ['A02', 5.45], ['B01', 7.45], ['A03', 11.15], ['B02', 14.65], ['A04', 17.35], ['B03', 20.65]];
+let SCHED = (() => { let t = 0; return SHOTS.map((s) => { const o = { ...s, t: DUR[s.id] ?? s.t, t0: t }; t += o.t; return o; }); })();
+let CARD_EVENTS = [];
+// „Allah“ außerhalb von Zitaten bekommt im Untertitel ﷻ (in Quran- und Hadith-Zitaten wird nichts ergänzt)
+function honor(ws) {
+  const out = []; let inQuote = false;
+  for (const w of ws) {
+    if (/^„/.test(w.w)) inQuote = true;
+    out.push(w);
+    if (!inQuote && /^Allah[,.:!?]?$/.test(w.w)) out.push({ w: '\uFDFB', t0: w.t0, t1: w.t1 });
+    if (/“[,.:!?]?$/.test(w.w)) inQuote = false;
+  }
+  return out;
+}
 
 // Untertitel-Gruppen aus echten Wortzeiten: höchstens 3 Wörter / 18 Zeichen, Zitatanfang beginnt neue Gruppe
 function groupWords(ws) {
@@ -49,8 +83,15 @@ const fakeAmp = (t) => Math.max(0, 0.55 + 0.45 * Math.sin(t * 13.1) * Math.sin(t
 export async function build(ctx) {
   const shot = await buildBoard(ctx);
   const LINES = await (await fetch('/assets/audio/zeilen/lines.json')).json();
+  try {
+    const TL = await (await fetch('/audio/timeline.json')).json();
+    const byId = Object.fromEntries(TL.shots.map((x) => [x.id, x]));
+    SCHED = SHOTS.map((s) => ({ ...s, t0: byId[s.id].t0, t: byId[s.id].t }));
+    VOICE = TL.voice; CARD_EVENTS = TL.cards;
+  } catch (e) { /* ohne Zeitplan: Hook-Zeiten aus DUR/VOICE */ }
+  const A14 = VOICE.find(([id]) => id === 'A14');
   const voiceAt = (t) => { for (const [id, at] of VOICE) { const L = LINES[id]; if (L && t >= at && t < at + L.dauer) return { id, at, L }; } return null; };
-  const subs = VOICE.filter(([id]) => id !== 'A01' && LINES[id]).flatMap(([id, at]) => groupWords(LINES[id].woerter.map((w) => ({ w: w.w, t0: at + w.t0, t1: at + w.t1 }))));
+  const subs = VOICE.filter(([id]) => id !== 'A01' && id !== 'A14' && LINES[id]).flatMap(([id, at]) => groupWords(honor(LINES[id].woerter.map((w) => ({ w: w.w, t0: at + w.t0, t1: at + w.t1 })))));
   const camera = shot.camera;
   let curId = null;
   let total = 0;
@@ -116,6 +157,10 @@ export async function build(ctx) {
       f.breathe(t, i * 1.7, 1);
       if (fm.nod) f.J.head.rotation.x += Math.sin(ease((u - fm.nod[0]) / (fm.nod[1] - fm.nod[0])) * Math.PI * 2) * 0.12;
       const speaking = v && d.who === v.L.who;
+      if (v && d.who && !speaking) {                       // der andere hört sichtbar zu: Kopf leicht geneigt, langsames Nicken
+        f.J.head.rotation.z += 0.05;
+        f.J.head.rotation.x += 0.03 + Math.max(0, Math.sin((t - v.at) * 1.6)) * 0.05;
+      }
       if (speaking || (!v && fm.talk && u >= fm.talk[0] && u <= fm.talk[1])) {
         const a = speaking ? (v.L.env[Math.min(v.L.env.length - 1, Math.floor((t - v.at) * 30))] || 0) : fakeAmp(t);
         if (base.mouth === 'smile' && a < 0.3) f.setMouth('smile'); else f.talk(a);
@@ -130,10 +175,20 @@ export async function build(ctx) {
     if (c.zoomTo) { camera.fov = lerp(s.cam.fov || 40, c.zoomTo, ease(u * 1.6)); camera.updateProjectionMatrix(); }
     if (c.pan) camera.rotateY(c.pan * (k - 0.5));
     if (c.dolly) camera.translateZ(-c.dolly * k);
+    // Steht eine Beweis-Karte, neigt sich die Kamera weich nach unten: das Wichtige rutscht in die obere Bildhälfte
+    let show = 0;
+    for (const ce of CARD_EVENTS) {
+      const kin = ease((t - ce.t0 + 0.2) / 0.6), kout = ease((ce.t1 - t) / 0.5);
+      if (t > ce.t0 - 0.2 && t < ce.t1) show = Math.max(show, kin * kout);
+    }
+    if (show > 0) camera.rotateX(-0.17 * show * (40 / (camera.fov || 40)));
   };
   shot.overlay = (g, t) => {
     drawTitle(g, 1080, 1920, t, ['Du hörst den Adhan –', 'und gehst weiter?'], { t0: 0.05, t1: 3.1, y: 470, style: 'b' });
-    drawSubtitles(g, 1080, 1920, t, subs, { style: 'b' });
+    let card = null;
+    for (const c of CARD_EVENTS) { const r = drawCard(g, t, CARDS[c.card], { t0: c.t0, t1: c.t1 }); if (r) card = r; }
+    drawSubtitles(g, 1080, 1920, t, subs, { style: 'b', y: subtitleY(card) });
+    if (A14) drawTitle(g, 1080, 1920, t, ['Dein nächstes Gebet', 'ist dein Neuanfang.'], { t0: A14[1], t1: total, y: 900, style: 'b', size: 84 });
   };
   return shot;
 }

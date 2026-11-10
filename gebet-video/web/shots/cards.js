@@ -26,14 +26,8 @@ export function wordGroups(text, t0, t1, per = 3, maxChars = 18) {
   return groups.map((ws) => ({ t0: ws[0].t0, t1: ws[ws.length - 1].t1, words: ws }));
 }
 
-const CARDS = {
-  Q1: { kind: 'quran', ar: 'إِنَّ ٱلصَّلَوٰةَ كَانَتۡ عَلَى ٱلۡمُؤۡمِنِينَ كِتَٰبٗا مَّوۡقُوتٗا', de: '„Das Gebet ist den Gläubigen zu bestimmten Zeiten vorgeschrieben.“', src: 'Sura an-Nisāʾ, Vers 103 (Auszug)' },
-  Q4: { kind: 'quran', ar: 'فَوَيۡلٞ لِّلۡمُصَلِّينَ\nٱلَّذِينَ هُمۡ عَن صَلَاتِهِمۡ سَاهُونَ', de: '„Wehe nun den Betenden, denjenigen, die auf ihre Gebete nicht achten,“', src: 'Sura al-Māʿūn, Vers 4–5' },
-  H2: { kind: 'hadith', de: '„Zwischen einer Person und dem Götzendienst (Schirk) und dem Unglauben (Kufr) steht die Unterlassung des Gebets.“', src: 'Überliefert von Jābir · Muslim 82' },
-  H2ar: { kind: 'hadith', ar: '«إِنَّ بَيْنَ الرَّجُلِ وَبَيْنَ الشِّرْكِ وَالْكُفْرِ تَرْكَ الصَّلَاةِ»', de: '„Zwischen einer Person und dem Götzendienst (Schirk) und dem Unglauben (Kufr) steht die Unterlassung des Gebets.“', src: 'Überliefert von Jābir · Muslim 82' },
-  H7: { kind: 'hadith', ar: '«إن أول ما يحاسب به العبد الصلاة»', de: '„Das Erste, worüber der Diener abgerechnet wird, ist das Gebet.“', src: 'Überliefert von Tamīm ad-Dārī · Abū Dāwūd, Ibn Māja, ad-Dārimī · ḥasan' },
-  H4a: { kind: 'hadith', de: '„Was meint ihr, wenn vor der Tür eines von euch ein Fluss wäre, in dem er sich jeden Tag fünfmal wäscht, würde das etwas von seinem Schmutz übriglassen?“', src: 'Überliefert von Abū Huraira · al-Bukhārī 528, Muslim 667 (1/2)' },
-};
+import { CARDS as CARDS_DATA } from '../lib/cards-data.js';
+const CARDS = { ...CARDS_DATA, H2ar: CARDS_DATA.H2, H2: { ...CARDS_DATA.H2, ar: undefined } };
 
 // Varianten (eine pro Sekunde)
 const V = [

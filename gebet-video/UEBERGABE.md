@@ -5,6 +5,46 @@
 
 ---
 
+---
+
+## ⚡ AKTUELLER STAND (zuletzt aktualisiert: 10.11.2026, abends) – IMMER ZUERST LESEN
+
+Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Abschnitt 14 ist das Tagebuch (14a–14n).
+**Achtung:** Punkt 4 in Abschnitt 0 („nicht mit Phase 3 anfangen“) ist überholt – Phase 3 bis 6 sind fertig und freigegeben.
+
+**Phasen:** 0 ✅ · 1 ✅ · 2 ✅ · 3 ✅ (Drehbuch freigegeben, Hook „Du hörst den Adhan – und gehst weiter?“) · 4 ✅ (Storyboard,
+49 Shots) · 5 ✅ teilweise (Stimmen da und geschnitten, Geräusche fertig; Adhan/Iqāma nur Platzhalter) · 6 ✅ (Einblendungen) ·
+**7 läuft** (Probe Hook + Straße freigegeben; jetzt das ganze Video) · 8, 9 offen.
+
+**Entscheidungen seit Phase 3 (alle von Ayman):**
+- Sahaba-Aussagen entfallen (nicht prüfbar). Beweisliste freigegeben (`docs/phase3-beweisliste.md`). Belege im Video:
+  Q1 4:103 · Q4 107:4–5 · Q5 74:42–43 · H2 Muslim (Jābir) · H7 Tamīm ad-Dārī (ḥasan) · H1 Ibn Masʿūd · H4 Fluss (2 Karten).
+  Hadith-Nummern sind nicht an der Originalquelle geprüft → **vor Abgabe von Ayman auf sunnah.com prüfen lassen.**
+- Untertitel + Titel: **Cairo Black**, weiß, Navy-Kontur, Betonung Gold (`SUB_STYLES.b`). Hadith-Karten **mit** arabischer
+  Kernzeile (außer H4). Karten in Montserrat; Quran-Arabisch nur mit **KFGQPC Uthmanic Script HAFS**.
+- Layout „mittiger“: Text x 120–880 (Mitte 500), Untertitel y 1180, Titel y 470, Karten x 110–890, Unterkante y 1360.
+- Stimmen: **eine Datei mit A und B** (`assets/audio/roh/stimme_AB_neu.mp3`), geschnitten in `assets/audio/zeilen/A01…B09.wav`
+  (B um ~15,6 dB angehoben, Originale in `zeilen/original/`). Aussprache A07/A08/A09/A14 laut Ayman richtig.
+- Adhan/Iqāma: YouTube-Bildschirmaufnahmen als **Platzhalter** – vor Veröffentlichung Rechte klären oder eigene Aufnahme.
+- Keine Endkarte. Schlusssatz A14 groß in der Mitte: „Dein nächstes Gebet ist dein Neuanfang.“
+
+**Wie der Film gebaut wird (Phase 7):**
+- `python3 tools/schedule.py` → `audio/timeline.json` (Shot-Zeiten, Stimmen, Karten; Gesamtlänge **2:27**, Schlussbild +2 s).
+- `web/shots/film.js` liest timeline.json + `assets/audio/zeilen/lines.json` (Lippen-Hüllkurve, Untertitel-Wortzeiten);
+  Bewegung je Shot in `MOTION`; Zuhörer nicken; ﷻ nach „Allah“ außerhalb von Zitaten; Kamera neigt sich bei Karten nach unten.
+- Rendern: `node tools/render.mjs film --from A --to B --out …` (≈1,7 s pro Bild, 2 Worker). Ton: `tools/mix.py <json> <wav>`,
+  dann ffmpeg mux + `loudnorm=I=-14:TP=-1.5`.
+- Fertig: `out/phase7/probe_hook_strasse.mp4` (0–23,6 s, freigegeben).
+
+**Nächste Schritte:**
+1. Kameraneigung bei sehr nahen Karten-Shots (S24, S25, S34) abschwächen, Stichproben prüfen (Augen-Check!).
+2. Gesamt-Tonmischung aus timeline.json bauen (`tools/build_mix.py`), Teil 3–5 in Abschnitten rendern (23,6–60, 60–100, 100–147,3 s),
+   mit der Probe verbinden → `out/phase7/gebet_video_entwurf.mp4`, Ayman schicken.
+3. Phase 8: Standbilder alle 0,5 s prüfen (keine Augen, Texte, sichere Bereiche), Belege nochmals gegen Quelle.
+4. Phase 9: Titelbild 9:16, Beschreibung mit Hashtags, Projekt-ZIP.
+
+---
+
 ## 0. Anweisung an den neuen Chat (zuerst lesen)
 
 1. Du übernimmst ein laufendes Projekt. Alles, was bisher entschieden und gebaut wurde, steht unten.
@@ -24,7 +64,7 @@
    „Fahrstation Düsseldorf“. Die Dateien `HANDOFF.md`, `WARTUNG.md`, `site/`, `assets/` (im Repo-Hauptordner),
    `scripts/`, `gebaeudereinigung-ar/`, `vercel.json` gehören **nicht** zu diesem Projekt.
    Nicht anfassen. Die dortige Regel „beide Fahrschul-Zweige synchron halten“ gilt **nicht** für das Gebet-Video.
-4. **Aktueller Stand:** Phase 0, 1 und 2 sind fertig. Ayman hat Raum und Außenansicht mit „Passt so“ bestätigt,
+4. **(ÜBERHOLT – siehe „AKTUELLER STAND“ oben)** Phase 0, 1 und 2 sind fertig. Ayman hat Raum und Außenansicht mit „Passt so“ bestätigt,
    aber bei der Frage „Weiter mit Phase 3?“ **„Noch warten“** gewählt. Also: **nicht von selbst mit dem Drehbuch
    anfangen.** Erst kurz den Stand bestätigen und fragen, ob es mit Phase 3 losgehen soll
    (oder ob vorher noch etwas geändert werden soll).
