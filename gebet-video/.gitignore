@@ -1,0 +1,5 @@
+node_modules/
+out/tmp/
+out/stills/
+out/clips/*.part*.mp4
+*.log
