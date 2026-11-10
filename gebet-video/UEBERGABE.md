@@ -37,9 +37,13 @@ Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Absc
 - Fertig: `out/phase7/probe_hook_strasse.mp4` (0–23,6 s, freigegeben).
 
 **Nächste Schritte:**
-1. Kameraneigung bei sehr nahen Karten-Shots (S24, S25, S34) abschwächen, Stichproben prüfen (Augen-Check!).
-2. Gesamt-Tonmischung aus timeline.json bauen (`tools/build_mix.py`), Teil 3–5 in Abschnitten rendern (23,6–60, 60–100, 100–147,3 s),
-   mit der Probe verbinden → `out/phase7/gebet_video_entwurf.mp4`, Ayman schicken.
+1. ✅ Kameraneigung bei nahen Karten-Shots angepasst (S24/S25 Abstand 1,9 m, `tilt` in MOTION).
+2. ⏳ Gesamt-Ton `audio/mix_film.json` (`tools/build_mix.py`) → `out/phase7/film_ton.wav` ✅. Teil 3–5 rendert in Abschnitten
+   (`teil_a/b/c.mp4`), wird mit `probe_video.mp4` zu `film_video.mp4` verbunden → **`out/phase7/gebet_video_entwurf.mp4`**.
+   Falls abgebrochen: Befehl siehe docs/phase7.md (Abschnitte einzeln neu rendern, dann concat + mux).
+   Danach Ayman schicken.
+- Phase 9 vorbereitet: Titelbilder `out/phase9/titelbild_variante1.png` (Gebetsreihe) und `_variante2.png` (Neubau),
+  Shot `web/shots/cover.js`; Beschreibung `docs/phase9-beschreibung.md`.
 3. Phase 8: Standbilder alle 0,5 s prüfen (keine Augen, Texte, sichere Bereiche), Belege nochmals gegen Quelle.
 4. Phase 9: Titelbild 9:16, Beschreibung mit Hashtags, Projekt-ZIP.
 

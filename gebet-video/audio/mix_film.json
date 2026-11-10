@@ -1,0 +1,454 @@
+{
+ "duration": 147.34,
+ "events": [
+  {
+   "file": "assets/audio/zeilen/A01.wav",
+   "at": 0.0,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A02.wav",
+   "at": 5.45,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B01.wav",
+   "at": 7.45,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A03.wav",
+   "at": 11.15,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B02.wav",
+   "at": 14.65,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A04.wav",
+   "at": 17.35,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B03.wav",
+   "at": 20.65,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B04.wav",
+   "at": 25.75,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A05.wav",
+   "at": 29.71,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B05.wav",
+   "at": 34.99,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A06.wav",
+   "at": 38.01,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B06.wav",
+   "at": 47.91,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A07.wav",
+   "at": 50.95,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A08.wav",
+   "at": 61.93,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B07.wav",
+   "at": 74.09,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A09.wav",
+   "at": 77.93,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A10.wav",
+   "at": 89.25,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B08.wav",
+   "at": 96.39,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A11.wav",
+   "at": 99.93,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A12.wav",
+   "at": 107.01,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/B09.wav",
+   "at": 129.33,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A13.wav",
+   "at": 131.07,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/audio/zeilen/A14.wav",
+   "at": 142.59,
+   "gain": 0,
+   "fadeIn": 0.01,
+   "fadeOut": 0.04
+  },
+  {
+   "file": "assets/sfx/strasse.wav",
+   "at": 0,
+   "dur": 23.6,
+   "gain": -24,
+   "fadeIn": 0.3,
+   "fadeOut": 1.5
+  },
+  {
+   "file": "assets/audio/roh/adhan_bildschirmaufnahme.wav",
+   "at": 0.0,
+   "dur": 11.5,
+   "gain": -13,
+   "lowpass": 3200,
+   "reverb": 0.35,
+   "fadeIn": 0.05,
+   "fadeOut": 2.5
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 0.92,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 1.97,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/whoosh.wav",
+   "at": 2.95,
+   "gain": -16
+  },
+  {
+   "file": "assets/sfx/schritte_gehweg_eilig.wav",
+   "at": 0.0,
+   "dur": 1.0,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/schritte_gehweg_eilig.wav",
+   "at": 2.05,
+   "from": 1.0,
+   "dur": 3.3,
+   "gain": -22,
+   "fadeOut": 0.6
+  },
+  {
+   "file": "assets/sfx/schritte_gehweg_ruhig.wav",
+   "at": 5.35,
+   "dur": 0.9,
+   "gain": -22
+  },
+  {
+   "file": "assets/sfx/stoff.wav",
+   "at": 17.5,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/stoff.wav",
+   "at": 20.6,
+   "gain": -22
+  },
+  {
+   "file": "assets/sfx/schritte_gehweg_ruhig.wav",
+   "at": 21.6,
+   "dur": 1.6,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/tuer.wav",
+   "at": 22.6,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/raumklang_moschee.wav",
+   "at": 22.6,
+   "dur": 20,
+   "gain": -28,
+   "fadeIn": 0.8,
+   "fadeOut": 0.5
+  },
+  {
+   "file": "assets/sfx/raumklang_moschee.wav",
+   "at": 42.1,
+   "dur": 20,
+   "gain": -28,
+   "fadeIn": 0.5,
+   "fadeOut": 0.5
+  },
+  {
+   "file": "assets/sfx/raumklang_moschee.wav",
+   "at": 61.6,
+   "dur": 20,
+   "gain": -28,
+   "fadeIn": 0.5,
+   "fadeOut": 0.5
+  },
+  {
+   "file": "assets/sfx/raumklang_moschee.wav",
+   "at": 81.1,
+   "dur": 20,
+   "gain": -28,
+   "fadeIn": 0.5,
+   "fadeOut": 0.5
+  },
+  {
+   "file": "assets/sfx/raumklang_moschee.wav",
+   "at": 100.6,
+   "dur": 20,
+   "gain": -28,
+   "fadeIn": 0.5,
+   "fadeOut": 0.5
+  },
+  {
+   "file": "assets/sfx/raumklang_moschee.wav",
+   "at": 120.1,
+   "dur": 20,
+   "gain": -28,
+   "fadeIn": 0.5,
+   "fadeOut": 0.5
+  },
+  {
+   "file": "assets/sfx/raumklang_moschee.wav",
+   "at": 139.6,
+   "dur": 7.740000000000009,
+   "gain": -28,
+   "fadeIn": 0.5,
+   "fadeOut": 0.5
+  },
+  {
+   "file": "assets/sfx/schuhe_ins_regal.wav",
+   "at": 23.75,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/schritte_teppich.wav",
+   "at": 24.6,
+   "dur": 1,
+   "gain": -22
+  },
+  {
+   "file": "assets/sfx/stoff.wav",
+   "at": 25.8,
+   "gain": -22
+  },
+  {
+   "file": "assets/sfx/uhr_ticken.wav",
+   "at": 31.91,
+   "dur": 2.933,
+   "gain": -22
+  },
+  {
+   "file": "assets/sfx/impact.wav",
+   "at": 54.74,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/grollen.wav",
+   "at": 54.64,
+   "dur": 7.1370000000000005,
+   "gain": -24,
+   "fadeOut": 0.8
+  },
+  {
+   "file": "assets/sfx/waage_klacken.wav",
+   "at": 81.95,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/uhr_ticken.wav",
+   "at": 89.1,
+   "dur": 2.746,
+   "gain": -22
+  },
+  {
+   "file": "assets/sfx/stoff.wav",
+   "at": 100.18,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/wasser.wav",
+   "at": 109.77,
+   "dur": 15.528000000000006,
+   "gain": -22,
+   "fadeIn": 0.6,
+   "fadeOut": 0.8
+  },
+  {
+   "file": "assets/sfx/stoff.wav",
+   "at": 131.02,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/schritte_teppich.wav",
+   "at": 133.44,
+   "dur": 2.5,
+   "gain": -22
+  },
+  {
+   "file": "assets/audio/roh/iqama_bildschirmaufnahme.wav",
+   "at": 133.44,
+   "dur": 10.35,
+   "gain": -12,
+   "reverb": 0.25,
+   "fadeIn": 0.3,
+   "fadeOut": 1.8
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 30.96,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/pop.wav",
+   "at": 31.29,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 40.8,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/pop.wav",
+   "at": 41.13,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 55.3,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/pop.wav",
+   "at": 55.63,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 65.78,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/pop.wav",
+   "at": 66.11,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 85.14,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/pop.wav",
+   "at": 85.47,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 94.1,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/pop.wav",
+   "at": 94.43,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 110.6,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/pop.wav",
+   "at": 110.93,
+   "gain": -18
+  },
+  {
+   "file": "assets/sfx/whoosh_kurz.wav",
+   "at": 120.06,
+   "gain": -20
+  },
+  {
+   "file": "assets/sfx/pop.wav",
+   "at": 120.39,
+   "gain": -18
+  }
+ ]
+}

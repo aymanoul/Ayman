@@ -30,12 +30,12 @@ const MOTION = {
   S18: { cam: { zoomTo: 32 } },
   S21: { cam: { pan: 0.08 } },
   S23: { cam: { dolly: 0.55 } },
-  S24: { cam: { dolly: 0.2 } },
-  S25: { cam: { zoomTo: 30 } },
+  S24: { cam: { dolly: 0.2, tilt: 0.8 } },
+  S25: { cam: { dolly: 0.2, tilt: 0.8 } },
   S27: { cam: { dolly: 0.3 } },
   S31: { cam: { dolly: 0.45 } },
   S33: { cam: { zoomTo: 26 } },
-  S34: { cam: { dolly: 0.3 } },
+  S34: { cam: { dolly: -0.3, tilt: 0.35 } },
   S36: { cam: { dolly: 0.2 }, figs: { 1: { reachBlend: [0.1, 0.45] } } },
   S39: { cam: { dolly: 1.6 } },
   S40: { cam: { pan: 0.12, dolly: 0.4 } },
@@ -181,7 +181,7 @@ export async function build(ctx) {
       const kin = ease((t - ce.t0 + 0.2) / 0.6), kout = ease((ce.t1 - t) / 0.5);
       if (t > ce.t0 - 0.2 && t < ce.t1) show = Math.max(show, kin * kout);
     }
-    if (show > 0) camera.rotateX(-0.17 * show * (40 / (camera.fov || 40)));
+    if (show > 0) camera.rotateX(-0.17 * show * (c.tilt ?? 1) * (40 / (camera.fov || 40)));
   };
   shot.overlay = (g, t) => {
     drawTitle(g, 1080, 1920, t, ['Du hörst den Adhan –', 'und gehst weiter?'], { t0: 0.05, t1: 3.1, y: 470, style: 'b' });

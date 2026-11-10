@@ -27,3 +27,16 @@
   (loudnorm −14 LUFS).
 - Behoben: Beim Überblenden wurde die Drehung der ganzen Figur mitgemischt (Euler kippt bei |y| > 90°) → Kamera stand hinter B.
   Jetzt wird `root` nicht gemischt und die Kamera nutzt die gespeicherte Blickrichtung.
+
+## Ganzes Video (10.11.2026)
+
+```bash
+python3 tools/schedule.py && python3 tools/build_mix.py && python3 tools/mix.py audio/mix_film.json out/phase7/film_ton.wav
+node tools/render.mjs film --from 23.6 --to 60 --out out/phase7/teil_a.mp4
+node tools/render.mjs film --from 60 --to 100 --out out/phase7/teil_b.mp4
+node tools/render.mjs film --from 100 --to 147.34 --out out/phase7/teil_c.mp4
+cd out/phase7 && printf "file 'probe_video.mp4'\nfile 'teil_a.mp4'\nfile 'teil_b.mp4'\nfile 'teil_c.mp4'\n" > film_teile.txt
+ffmpeg -f concat -safe 0 -i film_teile.txt -c copy film_video.mp4
+ffmpeg -i film_video.mp4 -i film_ton.wav -map 0:v -map 1:a -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -shortest gebet_video_entwurf.mp4
+```
+Kamera neigt sich bei Karten (`show`-Faktor, `tilt` je Shot). Zuhörer nicken. ﷻ nach „Allah“ außerhalb von Zitaten.
