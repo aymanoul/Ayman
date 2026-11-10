@@ -50,7 +50,8 @@ Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Absc
 2. ✅ Zweiter Render fertig und geprüft (Kontaktbogen jede Sekunde: Ausschnitte gut, keine Augen, ﷻ bleibt bei „Allah“).
    Ergebnis: `out/phase7/gebet_video_entwurf.mp4` (1080×1920, 2:27, −14,1 LUFS, ~157 MB, nicht im Repo wegen 100-MB-Grenze –
    neu erzeugen mit dem Befehl in docs/phase7.md) und `out/phase7/gebet_video_entwurf_vorschau.mp4` (720p, 15 MB, im Repo).
-   **An Ayman geschickt (Vorschau + beide Titelbilder + Beschreibung). Warte auf Freigabe/Änderungen und Wahl des Titelbilds.**
+   **An Ayman geschickt.** Antwort: Titelbild **Variante 1** (Gebetsreihe) ✅ · Beschreibung **passt so** ✅ ·
+   Video: **„Erst Änderungen“** – welche genau, hat er noch nicht geschrieben → nachfragen.
 3. Phase 9 vorbereitet: Titelbilder `out/phase9/titelbild_variante1.png` (Gebetsreihe) und `_variante2.png` (Neubau),
    Shot `web/shots/cover.js`; Beschreibung `docs/phase9-beschreibung.md`. Ayman wählt eins.
 4. Phase 8: Belege nochmals gegen Quelle; Ayman an Hadith-Nummern (sunnah.com) und Adhan/Iqāma-Rechte erinnern.
