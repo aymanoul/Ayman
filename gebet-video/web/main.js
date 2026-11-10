@@ -30,7 +30,7 @@ const ov = ovCanvas.getContext('2d');
 async function boot() {
   await Promise.all([
     '800 96px "Baloo 2"', '700 96px "Baloo 2"', '700 40px "Fredoka"',
-    '700 40px "Montserrat"', '800 40px "Montserrat"', '900 40px "Montserrat"',
+    '500 40px "Montserrat"', '700 40px "Montserrat"', '800 40px "Montserrat"', '900 40px "Montserrat"',
     '400 40px "Amiri"', '700 40px "Amiri"', '400 40px "Amiri Quran"',
   ].map((f) => document.fonts.load(f, f.includes('Amiri') ? 'لا إله إلا الله' : 'Äg')));
 
@@ -50,8 +50,8 @@ async function boot() {
 
   if (shot.environment !== false) {
     const pmrem = new THREE.PMREMGenerator(renderer);
-    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-    scene.environmentIntensity = shot.environmentIntensity ?? 0.22;
+    const env = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    for (const sc of shot.scenes || [scene]) { sc.environment = env; sc.environmentIntensity = shot.environmentIntensity ?? 0.22; }
   }
 
   let composer = null;
@@ -78,7 +78,8 @@ async function boot() {
     }
     composer.addPass(new OutputPass());
   }
-  const draw = () => (composer ? composer.render() : renderer.render(scene, camera));
+  // Ein Shot darf zwischen mehreren Szenen wechseln (shot.scene wird bei jedem Bild neu gelesen)
+  const draw = () => (composer ? composer.render() : renderer.render(shot.scene, shot.camera));
 
   window.__dbg = { shot, scene, camera, renderer, composer: { render: draw }, THREE };
   window.shotInfo = { name: shotName, duration: shot.duration, fps: 30, W, H };

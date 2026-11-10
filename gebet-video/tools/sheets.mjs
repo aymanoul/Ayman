@@ -7,11 +7,13 @@ import http from 'node:http'; import fs from 'node:fs'; import path from 'node:p
 import { fileURLToPath } from 'node:url'; import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url); const { chromium } = require('playwright');
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const { SHEETS, ALL_CELLS } = await import(path.join(ROOT, 'web/sheets/cells.js'));
 const argv = process.argv.slice(2);
 const arg = (n, d) => { const i = argv.indexOf('--' + n); return i >= 0 ? argv[i + 1] : d; };
+// --set figuren (Standard) | orte
+const SET = arg('set', 'figuren');
+const { SHEETS, ALL_CELLS, SHOT, SIZE, KICKER } = await import(path.join(ROOT, SET === 'orte' ? 'web/sheets/orte.js' : 'web/sheets/cells.js'));
 const only = arg('only'); const sheetSel = arg('sheet');
-const CW = +arg('w', 640), CH = +arg('h', 960);
+const CW = +arg('w', SIZE[0]), CH = +arg('h', SIZE[1]);
 
 const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.woff2': 'font/woff2', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
 const server = http.createServer((req, res) => { const f = path.join(ROOT, decodeURIComponent(req.url.split('?')[0]));
@@ -23,12 +25,12 @@ const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=sw
 
 const cellDir = path.join(ROOT, 'out/sheets/cells'); fs.mkdirSync(cellDir, { recursive: true });
 const sheets = SHEETS.filter((s) => !sheetSel || s.file.includes(sheetSel));
-let cells = only ? ALL_CELLS.filter((c) => only.split(',').some((o) => c.id.startsWith(o))) : sheets.flatMap((s) => s.sections.flatMap((x) => x.cells));
+let cells = only ? ALL_CELLS.filter((c) => only.split(',').some((o) => c.id.startsWith(o))) : sheets.flatMap((s) => s.sections.flatMap((x) => x.cells || []));
 
 const page = await browser.newPage({ viewport: { width: CW, height: CH } });
 page.on('console', (m) => { if (m.type() === 'error') console.log('[seite]', m.text()); });
 page.on('pageerror', (e) => console.log('[fehler]', e.message));
-await page.goto(`${base}/web/index.html?shot=sheet&w=${CW}&h=${CH}&layers=3d`);
+await page.goto(`${base}/web/index.html?shot=${SHOT}&w=${CW}&h=${CH}&layers=3d`);
 await page.waitForFunction(() => window.ready || window.bootError, null, { timeout: 120000 });
 const err = await page.evaluate(() => window.bootError); if (err) { console.error(err); process.exit(1); }
 const t0 = Date.now();
@@ -53,15 +55,25 @@ h2{font-size:27px;font-weight:800;margin:30px 0 14px;padding-left:16px;border-le
 .grid{display:grid;gap:14px}
 figure{margin:0;background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e3dccb}
 figure img{display:block;width:100%;height:100%;object-fit:cover}
-figure .im{aspect-ratio:2/3;overflow:hidden;background:#e9e3d6}
+figure .im{aspect-ratio:${SIZE[0]}/${SIZE[1]};overflow:hidden;background:#e9e3d6}
+.pal{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.sw{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e3dccb}
+.sw i{display:block;height:110px}
+.sw b{display:block;font-size:18px;padding:10px 12px 0}
+.sw span{display:block;font-size:18px;font-weight:500;padding:2px 12px 12px;letter-spacing:.5px}
+.txt{background:#fff;border-radius:14px;border:1px solid #e3dccb;padding:18px 26px;font-size:22px;line-height:1.5;font-weight:500}
+.txt p{margin:8px 0}
 figcaption{font-size:19px;font-weight:700;padding:10px 12px 12px;text-align:center}
 footer{padding:0 56px 44px;font-size:20px;line-height:1.5;font-weight:500}
 footer p{margin:6px 0}
 `;
 const html = (s) => `<!doctype html><html lang="de"><head><meta charset="utf-8"><style>${css}</style></head><body>
-<header><div class="k">Masjid As-Sunnah · Die Wichtigkeit des Gebets · Phase 1</div><h1>${s.title}</h1><ul>${s.facts.map((f) => `<li>${f}</li>`).join('')}</ul></header>
-<main>${s.sections.map((x) => `<h2>${x.title}</h2><div class="grid" style="grid-template-columns:repeat(${x.cols},1fr)">${x.cells.map((c) =>
-    `<figure><div class="im" style="${x.aspect ? `aspect-ratio:${x.aspect}` : ''}"><img src="/out/sheets/cells/${c.id}.png"></div><figcaption>${c.label}</figcaption></figure>`).join('')}</div>`).join('')}</main>
+<header><div class="k">${KICKER}</div><h1>${s.title}</h1><ul>${s.facts.map((f) => `<li>${f}</li>`).join('')}</ul></header>
+<main>${s.sections.map((x) => `<h2>${x.title}</h2>` + (x.palette
+    ? `<div class="pal">${x.palette.map(([n, h]) => `<div class="sw"><i style="background:${h}"></i><b>${n}</b><span>${h.toUpperCase()}</span></div>`).join('')}</div>`
+    : x.text ? `<div class="txt">${x.text.map((t) => `<p>${t}</p>`).join('')}</div>`
+    : `<div class="grid" style="grid-template-columns:repeat(${x.cols},1fr)">${x.cells.map((c) =>
+    `<figure><div class="im" style="${x.aspect ? `aspect-ratio:${x.aspect}` : ''}"><img src="/out/sheets/cells/${c.id}.png"></div><figcaption>${c.label}</figcaption></figure>`).join('')}</div>`)).join('')}</main>
 <footer>${s.foot.map((f) => `<p>${f}</p>`).join('')}</footer></body></html>`;
 
 async function shoot(name, markup) {

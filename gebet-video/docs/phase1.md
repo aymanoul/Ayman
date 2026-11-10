@@ -32,6 +32,9 @@ Dateien: `out/phase1/`
 - Augenbrauen: Die Variante „mit“ ist gebaut und gezeigt. Empfehlung: ohne, weil zwei dunkle Striche
   auf der Stirn ohne Augen darunter wie geschlossene Augen wirken können.
 
-## Offene Entscheidungen
+## Entscheidungen (freigegeben)
 
-Hautton, Bartlänge und Augenbrauen (siehe Variantenblätter).
+- Augenbrauen: **ohne** (für A und B).
+- Hautton: **mittel** (A `#c79367`, B `#d19d72`).
+- Bart: A **mittel** (voller Bart, `beardLen 0.5`), B **kurz** (`beardLen 0.12`).
+- Phase 1 ist freigegeben.

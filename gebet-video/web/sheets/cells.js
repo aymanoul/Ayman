@@ -1,5 +1,8 @@
 // Inhalt der Figurenblätter (Phase 1). Reine Daten: wird im Browser (Rendern) und in Node (Layout) gelesen.
 const TAU = Math.PI * 2;
+export const SHOT = 'sheet';
+export const SIZE = [640, 960];
+export const KICKER = 'Masjid As-Sunnah · Die Wichtigkeit des Gebets · Phase 1';
 
 const SKIN = { A: ['#b3804f', '#c79367', '#ddb088'], B: ['#bd885b', '#d19d72', '#e6bd97'] };
 const BEARD = { A: [0.3, 0.5, 0.78], B: [0.04, 0.12, 0.26] };
@@ -107,4 +110,4 @@ function extrasSheet() {
 }
 
 export const SHEETS = [...figureSheet('A'), ...figureSheet('B'), variantSheet('A'), variantSheet('B'), extrasSheet()];
-export const ALL_CELLS = SHEETS.flatMap((s) => s.sections.flatMap((x) => x.cells));
+export const ALL_CELLS = SHEETS.flatMap((s) => s.sections.flatMap((x) => x.cells || []));

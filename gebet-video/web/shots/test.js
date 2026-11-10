@@ -10,7 +10,7 @@ const lerp = (a, b, t) => a + (b - a) * t;
 export async function build({ W, H, q }) {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#dfe8ea');
-  scene.add(buildRoom());
+  scene.add(await buildRoom());
   addRoomLights(scene, { focus: [0, 0, -2.8], range: 4.5, shadowMap: +(q.get('sm') ?? 1024), blurSamples: +(q.get('bs') ?? 8), fills: q.get('fills') === '1' });
 
   const A = createFigureA();

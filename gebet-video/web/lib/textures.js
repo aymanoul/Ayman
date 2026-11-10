@@ -9,13 +9,13 @@ export function rng(seed) {
   };
 }
 
-function makeCanvas(w, h) {
+export function makeCanvas(w, h) {
   const c = document.createElement('canvas');
   c.width = w; c.height = h;
   return c;
 }
 
-function toTexture(c, { srgb = true } = {}) {
+export function toTexture(c, { srgb = true } = {}) {
   const t = new THREE.CanvasTexture(c);
   t.wrapS = t.wrapT = THREE.RepeatWrapping;
   if (srgb) t.colorSpace = THREE.SRGBColorSpace;
@@ -23,7 +23,7 @@ function toTexture(c, { srgb = true } = {}) {
   return t;
 }
 
-function addNoise(ctx, w, h, amount, seed) {
+export function addNoise(ctx, w, h, amount, seed) {
   const r = rng(seed);
   const img = ctx.getImageData(0, 0, w, h);
   const d = img.data;
@@ -222,7 +222,7 @@ export function calligraphyTexture(text = 'لا إله إلا الله محمد 
   g.fillStyle = gr;
   g.direction = 'rtl';
   g.textAlign = 'center'; g.textBaseline = 'middle';
-  g.font = '700 118px "Amiri"';
+  g.font = '700 104px "Amiri"';
   g.fillText(text, W / 2, H / 2 + 4);
   const t = toTexture(c);
   t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping;
@@ -270,4 +270,206 @@ export function blobShadow(w, d, opacity = 1) {
   m.position.y = 0.006;
   m.renderOrder = 2;
   return m;
+}
+
+const clampTex = (t) => { t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; return t; };
+export function loadImage(url) {
+  return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
+}
+
+// ------------------------------------------------------------------ Innenraum
+export function frostedGlassTexture() {
+  const c = makeCanvas(256, 256), g = c.getContext('2d');
+  g.fillStyle = '#eef4f8'; g.fillRect(0, 0, 256, 256);
+  addNoise(g, 256, 256, 10, 21);
+  return toTexture(c);
+}
+
+export function clockFaceTexture() {
+  const S = 256, c = makeCanvas(S, S), g = c.getContext('2d');
+  g.fillStyle = '#fbfbf8'; g.fillRect(0, 0, S, S);
+  g.translate(S / 2, S / 2);
+  for (let i = 0; i < 60; i++) {
+    g.save(); g.rotate((i / 60) * Math.PI * 2);
+    g.fillStyle = '#1c1c1c';
+    if (i % 5 === 0) g.fillRect(-3, -112, 6, 20); else g.fillRect(-1, -112, 2, 8);
+    g.restore();
+  }
+  return clampTex(toTexture(c));
+}
+
+// Schild "Handy verboten": roter Kreis mit Schrägstrich über einem Telefon (ohne Punkte oder Gesicht)
+export function phoneSignTexture() {
+  const W = 300, H = 420, c = makeCanvas(W, H), g = c.getContext('2d');
+  g.fillStyle = '#fafaf7'; g.fillRect(0, 0, W, H);
+  g.strokeStyle = '#d9d6cf'; g.lineWidth = 4; g.strokeRect(2, 2, W - 4, H - 4);
+  const cx = W / 2, cy = H / 2 + 25, r = 105;
+  g.fillStyle = '#2b2b30';
+  g.beginPath(); g.roundRect(cx - 38, cy - 70, 76, 140, 12); g.fill();
+  g.fillStyle = '#9aa3ad'; g.fillRect(cx - 29, cy - 56, 58, 100);
+  g.strokeStyle = '#d2232a'; g.lineWidth = 20;
+  g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.stroke();
+  g.beginPath(); g.moveTo(cx - r * 0.7, cy - r * 0.7); g.lineTo(cx + r * 0.7, cy + r * 0.7); g.stroke();
+  g.fillStyle = '#2b2b30'; g.font = '800 30px "Montserrat"'; g.textAlign = 'center';
+  g.fillText('Bitte Handy aus', cx, 58);
+  return clampTex(toTexture(c));
+}
+
+// Roll-up "Projekt Moschee Neubau in Ratingen" (vereinfachte Nachbildung, ohne QR-Code und Bankdaten)
+export function rollupTexture(logo) {
+  const W = 480, H = 1110, c = makeCanvas(W, H), g = c.getContext('2d');
+  g.fillStyle = '#ffffff'; g.fillRect(0, 0, W, H);
+  g.fillStyle = '#e9c35a';
+  g.beginPath(); g.moveTo(0, 0); g.lineTo(W, 0); g.lineTo(W, 150); g.quadraticCurveTo(W / 2, 215, 0, 150); g.closePath(); g.fill();
+  g.fillStyle = '#1f2a55'; g.textAlign = 'center'; g.font = '800 46px "Montserrat"';
+  g.fillText('Projekt', W / 2, 52); g.fillText('Moschee Neubau', W / 2, 102); g.fillText('in Ratingen', W / 2, 150);
+  const building = (x, y, w, h) => {
+    g.fillStyle = '#8fc4ea'; g.fillRect(x, y, w, h);
+    g.fillStyle = '#7d9c5a'; g.fillRect(x, y + h * 0.78, w, h * 0.22);
+    g.fillStyle = '#d5c7a8'; g.fillRect(x + w * 0.08, y + h * 0.38, w * 0.84, h * 0.42);
+    g.fillStyle = '#eee9dc'; g.fillRect(x + w * 0.42, y + h * 0.28, w * 0.16, h * 0.52);
+    g.fillStyle = '#27508a';
+    for (let i = 0; i < 5; i++) g.fillRect(x + w * (0.12 + i * 0.055), y + h * 0.46, w * 0.04, h * 0.1);
+    for (let i = 0; i < 4; i++) g.fillRect(x + w * (0.63 + i * 0.07), y + h * 0.45, w * 0.035, h * 0.24);
+    g.fillStyle = '#3e9aa6';
+    g.beginPath(); g.arc(x + w * 0.25, y + h * 0.38, w * 0.09, Math.PI, 0); g.fill();
+    g.beginPath(); g.arc(x + w * 0.75, y + h * 0.38, w * 0.09, Math.PI, 0); g.fill();
+  };
+  building(40, 215, W - 80, 190);
+  g.fillStyle = '#1f2a55'; g.font = '800 30px "Montserrat"'; g.textAlign = 'left';
+  g.fillText('Neubau moderner Moschee', 44, 455);
+  const rows = ['Gebetsräume', 'Bildung', 'Organisation', 'Gemeinschaft'];
+  rows.forEach((r, i) => {
+    const y = 500 + i * 62;
+    g.fillStyle = '#c9a033'; g.beginPath(); g.arc(58, y - 8, 12, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#1f2a55'; g.font = '800 22px "Montserrat"'; g.fillText(r + ':', 82, y);
+    g.fillStyle = '#9aa0ad'; g.fillRect(82, y + 12, 330, 6); g.fillRect(82, y + 26, 250, 6);
+  });
+  g.fillStyle = '#f4ecd2'; g.fillRect(30, 760, W - 60, 110);
+  g.fillStyle = '#1f2a55'; g.font = '800 24px "Montserrat"'; g.fillText('Fortlaufende Spenden', 50, 800);
+  g.fillStyle = '#9aa0ad'; g.fillRect(50, 818, 300, 6); g.fillRect(50, 834, 340, 6); g.fillRect(50, 850, 220, 6);
+  if (logo) { const lh = 170, lw = lh * (logo.width / logo.height); g.drawImage(logo, W / 2 - lw / 2, 900, lw, lh); }
+  return clampTex(toTexture(c));
+}
+
+export function velvetTexture(base = '#5f8fc4') {
+  const S = 256, c = makeCanvas(S, S), g = c.getContext('2d');
+  g.fillStyle = base; g.fillRect(0, 0, S, S);
+  const r = rng(31);
+  for (let i = 0; i < 40; i++) {
+    const x = r() * S, y = r() * S, rad = 30 + r() * 60;
+    const gr = g.createRadialGradient(x, y, 0, x, y, rad);
+    gr.addColorStop(0, r() > 0.5 ? 'rgba(255,255,255,0.10)' : 'rgba(20,40,90,0.10)'); gr.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = gr; g.fillRect(x - rad, y - rad, rad * 2, rad * 2);
+  }
+  addNoise(g, S, S, 7, 33);
+  return toTexture(c);
+}
+
+// Lichtkegel vom Fenster: oben hell, läuft nach unten und zu den Seiten aus
+export function shaftTexture() {
+  const W = 128, H = 256, c = makeCanvas(W, H), g = c.getContext('2d');
+  const gr = g.createLinearGradient(0, 0, 0, H);
+  gr.addColorStop(0, 'rgba(255,255,255,0.9)'); gr.addColorStop(0.6, 'rgba(255,255,255,0.3)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  g.globalCompositeOperation = 'destination-in';
+  const gx = g.createLinearGradient(0, 0, W, 0);
+  gx.addColorStop(0, 'rgba(0,0,0,0)'); gx.addColorStop(0.25, 'rgba(0,0,0,1)'); gx.addColorStop(0.75, 'rgba(0,0,0,1)'); gx.addColorStop(1, 'rgba(0,0,0,0)');
+  g.fillStyle = gx; g.fillRect(0, 0, W, H);
+  return clampTex(toTexture(c));
+}
+
+// ------------------------------------------------------------------ Außen
+export function noiseTexture(base, amount = 8, seed = 41, size = 256, blotch = 0) {
+  const c = makeCanvas(size, size), g = c.getContext('2d');
+  g.fillStyle = base; g.fillRect(0, 0, size, size);
+  const r = rng(seed);
+  for (let i = 0; i < blotch; i++) {
+    const x = r() * size, y = r() * size, rad = 20 + r() * 70;
+    const gr = g.createRadialGradient(x, y, 0, x, y, rad);
+    gr.addColorStop(0, r() > 0.5 ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.08)'); gr.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = gr; g.fillRect(x - rad, y - rad, rad * 2, rad * 2);
+  }
+  addNoise(g, size, size, amount, seed + 1);
+  return toTexture(c);
+}
+
+export function pavingTexture() {
+  const S = 512, c = makeCanvas(S, S), g = c.getContext('2d');
+  const r = rng(51);
+  for (let y = 0; y < 8; y++) for (let x = 0; x < 4; x++) {
+    const v = (r() - 0.5) * 16;
+    g.fillStyle = `rgb(${186 + v},${178 + v},${164 + v})`;
+    const off = y % 2 ? 64 : 0;
+    g.fillRect(x * 128 + off - 128, y * 64, 128, 64); g.fillRect(x * 128 + off, y * 64, 128, 64);
+    g.strokeStyle = 'rgba(120,112,100,0.8)'; g.lineWidth = 2;
+    g.strokeRect(x * 128 + off, y * 64, 128, 64); g.strokeRect(x * 128 + off - 128, y * 64, 128, 64);
+  }
+  addNoise(g, S, S, 6, 52);
+  return toTexture(c);
+}
+
+// Glasfläche mit Sprossenraster (dunkelblau, leichter Himmelsverlauf)
+export function glassGridTexture(cols, rows, { top = '#3d6ea8', bottom = '#16345e', bar = '#1a2233', barW = 5 } = {}) {
+  const W = 512, H = 512, c = makeCanvas(W, H), g = c.getContext('2d');
+  const gr = g.createLinearGradient(0, 0, W * 0.3, H);
+  gr.addColorStop(0, top); gr.addColorStop(1, bottom);
+  g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  g.fillStyle = 'rgba(255,255,255,0.10)';
+  g.beginPath(); g.moveTo(W * 0.1, 0); g.lineTo(W * 0.45, 0); g.lineTo(W * 0.15, H); g.lineTo(-W * 0.2, H); g.closePath(); g.fill();
+  g.fillStyle = bar;
+  for (let i = 0; i <= cols; i++) g.fillRect((i / cols) * W - barW / 2, 0, barW, H);
+  for (let j = 0; j <= rows; j++) g.fillRect(0, (j / rows) * H - barW / 2, W, barW);
+  return clampTex(toTexture(c));
+}
+
+// Geometrisches Gitter über dem Portalbogen (Sterne aus gekreuzten Quadraten)
+export function latticeTexture() {
+  const S = 512, c = makeCanvas(S, S), g = c.getContext('2d');
+  g.fillStyle = '#6f7480'; g.fillRect(0, 0, S, S);
+  g.strokeStyle = '#eceae2'; g.lineWidth = 7;
+  const n = 4, u = S / n;
+  for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+    const cx = x * u + u / 2, cy = y * u + u / 2, r = u * 0.46;
+    g.strokeRect(cx - r * 0.72, cy - r * 0.72, r * 1.44, r * 1.44);
+    g.beginPath(); g.moveTo(cx, cy - r); g.lineTo(cx + r, cy); g.lineTo(cx, cy + r); g.lineTo(cx - r, cy); g.closePath(); g.stroke();
+  }
+  g.lineWidth = 14; g.strokeRect(7, 7, S - 14, S - 14);
+  return clampTex(toTexture(c));
+}
+
+// Himmel am späten Nachmittag: unten warm, oben blau, weiche Wolken (für eine große Kugel)
+export function skyTexture() {
+  const W = 2048, H = 1024, c = makeCanvas(W, H), g = c.getContext('2d');
+  const gr = g.createLinearGradient(0, 0, 0, H * 0.56);
+  gr.addColorStop(0, '#2a68bd'); gr.addColorStop(0.6, '#6aa3df'); gr.addColorStop(0.9, '#bcd3e6'); gr.addColorStop(0.97, '#f3dcbc'); gr.addColorStop(1, '#ffd9a0');
+  g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  g.fillStyle = '#e9c79a'; g.fillRect(0, H * 0.56, W, H * 0.44);
+  const r = rng(61);
+  for (let i = 0; i < 46; i++) {
+    const cx = r() * W, cy = H * (0.1 + r() * 0.36), n = 5 + Math.floor(r() * 6), sc = 0.6 + r() * 1.2;
+    for (let k = 0; k < n; k++) {
+      const x = cx + (r() - 0.5) * 190 * sc, y = cy + (r() - 0.5) * 34 * sc, rad = (34 + r() * 52) * sc;
+      const gg = g.createRadialGradient(x, y, 0, x, y, rad);
+      gg.addColorStop(0, 'rgba(255,250,240,0.6)'); gg.addColorStop(1, 'rgba(255,250,240,0)');
+      g.fillStyle = gg; g.fillRect(x - rad, y - rad, rad * 2, rad * 2);
+      if (x < rad) { g.translate(W, 0); g.fillRect(x - rad, y - rad, rad * 2, rad * 2); g.translate(-W, 0); }
+    }
+  }
+  const t = toTexture(c);
+  t.wrapT = THREE.ClampToEdgeWrapping;
+  return t;
+}
+
+// Schild über dem Eingang: Logo-Kalligrafie + Schriftzug
+export function entranceSignTexture(kalligrafie) {
+  const W = 1024, H = 256, c = makeCanvas(W, H), g = c.getContext('2d');
+  g.fillStyle = PALETTE.navy; g.fillRect(0, 0, W, H);
+  g.strokeStyle = PALETTE.goldLight; g.lineWidth = 8; g.strokeRect(10, 10, W - 20, H - 20);
+  let x = 60;
+  if (kalligrafie) { const h = 190, w = h * (kalligrafie.width / kalligrafie.height); g.drawImage(kalligrafie, x, (H - h) / 2, w, h); x += w + 44; }
+  g.fillStyle = PALETTE.cream; g.textBaseline = 'middle';
+  g.font = '500 78px "Montserrat"'; g.fillText('MASJID', x, H / 2 - 44);
+  g.font = '800 92px "Montserrat"'; g.fillText('AS-SUNNAH', x, H / 2 + 46);
+  return clampTex(toTexture(c));
 }

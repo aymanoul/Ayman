@@ -1,12 +1,22 @@
-// Gebetsraum der Masjid As-Sunnah (Phase-0-Stand: Grundaufbau nach den Fotos).
-// Achsen: +y oben, Qibla-Wand bei z = -D/2, Blick in den Raum Richtung -z.
+// Gebetsraum der Masjid As-Sunnah, aufgebaut nach den beiden Fotos (Maße aus Foto 2 abgeleitet:
+// Fliesenhöhe 1,5 m als Maßstab). Achsen: +y oben, Qibla-Wand bei z = -D/2, Eingang an der Rückwand (+z).
 import * as THREE from 'three';
 import {
   PALETTE, CARPET_TILE_M, DADO_TOP,
-  carpetTexture, wallTextures, calligraphyTexture, glowTexture, blobShadow,
+  carpetTexture, wallTextures, calligraphyTexture, glowTexture, blobShadow, frostedGlassTexture, shaftTexture, loadImage,
 } from './textures.js';
+import * as P from './props.js';
 
-export const ROOM = { W: 11, D: 12, H: 3.4 };
+export const ROOM = { W: 10, D: 12, H: 3.4 };
+// Wichtige Orte im Raum (für Kamera und Figuren)
+export const SPOTS = {
+  mihrab: [0, 0, -6],
+  sitzA: [-0.55, 0, -3.4],         // A sitzt links, B rechts, beide schräg zueinander vor dem Mihrab
+  sitzB: [0.55, 0, -3.3],
+  tuer: [2.5, 0, 6],
+  reihe: [0, 0, -4.25],            // erste Gebetsreihe
+};
+export const COLUMNS = [[-1.75, -2.2], [1.75, -2.2], [-1.75, 1.0], [1.75, 1.0], [-1.75, 4.2], [1.75, 4.2]];
 
 function std(opts) {
   return new THREE.MeshStandardMaterial({ roughness: 0.9, metalness: 0, ...opts });
@@ -65,10 +75,11 @@ function buildWall(width, tex, openings = []) {
   return g;
 }
 
-function buildWindow(w, h, depth = 0.28) {
+let _glow, _shaft, _frost;
+// Fenster in einer Nische: Milchglas im weißen Rahmen, Fensterbank, Lichtschein und Lichtkegel
+function buildWindow(w, h, { depth = 0.3, shaft = [0.25, -0.8, 1], shaftLen = 4.2, glowOn = true } = {}) {
   const g = new THREE.Group();
   const plaster = std({ color: PALETTE.plaster, side: THREE.DoubleSide });
-  // Laibung
   const mk = (sx, sy, px, py, rx, ry) => {
     const p = new THREE.Mesh(new THREE.PlaneGeometry(sx, sy), plaster);
     p.position.set(px, py, -depth / 2); p.rotation.set(rx, ry, 0); p.receiveShadow = true; g.add(p);
@@ -76,180 +87,194 @@ function buildWindow(w, h, depth = 0.28) {
   mk(depth, h, -w / 2, 0, 0, Math.PI / 2);
   mk(depth, h, w / 2, 0, 0, -Math.PI / 2);
   mk(w, depth, 0, h / 2, Math.PI / 2, 0);
-  mk(w, depth, 0, -h / 2, -Math.PI / 2, 0);
-  // Milchglas (leuchtet, damit der Bloom greift)
+  // Fensterbank
+  const sill = new THREE.Mesh(new THREE.BoxGeometry(w + 0.06, 0.035, depth + 0.05), std({ color: '#f1efe9', roughness: 0.5 }));
+  sill.position.set(0, -h / 2 + 0.0175, -depth / 2 + 0.025); sill.receiveShadow = true;
+  g.add(sill);
+  // Milchglas (leuchtet)
+  const ft = (_frost ||= frostedGlassTexture());
   const glass = new THREE.Mesh(
     new THREE.PlaneGeometry(w, h),
-    new THREE.MeshStandardMaterial({ color: '#eef5fb', emissive: '#e4f0ff', emissiveIntensity: 3.2, roughness: 0.4 }),
+    new THREE.MeshStandardMaterial({ color: '#f2f7fb', map: ft, emissive: '#e6f1ff', emissiveMap: ft, emissiveIntensity: 2.6, roughness: 0.4 }),
   );
   glass.position.z = -depth;
   g.add(glass);
-  // Lichtschein um das Fenster
+  const fm = std({ color: '#fbfbf9', roughness: 0.45 });
+  const bar = (sx, sy, px, py) => {
+    const b = new THREE.Mesh(new THREE.BoxGeometry(sx, sy, 0.06), fm);
+    b.position.set(px, py, -depth + 0.035); g.add(b);
+  };
+  const t = 0.075;
+  bar(w, t, 0, h / 2 - t / 2); bar(w, t, 0, -h / 2 + t / 2 + 0.035);
+  bar(t, h, -w / 2 + t / 2, 0); bar(t, h, w / 2 - t / 2, 0);
+  bar(w, t, 0, h * 0.2);                                 // Kämpfer: oben ein kleineres Feld
+  const handle = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.12, 0.03), std({ color: '#d9dbde', metalness: 0.5, roughness: 0.4 }));
+  handle.position.set(w / 2 - t / 2, -h * 0.12, -depth + 0.08); g.add(handle);
+  // Lichtschein um das Fenster (ersetzt Bloom)
   const glow = new THREE.Mesh(
-    new THREE.PlaneGeometry(w * 2.6, h * 1.7),
-    new THREE.MeshBasicMaterial({ map: (buildWindow.glow ||= glowTexture()), color: '#f3f8ff', transparent: true, opacity: 0.6,
+    new THREE.PlaneGeometry(w * 2.5, h * 1.6),
+    new THREE.MeshBasicMaterial({ map: (_glow ||= glowTexture()), color: '#f3f8ff', transparent: true, opacity: 0.5,
       blending: THREE.AdditiveBlending, depthWrite: false }),
   );
-  glow.position.z = 0.03;
-  glow.renderOrder = 3;
-  g.add(glow);
-  // Rahmen
-  const fm = std({ color: '#fbfbf9', roughness: 0.5 });
-  const bar = (sx, sy, px, py) => {
-    const b = new THREE.Mesh(new THREE.BoxGeometry(sx, sy, 0.05), fm);
-    b.position.set(px, py, -depth + 0.03); g.add(b);
-  };
-  const t = 0.07;
-  bar(w, t, 0, h / 2 - t / 2); bar(w, t, 0, -h / 2 + t / 2);
-  bar(t, h, -w / 2 + t / 2, 0); bar(t, h, w / 2 - t / 2, 0);
-  bar(w, t * 0.8, 0, h * 0.18);
+  glow.position.z = 0.03; glow.renderOrder = 3;
+  if (glowOn) g.add(glow);
+  // Lichtkegel: läuft vom Fenster schräg in den Raum und verblasst
+  if (shaft) {
+    const dir = new THREE.Vector3(...shaft).normalize();
+    const side = new THREE.MeshBasicMaterial({ map: (_shaft ||= shaftTexture()), color: '#fff3dc', transparent: true, opacity: 0.085,
+      blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
+    const none = new THREE.MeshBasicMaterial({ visible: false });
+    const beam = new THREE.Mesh(new THREE.BoxGeometry(w * 0.9, shaftLen, h * 0.55), [side, side, none, none, side, side]);
+    beam.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.clone().negate());
+    beam.position.copy(dir).multiplyScalar(shaftLen / 2);
+    beam.renderOrder = 4;
+    g.add(beam);
+  }
   return g;
 }
 
 function buildMihrab(w, springY, tex) {
   const g = new THREE.Group();
   const r = w / 2;
-  const depthScale = 0.62; // flache Nische
   const plaster = std({ color: PALETTE.plaster, side: THREE.BackSide });
-  // unten gefliest
   const tm = wallMaterial(tex);
   tm.side = THREE.BackSide;
   tm.map.repeat.set((Math.PI * r) / tex.widthM, DADO_TOP / tex.heightM);
   tm.roughnessMap.repeat.copy(tm.map.repeat);
   const low = new THREE.Mesh(new THREE.CylinderGeometry(r, r, DADO_TOP, 14, 1, true, Math.PI / 2, Math.PI), tm);
-  low.position.y = DADO_TOP / 2;
-  low.receiveShadow = true;
+  low.position.y = DADO_TOP / 2; low.receiveShadow = true;
   g.add(low);
-  if (springY > DADO_TOP) {
-    const mid = new THREE.Mesh(new THREE.CylinderGeometry(r, r, springY - DADO_TOP, 14, 1, true, Math.PI / 2, Math.PI), plaster);
-    mid.position.y = (springY + DADO_TOP) / 2;
-    mid.receiveShadow = true;
-    g.add(mid);
-  }
+  const mid = new THREE.Mesh(new THREE.CylinderGeometry(r, r, springY - DADO_TOP, 14, 1, true, Math.PI / 2, Math.PI), plaster);
+  mid.position.y = (springY + DADO_TOP) / 2; mid.receiveShadow = true;
+  g.add(mid);
   const dome = new THREE.Mesh(new THREE.SphereGeometry(r, 14, 7, Math.PI, Math.PI, 0, Math.PI / 2), plaster);
-  dome.position.y = springY;
-  dome.receiveShadow = true;
+  dome.position.y = springY; dome.receiveShadow = true;
   g.add(dome);
-  g.scale.z = depthScale;
-  return g;
+  g.scale.z = 0.62;                                      // flache Nische
+  // weiße Kantenleisten links und rechts (wie auf dem Foto)
+  const out = new THREE.Group();
+  out.add(g);
+  for (const s of [-1, 1]) {
+    const strip = new THREE.Mesh(new THREE.BoxGeometry(0.03, DADO_TOP, 0.03), std({ color: '#f7f6f2', roughness: 0.6 }));
+    strip.position.set(s * (r - 0.012), DADO_TOP / 2, -0.012);
+    out.add(strip);
+  }
+  // eingebackene Verschattung in der Nische
+  const sh = new THREE.Mesh(new THREE.PlaneGeometry(w * 1.5, 1.2), new THREE.MeshBasicMaterial({ map: blobShadow(1, 1).material.map, transparent: true, opacity: 0.55, depthWrite: false }));
+  sh.rotation.x = -Math.PI / 2; sh.position.set(0, 0.007, -0.1); sh.renderOrder = 2;
+  out.add(sh);
+  return out;
 }
 
-export function buildRoom() {
+export async function buildRoom() {
   const { W, D, H } = ROOM;
   const room = new THREE.Group();
   const tex = wallTextures({ heightM: H });
+  const add = (o, x, y, z, ry = 0) => { o.position.set(x, y, z); o.rotation.y = ry; room.add(o); return o; };
+  let logo = null;
+  try { logo = await loadImage('/assets/brand/logo-gestapelt-navy.png'); } catch (e) { /* ohne Logo weiter */ }
 
-  // Teppich
+  // ---- Teppich (reicht bis in die Mihrab-Nische), Decke mit Unterzügen
   const carpet = carpetTexture();
   carpet.repeat.set(W / CARPET_TILE_M, (D + 1) / CARPET_TILE_M);
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(W, D + 1), std({ map: carpet, roughness: 1 }));
-  floor.rotation.x = -Math.PI / 2;
-  floor.position.z = -0.5;                    // reicht bis in die Mihrab-Nische
-  floor.receiveShadow = true;
+  floor.rotation.x = -Math.PI / 2; floor.position.z = -0.5; floor.receiveShadow = true;
   room.add(floor);
-
-  // Decke
-  const ceil = new THREE.Mesh(new THREE.PlaneGeometry(W, D), std({ color: '#f6f5f1', emissive: '#fff8ee', emissiveIntensity: 0.5 }));
+  const ceilMat = std({ color: '#f6f5f1', emissive: '#fff8ee', emissiveIntensity: 0.5 });
+  const ceil = new THREE.Mesh(new THREE.PlaneGeometry(W, D), ceilMat);
   ceil.rotation.x = Math.PI / 2; ceil.position.y = H;
   room.add(ceil);
+  for (const z of [-2.2, 1.0, 4.2]) add(new THREE.Mesh(new THREE.BoxGeometry(W, 0.24, 0.34), ceilMat), 0, H - 0.12, z);
+  for (const x of [-1.75, 1.75]) add(new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.22, D), ceilMat), x, H - 0.11, 0);
 
-  // Qibla-Wand mit Mihrab und zwei Fenstern
-  const mihrabW = 1.25, springY = 1.62;
-  const win = { w: 0.95, y0: 0.82, y1: 2.85 };
-  const qOpen = [
-    { x: 0, w: mihrabW, y0: 0, y1: springY, arch: true },
-    { x: -2.9, ...win }, { x: 2.5, ...win },
-  ];
-  const qibla = buildWall(W, tex, qOpen);
+  // ---- Qibla-Wand: Mihrab in der Mitte, links und rechts ein Fenster in einer Nische
+  const mihrabW = 1.23, springY = 1.69;
+  const winL = { x: -3.05, w: 1.2, y0: 0.8, y1: 3.0 }, winR = { x: 2.0, w: 1.25, y0: 0.8, y1: 3.0 };
+  const qibla = buildWall(W, tex, [{ x: 0, w: mihrabW, y0: 0, y1: springY, arch: true }, winL, winR]);
   qibla.position.z = -D / 2;
   room.add(qibla);
-  const mihrab = buildMihrab(mihrabW, springY, tex);
-  mihrab.position.z = -D / 2;
-  room.add(mihrab);
-  for (const o of qOpen.slice(1)) {
-    const wn = buildWindow(o.w, o.y1 - o.y0);
-    wn.position.set(o.x, (o.y0 + o.y1) / 2, -D / 2);
-    room.add(wn);
-  }
+  add(buildMihrab(mihrabW, springY, tex), 0, 0, -D / 2);
+  add(buildWindow(winL.w, winL.y1 - winL.y0, { shaft: [0.35, -0.75, 1] }), winL.x, (winL.y0 + winL.y1) / 2, -D / 2);
+  // rechtes Fenster: davor steht das Roll-up, deshalb ohne Lichtschein und Lichtkegel
+  add(buildWindow(winR.w, winR.y1 - winR.y0, { shaft: null, glowOn: false }), winR.x, (winR.y0 + winR.y1) / 2, -D / 2);
+  const zq = -D / 2;
+  // Kalligraphie-Tafel (Schahāda), goldene Wandleuchte
+  const plate = new THREE.Mesh(
+    new THREE.BoxGeometry(1.21, 0.26, 0.03),
+    [0, 1, 2, 3, 4, 5].map((i) => (i === 4 ? std({ map: calligraphyTexture(), roughness: 0.45, metalness: 0.2 }) : std({ color: '#3a2c14', roughness: 0.5 }))),
+  );
+  add(plate, 0, 2.83, zq + 0.02);
+  add(P.wallLamp(), 0, 2.42, zq + 0.005);
+  // links: Uhr, Regal mit grünen Büchern, Tisch mit Mikrofon und Stuhl
+  const clock = add(P.clock(), -1.69, 2.12, zq);
+  add(P.shelf('green', 1), -1.7, DADO_TOP, zq);
+  add(P.table(), -1.95, 0, zq + 1.25);
+  add(P.chair(), -1.85, 0, zq + 0.62, 0.12);
+  add(P.gooseneckMic('table'), -1.75, 0.74, zq + 1.18, Math.PI);
+  // rechts: Roll-up auf der Fensterbank, Regal mit dunklen Büchern, Minbar
+  add(P.rollup(logo), 1.92, 0.835, zq - 0.1);
+  add(P.shelf('dark', 2), 3.2, DADO_TOP, zq);
+  add(P.minbar(), 4.25, 0, zq + 1.76);
+  // vor dem Mihrab: blauer Gebetsteppich, Schwanenhals-Mikrofon, Steckdosen
+  add(P.prayerRug(), 0, 0, zq + 0.42);
+  add(P.gooseneckMic('floor'), 0.36, 0, zq + 0.32, Math.PI);
+  add(P.socket(), -0.78, 0.32, zq); add(P.socket(), 0.78, 0.32, zq); add(P.socket(), 1.25, 0.32, zq);
 
-  // Seitenwände (links mit Fenstern) und Rückwand
-  const leftOpen = [{ x: -3.2, ...win }, { x: 0.2, ...win }, { x: 3.6, ...win }];
+  // ---- Seitenwände: links zwei Fenster und die Stuhlreihe, rechts zwei Fenster
+  const win = { w: 1.1, y0: 0.9, y1: 2.9 };
+  const leftOpen = [{ x: 3.4, ...win }, { x: -1.4, ...win }];       // lokal x = -Welt-z
   const left = buildWall(D, tex, leftOpen);
   left.rotation.y = Math.PI / 2; left.position.x = -W / 2;
   room.add(left);
-  for (const o of leftOpen) {
-    const wn = buildWindow(o.w, o.y1 - o.y0);
-    wn.rotation.y = Math.PI / 2;
-    wn.position.set(-W / 2, (o.y0 + o.y1) / 2, -o.x);
-    room.add(wn);
-  }
-  const right = buildWall(D, tex);
+  for (const o of leftOpen) add(buildWindow(o.w, o.y1 - o.y0, { shaft: [-0.1, -0.7, 1], shaftLen: 4.6 }), -W / 2, (o.y0 + o.y1) / 2, -o.x, Math.PI / 2);
+  for (let i = 0; i < 6; i++) add(P.stackChair(), -W / 2 + 0.34, 0, 2.55 + i * 0.52, Math.PI / 2);
+  const rightOpen = [{ x: -3.0, ...win }, { x: 1.8, ...win }];      // lokal x = Welt-z
+  const right = buildWall(D, tex, rightOpen);
   right.rotation.y = -Math.PI / 2; right.position.x = W / 2;
   room.add(right);
-  const back = buildWall(W, tex);
+  for (const o of rightOpen) add(buildWindow(o.w, o.y1 - o.y0, { shaft: null }), W / 2, (o.y0 + o.y1) / 2, o.x, -Math.PI / 2);
+
+  // ---- Rückwand mit Eingangstür und Schuhregal
+  const doorW = 1.7, doorH = 2.15, doorX = 2.5;
+  const back = buildWall(W, tex, [{ x: -doorX, w: doorW, y0: 0, y1: doorH }]);       // lokal x = -Welt-x
   back.rotation.y = Math.PI; back.position.z = D / 2;
   room.add(back);
+  add(P.doubleDoor(doorW, doorH, 0.9), doorX, 0, D / 2 + 0.05, Math.PI);
+  const hall = new THREE.Mesh(new THREE.BoxGeometry(doorW + 1.2, doorH + 0.4, 2.2), new THREE.MeshStandardMaterial({ color: '#efe6d6', emissive: '#ffe2b8', emissiveIntensity: 0.55, side: THREE.BackSide }));
+  add(hall, doorX, (doorH + 0.4) / 2 - 0.01, D / 2 + 1.16);
+  add(P.shoeRack(3), -0.2, 0, D / 2 - 0.2, Math.PI);
 
-  // Säulen (quadratisch, gefliest)
+  // ---- Säulen (quadratisch, gefliest), an einer hängt das "Handy aus"-Schild
   const colW = 0.46;
   const colTex = wallTextures({ widthM: colW, heightM: H, tileW: colW, seed: 9 });
   const colMat = std({ map: colTex.map, roughnessMap: colTex.roughnessMap, roughness: 1 });
   const colGeo = new THREE.BoxGeometry(colW, H, colW);
   const skGeo = new THREE.BoxGeometry(colW + 0.04, 0.09, colW + 0.04);
   const skMat = std({ color: PALETTE.skirting, roughness: 0.6 });
-  const cols = [];
-  for (const x of [-2.1, 2.1]) for (const z of [-2.4, 1.2]) cols.push([x, z]);
-  for (const [x, z] of cols) {
-    const c = new THREE.Mesh(colGeo, colMat);
-    c.position.set(x, H / 2, z);
+  for (const [x, z] of COLUMNS) {
+    const c = add(new THREE.Mesh(colGeo, colMat), x, H / 2, z);
     c.castShadow = true; c.receiveShadow = true;
-    room.add(c);
-    const sk = new THREE.Mesh(skGeo, skMat);
-    sk.position.set(x, 0.045, z);
-    room.add(sk);
+    add(new THREE.Mesh(skGeo, skMat), x, 0.045, z);
     const bs = blobShadow(colW * 2.6, colW * 2.6, 0.8);
     bs.position.x = x; bs.position.z = z;
     room.add(bs);
   }
+  add(P.phoneSign(), -1.75, 1.36, 1.0 + colW / 2);
+  add(P.phoneSign(), 1.75, 1.36, -2.2 + colW / 2);
 
-  // Kalligraphie-Tafel und Wandleuchte über dem Mihrab
-  const plate = new THREE.Mesh(
-    new THREE.BoxGeometry(1.25, 0.27, 0.03),
-    [null, null, null, null, std({ map: calligraphyTexture(), roughness: 0.45, metalness: 0.2 }), null]
-      .map((m) => m || std({ color: '#3a2c14', roughness: 0.5 })),
-  );
-  plate.position.set(0, 2.78, -D / 2 + 0.03);
-  room.add(plate);
-  const lamp = new THREE.Mesh(new THREE.ConeGeometry(0.13, 0.2, 6), std({ color: '#c9a04e', metalness: 0.7, roughness: 0.35 }));
-  lamp.position.set(0, 2.42, -D / 2 + 0.1);
-  room.add(lamp);
-
-  // Wanduhr (ohne Ziffern-Details, kommt in Phase 2)
-  const clock = new THREE.Group();
-  clock.add(new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.04, 20), std({ color: '#b9bcc0', metalness: 0.6, roughness: 0.4 })));
-  const face = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.045, 20), std({ color: '#fafafa' }));
-  clock.add(face);
-  clock.rotation.x = Math.PI / 2;
-  clock.position.set(-1.75, 2.15, -D / 2 + 0.03);
-  room.add(clock);
-
-  // Gebetsteppich vor dem Mihrab
-  const rug = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.02, 1.1), std({ color: '#5f8fc4', roughness: 1 }));
-  rug.position.set(0, 0.012, -D / 2 + 0.75);
-  rug.receiveShadow = true;
-  room.add(rug);
-  const fringe = new THREE.Mesh(new THREE.BoxGeometry(0.66, 0.015, 0.06), std({ color: '#d7b25e', roughness: 0.8 }));
-  fringe.position.set(0, 0.012, -D / 2 + 1.32);
-  room.add(fringe);
-
+  room.userData = { clock };
   return room;
 }
 
-export function addRoomLights(scene, { focus = [0, 0, -2.5], range = 5, shadowMap = 1024, blurSamples = 8, fills = false } = {}) {
-  const hemi = new THREE.HemisphereLight('#fff6e8', '#4fa6a4', 0.85);
+// Licht innen: weiches Tageslicht. focus/range legen den Bereich der weichen Schatten fest.
+export function addRoomLights(scene, { focus = [0, 0, -2.5], range = 5, shadowMap = 1024, blurSamples = 8 } = {}) {
+  const hemi = new THREE.HemisphereLight('#fff6e8', '#8cc7c2', 1.0);
   scene.add(hemi);
-  // warmes Tageslicht von der Fensterseite (links), wirft die weichen Schatten
-  const sun = new THREE.DirectionalLight('#ffdcae', 3.1);
+  // schwaches Gegenlicht ohne Schatten, damit Wände im Schatten nicht grau absaufen
+  const fill = new THREE.DirectionalLight('#eef2ff', 0.55);
+  fill.position.set(6, 5, 8); fill.target.position.set(-1, 1.5, -2);
+  scene.add(fill, fill.target);
+  const sun = new THREE.DirectionalLight('#ffdcae', 2.7);
   sun.position.set(focus[0] - 6, 7.5, focus[2] + 1.5);
   sun.target.position.set(focus[0], 0, focus[2]);
   sun.castShadow = true;
@@ -261,11 +286,5 @@ export function addRoomLights(scene, { focus = [0, 0, -2.5], range = 5, shadowMa
   sun.shadow.radius = 4;
   sun.shadow.blurSamples = blurSamples;
   scene.add(sun, sun.target);
-  // kühles Licht aus den Fenstern der Qibla-Wand
-  for (const x of fills ? [2.5, -2.9] : []) {
-    const fill = new THREE.PointLight('#dbe8ff', 9, 8, 1.5);
-    fill.position.set(x, 1.9, -ROOM.D / 2 + 0.9);
-    scene.add(fill);
-  }
   return { hemi, sun };
 }

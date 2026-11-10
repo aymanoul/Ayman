@@ -20,7 +20,9 @@ und mit ffmpeg zum Video zusammengesetzt. Kein KI-Bild- oder Videogenerator.
 | --- | --- |
 | `web/index.html`, `web/main.js` | Renderer: `window.renderFrame(t)` setzt alles deterministisch für Zeitpunkt `t` |
 | `web/lib/textures.js` | Prozedurale Texturen: Teppich mit Mäanderband, Fliesen, Putz, Holz, Kufi, Kalligraphie-Tafel |
-| `web/lib/room.js` | Gebetsraum (Qibla-Wand, Mihrab, Säulen, Fenster, Licht) |
+| `web/lib/room.js` | Gebetsraum nach den Fotos (Qibla-Wand, Mihrab, Säulen, Fenster, Tür, Licht) |
+| `web/lib/props.js` | Gegenstände: Uhr, Regale, Tisch, Stuhl, Mikrofone, Minbar, Roll-up, Stapelstühle, Schild, Leuchte |
+| `web/lib/exterior.js` | Neubau von außen (Portal, Kuppeln, Vorplatz, Himmel, Abendsonne) |
 | `web/lib/figure.js` | Figuren mit Gelenken, Händen mit Fingern, Mund in 4 Formen, Gehen, Sitzen; Person A und B |
 | `web/lib/poses.js` | Posen als Daten (Gefühlslagen, Gesten, Sitzen) und `applyPose` |
 | `web/sheets/cells.js`, `web/shots/sheet.js`, `tools/sheets.mjs` | Figurenblätter: Inhalt, Studio-Szene, Rendern und Zusammensetzen |
@@ -41,6 +43,7 @@ node tools/render.mjs test --still 1.0 --ao --bloom # echte AO und Bloom, nur f�
 node tools/bench.mjs "x=1" "ao=1"                  # Renderzeit pro Bild messen
 node tools/sheets.mjs                               # alle Figurenblätter nach out/sheets/
 node tools/sheets.mjs --only A_emo --cols 5         # nur einzelne Zellen als Vorschau
+node tools/sheets.mjs --set orte                    # Ortsblätter (Gebetsraum, Neubau außen)
 ```
 
 Chromium läuft mit Software-WebGL (`--use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
@@ -56,8 +59,8 @@ Chromium läuft mit Software-WebGL (`--use-gl=angle --use-angle=swiftshader --en
 ## Stand
 
 - [x] Phase 0 – Sichten und Techniktest
-- [x] Phase 1 – Figurenblätter (wartet auf Auswahl: Hautton, Bart, Augenbrauen)
-- [ ] Phase 2 – Ortsblätter
+- [x] Phase 1 – Figurenblätter (freigegeben: ohne Augenbrauen, Hautton mittel, A Bart mittel, B Bart kurz)
+- [x] Phase 2 – Ortsblätter (wartet auf Freigabe)
 - [ ] Phase 3 – Drehbuch
 - [ ] Phase 4 – Storyboard
 - [ ] Phase 5 – Ton
