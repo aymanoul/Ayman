@@ -1,4 +1,7 @@
-# Phase 6 – Einblendungen (Vorbereitung, wartet auf Auswahl)
+# Phase 6 – Einblendungen (FREIGEGEBEN von Ayman am 10.11.2026)
+
+**Entscheidungen:** Untertitel **Stil b** (Montserrat, Gold `#D9B26A`, Navy-Kontur) – gilt auch für Hook-Titel und Schlusssatz.
+Hadith-Karten **mit arabischer Kernzeile** (außer beim langen Fluss-Hadith H4).
 
 Vorschau-Shot: `web/shots/cards.js` (Standbilder bei t = 0,5 … 9,5; Animationsprobe t = 10–14,5).
 Bibliothek: `web/lib/overlay.js` (`drawSubtitles`, `drawTitle`, `drawCard`, `subtitleY`, `CARD_STYLES`, `SUB_STYLES`).
@@ -35,10 +38,6 @@ Dateien: `out/phase6/`.
 - `ʾ` und `ʿ` fehlen in Montserrat → in Quellenangaben automatisch als ’ und ‘ gesetzt.
 - Arabische Hadith-Zeilen ohne «» (Satzzeichen von hadeethenc, nicht Teil des Wortlauts; im RTL-Umbruch sonst verdreht).
 
-## Offen (Aymans Auswahl)
-
-1. Untertitel-Stil a oder b.
-2. Hadith-Karte mit oder ohne arabische Kernzeile.
 
 ## Hinweis für Phase 7
 

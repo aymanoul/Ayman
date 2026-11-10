@@ -45,6 +45,8 @@ node tools/sheets.mjs                               # alle Figurenblätter nach 
 node tools/sheets.mjs --only A_emo --cols 5         # nur einzelne Zellen als Vorschau
 node tools/sheets.mjs --set orte                    # Ortsblätter (Gebetsraum, Neubau außen)
 node tools/sheets.mjs --set board                   # Storyboard (49 Einstellungen) → out/sheets/storyboard-*.jpg
+node tools/render.mjs cards --still 2.5             # Vorschau Einblendungen (Phase 6)
+python3 tools/sfx.py                                # alle Geräusche → assets/sfx/ (braucht numpy, scipy)
 ```
 
 Chromium läuft mit Software-WebGL (`--use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
@@ -64,8 +66,8 @@ Chromium läuft mit Software-WebGL (`--use-gl=angle --use-angle=swiftshader --en
 - [x] Phase 2 – Ortsblätter (abgenommen)
 - [x] Phase 3 – Drehbuch (freigegeben, Hook-Variante 1)
 - [x] Phase 4 – Storyboard (freigegeben)
-- [ ] Phase 5 – Ton
-- [ ] Phase 6 – Einblendungen
+- [ ] Phase 5 – Ton (Geräusche fertig; wartet auf Stimmen, Adhan, Iqāma)
+- [x] Phase 6 – Einblendungen (freigegeben: Stil b, Hadith mit Arabisch)
 - [ ] Phase 7 – Animation und Rendern
 - [ ] Phase 8 – Prüfung
 - [ ] Phase 9 – Abgabe

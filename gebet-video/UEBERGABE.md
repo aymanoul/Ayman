@@ -508,3 +508,16 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - Wichtig: Quran-Arabisch nur mit **KFGQPC Uthmanic Script HAFS** (`assets/fonts/…otf`, @font-face „KFGQPC Hafs“) setzen.
 - Ayman schickt die Tonspuren als **eine Datei pro Sprecher**.
 - **Wartet auf Ayman:** Wahl Untertitel-Stil (a/b) und Hadith-Karte mit/ohne Arabisch; danach Tonspuren → Phase 5.
+
+### 14g. Einblendungen freigegeben (10.11.2026)
+
+- **Untertitel Stil b** (Montserrat, Gold, Navy-Kontur), auch für Hook-Titel und Schlusssatz.
+- **Hadith-Karten mit arabischer Kernzeile** (H4 Fluss ohne, zu lang). Einblendungen insgesamt **freigegeben**.
+- In Arbeit: Geräusche selbst erzeugen (`tools/sfx.py` → `assets/sfx/`). Danach fehlen nur noch Aymans Tonspuren
+  (A, B je eine Datei, Adhan, Iqāma) für Phase 5 und die 15-Sekunden-Probe (Phase 7).
+
+### 14h. Geräusche fertig (10.11.2026)
+
+- `tools/sfx.py` → 17 Effekte in `assets/sfx/`, Übersicht in **`docs/phase5.md`**, Hörprobe `out/phase5/geraeusche-hoerprobe.mp3`.
+- **Wartet auf Ayman:** ElevenLabs-Dateien (A, B), Adhan, Iqāma. Danach: Zeilen schneiden, Zeitplan der Shots an die echten
+  Längen anpassen, Lippenbewegung aus der Lautstärke, dann 15-Sekunden-Probe (Hook + Straße) für Phase 7.
