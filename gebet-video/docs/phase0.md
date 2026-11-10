@@ -40,8 +40,8 @@ Der erste Versuch mit allen Effekten „in echt“ brauchte 5,5 s pro Bild. Geme
 
 | Baustein | Kosten | Entscheidung |
 | --- | --- | --- |
-| Grundbild mit Licht und Schatten | ca. 0,6 s | bleibt |
-| Kantenglättung (MSAA 4×) | fast nichts im Direktmodus | bleibt |
+| Grundbild mit Licht, Schatten und Kantenglättung (direkt gerendert) | ca. 0,7 s | bleibt |
+| Kantenglättung über den Effekt-Umweg (MSAA 4× im Composer) | +0,4 s | entfällt, weil direkt gerendert wird |
 | Weiche Schatten (VSM) mit 2048er-Karte, 16 Proben | +1,0 s | auf 1024er-Karte, 8 Proben: kaum sichtbar anders, fast kostenlos |
 | Ambient Occlusion (GTAO), volle Auflösung | +2,7 s | ersetzt durch eingebackene Kontaktschatten unter Figuren und Säulen und Verläufe in den Wandtexturen |
 | Bloom | +0,4 s | ersetzt durch Leuchtflächen an den Fenstern |
