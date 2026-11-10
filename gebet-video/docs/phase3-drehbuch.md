@@ -1,6 +1,6 @@
 # Phase 3 – Drehbuch „Die Wichtigkeit des Gebets“
 
-Stand: 10.11.2026 · Beweisliste freigegeben (`docs/phase3-beweisliste.md`) · Sahaba-Teil entfällt (Entscheidung Ayman).
+**FREIGEGEBEN von Ayman am 10.11.2026** · Hook: Variante 1 „Du hörst den Adhan – und gehst weiter?“ · Iqāma-Aufnahme liefert Ayman · Beweisliste freigegeben (`docs/phase3-beweisliste.md`) · Sahaba-Teil entfällt (Entscheidung Ayman).
 
 ## Überblick
 

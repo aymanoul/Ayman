@@ -473,3 +473,11 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - Zusätzlich angefragt: echte **Iqāma**-Aufnahme (neben dem Adhan).
 - **Wartet auf Ayman:** Wahl der Hook-Variante, Freigabe des Drehbuchs, Antwort zur Iqāma-Aufnahme.
   Danach Phase 4 (Storyboard: Shotliste + grob gerendertes Standbild pro Shot).
+
+### 14c. Drehbuch freigegeben (10.11.2026)
+
+- Hook: **Variante 1** „Du hörst den Adhan – und gehst weiter?“. Drehbuch **freigegeben**. Ayman liefert **Adhan und Iqāma**
+  (echte Aufnahmen) und nimmt den Sprechertext in ElevenLabs auf.
+- Nächster Schritt: **Phase 4 Storyboard** (Shotliste + grob gerendertes Standbild pro Shot), Dateien:
+  `web/sheets/board.js` (Shot-Daten), `web/shots/board.js` (Szene), `web/lib/symbols.js` (Waage, Fluss, Lichtpunkte),
+  `docs/phase4-shotliste.md`, Blätter in `out/phase4/`.
