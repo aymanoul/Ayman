@@ -53,3 +53,6 @@ deckt etwa y 1000–1476 ab. Die Kameras dieser Shots (S18, S20, S24–S27, S31�
   Beschreibung und Knöpfen. Prüfbild mit simulierter App-Oberfläche: `out/phase6/layout-pruefung.jpg` (`--mock`).
 - **Schrift neu wählen:** 10 Vorschläge `out/phase6/schrift-vorschlaege.jpg` (`tools/fontsheet.mjs`):
   1 Poppins, 2 Nunito, 3 Rubik, 4 Lilita One, 5 Outfit (Box), 6 Lexend (Gold-Feld), 7 Cairo, 8 Anton, 9 Fredoka, 10 Inter (weiße Box).
+
+**Gewählt (10.11.2026): Schrift 7 – Cairo Black** (weiß, Navy-Kontur, Betonung Gold) für Untertitel und Hook-Titel
+(`SUB_STYLES.b` in overlay.js). Neues Layout „passt so“. Karten bleiben in Montserrat.

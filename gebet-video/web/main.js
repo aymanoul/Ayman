@@ -30,7 +30,7 @@ const ov = ovCanvas.getContext('2d');
 async function boot() {
   await Promise.all([
     '800 96px "Baloo 2"', '700 96px "Baloo 2"', '700 40px "Fredoka"',
-    '500 40px "Montserrat"', '700 40px "Montserrat"', '800 40px "Montserrat"', '900 40px "Montserrat"',
+    '900 40px "Cairo"', '500 40px "Montserrat"', '700 40px "Montserrat"', '800 40px "Montserrat"', '900 40px "Montserrat"',
     '400 40px "Amiri"', '700 40px "Amiri"', '400 40px "Amiri Quran"', '400 40px "KFGQPC Hafs"',
   ].map((f) => document.fonts.load(f, (f.includes('Amiri') || f.includes('KFGQPC')) ? 'لا إله إلا الله ﷻ ﷺ' : 'Äg āīūḥʿ')));
 

@@ -2,7 +2,8 @@
 export const SAFE = { top: 250, bottom: 420, right: 160 };
 export const SUB_STYLES = {
   a: { font: '800 96px "Baloo 2"', color: '#ffffff', accent: '#FFE033', stroke: '#141414', strokeW: 16 },
-  b: { font: '800 80px "Montserrat"', color: '#ffffff', accent: '#D9B26A', stroke: '#212242', strokeW: 16 },
+  // Stil b (gewählt am 10.11.2026): Cairo Black, weiß, Navy-Kontur, Betonung Gold
+  b: { font: '900 84px "Cairo"', color: '#ffffff', accent: '#D9B26A', stroke: '#212242', strokeW: 16 },
 };
 
 const easeOutBack = (x) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };

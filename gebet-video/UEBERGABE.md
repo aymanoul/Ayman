@@ -555,3 +555,8 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - Aussprache A07/A08/A09/A14: laut Ayman **alles richtig**.
 - **Wartet auf Ayman:** Wahl einer der 10 Schriften (`out/phase6/schrift-vorschlaege.jpg`). Danach Stil in overlay.js
   übernehmen, Probe neu rendern und erneut zur Freigabe schicken.
+
+### 14n. Schrift gewählt (10.11.2026)
+
+- **Cairo Black** (Vorschlag 7) für Untertitel und Titel, Layout bestätigt. Probe wird neu gerendert
+  (`out/phase7/probe_hook_strasse.mp4`) → danach erneut zur Freigabe schicken.
