@@ -461,3 +461,15 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
   (Abu Huraira-Fassung), alle drei Sahaba-Aussagen (S1 ʿUmar, S2 Ibn Schaqiq, S3 Ibn Masʿud).
 - **Wartet auf Ayman:** Freigabe der Beweisliste und Entscheidung, wie mit den ungeprüften Stellen umgegangen wird.
   Erst danach Drehbuch-Tabelle, 3 Hook-Varianten und Sprechertext (A01, B01 …) schreiben.
+
+### 14b. Stand nach Aymans Antwort (10.11.2026)
+
+- Sahaba-Aussagen: **entfallen**. Beweisliste: **freigegeben** (inkl. eigener Übersetzung H7).
+- **Drehbuch geschrieben:** `docs/phase3-drehbuch.md` – 26 Zeilen in 5 Teilen, ca. 2:25–2:35,
+  Belege Q1, Q4, Q5, H2, H7, H1, H4 (Reihenfolge Quran → Sunnah), 3 Hook-Varianten (Empfehlung: „Du hörst den
+  Adhan – und gehst weiter?“), exakte Kartentexte, Sprechertext A01–A14 / B01–B09 mit Stimmung und Aussprache.
+- Kein Endkarte; Schlusssatz A14 (Off): „Dein nächstes Gebet ist dein Neuanfang.“
+- Wenn länger als 2:30: zuerst A10 (H1) streichen.
+- Zusätzlich angefragt: echte **Iqāma**-Aufnahme (neben dem Adhan).
+- **Wartet auf Ayman:** Wahl der Hook-Variante, Freigabe des Drehbuchs, Antwort zur Iqāma-Aufnahme.
+  Danach Phase 4 (Storyboard: Shotliste + grob gerendertes Standbild pro Shot).

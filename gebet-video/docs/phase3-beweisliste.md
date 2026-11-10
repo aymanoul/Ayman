@@ -1,4 +1,7 @@
-# Phase 3 – Beweisliste zur Freigabe
+# Phase 3 – Beweisliste (von Ayman freigegeben am 10.11.2026)
+
+Entscheidungen: Liste freigegeben, inklusive der eigenen Übersetzung bei H7. Sahaba-Aussagen **entfallen** (nicht prüfbar).
+Im Drehbuch verwendet: Q1, Q4, Q5, H2, H7, H1, H4.
 
 Stand: geprüft am 10.11.2026. Rohdaten liegen in `docs/quellen/` (JSON von quranenc.com und hadeethenc.com).
 
@@ -110,7 +113,7 @@ Stand: geprüft am 10.11.2026. Rohdaten liegen in `docs/quellen/` (JSON von qura
 
 **Hinweis:** Die Fassung aus dem Auftrag (Abū Huraira, at-Tirmidhī 413) konnte ich nicht prüfen. Geprüft ist nur diese Fassung von Tamim ad-Dari. Die Nummern bei Abū Dāwūd und Ibn Māja nennt hadeethenc.com nicht.
 
-## Sahaba – nicht geprüft
+## Sahaba – entfällt (Entscheidung Ayman)
 
 Diese drei Stellen stehen nicht auf hadeethenc.com. sunnah.com und dorar.net sind in dieser Umgebung durch eine Bot-Sperre (Cloudflare) blockiert. Deshalb sind sie **nicht geprüft** und werden ohne Prüfung nicht verwendet:
 
