@@ -7,7 +7,7 @@ import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { drawGuides } from './lib/overlay.js';
+import { drawGuides, drawPlatformMock } from './lib/overlay.js';
 
 const q = new URLSearchParams(location.search);
 const W = +(q.get('w') || 1080), H = +(q.get('h') || 1920);
@@ -93,6 +93,7 @@ async function boot() {
     ov.scale(W / 1080, H / 1920);
     if (layers !== '3d' && shot.overlay) shot.overlay(ov, t);
     if (guides) drawGuides(ov, 1080, 1920);
+    if (q.get('mock') === '1') drawPlatformMock(ov);
     ov.restore();
     return true;
   };

@@ -20,13 +20,14 @@ function strokeFill(g, text, x, y, fill, stroke, lw) {
   g.fillText(text, x, y);
 }
 
-// Mitte des sicheren Bereichs (rechts 160 px frei)
-const CX = (1080 - SAFE.right) / 2;
-const MAXW = 1080 - SAFE.right - 2 * 40;
+// Textbereich: links 120 px, rechts 200 px frei (App-Knöpfe rechts, Rand links) → Mitte x = 500, Breite max. 760
+export const TEXT = { left: 120, right: 880, subY: 1180, titleY: 470 };
+const CX = (TEXT.left + TEXT.right) / 2;
+const MAXW = TEXT.right - TEXT.left;
 const HONOR = /^[ﷺﷻ]$/;            // ﷺ ﷻ werden mit Amiri gesetzt
 
 // Untertitel Wort für Wort. groups: [{t0, t1, words: [{w, t0, t1}]}], 1–3 Wörter pro Gruppe.
-export function drawSubtitles(g, W, H, t, groups, { style = 'a', y = 1300 } = {}) {
+export function drawSubtitles(g, W, H, t, groups, { style = 'a', y = TEXT.subY } = {}) {
   const st = SUB_STYLES[style];
   const grp = groups.find((gr) => t >= gr.t0 && t < gr.t1);
   if (!grp) return;
@@ -62,7 +63,8 @@ export function drawTitle(g, W, H, t, lines, { t0 = 0, t1 = 4, y = 330, style = 
   g.globalAlpha = a;
   g.font = st.font.replace(/\d+px/, size + 'px');
   g.textAlign = 'center'; g.textBaseline = 'middle';
-  g.translate(CX, y); g.scale(0.85 + 0.15 * pop, 0.85 + 0.15 * pop);
+  const fit = Math.min(1, MAXW / Math.max(...lines.map((l) => g.measureText(l).width)));
+  g.translate(CX, y); g.scale(fit * (0.85 + 0.15 * pop), fit * (0.85 + 0.15 * pop));
   lines.forEach((ln, i) => strokeFill(g, ln, 0, (i - (lines.length - 1) / 2) * size * 1.12, '#ffffff', st.stroke, st.strokeW));
   g.restore();
 }
@@ -70,10 +72,11 @@ export function drawTitle(g, W, H, t, lines, { t0 = 0, t1 = 4, y = 330, style = 
 // ------------------------------------------------------------------ Beweis-Karten
 export const CARD_STYLES = {
   // Quran-Text von quranenc.com ist KFGQPC-kodiert → nur mit der offiziellen KFGQPC-Schrift korrekt (Tanwīn-Varianten)
-  quran: { label: 'QURAN', border: '#D9B26A', pill: ['#CA9E4E', '#D9B26A'], pillText: '#212242', ar: '"KFGQPC Hafs"', arSize: 58, arGold: true },
-  hadith: { label: 'HADITH', border: '#2b9c9a', pill: ['#23898a', '#3fb3b0'], pillText: '#ffffff', ar: '"Amiri"', arSize: 46, arGold: false },
+  quran: { label: 'QURAN', border: '#D9B26A', pill: ['#CA9E4E', '#D9B26A'], pillText: '#212242', ar: '"KFGQPC Hafs"', arSize: 52, arGold: true },
+  hadith: { label: 'HADITH', border: '#2b9c9a', pill: ['#23898a', '#3fb3b0'], pillText: '#ffffff', ar: '"Amiri"', arSize: 42, arGold: false },
 };
-const CARD = { x: 40, w: MAXW, bottom: 1920 - SAFE.bottom - 24, pad: 40 };
+// Karte: 780 px breit (x 110–890), Unterkante 560 px über dem Bildrand (Beschreibung und Knöpfe bleiben frei)
+const CARD = { x: 110, w: 780, bottom: 1360, pad: 34 };
 
 function wrap(g, text, maxW) {
   const out = []; let line = '';
@@ -99,16 +102,16 @@ export function drawCard(g, t, card, { t0, t1 }) {
   const inner = CARD.w - 2 * CARD.pad;
   // Maße
   g.save();
-  g.font = `500 37px "Montserrat"`;
+  g.font = `500 34px "Montserrat"`;
   const deLines = wrap(g, card.de, inner);
   g.font = `400 ${st.arSize}px ${st.ar}`;
   g.direction = 'rtl';
   // Zeilenumbruch: \n trennt Verse (statt Verszeichen), Anführungszeichen gehören nicht in die arabische Zeile
   const arLines = card.ar ? card.ar.replace(/[«»]/g, '').split('\n').flatMap((l) => wrap(g, l.trim(), inner)) : [];
   g.direction = 'ltr';
-  g.font = `700 27px "Montserrat"`;
+  g.font = `700 25px "Montserrat"`;
   const srcLines = wrap(g, card.src, inner);
-  const arLH = st.arSize * 1.75, deLH = 50, srcLH = 36;
+  const arLH = st.arSize * 1.75, deLH = 45, srcLH = 33;
   const h = CARD.pad + 46 + 26 + arLines.length * arLH + (arLines.length ? 14 : 0) + deLines.length * deLH + 18 + srcLines.length * srcLH + CARD.pad - 10;
   const top = CARD.bottom - h;
   // Animation: weich hinein (von unten, leicht überschwingend), weich hinaus
@@ -143,11 +146,11 @@ export function drawCard(g, t, card, { t0, t1 }) {
     g.direction = 'ltr';
   }
   // Deutsch
-  g.font = `500 37px "Montserrat"`; g.fillStyle = '#ffffff'; g.textAlign = 'left';
+  g.font = `500 34px "Montserrat"`; g.fillStyle = '#ffffff'; g.textAlign = 'left';
   deLines.forEach((ln, i) => g.fillText(ln, CARD.x + CARD.pad, y + i * deLH + deLH / 2));
   y += deLines.length * deLH + 18;
   // Quelle
-  g.font = `700 27px "Montserrat"`; g.fillStyle = st.border;
+  g.font = `700 25px "Montserrat"`; g.fillStyle = st.border;
   srcLines.forEach((ln, i) => g.fillText(ln, CARD.x + CARD.pad, y + i * srcLH + srcLH / 2));
   g.restore();
   const ease = (x) => x * x * (3 - 2 * x);
@@ -155,7 +158,7 @@ export function drawCard(g, t, card, { t0, t1 }) {
 }
 
 // Untertitel-Höhe: normal fest; steht eine Karte, gleitet die Zeile weich über die Karte und wieder zurück
-export function subtitleY(card, base = 1330) {
+export function subtitleY(card, base = TEXT.subY) {
   if (!card) return base;
   const target = Math.min(base, card.top - 85);
   return base + (target - base) * card.show;
@@ -173,5 +176,19 @@ export function drawGuides(g, W, H) {
   g.font = '700 30px "Montserrat"'; g.fillStyle = '#fff'; g.textAlign = 'center';
   g.fillText('frei lassen: TikTok/Instagram-Oberfläche', W / 2, 130);
   g.fillText('frei lassen: Beschreibung und Knöpfe', W / 2, H - 200);
+  g.restore();
+}
+
+// Nur für Vorschauen: grobe, neutrale Nachbildung einer Kurzvideo-App-Oberfläche (Knöpfe rechts, Beschreibung unten)
+export function drawPlatformMock(g) {
+  g.save();
+  g.fillStyle = 'rgba(255,255,255,0.55)';
+  for (let i = 0; i < 5; i++) { g.beginPath(); g.arc(1010, 1000 + i * 135, 40, 0, Math.PI * 2); g.fill(); }
+  g.fillStyle = 'rgba(0,0,0,0.35)'; g.fillRect(0, 1530, 1080, 390);
+  g.fillStyle = 'rgba(255,255,255,0.7)';
+  g.fillRect(40, 1560, 360, 34); g.fillRect(40, 1615, 820, 26); g.fillRect(40, 1655, 640, 26); g.fillRect(40, 1720, 520, 26);
+  g.fillRect(330, 120, 420, 34);
+  g.font = '700 28px "Montserrat"'; g.fillStyle = '#ffffff'; g.textAlign = 'left';
+  g.fillText('Simulierte App-Oberfläche', 40, 1880);
   g.restore();
 }

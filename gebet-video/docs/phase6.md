@@ -43,3 +43,13 @@ Dateien: `out/phase6/`.
 
 In Einstellungen mit Beweis-Karte muss das Wichtige (Gesicht, Symbol) in der oberen Bildhälfte stehen, denn die Karte
 deckt etwa y 1000–1476 ab. Die Kameras dieser Shots (S18, S20, S24–S27, S31–S34, S39–S43) werden dafür angepasst.
+
+## Änderungswünsche nach der Probe (10.11.2026)
+
+- **B zu leise:** B lag 15,6 dB unter A. Alle Zeilen auf das Niveau von A gebracht (Median der aktiven Lautstärke,
+  Begrenzer gegen Übersteuern). Originale in `assets/audio/zeilen/original/`.
+- **Text mittiger:** Textbereich x 120–880 (Mitte 500), Untertitel y = 1180, Hook-Titel y = 470, Titel passt sich der Breite an.
+- **Karten kleiner und höher:** 780 px breit (x 110–890), Unterkante y = 1360, kleinere Schrift → frei von Rand,
+  Beschreibung und Knöpfen. Prüfbild mit simulierter App-Oberfläche: `out/phase6/layout-pruefung.jpg` (`--mock`).
+- **Schrift neu wählen:** 10 Vorschläge `out/phase6/schrift-vorschlaege.jpg` (`tools/fontsheet.mjs`):
+  1 Poppins, 2 Nunito, 3 Rubik, 4 Lilita One, 5 Outfit (Box), 6 Lexend (Gold-Feld), 7 Cairo, 8 Anton, 9 Fredoka, 10 Inter (weiße Box).

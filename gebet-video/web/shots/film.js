@@ -132,8 +132,8 @@ export async function build(ctx) {
     if (c.dolly) camera.translateZ(-c.dolly * k);
   };
   shot.overlay = (g, t) => {
-    drawTitle(g, 1080, 1920, t, ['Du hörst den Adhan –', 'und gehst weiter?'], { t0: 0.05, t1: 3.1, y: 420, style: 'b' });
-    drawSubtitles(g, 1080, 1920, t, subs, { style: 'b', y: 1330 });
+    drawTitle(g, 1080, 1920, t, ['Du hörst den Adhan –', 'und gehst weiter?'], { t0: 0.05, t1: 3.1, y: 470, style: 'b' });
+    drawSubtitles(g, 1080, 1920, t, subs, { style: 'b' });
   };
   return shot;
 }

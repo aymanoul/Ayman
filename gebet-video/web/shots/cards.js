@@ -44,7 +44,7 @@ const V = [
   { bg: 'S26', style: 'a', text: 'die Unterlassung des', card: 'H2' },
   { bg: 'S26', style: 'a', text: 'die Unterlassung des', card: 'H2ar' },
   { bg: 'S39', style: 'a', text: 'vor der Tür', card: 'H4a' },
-  { bg: 'S01', style: 'a', title: ['Du hörst den Adhan –', 'und gehst weiter?'], ty: 420 },
+  { bg: 'S01', style: 'a', title: ['Du hörst den Adhan –', 'und gehst weiter?'], ty: 470 },
   { bg: 'S49', style: 'a', title: ['Dein nächstes Gebet', 'ist dein Neuanfang.'], ty: 900 },
   { bg: 'S31', style: 'b', text: 'ist das Gebet.', card: 'H7' },
 ];

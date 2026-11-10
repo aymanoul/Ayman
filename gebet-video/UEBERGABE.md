@@ -548,3 +548,10 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - Probe Hook + Straße mit Stimmen, Lippen und Untertiteln: `out/phase7/probe_hook_strasse.mp4` (23,6 s). Details `docs/phase7.md`.
 - **Wartet auf Ayman:** Freigabe der Probe, kurzes Anhören von A07/A08/A09/A14. Danach Teil 3–5 Shot für Shot
   (Zeitplan aus VOICE für alle Zeilen erweitern, MOTION für S13–S49, Beweis-Karten einsetzen).
+
+### 14m. Änderungswünsche zur Probe (10.11.2026)
+
+- B-Lautstärke angeglichen, Text mittiger (`TEXT` in overlay.js), Karten kleiner/höher – Details `docs/phase6.md`.
+- Aussprache A07/A08/A09/A14: laut Ayman **alles richtig**.
+- **Wartet auf Ayman:** Wahl einer der 10 Schriften (`out/phase6/schrift-vorschlaege.jpg`). Danach Stil in overlay.js
+  übernehmen, Probe neu rendern und erneut zur Freigabe schicken.

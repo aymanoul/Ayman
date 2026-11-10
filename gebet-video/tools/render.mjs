@@ -38,6 +38,7 @@ const port = server.address().port;
 
 const qs = new URLSearchParams({ shot, w: W, h: H, layers: arg('layers', 'all') });
 if (flag('guides')) qs.set('guides', '1');
+if (flag('mock')) qs.set('mock', '1');
 if (flag('ao')) qs.set('ao', '1');
 if (flag('bloom')) qs.set('bloom', '1');
 const URL_ = `http://127.0.0.1:${port}/web/index.html?${qs}`;
