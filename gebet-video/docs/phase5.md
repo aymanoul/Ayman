@@ -52,3 +52,12 @@ iqama_bildschirmaufnahme.wav 22,4 s). Transkripte mit Wort-Zeitmarken: `assets/a
 **Adhan/Iqāma:** Bildschirmaufnahmen von YouTube (Adhan: Omar Hisham Al Arabi, nur das erste „Allāhu akbar“, 11,6 s;
 Iqāma: Kanal @rachidfilali_Ta-Amal, endet nach „Allāhu akbar, Allāhu akbar“ – das abschließende „Lā ilāha illa-llāh“ fehlt).
 Fremde Aufnahmen → vor Veröffentlichung Erlaubnis klären oder eigene Aufnahme der Moschee verwenden.
+
+## Entscheidung (10.11.2026)
+
+- Stimmen werden **neu aufgenommen** mit dem freigegebenen Sprechertext. Vorlagen zum Einfügen in ElevenLabs:
+  `docs/elevenlabs-A-zum-einfuegen.txt`, `docs/elevenlabs-B-zum-einfuegen.txt` (Zeilen mit `<break time="1.5s" />` getrennt),
+  dazu `docs/elevenlabs-*-uebersicht.txt` mit Kennung, Stimmung und Aussprache je Zeile.
+- Adhan und Iqāma: **vorerst Platzhalter** (YouTube-Bildschirmaufnahmen). Vor der Veröffentlichung klärt Ayman die Rechte
+  oder liefert eigene Aufnahmen.
+- Die erste Aufnahme bleibt als Referenz in `assets/audio/roh/` (wird nicht verwendet).

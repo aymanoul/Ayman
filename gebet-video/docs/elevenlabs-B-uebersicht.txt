@@ -1,0 +1,11 @@
+Person B – 9 Zeilen in dieser Reihenfolge (zwischen den Zeilen 1,5 s Pause per <break time="1.5s" />)
+
+B01  [überrascht, kurz angebunden]  Wa aleikum as-salam … sorry, ich hab's eilig.   (Aussprache: „Wa a-LEI-kum as-sa-LAAM“)
+B02  [ausweichend, etwas genervt]  Jetzt? Ich muss eigentlich weiter.
+B03  [zögernd, nachgebend]  … Na gut.
+B04  [leise, ehrlich, ein bisschen verlegen]  Ich bete nicht oft. Ich hol's später nach – reicht das nicht?
+B05  [sich verteidigend]  Aber ich hatte Schule. Und danach Arbeit.
+B06  [unsicher, leise]  Und … wenn jemand gar nicht betet?
+B07  [erschrocken, dann hoffnungsvoll]  Puh … Aber Allah ist doch barmherzig, oder?
+B08  [leise, beschämt]  Ich hab so viele verpasst. Wie fang ich wieder an?
+B09  [entschlossen, ruhig]  Dann fang ich heute an.

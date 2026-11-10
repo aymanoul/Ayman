@@ -530,3 +530,9 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - Umgebung „Ayman“ zusätzlich freigegeben: huggingface.co, cdn-lfs.huggingface.co, cdn-lfs.hf.co, cas-bridge/cas-server/
   transfer.xethub.hf.co, us/eu.aws.cdn.hf.co (Modell für faster-whisper). PyAV-Problem: Audio selbst mit ffmpeg dekodieren.
 - **Wartet auf Ayman:** Entscheidung, ob neu aufgenommen wird (freigegebener Sprechertext) oder der neue Text angepasst wird.
+
+### 14j. Entscheidung: neu aufnehmen (10.11.2026)
+
+- Ayman nimmt A und B **neu auf** mit `docs/elevenlabs-A-zum-einfuegen.txt` / `-B-…` (1,5 s Pausen per break-Tag).
+- Adhan/Iqāma = **Platzhalter** (Rechte vor Veröffentlichung klären oder eigene Aufnahme).
+- Bis dahin: Bewegungsprobe Hook + Straße ohne Stimme vorbereiten (Phase 7), Zeiten später an die Aufnahmen anpassen.

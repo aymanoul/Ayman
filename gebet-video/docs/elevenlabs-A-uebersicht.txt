@@ -1,0 +1,16 @@
+Person A – 14 Zeilen in dieser Reihenfolge (zwischen den Zeilen 1,5 s Pause per <break time="1.5s" />)
+
+A01  [eindringlich, aber liebevoll, leise]  Du hörst den Adhan … und gehst einfach weiter?   (Aussprache: Adhan = „A-DHAAN“, dh wie im englischen „this“)
+A02  [freundlich, rufend, lächelnd]  As-salamu aleikum, Bruder!   (Aussprache: „As-sa-LAA-mu a-LEI-kum“)
+A03  [warm, einladend]  Hörst du? Der Adhan. Komm, bete mit uns.   (Aussprache: Adhan wie oben)
+A04  [sanft, ruhig]  Die Tür steht offen. Komm, nur ein paar Minuten.
+A05  [ruhig, ohne Vorwurf]  Allah sagt: „Das Gebet ist den Gläubigen zu bestimmten Zeiten vorgeschrieben.“   (Aussprache: Allah = „Al-LAAH“)
+A06  [verständnisvoll, dann ernst]  Verstehe ich. Aber Allah sagt: „Wehe nun den Betenden, denjenigen, die auf ihre Gebete nicht achten“ – und ein Gebet dauert nur ein paar Minuten.
+A07  [ernst, langsam]  Im Quran werden Leute in Sakar, dem Höllenfeuer, gefragt: „Was hat euch in Sakar geführt?“ – „Sie werden sagen: Wir gehörten nicht zu denjenigen, die beteten.“   (Aussprache: Quran = „Qur-AAN“ · Saqar = „SA-qar“ (für die KI „Sakar“ geschrieben))
+A08  [ernst, aber warm]  Und der Prophet, Allahs Segen und Frieden auf ihm, hat gesagt: „Zwischen einer Person und dem Götzendienst – Schirk – und dem Unglauben – Kufr – steht die Unterlassung des Gebets.“   (Aussprache: Schirk = „SCHIRK“ · Kufr = „KUF-r“)
+A09  [sanft, ermutigend]  Ja. Allah ist der Barmherzigste. Und der Prophet, Allahs Segen und Frieden auf ihm, hat uns gesagt: „Das Erste, worüber der Diener abgerechnet wird, ist das Gebet.“
+A10  [warm, lächelnd]  Und als er gefragt wurde, welche Tat Allah am liebsten ist, sagte er: „Das Gebet zur rechten Zeit.“
+A11  [warm, ermutigend]  Bereue ehrlich, nimm dir fest vor, keins mehr zu lassen – und fang mit dem nächsten Gebet an. Mit diesem hier.
+A12  [erzählend, ruhig, hoffnungsvoll]  Der Prophet, Allahs Segen und Frieden auf ihm, sagte: „Was meint ihr, wenn vor der Tür eines von euch ein Fluss wäre, in dem er sich jeden Tag fünfmal wäscht, würde das etwas von seinem Schmutz übriglassen?“ Sie sagten: „Es würde nichts von seinem Schmutz übriglassen.“ Er sagte: „So ist es mit den fünf Gebeten, Allah tilgt damit die Sünden.“
+A13  [leise, freundlich]  Dann komm. Schulter an Schulter.
+A14  [ruhig, warm, langsam (Off)]  Dein nächstes Gebet ist dein Neuanfang.
