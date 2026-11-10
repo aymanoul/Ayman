@@ -47,9 +47,10 @@ Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Absc
      zoomTo 36), S47 (Reihe von hinten, Fuß an Fuß). S23 dolly 0.35.
    - Untertitel: ﷻ wurde von „Allah“ in die nächste Gruppe getrennt → bleibt jetzt am vorigen Wort (`groupWords`).
      „Puh…“ / „Und…“ behalten die Auslassungspunkte (`tools/prep_lines.py`), allein stehendes „…“ fällt weg.
-2. ⏳ Zweiter Render läuft (Teil ab 23,6 s, `teil_a/b/c.mp4` → `film_video.mp4` + `film_ton.wav` →
-   **`out/phase7/gebet_video_entwurf.mp4`**). Befehl siehe docs/phase7.md. Danach kurz Kontaktbogen prüfen und Ayman schicken
-   (Datei ist ~140 MB; für das iPad ggf. eine kleinere Vorschau-Kopie erstellen).
+2. ✅ Zweiter Render fertig und geprüft (Kontaktbogen jede Sekunde: Ausschnitte gut, keine Augen, ﷻ bleibt bei „Allah“).
+   Ergebnis: `out/phase7/gebet_video_entwurf.mp4` (1080×1920, 2:27, −14,1 LUFS, ~157 MB, nicht im Repo wegen 100-MB-Grenze –
+   neu erzeugen mit dem Befehl in docs/phase7.md) und `out/phase7/gebet_video_entwurf_vorschau.mp4` (720p, 15 MB, im Repo).
+   **An Ayman geschickt (Vorschau + beide Titelbilder + Beschreibung). Warte auf Freigabe/Änderungen und Wahl des Titelbilds.**
 3. Phase 9 vorbereitet: Titelbilder `out/phase9/titelbild_variante1.png` (Gebetsreihe) und `_variante2.png` (Neubau),
    Shot `web/shots/cover.js`; Beschreibung `docs/phase9-beschreibung.md`. Ayman wählt eins.
 4. Phase 8: Belege nochmals gegen Quelle; Ayman an Hadith-Nummern (sunnah.com) und Adhan/Iqāma-Rechte erinnern.
@@ -617,4 +618,4 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 
 - Neue Probe freigegeben. Gesamt-Ton und Zeitplan (2:27) gebaut, ganzes Video gerendert (−14,1 LUFS).
 - Eigene Prüfung per Kontaktbogen: Nahaufnahmen zu eng, ein paar Detail-Shots leer/unklar, ﷻ in Untertiteln abgetrennt.
-  Alles korrigiert (siehe „AKTUELLER STAND“), zweiter Render läuft. Ayman hat den ersten Render nicht bekommen.
+  Alles korrigiert (siehe „AKTUELLER STAND“), zweiter Render läuft. Ayman hat den ersten Render nicht bekommen; der zweite (korrigierte) ging als Vorschau an ihn.
