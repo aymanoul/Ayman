@@ -5,3 +5,8 @@ out/sheets/
 out/**/*.part*.mp4
 out/**/*.parts.txt
 *.log
+# Zwischenstände des Gesamt-Renders (groß, jederzeit neu erzeugbar; GitHub erlaubt max. 100 MB pro Datei)
+out/phase7/teil_*.mp4
+out/phase7/film_teile.txt
+out/phase7/film_video.mp4
+out/phase7/gebet_video_entwurf.mp4
