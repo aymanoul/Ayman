@@ -1,0 +1,2366 @@
+[
+ {
+  "start": 0.0,
+  "end": 2.76,
+  "text": "Du hörst den Adhan und gehst einfach weiter?",
+  "words": [
+   {
+    "w": "Du",
+    "start": 0.0,
+    "end": 0.18
+   },
+   {
+    "w": "hörst",
+    "start": 0.18,
+    "end": 0.5
+   },
+   {
+    "w": "den",
+    "start": 0.5,
+    "end": 0.62
+   },
+   {
+    "w": "Adhan",
+    "start": 0.62,
+    "end": 1.02
+   },
+   {
+    "w": "und",
+    "start": 1.02,
+    "end": 1.68
+   },
+   {
+    "w": "gehst",
+    "start": 1.68,
+    "end": 2.0
+   },
+   {
+    "w": "einfach",
+    "start": 2.0,
+    "end": 2.28
+   },
+   {
+    "w": "weiter?",
+    "start": 2.28,
+    "end": 2.76
+   }
+  ]
+ },
+ {
+  "start": 3.4800000000000004,
+  "end": 6.5,
+  "text": "Assalamu alaikum mein Bruder, hast du kurz einen Moment?",
+  "words": [
+   {
+    "w": "Assalamu",
+    "start": 3.4800000000000004,
+    "end": 4.04
+   },
+   {
+    "w": "alaikum",
+    "start": 4.04,
+    "end": 4.34
+   },
+   {
+    "w": "mein",
+    "start": 4.34,
+    "end": 4.54
+   },
+   {
+    "w": "Bruder,",
+    "start": 4.54,
+    "end": 4.94
+   },
+   {
+    "w": "hast",
+    "start": 5.36,
+    "end": 5.56
+   },
+   {
+    "w": "du",
+    "start": 5.56,
+    "end": 5.7
+   },
+   {
+    "w": "kurz",
+    "start": 5.7,
+    "end": 5.94
+   },
+   {
+    "w": "einen",
+    "start": 5.94,
+    "end": 6.16
+   },
+   {
+    "w": "Moment?",
+    "start": 6.16,
+    "end": 6.5
+   }
+  ]
+ },
+ {
+  "start": 7.1,
+  "end": 8.82,
+  "text": "Der Adhan ruft gerade zum Gebet.",
+  "words": [
+   {
+    "w": "Der",
+    "start": 7.1,
+    "end": 7.22
+   },
+   {
+    "w": "Adhan",
+    "start": 7.22,
+    "end": 7.6
+   },
+   {
+    "w": "ruft",
+    "start": 7.6,
+    "end": 7.9
+   },
+   {
+    "w": "gerade",
+    "start": 7.9,
+    "end": 8.22
+   },
+   {
+    "w": "zum",
+    "start": 8.22,
+    "end": 8.48
+   },
+   {
+    "w": "Gebet.",
+    "start": 8.48,
+    "end": 8.82
+   }
+  ]
+ },
+ {
+  "start": 9.36,
+  "end": 10.86,
+  "text": "Komm, geh mit mir hinein.",
+  "words": [
+   {
+    "w": "Komm,",
+    "start": 9.36,
+    "end": 9.52
+   },
+   {
+    "w": "geh",
+    "start": 9.98,
+    "end": 10.1
+   },
+   {
+    "w": "mit",
+    "start": 10.1,
+    "end": 10.22
+   },
+   {
+    "w": "mir",
+    "start": 10.22,
+    "end": 10.38
+   },
+   {
+    "w": "hinein.",
+    "start": 10.38,
+    "end": 10.86
+   }
+  ]
+ },
+ {
+  "start": 11.2,
+  "end": 13.74,
+  "text": "Es dauert nicht lange und danach geht es dir besser.",
+  "words": [
+   {
+    "w": "Es",
+    "start": 11.2,
+    "end": 11.3
+   },
+   {
+    "w": "dauert",
+    "start": 11.3,
+    "end": 11.62
+   },
+   {
+    "w": "nicht",
+    "start": 11.62,
+    "end": 11.78
+   },
+   {
+    "w": "lange",
+    "start": 11.78,
+    "end": 12.04
+   },
+   {
+    "w": "und",
+    "start": 12.04,
+    "end": 12.52
+   },
+   {
+    "w": "danach",
+    "start": 12.52,
+    "end": 12.88
+   },
+   {
+    "w": "geht",
+    "start": 12.88,
+    "end": 13.16
+   },
+   {
+    "w": "es",
+    "start": 13.16,
+    "end": 13.32
+   },
+   {
+    "w": "dir",
+    "start": 13.32,
+    "end": 13.44
+   },
+   {
+    "w": "besser.",
+    "start": 13.44,
+    "end": 13.74
+   }
+  ]
+ },
+ {
+  "start": 14.42,
+  "end": 15.24,
+  "text": "Setz dich zu mir.",
+  "words": [
+   {
+    "w": "Setz",
+    "start": 14.42,
+    "end": 14.66
+   },
+   {
+    "w": "dich",
+    "start": 14.66,
+    "end": 14.78
+   },
+   {
+    "w": "zu",
+    "start": 14.78,
+    "end": 15.02
+   },
+   {
+    "w": "mir.",
+    "start": 15.02,
+    "end": 15.24
+   }
+  ]
+ },
+ {
+  "start": 15.76,
+  "end": 17.06,
+  "text": "Ich will dir nichts vorwerfen.",
+  "words": [
+   {
+    "w": "Ich",
+    "start": 15.76,
+    "end": 15.9
+   },
+   {
+    "w": "will",
+    "start": 15.9,
+    "end": 16.04
+   },
+   {
+    "w": "dir",
+    "start": 16.04,
+    "end": 16.18
+   },
+   {
+    "w": "nichts",
+    "start": 16.18,
+    "end": 16.36
+   },
+   {
+    "w": "vorwerfen.",
+    "start": 16.36,
+    "end": 17.06
+   }
+  ]
+ },
+ {
+  "start": 17.54,
+  "end": 20.86,
+  "text": "Ich möchte dir nur zeigen, wie wertvoll dieses Geschenk ist.",
+  "words": [
+   {
+    "w": "Ich",
+    "start": 17.54,
+    "end": 17.64
+   },
+   {
+    "w": "möchte",
+    "start": 17.64,
+    "end": 17.84
+   },
+   {
+    "w": "dir",
+    "start": 17.84,
+    "end": 18.06
+   },
+   {
+    "w": "nur",
+    "start": 18.06,
+    "end": 18.3
+   },
+   {
+    "w": "zeigen,",
+    "start": 18.3,
+    "end": 18.76
+   },
+   {
+    "w": "wie",
+    "start": 19.08,
+    "end": 19.22
+   },
+   {
+    "w": "wertvoll",
+    "start": 19.22,
+    "end": 19.8
+   },
+   {
+    "w": "dieses",
+    "start": 19.8,
+    "end": 20.06
+   },
+   {
+    "w": "Geschenk",
+    "start": 20.06,
+    "end": 20.6
+   },
+   {
+    "w": "ist.",
+    "start": 20.6,
+    "end": 20.86
+   }
+  ]
+ },
+ {
+  "start": 21.36,
+  "end": 25.8,
+  "text": "Allah, der Erhabene, sagt in der Surah An-Nisa, Vers 103,",
+  "words": [
+   {
+    "w": "Allah,",
+    "start": 21.36,
+    "end": 21.78
+   },
+   {
+    "w": "der",
+    "start": 22.1,
+    "end": 22.14
+   },
+   {
+    "w": "Erhabene,",
+    "start": 22.14,
+    "end": 22.74
+   },
+   {
+    "w": "sagt",
+    "start": 23.18,
+    "end": 23.34
+   },
+   {
+    "w": "in",
+    "start": 23.34,
+    "end": 23.56
+   },
+   {
+    "w": "der",
+    "start": 23.56,
+    "end": 23.66
+   },
+   {
+    "w": "Surah",
+    "start": 23.66,
+    "end": 24.14
+   },
+   {
+    "w": "An",
+    "start": 24.14,
+    "end": 24.38
+   },
+   {
+    "w": "-Nisa,",
+    "start": 24.38,
+    "end": 24.64
+   },
+   {
+    "w": "Vers",
+    "start": 25.14,
+    "end": 25.26
+   },
+   {
+    "w": "103,",
+    "start": 25.26,
+    "end": 25.8
+   }
+  ]
+ },
+ {
+  "start": 25.8,
+  "end": 30.28,
+  "text": "Das Gebet ist den Gläubigen zu bestimmten Zeiten vorgeschrieben.",
+  "words": [
+   {
+    "w": "Das",
+    "start": 25.8,
+    "end": 26.66
+   },
+   {
+    "w": "Gebet",
+    "start": 26.66,
+    "end": 27.14
+   },
+   {
+    "w": "ist",
+    "start": 27.14,
+    "end": 27.42
+   },
+   {
+    "w": "den",
+    "start": 27.42,
+    "end": 27.62
+   },
+   {
+    "w": "Gläubigen",
+    "start": 27.62,
+    "end": 28.12
+   },
+   {
+    "w": "zu",
+    "start": 28.12,
+    "end": 28.44
+   },
+   {
+    "w": "bestimmten",
+    "start": 28.44,
+    "end": 29.08
+   },
+   {
+    "w": "Zeiten",
+    "start": 29.08,
+    "end": 29.44
+   },
+   {
+    "w": "vorgeschrieben.",
+    "start": 29.44,
+    "end": 30.28
+   }
+  ]
+ },
+ {
+  "start": 31.06,
+  "end": 32.44,
+  "text": "Zu bestimmten Zeiten.",
+  "words": [
+   {
+    "w": "Zu",
+    "start": 31.06,
+    "end": 31.2
+   },
+   {
+    "w": "bestimmten",
+    "start": 31.2,
+    "end": 31.98
+   },
+   {
+    "w": "Zeiten.",
+    "start": 31.98,
+    "end": 32.44
+   }
+  ]
+ },
+ {
+  "start": 33.08,
+  "end": 36.46,
+  "text": "Das ist wie ein Termin, den Allah selbst festgelegt hat.",
+  "words": [
+   {
+    "w": "Das",
+    "start": 33.08,
+    "end": 33.2
+   },
+   {
+    "w": "ist",
+    "start": 33.2,
+    "end": 33.38
+   },
+   {
+    "w": "wie",
+    "start": 33.38,
+    "end": 33.54
+   },
+   {
+    "w": "ein",
+    "start": 33.54,
+    "end": 33.72
+   },
+   {
+    "w": "Termin,",
+    "start": 33.72,
+    "end": 34.28
+   },
+   {
+    "w": "den",
+    "start": 34.4,
+    "end": 34.54
+   },
+   {
+    "w": "Allah",
+    "start": 34.54,
+    "end": 34.92
+   },
+   {
+    "w": "selbst",
+    "start": 34.92,
+    "end": 35.48
+   },
+   {
+    "w": "festgelegt",
+    "start": 35.48,
+    "end": 36.18
+   },
+   {
+    "w": "hat.",
+    "start": 36.18,
+    "end": 36.46
+   }
+  ]
+ },
+ {
+  "start": 37.04,
+  "end": 41.46,
+  "text": "Ibn Mas'ud, möge Allah mit ihm zufrieden sein, fragte den Propheten,",
+  "words": [
+   {
+    "w": "Ibn",
+    "start": 37.04,
+    "end": 37.24
+   },
+   {
+    "w": "Mas",
+    "start": 37.24,
+    "end": 37.48
+   },
+   {
+    "w": "'ud,",
+    "start": 37.48,
+    "end": 37.8
+   },
+   {
+    "w": "möge",
+    "start": 38.08,
+    "end": 38.34
+   },
+   {
+    "w": "Allah",
+    "start": 38.34,
+    "end": 38.66
+   },
+   {
+    "w": "mit",
+    "start": 38.66,
+    "end": 38.9
+   },
+   {
+    "w": "ihm",
+    "start": 38.9,
+    "end": 39.02
+   },
+   {
+    "w": "zufrieden",
+    "start": 39.02,
+    "end": 39.58
+   },
+   {
+    "w": "sein,",
+    "start": 39.58,
+    "end": 39.8
+   },
+   {
+    "w": "fragte",
+    "start": 40.32,
+    "end": 40.6
+   },
+   {
+    "w": "den",
+    "start": 40.6,
+    "end": 40.76
+   },
+   {
+    "w": "Propheten,",
+    "start": 40.76,
+    "end": 41.46
+   }
+  ]
+ },
+ {
+  "start": 41.74,
+  "end": 46.2,
+  "text": "Allah segn und frieden auf ihm, welche Tat ist Allah am liebsten?",
+  "words": [
+   {
+    "w": "Allah",
+    "start": 41.74,
+    "end": 42.04
+   },
+   {
+    "w": "segn",
+    "start": 42.04,
+    "end": 42.52
+   },
+   {
+    "w": "und",
+    "start": 42.52,
+    "end": 42.68
+   },
+   {
+    "w": "frieden",
+    "start": 42.68,
+    "end": 43.06
+   },
+   {
+    "w": "auf",
+    "start": 43.06,
+    "end": 43.24
+   },
+   {
+    "w": "ihm,",
+    "start": 43.24,
+    "end": 43.44
+   },
+   {
+    "w": "welche",
+    "start": 44.0,
+    "end": 44.26
+   },
+   {
+    "w": "Tat",
+    "start": 44.26,
+    "end": 44.7
+   },
+   {
+    "w": "ist",
+    "start": 44.7,
+    "end": 45.0
+   },
+   {
+    "w": "Allah",
+    "start": 45.0,
+    "end": 45.38
+   },
+   {
+    "w": "am",
+    "start": 45.38,
+    "end": 45.74
+   },
+   {
+    "w": "liebsten?",
+    "start": 45.74,
+    "end": 46.2
+   }
+  ]
+ },
+ {
+  "start": 46.74,
+  "end": 49.74,
+  "text": "Er sagte, das Gebet zu seiner Zeit.",
+  "words": [
+   {
+    "w": "Er",
+    "start": 46.74,
+    "end": 46.88
+   },
+   {
+    "w": "sagte,",
+    "start": 46.88,
+    "end": 47.2
+   },
+   {
+    "w": "das",
+    "start": 47.86,
+    "end": 47.92
+   },
+   {
+    "w": "Gebet",
+    "start": 47.92,
+    "end": 48.4
+   },
+   {
+    "w": "zu",
+    "start": 48.4,
+    "end": 48.8
+   },
+   {
+    "w": "seiner",
+    "start": 48.8,
+    "end": 49.16
+   },
+   {
+    "w": "Zeit.",
+    "start": 49.16,
+    "end": 49.74
+   }
+  ]
+ },
+ {
+  "start": 50.38,
+  "end": 55.24,
+  "text": "Nicht irgendwann, zu seiner Zeit, das liebt Allah am meisten.",
+  "words": [
+   {
+    "w": "Nicht",
+    "start": 50.38,
+    "end": 50.6
+   },
+   {
+    "w": "irgendwann,",
+    "start": 50.6,
+    "end": 51.12
+   },
+   {
+    "w": "zu",
+    "start": 51.72,
+    "end": 51.96
+   },
+   {
+    "w": "seiner",
+    "start": 51.96,
+    "end": 52.32
+   },
+   {
+    "w": "Zeit,",
+    "start": 52.32,
+    "end": 52.94
+   },
+   {
+    "w": "das",
+    "start": 53.36,
+    "end": 53.58
+   },
+   {
+    "w": "liebt",
+    "start": 53.58,
+    "end": 54.08
+   },
+   {
+    "w": "Allah",
+    "start": 54.08,
+    "end": 54.48
+   },
+   {
+    "w": "am",
+    "start": 54.48,
+    "end": 54.82
+   },
+   {
+    "w": "meisten.",
+    "start": 54.82,
+    "end": 55.24
+   }
+  ]
+ },
+ {
+  "start": 55.800000000000004,
+  "end": 58.86,
+  "text": "Der Prophet, Allah segn und frieden auf ihm, sagte,",
+  "words": [
+   {
+    "w": "Der",
+    "start": 55.7,
+    "end": 56.02
+   },
+   {
+    "w": "Prophet,",
+    "start": 56.02,
+    "end": 56.36
+   },
+   {
+    "w": "Allah",
+    "start": 56.76,
+    "end": 57.14
+   },
+   {
+    "w": "segn",
+    "start": 57.14,
+    "end": 57.66
+   },
+   {
+    "w": "und",
+    "start": 57.66,
+    "end": 57.78
+   },
+   {
+    "w": "frieden",
+    "start": 57.78,
+    "end": 58.18
+   },
+   {
+    "w": "auf",
+    "start": 58.18,
+    "end": 58.34
+   },
+   {
+    "w": "ihm,",
+    "start": 58.34,
+    "end": 58.52
+   },
+   {
+    "w": "sagte,",
+    "start": 58.86,
+    "end": 58.86
+   }
+  ]
+ },
+ {
+  "start": 59.48,
+  "end": 64.42,
+  "text": "Zwischen dem Mann und dem Shirk und dem Kuffer steht das Unterlassen des Gebetes.",
+  "words": [
+   {
+    "w": "Zwischen",
+    "start": 59.48,
+    "end": 59.8
+   },
+   {
+    "w": "dem",
+    "start": 59.8,
+    "end": 59.96
+   },
+   {
+    "w": "Mann",
+    "start": 59.96,
+    "end": 60.32
+   },
+   {
+    "w": "und",
+    "start": 60.32,
+    "end": 60.6
+   },
+   {
+    "w": "dem",
+    "start": 60.6,
+    "end": 60.8
+   },
+   {
+    "w": "Shirk",
+    "start": 60.8,
+    "end": 61.22
+   },
+   {
+    "w": "und",
+    "start": 61.22,
+    "end": 61.54
+   },
+   {
+    "w": "dem",
+    "start": 61.54,
+    "end": 61.74
+   },
+   {
+    "w": "Kuffer",
+    "start": 61.74,
+    "end": 62.2
+   },
+   {
+    "w": "steht",
+    "start": 62.2,
+    "end": 62.7
+   },
+   {
+    "w": "das",
+    "start": 62.7,
+    "end": 62.94
+   },
+   {
+    "w": "Unterlassen",
+    "start": 62.94,
+    "end": 63.54
+   },
+   {
+    "w": "des",
+    "start": 63.54,
+    "end": 63.78
+   },
+   {
+    "w": "Gebetes.",
+    "start": 63.78,
+    "end": 64.42
+   }
+  ]
+ },
+ {
+  "start": 64.84,
+  "end": 66.5,
+  "text": "Das ist sehr ernst, mein Bruder.",
+  "words": [
+   {
+    "w": "Das",
+    "start": 64.84,
+    "end": 64.96
+   },
+   {
+    "w": "ist",
+    "start": 64.96,
+    "end": 65.16
+   },
+   {
+    "w": "sehr",
+    "start": 65.16,
+    "end": 65.48
+   },
+   {
+    "w": "ernst,",
+    "start": 65.48,
+    "end": 65.88
+   },
+   {
+    "w": "mein",
+    "start": 66.02,
+    "end": 66.12
+   },
+   {
+    "w": "Bruder.",
+    "start": 66.12,
+    "end": 66.5
+   }
+  ]
+ },
+ {
+  "start": 66.94,
+  "end": 69.94,
+  "text": "Deshalb sage ich es dir aus Liebe und nicht aus Strenge.",
+  "words": [
+   {
+    "w": "Deshalb",
+    "start": 66.94,
+    "end": 67.22
+   },
+   {
+    "w": "sage",
+    "start": 67.22,
+    "end": 67.54
+   },
+   {
+    "w": "ich",
+    "start": 67.54,
+    "end": 67.76
+   },
+   {
+    "w": "es",
+    "start": 67.76,
+    "end": 67.9
+   },
+   {
+    "w": "dir",
+    "start": 67.9,
+    "end": 68.06
+   },
+   {
+    "w": "aus",
+    "start": 68.06,
+    "end": 68.28
+   },
+   {
+    "w": "Liebe",
+    "start": 68.28,
+    "end": 68.64
+   },
+   {
+    "w": "und",
+    "start": 68.64,
+    "end": 69.08
+   },
+   {
+    "w": "nicht",
+    "start": 69.08,
+    "end": 69.32
+   },
+   {
+    "w": "aus",
+    "start": 69.32,
+    "end": 69.5
+   },
+   {
+    "w": "Strenge.",
+    "start": 69.5,
+    "end": 69.94
+   }
+  ]
+ },
+ {
+  "start": 70.4,
+  "end": 74.68,
+  "text": "Allah, der Erhabene, sagt in der Surah Maryam, Vers 59,",
+  "words": [
+   {
+    "w": "Allah,",
+    "start": 70.4,
+    "end": 70.8
+   },
+   {
+    "w": "der",
+    "start": 71.04,
+    "end": 71.12
+   },
+   {
+    "w": "Erhabene,",
+    "start": 71.12,
+    "end": 71.72
+   },
+   {
+    "w": "sagt",
+    "start": 72.16,
+    "end": 72.28
+   },
+   {
+    "w": "in",
+    "start": 72.28,
+    "end": 72.52
+   },
+   {
+    "w": "der",
+    "start": 72.52,
+    "end": 72.64
+   },
+   {
+    "w": "Surah",
+    "start": 72.64,
+    "end": 73.08
+   },
+   {
+    "w": "Maryam,",
+    "start": 73.08,
+    "end": 73.66
+   },
+   {
+    "w": "Vers",
+    "start": 73.92,
+    "end": 74.06
+   },
+   {
+    "w": "59,",
+    "start": 74.06,
+    "end": 74.68
+   }
+  ]
+ },
+ {
+  "start": 75.64,
+  "end": 79.7,
+  "text": "Dann folgten nach ihnen Nachfolger, die das Gebet vernachlässigten",
+  "words": [
+   {
+    "w": "Dann",
+    "start": 75.64,
+    "end": 75.82
+   },
+   {
+    "w": "folgten",
+    "start": 75.82,
+    "end": 76.4
+   },
+   {
+    "w": "nach",
+    "start": 76.4,
+    "end": 76.7
+   },
+   {
+    "w": "ihnen",
+    "start": 76.7,
+    "end": 76.96
+   },
+   {
+    "w": "Nachfolger,",
+    "start": 76.96,
+    "end": 77.8
+   },
+   {
+    "w": "die",
+    "start": 78.06,
+    "end": 78.1
+   },
+   {
+    "w": "das",
+    "start": 78.1,
+    "end": 78.3
+   },
+   {
+    "w": "Gebet",
+    "start": 78.3,
+    "end": 78.68
+   },
+   {
+    "w": "vernachlässigten",
+    "start": 78.68,
+    "end": 79.7
+   }
+  ]
+ },
+ {
+  "start": 79.7,
+  "end": 81.42,
+  "text": "und den Begierden folgten.",
+  "words": [
+   {
+    "w": "und",
+    "start": 79.7,
+    "end": 80.16
+   },
+   {
+    "w": "den",
+    "start": 80.16,
+    "end": 80.34
+   },
+   {
+    "w": "Begierden",
+    "start": 80.34,
+    "end": 80.86
+   },
+   {
+    "w": "folgten.",
+    "start": 80.86,
+    "end": 81.42
+   }
+  ]
+ },
+ {
+  "start": 81.42,
+  "end": 84.86,
+  "text": "So werden sie den Lohn für ihre Verirrung vorfinden.",
+  "words": [
+   {
+    "w": "So",
+    "start": 81.42,
+    "end": 82.14
+   },
+   {
+    "w": "werden",
+    "start": 82.14,
+    "end": 82.48
+   },
+   {
+    "w": "sie",
+    "start": 82.48,
+    "end": 82.68
+   },
+   {
+    "w": "den",
+    "start": 82.68,
+    "end": 82.86
+   },
+   {
+    "w": "Lohn",
+    "start": 82.86,
+    "end": 83.16
+   },
+   {
+    "w": "für",
+    "start": 83.16,
+    "end": 83.44
+   },
+   {
+    "w": "ihre",
+    "start": 83.44,
+    "end": 83.64
+   },
+   {
+    "w": "Verirrung",
+    "start": 83.64,
+    "end": 84.24
+   },
+   {
+    "w": "vorfinden.",
+    "start": 84.24,
+    "end": 84.86
+   }
+  ]
+ },
+ {
+  "start": 85.54,
+  "end": 88.46,
+  "text": "Der Prophet, Allah segn und frieden auf ihm, sagte,",
+  "words": [
+   {
+    "w": "Der",
+    "start": 85.54,
+    "end": 85.64
+   },
+   {
+    "w": "Prophet,",
+    "start": 85.64,
+    "end": 85.98
+   },
+   {
+    "w": "Allah",
+    "start": 86.36,
+    "end": 86.72
+   },
+   {
+    "w": "segn",
+    "start": 86.72,
+    "end": 87.22
+   },
+   {
+    "w": "und",
+    "start": 87.22,
+    "end": 87.38
+   },
+   {
+    "w": "frieden",
+    "start": 87.38,
+    "end": 87.76
+   },
+   {
+    "w": "auf",
+    "start": 87.76,
+    "end": 87.94
+   },
+   {
+    "w": "ihm,",
+    "start": 87.94,
+    "end": 88.1
+   },
+   {
+    "w": "sagte,",
+    "start": 88.46,
+    "end": 88.46
+   }
+  ]
+ },
+ {
+  "start": 89.22,
+  "end": 92.98,
+  "text": "Das erste, wofür der Diener am Tag der Auferstehung abgerechnet wird,",
+  "words": [
+   {
+    "w": "Das",
+    "start": 89.22,
+    "end": 89.22
+   },
+   {
+    "w": "erste,",
+    "start": 89.22,
+    "end": 89.7
+   },
+   {
+    "w": "wofür",
+    "start": 89.92,
+    "end": 90.14
+   },
+   {
+    "w": "der",
+    "start": 90.14,
+    "end": 90.34
+   },
+   {
+    "w": "Diener",
+    "start": 90.34,
+    "end": 90.76
+   },
+   {
+    "w": "am",
+    "start": 90.76,
+    "end": 90.88
+   },
+   {
+    "w": "Tag",
+    "start": 90.88,
+    "end": 91.16
+   },
+   {
+    "w": "der",
+    "start": 91.16,
+    "end": 91.36
+   },
+   {
+    "w": "Auferstehung",
+    "start": 91.36,
+    "end": 92.06
+   },
+   {
+    "w": "abgerechnet",
+    "start": 92.06,
+    "end": 92.7
+   },
+   {
+    "w": "wird,",
+    "start": 92.7,
+    "end": 92.98
+   }
+  ]
+ },
+ {
+  "start": 93.34,
+  "end": 94.16,
+  "text": "ist sein Gebet.",
+  "words": [
+   {
+    "w": "ist",
+    "start": 93.34,
+    "end": 93.48
+   },
+   {
+    "w": "sein",
+    "start": 93.48,
+    "end": 93.76
+   },
+   {
+    "w": "Gebet.",
+    "start": 93.76,
+    "end": 94.16
+   }
+  ]
+ },
+ {
+  "start": 94.8,
+  "end": 97.5,
+  "text": "Ist es in Ordnung, hat er Erfolg und Gewinn.",
+  "words": [
+   {
+    "w": "Ist",
+    "start": 94.8,
+    "end": 94.96
+   },
+   {
+    "w": "es",
+    "start": 94.96,
+    "end": 95.12
+   },
+   {
+    "w": "in",
+    "start": 95.12,
+    "end": 95.28
+   },
+   {
+    "w": "Ordnung,",
+    "start": 95.28,
+    "end": 95.74
+   },
+   {
+    "w": "hat",
+    "start": 96.08,
+    "end": 96.18
+   },
+   {
+    "w": "er",
+    "start": 96.18,
+    "end": 96.3
+   },
+   {
+    "w": "Erfolg",
+    "start": 96.3,
+    "end": 96.76
+   },
+   {
+    "w": "und",
+    "start": 96.76,
+    "end": 97.14
+   },
+   {
+    "w": "Gewinn.",
+    "start": 97.14,
+    "end": 97.5
+   }
+  ]
+ },
+ {
+  "start": 97.96,
+  "end": 101.34,
+  "text": "Ist es mangelhaft, ist er verloren und im Verlust.",
+  "words": [
+   {
+    "w": "Ist",
+    "start": 97.96,
+    "end": 98.28
+   },
+   {
+    "w": "es",
+    "start": 98.28,
+    "end": 98.46
+   },
+   {
+    "w": "mangelhaft,",
+    "start": 98.46,
+    "end": 99.08
+   },
+   {
+    "w": "ist",
+    "start": 99.5,
+    "end": 99.54
+   },
+   {
+    "w": "er",
+    "start": 99.54,
+    "end": 99.7
+   },
+   {
+    "w": "verloren",
+    "start": 99.7,
+    "end": 100.12
+   },
+   {
+    "w": "und",
+    "start": 100.12,
+    "end": 100.7
+   },
+   {
+    "w": "im",
+    "start": 100.7,
+    "end": 100.84
+   },
+   {
+    "w": "Verlust.",
+    "start": 100.84,
+    "end": 101.34
+   }
+  ]
+ },
+ {
+  "start": 101.86,
+  "end": 105.72,
+  "text": "Omar ibn al-Khattab, möge Allah mit ihm zufrieden sein, sagte,",
+  "words": [
+   {
+    "w": "Omar",
+    "start": 101.86,
+    "end": 102.22
+   },
+   {
+    "w": "ibn",
+    "start": 102.22,
+    "end": 102.52
+   },
+   {
+    "w": "al",
+    "start": 102.52,
+    "end": 102.68
+   },
+   {
+    "w": "-Khattab,",
+    "start": 102.68,
+    "end": 103.28
+   },
+   {
+    "w": "möge",
+    "start": 103.6,
+    "end": 103.8
+   },
+   {
+    "w": "Allah",
+    "start": 103.8,
+    "end": 104.1
+   },
+   {
+    "w": "mit",
+    "start": 104.1,
+    "end": 104.34
+   },
+   {
+    "w": "ihm",
+    "start": 104.34,
+    "end": 104.46
+   },
+   {
+    "w": "zufrieden",
+    "start": 104.46,
+    "end": 105.02
+   },
+   {
+    "w": "sein,",
+    "start": 105.02,
+    "end": 105.24
+   },
+   {
+    "w": "sagte,",
+    "start": 105.72,
+    "end": 105.72
+   }
+  ]
+ },
+ {
+  "start": 106.3,
+  "end": 109.54,
+  "text": "Wer das Gebet verlässt, hat keinen Anteil am Islam.",
+  "words": [
+   {
+    "w": "Wer",
+    "start": 106.3,
+    "end": 106.4
+   },
+   {
+    "w": "das",
+    "start": 106.4,
+    "end": 106.6
+   },
+   {
+    "w": "Gebet",
+    "start": 106.6,
+    "end": 106.96
+   },
+   {
+    "w": "verlässt,",
+    "start": 106.96,
+    "end": 107.7
+   },
+   {
+    "w": "hat",
+    "start": 107.88,
+    "end": 107.98
+   },
+   {
+    "w": "keinen",
+    "start": 107.98,
+    "end": 108.4
+   },
+   {
+    "w": "Anteil",
+    "start": 108.4,
+    "end": 108.98
+   },
+   {
+    "w": "am",
+    "start": 108.98,
+    "end": 109.16
+   },
+   {
+    "w": "Islam.",
+    "start": 109.16,
+    "end": 109.54
+   }
+  ]
+ },
+ {
+  "start": 110.10000000000001,
+  "end": 113.16,
+  "text": "Der Prophet, Allah segn und frieden auf ihm, sagte,",
+  "words": [
+   {
+    "w": "Der",
+    "start": 110.0,
+    "end": 110.32
+   },
+   {
+    "w": "Prophet,",
+    "start": 110.32,
+    "end": 110.7
+   },
+   {
+    "w": "Allah",
+    "start": 111.06,
+    "end": 111.46
+   },
+   {
+    "w": "segn",
+    "start": 111.46,
+    "end": 111.96
+   },
+   {
+    "w": "und",
+    "start": 111.96,
+    "end": 112.1
+   },
+   {
+    "w": "frieden",
+    "start": 112.1,
+    "end": 112.5
+   },
+   {
+    "w": "auf",
+    "start": 112.5,
+    "end": 112.66
+   },
+   {
+    "w": "ihm,",
+    "start": 112.66,
+    "end": 112.84
+   },
+   {
+    "w": "sagte,",
+    "start": 113.16,
+    "end": 113.16
+   }
+  ]
+ },
+ {
+  "start": 113.86,
+  "end": 114.48,
+  "text": "Was meint ihr?",
+  "words": [
+   {
+    "w": "Was",
+    "start": 113.86,
+    "end": 113.98
+   },
+   {
+    "w": "meint",
+    "start": 113.98,
+    "end": 114.28
+   },
+   {
+    "w": "ihr?",
+    "start": 114.28,
+    "end": 114.48
+   }
+  ]
+ },
+ {
+  "start": 115.06,
+  "end": 117.58,
+  "text": "Wenn vor der Tür eines von euch ein Fluss wäre,",
+  "words": [
+   {
+    "w": "Wenn",
+    "start": 115.06,
+    "end": 115.16
+   },
+   {
+    "w": "vor",
+    "start": 115.16,
+    "end": 115.38
+   },
+   {
+    "w": "der",
+    "start": 115.38,
+    "end": 115.5
+   },
+   {
+    "w": "Tür",
+    "start": 115.5,
+    "end": 115.76
+   },
+   {
+    "w": "eines",
+    "start": 115.76,
+    "end": 116.12
+   },
+   {
+    "w": "von",
+    "start": 116.12,
+    "end": 116.38
+   },
+   {
+    "w": "euch",
+    "start": 116.38,
+    "end": 116.62
+   },
+   {
+    "w": "ein",
+    "start": 116.62,
+    "end": 116.84
+   },
+   {
+    "w": "Fluss",
+    "start": 116.84,
+    "end": 117.24
+   },
+   {
+    "w": "wäre,",
+    "start": 117.24,
+    "end": 117.58
+   }
+  ]
+ },
+ {
+  "start": 117.92,
+  "end": 120.24,
+  "text": "indem er sich jeden Tag fünfmal wäscht,",
+  "words": [
+   {
+    "w": "indem",
+    "start": 117.92,
+    "end": 118.06
+   },
+   {
+    "w": "er",
+    "start": 118.06,
+    "end": 118.28
+   },
+   {
+    "w": "sich",
+    "start": 118.28,
+    "end": 118.42
+   },
+   {
+    "w": "jeden",
+    "start": 118.42,
+    "end": 118.74
+   },
+   {
+    "w": "Tag",
+    "start": 118.74,
+    "end": 119.12
+   },
+   {
+    "w": "fünfmal",
+    "start": 119.12,
+    "end": 119.78
+   },
+   {
+    "w": "wäscht,",
+    "start": 119.78,
+    "end": 120.24
+   }
+  ]
+ },
+ {
+  "start": 120.58,
+  "end": 122.68,
+  "text": "bliebe dann etwas von seinem Schmutz an ihm?",
+  "words": [
+   {
+    "w": "bliebe",
+    "start": 120.58,
+    "end": 120.8
+   },
+   {
+    "w": "dann",
+    "start": 120.8,
+    "end": 120.96
+   },
+   {
+    "w": "etwas",
+    "start": 120.96,
+    "end": 121.28
+   },
+   {
+    "w": "von",
+    "start": 121.28,
+    "end": 121.54
+   },
+   {
+    "w": "seinem",
+    "start": 121.54,
+    "end": 121.78
+   },
+   {
+    "w": "Schmutz",
+    "start": 121.78,
+    "end": 122.24
+   },
+   {
+    "w": "an",
+    "start": 122.24,
+    "end": 122.46
+   },
+   {
+    "w": "ihm?",
+    "start": 122.46,
+    "end": 122.68
+   }
+  ]
+ },
+ {
+  "start": 123.16,
+  "end": 125.7,
+  "text": "Sie sagten, nichts bliebe von seinem Schmutz.",
+  "words": [
+   {
+    "w": "Sie",
+    "start": 123.16,
+    "end": 123.3
+   },
+   {
+    "w": "sagten,",
+    "start": 123.3,
+    "end": 123.84
+   },
+   {
+    "w": "nichts",
+    "start": 124.26,
+    "end": 124.44
+   },
+   {
+    "w": "bliebe",
+    "start": 124.44,
+    "end": 124.88
+   },
+   {
+    "w": "von",
+    "start": 124.88,
+    "end": 125.06
+   },
+   {
+    "w": "seinem",
+    "start": 125.06,
+    "end": 125.3
+   },
+   {
+    "w": "Schmutz.",
+    "start": 125.3,
+    "end": 125.7
+   }
+  ]
+ },
+ {
+  "start": 126.22,
+  "end": 129.3,
+  "text": "Er sagte, so ist es mit den fünf Gebeten.",
+  "words": [
+   {
+    "w": "Er",
+    "start": 126.22,
+    "end": 126.38
+   },
+   {
+    "w": "sagte,",
+    "start": 126.38,
+    "end": 126.74
+   },
+   {
+    "w": "so",
+    "start": 127.4,
+    "end": 127.56
+   },
+   {
+    "w": "ist",
+    "start": 127.56,
+    "end": 127.84
+   },
+   {
+    "w": "es",
+    "start": 127.84,
+    "end": 128.02
+   },
+   {
+    "w": "mit",
+    "start": 128.02,
+    "end": 128.18
+   },
+   {
+    "w": "den",
+    "start": 128.18,
+    "end": 128.32
+   },
+   {
+    "w": "fünf",
+    "start": 128.32,
+    "end": 128.66
+   },
+   {
+    "w": "Gebeten.",
+    "start": 128.66,
+    "end": 129.3
+   }
+  ]
+ },
+ {
+  "start": 129.74,
+  "end": 131.66,
+  "text": "Allah tilgt damit die Sünden.",
+  "words": [
+   {
+    "w": "Allah",
+    "start": 129.74,
+    "end": 130.12
+   },
+   {
+    "w": "tilgt",
+    "start": 130.12,
+    "end": 130.72
+   },
+   {
+    "w": "damit",
+    "start": 130.72,
+    "end": 131.08
+   },
+   {
+    "w": "die",
+    "start": 131.08,
+    "end": 131.34
+   },
+   {
+    "w": "Sünden.",
+    "start": 131.34,
+    "end": 131.66
+   }
+  ]
+ },
+ {
+  "start": 132.32,
+  "end": 134.74,
+  "text": "Und das Schönste, die Tür ist offen.",
+  "words": [
+   {
+    "w": "Und",
+    "start": 132.32,
+    "end": 132.5
+   },
+   {
+    "w": "das",
+    "start": 132.5,
+    "end": 132.7
+   },
+   {
+    "w": "Schönste,",
+    "start": 132.7,
+    "end": 133.14
+   },
+   {
+    "w": "die",
+    "start": 133.66,
+    "end": 133.78
+   },
+   {
+    "w": "Tür",
+    "start": 133.78,
+    "end": 134.1
+   },
+   {
+    "w": "ist",
+    "start": 134.1,
+    "end": 134.36
+   },
+   {
+    "w": "offen.",
+    "start": 134.36,
+    "end": 134.74
+   }
+  ]
+ },
+ {
+  "start": 135.24,
+  "end": 136.98,
+  "text": "Du kannst heute neu anfangen.",
+  "words": [
+   {
+    "w": "Du",
+    "start": 135.24,
+    "end": 135.36
+   },
+   {
+    "w": "kannst",
+    "start": 135.36,
+    "end": 135.56
+   },
+   {
+    "w": "heute",
+    "start": 135.56,
+    "end": 136.0
+   },
+   {
+    "w": "neu",
+    "start": 136.0,
+    "end": 136.42
+   },
+   {
+    "w": "anfangen.",
+    "start": 136.42,
+    "end": 136.98
+   }
+  ]
+ },
+ {
+  "start": 137.5,
+  "end": 141.32,
+  "text": "Allah nimmt den an, der aufrichtig zu ihm zurückkehrt.",
+  "words": [
+   {
+    "w": "Allah",
+    "start": 137.5,
+    "end": 137.82
+   },
+   {
+    "w": "nimmt",
+    "start": 137.82,
+    "end": 138.26
+   },
+   {
+    "w": "den",
+    "start": 138.26,
+    "end": 138.56
+   },
+   {
+    "w": "an,",
+    "start": 138.56,
+    "end": 138.88
+   },
+   {
+    "w": "der",
+    "start": 139.16,
+    "end": 139.24
+   },
+   {
+    "w": "aufrichtig",
+    "start": 139.24,
+    "end": 140.04
+   },
+   {
+    "w": "zu",
+    "start": 140.04,
+    "end": 140.22
+   },
+   {
+    "w": "ihm",
+    "start": 140.22,
+    "end": 140.36
+   },
+   {
+    "w": "zurückkehrt.",
+    "start": 140.36,
+    "end": 141.32
+   }
+  ]
+ },
+ {
+  "start": 141.44,
+  "end": 144.62,
+  "text": "Fang mit dem nächsten Gebet an, zu seiner Zeit.",
+  "words": [
+   {
+    "w": "Fang",
+    "start": 141.44,
+    "end": 141.76
+   },
+   {
+    "w": "mit",
+    "start": 141.76,
+    "end": 141.96
+   },
+   {
+    "w": "dem",
+    "start": 141.96,
+    "end": 142.12
+   },
+   {
+    "w": "nächsten",
+    "start": 142.12,
+    "end": 142.44
+   },
+   {
+    "w": "Gebet",
+    "start": 142.44,
+    "end": 142.86
+   },
+   {
+    "w": "an,",
+    "start": 142.86,
+    "end": 143.14
+   },
+   {
+    "w": "zu",
+    "start": 143.62,
+    "end": 143.78
+   },
+   {
+    "w": "seiner",
+    "start": 143.78,
+    "end": 144.08
+   },
+   {
+    "w": "Zeit.",
+    "start": 144.08,
+    "end": 144.62
+   }
+  ]
+ },
+ {
+  "start": 145.14,
+  "end": 145.98,
+  "text": "Dann mit dem danach.",
+  "words": [
+   {
+    "w": "Dann",
+    "start": 145.14,
+    "end": 145.24
+   },
+   {
+    "w": "mit",
+    "start": 145.24,
+    "end": 145.48
+   },
+   {
+    "w": "dem",
+    "start": 145.48,
+    "end": 145.6
+   },
+   {
+    "w": "danach.",
+    "start": 145.6,
+    "end": 145.98
+   }
+  ]
+ },
+ {
+  "start": 146.64,
+  "end": 148.82,
+  "text": "Stell dir die Gebetzeiten auf dem Handy ein",
+  "words": [
+   {
+    "w": "Stell",
+    "start": 146.64,
+    "end": 146.8
+   },
+   {
+    "w": "dir",
+    "start": 146.8,
+    "end": 146.94
+   },
+   {
+    "w": "die",
+    "start": 146.94,
+    "end": 147.08
+   },
+   {
+    "w": "Gebetzeiten",
+    "start": 147.08,
+    "end": 147.88
+   },
+   {
+    "w": "auf",
+    "start": 147.88,
+    "end": 148.04
+   },
+   {
+    "w": "dem",
+    "start": 148.04,
+    "end": 148.18
+   },
+   {
+    "w": "Handy",
+    "start": 148.18,
+    "end": 148.5
+   },
+   {
+    "w": "ein",
+    "start": 148.5,
+    "end": 148.82
+   }
+  ]
+ },
+ {
+  "start": 148.82,
+  "end": 151.56,
+  "text": "und komm in die Moschee, wann immer du kannst.",
+  "words": [
+   {
+    "w": "und",
+    "start": 148.82,
+    "end": 149.32
+   },
+   {
+    "w": "komm",
+    "start": 149.32,
+    "end": 149.58
+   },
+   {
+    "w": "in",
+    "start": 149.58,
+    "end": 149.76
+   },
+   {
+    "w": "die",
+    "start": 149.76,
+    "end": 149.88
+   },
+   {
+    "w": "Moschee,",
+    "start": 149.88,
+    "end": 150.36
+   },
+   {
+    "w": "wann",
+    "start": 150.48,
+    "end": 150.72
+   },
+   {
+    "w": "immer",
+    "start": 150.72,
+    "end": 151.08
+   },
+   {
+    "w": "du",
+    "start": 151.08,
+    "end": 151.22
+   },
+   {
+    "w": "kannst.",
+    "start": 151.22,
+    "end": 151.56
+   }
+  ]
+ },
+ {
+  "start": 152.12,
+  "end": 153.1,
+  "text": "Wir sind für dich da.",
+  "words": [
+   {
+    "w": "Wir",
+    "start": 152.12,
+    "end": 152.26
+   },
+   {
+    "w": "sind",
+    "start": 152.26,
+    "end": 152.44
+   },
+   {
+    "w": "für",
+    "start": 152.44,
+    "end": 152.66
+   },
+   {
+    "w": "dich",
+    "start": 152.66,
+    "end": 152.82
+   },
+   {
+    "w": "da.",
+    "start": 152.82,
+    "end": 153.1
+   }
+  ]
+ },
+ {
+  "start": 153.74,
+  "end": 154.1,
+  "text": "Hörst du?",
+  "words": [
+   {
+    "w": "Hörst",
+    "start": 153.74,
+    "end": 153.96
+   },
+   {
+    "w": "du?",
+    "start": 153.96,
+    "end": 154.1
+   }
+  ]
+ },
+ {
+  "start": 154.48,
+  "end": 155.54,
+  "text": "Die Irama beginnt.",
+  "words": [
+   {
+    "w": "Die",
+    "start": 154.48,
+    "end": 154.62
+   },
+   {
+    "w": "Irama",
+    "start": 154.62,
+    "end": 154.96
+   },
+   {
+    "w": "beginnt.",
+    "start": 154.96,
+    "end": 155.54
+   }
+  ]
+ },
+ {
+  "start": 155.94,
+  "end": 157.4,
+  "text": "Komm, stell dich neben mich.",
+  "words": [
+   {
+    "w": "Komm,",
+    "start": 155.94,
+    "end": 156.08
+   },
+   {
+    "w": "stell",
+    "start": 156.52,
+    "end": 156.66
+   },
+   {
+    "w": "dich",
+    "start": 156.66,
+    "end": 156.82
+   },
+   {
+    "w": "neben",
+    "start": 156.82,
+    "end": 157.06
+   },
+   {
+    "w": "mich.",
+    "start": 157.06,
+    "end": 157.4
+   }
+  ]
+ },
+ {
+  "start": 157.94,
+  "end": 159.36,
+  "text": "Und du, der das hier hört.",
+  "words": [
+   {
+    "w": "Und",
+    "start": 157.94,
+    "end": 158.06
+   },
+   {
+    "w": "du,",
+    "start": 158.06,
+    "end": 158.36
+   },
+   {
+    "w": "der",
+    "start": 158.62,
+    "end": 158.68
+   },
+   {
+    "w": "das",
+    "start": 158.68,
+    "end": 158.88
+   },
+   {
+    "w": "hier",
+    "start": 158.88,
+    "end": 159.02
+   },
+   {
+    "w": "hört.",
+    "start": 159.02,
+    "end": 159.36
+   }
+  ]
+ },
+ {
+  "start": 159.92,
+  "end": 161.86,
+  "text": "Der nächste Awan wartet auf dich.",
+  "words": [
+   {
+    "w": "Der",
+    "start": 159.92,
+    "end": 160.0
+   },
+   {
+    "w": "nächste",
+    "start": 160.0,
+    "end": 160.42
+   },
+   {
+    "w": "Awan",
+    "start": 160.42,
+    "end": 160.98
+   },
+   {
+    "w": "wartet",
+    "start": 160.98,
+    "end": 161.42
+   },
+   {
+    "w": "auf",
+    "start": 161.42,
+    "end": 161.66
+   },
+   {
+    "w": "dich.",
+    "start": 161.66,
+    "end": 161.86
+   }
+  ]
+ }
+]

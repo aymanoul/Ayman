@@ -521,3 +521,12 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - `tools/sfx.py` → 17 Effekte in `assets/sfx/`, Übersicht in **`docs/phase5.md`**, Hörprobe `out/phase5/geraeusche-hoerprobe.mp3`.
 - **Wartet auf Ayman:** ElevenLabs-Dateien (A, B), Adhan, Iqāma. Danach: Zeilen schneiden, Zeitplan der Shots an die echten
   Längen anpassen, Lippenbewegung aus der Lautstärke, dann 15-Sekunden-Probe (Hook + Straße) für Phase 7.
+
+### 14i. Tonspuren eingegangen – passen nicht zum Drehbuch (10.11.2026)
+
+- Befund ausführlich in `docs/phase5.md` (Abschnitt „Eingang der Tonspuren“). Kurz: Stimmen A/B folgen einem anderen Text,
+  enthalten ungeprüfte Stellen (ʿUmar-Aussage, Tirmidhī-413-Fassung), sind ≈ 3:25 lang. Adhan/Iqāma sind YouTube-Aufnahmen
+  (Rechte offen, Iqāma unvollständig).
+- Umgebung „Ayman“ zusätzlich freigegeben: huggingface.co, cdn-lfs.huggingface.co, cdn-lfs.hf.co, cas-bridge/cas-server/
+  transfer.xethub.hf.co, us/eu.aws.cdn.hf.co (Modell für faster-whisper). PyAV-Problem: Audio selbst mit ffmpeg dekodieren.
+- **Wartet auf Ayman:** Entscheidung, ob neu aufgenommen wird (freigegebener Sprechertext) oder der neue Text angepasst wird.

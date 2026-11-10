@@ -1,0 +1,721 @@
+[
+ {
+  "start": 0.0,
+  "end": 3.74,
+  "text": "Wa alaykum As-Salaam. Ähm, ich bin gerade ein bisschen in Eile.",
+  "words": [
+   {
+    "w": "Wa",
+    "start": 0.0,
+    "end": 0.22
+   },
+   {
+    "w": "alaykum",
+    "start": 0.22,
+    "end": 0.56
+   },
+   {
+    "w": "As",
+    "start": 0.56,
+    "end": 0.74
+   },
+   {
+    "w": "-Salaam.",
+    "start": 0.74,
+    "end": 1.12
+   },
+   {
+    "w": "Ähm,",
+    "start": 1.52,
+    "end": 1.86
+   },
+   {
+    "w": "ich",
+    "start": 2.22,
+    "end": 2.3
+   },
+   {
+    "w": "bin",
+    "start": 2.3,
+    "end": 2.44
+   },
+   {
+    "w": "gerade",
+    "start": 2.44,
+    "end": 2.72
+   },
+   {
+    "w": "ein",
+    "start": 2.72,
+    "end": 2.92
+   },
+   {
+    "w": "bisschen",
+    "start": 2.92,
+    "end": 3.2
+   },
+   {
+    "w": "in",
+    "start": 3.2,
+    "end": 3.42
+   },
+   {
+    "w": "Eile.",
+    "start": 3.42,
+    "end": 3.74
+   }
+  ]
+ },
+ {
+  "start": 4.36,
+  "end": 8.98,
+  "text": "Na gut, aber ich muss danach gleich weiter. Ich weiß ja, dass ich beten soll.",
+  "words": [
+   {
+    "w": "Na",
+    "start": 4.36,
+    "end": 4.6
+   },
+   {
+    "w": "gut,",
+    "start": 4.6,
+    "end": 4.82
+   },
+   {
+    "w": "aber",
+    "start": 5.46,
+    "end": 5.7
+   },
+   {
+    "w": "ich",
+    "start": 5.7,
+    "end": 5.82
+   },
+   {
+    "w": "muss",
+    "start": 5.82,
+    "end": 5.96
+   },
+   {
+    "w": "danach",
+    "start": 5.96,
+    "end": 6.24
+   },
+   {
+    "w": "gleich",
+    "start": 6.24,
+    "end": 6.56
+   },
+   {
+    "w": "weiter.",
+    "start": 6.56,
+    "end": 6.98
+   },
+   {
+    "w": "Ich",
+    "start": 7.52,
+    "end": 7.66
+   },
+   {
+    "w": "weiß",
+    "start": 7.66,
+    "end": 7.9
+   },
+   {
+    "w": "ja,",
+    "start": 7.9,
+    "end": 8.1
+   },
+   {
+    "w": "dass",
+    "start": 8.14,
+    "end": 8.24
+   },
+   {
+    "w": "ich",
+    "start": 8.24,
+    "end": 8.4
+   },
+   {
+    "w": "beten",
+    "start": 8.4,
+    "end": 8.76
+   },
+   {
+    "w": "soll.",
+    "start": 8.76,
+    "end": 8.98
+   }
+  ]
+ },
+ {
+  "start": 9.48,
+  "end": 12.08,
+  "text": "Aber ich hole es oft später nach. Reicht das nicht?",
+  "words": [
+   {
+    "w": "Aber",
+    "start": 9.48,
+    "end": 9.62
+   },
+   {
+    "w": "ich",
+    "start": 9.62,
+    "end": 9.78
+   },
+   {
+    "w": "hole",
+    "start": 9.78,
+    "end": 9.92
+   },
+   {
+    "w": "es",
+    "start": 9.92,
+    "end": 10.12
+   },
+   {
+    "w": "oft",
+    "start": 10.12,
+    "end": 10.28
+   },
+   {
+    "w": "später",
+    "start": 10.28,
+    "end": 10.6
+   },
+   {
+    "w": "nach.",
+    "start": 10.6,
+    "end": 11.08
+   },
+   {
+    "w": "Reicht",
+    "start": 11.5,
+    "end": 11.7
+   },
+   {
+    "w": "das",
+    "start": 11.7,
+    "end": 11.84
+   },
+   {
+    "w": "nicht?",
+    "start": 11.84,
+    "end": 12.08
+   }
+  ]
+ },
+ {
+  "start": 12.58,
+  "end": 16.82,
+  "text": "Aber Allah ist doch barmherzig. Er versteht doch, dass ich Schule und Arbeit habe.",
+  "words": [
+   {
+    "w": "Aber",
+    "start": 12.58,
+    "end": 12.74
+   },
+   {
+    "w": "Allah",
+    "start": 12.74,
+    "end": 13.08
+   },
+   {
+    "w": "ist",
+    "start": 13.08,
+    "end": 13.3
+   },
+   {
+    "w": "doch",
+    "start": 13.3,
+    "end": 13.46
+   },
+   {
+    "w": "barmherzig.",
+    "start": 13.46,
+    "end": 14.12
+   },
+   {
+    "w": "Er",
+    "start": 14.58,
+    "end": 14.68
+   },
+   {
+    "w": "versteht",
+    "start": 14.68,
+    "end": 15.1
+   },
+   {
+    "w": "doch,",
+    "start": 15.1,
+    "end": 15.28
+   },
+   {
+    "w": "dass",
+    "start": 15.38,
+    "end": 15.46
+   },
+   {
+    "w": "ich",
+    "start": 15.46,
+    "end": 15.62
+   },
+   {
+    "w": "Schule",
+    "start": 15.62,
+    "end": 15.94
+   },
+   {
+    "w": "und",
+    "start": 15.94,
+    "end": 16.14
+   },
+   {
+    "w": "Arbeit",
+    "start": 16.14,
+    "end": 16.4
+   },
+   {
+    "w": "habe.",
+    "start": 16.4,
+    "end": 16.82
+   }
+  ]
+ },
+ {
+  "start": 17.34,
+  "end": 20.56,
+  "text": "Das wusste ich nicht. Was ist denn, wenn man es ganz lässt?",
+  "words": [
+   {
+    "w": "Das",
+    "start": 17.34,
+    "end": 17.54
+   },
+   {
+    "w": "wusste",
+    "start": 17.54,
+    "end": 17.86
+   },
+   {
+    "w": "ich",
+    "start": 17.86,
+    "end": 18.02
+   },
+   {
+    "w": "nicht.",
+    "start": 18.02,
+    "end": 18.24
+   },
+   {
+    "w": "Was",
+    "start": 18.9,
+    "end": 19.02
+   },
+   {
+    "w": "ist",
+    "start": 19.02,
+    "end": 19.22
+   },
+   {
+    "w": "denn,",
+    "start": 19.22,
+    "end": 19.42
+   },
+   {
+    "w": "wenn",
+    "start": 19.62,
+    "end": 19.7
+   },
+   {
+    "w": "man",
+    "start": 19.7,
+    "end": 19.84
+   },
+   {
+    "w": "es",
+    "start": 19.84,
+    "end": 20.0
+   },
+   {
+    "w": "ganz",
+    "start": 20.0,
+    "end": 20.28
+   },
+   {
+    "w": "lässt?",
+    "start": 20.28,
+    "end": 20.56
+   }
+  ]
+ },
+ {
+  "start": 21.12,
+  "end": 25.4,
+  "text": "Gibt es dazu auch einen Vers im Quran? Das macht mir ehrlich ein bisschen Angst.",
+  "words": [
+   {
+    "w": "Gibt",
+    "start": 21.12,
+    "end": 21.26
+   },
+   {
+    "w": "es",
+    "start": 21.26,
+    "end": 21.42
+   },
+   {
+    "w": "dazu",
+    "start": 21.42,
+    "end": 21.76
+   },
+   {
+    "w": "auch",
+    "start": 21.76,
+    "end": 22.0
+   },
+   {
+    "w": "einen",
+    "start": 22.0,
+    "end": 22.26
+   },
+   {
+    "w": "Vers",
+    "start": 22.26,
+    "end": 22.5
+   },
+   {
+    "w": "im",
+    "start": 22.5,
+    "end": 22.72
+   },
+   {
+    "w": "Quran?",
+    "start": 22.72,
+    "end": 23.02
+   },
+   {
+    "w": "Das",
+    "start": 23.64,
+    "end": 23.84
+   },
+   {
+    "w": "macht",
+    "start": 23.84,
+    "end": 24.04
+   },
+   {
+    "w": "mir",
+    "start": 24.04,
+    "end": 24.22
+   },
+   {
+    "w": "ehrlich",
+    "start": 24.22,
+    "end": 24.5
+   },
+   {
+    "w": "ein",
+    "start": 24.5,
+    "end": 24.72
+   },
+   {
+    "w": "bisschen",
+    "start": 24.72,
+    "end": 25.0
+   },
+   {
+    "w": "Angst.",
+    "start": 25.0,
+    "end": 25.4
+   }
+  ]
+ },
+ {
+  "start": 25.900000000000002,
+  "end": 28.32,
+  "text": "Aber ich bin oft so müde und abgelenkt.",
+  "words": [
+   {
+    "w": "Aber",
+    "start": 25.9,
+    "end": 26.18
+   },
+   {
+    "w": "ich",
+    "start": 26.18,
+    "end": 26.34
+   },
+   {
+    "w": "bin",
+    "start": 26.34,
+    "end": 26.46
+   },
+   {
+    "w": "oft",
+    "start": 26.46,
+    "end": 26.68
+   },
+   {
+    "w": "so",
+    "start": 26.68,
+    "end": 26.96
+   },
+   {
+    "w": "müde",
+    "start": 26.96,
+    "end": 27.46
+   },
+   {
+    "w": "und",
+    "start": 27.46,
+    "end": 27.62
+   },
+   {
+    "w": "abgelenkt.",
+    "start": 27.62,
+    "end": 28.32
+   }
+  ]
+ },
+ {
+  "start": 28.66,
+  "end": 31.22,
+  "text": "Wie soll ich das schaffen? Fünfmal am Tag.",
+  "words": [
+   {
+    "w": "Wie",
+    "start": 28.66,
+    "end": 28.76
+   },
+   {
+    "w": "soll",
+    "start": 28.76,
+    "end": 28.94
+   },
+   {
+    "w": "ich",
+    "start": 28.94,
+    "end": 29.08
+   },
+   {
+    "w": "das",
+    "start": 29.08,
+    "end": 29.24
+   },
+   {
+    "w": "schaffen?",
+    "start": 29.24,
+    "end": 29.66
+   },
+   {
+    "w": "Fünfmal",
+    "start": 30.1,
+    "end": 30.62
+   },
+   {
+    "w": "am",
+    "start": 30.62,
+    "end": 30.82
+   },
+   {
+    "w": "Tag.",
+    "start": 30.82,
+    "end": 31.22
+   }
+  ]
+ },
+ {
+  "start": 31.58,
+  "end": 33.18,
+  "text": "Dann bleibt wirklich nichts mehr übrig.",
+  "words": [
+   {
+    "w": "Dann",
+    "start": 31.58,
+    "end": 31.82
+   },
+   {
+    "w": "bleibt",
+    "start": 31.82,
+    "end": 32.02
+   },
+   {
+    "w": "wirklich",
+    "start": 32.02,
+    "end": 32.36
+   },
+   {
+    "w": "nichts",
+    "start": 32.36,
+    "end": 32.68
+   },
+   {
+    "w": "mehr",
+    "start": 32.68,
+    "end": 32.88
+   },
+   {
+    "w": "übrig.",
+    "start": 32.88,
+    "end": 33.18
+   }
+  ]
+ },
+ {
+  "start": 33.8,
+  "end": 35.56,
+  "text": "Und wie fange ich am besten wieder an?",
+  "words": [
+   {
+    "w": "Und",
+    "start": 33.8,
+    "end": 33.9
+   },
+   {
+    "w": "wie",
+    "start": 33.9,
+    "end": 34.22
+   },
+   {
+    "w": "fange",
+    "start": 34.22,
+    "end": 34.48
+   },
+   {
+    "w": "ich",
+    "start": 34.48,
+    "end": 34.64
+   },
+   {
+    "w": "am",
+    "start": 34.64,
+    "end": 34.78
+   },
+   {
+    "w": "besten",
+    "start": 34.78,
+    "end": 35.04
+   },
+   {
+    "w": "wieder",
+    "start": 35.04,
+    "end": 35.28
+   },
+   {
+    "w": "an?",
+    "start": 35.28,
+    "end": 35.56
+   }
+  ]
+ },
+ {
+  "start": 36.04,
+  "end": 38.22,
+  "text": "Danke, dass du mich nicht einfach hast gehen lassen.",
+  "words": [
+   {
+    "w": "Danke,",
+    "start": 36.04,
+    "end": 36.34
+   },
+   {
+    "w": "dass",
+    "start": 36.66,
+    "end": 36.7
+   },
+   {
+    "w": "du",
+    "start": 36.7,
+    "end": 36.84
+   },
+   {
+    "w": "mich",
+    "start": 36.84,
+    "end": 36.98
+   },
+   {
+    "w": "nicht",
+    "start": 36.98,
+    "end": 37.14
+   },
+   {
+    "w": "einfach",
+    "start": 37.14,
+    "end": 37.48
+   },
+   {
+    "w": "hast",
+    "start": 37.48,
+    "end": 37.72
+   },
+   {
+    "w": "gehen",
+    "start": 37.72,
+    "end": 37.9
+   },
+   {
+    "w": "lassen.",
+    "start": 37.9,
+    "end": 38.22
+   }
+  ]
+ },
+ {
+  "start": 38.74,
+  "end": 42.42,
+  "text": "Ich bin bereit. Von heute an zu seiner Zeit. InshaAllah.",
+  "words": [
+   {
+    "w": "Ich",
+    "start": 38.74,
+    "end": 38.84
+   },
+   {
+    "w": "bin",
+    "start": 38.84,
+    "end": 38.96
+   },
+   {
+    "w": "bereit.",
+    "start": 38.96,
+    "end": 39.32
+   },
+   {
+    "w": "Von",
+    "start": 39.8,
+    "end": 39.92
+   },
+   {
+    "w": "heute",
+    "start": 39.92,
+    "end": 40.22
+   },
+   {
+    "w": "an",
+    "start": 40.22,
+    "end": 40.46
+   },
+   {
+    "w": "zu",
+    "start": 40.46,
+    "end": 40.74
+   },
+   {
+    "w": "seiner",
+    "start": 40.74,
+    "end": 41.02
+   },
+   {
+    "w": "Zeit.",
+    "start": 41.02,
+    "end": 41.5
+   },
+   {
+    "w": "InshaAllah.",
+    "start": 41.86,
+    "end": 42.42
+   }
+  ]
+ }
+]
