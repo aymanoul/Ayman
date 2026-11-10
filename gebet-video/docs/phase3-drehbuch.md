@@ -74,10 +74,10 @@ Keine Musik. Geräusche immer deutlich leiser als die Stimmen.
 **Q1 · QURAN** – Arabisch (Auszug): إِنَّ ٱلصَّلَوٰةَ كَانَتۡ عَلَى ٱلۡمُؤۡمِنِينَ كِتَٰبٗا مَّوۡقُوتٗا
 Deutsch: „Das Gebet ist den Gläubigen zu bestimmten Zeiten vorgeschrieben.“ · Sura an-Nisāʾ, Vers 103 (Auszug)
 
-**Q4 · QURAN** – Arabisch: فَوَيۡلٞ لِّلۡمُصَلِّينَ ۝ ٱلَّذِينَ هُمۡ عَن صَلَاتِهِمۡ سَاهُونَ
+**Q4 · QURAN** – Arabisch (Vers 4 und 5 je eine Zeile): فَوَيۡلٞ لِّلۡمُصَلِّينَ / ٱلَّذِينَ هُمۡ عَن صَلَاتِهِمۡ سَاهُونَ
 Deutsch: „Wehe nun den Betenden, denjenigen, die auf ihre Gebete nicht achten,“ · Sura al-Māʿūn, Vers 4–5
 
-**Q5 · QURAN** – Arabisch: مَا سَلَكَكُمۡ فِي سَقَرَ ۝ قَالُواْ لَمۡ نَكُ مِنَ ٱلۡمُصَلِّينَ
+**Q5 · QURAN** – Arabisch (Vers 42 und 43 je eine Zeile): مَا سَلَكَكُمۡ فِي سَقَرَ / قَالُواْ لَمۡ نَكُ مِنَ ٱلۡمُصَلِّينَ
 Deutsch: „Was hat euch in Saqar geführt? Sie werden sagen: Wir gehörten nicht zu denjenigen, die beteten,“ · Sura al-Muddaththir, Vers 42–43
 
 **H2 · HADITH** – „Zwischen einer Person und dem Götzendienst (Schirk) und dem Unglauben (Kufr) steht die Unterlassung des Gebets.“

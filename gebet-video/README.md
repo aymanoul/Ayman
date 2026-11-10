@@ -63,7 +63,7 @@ Chromium läuft mit Software-WebGL (`--use-gl=angle --use-angle=swiftshader --en
 - [x] Phase 1 – Figurenblätter (freigegeben: ohne Augenbrauen, Hautton mittel, A Bart mittel, B Bart kurz)
 - [x] Phase 2 – Ortsblätter (abgenommen)
 - [x] Phase 3 – Drehbuch (freigegeben, Hook-Variante 1)
-- [x] Phase 4 – Storyboard (wartet auf Freigabe)
+- [x] Phase 4 – Storyboard (freigegeben)
 - [ ] Phase 5 – Ton
 - [ ] Phase 6 – Einblendungen
 - [ ] Phase 7 – Animation und Rendern

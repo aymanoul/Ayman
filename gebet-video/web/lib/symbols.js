@@ -88,16 +88,16 @@ export function riverProp({ x0 = -9, x1 = 9, z0 = 1.6, z1 = 3.5, y = 0.08 } = {}
 
 // Fünf schmale Lichtstriche als Bogen ÜBER der Wanduhr (Tageslauf: Fajr bis Isha).
 // Bewusst keine runden Punkte: zwei helle Kreise über einem runden Zifferblatt könnten wie ein Gesicht wirken.
-export function prayerDots(width = 1.0) {
+export function prayerDots(width = 0.8) {
   const g = new THREE.Group();
   for (let i = 0; i < 5; i++) {
-    const x = -width / 2 + (i / 4) * width, y = 0.3 + 0.12 * Math.sin((Math.PI * i) / 4);
-    const bar = new THREE.Mesh(new THREE.PlaneGeometry(0.022, 0.11), new THREE.MeshBasicMaterial({ color: '#ffe9a8' }));
-    bar.position.set(x, y, 0.08);
-    bar.rotation.z = -((i - 2) / 2) * 0.35;           // Striche zeigen leicht vom Bogenmittelpunkt weg
+    const x = -width / 2 + (i / 4) * width, y = 0.32 + 0.14 * Math.sin((Math.PI * i) / 4);
+    const rot = -((i - 2) / 2) * 0.4;                // Striche zeigen leicht vom Bogenmittelpunkt weg (wie Strahlen)
+    const bar = new THREE.Mesh(new THREE.PlaneGeometry(0.03, 0.17), new THREE.MeshBasicMaterial({ color: '#f2c45a' }));
+    bar.position.set(x, y, 0.08); bar.rotation.z = rot;
     g.add(bar);
-    const glow = new THREE.Mesh(new THREE.PlaneGeometry(0.07, 0.2), new THREE.MeshBasicMaterial({ map: glowTexture(), color: '#ffd27a', transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending, depthWrite: false }));
-    glow.position.set(x, y, 0.085); glow.rotation.z = bar.rotation.z; glow.renderOrder = 3;
+    const glow = new THREE.Mesh(new THREE.PlaneGeometry(0.05, 0.22), new THREE.MeshBasicMaterial({ map: glowTexture(), color: '#ffd27a', transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending, depthWrite: false }));
+    glow.position.set(x, y, 0.085); glow.rotation.z = rot; glow.renderOrder = 3;
     g.add(glow);
   }
   return g;

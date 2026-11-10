@@ -1,4 +1,4 @@
-# Phase 4 – Shotliste
+# Phase 4 – Shotliste (FREIGEGEBEN von Ayman am 10.11.2026)
 
 Erzeugt aus `web/sheets/board.js`. Zeiten sind Schätzungen, sie werden in Phase 5/7 an die echten Aufnahmen angepasst.
 

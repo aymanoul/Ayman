@@ -70,7 +70,7 @@ export const SHOTS = [
     scene: 'in', figs: [{ ...A_SIT, pose: 'sitzenSpricht' }, { ...B_SIT, pose: 'sitzen' }],
     cam: { on: 'A', part: 'head', dist: 1.3, yaw: -0.2, up: -0.08, fov: 38, lookUp: -0.12 } },
   { id: 'S18', teil: 3, t: 2.5, zeile: 'A05', kamera: 'Detail Wanduhr, leichter Zoom', handlung: 'Zeiger springen, fünf Lichtstriche im Bogen (Tageslauf) erscheinen über der Uhr', einbl: 'QURAN-Karte Q1',
-    scene: 'in', figs: [], fx: ['clockDots'], cam: { pos: [-1.55, 2.0, -4.6], look: [-1.69, 2.2, -6], fov: 40 } },
+    scene: 'in', figs: [], fx: ['clockDots'], cam: { pos: [-1.62, 2.05, -4.15], look: [-1.69, 2.3, -6], fov: 44 } },
   { id: 'S19', teil: 3, t: 2.5, zeile: 'B05', kamera: 'über die Schulter von A auf B', handlung: 'B zuckt mit den Schultern', einbl: 'Untertitel',
     scene: 'in', figs: [{ ...A_SIT, pose: 'sitzen' }, { ...B_SIT, pose: sitHead([0, 0.2, 0.08], { shrug: 1, mouth: 'half' }) }],
     cam: { over: 'A', at: 'B', fov: 34 } },

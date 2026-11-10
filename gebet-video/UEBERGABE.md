@@ -493,3 +493,18 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - `docs/phase4-shotliste.md` (Tabelle), Blätter `out/phase4/storyboard-1…4.jpg`.
 - **Wartet auf Ayman:** Freigabe des Storyboards. Danach Phase 5 (Ton) – braucht Aymans ElevenLabs-Dateien, Adhan und Iqāma.
   Bis die Tonspuren da sind, kann Phase 6 (Einblendungen: 2 Untertitel-Stile, Beweis-Karten) vorbereitet werden.
+
+### 14e. Storyboard freigegeben (10.11.2026)
+
+- Storyboard **freigegeben**. Ton: Ayman schickt **eine ElevenLabs-Datei pro Sprecher** (A und B) → an den Pausen schneiden,
+  Zeilen per Spracherkennung (z. B. faster-whisper) zuordnen. Dazu Adhan und Iqāma (echte Aufnahmen).
+- Jetzt in Arbeit: **Phase 6 vorbereiten** (Untertitel-Stil a/b, Beweis-Karten QURAN/HADITH mit/ohne arabische Kernzeile,
+  Ein-/Ausfahren, Untertitel rücken nach oben). Vorschau-Shot: `web/shots/cards.js`.
+
+### 14f. Phase 6 vorbereitet (10.11.2026)
+
+- Details in **`docs/phase6.md`**. Vorschauen in `out/phase6/` (Vergleich Untertitel a/b, Hadith ohne/mit Arabisch,
+  Beweis-Karten, Hook + Schlusssatz, Animationsprobe).
+- Wichtig: Quran-Arabisch nur mit **KFGQPC Uthmanic Script HAFS** (`assets/fonts/…otf`, @font-face „KFGQPC Hafs“) setzen.
+- Ayman schickt die Tonspuren als **eine Datei pro Sprecher**.
+- **Wartet auf Ayman:** Wahl Untertitel-Stil (a/b) und Hadith-Karte mit/ohne Arabisch; danach Tonspuren → Phase 5.
