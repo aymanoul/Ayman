@@ -11,7 +11,7 @@ const argv = process.argv.slice(2);
 const arg = (n, d) => { const i = argv.indexOf('--' + n); return i >= 0 ? argv[i + 1] : d; };
 // --set figuren (Standard) | orte
 const SET = arg('set', 'figuren');
-const { SHEETS, ALL_CELLS, SHOT, SIZE, KICKER } = await import(path.join(ROOT, SET === 'orte' ? 'web/sheets/orte.js' : 'web/sheets/cells.js'));
+const { SHEETS, ALL_CELLS, SHOT, SIZE, KICKER } = await import(path.join(ROOT, ({ orte: 'web/sheets/orte.js', board: 'web/sheets/board.js' }[SET] || 'web/sheets/cells.js')));
 const only = arg('only'); const sheetSel = arg('sheet');
 const CW = +arg('w', SIZE[0]), CH = +arg('h', SIZE[1]);
 

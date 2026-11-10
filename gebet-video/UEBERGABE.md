@@ -481,3 +481,15 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - Nächster Schritt: **Phase 4 Storyboard** (Shotliste + grob gerendertes Standbild pro Shot), Dateien:
   `web/sheets/board.js` (Shot-Daten), `web/shots/board.js` (Szene), `web/lib/symbols.js` (Waage, Fluss, Lichtpunkte),
   `docs/phase4-shotliste.md`, Blätter in `out/phase4/`.
+
+### 14d. Phase 4 Storyboard erstellt (10.11.2026)
+
+- `web/sheets/board.js`: **49 Einstellungen S01–S49** mit Teil, Dauer, Startzeit, Drehbuch-Zeile, Kamera, Handlung,
+  Einblendung und Render-Angaben (Figuren, Posen, Kamera `pos/look`, `on`-Figur oder `over`-Schulter, Effekte).
+  Summe ca. 2:14 (+ Pausen ≈ 2:20–2:30), Zeiten werden in Phase 5/7 an die echten Aufnahmen angepasst.
+- `web/shots/board.js`: baut jede Einstellung (innen/außen) als Standbild. `web/lib/symbols.js`: Waage, Fluss vor der Tür,
+  fünf Lichtstriche im Bogen über der Uhr (bewusst keine runden Punkte → Augen-Regel).
+- Vorraum außen: Vorderseite der Lichtbox ist jetzt offen (man kann von innen hinaussehen).
+- `docs/phase4-shotliste.md` (Tabelle), Blätter `out/phase4/storyboard-1…4.jpg`.
+- **Wartet auf Ayman:** Freigabe des Storyboards. Danach Phase 5 (Ton) – braucht Aymans ElevenLabs-Dateien, Adhan und Iqāma.
+  Bis die Tonspuren da sind, kann Phase 6 (Einblendungen: 2 Untertitel-Stile, Beweis-Karten) vorbereitet werden.

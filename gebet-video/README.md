@@ -44,6 +44,7 @@ node tools/bench.mjs "x=1" "ao=1"                  # Renderzeit pro Bild messen
 node tools/sheets.mjs                               # alle Figurenblätter nach out/sheets/
 node tools/sheets.mjs --only A_emo --cols 5         # nur einzelne Zellen als Vorschau
 node tools/sheets.mjs --set orte                    # Ortsblätter (Gebetsraum, Neubau außen)
+node tools/sheets.mjs --set board                   # Storyboard (49 Einstellungen) → out/sheets/storyboard-*.jpg
 ```
 
 Chromium läuft mit Software-WebGL (`--use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
@@ -61,8 +62,8 @@ Chromium läuft mit Software-WebGL (`--use-gl=angle --use-angle=swiftshader --en
 - [x] Phase 0 – Sichten und Techniktest
 - [x] Phase 1 – Figurenblätter (freigegeben: ohne Augenbrauen, Hautton mittel, A Bart mittel, B Bart kurz)
 - [x] Phase 2 – Ortsblätter (abgenommen)
-- [x] Phase 3 – Drehbuch (Beweisliste freigegeben; Drehbuch wartet auf Hook-Wahl und Freigabe)
-- [ ] Phase 4 – Storyboard
+- [x] Phase 3 – Drehbuch (freigegeben, Hook-Variante 1)
+- [x] Phase 4 – Storyboard (wartet auf Freigabe)
 - [ ] Phase 5 – Ton
 - [ ] Phase 6 – Einblendungen
 - [ ] Phase 7 – Animation und Rendern

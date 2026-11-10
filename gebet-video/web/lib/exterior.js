@@ -154,7 +154,9 @@ export async function buildExterior() {
   }
   const ct = carpetTexture(); ct.repeat.set(2, 3.2);
   m(new THREE.PlaneGeometry(2.5, 4), std({ map: ct, roughness: 1 }), g, [0, 0.075, PZ - 2], [-Math.PI / 2, 0, 0]).castShadow = false;
-  const hall = new THREE.Mesh(B(-1.25, 1.25, 0.07, 2.9, PZ - 4, PZ - 0.02), new THREE.MeshStandardMaterial({ color: '#f1e3c8', emissive: '#ffb563', emissiveIntensity: 0.62, side: THREE.BackSide }));
+  // Vorraum: Innenseiten sichtbar, die Vorderseite (zur Tür hin) bleibt offen, damit man von innen hinaussehen kann
+  const hallMat = new THREE.MeshStandardMaterial({ color: '#f1e3c8', emissive: '#ffb563', emissiveIntensity: 0.62, side: THREE.BackSide });
+  const hall = new THREE.Mesh(B(-1.25, 1.25, 0.07, 2.9, PZ - 4, PZ - 0.02), [hallMat, hallMat, hallMat, hallMat, new THREE.MeshBasicMaterial({ visible: false }), hallMat]);
   g.add(hall);
   const glow = new THREE.Mesh(new THREE.PlaneGeometry(5.2, 5.2), new THREE.MeshBasicMaterial({ map: glowTexture(), color: '#ffca85', transparent: true, opacity: 0.26, blending: THREE.AdditiveBlending, depthWrite: false }));
   glow.position.set(0, 1.5, PZ - 0.3); glow.renderOrder = 3;
