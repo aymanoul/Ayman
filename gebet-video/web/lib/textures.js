@@ -189,27 +189,24 @@ export function woodTexture({ base = '#d7b27a', dark = '#b98a4e', seed = 5 } = {
   return toTexture(c);
 }
 
-// Gehäkelte Kufi: feines Lochmuster
+// Gehäkelte Kufi: feines Lochmuster in Reihen
 export function kufiTexture() {
-  const S = 512;
+  const S = 256;
   const c = makeCanvas(S, S);
   const g = c.getContext('2d');
-  g.fillStyle = '#f6f4ee'; g.fillRect(0, 0, S, S);
-  g.fillStyle = 'rgba(150,145,135,0.9)';
+  g.fillStyle = '#f7f5ef'; g.fillRect(0, 0, S, S);
   const step = 32;
   for (let y = 0; y < S; y += step) {
     for (let x = 0; x < S; x += step) {
       const off = (y / step) % 2 ? step / 2 : 0;
-      g.beginPath();
-      g.moveTo(x + off + step / 2, y + 5);
-      g.lineTo(x + off + step - 7, y + step / 2);
-      g.lineTo(x + off + step / 2, y + step - 5);
-      g.lineTo(x + off + 7, y + step / 2);
-      g.closePath(); g.fill();
+      g.fillStyle = 'rgba(168,163,152,0.85)';
+      g.beginPath(); g.arc(x + off + step / 2, y + step / 2, 5.5, 0, Math.PI * 2); g.fill();
+      g.fillStyle = 'rgba(255,255,255,0.9)';
+      g.beginPath(); g.arc(x + off + step / 2 - 1.5, y + step / 2 + 2, 3, 0, Math.PI * 2); g.fill();
     }
+    g.fillStyle = 'rgba(205,200,190,0.55)';
+    g.fillRect(0, y, S, 2);
   }
-  g.fillStyle = 'rgba(190,185,175,0.8)';
-  for (let y = 0; y < S; y += step * 4) g.fillRect(0, y, S, 4);
   return toTexture(c);
 }
 

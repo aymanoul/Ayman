@@ -21,7 +21,9 @@ und mit ffmpeg zum Video zusammengesetzt. Kein KI-Bild- oder Videogenerator.
 | `web/index.html`, `web/main.js` | Renderer: `window.renderFrame(t)` setzt alles deterministisch für Zeitpunkt `t` |
 | `web/lib/textures.js` | Prozedurale Texturen: Teppich mit Mäanderband, Fliesen, Putz, Holz, Kufi, Kalligraphie-Tafel |
 | `web/lib/room.js` | Gebetsraum (Qibla-Wand, Mihrab, Säulen, Fenster, Licht) |
-| `web/lib/figure.js` | Figuren mit Gelenken, Mund in 4 Formen, Person A und B |
+| `web/lib/figure.js` | Figuren mit Gelenken, Händen mit Fingern, Mund in 4 Formen, Gehen, Sitzen; Person A und B |
+| `web/lib/poses.js` | Posen als Daten (Gefühlslagen, Gesten, Sitzen) und `applyPose` |
+| `web/sheets/cells.js`, `web/shots/sheet.js`, `tools/sheets.mjs` | Figurenblätter: Inhalt, Studio-Szene, Rendern und Zusammensetzen |
 | `web/lib/overlay.js` | Titel, Wort-für-Wort-Untertitel, Hilfslinien für sichere Bereiche |
 | `web/shots/*.js` | Eine Datei pro Einstellung (Shot) |
 | `tools/render.mjs` | Rendert einen Shot zu Standbildern oder zu einem Clip |
@@ -37,6 +39,8 @@ node tools/render.mjs test --scale 0.5              # schnelle Vorschau in halbe
 node tools/render.mjs test --out out/clips/x.mp4    # Clip in voller Größe (ca. 0,9 s pro Bild)
 node tools/render.mjs test --still 1.0 --ao --bloom # echte AO und Bloom, nur für Standbilder sinnvoll
 node tools/bench.mjs "x=1" "ao=1"                  # Renderzeit pro Bild messen
+node tools/sheets.mjs                               # alle Figurenblätter nach out/sheets/
+node tools/sheets.mjs --only A_emo --cols 5         # nur einzelne Zellen als Vorschau
 ```
 
 Chromium läuft mit Software-WebGL (`--use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
@@ -52,7 +56,7 @@ Chromium läuft mit Software-WebGL (`--use-gl=angle --use-angle=swiftshader --en
 ## Stand
 
 - [x] Phase 0 – Sichten und Techniktest
-- [ ] Phase 1 – Figurenblätter
+- [x] Phase 1 – Figurenblätter (wartet auf Auswahl: Hautton, Bart, Augenbrauen)
 - [ ] Phase 2 – Ortsblätter
 - [ ] Phase 3 – Drehbuch
 - [ ] Phase 4 – Storyboard
