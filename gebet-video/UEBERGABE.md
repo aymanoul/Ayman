@@ -62,7 +62,7 @@ Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Absc
       rasūlullāh; Transkript `assets/audio/transkript/adhan_neu.json`). Im Film ab 0,75 s der Datei, 0–25,4 s, gain −13,
       Tiefpass + Hall, blendet nach dem 2. „Allāhu akbar“-Paar beim Eintreten aus. **Iqāma bleibt (laut Ayman passt sie).**
    Render ✅ (11.11.): `teil_0.mp4` (0–23,6, ersetzt probe_video.mp4 im Zusammenbau) + teil_a/b + `teil_c.mp4`, geprüft, 2:27, −14,1 LUFS
-   → `gebet_video_entwurf.mp4` + `_vorschau.mp4`. **Vorschau an Ayman geschickt, warte auf Freigabe.**
+   → `gebet_video_entwurf.mp4` + `_vorschau.mp4`. **Vorschau an Ayman geschickt → von Ayman FREIGEGEBEN (11.11.2026).** Nächster Schritt: Phase 8 + 9.
 3. Phase 9 vorbereitet: Titelbilder `out/phase9/titelbild_variante1.png` (Gebetsreihe) und `_variante2.png` (Neubau),
    Shot `web/shots/cover.js`; Beschreibung `docs/phase9-beschreibung.md`. Ayman wählt eins.
 4. Phase 8: Belege nochmals gegen Quelle; Ayman an Hadith-Nummern (sunnah.com) erinnern; Adhan ist jetzt Aymans eigene Datei, Iqāma-Platzhalter von ihm akzeptiert.
