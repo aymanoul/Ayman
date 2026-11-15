@@ -10,3 +10,7 @@ out/phase7/teil_*.mp4
 out/phase7/film_teile.txt
 out/phase7/film_video.mp4
 out/phase7/gebet_video_entwurf.mp4
+.venv-blender
+# Blender: Sicherungskopien und Einzelbilder der Test-Videos
+blender/*.blend1
+out/blender/tmp_*/

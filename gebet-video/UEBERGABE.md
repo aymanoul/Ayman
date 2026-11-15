@@ -7,7 +7,7 @@
 
 ---
 
-## ⚡ AKTUELLER STAND (zuletzt aktualisiert: 10.11.2026, spätabends) – IMMER ZUERST LESEN
+## ⚡ AKTUELLER STAND (zuletzt aktualisiert: 15.11.2026) – IMMER ZUERST LESEN
 
 Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Abschnitt 14 ist das Tagebuch (14a–14n).
 **Achtung:** Punkt 4 in Abschnitt 0 („nicht mit Phase 3 anfangen“) ist überholt – Phase 3 bis 6 sind fertig und freigegeben.
@@ -35,6 +35,13 @@ Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Absc
 - Rendern: `node tools/render.mjs film --from A --to B --out …` (≈1,7 s pro Bild, 2 Worker). Ton: `tools/mix.py <json> <wav>`,
   dann ffmpeg mux + `loudnorm=I=-14:TP=-1.5`.
 - Fertig: `out/phase7/probe_hook_strasse.mp4` (0–23,6 s, freigegeben).
+
+**NEU (14./15.11.2026) – Blender-Drehort:** Ayman möchte den Gebetsraum in Blender nachgebaut haben (Vorlage:
+`assets/ref/gebetsraum_vorlage_7_ansichten.png`), als Ort für künftige Videos per Code. Plan und Stand stehen in
+**`docs/blender-plan.md`**. Gebaut: `blender/raum.py` → `blender/gebetsraum.blend` (370 Teile, Blender 5.2.3 über
+`.venv-blender`, Cycles/EEVEE laufen hier). Kontrollblatt: `out/blender/gebetsraum_ansichten.jpg`, Test-Video:
+`out/blender/kamerafahrt.mp4`. Schritt B1 (Raum) wartet auf Aymans Freigabe; danach B2 (Figuren in Blender).
+Das Gebet-Video (Three.js) ist von Ayman freigegeben; Phase 8/9 (Schlussprüfung, Endfassung, ZIP) stehen noch aus.
 
 **Nächste Schritte:**
 1. ✅ Erster Gesamt-Render (2:27, −14,1 LUFS) fertig und Bild für Bild geprüft (Kontaktbögen alle 0,5 s; keine Augen gefunden).
@@ -636,3 +643,10 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 
 - Titelbild Variante 1, Beschreibung passt. Video: neuer Einstieg mit Schild und beiden Personen, Moschee von außen
   beim Hineingehen, Imam vorne in der Schlussreihe, neue Adhan-Aufnahme von Ayman; Iqāma bleibt. Umgesetzt, Render läuft.
+
+### 14q. Blender-Drehort (14./15.11.2026)
+
+- Video-Entwurf freigegeben (11.11.). Ayman fragte nach Blender: hier läuft Blender 5.2.3 als Python-Modul (`bpy`).
+- Auftrag: Plan erstellen und den Gebetsraum nach einer Vorlage mit 7 Ansichten in Blender nachbauen.
+  Umgesetzt mit `blender/raum.py` (alles per Code, Texturen mit numpy gemalt, Schahāda-Tafel über den Browser).
+  Beleuchtung: 12 Deckenleuchten + 6 Fenster. Rechenzeiten und nächste Schritte in `docs/blender-plan.md`.
