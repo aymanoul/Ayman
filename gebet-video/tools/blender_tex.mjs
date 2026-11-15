@@ -26,5 +26,30 @@ await p.setContent(html);
 await p.waitForFunction('window.done');
 const data = await p.evaluate('window.done');
 fs.writeFileSync(path.join(ROOT, 'blender/tex/kalligraphie.png'), Buffer.from(data.split(',')[1], 'base64'));
+// Schild über dem Haupteingang (Navy, Logo-Kalligrafie + Schriftzug)
+const mont = fs.readFileSync(path.join(ROOT, 'node_modules/@fontsource/montserrat/files/montserrat-latin-800-normal.woff2')).toString('base64');
+const logo = fs.readFileSync(path.join(ROOT, 'assets/brand/kalligrafie-weiss.png')).toString('base64');
+const p2 = await b.newPage();
+await p2.setContent(`<html><head><style>
+@font-face { font-family: Mont; font-weight: 800; src: url(data:font/woff2;base64,${mont}) format('woff2'); }
+body { margin: 0 } </style></head><body><canvas id="c" width="1536" height="384"></canvas><script>
+const im = new Image();
+im.onload = () => document.fonts.load('800 100px Mont').then(() => {
+  const c = document.getElementById('c'), g = c.getContext('2d');
+  g.fillStyle = '#212242'; g.fillRect(0, 0, 1536, 384);
+  g.strokeStyle = '#CA9E4E'; g.lineWidth = 10; g.strokeRect(14, 14, 1508, 356);
+  const h = 270, w = h * im.width / im.height;
+  g.drawImage(im, 70, (384 - h) / 2, w, h);
+  g.fillStyle = '#F3E9D6'; g.textBaseline = 'middle';
+  g.font = '800 92px Mont'; g.fillText('MASJID', 110 + w, 135);
+  g.fillStyle = '#D9B26A'; g.font = '800 122px Mont'; g.fillText('AS-SUNNAH', 110 + w, 255, 1536 - 180 - w);
+  window.done = c.toDataURL('image/png');
+});
+im.src = 'data:image/png;base64,${logo}';
+</script></body></html>`);
+await p2.waitForFunction('window.done');
+const d2 = await p2.evaluate('window.done');
+fs.writeFileSync(path.join(ROOT, 'blender/tex/schild_masjid.png'), Buffer.from(d2.split(',')[1], 'base64'));
+console.log('blender/tex/schild_masjid.png');
 await b.close();
 console.log('blender/tex/kalligraphie.png');

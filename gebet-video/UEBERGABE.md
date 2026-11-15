@@ -41,7 +41,9 @@ Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Absc
 **`docs/blender-plan.md`**. Gebaut: `blender/raum.py` → `blender/gebetsraum.blend` (370 Teile, Blender 5.2.3 über
 `.venv-blender`, Cycles/EEVEE laufen hier). Kontrollblatt: `out/blender/gebetsraum_ansichten.jpg`, Test-Video:
 `out/blender/kamerafahrt.mp4`. Schritt B1 (Raum) ist von Ayman **freigegeben** („Passt so“). Wie künftige Videos gerechnet werden, überlegt er
-noch – **nicht von selbst mit B2 (Figuren in Blender) anfangen**, erst nachfragen.
+noch. **15.11.:** Ayman hat zusätzlich das **Gebäude von außen** und die **zwei Hauptpersonen mit je zwei Outfits**
+(Qamis · Hemd/Hose) beauftragt – gebaut: `blender/gebaeude.blend`, `blender/figuren.blend` (Vorlagen in `assets/ref/`).
+Wartet auf Aymans Freigabe. Details und Befehle: `docs/blender-plan.md`.
 Das Gebet-Video (Three.js) ist von Ayman freigegeben; Phase 8/9 (Schlussprüfung, Endfassung, ZIP) stehen noch aus.
 
 **Nächste Schritte:**
@@ -651,3 +653,10 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - Auftrag: Plan erstellen und den Gebetsraum nach einer Vorlage mit 7 Ansichten in Blender nachbauen.
   Umgesetzt mit `blender/raum.py` (alles per Code, Texturen mit numpy gemalt, Schahāda-Tafel über den Browser).
   Beleuchtung: 12 Deckenleuchten + 6 Fenster. Rechenzeiten und nächste Schritte in `docs/blender-plan.md`.
+
+### 14r. Gebäude und Hauptpersonen in Blender (15.11.2026)
+
+- Blender-Raum freigegeben. Neuer Auftrag: Gebäude von außen (Vorlage 6 Ansichten) und die zwei Hauptpersonen mit je zwei
+  Outfits nach Figurenblättern (Vorlagen: weiß/grün Qamis, weißes/grünes Hemd mit schwarzer/cremefarbener Hose).
+- Gebaut: `blender/gebaeude.py`, `blender/figuren.py` (Skelett, Kleidung mit Gewichten), Blätter und Bewegungsprobe.
+  Gesichter ohne Augen und Brauen (feste Regel 1), Nase und Ohren vorhanden.
