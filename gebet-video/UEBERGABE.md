@@ -2,6 +2,7 @@
 
 > **So benutzt du diese Datei:** Kopiere den ganzen Inhalt als erste Nachricht in den neuen Chat.
 > Der neue Chat soll danach ohne Rückfragen genau hier weitermachen.
+> **Kurzfassung mit dem aktuellen Gesamtstand: `gebet-video/CLAUDE.md`** (wird automatisch geladen, immer zuerst lesen).
 
 ---
 
