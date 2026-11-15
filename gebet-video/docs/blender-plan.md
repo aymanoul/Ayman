@@ -9,7 +9,7 @@ Es gelten alle festen Regeln aus `UEBERGABE.md` (keine Augen, kein KI-Generator 
 | Schritt | Inhalt | Stand |
 |---|---|---|
 | B0 | Technik: Blender 5.2.3 (`bpy`) läuft hier, Cycles und EEVEE getestet | ✅ |
-| B1 | Raum nach der Vorlage (7 Ansichten) bauen, Kontroll-Ansichten rendern | ✅ gebaut, wartet auf Freigabe |
+| B1 | Raum nach der Vorlage (7 Ansichten) bauen, Kontroll-Ansichten rendern | ✅ von Ayman freigegeben („Passt so“, 15.11.2026) |
 | B2 | Figuren A, B, Imam, Nebenfiguren in Blender (ohne Augen), mit Gelenken | offen |
 | B3 | Bewegungen: Gehen, Sitzen, Gebetshaltungen, Sprechen (Mund nach Tonspur) | offen |
 | B4 | Video-Baukasten: Einstellungen als Liste (Kamera, Figuren, Dauer), Untertitel und Karten wie bisher | offen |
@@ -72,3 +72,8 @@ Ein Video von 2:30 Minuten in voller Auflösung braucht damit rund 40 Stunden (E
 halbe Auflösung rendern und hochskalieren, 24 statt 30 Bilder pro Sekunde, stehende Einstellungen nur einmal rendern,
 oder die `.blend`-Datei auf einem Rechner mit Grafikkarte rendern (dort Sekunden statt Minuten).
 Zum Vergleich: Die bisherige Three.js-Lösung braucht für dasselbe Video etwa 2 Stunden.
+
+## Offene Entscheidung
+
+Wie künftige Videos gerechnet werden (kurze Blender-Tests, Blender in halber Auflösung oder weiter Three.js):
+Ayman überlegt noch („Ich überlege es mir“, 15.11.2026). **Bis dahin nicht mit B2 (Figuren) anfangen.**

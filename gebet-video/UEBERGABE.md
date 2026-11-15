@@ -40,7 +40,8 @@ Die Abschnitte 0–13 unten beschreiben Regeln, Entscheidungen und Technik. Absc
 `assets/ref/gebetsraum_vorlage_7_ansichten.png`), als Ort für künftige Videos per Code. Plan und Stand stehen in
 **`docs/blender-plan.md`**. Gebaut: `blender/raum.py` → `blender/gebetsraum.blend` (370 Teile, Blender 5.2.3 über
 `.venv-blender`, Cycles/EEVEE laufen hier). Kontrollblatt: `out/blender/gebetsraum_ansichten.jpg`, Test-Video:
-`out/blender/kamerafahrt.mp4`. Schritt B1 (Raum) wartet auf Aymans Freigabe; danach B2 (Figuren in Blender).
+`out/blender/kamerafahrt.mp4`. Schritt B1 (Raum) ist von Ayman **freigegeben** („Passt so“). Wie künftige Videos gerechnet werden, überlegt er
+noch – **nicht von selbst mit B2 (Figuren in Blender) anfangen**, erst nachfragen.
 Das Gebet-Video (Three.js) ist von Ayman freigegeben; Phase 8/9 (Schlussprüfung, Endfassung, ZIP) stehen noch aus.
 
 **Nächste Schritte:**
