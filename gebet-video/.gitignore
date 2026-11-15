@@ -14,3 +14,4 @@ out/phase7/gebet_video_entwurf.mp4
 # Blender: Sicherungskopien und Einzelbilder der Test-Videos
 blender/*.blend1
 out/blender/tmp_*/
+__pycache__/
