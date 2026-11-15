@@ -65,6 +65,7 @@ Die Datei `blender/gebetsraum.blend` lässt sich auch in einem normalen Blender 
 |---|---|---|
 | Cycles, 24 Samples, entrauscht | 576 × 384 | ca. 11 s |
 | Cycles, 64 Samples, entrauscht | 960 × 640 | ca. 70 s |
+| Cycles, 16 Samples, entrauscht (Test-Video) | 540 × 960 | ca. 19 s |
 | EEVEE (Software-Grafik) | 1080 × 1920 | ca. 32 s |
 
 Ein Video von 2:30 Minuten in voller Auflösung braucht damit rund 40 Stunden (EEVEE). Wege, das zu verkürzen:
