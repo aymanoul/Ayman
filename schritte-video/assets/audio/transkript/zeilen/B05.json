@@ -1,43 +1,43 @@
 [
  {
   "start": 0.0,
-  "end": 2.74,
+  "end": 2.44,
   "text": "Ab dem nächsten Gebet zähle ich anders.",
   "words": [
    {
     "w": "Ab",
     "start": 0.0,
-    "end": 0.64
+    "end": 0.6
    },
    {
     "w": "dem",
-    "start": 0.64,
-    "end": 0.86
+    "start": 0.6,
+    "end": 0.8
    },
    {
     "w": "nächsten",
-    "start": 0.86,
-    "end": 1.18
+    "start": 0.8,
+    "end": 1.06
    },
    {
     "w": "Gebet",
-    "start": 1.18,
-    "end": 1.7
+    "start": 1.06,
+    "end": 1.54
    },
    {
     "w": "zähle",
-    "start": 1.7,
-    "end": 2.32
+    "start": 1.54,
+    "end": 1.98
    },
    {
     "w": "ich",
-    "start": 2.32,
-    "end": 2.44
+    "start": 1.98,
+    "end": 2.12
    },
    {
     "w": "anders.",
-    "start": 2.44,
-    "end": 2.74
+    "start": 2.12,
+    "end": 2.44
    }
   ]
  }

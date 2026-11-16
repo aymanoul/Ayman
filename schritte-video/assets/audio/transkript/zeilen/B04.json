@@ -1,7 +1,7 @@
 [
  {
   "start": 0.0,
-  "end": 2.8,
+  "end": 2.64,
   "text": "Dann habe ich heute ganz schön viele verschenkt.",
   "words": [
    {
@@ -17,32 +17,32 @@
    {
     "w": "ich",
     "start": 0.8,
-    "end": 0.98
+    "end": 0.96
    },
    {
     "w": "heute",
-    "start": 0.98,
-    "end": 1.16
+    "start": 0.96,
+    "end": 1.14
    },
    {
     "w": "ganz",
-    "start": 1.16,
-    "end": 1.52
+    "start": 1.14,
+    "end": 1.44
    },
    {
     "w": "schön",
-    "start": 1.52,
-    "end": 1.78
+    "start": 1.44,
+    "end": 1.7
    },
    {
     "w": "viele",
-    "start": 1.78,
-    "end": 2.14
+    "start": 1.7,
+    "end": 2.04
    },
    {
     "w": "verschenkt.",
-    "start": 2.14,
-    "end": 2.8
+    "start": 2.04,
+    "end": 2.64
    }
   ]
  }

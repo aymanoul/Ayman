@@ -1,28 +1,28 @@
 [
  {
   "start": 0.0,
-  "end": 2.08,
-  "text": "Bei jedem einzelnen Schritt",
+  "end": 1.92,
+  "text": "Bei jedem einzelnen Schritt?",
   "words": [
    {
     "w": "Bei",
     "start": 0.0,
-    "end": 0.62
+    "end": 0.6
    },
    {
     "w": "jedem",
-    "start": 0.62,
-    "end": 1.04
+    "start": 0.6,
+    "end": 1.0
    },
    {
     "w": "einzelnen",
-    "start": 1.04,
-    "end": 1.8
+    "start": 1.0,
+    "end": 1.64
    },
    {
-    "w": "Schritt",
-    "start": 1.8,
-    "end": 2.08
+    "w": "Schritt?",
+    "start": 1.64,
+    "end": 1.92
    }
   ]
  }

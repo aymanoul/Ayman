@@ -101,8 +101,7 @@ def zustand(n):
     p = PUNKTE[min(n, len(PUNKTE) - 1)]
     sid = p['shot']
     z = {'t': round(t, 4)}
-    if sid != 'S8':
-        z['logo'] = 1
+    # kein Logo im Bild (Ayman, 16.11.)
     if sid == 'S1':                                         # Hook: vergrößerter Bildschirm + Titel
         schritte = 8424 + int(p['phase'].get('B_Hemd_Skelett', 0))
         z['lupe'] = {'schritte': schritte, 'ring': round(0.8 + 0.04 * (schritte - 8424) / 8, 4), 'an': p['handy'],

@@ -92,10 +92,10 @@ def mund(arm, coll, name, vor=0.008):
     bm.to_mesh(me); bm.free()
     for p in me.polygons:
         p.use_smooth = True
-    me.materials.append(R.material(name, '#3a1513', 0.6))
+    me.materials.append(R.material(name, '#24100e', 0.8))
     ob = bpy.data.objects.new(name, me)
     coll.objects.link(ob)
-    ob.scale = (0.021, 0.007, 0.006)
+    ob.scale = (0.021, 0.0035, 0.006)
     welt = arm.matrix_world @ lokal
     ob.location = welt
     ob.rotation_euler = arm.rotation_euler.copy()
@@ -233,7 +233,7 @@ def aufbauen():
     A = figur_holen('A_Qamis')
     B = figur_holen('B_Hemd')
     ph = handy(B, neu)
-    MA = mund(A, neu, 'Mund_A', vor=0.03)                  # A: Mund vor dem vollen Bart
+    MA = mund(A, neu, 'Mund_A', vor=0.018)                  # A: Mund vor dem vollen Bart
     MB = mund(B, neu, 'Mund_B', vor=0.009)
     cd = bpy.data.cameras.new('Kamera_Shot'); cd.lens = 35; cd.sensor_width = 36; cd.clip_start = 0.05; cd.clip_end = 400
     cam = bpy.data.objects.new('Kamera_Shot', cd)

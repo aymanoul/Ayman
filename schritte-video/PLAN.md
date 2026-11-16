@@ -54,8 +54,8 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 | 1 | Beweisliste H1/H2 prüfen, Wortlaut bestätigen (`docs/phase1-beweisliste.md`) | ✅ **freigegeben** (16.11.) |
 | 2 | Storyboard: 11 Standbilder auf einem Blatt + Handy-Display und Zähler als Einzelbild | ✅ **freigegeben** (16.11., mit neuem Hook S1) |
 | 3 | Stimmen zerlegen, Zeitplan, Rohschnitt 720p ohne Feinheiten | ✅ A01–A07 + **B01–B05 als Platzhalter** (alte Helmut-Zeilen, Ayman: „mit Platzhalter anfangen“), Zeitplan 65,5 s, Mund, `blender/film.py`; **Rohschnitt fertig** `out/phase3/rohschnitt_720p.mp4` (15 Bilder/s gerendert, 540 × 960 → 720p, ~1,5 h), **freigegeben** (16.11.) |
-| 4 | Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche; Vorschau 720p | Vorschau fertig `out/phase4/vorschau_720p.mp4` (65,5 s, −14 LUFS), Freigabe offen |
-| 5 | Endfassung 1080 × 1920, Schlussprüfung, 2 Titelbilder, Beschreibung mit genau 5 deutschen Hashtags | offen |
+| 4 | Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche; Vorschau 720p | ✅ Vorschau `out/phase4/vorschau_720p.mp4` **freigegeben** (16.11.) |
+| 5 | Endfassung 1080 × 1920, Schlussprüfung, 2 Titelbilder, Beschreibung mit genau 5 deutschen Hashtags | in Arbeit: neue B-Stimme (Jörg) eingebaut → 63,7 s; Logo entfernt (Aymans Wunsch); 3D rendert in 720 × 1280, 30/s (Ayman: „720p, 30 Bilder/s“) nach `out/end`, dann hochskaliert; Titelbilder + `docs/phase5-beschreibung.md` fertig |
 
 ## 6. Shotliste (Richtzeiten, später an die Tonlängen angepasst)
 
@@ -118,3 +118,16 @@ klein „Muslim 666 · Muslim 251“.
   Handy, Wege), Tür + Raumklang in S11, Außenton (Wind/Blätter, keine Autos). Bausteine aus gebet-video (nur gelesen).
 - `tools/vorschau.py`: 3D (out/roh, 15/s) + Ebenen + Ton, Weichzeichner in S8, Lautheit zweistufig −14 LUFS.
 - Reihenfolge nach neuer B-Aufnahme: zeitplan.py → film.py (betroffene Bilder) → film.py --punkte → einblendungen.py → ton.py → vorschau.py.
+
+## 11. Phase 5
+
+- **Neue B-Stimme** (16.11.): `assets/audio/roh/stimme_B_joerg.mp3` (ElevenLabs „Jörg M.“, 13,6 s), zerlegt mit
+  `python3 tools/zerlegen.py assets/audio/roh/stimme_B_joerg.mp3 x B01,B02,B03,B04,B05 0.0,3.46,6.16,8.30,11.08`, Text Wort für Wort wie Drehbuch.
+  Zeitplan neu: **63,7 s**.
+- **Kein Logo** mehr im Bild (Ayman 16.11.: „das Logo … weg machen“).
+- Mund A: dunkler (#24100e), flacher, tiefer im Bart (`vor=0.018`) → in Seitenansicht kein Fleck mehr.
+- Endfassung: `.venv-blender/bin/python blender/film.py --von 0 --bis 64 --fps 30 --breite 720 --samples 10 --aus out/end`
+  (~15 s/Bild, ~8 h), danach `python3 tools/vorschau.py --roh out/end --fps 30 --hoehe 1920 --aus out/schritte_video.mp4`
+  und `… --hoehe 1280 --aus out/schritte_video_vorschau_720p.mp4`.
+- Titelbilder `out/phase5/titelbild_variante1.png` (Hof, Zähler, „Jeder Schritt zählt.“), `…variante2.png` (offene Tür,
+  „Wohin führen deine Schritte?“). Beschreibung `docs/phase5-beschreibung.md` (#moschee #gebet #islam #muslime #ratingen).

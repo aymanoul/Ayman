@@ -1,0 +1,178 @@
+[
+ {
+  "start": 0.0,
+  "end": 6.32,
+  "text": "8000 Schritte heute. Nicht schlecht, oder? Keine Ahnung. Schritt ist doch Schritt. Bei",
+  "words": [
+   {
+    "w": "8000",
+    "start": 0.0,
+    "end": 0.62
+   },
+   {
+    "w": "Schritte",
+    "start": 0.62,
+    "end": 1.04
+   },
+   {
+    "w": "heute.",
+    "start": 1.04,
+    "end": 1.28
+   },
+   {
+    "w": "Nicht",
+    "start": 1.9,
+    "end": 2.1
+   },
+   {
+    "w": "schlecht,",
+    "start": 2.1,
+    "end": 2.4
+   },
+   {
+    "w": "oder?",
+    "start": 2.58,
+    "end": 2.76
+   },
+   {
+    "w": "Keine",
+    "start": 3.46,
+    "end": 3.9
+   },
+   {
+    "w": "Ahnung.",
+    "start": 3.9,
+    "end": 4.28
+   },
+   {
+    "w": "Schritt",
+    "start": 4.6,
+    "end": 4.82
+   },
+   {
+    "w": "ist",
+    "start": 4.82,
+    "end": 5.02
+   },
+   {
+    "w": "doch",
+    "start": 5.02,
+    "end": 5.16
+   },
+   {
+    "w": "Schritt.",
+    "start": 5.16,
+    "end": 5.44
+   },
+   {
+    "w": "Bei",
+    "start": 6.16,
+    "end": 6.32
+   }
+  ]
+ },
+ {
+  "start": 6.32,
+  "end": 11.72,
+  "text": "jedem einzelnen Schritt? Dann habe ich heute ganz schön viele verschenkt. Ab dem nächsten",
+  "words": [
+   {
+    "w": "jedem",
+    "start": 6.32,
+    "end": 6.7
+   },
+   {
+    "w": "einzelnen",
+    "start": 6.7,
+    "end": 7.36
+   },
+   {
+    "w": "Schritt?",
+    "start": 7.36,
+    "end": 7.7
+   },
+   {
+    "w": "Dann",
+    "start": 8.3,
+    "end": 8.5
+   },
+   {
+    "w": "habe",
+    "start": 8.5,
+    "end": 8.68
+   },
+   {
+    "w": "ich",
+    "start": 8.68,
+    "end": 8.82
+   },
+   {
+    "w": "heute",
+    "start": 8.82,
+    "end": 9.02
+   },
+   {
+    "w": "ganz",
+    "start": 9.02,
+    "end": 9.32
+   },
+   {
+    "w": "schön",
+    "start": 9.32,
+    "end": 9.56
+   },
+   {
+    "w": "viele",
+    "start": 9.56,
+    "end": 9.9
+   },
+   {
+    "w": "verschenkt.",
+    "start": 9.9,
+    "end": 10.52
+   },
+   {
+    "w": "Ab",
+    "start": 11.08,
+    "end": 11.22
+   },
+   {
+    "w": "dem",
+    "start": 11.22,
+    "end": 11.42
+   },
+   {
+    "w": "nächsten",
+    "start": 11.42,
+    "end": 11.72
+   }
+  ]
+ },
+ {
+  "start": 11.72,
+  "end": 13.06,
+  "text": "Gebet zähle ich anders.",
+  "words": [
+   {
+    "w": "Gebet",
+    "start": 11.72,
+    "end": 12.16
+   },
+   {
+    "w": "zähle",
+    "start": 12.16,
+    "end": 12.6
+   },
+   {
+    "w": "ich",
+    "start": 12.6,
+    "end": 12.76
+   },
+   {
+    "w": "anders.",
+    "start": 12.76,
+    "end": 13.06
+   }
+  ]
+ }
+]
