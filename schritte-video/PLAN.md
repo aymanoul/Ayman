@@ -52,8 +52,8 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 | Phase | Inhalt | Stand |
 |---|---|---|
 | 1 | Beweisliste H1/H2 prüfen, Wortlaut bestätigen (`docs/phase1-beweisliste.md`) | ✅ **freigegeben** (16.11.) |
-| 2 | Storyboard: 11 Standbilder auf einem Blatt + Handy-Display und Zähler als Einzelbild | ✅ erstellt (`out/phase2/storyboard.jpg`, `display_und_zaehler.jpg`), wartet auf Freigabe |
-| 3 | Stimmen zerlegen, Zeitplan, Rohschnitt 720p ohne Feinheiten | offen |
+| 2 | Storyboard: 11 Standbilder auf einem Blatt + Handy-Display und Zähler als Einzelbild | ✅ **freigegeben** (16.11., mit neuem Hook S1) |
+| 3 | Stimmen zerlegen, Zeitplan, Rohschnitt 720p ohne Feinheiten | begonnen: A01–A07 zerlegt (`assets/audio/zeilen/`, `tools/zerlegen.py`, geprüft per Spracherkennung); **wartet auf neue B-Aufnahme** |
 | 4 | Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche; Vorschau 720p | offen |
 | 5 | Endfassung 1080 × 1920, Schlussprüfung, 2 Titelbilder, Beschreibung mit genau 5 deutschen Hashtags | offen |
 
