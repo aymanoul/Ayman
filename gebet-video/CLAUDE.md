@@ -89,6 +89,9 @@
   H2 = Muslim 251 (hadeethenc 3574, geprüft; Karte im hadeethenc-Wortlaut „womit Allah die Sünden auslöscht …
   das häufige Schreiten zu den Moscheen“). H1 = Muslim 666 (nicht auf hadeethenc; arabischer Wortlaut mit A04 Wort für
   Wort abgeglichen, A04 passt; Ayman soll auf sunnah.com gegenprüfen).
+- **Phase 1 freigegeben (16.11.).** B wird von Ayman **neu aufgenommen** (andere Stimme); B trägt **Hemd und Hose**.
+- **Phase 2 (Storyboard) erstellt, wartet auf Freigabe:** `schritte-video/out/phase2/storyboard.jpg`, `display_und_zaehler.jpg`.
+  Technik-Stand und Befehle: `schritte-video/PLAN.md` Abschnitt 8.
 - Phasen: 1 Beweisliste · 2 Storyboard (11 Bilder + Handy-Display) · 3 Stimmen/Zeitplan/Rohschnitt 720p ·
   4 Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche · 5 Endfassung, 2 Titelbilder, Beschreibung (genau 5 Hashtags).
 
@@ -141,7 +144,7 @@ Z oben (Three.js: (x, y, z)_Blender = (x, −z, y)_Three). Figuren-Knochen: loka
 
 ## 7. Nächste Schritte (Reihenfolge)
 
-0. **Schritte-Video:** Freigabe der Beweisliste (Phase 1) und Antwort zur Stimme abwarten, dann Phase 2 (Storyboard).
+0. **Schritte-Video:** Freigabe Storyboard (Phase 2) abwarten und neue B-Aufnahme; dann Phase 3 (Stimmen, Zeitplan, Rohschnitt).
 1. Aymans Rückmeldung zu **Gebäude außen** und **Hauptpersonen** abwarten → ggf. Änderungen.
 2. Entscheidung zur Rechenweise künftiger Videos abfragen, wenn Ayman so weit ist.
 3. Auf „Abgabe machen“: Phase 8 (Prüfung, Belege nochmals gegen Quelle) und Phase 9 (Endfassung, Titelbild V1,

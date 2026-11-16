@@ -52,7 +52,7 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 | Phase | Inhalt | Stand |
 |---|---|---|
 | 1 | Beweisliste H1/H2 prüfen, Wortlaut bestätigen (`docs/phase1-beweisliste.md`) | ✅ **freigegeben** (16.11.) |
-| 2 | Storyboard: 11 Standbilder auf einem Blatt + Handy-Display und Zähler als Einzelbild | in Arbeit |
+| 2 | Storyboard: 11 Standbilder auf einem Blatt + Handy-Display und Zähler als Einzelbild | ✅ erstellt (`out/phase2/storyboard.jpg`, `display_und_zaehler.jpg`), wartet auf Freigabe |
 | 3 | Stimmen zerlegen, Zeitplan, Rohschnitt 720p ohne Feinheiten | offen |
 | 4 | Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche; Vorschau 720p | offen |
 | 5 | Endfassung 1080 × 1920, Schlussprüfung, 2 Titelbilder, Beschreibung mit genau 5 deutschen Hashtags | offen |
@@ -71,3 +71,18 @@ klein „Muslim 666 · Muslim 251“.
 
 `out/schritte_video.mp4` (voll), Vorschau 720p, Titelbild, Beschreibung als Textdatei. Projektgedächtnis
 (`gebet-video/CLAUDE.md`) und `gebet-video/UEBERGABE.md` ergänzen, committen, pushen (Zweig `claude/exciting-planck-xjdkte`).
+
+## 8. Technik-Stand (Phase 2)
+
+- `blender/szene.py`: lädt `gebet-video/blender/gebaeude.blend`, entfernt Autos, Licht später Nachmittag, Vordach über dem
+  Haupteingang, holt `A_Qamis` und `B_Hemd` aus `figuren.blend`, Handy am Knochen `Hand.R`, Fußspur (Sohlenform,
+  abwechselnd gold/weiß, Leuchtstärke je Abdruck), fünf Wege (leuchtende Kurven), Geh-Pose `geh_pose(phase)`, Posen
+  `HANDY_HALTEN`, `AUF_FUESSE`, `ERKLAEREN`, Kamera-Helfer, `bildpunkt()` für Beschriftungen.
+- `blender/storyboard.py` → `out/phase2/3d_S2…S11.png` (540 × 960, 24 Samples, ca. 6–10 s pro Bild).
+- `web/overlay.js` + `web/overlay.html` + `web/cards.js`: Einblendungen (Display, Zähler, Karten H1/H2, Untertitel Stil b,
+  Schilder, Wudu, Schlusssatz, Logo) – nutzt `gebet-video/web/lib/overlay.js` (nur lesen).
+- `tools/overlay.mjs` (Chromium rendert Ebenen als PNG), `tools/storyboard.py` (Ebenen + Zusammenbau + Blätter).
+- Befehle: `cd schritte-video && ln -sfn ../gebet-video/.venv-blender .venv-blender`;
+  `.venv-blender/bin/python blender/storyboard.py --samples 24 --breite 540`; `python3 tools/storyboard.py`.
+- Karte H1: Arabisch nur der Kernsatz „كَانَتْ خَطْوَتَاهُ …“, Deutsch vollständig (A04). Steht ein Zähler oben und eine
+  Karte unten, steht der Untertitel unter der Karte (y 1450).
