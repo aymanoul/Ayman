@@ -6,3 +6,6 @@ out/proben/
 out/*_log.txt
 out/speedtest/
 out/phase3/stimmen.wav
+out/phase4/ebenen/
+out/phase4/zustaende.json
+out/phase4/ton.wav

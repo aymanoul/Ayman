@@ -177,10 +177,16 @@ window.zeichne = async (z) => {
   if (z.handy) handyKarte(z.handy);
   (z.schilder || []).forEach((s) => schild(s.text, s.xy[0], s.xy[1], s.a ?? 1));
   if (z.wudu) wudu(z.wudu, z.wuduY || 1150);
+  // Film (Phase 4): mit z.t laufen Karten, Titel und Untertitel nach der Zeit (Ein-/Ausblenden wie im Gebet-Video)
+  const t = z.t ?? 5;
   let card = null;
-  if (z.karte) card = drawCard(g, 5, CARDS[z.karte], { t0: 0, t1: 99 });
-  if (z.titel) drawTitle(g, W, H, 5, z.titel, { t0: 0, t1: 99, y: z.titelY || 900, style: 'b', size: 84 });
-  if (z.fuss) { g.save(); g.font = '700 30px "Montserrat"'; g.fillStyle = 'rgba(255,255,255,0.85)'; g.textAlign = 'center'; g.shadowColor = 'rgba(0,0,0,0.6)'; g.shadowBlur = 10; g.fillText(z.fuss, 500, 1440); g.restore(); }
+  if (z.karte) card = typeof z.karte === 'string' ? drawCard(g, 5, CARDS[z.karte], { t0: 0, t1: 99 }) : drawCard(g, t, CARDS[z.karte.id], z.karte);
+  if (z.titel) {
+    if (Array.isArray(z.titel)) drawTitle(g, W, H, 5, z.titel, { t0: 0, t1: 99, y: z.titelY || 900, style: 'b', size: 84 });
+    else drawTitle(g, W, H, t, z.titel.zeilen, { t0: z.titel.t0, t1: z.titel.t1, y: z.titel.y || 900, style: 'b', size: z.titel.size || 84 });
+  }
+  if (z.fuss) { g.save(); g.globalAlpha = z.fussA ?? 1; g.font = '700 30px "Montserrat"'; g.fillStyle = 'rgba(255,255,255,0.85)'; g.textAlign = 'center'; g.shadowColor = 'rgba(0,0,0,0.6)'; g.shadowBlur = 10; g.fillText(z.fuss, 500, 1440); g.restore(); }
+  if (z.sub) drawSubtitles(g, W, H, t, [z.sub.gruppe], { style: 'b', y: z.sub.y || (card && z.zaehler ? 1450 : subtitleY(card)) });
   // steht oben ein Zähler und unten eine Karte, rückt der Untertitel unter die Karte (über den unteren 20 %)
   if (z.untertitel) untertitelStill(z.untertitel, z.untertitelY || (card && z.zaehler ? 1450 : subtitleY(card)));
   return true;

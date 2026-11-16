@@ -30,11 +30,16 @@ const page = await b.newPage({ viewport: { width: 1080, height: 1920 } });
 page.on('pageerror', (e) => console.error('Seitenfehler:', e.message));
 await page.goto(`http://localhost:${port}/s/web/overlay.html`);
 await page.waitForFunction('window.bereit === true');
+let vorher = null, vorherDatei = null, n = 0;
 for (const { name, zustand } of JSON.parse(fs.readFileSync(liste, 'utf8'))) {
+  const datei = path.join(out, `${name}.png`);
+  const key = JSON.stringify(zustand);
+  if (key === vorher) { fs.copyFileSync(vorherDatei, datei); continue; }    // gleicher Zustand → gleiches Bild
   await page.evaluate((z) => window.zeichne(z), zustand);
   const data = await page.evaluate(() => window.bild());
-  fs.writeFileSync(path.join(out, `${name}.png`), Buffer.from(data.split(',')[1], 'base64'));
-  console.log('Ebene', name);
+  fs.writeFileSync(datei, Buffer.from(data.split(',')[1], 'base64'));
+  vorher = key; vorherDatei = datei;
+  if (++n % 100 === 0 || !/^f_/.test(name)) console.log('Ebene', name);
 }
 await b.close();
 server.close();

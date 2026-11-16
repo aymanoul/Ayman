@@ -91,7 +91,7 @@
   Wort abgeglichen, A04 passt; Ayman soll auf sunnah.com gegenprüfen).
 - **Phase 1 freigegeben (16.11.).** B wird von Ayman **neu aufgenommen** (andere Stimme); B trägt **Hemd und Hose**.
 - **Phase 2:** Ayman wollte den Hook anders → S1 = B läuft mit Handy zur Moschee (über die Schulter, Moschee dahinter,
-  vergrößerter Handy-Bildschirm daneben). Umgesetzt. **Storyboard freigegeben (16.11.).** Phase 3 mit **B-Platzhalter** (alte Helmut-B-Zeilen, auf Aymans Wunsch): Rohschnitt fertig `schritte-video/out/phase3/rohschnitt_720p.mp4` (65,5 s), an Ayman geschickt, **Freigabe offen**. Merkpunkt Endfassung: Mund von A ist rötlich und wirkt in Seitenansicht wie ein Fleck → dunkler/flacher machen. Technik: `schritte-video/PLAN.md` Abschnitt 9. Storyboard: `schritte-video/out/phase2/storyboard.jpg`, `display_und_zaehler.jpg`.
+  vergrößerter Handy-Bildschirm daneben). Umgesetzt. **Storyboard freigegeben (16.11.).** Phase 3 mit **B-Platzhalter** (alte Helmut-B-Zeilen, auf Aymans Wunsch): Rohschnitt fertig `schritte-video/out/phase3/rohschnitt_720p.mp4` (65,5 s), **freigegeben (16.11.)**. Phase 4: Vorschau `schritte-video/out/phase4/vorschau_720p.mp4` (Einblendungen + Geräusche), **Freigabe offen**; Technik PLAN.md Abschnitt 10. Merkpunkt Endfassung: Mund von A ist rötlich und wirkt in Seitenansicht wie ein Fleck → dunkler/flacher machen. Technik: `schritte-video/PLAN.md` Abschnitt 9. Storyboard: `schritte-video/out/phase2/storyboard.jpg`, `display_und_zaehler.jpg`.
   Technik-Stand und Befehle: `schritte-video/PLAN.md` Abschnitt 8.
 - Phasen: 1 Beweisliste · 2 Storyboard (11 Bilder + Handy-Display) · 3 Stimmen/Zeitplan/Rohschnitt 720p ·
   4 Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche · 5 Endfassung, 2 Titelbilder, Beschreibung (genau 5 Hashtags).
@@ -145,7 +145,7 @@ Z oben (Three.js: (x, y, z)_Blender = (x, −z, y)_Three). Figuren-Knochen: loka
 
 ## 7. Nächste Schritte (Reihenfolge)
 
-0. **Schritte-Video:** Freigabe Rohschnitt (Phase 3) abwarten; neue B-Aufnahme einbauen, sobald sie kommt; dann Phase 4.
+0. **Schritte-Video:** Freigabe Vorschau Phase 4 abwarten; neue B-Aufnahme einbauen, sobald sie kommt; dann Phase 5 (Endfassung 1080 × 1920 – Rechenzeit klären, Mund A dunkler).
 1. Aymans Rückmeldung zu **Gebäude außen** und **Hauptpersonen** abwarten → ggf. Änderungen.
 2. Entscheidung zur Rechenweise künftiger Videos abfragen, wenn Ayman so weit ist.
 3. Auf „Abgabe machen“: Phase 8 (Prüfung, Belege nochmals gegen Quelle) und Phase 9 (Endfassung, Titelbild V1,

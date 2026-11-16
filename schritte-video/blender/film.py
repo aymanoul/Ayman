@@ -85,6 +85,8 @@ def tuer(k):
 
 def spur_bis(y, nachglimmen=True, voll=1.0):
     """Abdrücke bis zur Höhe y sichtbar; der jüngste leuchtet am stärksten (glimmt nach)."""
+    global ABDRUECKE
+    ABDRUECKE = sum(1 for ob, _ in spur if ob.location.y < y - 0.15)
     st = []
     for i, (ob, _) in enumerate(spur):
         if ob.location.y < y - 0.15:
@@ -102,6 +104,7 @@ def gehen(arm, start, richtung_grad, tempo, tl, zusatz=None, phase0=0.0):
     weg = tempo * tl
     ph_ = phase0 + weg / SCHRITT
     p = Vector(start) + d * weg
+    PHASEN[arm.name] = ph_
     posen = [SZ.geh_pose(ph_)] + ([zusatz] if zusatz else [])
     SZ.stell(arm, *posen, loc=(p.x, p.y, SZ.huepf(ph_)), rot_z=richtung_grad)
     return p
@@ -208,6 +211,7 @@ def S11(u, tl, d):    # beide gehen durch die offene Tür, die Abdrücke leuchte
     SZ.kamera(S, (0.3, lerp(-9.5, -8.6, u), 1.45), (0.0, -1.0, 1.7), 30)
 
 
+PHASEN, ABDRUECKE = {}, 0
 SHOTS = {'S1': S1, 'S2': S2, 'S3': S3, 'S4': S4, 'S5': S5, 'S6': S6, 'S7': S7, 'S8': S8, 'S9': S9, 'S10': S10, 'S11': S11}
 aktuell = 0.0
 
@@ -222,8 +226,9 @@ def stimme_bei(z):
 
 
 def stellen(t):
-    global aktuell
+    global aktuell, ABDRUECKE
     aktuell = t
+    PHASEN.clear(); ABDRUECKE = 0
     shot = next((s for s in ZP['shots'] if s['t0'] <= t < s['t0'] + s['t']), ZP['shots'][-1])
     for o in bpy.data.objects:
         if o.name.startswith('Weg_'):
@@ -237,7 +242,24 @@ def stellen(t):
     return shot['id']
 
 
-if __name__ == '__main__':
+def punkte():
+    """--punkte: nichts rendern, nur je Bild (30/s) Daten für Einblendungen und Geräusche → audio/punkte.json
+    (Shot, Gehphasen der Figuren, Zahl der sichtbaren Abdrücke, Bildpunkt des Handys in S1)."""
+    out = []
+    for n in range(int(round(ZP['dauer'] * 30))):
+        sid = stellen(n / 30)
+        d = {'t': round(n / 30, 4), 'shot': sid, 'phase': {k: round(v, 4) for k, v in PHASEN.items()}, 'abdruecke': ABDRUECKE}
+        if sid == 'S1':
+            bpy.context.view_layer.update()
+            d['handy'] = SZ.bildpunkt(S, ph.matrix_world.translation)
+        out.append(d)
+    json.dump(out, open(os.path.join(ROOT, 'audio', 'punkte.json'), 'w'))
+    print('punkte:', len(out), 'Bilder')
+
+
+if __name__ == '__main__' and '--punkte' in sys.argv:
+    punkte()
+elif __name__ == '__main__':
     n0, n1 = int(round(VON * FPS)), int(round(min(BIS, ZP['dauer']) * FPS))
     t_start = time.time()
     for n in range(n0, n1):

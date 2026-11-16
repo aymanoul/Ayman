@@ -53,8 +53,8 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 |---|---|---|
 | 1 | Beweisliste H1/H2 prüfen, Wortlaut bestätigen (`docs/phase1-beweisliste.md`) | ✅ **freigegeben** (16.11.) |
 | 2 | Storyboard: 11 Standbilder auf einem Blatt + Handy-Display und Zähler als Einzelbild | ✅ **freigegeben** (16.11., mit neuem Hook S1) |
-| 3 | Stimmen zerlegen, Zeitplan, Rohschnitt 720p ohne Feinheiten | in Arbeit: A01–A07 + **B01–B05 als Platzhalter** (alte Helmut-Zeilen, Ayman: „mit Platzhalter anfangen“), Zeitplan 65,5 s, Mund, `blender/film.py`; **Rohschnitt fertig** `out/phase3/rohschnitt_720p.mp4` (15 Bilder/s gerendert, 540 × 960 → 720p, ~1,5 h), Freigabe offen |
-| 4 | Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche; Vorschau 720p | offen |
+| 3 | Stimmen zerlegen, Zeitplan, Rohschnitt 720p ohne Feinheiten | in Arbeit: A01–A07 + **B01–B05 als Platzhalter** (alte Helmut-Zeilen, Ayman: „mit Platzhalter anfangen“), Zeitplan 65,5 s, Mund, `blender/film.py`; **Rohschnitt fertig** `out/phase3/rohschnitt_720p.mp4` (15 Bilder/s gerendert, 540 × 960 → 720p, ~1,5 h), **freigegeben** (16.11.) |
+| 4 | Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche; Vorschau 720p | Vorschau fertig `out/phase4/vorschau_720p.mp4` (65,5 s, −14 LUFS), Freigabe offen |
 | 5 | Endfassung 1080 × 1920, Schlussprüfung, 2 Titelbilder, Beschreibung mit genau 5 deutschen Hashtags | offen |
 
 ## 6. Shotliste (Richtzeiten, später an die Tonlängen angepasst)
@@ -104,3 +104,17 @@ klein „Muslim 666 · Muslim 251“.
   `zeitplan.py` neu, betroffene Shots neu rendern.
 - Merkpunkte aus der Prüfung des Rohschnitts: Mund von A rötlich, in Seitenansicht (S4) wie ein Fleck → dunkler und flacher;
   sonst keine Augen/Brauen sichtbar, Bewegungen und Schnitte wie geplant. Lautheit −15 LUFS (Endfassung zweistufig auf −14).
+
+## 10. Technik-Stand (Phase 4)
+
+- `blender/film.py --punkte`: rendert nichts, schreibt je Bild (30/s) Shot, Gehphasen, Zahl sichtbarer Abdrücke und den
+  Bildpunkt des Handys (S1) → `audio/punkte.json` (~2 min). Grundlage für Einblendungen und Schritt-Geräusche.
+- `tools/einblendungen.py`: Zustände je Bild → `out/phase4/zustaende.json`, rendert `out/phase4/ebenen/f_*.png`
+  (gleiche Zustände werden kopiert, ~15 min). Untertitel Wort für Wort (Gruppen + ﷻ wie im Gebet-Video), S1 Titel statt
+  Untertitel, Handy-Lupe folgt dem Handy, Zähler = sichtbare Abdrücke (gold ungerade = Sünde, weiß = Rangstufe; Ende 9/8),
+  Karte H1 ab A04+0,4 s, H2 ab „Viele“ (A05), S8 Handy-Grafik 8.432 mit 9/8, S9 Gebetsnamen nacheinander + Wudu ab „Mach“,
+  Schlusssatz nach A07 mit „Muslim 666 · Muslim 251“.
+- `tools/ton.py` → `out/phase4/ton.wav`: Stimmen, Schritte beim Aufsetzen der Füße, Klick je Abdruck, Wischer (Karten,
+  Handy, Wege), Tür + Raumklang in S11, Außenton (Wind/Blätter, keine Autos). Bausteine aus gebet-video (nur gelesen).
+- `tools/vorschau.py`: 3D (out/roh, 15/s) + Ebenen + Ton, Weichzeichner in S8, Lautheit zweistufig −14 LUFS.
+- Reihenfolge nach neuer B-Aufnahme: zeitplan.py → film.py (betroffene Bilder) → film.py --punkte → einblendungen.py → ton.py → vorschau.py.
