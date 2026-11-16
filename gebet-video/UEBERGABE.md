@@ -661,3 +661,9 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
   Outfits nach Figurenblättern (Vorlagen: weiß/grün Qamis, weißes/grünes Hemd mit schwarzer/cremefarbener Hose).
 - Gebaut: `blender/gebaeude.py`, `blender/figuren.py` (Skelett, Kleidung mit Gewichten), Blätter und Bewegungsprobe.
   Gesichter ohne Augen und Brauen (feste Regel 1), Nase und Ohren vorhanden.
+
+### 14s. Neues Video „Jeder Schritt zählt“ (16.11.2026)
+
+- Auftrag mit fester Shotliste, Drehbuch und Phasen (siehe `schritte-video/PLAN.md`), im neuen Blender-Design.
+- Stimme geliefert (eine Datei, alle 12 Zeilen). Phase 1 erledigt: Beweisliste `schritte-video/docs/phase1-beweisliste.md`.
+  hadithunlocked.com ist in der Umgebung nicht freigeschaltet; sunnah.com/dorar.net bleiben gesperrt (nicht umgehen).

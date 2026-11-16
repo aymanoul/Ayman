@@ -1,4 +1,4 @@
-# PROJEKTGEDÄCHTNIS – Masjid As-Sunnah Ratingen: Videos (Stand 15.11.2026)
+# PROJEKTGEDÄCHTNIS – Masjid As-Sunnah Ratingen: Videos (Stand 16.11.2026)
 
 > **Diese Datei immer zuerst lesen.** Sie wird bei jedem Start im Projekt automatisch geladen und ist die
 > zentrale, aktuelle Zusammenfassung. Details und Tagebuch: `UEBERGABE.md` (Abschnitte 0–14).
@@ -79,6 +79,19 @@
   Three.js ≈ 2 h. Optionen: kurze Blender-Tests · Blender halbe Auflösung · Three.js behalten (Blender für Titelbilder).
   **Nicht von selbst mit B3/B4 loslegen**, erst Freigabe von B1b/B2 und diese Entscheidung abwarten.
 
+### C) NEUES VIDEO „Jeder Schritt zählt“ (~60 s) – Ordner `schritte-video/` (Plan: `schritte-video/PLAN.md`)
+- Auftrag 16.11.2026: im **neuen Blender-Design** (Gebäude außen ohne Autos, Figuren `A_Qamis` + `B_Hemd`), Einblendungen
+  mit dem Overlay-Baukasten des Gebet-Videos. Thema: jeder Schritt zur Moschee wird gezählt (Hook: Schrittzähler am Handy).
+  Kein Auto/Fahren im Bild. Shotliste S1–S11 und Drehbuch A01–A07 / B01–B05 im Plan.
+- Stimme: `schritte-video/assets/audio/roh/stimme_helmut.mp3` (ElevenLabs „Helmut“, 64,8 s, **eine Datei**: A01–A07, dann
+  B01–B05; Transkript `assets/audio/transkript/helmut.json`).
+- **Phase 1 (Beweisliste) erstellt, wartet auf Freigabe:** `schritte-video/docs/phase1-beweisliste.md`.
+  H2 = Muslim 251 (hadeethenc 3574, geprüft; Karte im hadeethenc-Wortlaut „womit Allah die Sünden auslöscht …
+  das häufige Schreiten zu den Moscheen“). H1 = Muslim 666 (nicht auf hadeethenc; arabischer Wortlaut mit A04 Wort für
+  Wort abgeglichen, A04 passt; Ayman soll auf sunnah.com gegenprüfen).
+- Phasen: 1 Beweisliste · 2 Storyboard (11 Bilder + Handy-Display) · 3 Stimmen/Zeitplan/Rohschnitt 720p ·
+  4 Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche · 5 Endfassung, 2 Titelbilder, Beschreibung (genau 5 Hashtags).
+
 ## 4. Wo was liegt (in `gebet-video/`)
 
 | Pfad | Inhalt |
@@ -128,6 +141,7 @@ Z oben (Three.js: (x, y, z)_Blender = (x, −z, y)_Three). Figuren-Knochen: loka
 
 ## 7. Nächste Schritte (Reihenfolge)
 
+0. **Schritte-Video:** Freigabe der Beweisliste (Phase 1) und Antwort zur Stimme abwarten, dann Phase 2 (Storyboard).
 1. Aymans Rückmeldung zu **Gebäude außen** und **Hauptpersonen** abwarten → ggf. Änderungen.
 2. Entscheidung zur Rechenweise künftiger Videos abfragen, wenn Ayman so weit ist.
 3. Auf „Abgabe machen“: Phase 8 (Prüfung, Belege nochmals gegen Quelle) und Phase 9 (Endfassung, Titelbild V1,

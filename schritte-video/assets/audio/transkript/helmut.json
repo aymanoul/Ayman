@@ -1,0 +1,882 @@
+[
+ {
+  "start": 0.0,
+  "end": 5.64,
+  "text": "Dein Handy zählt jeden Deiner Schritte, aber es gibt Schritte, die ganz anders gezählt werden.",
+  "words": [
+   {
+    "w": "Dein",
+    "start": 0.0,
+    "end": 0.32
+   },
+   {
+    "w": "Handy",
+    "start": 0.32,
+    "end": 0.64
+   },
+   {
+    "w": "zählt",
+    "start": 0.64,
+    "end": 1.04
+   },
+   {
+    "w": "jeden",
+    "start": 1.04,
+    "end": 1.4
+   },
+   {
+    "w": "Deiner",
+    "start": 1.4,
+    "end": 1.82
+   },
+   {
+    "w": "Schritte,",
+    "start": 1.82,
+    "end": 2.22
+   },
+   {
+    "w": "aber",
+    "start": 2.76,
+    "end": 3.04
+   },
+   {
+    "w": "es",
+    "start": 3.04,
+    "end": 3.22
+   },
+   {
+    "w": "gibt",
+    "start": 3.22,
+    "end": 3.38
+   },
+   {
+    "w": "Schritte,",
+    "start": 3.38,
+    "end": 3.78
+   },
+   {
+    "w": "die",
+    "start": 3.96,
+    "end": 3.96
+   },
+   {
+    "w": "ganz",
+    "start": 3.96,
+    "end": 4.34
+   },
+   {
+    "w": "anders",
+    "start": 4.34,
+    "end": 4.76
+   },
+   {
+    "w": "gezählt",
+    "start": 4.76,
+    "end": 5.26
+   },
+   {
+    "w": "werden.",
+    "start": 5.26,
+    "end": 5.64
+   }
+  ]
+ },
+ {
+  "start": 6.24,
+  "end": 8.94,
+  "text": "Und wie viele davon waren auf dem Weg zur Moschee?",
+  "words": [
+   {
+    "w": "Und",
+    "start": 6.24,
+    "end": 6.34
+   },
+   {
+    "w": "wie",
+    "start": 6.34,
+    "end": 6.54
+   },
+   {
+    "w": "viele",
+    "start": 6.54,
+    "end": 6.88
+   },
+   {
+    "w": "davon",
+    "start": 6.88,
+    "end": 7.22
+   },
+   {
+    "w": "waren",
+    "start": 7.22,
+    "end": 7.58
+   },
+   {
+    "w": "auf",
+    "start": 7.58,
+    "end": 7.8
+   },
+   {
+    "w": "dem",
+    "start": 7.8,
+    "end": 7.96
+   },
+   {
+    "w": "Weg",
+    "start": 7.96,
+    "end": 8.2
+   },
+   {
+    "w": "zur",
+    "start": 8.2,
+    "end": 8.44
+   },
+   {
+    "w": "Moschee?",
+    "start": 8.44,
+    "end": 8.94
+   }
+  ]
+ },
+ {
+  "start": 9.58,
+  "end": 10.14,
+  "text": "Nicht ganz.",
+  "words": [
+   {
+    "w": "Nicht",
+    "start": 9.58,
+    "end": 9.84
+   },
+   {
+    "w": "ganz.",
+    "start": 9.84,
+    "end": 10.14
+   }
+  ]
+ },
+ {
+  "start": 10.88,
+  "end": 13.92,
+  "text": "Der Prophet, Allas Segen und Frieden auf ihm, sagte,",
+  "words": [
+   {
+    "w": "Der",
+    "start": 10.88,
+    "end": 11.02
+   },
+   {
+    "w": "Prophet,",
+    "start": 11.02,
+    "end": 11.32
+   },
+   {
+    "w": "Allas",
+    "start": 11.92,
+    "end": 12.26
+   },
+   {
+    "w": "Segen",
+    "start": 12.26,
+    "end": 12.66
+   },
+   {
+    "w": "und",
+    "start": 12.66,
+    "end": 12.84
+   },
+   {
+    "w": "Frieden",
+    "start": 12.84,
+    "end": 13.22
+   },
+   {
+    "w": "auf",
+    "start": 13.22,
+    "end": 13.38
+   },
+   {
+    "w": "ihm,",
+    "start": 13.38,
+    "end": 13.56
+   },
+   {
+    "w": "sagte,",
+    "start": 13.72,
+    "end": 13.92
+   }
+  ]
+ },
+ {
+  "start": 14.74,
+  "end": 21.3,
+  "text": "wer sich in seinem Haus reinigt und dann zu einem der Häuser Allas geht, um eine der Pflichten Allas zu erfüllen,",
+  "words": [
+   {
+    "w": "wer",
+    "start": 14.74,
+    "end": 14.9
+   },
+   {
+    "w": "sich",
+    "start": 14.9,
+    "end": 15.1
+   },
+   {
+    "w": "in",
+    "start": 15.1,
+    "end": 15.24
+   },
+   {
+    "w": "seinem",
+    "start": 15.24,
+    "end": 15.46
+   },
+   {
+    "w": "Haus",
+    "start": 15.46,
+    "end": 15.84
+   },
+   {
+    "w": "reinigt",
+    "start": 15.84,
+    "end": 16.5
+   },
+   {
+    "w": "und",
+    "start": 16.5,
+    "end": 16.76
+   },
+   {
+    "w": "dann",
+    "start": 16.76,
+    "end": 17.02
+   },
+   {
+    "w": "zu",
+    "start": 17.02,
+    "end": 17.28
+   },
+   {
+    "w": "einem",
+    "start": 17.28,
+    "end": 17.52
+   },
+   {
+    "w": "der",
+    "start": 17.52,
+    "end": 17.74
+   },
+   {
+    "w": "Häuser",
+    "start": 17.74,
+    "end": 18.08
+   },
+   {
+    "w": "Allas",
+    "start": 18.08,
+    "end": 18.52
+   },
+   {
+    "w": "geht,",
+    "start": 18.52,
+    "end": 18.86
+   },
+   {
+    "w": "um",
+    "start": 19.14,
+    "end": 19.26
+   },
+   {
+    "w": "eine",
+    "start": 19.26,
+    "end": 19.56
+   },
+   {
+    "w": "der",
+    "start": 19.56,
+    "end": 19.7
+   },
+   {
+    "w": "Pflichten",
+    "start": 19.7,
+    "end": 20.3
+   },
+   {
+    "w": "Allas",
+    "start": 20.3,
+    "end": 20.64
+   },
+   {
+    "w": "zu",
+    "start": 20.64,
+    "end": 20.9
+   },
+   {
+    "w": "erfüllen,",
+    "start": 20.9,
+    "end": 21.3
+   }
+  ]
+ },
+ {
+  "start": 21.78,
+  "end": 23.06,
+  "text": "dessen Schritte sind so.",
+  "words": [
+   {
+    "w": "dessen",
+    "start": 21.78,
+    "end": 22.1
+   },
+   {
+    "w": "Schritte",
+    "start": 22.1,
+    "end": 22.46
+   },
+   {
+    "w": "sind",
+    "start": 22.46,
+    "end": 22.68
+   },
+   {
+    "w": "so.",
+    "start": 22.68,
+    "end": 23.06
+   }
+  ]
+ },
+ {
+  "start": 23.56,
+  "end": 28.36,
+  "text": "Der eine tilgt eine Sünde und der andere erhöht um eine Rangstufe.",
+  "words": [
+   {
+    "w": "Der",
+    "start": 23.56,
+    "end": 23.74
+   },
+   {
+    "w": "eine",
+    "start": 23.74,
+    "end": 24.1
+   },
+   {
+    "w": "tilgt",
+    "start": 24.1,
+    "end": 24.7
+   },
+   {
+    "w": "eine",
+    "start": 24.7,
+    "end": 24.98
+   },
+   {
+    "w": "Sünde",
+    "start": 24.98,
+    "end": 25.36
+   },
+   {
+    "w": "und",
+    "start": 25.36,
+    "end": 25.96
+   },
+   {
+    "w": "der",
+    "start": 25.96,
+    "end": 26.12
+   },
+   {
+    "w": "andere",
+    "start": 26.12,
+    "end": 26.56
+   },
+   {
+    "w": "erhöht",
+    "start": 26.56,
+    "end": 27.24
+   },
+   {
+    "w": "um",
+    "start": 27.24,
+    "end": 27.4
+   },
+   {
+    "w": "eine",
+    "start": 27.4,
+    "end": 27.64
+   },
+   {
+    "w": "Rangstufe.",
+    "start": 27.64,
+    "end": 28.36
+   }
+  ]
+ },
+ {
+  "start": 28.36,
+  "end": 30.24,
+  "text": "Bei jedem Einzelnen.",
+  "words": [
+   {
+    "w": "Bei",
+    "start": 28.36,
+    "end": 29.0
+   },
+   {
+    "w": "jedem",
+    "start": 29.0,
+    "end": 29.5
+   },
+   {
+    "w": "Einzelnen.",
+    "start": 29.5,
+    "end": 30.24
+   }
+  ]
+ },
+ {
+  "start": 30.74,
+  "end": 36.84,
+  "text": "Viele Schritte zu den Moscheen gehören zu dem, womit Allas Sünden tilgt und Rangstufen erhöht.",
+  "words": [
+   {
+    "w": "Viele",
+    "start": 30.74,
+    "end": 31.14
+   },
+   {
+    "w": "Schritte",
+    "start": 31.14,
+    "end": 31.54
+   },
+   {
+    "w": "zu",
+    "start": 31.54,
+    "end": 31.76
+   },
+   {
+    "w": "den",
+    "start": 31.76,
+    "end": 31.92
+   },
+   {
+    "w": "Moscheen",
+    "start": 31.92,
+    "end": 32.42
+   },
+   {
+    "w": "gehören",
+    "start": 32.42,
+    "end": 32.84
+   },
+   {
+    "w": "zu",
+    "start": 32.84,
+    "end": 33.08
+   },
+   {
+    "w": "dem,",
+    "start": 33.08,
+    "end": 33.34
+   },
+   {
+    "w": "womit",
+    "start": 33.52,
+    "end": 33.76
+   },
+   {
+    "w": "Allas",
+    "start": 33.76,
+    "end": 34.2
+   },
+   {
+    "w": "Sünden",
+    "start": 34.2,
+    "end": 34.64
+   },
+   {
+    "w": "tilgt",
+    "start": 34.64,
+    "end": 35.22
+   },
+   {
+    "w": "und",
+    "start": 35.22,
+    "end": 35.54
+   },
+   {
+    "w": "Rangstufen",
+    "start": 35.54,
+    "end": 36.26
+   },
+   {
+    "w": "erhöht.",
+    "start": 36.26,
+    "end": 36.84
+   }
+  ]
+ },
+ {
+  "start": 37.4,
+  "end": 40.48,
+  "text": "Fünf Gebete am Tag, fünf Wege dorthin.",
+  "words": [
+   {
+    "w": "Fünf",
+    "start": 37.4,
+    "end": 37.7
+   },
+   {
+    "w": "Gebete",
+    "start": 37.7,
+    "end": 38.16
+   },
+   {
+    "w": "am",
+    "start": 38.16,
+    "end": 38.34
+   },
+   {
+    "w": "Tag,",
+    "start": 38.34,
+    "end": 38.68
+   },
+   {
+    "w": "fünf",
+    "start": 39.28,
+    "end": 39.54
+   },
+   {
+    "w": "Wege",
+    "start": 39.54,
+    "end": 39.98
+   },
+   {
+    "w": "dorthin.",
+    "start": 39.98,
+    "end": 40.48
+   }
+  ]
+ },
+ {
+  "start": 40.96,
+  "end": 43.66,
+  "text": "Mach deinen Wudu zu Hause und sammle sie.",
+  "words": [
+   {
+    "w": "Mach",
+    "start": 40.96,
+    "end": 41.14
+   },
+   {
+    "w": "deinen",
+    "start": 41.14,
+    "end": 41.44
+   },
+   {
+    "w": "Wudu",
+    "start": 41.44,
+    "end": 41.9
+   },
+   {
+    "w": "zu",
+    "start": 41.9,
+    "end": 42.12
+   },
+   {
+    "w": "Hause",
+    "start": 42.12,
+    "end": 42.48
+   },
+   {
+    "w": "und",
+    "start": 42.48,
+    "end": 43.06
+   },
+   {
+    "w": "sammle",
+    "start": 43.06,
+    "end": 43.48
+   },
+   {
+    "w": "sie.",
+    "start": 43.48,
+    "end": 43.66
+   }
+  ]
+ },
+ {
+  "start": 44.2,
+  "end": 45.82,
+  "text": "Dein Handy zählt eine Schritte.",
+  "words": [
+   {
+    "w": "Dein",
+    "start": 44.2,
+    "end": 44.44
+   },
+   {
+    "w": "Handy",
+    "start": 44.44,
+    "end": 44.76
+   },
+   {
+    "w": "zählt",
+    "start": 44.76,
+    "end": 45.22
+   },
+   {
+    "w": "eine",
+    "start": 45.22,
+    "end": 45.44
+   },
+   {
+    "w": "Schritte.",
+    "start": 45.44,
+    "end": 45.82
+   }
+  ]
+ },
+ {
+  "start": 46.4,
+  "end": 48.66,
+  "text": "Bei Allas zählt, wohin sie führen.",
+  "words": [
+   {
+    "w": "Bei",
+    "start": 46.4,
+    "end": 46.54
+   },
+   {
+    "w": "Allas",
+    "start": 46.54,
+    "end": 47.0
+   },
+   {
+    "w": "zählt,",
+    "start": 47.0,
+    "end": 47.52
+   },
+   {
+    "w": "wohin",
+    "start": 47.82,
+    "end": 48.1
+   },
+   {
+    "w": "sie",
+    "start": 48.1,
+    "end": 48.26
+   },
+   {
+    "w": "führen.",
+    "start": 48.26,
+    "end": 48.66
+   }
+  ]
+ },
+ {
+  "start": 49.36,
+  "end": 50.72,
+  "text": "8000 Schritte heute.",
+  "words": [
+   {
+    "w": "8000",
+    "start": 49.36,
+    "end": 50.08
+   },
+   {
+    "w": "Schritte",
+    "start": 50.08,
+    "end": 50.46
+   },
+   {
+    "w": "heute.",
+    "start": 50.46,
+    "end": 50.72
+   }
+  ]
+ },
+ {
+  "start": 51.3,
+  "end": 52.22,
+  "text": "Nicht schlecht, oder?",
+  "words": [
+   {
+    "w": "Nicht",
+    "start": 51.3,
+    "end": 51.56
+   },
+   {
+    "w": "schlecht,",
+    "start": 51.56,
+    "end": 51.86
+   },
+   {
+    "w": "oder?",
+    "start": 52.02,
+    "end": 52.22
+   }
+  ]
+ },
+ {
+  "start": 52.98,
+  "end": 53.76,
+  "text": "Keine Ahnung.",
+  "words": [
+   {
+    "w": "Keine",
+    "start": 52.98,
+    "end": 53.4
+   },
+   {
+    "w": "Ahnung.",
+    "start": 53.4,
+    "end": 53.76
+   }
+  ]
+ },
+ {
+  "start": 54.26,
+  "end": 55.22,
+  "text": "Schritt ist doch Schritt.",
+  "words": [
+   {
+    "w": "Schritt",
+    "start": 54.26,
+    "end": 54.56
+   },
+   {
+    "w": "ist",
+    "start": 54.56,
+    "end": 54.8
+   },
+   {
+    "w": "doch",
+    "start": 54.8,
+    "end": 54.98
+   },
+   {
+    "w": "Schritt.",
+    "start": 54.98,
+    "end": 55.22
+   }
+  ]
+ },
+ {
+  "start": 56.22,
+  "end": 57.92,
+  "text": "Bei jedem einzelnen Schritt?",
+  "words": [
+   {
+    "w": "Bei",
+    "start": 56.019999999999996,
+    "end": 56.36
+   },
+   {
+    "w": "jedem",
+    "start": 56.36,
+    "end": 56.84
+   },
+   {
+    "w": "einzelnen",
+    "start": 56.84,
+    "end": 57.6
+   },
+   {
+    "w": "Schritt?",
+    "start": 57.6,
+    "end": 57.92
+   }
+  ]
+ },
+ {
+  "start": 58.74,
+  "end": 61.22,
+  "text": "Dann habe ich heute ganz schön viele verschenkt.",
+  "words": [
+   {
+    "w": "Dann",
+    "start": 58.74,
+    "end": 59.04
+   },
+   {
+    "w": "habe",
+    "start": 59.04,
+    "end": 59.24
+   },
+   {
+    "w": "ich",
+    "start": 59.24,
+    "end": 59.4
+   },
+   {
+    "w": "heute",
+    "start": 59.4,
+    "end": 59.58
+   },
+   {
+    "w": "ganz",
+    "start": 59.58,
+    "end": 59.94
+   },
+   {
+    "w": "schön",
+    "start": 59.94,
+    "end": 60.2
+   },
+   {
+    "w": "viele",
+    "start": 60.2,
+    "end": 60.56
+   },
+   {
+    "w": "verschenkt.",
+    "start": 60.56,
+    "end": 61.22
+   }
+  ]
+ },
+ {
+  "start": 61.9,
+  "end": 64.2,
+  "text": "Ab dem nächsten Gebet zähle ich anders.",
+  "words": [
+   {
+    "w": "Ab",
+    "start": 61.9,
+    "end": 62.08
+   },
+   {
+    "w": "dem",
+    "start": 62.08,
+    "end": 62.32
+   },
+   {
+    "w": "nächsten",
+    "start": 62.32,
+    "end": 62.64
+   },
+   {
+    "w": "Gebet",
+    "start": 62.64,
+    "end": 63.14
+   },
+   {
+    "w": "zähle",
+    "start": 63.14,
+    "end": 63.76
+   },
+   {
+    "w": "ich",
+    "start": 63.76,
+    "end": 63.9
+   },
+   {
+    "w": "anders.",
+    "start": 63.9,
+    "end": 64.2
+   }
+  ]
+ }
+]
