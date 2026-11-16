@@ -53,7 +53,7 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 |---|---|---|
 | 1 | Beweisliste H1/H2 prüfen, Wortlaut bestätigen (`docs/phase1-beweisliste.md`) | ✅ **freigegeben** (16.11.) |
 | 2 | Storyboard: 11 Standbilder auf einem Blatt + Handy-Display und Zähler als Einzelbild | ✅ **freigegeben** (16.11., mit neuem Hook S1) |
-| 3 | Stimmen zerlegen, Zeitplan, Rohschnitt 720p ohne Feinheiten | in Arbeit: A01–A07 + **B01–B05 als Platzhalter** (alte Helmut-Zeilen, Ayman: „mit Platzhalter anfangen“), Zeitplan 65,5 s, Mund, `blender/film.py`; Rohschnitt rendert (15 Bilder/s, 540 × 960 → 720p) |
+| 3 | Stimmen zerlegen, Zeitplan, Rohschnitt 720p ohne Feinheiten | in Arbeit: A01–A07 + **B01–B05 als Platzhalter** (alte Helmut-Zeilen, Ayman: „mit Platzhalter anfangen“), Zeitplan 65,5 s, Mund, `blender/film.py`; **Rohschnitt fertig** `out/phase3/rohschnitt_720p.mp4` (15 Bilder/s gerendert, 540 × 960 → 720p, ~1,5 h), Freigabe offen |
 | 4 | Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche; Vorschau 720p | offen |
 | 5 | Endfassung 1080 × 1920, Schlussprüfung, 2 Titelbilder, Beschreibung mit genau 5 deutschen Hashtags | offen |
 
@@ -102,3 +102,5 @@ klein „Muslim 666 · Muslim 251“.
 - `tools/rohschnitt.py`: Bilder + Stimmen → `out/phase3/rohschnitt_720p.mp4`.
 - **Wenn die neue B-Aufnahme kommt:** transkribieren, mit `zerlegen.py` in B01–B05 schneiden, je Zeile transkribieren,
   `zeitplan.py` neu, betroffene Shots neu rendern.
+- Merkpunkte aus der Prüfung des Rohschnitts: Mund von A rötlich, in Seitenansicht (S4) wie ein Fleck → dunkler und flacher;
+  sonst keine Augen/Brauen sichtbar, Bewegungen und Schnitte wie geplant. Lautheit −15 LUFS (Endfassung zweistufig auf −14).
