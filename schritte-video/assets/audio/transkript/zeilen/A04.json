@@ -1,0 +1,201 @@
+[
+ {
+  "start": 0.0,
+  "end": 7.08,
+  "text": "Wer sich in seinem Haus reinigt und dann zu einem der Häuser Allas geht, um eine der Pflichten Allas zu erfüllen,",
+  "words": [
+   {
+    "w": "Wer",
+    "start": 0.0,
+    "end": 0.64
+   },
+   {
+    "w": "sich",
+    "start": 0.64,
+    "end": 0.84
+   },
+   {
+    "w": "in",
+    "start": 0.84,
+    "end": 0.98
+   },
+   {
+    "w": "seinem",
+    "start": 0.98,
+    "end": 1.2
+   },
+   {
+    "w": "Haus",
+    "start": 1.2,
+    "end": 1.56
+   },
+   {
+    "w": "reinigt",
+    "start": 1.56,
+    "end": 2.24
+   },
+   {
+    "w": "und",
+    "start": 2.24,
+    "end": 2.52
+   },
+   {
+    "w": "dann",
+    "start": 2.52,
+    "end": 2.76
+   },
+   {
+    "w": "zu",
+    "start": 2.76,
+    "end": 3.02
+   },
+   {
+    "w": "einem",
+    "start": 3.02,
+    "end": 3.26
+   },
+   {
+    "w": "der",
+    "start": 3.26,
+    "end": 3.48
+   },
+   {
+    "w": "Häuser",
+    "start": 3.48,
+    "end": 3.84
+   },
+   {
+    "w": "Allas",
+    "start": 3.84,
+    "end": 4.28
+   },
+   {
+    "w": "geht,",
+    "start": 4.28,
+    "end": 4.6
+   },
+   {
+    "w": "um",
+    "start": 4.9,
+    "end": 5.0
+   },
+   {
+    "w": "eine",
+    "start": 5.0,
+    "end": 5.28
+   },
+   {
+    "w": "der",
+    "start": 5.28,
+    "end": 5.44
+   },
+   {
+    "w": "Pflichten",
+    "start": 5.44,
+    "end": 6.04
+   },
+   {
+    "w": "Allas",
+    "start": 6.04,
+    "end": 6.42
+   },
+   {
+    "w": "zu",
+    "start": 6.42,
+    "end": 6.62
+   },
+   {
+    "w": "erfüllen,",
+    "start": 6.62,
+    "end": 7.08
+   }
+  ]
+ },
+ {
+  "start": 7.56,
+  "end": 13.82,
+  "text": "dessen Schritte sind so. Der eine tilgt eine Sünde und der andere erhöht um eine Rangstufe.",
+  "words": [
+   {
+    "w": "dessen",
+    "start": 7.56,
+    "end": 7.84
+   },
+   {
+    "w": "Schritte",
+    "start": 7.84,
+    "end": 8.22
+   },
+   {
+    "w": "sind",
+    "start": 8.22,
+    "end": 8.44
+   },
+   {
+    "w": "so.",
+    "start": 8.44,
+    "end": 8.78
+   },
+   {
+    "w": "Der",
+    "start": 9.1,
+    "end": 9.24
+   },
+   {
+    "w": "eine",
+    "start": 9.24,
+    "end": 9.6
+   },
+   {
+    "w": "tilgt",
+    "start": 9.6,
+    "end": 10.24
+   },
+   {
+    "w": "eine",
+    "start": 10.24,
+    "end": 10.46
+   },
+   {
+    "w": "Sünde",
+    "start": 10.46,
+    "end": 10.9
+   },
+   {
+    "w": "und",
+    "start": 10.9,
+    "end": 11.4
+   },
+   {
+    "w": "der",
+    "start": 11.4,
+    "end": 11.56
+   },
+   {
+    "w": "andere",
+    "start": 11.56,
+    "end": 12.02
+   },
+   {
+    "w": "erhöht",
+    "start": 12.02,
+    "end": 12.7
+   },
+   {
+    "w": "um",
+    "start": 12.7,
+    "end": 12.84
+   },
+   {
+    "w": "eine",
+    "start": 12.84,
+    "end": 13.06
+   },
+   {
+    "w": "Rangstufe.",
+    "start": 13.06,
+    "end": 13.82
+   }
+  ]
+ }
+]

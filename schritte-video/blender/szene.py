@@ -79,6 +79,40 @@ def figur_holen(key):
     return bpy.data.objects[key + '_Skelett']
 
 
+def mund(arm, coll, name, vor=0.008):
+    """Schlichter Mund (dunkle, flache Ellipse) vorn am Kopf, hängt am Knochen „Kopf“. Öffnen über scale.z (mund_auf).
+    Keine Augen – nur Mund (erwünscht laut Regel 1)."""
+    FG.reset_pose(arm)
+    bpy.context.view_layer.update()
+    n = Vector((0, -0.86, -0.51)).normalized()
+    lokal = FG.head_point(n, vor)
+    me = bpy.data.meshes.new(name)
+    bm = bmesh.new()
+    bmesh.ops.create_uvsphere(bm, u_segments=16, v_segments=8, radius=1.0)
+    bm.to_mesh(me); bm.free()
+    for p in me.polygons:
+        p.use_smooth = True
+    me.materials.append(R.material(name, '#3a1513', 0.6))
+    ob = bpy.data.objects.new(name, me)
+    coll.objects.link(ob)
+    ob.scale = (0.021, 0.007, 0.006)
+    welt = arm.matrix_world @ lokal
+    ob.location = welt
+    ob.rotation_euler = arm.rotation_euler.copy()
+    bpy.context.view_layer.update()
+    mw = ob.matrix_world.copy()
+    ob.parent = arm; ob.parent_type = 'BONE'; ob.parent_bone = 'Kopf'
+    ob.matrix_world = mw
+    ob['grund_z'] = 0.006
+    return ob
+
+
+def mund_auf(ob, a):
+    """a = 0 (zu) … 1 (weit offen)."""
+    ob.scale.z = ob['grund_z'] * (1.0 + 1.5 * max(0.0, min(1.0, a)))
+    ob.scale.x = 0.021 * (1.0 - 0.1 * max(0.0, min(1.0, a)))
+
+
 def handy(arm, coll, screen_img=None):
     """Handy in der rechten Hand (am Knochen Hand.R). Display als Bild (eigenes Design)."""
     gehaeuse = R.material('Handy_Gehaeuse', '#1b1c20', 0.35, 0.4)
@@ -199,6 +233,8 @@ def aufbauen():
     A = figur_holen('A_Qamis')
     B = figur_holen('B_Hemd')
     ph = handy(B, neu)
+    MA = mund(A, neu, 'Mund_A', vor=0.03)                  # A: Mund vor dem vollen Bart
+    MB = mund(B, neu, 'Mund_B', vor=0.009)
     cd = bpy.data.cameras.new('Kamera_Shot'); cd.lens = 35; cd.sensor_width = 36; cd.clip_start = 0.05; cd.clip_end = 400
     cam = bpy.data.objects.new('Kamera_Shot', cd)
     neu.objects.link(cam)
@@ -206,7 +242,7 @@ def aufbauen():
     cy = scene.cycles
     cy.samples = 24
     scene.render.resolution_x, scene.render.resolution_y = 1080, 1920
-    return {'scene': scene, 'A': A, 'B': B, 'handy': ph, 'cam': cam, 'coll': neu}
+    return {'scene': scene, 'A': A, 'B': B, 'handy': ph, 'cam': cam, 'coll': neu, 'mundA': MA, 'mundB': MB}
 
 
 def handy_bild(S, pfad):

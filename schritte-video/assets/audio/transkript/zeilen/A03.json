@@ -1,0 +1,64 @@
+[
+ {
+  "start": 0.0,
+  "end": 4.46,
+  "text": "Nicht ganz. Der Prophet, Allas Segen und Frieden auf ihm, sagte,",
+  "words": [
+   {
+    "w": "Nicht",
+    "start": 0.0,
+    "end": 0.7
+   },
+   {
+    "w": "ganz.",
+    "start": 0.7,
+    "end": 0.98
+   },
+   {
+    "w": "Der",
+    "start": 1.52,
+    "end": 1.58
+   },
+   {
+    "w": "Prophet,",
+    "start": 1.58,
+    "end": 1.9
+   },
+   {
+    "w": "Allas",
+    "start": 2.44,
+    "end": 2.92
+   },
+   {
+    "w": "Segen",
+    "start": 2.92,
+    "end": 3.26
+   },
+   {
+    "w": "und",
+    "start": 3.26,
+    "end": 3.4
+   },
+   {
+    "w": "Frieden",
+    "start": 3.4,
+    "end": 3.82
+   },
+   {
+    "w": "auf",
+    "start": 3.82,
+    "end": 3.96
+   },
+   {
+    "w": "ihm,",
+    "start": 3.96,
+    "end": 4.14
+   },
+   {
+    "w": "sagte,",
+    "start": 4.3,
+    "end": 4.46
+   }
+  ]
+ }
+]

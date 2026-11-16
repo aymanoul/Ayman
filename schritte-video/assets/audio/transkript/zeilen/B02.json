@@ -1,0 +1,39 @@
+[
+ {
+  "start": 0.0,
+  "end": 2.7,
+  "text": "Keine Ahnung, Schritt ist doch Schritt.",
+  "words": [
+   {
+    "w": "Keine",
+    "start": 0.0,
+    "end": 0.96
+   },
+   {
+    "w": "Ahnung,",
+    "start": 0.96,
+    "end": 1.32
+   },
+   {
+    "w": "Schritt",
+    "start": 1.78,
+    "end": 2.04
+   },
+   {
+    "w": "ist",
+    "start": 2.04,
+    "end": 2.3
+   },
+   {
+    "w": "doch",
+    "start": 2.3,
+    "end": 2.48
+   },
+   {
+    "w": "Schritt.",
+    "start": 2.48,
+    "end": 2.7
+   }
+  ]
+ }
+]

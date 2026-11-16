@@ -1,0 +1,106 @@
+[
+ {
+  "start": 0.0,
+  "end": 1.9,
+  "text": "Bei jedem Einzelnen.",
+  "words": [
+   {
+    "w": "Bei",
+    "start": 0.0,
+    "end": 0.62
+   },
+   {
+    "w": "jedem",
+    "start": 0.62,
+    "end": 1.08
+   },
+   {
+    "w": "Einzelnen.",
+    "start": 1.08,
+    "end": 1.9
+   }
+  ]
+ },
+ {
+  "start": 2.22,
+  "end": 8.14,
+  "text": "Viele Schritte zu den Moscheen gehören zu dem womit Allah sünden tilgt und Rangstufen erhöht.",
+  "words": [
+   {
+    "w": "Viele",
+    "start": 2.22,
+    "end": 2.42
+   },
+   {
+    "w": "Schritte",
+    "start": 2.42,
+    "end": 2.88
+   },
+   {
+    "w": "zu",
+    "start": 2.88,
+    "end": 3.06
+   },
+   {
+    "w": "den",
+    "start": 3.06,
+    "end": 3.2
+   },
+   {
+    "w": "Moscheen",
+    "start": 3.2,
+    "end": 3.72
+   },
+   {
+    "w": "gehören",
+    "start": 3.72,
+    "end": 4.16
+   },
+   {
+    "w": "zu",
+    "start": 4.16,
+    "end": 4.38
+   },
+   {
+    "w": "dem",
+    "start": 4.38,
+    "end": 4.62
+   },
+   {
+    "w": "womit",
+    "start": 4.62,
+    "end": 5.08
+   },
+   {
+    "w": "Allah",
+    "start": 5.08,
+    "end": 5.34
+   },
+   {
+    "w": "sünden",
+    "start": 5.34,
+    "end": 5.96
+   },
+   {
+    "w": "tilgt",
+    "start": 5.96,
+    "end": 6.58
+   },
+   {
+    "w": "und",
+    "start": 6.58,
+    "end": 6.84
+   },
+   {
+    "w": "Rangstufen",
+    "start": 6.84,
+    "end": 7.6
+   },
+   {
+    "w": "erhöht.",
+    "start": 7.6,
+    "end": 8.14
+   }
+  ]
+ }
+]

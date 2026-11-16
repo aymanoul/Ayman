@@ -1,3 +1,7 @@
 .venv-blender
 __pycache__/
 out/phase2/ebenen/
+out/roh/
+out/proben/
+out/*_log.txt
+out/speedtest/

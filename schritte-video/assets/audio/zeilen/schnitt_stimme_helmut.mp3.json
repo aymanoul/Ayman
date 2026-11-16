@@ -42,9 +42,33 @@
   "dauer": 4.64
  },
  {
-  "zeile": "B01_platzhalter",
+  "zeile": "B01",
   "von": 49.3,
+  "bis": 52.68,
+  "dauer": 3.23
+ },
+ {
+  "zeile": "B02",
+  "von": 52.68,
+  "bis": 56.01,
+  "dauer": 2.63
+ },
+ {
+  "zeile": "B03",
+  "von": 56.01,
+  "bis": 58.88,
+  "dauer": 2.42
+ },
+ {
+  "zeile": "B04",
+  "von": 58.88,
+  "bis": 61.67,
+  "dauer": 2.67
+ },
+ {
+  "zeile": "B05",
+  "von": 61.67,
   "bis": 64.7575625,
-  "dauer": 13.78
+  "dauer": 2.81
  }
 ]

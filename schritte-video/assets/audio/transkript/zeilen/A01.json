@@ -1,0 +1,84 @@
+[
+ {
+  "start": 0.0,
+  "end": 5.78,
+  "text": "Dein Handy zählt jeden deiner Schritte, aber es gibt Schritte, die ganz anders gezählt werden.",
+  "words": [
+   {
+    "w": "Dein",
+    "start": 0.0,
+    "end": 0.74
+   },
+   {
+    "w": "Handy",
+    "start": 0.74,
+    "end": 1.04
+   },
+   {
+    "w": "zählt",
+    "start": 1.04,
+    "end": 1.48
+   },
+   {
+    "w": "jeden",
+    "start": 1.48,
+    "end": 1.76
+   },
+   {
+    "w": "deiner",
+    "start": 1.76,
+    "end": 2.26
+   },
+   {
+    "w": "Schritte,",
+    "start": 2.26,
+    "end": 2.7
+   },
+   {
+    "w": "aber",
+    "start": 2.98,
+    "end": 3.2
+   },
+   {
+    "w": "es",
+    "start": 3.2,
+    "end": 3.4
+   },
+   {
+    "w": "gibt",
+    "start": 3.4,
+    "end": 3.56
+   },
+   {
+    "w": "Schritte,",
+    "start": 3.56,
+    "end": 4.0
+   },
+   {
+    "w": "die",
+    "start": 4.06,
+    "end": 4.14
+   },
+   {
+    "w": "ganz",
+    "start": 4.14,
+    "end": 4.46
+   },
+   {
+    "w": "anders",
+    "start": 4.46,
+    "end": 4.92
+   },
+   {
+    "w": "gezählt",
+    "start": 4.92,
+    "end": 5.46
+   },
+   {
+    "w": "werden.",
+    "start": 5.46,
+    "end": 5.78
+   }
+  ]
+ }
+]

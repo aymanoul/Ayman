@@ -1,0 +1,44 @@
+[
+ {
+  "start": 0.0,
+  "end": 3.26,
+  "text": "8.000 Schritte heute. Nicht schlecht, oder?",
+  "words": [
+   {
+    "w": "8",
+    "start": 0.0,
+    "end": 0.68
+   },
+   {
+    "w": ".000",
+    "start": 0.68,
+    "end": 1.16
+   },
+   {
+    "w": "Schritte",
+    "start": 1.16,
+    "end": 1.56
+   },
+   {
+    "w": "heute.",
+    "start": 1.56,
+    "end": 1.8
+   },
+   {
+    "w": "Nicht",
+    "start": 2.36,
+    "end": 2.62
+   },
+   {
+    "w": "schlecht,",
+    "start": 2.62,
+    "end": 2.9
+   },
+   {
+    "w": "oder?",
+    "start": 3.08,
+    "end": 3.26
+   }
+  ]
+ }
+]

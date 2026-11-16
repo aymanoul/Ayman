@@ -1,0 +1,84 @@
+[
+ {
+  "start": 0.0,
+  "end": 6.56,
+  "text": "5 Gebete am Tag, 5 Wege dorthin. Mach deinen Wudu zu Hause und sammne sie.",
+  "words": [
+   {
+    "w": "5",
+    "start": 0.0,
+    "end": 0.78
+   },
+   {
+    "w": "Gebete",
+    "start": 0.78,
+    "end": 1.34
+   },
+   {
+    "w": "am",
+    "start": 1.34,
+    "end": 1.5
+   },
+   {
+    "w": "Tag,",
+    "start": 1.5,
+    "end": 1.86
+   },
+   {
+    "w": "5",
+    "start": 2.36,
+    "end": 2.7
+   },
+   {
+    "w": "Wege",
+    "start": 2.7,
+    "end": 3.12
+   },
+   {
+    "w": "dorthin.",
+    "start": 3.12,
+    "end": 3.64
+   },
+   {
+    "w": "Mach",
+    "start": 3.98,
+    "end": 4.08
+   },
+   {
+    "w": "deinen",
+    "start": 4.08,
+    "end": 4.36
+   },
+   {
+    "w": "Wudu",
+    "start": 4.36,
+    "end": 4.86
+   },
+   {
+    "w": "zu",
+    "start": 4.86,
+    "end": 5.04
+   },
+   {
+    "w": "Hause",
+    "start": 5.04,
+    "end": 5.38
+   },
+   {
+    "w": "und",
+    "start": 5.38,
+    "end": 5.98
+   },
+   {
+    "w": "sammne",
+    "start": 5.98,
+    "end": 6.44
+   },
+   {
+    "w": "sie.",
+    "start": 6.44,
+    "end": 6.56
+   }
+  ]
+ }
+]
