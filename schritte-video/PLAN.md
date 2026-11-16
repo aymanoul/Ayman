@@ -40,6 +40,9 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 
 ## 4. Ton
 
+- **Entscheidung 16.11.:** B wird **neu aufgenommen** (andere, jüngere Stimme, B01–B05) – Ayman liefert. A bleibt („Helmut“).
+  **B trägt Hemd und Hose** (bestätigt).
+
 - Aymans Datei enthält **alle 12 Zeilen in einer Datei**: zuerst A01–A07, danach B01–B05 (Transkript
   `assets/audio/transkript/helmut.json`). Zerlegen mit `gebet-video/tools/split_voices.py`-Verfahren in A01–A07, B01–B05.
 - Geräusche: Schritte auf Gehweg/Pflaster, leiser Außenton, dezenter Ton beim Hochzählen, Türgeräusch. Keine Musik.
@@ -48,8 +51,8 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 
 | Phase | Inhalt | Stand |
 |---|---|---|
-| 1 | Beweisliste H1/H2 prüfen, Wortlaut bestätigen (`docs/phase1-beweisliste.md`) | ✅ erstellt, wartet auf Freigabe |
-| 2 | Storyboard: 11 Standbilder auf einem Blatt + Handy-Display und Zähler als Einzelbild | offen |
+| 1 | Beweisliste H1/H2 prüfen, Wortlaut bestätigen (`docs/phase1-beweisliste.md`) | ✅ **freigegeben** (16.11.) |
+| 2 | Storyboard: 11 Standbilder auf einem Blatt + Handy-Display und Zähler als Einzelbild | in Arbeit |
 | 3 | Stimmen zerlegen, Zeitplan, Rohschnitt 720p ohne Feinheiten | offen |
 | 4 | Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche; Vorschau 720p | offen |
 | 5 | Endfassung 1080 × 1920, Schlussprüfung, 2 Titelbilder, Beschreibung mit genau 5 deutschen Hashtags | offen |

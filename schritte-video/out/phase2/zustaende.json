@@ -1,0 +1,171 @@
+[
+ {
+  "name": "S1",
+  "zustand": {
+   "display": {
+    "schritte": 8432,
+    "ring": 0.84,
+    "zeile": 0
+   }
+  }
+ },
+ {
+  "name": "S2",
+  "zustand": {
+   "logo": 1,
+   "untertitel": "Achttausend Schritte heute."
+  }
+ },
+ {
+  "name": "S3",
+  "zustand": {
+   "logo": 1,
+   "untertitel": "auf dem Weg zur Moschee?"
+  }
+ },
+ {
+  "name": "S4",
+  "zustand": {
+   "logo": 1,
+   "untertitel": "Allahs Segen und Frieden auf ihm,"
+  }
+ },
+ {
+  "name": "S5",
+  "zustand": {
+   "logo": 1,
+   "zaehler": {
+    "s": 4,
+    "r": 3,
+    "blitz": {
+     "feld": "sunde",
+     "alter": 0.1
+    }
+   },
+   "karte": "H1",
+   "untertitel": "dessen Schritte sind so:"
+  }
+ },
+ {
+  "name": "S6",
+  "zustand": {
+   "logo": 1,
+   "untertitel": "Bei jedem einzelnen Schritt?"
+  }
+ },
+ {
+  "name": "S7",
+  "zustand": {
+   "logo": 1,
+   "zaehler": {
+    "s": 8,
+    "r": 7,
+    "blitz": {
+     "feld": "rang",
+     "alter": 0.15
+    }
+   },
+   "karte": "H2",
+   "untertitel": "Rangstufen erhöht."
+  }
+ },
+ {
+  "name": "S8",
+  "zustand": {
+   "handy": {
+    "alt": 8432,
+    "s": 0,
+    "r": 1
+   },
+   "untertitel": "ganz schön viele verschenkt.",
+   "untertitelY": 1470
+  }
+ },
+ {
+  "name": "S9",
+  "zustand": {
+   "logo": 1,
+   "schilder": [
+    {
+     "text": "Fajr",
+     "xy": [
+      150,
+      1250
+     ]
+    },
+    {
+     "text": "Dhuhr",
+     "xy": [
+      325,
+      1180
+     ]
+    },
+    {
+     "text": "Asr",
+     "xy": [
+      500,
+      1250
+     ]
+    },
+    {
+     "text": "Maghrib",
+     "xy": [
+      675,
+      1180
+     ]
+    },
+    {
+     "text": "Isha",
+     "xy": [
+      850,
+      1250
+     ]
+    }
+   ],
+   "wudu": 1,
+   "wuduY": 900
+  }
+ },
+ {
+  "name": "S10",
+  "zustand": {
+   "logo": 1,
+   "untertitel": "zähle ich anders."
+  }
+ },
+ {
+  "name": "S11",
+  "zustand": {
+   "logo": 1,
+   "titel": [
+    "Jeder Schritt",
+    "zur Moschee zählt."
+   ],
+   "fuss": "Muslim 666 · Muslim 251"
+  }
+ },
+ {
+  "name": "Display_2",
+  "zustand": {
+   "display": {
+    "schritte": 8432,
+    "ring": 0.84,
+    "zeile": 1
+   }
+  }
+ },
+ {
+  "name": "Zaehler",
+  "zustand": {
+   "zaehler": {
+    "s": 12,
+    "r": 11,
+    "blitz": {
+     "feld": "sunde",
+     "alter": 0.05
+    }
+   },
+   "logo": 1
+  }
+ }
+]
