@@ -90,7 +90,8 @@
   das häufige Schreiten zu den Moscheen“). H1 = Muslim 666 (nicht auf hadeethenc; arabischer Wortlaut mit A04 Wort für
   Wort abgeglichen, A04 passt; Ayman soll auf sunnah.com gegenprüfen).
 - **Phase 1 freigegeben (16.11.).** B wird von Ayman **neu aufgenommen** (andere Stimme); B trägt **Hemd und Hose**.
-- **Phase 2 (Storyboard) erstellt, wartet auf Freigabe:** `schritte-video/out/phase2/storyboard.jpg`, `display_und_zaehler.jpg`.
+- **Phase 2:** Ayman wollte den Hook anders → S1 = B läuft mit Handy zur Moschee (über die Schulter, Moschee dahinter,
+  vergrößerter Handy-Bildschirm daneben). Umgesetzt. **Storyboard wartet erneut auf Freigabe:** `schritte-video/out/phase2/storyboard.jpg`, `display_und_zaehler.jpg`.
   Technik-Stand und Befehle: `schritte-video/PLAN.md` Abschnitt 8.
 - Phasen: 1 Beweisliste · 2 Storyboard (11 Bilder + Handy-Display) · 3 Stimmen/Zeitplan/Rohschnitt 720p ·
   4 Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche · 5 Endfassung, 2 Titelbilder, Beschreibung (genau 5 Hashtags).

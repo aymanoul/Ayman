@@ -13,7 +13,7 @@ FONT = os.path.join(ROOT, '..', 'gebet-video', 'node_modules', '@fontsource', 'm
 lab = json.load(open(os.path.join(P2, 'beschriftung.json')))
 
 Z = {
-    'S1':  {'display': {'schritte': 8432, 'ring': 0.84, 'zeile': 0}},
+    'S1':  {'logo': 1, 'lupe': {'schritte': 8432, 'ring': 0.84, 'an': lab['S1']['handy'], 'x': 600, 'y': 640, 'w': 330}, 'titel': ['Dein Handy zählt', 'jeden Schritt.'], 'titelY': 470},
     'S2':  {'logo': 1, 'untertitel': 'Achttausend Schritte heute.'},
     'S3':  {'logo': 1, 'untertitel': 'auf dem Weg zur Moschee?'},
     'S4':  {'logo': 1, 'untertitel': 'Allahs Segen und Frieden auf ihm,'},
@@ -41,9 +41,6 @@ for s in Z:
         continue
     out = os.path.join(P2, f'{s}.png')
     ov = os.path.join(EB, f'{s}.png')
-    if s == 'S1':
-        ff(['-i', ov, out])
-        continue
     bg = os.path.join(P2, f'3d_{s}.png')
     blur = ',boxblur=12:2' if s == 'S8' else ''
     ff(['-i', bg, '-i', ov, '-filter_complex', f'[0]scale=1080:1920{blur}[b];[b][1]overlay', out])
@@ -51,7 +48,7 @@ for s in Z:
 ff(['-i', os.path.join(P2, '3d_S7.png'), '-i', os.path.join(EB, 'Zaehler.png'), '-filter_complex', '[0]scale=1080:1920[b];[b][1]overlay', os.path.join(P2, 'Zaehler.png')])
 ff(['-i', os.path.join(EB, 'Display_2.png'), os.path.join(P2, 'Display_2.png')])
 
-TXT = {'S1': 'Hook Handy', 'S2': 'B auf dem Gehweg', 'S3': 'A am Vordach', 'S4': 'nah A', 'S5': 'Kernbild Spur + H1', 'S6': 'nah B, Fuesse',
+TXT = {'S1': 'Hook B mit Handy', 'S2': 'B auf dem Gehweg', 'S3': 'A am Vordach', 'S4': 'nah A', 'S5': 'Kernbild Spur + H1', 'S6': 'nah B, Fuesse',
        'S7': 'Draufsicht + H2', 'S8': 'Handy 8.432', 'S9': 'fuenf Wege', 'S10': 'zur Tuer', 'S11': 'Schluss'}
 names = list(TXT)
 inp = []

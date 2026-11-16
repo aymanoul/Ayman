@@ -2,11 +2,23 @@
  {
   "name": "S1",
   "zustand": {
-   "display": {
+   "logo": 1,
+   "lupe": {
     "schritte": 8432,
     "ring": 0.84,
-    "zeile": 0
-   }
+    "an": [
+     300,
+     1363
+    ],
+    "x": 600,
+    "y": 640,
+    "w": 330
+   },
+   "titel": [
+    "Dein Handy zählt",
+    "jeden Schritt."
+   ],
+   "titelY": 470
   }
  },
  {

@@ -209,6 +209,34 @@ def aufbauen():
     return {'scene': scene, 'A': A, 'B': B, 'handy': ph, 'cam': cam, 'coll': neu}
 
 
+def handy_bild(S, pfad):
+    """Display-Bild auf das Handy legen (z. B. den Schrittzähler)."""
+    img = bpy.data.images.load(pfad, check_existing=True)
+    m = bpy.data.materials['Handy_Display']
+    for n in m.node_tree.nodes:
+        if n.type == 'TEX_IMAGE':
+            n.image = img
+
+
+def handy_zum_gesicht(S, arm, kippen=0.0):
+    """Handy frei in die rechte Hand legen, Display zum Gesicht gedreht (statt starr am Knochen)."""
+    ph = S['handy']
+    bpy.context.view_layer.update()
+    pb = arm.pose.bones['Hand.R']
+    hand = arm.matrix_world @ ((pb.head + pb.tail) / 2)
+    kopf = arm.matrix_world @ arm.pose.bones['Kopf'].head + Vector((0, 0, 0.07))
+    vorn = (kopf - hand).normalized()                       # Display (−Y lokal) soll zum Kopf zeigen
+    oben = Vector((0, 0, 1))
+    a = -vorn                                               # lokale +Y-Achse (Rückseite des Handys)
+    seite = a.cross(oben).normalized() if abs(vorn.z) < 0.98 else Vector((1, 0, 0))
+    hoch = seite.cross(a).normalized()                      # rechtshändig: X × Y = Z (sonst wäre das Display gespiegelt)
+    if kippen:
+        hoch = (hoch * math.cos(kippen) + vorn * math.sin(kippen)).normalized()
+    rot = Matrix((seite, vorn * -1, hoch)).transposed()     # Spalten: lokales X, Y, Z in Weltachsen
+    ph.parent = None
+    ph.matrix_world = Matrix.Translation(hand + vorn * 0.045 + hoch * 0.05) @ rot.to_4x4()   # etwas über dem Daumen
+
+
 def kamera(S, pos, ziel, lens=35):
     cam = S['cam']
     cam.location = pos
@@ -219,5 +247,6 @@ def kamera(S, pos, ziel, lens=35):
 def bildpunkt(S, welt):
     """Bildschirm-Position (Pixel, 1080 × 1920) eines Weltpunkts – für Beschriftungen in der Einblendung."""
     from bpy_extras.object_utils import world_to_camera_view
+    bpy.context.view_layer.update()                         # Kamera-Matrix muss aktuell sein
     v = world_to_camera_view(S['scene'], S['cam'], Vector(welt))
     return (round(v.x * 1080), round((1 - v.y) * 1920))

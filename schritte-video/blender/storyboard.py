@@ -54,6 +54,21 @@ def figuren_sichtbar(a=True, b=True):
     ph.hide_render = not b
 
 
+def S1():   # Hook: B geht mit dem Handy auf die Moschee zu – über die Schulter: Display mit Schrittzähler, Moschee dahinter
+    figuren_sichtbar(False, True)
+    pos = Vector((-5.5, SZ.GEHWEG_Y + 1.5, 0))
+    h = (Vector((0, -2.0, 0)) - pos).normalized()           # Blick-/Gehrichtung: zum Haupteingang
+    rot = math.degrees(math.atan2(h.x, -h.y))               # Figur: (sin θ, −cos θ) = h
+    SZ.stell(B, SZ.geh_pose(0.5), SZ.HANDY_HALTEN_GEHEN, loc=(pos.x, pos.y, SZ.huepf(0.5)), rot_z=rot)
+    SZ.handy_zum_gesicht(S, B)
+    SZ.handy_bild(S, os.path.join(OUT, 'handy_display.png'))
+    hw = ph.matrix_world.translation.copy()
+    rechts = Vector((h.y, -h.x, 0))
+    cam = pos - h * 1.9 + rechts * 0.75 + Vector((0, 0, 1.62))
+    SZ.kamera(S, cam, pos + h * 6.0 + Vector((0, 0, 2.6)), 30)
+    beschriftung['S1'] = {'handy': SZ.bildpunkt(S, hw)}
+
+
 def S2():   # Kamera zieht auf: B geht auf dem Gehweg an der Moschee vorbei, Handy in der Hand
     figuren_sichtbar(False, True)
     SZ.stell(B, SZ.geh_pose(0.5), SZ.HANDY_HALTEN_GEHEN, loc=(0.4, SZ.GEHWEG_Y, 0), rot_z=90)
@@ -139,11 +154,13 @@ def S11():  # beide gehen durch die Tür, die Abdrücke leuchten nach
     SZ.kamera(S, (0.3, -9.5, 1.45), (0.0, -1.0, 1.7), 30)
 
 
-SHOTS = {'S2': S2, 'S3': S3, 'S4': S4, 'S5': S5, 'S6': S6, 'S7': S7, 'S8': S8, 'S9': S9, 'S10': S10, 'S11': S11}
+SHOTS = {'S1': S1, 'S2': S2, 'S3': S3, 'S4': S4, 'S5': S5, 'S6': S6, 'S7': S7, 'S8': S8, 'S9': S9, 'S10': S10, 'S11': S11}
 for name, fn in SHOTS.items():
     if nur and name not in nur:
         continue
     nichts(); figuren_sichtbar(True, True)
+    ph.parent = B; ph.parent_type = 'BONE'; ph.parent_bone = 'Hand.R'
+    ph.matrix_parent_inverse.identity(); ph.location = (0.03, -0.075, 0.0); ph.rotation_euler = (math.radians(90), 0, math.radians(90))
     fn()
     sc.render.filepath = os.path.join(OUT, f'3d_{name}.png')
     bpy.ops.render.render(write_still=True)

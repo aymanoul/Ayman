@@ -59,7 +59,8 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 
 ## 6. Shotliste (Richtzeiten, später an die Tonlängen angepasst)
 
-S1 0–4 Hook Handy-Display, Zähler läuft bis „8.432“ · S2 4–8 Kamera zieht auf, B auf dem Gehweg mit Handy (B01) ·
+S1 0–4 Hook (geändert 16.11. auf Aymans Wunsch): B geht mit dem Handy auf die Moschee zu, über die Schulter gesehen,
+Moschee im Hintergrund; daneben vergrößert der Handy-Bildschirm (feine Goldlinie zum Handy), Zähler läuft bis „8.432“ · S2 4–8 Kamera zieht auf, B auf dem Gehweg mit Handy (B01) ·
 S3 8–13 A am Vordach, geht neben B, Schuss/Gegenschuss (A02, B02) · S4 13–16 nah A (A03) · S5 16–31 Kernbild: zwei Zähler,
 seitliche Fahrt, B geht vom Gehweg über den Hof zur Tür, leuchtende Fußabdrücke, Karte H1 (A04) · S6 31–34 nah B, Blick auf
 die Füße (B03) · S7 34–41 Draufsicht Hof, Spur, Karte H2 (A05) · S8 41–45 Handy: 8.432 und die neuen Zähler fast null (B04) ·

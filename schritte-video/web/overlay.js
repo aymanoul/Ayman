@@ -38,7 +38,7 @@ function zeichneLogo(a = 1) {
 }
 
 // ---- S1: Handy-Display bildschirmfüllend (eigenes Design, keine echte App)
-function display({ schritte = 0, ring = 0, zeile = 0, zeileA = 1 }) {
+function display({ schritte = 0, ring = 0, zeile = 0, zeileA = 1, ohneTitel = false }) {
   const bg = g.createLinearGradient(0, 0, 0, H);
   bg.addColorStop(0, '#2a2c55'); bg.addColorStop(1, '#14152c');
   g.fillStyle = bg; g.fillRect(0, 0, W, H);
@@ -62,10 +62,27 @@ function display({ schritte = 0, ring = 0, zeile = 0, zeileA = 1 }) {
   });
   g.fillStyle = 'rgba(255,255,255,0.45)'; g.font = '700 26px "Montserrat"';
   ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'].forEach((d, i) => g.fillText(d, 273 + i * 84, 1478));
+  if (ohneTitel) return;
   const lines = zeile === 0 ? ['Dein Handy zählt', 'jeden Schritt.'] : ['Aber manche Schritte', 'werden anders gezählt.'];
   g.globalAlpha = zeileA;
   drawTitle(g, W, H, 5, lines, { t0: 0, t1: 99, y: 470, style: 'b', size: 80 });
   g.globalAlpha = 1;
+}
+
+// ---- Hook: vergrößertes Handy-Display neben dem echten Handy (mit feiner Linie dorthin)
+function handyLupe({ schritte = 0, ring = 0, an = [0, 0], a = 1, x = 560, y = 760, w = 380 }) {
+  const h = w * 2.0, s = w / 876;
+  g.save(); g.globalAlpha = a;
+  g.strokeStyle = 'rgba(217,178,106,0.9)'; g.lineWidth = 4;
+  g.beginPath(); g.moveTo(an[0], an[1]); g.lineTo(x + w * 0.2, y + h * 0.82); g.stroke();
+  g.beginPath(); g.arc(an[0], an[1], 9, 0, Math.PI * 2); g.fillStyle = GOLD_L; g.fill();
+  g.shadowColor = 'rgba(0,0,0,0.5)'; g.shadowBlur = 40; g.shadowOffsetY = 14;
+  rr(x - 14, y - 14, w + 28, h + 28, 56); g.fillStyle = '#17181c'; g.fill();
+  g.shadowColor = 'transparent';
+  rr(x, y, w, h, 44); g.clip();
+  g.translate(x - 62 * s, y - 209 * s); g.scale(s, s);          // Ausschnitt um den Zähler, gleichmäßig skaliert
+  display({ schritte, ring, ohneTitel: true });
+  g.restore();
 }
 
 // ---- Zwei Zähler im oberen Drittel
@@ -154,6 +171,7 @@ window.zeichne = async (z) => {
   await document.fonts.ready;
   g.clearRect(0, 0, W, H);
   if (z.display) display(z.display);
+  if (z.lupe) handyLupe(z.lupe);
   if (z.logo) zeichneLogo(z.logo);
   if (z.zaehler) zaehler(z.zaehler);
   if (z.handy) handyKarte(z.handy);
