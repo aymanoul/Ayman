@@ -667,3 +667,14 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
 - Auftrag mit fester Shotliste, Drehbuch und Phasen (siehe `schritte-video/PLAN.md`), im neuen Blender-Design.
 - Stimme geliefert (eine Datei, alle 12 Zeilen). Phase 1 erledigt: Beweisliste `schritte-video/docs/phase1-beweisliste.md`.
   hadithunlocked.com ist in der Umgebung nicht freigeschaltet; sunnah.com/dorar.net bleiben gesperrt (nicht umgehen).
+
+### 14t. „Jeder Schritt zählt“ – Phasen 2–5, Endfassung (16./17.11.2026)
+
+- Storyboard (neuer Hook S1), Rohschnitt (B-Platzhalter) und Vorschau Phase 4 von Ayman freigegeben.
+- Neue B-Stimme („Jörg M.“, ElevenLabs) eingebaut → 63,7 s. Logo auf Aymans Wunsch entfernt. Mund A dunkler, im Bart.
+- Endfassung: 3D in 720 × 1280 bei 30 Bildern/s (Aymans Wahl), hochskaliert auf 1080 × 1920; Einblendungen in 1080.
+  `schritte-video/out/schritte_video.mp4` (63,7 s, −14,0 LUFS, Spitze −1,4 dBTP) + `out/schritte_video_vorschau_720p.mp4`.
+- Wichtig für lange Berechnungen: Die Umgebung schaltet bei Untätigkeit ab und beendet Hintergrund-Prozesse. Lösung, die
+  funktioniert hat: eine vom Werkzeug verfolgte Hintergrund-Aufgabe (bis 2 h, danach neu starten), die
+  `schritte-video/tools/endfassung_weiter.sh` jede Minute aufruft; dazu ein stündlicher Weckruf als Absicherung (gelöscht).
+- Offen: Titelbild-Wahl (Variante 1 oder 2), Muslim 666/251 auf sunnah.com prüfen.

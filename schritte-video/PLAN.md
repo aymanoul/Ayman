@@ -55,7 +55,7 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 | 2 | Storyboard: 11 Standbilder auf einem Blatt + Handy-Display und Zähler als Einzelbild | ✅ **freigegeben** (16.11., mit neuem Hook S1) |
 | 3 | Stimmen zerlegen, Zeitplan, Rohschnitt 720p ohne Feinheiten | ✅ A01–A07 + **B01–B05 als Platzhalter** (alte Helmut-Zeilen, Ayman: „mit Platzhalter anfangen“), Zeitplan 65,5 s, Mund, `blender/film.py`; **Rohschnitt fertig** `out/phase3/rohschnitt_720p.mp4` (15 Bilder/s gerendert, 540 × 960 → 720p, ~1,5 h), **freigegeben** (16.11.) |
 | 4 | Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche; Vorschau 720p | ✅ Vorschau `out/phase4/vorschau_720p.mp4` **freigegeben** (16.11.) |
-| 5 | Endfassung 1080 × 1920, Schlussprüfung, 2 Titelbilder, Beschreibung mit genau 5 deutschen Hashtags | in Arbeit: neue B-Stimme (Jörg) eingebaut → 63,7 s; Logo entfernt (Aymans Wunsch); 3D rendert in 720 × 1280, 30/s (Ayman: „720p, 30 Bilder/s“) nach `out/end`, dann hochskaliert; Titelbilder + `docs/phase5-beschreibung.md` fertig |
+| 5 | Endfassung 1080 × 1920, Schlussprüfung, 2 Titelbilder, Beschreibung mit genau 5 deutschen Hashtags | ✅ **fertig 17.11.** `out/schritte_video.mp4` (63,7 s, −14 LUFS) + Vorschau 720p; Titelbild-Wahl offen. Davor: neue B-Stimme (Jörg) eingebaut → 63,7 s; Logo entfernt (Aymans Wunsch); 3D rendert in 720 × 1280, 30/s (Ayman: „720p, 30 Bilder/s“) nach `out/end`, dann hochskaliert; Titelbilder + `docs/phase5-beschreibung.md` fertig |
 
 ## 6. Shotliste (Richtzeiten, später an die Tonlängen angepasst)
 
@@ -134,3 +134,5 @@ klein „Muslim 666 · Muslim 251“.
 - Die Umgebung wird bei Untätigkeit abgeschaltet (Hintergrund-Berechnung stoppt). Deshalb: `sh tools/endfassung_weiter.sh`
   (startet neu / baut zusammen, idempotent) + stündlicher Weckruf (geplante Aufgabe „Schritte-Video Endfassung weiterrechnen“,
   nach der Abgabe löschen).
+- **Fertig (17.11.):** `out/schritte_video.mp4` 1080 × 1920, 30/s, 63,7 s, −14,0 LUFS, Spitze −1,4 dBTP; `out/schritte_video_vorschau_720p.mp4`.
+  Schlussprüfung: keine Augen/Brauen, kein Logo, Untertitel mit ﷻ, Karten H1/H2 mit Quelle. Weckruf gelöscht.
