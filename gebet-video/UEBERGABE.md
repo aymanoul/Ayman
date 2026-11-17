@@ -678,3 +678,12 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
   funktioniert hat: eine vom Werkzeug verfolgte Hintergrund-Aufgabe (bis 2 h, danach neu starten), die
   `schritte-video/tools/endfassung_weiter.sh` jede Minute aufruft; dazu ein stündlicher Weckruf als Absicherung (gelöscht).
 - Offen: Titelbild-Wahl (Variante 1 oder 2), Muslim 666/251 auf sunnah.com prüfen.
+
+### 14u. Neues Video „Zwischen Adhan und Iqama“ (17.11.2026)
+
+- Ordner `iqama-video/`, Stand und Technik in `iqama-video/PLAN.md`. Auf Aymans Wunsch in Blender im bekannten Stil.
+- Phase 1 (Beweisliste, überall „abgelehnt“) und Phase 2 (Blender-Storyboard) freigegeben.
+- Phase 3: eine Stimmdatei (Helmut spricht A und B, „so lassen“), zerlegt in 12 Zeilen; Adhan-Anfang = letzte Worte von
+  `adhan_neu.mp3` (Aymans Wahl). Rohschnitt `iqama-video/out/phase3/rohschnitt_720p.mp4` (61,3 s) fertig, gerendert mit
+  derselben Hintergrund-Aufgabe wie bei „Jeder Schritt zählt“ (`tools/rohschnitt_weiter.sh`, ca. 1 h 50 min).
+- Rohschnitt von Ayman freigegeben (17.11.). Jetzt Phase 4 (Einblendungen, Geräusche, Vorschau 720p).
