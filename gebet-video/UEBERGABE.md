@@ -687,4 +687,5 @@ und dort zuerst die **geprüfte Beweisliste** zur Freigabe zeigen.
   `adhan_neu.mp3` (Aymans Wahl). Rohschnitt `iqama-video/out/phase3/rohschnitt_720p.mp4` (61,3 s) fertig, gerendert mit
   derselben Hintergrund-Aufgabe wie bei „Jeder Schritt zählt“ (`tools/rohschnitt_weiter.sh`, ca. 1 h 50 min).
 - Rohschnitt von Ayman freigegeben (17.11.). Jetzt Phase 4 (Einblendungen, Geräusche, Vorschau 720p).
-- Phase 4: Vorschau `iqama-video/out/phase4/vorschau_720p.mp4` (Einblendungen + Geräusche, keine Musik). Wartet auf Aymans Freigabe.
+- Phase 4: Vorschau `iqama-video/out/phase4/vorschau_720p.mp4` (Einblendungen + Geräusche, keine Musik). **Freigegeben (17.11.)**, Qualität Endfassung: 720p/30 fps.
+- Phase 5: Endfassung rechnet (`sh iqama-video/tools/endfassung_weiter.sh`, idempotent, ~22–40 s/Bild, 1840 Bilder → `out/end/`, danach automatisch `out/iqama_video.mp4` + `out/iqama_video_vorschau_720p.mp4`). Titelbilder `tools/titelbild.py` → `out/phase5/titelbild_variante1/2.png` (Wahl offen). Beschreibung `docs/phase5-beschreibung.md` (genau 5 Hashtags). Nach FERTIG: Schlussprüfung, dann an Ayman schicken.
