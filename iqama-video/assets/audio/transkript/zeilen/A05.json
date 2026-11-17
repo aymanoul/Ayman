@@ -1,0 +1,94 @@
+[
+ {
+  "start": 0.0,
+  "end": 6.26,
+  "text": "Genau jetzt! Und wer auf das Gebet wartet, gilt die ganze Zeit, als wäre er im Gebet.",
+  "words": [
+   {
+    "w": "Genau",
+    "start": 0.0,
+    "end": 0.82
+   },
+   {
+    "w": "jetzt!",
+    "start": 0.82,
+    "end": 1.38
+   },
+   {
+    "w": "Und",
+    "start": 1.88,
+    "end": 1.94
+   },
+   {
+    "w": "wer",
+    "start": 1.94,
+    "end": 2.08
+   },
+   {
+    "w": "auf",
+    "start": 2.08,
+    "end": 2.28
+   },
+   {
+    "w": "das",
+    "start": 2.28,
+    "end": 2.46
+   },
+   {
+    "w": "Gebet",
+    "start": 2.46,
+    "end": 2.76
+   },
+   {
+    "w": "wartet,",
+    "start": 2.76,
+    "end": 3.24
+   },
+   {
+    "w": "gilt",
+    "start": 3.6,
+    "end": 3.74
+   },
+   {
+    "w": "die",
+    "start": 3.74,
+    "end": 3.94
+   },
+   {
+    "w": "ganze",
+    "start": 3.94,
+    "end": 4.26
+   },
+   {
+    "w": "Zeit,",
+    "start": 4.26,
+    "end": 4.76
+   },
+   {
+    "w": "als",
+    "start": 4.92,
+    "end": 5.06
+   },
+   {
+    "w": "wäre",
+    "start": 5.06,
+    "end": 5.44
+   },
+   {
+    "w": "er",
+    "start": 5.44,
+    "end": 5.7
+   },
+   {
+    "w": "im",
+    "start": 5.7,
+    "end": 5.88
+   },
+   {
+    "w": "Gebet.",
+    "start": 5.88,
+    "end": 6.26
+   }
+  ]
+ }
+]

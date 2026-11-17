@@ -1,0 +1,44 @@
+[
+ {
+  "start": 0.0,
+  "end": 2.52,
+  "text": "Weißt du, welche Zeit das gerade ist?",
+  "words": [
+   {
+    "w": "Weißt",
+    "start": 0.0,
+    "end": 0.76
+   },
+   {
+    "w": "du,",
+    "start": 0.76,
+    "end": 0.92
+   },
+   {
+    "w": "welche",
+    "start": 1.04,
+    "end": 1.24
+   },
+   {
+    "w": "Zeit",
+    "start": 1.24,
+    "end": 1.64
+   },
+   {
+    "w": "das",
+    "start": 1.64,
+    "end": 1.86
+   },
+   {
+    "w": "gerade",
+    "start": 1.86,
+    "end": 2.14
+   },
+   {
+    "w": "ist?",
+    "start": 2.14,
+    "end": 2.52
+   }
+  ]
+ }
+]

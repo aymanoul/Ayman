@@ -1,0 +1,104 @@
+[
+ {
+  "start": 0.0,
+  "end": 6.78,
+  "text": "Es gibt Minuten am Tag, in denen dein Bittgebet nicht abgelehnt wird und die meisten verbringen sie am Handy.",
+  "words": [
+   {
+    "w": "Es",
+    "start": 0.0,
+    "end": 0.64
+   },
+   {
+    "w": "gibt",
+    "start": 0.64,
+    "end": 0.82
+   },
+   {
+    "w": "Minuten",
+    "start": 0.82,
+    "end": 1.22
+   },
+   {
+    "w": "am",
+    "start": 1.22,
+    "end": 1.5
+   },
+   {
+    "w": "Tag,",
+    "start": 1.5,
+    "end": 1.88
+   },
+   {
+    "w": "in",
+    "start": 2.2,
+    "end": 2.3
+   },
+   {
+    "w": "denen",
+    "start": 2.3,
+    "end": 2.5
+   },
+   {
+    "w": "dein",
+    "start": 2.5,
+    "end": 2.74
+   },
+   {
+    "w": "Bittgebet",
+    "start": 2.74,
+    "end": 3.36
+   },
+   {
+    "w": "nicht",
+    "start": 3.36,
+    "end": 3.66
+   },
+   {
+    "w": "abgelehnt",
+    "start": 3.66,
+    "end": 4.38
+   },
+   {
+    "w": "wird",
+    "start": 4.38,
+    "end": 4.58
+   },
+   {
+    "w": "und",
+    "start": 4.58,
+    "end": 5.08
+   },
+   {
+    "w": "die",
+    "start": 5.08,
+    "end": 5.2
+   },
+   {
+    "w": "meisten",
+    "start": 5.2,
+    "end": 5.58
+   },
+   {
+    "w": "verbringen",
+    "start": 5.58,
+    "end": 6.1
+   },
+   {
+    "w": "sie",
+    "start": 6.1,
+    "end": 6.32
+   },
+   {
+    "w": "am",
+    "start": 6.32,
+    "end": 6.48
+   },
+   {
+    "w": "Handy.",
+    "start": 6.48,
+    "end": 6.78
+   }
+  ]
+ }
+]

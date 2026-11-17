@@ -1,0 +1,54 @@
+[
+ {
+  "start": 0.0,
+  "end": 4.32,
+  "text": "Das Bittgebet zwischen Adhan und Iqamah wird nicht abgelehnt.",
+  "words": [
+   {
+    "w": "Das",
+    "start": 0.0,
+    "end": 0.64
+   },
+   {
+    "w": "Bittgebet",
+    "start": 0.64,
+    "end": 1.26
+   },
+   {
+    "w": "zwischen",
+    "start": 1.26,
+    "end": 1.48
+   },
+   {
+    "w": "Adhan",
+    "start": 1.48,
+    "end": 2.1
+   },
+   {
+    "w": "und",
+    "start": 2.1,
+    "end": 2.34
+   },
+   {
+    "w": "Iqamah",
+    "start": 2.34,
+    "end": 2.94
+   },
+   {
+    "w": "wird",
+    "start": 2.94,
+    "end": 3.22
+   },
+   {
+    "w": "nicht",
+    "start": 3.22,
+    "end": 3.56
+   },
+   {
+    "w": "abgelehnt.",
+    "start": 3.56,
+    "end": 4.32
+   }
+  ]
+ }
+]

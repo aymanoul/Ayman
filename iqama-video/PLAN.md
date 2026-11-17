@@ -15,7 +15,7 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 |---|---|---|
 | 1 | Beweisliste H1/H2 (`docs/phase1-beweisliste.md`) | geprüft: H1 = hadeethenc 5479 (Abū Dāwūd 521, at-Tirmidhī 212, ṣaḥīḥ), H2 = hadeethenc 3435 (Muslim 649, al-Bukhārī 647). ✅ **freigegeben** (17.11.); A04 neu (geprüfter Wortlaut), dazu A01/B03/Schlusssatz „abgelehnt“ |
 | 2 | Storyboard 12 Bilder + Handy-Display, Zeitbalken, Licht-Tor | Three.js-Fassung freigegeben (17.11.), dann Ayman: **„mit Blender, im bekannten Stil“** → Blender-Storyboard `out/phase2/storyboard.jpg`, `einzelbilder.jpg` ✅ **freigegeben** (17.11.) |
-| 3 | Stimmen (A und B von Ayman), Zeitplan, Rohschnitt 720p | offen |
+| 3 | Stimmen (A und B von Ayman), Zeitplan, Rohschnitt 720p | in Arbeit: eine Datei `assets/audio/roh/stimme_A_helmut.mp3` (Helmut spricht A **und** B – Ayman: „so lassen“), zerlegt in A01–A07/B01–B05, alle Zeilen geprüft (A04 = Karte); Adhan-Ende = letzte Worte von `adhan_neu.mp3` (72,0–77,5 s, Ayman); Zeitplan 61,3 s; Rohschnitt rendert (12 Bilder/s, 480 breit) |
 | 4 | Zeitbalken, Licht-Tor, Lichtpunkte, Karten, Untertitel, Geräusche; Vorschau 720p | offen |
 | 5 | Endfassung, Schlussprüfung, 2 Titelbilder, Beschreibung (genau 5 deutsche Hashtags) | offen |
 
@@ -69,3 +69,11 @@ dich / für deine Eltern / für dein Jenseits“, A06 · S11 B steckt Handy ein,
 - `blender/storyboard.py --samples 16 [--nur S6]` → `out/phase2/3d_S*.png` (+ Licht-Tor, Lichtpunkte, Display-Textur aus `out/phase2/tex`).
 - `tools/storyboard.py`: Einblendungen (`web/overlay.html|js`, `tools/overlay.mjs`, `web/grafik.js`) + Blätter.
 - Die Three.js-Dateien (`web/shots/board.js`, `web/board-data.js`, `tools/storyboard.mjs`, `tools/blatt.py`) sind nur noch Archiv.
+
+## Technik (Phase 3)
+- Zerlegen: `python3 tools/zerlegen.py assets/audio/roh/stimme_A_helmut.mp3 x A01,A02,A03,A04,A05,A06,A07,B01,B02,B03,B04,B05 0.0,7.36,10.20,14.26,18.60,25.28,34.18,38.70,42.84,45.20,48.84,52.26`
+- `tools/zeitplan.py` → `assets/audio/zeilen/lines.json`, `audio/zeitplan.json` (S1 = Adhan-Ende 4,9 s, nach A04 +1,6 s Lesezeit, Schluss +2,6 s).
+- `blender/film.py` (importiert `blender/storyboard.py`): Bewegungen je Shot (Fahrten, Handy sinkt, Licht-Tor blendet ein, Raum dämmert,
+  Lichtpunkte nacheinander, Handy in die Tasche, Hände heben), Mund nach Hüllkurve. ~9–14 s/Bild.
+- `sh tools/rohschnitt_weiter.sh` (idempotent, startet Blender neu falls gestoppt) → `tools/rohschnitt.py` → `out/phase3/rohschnitt_720p.mp4`.
+  Umgebung schaltet bei Untätigkeit ab → eine vom Werkzeug verfolgte Hintergrund-Schleife ruft das Skript jede Minute auf.

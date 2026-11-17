@@ -1,0 +1,29 @@
+[
+ {
+  "start": 0.0,
+  "end": 2.14,
+  "text": "Na ja, Wartezeit eben.",
+  "words": [
+   {
+    "w": "Na",
+    "start": 0.0,
+    "end": 0.62
+   },
+   {
+    "w": "ja,",
+    "start": 0.62,
+    "end": 0.86
+   },
+   {
+    "w": "Wartezeit",
+    "start": 1.22,
+    "end": 1.92
+   },
+   {
+    "w": "eben.",
+    "start": 1.92,
+    "end": 2.14
+   }
+  ]
+ }
+]

@@ -1,0 +1,59 @@
+[
+ {
+  "start": 0.0,
+  "end": 3.02,
+  "text": "und ich habe die Zeit jeden Tag am Handy verbracht.",
+  "words": [
+   {
+    "w": "und",
+    "start": 0.0,
+    "end": 0.58
+   },
+   {
+    "w": "ich",
+    "start": 0.58,
+    "end": 0.7
+   },
+   {
+    "w": "habe",
+    "start": 0.7,
+    "end": 0.78
+   },
+   {
+    "w": "die",
+    "start": 0.78,
+    "end": 0.94
+   },
+   {
+    "w": "Zeit",
+    "start": 0.94,
+    "end": 1.22
+   },
+   {
+    "w": "jeden",
+    "start": 1.22,
+    "end": 1.58
+   },
+   {
+    "w": "Tag",
+    "start": 1.58,
+    "end": 1.98
+   },
+   {
+    "w": "am",
+    "start": 1.98,
+    "end": 2.2
+   },
+   {
+    "w": "Handy",
+    "start": 2.2,
+    "end": 2.46
+   },
+   {
+    "w": "verbracht.",
+    "start": 2.46,
+    "end": 3.02
+   }
+  ]
+ }
+]

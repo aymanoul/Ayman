@@ -1,0 +1,54 @@
+[
+ {
+  "start": 0.0,
+  "end": 3.64,
+  "text": "Der Prophet, Allah's Segen und Frieden auf ihm, sagte,",
+  "words": [
+   {
+    "w": "Der",
+    "start": 0.0,
+    "end": 0.58
+   },
+   {
+    "w": "Prophet,",
+    "start": 0.58,
+    "end": 0.92
+   },
+   {
+    "w": "Allah's",
+    "start": 1.38,
+    "end": 1.94
+   },
+   {
+    "w": "Segen",
+    "start": 1.94,
+    "end": 2.32
+   },
+   {
+    "w": "und",
+    "start": 2.32,
+    "end": 2.46
+   },
+   {
+    "w": "Frieden",
+    "start": 2.46,
+    "end": 2.92
+   },
+   {
+    "w": "auf",
+    "start": 2.92,
+    "end": 3.08
+   },
+   {
+    "w": "ihm,",
+    "start": 3.08,
+    "end": 3.28
+   },
+   {
+    "w": "sagte,",
+    "start": 3.48,
+    "end": 3.64
+   }
+  ]
+ }
+]

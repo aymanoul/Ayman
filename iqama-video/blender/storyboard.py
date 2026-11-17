@@ -232,7 +232,7 @@ def TOR_NAH():   # Einzelbild Licht-Tor
 
 SHOTS = {f'S{i}': globals()[f'S{i}'] for i in range(1, 13)}
 SHOTS['tor_nah'] = TOR_NAH
-for sid, fn in SHOTS.items():
+for sid, fn in (SHOTS.items() if __name__ == '__main__' else []):
     if nur and sid not in nur:
         continue
     fn()
@@ -240,6 +240,7 @@ for sid, fn in SHOTS.items():
     bpy.ops.render.render(write_still=True)
     print('fertig', sid, flush=True)
 alt = os.path.join(OUT, 'beschriftung.json')
-if os.path.exists(alt):
+if __name__ == '__main__' and os.path.exists(alt):
     beschriftung = {**json.load(open(alt)), **beschriftung}
-json.dump(beschriftung, open(alt, 'w'), indent=1)
+if __name__ == '__main__':
+    json.dump(beschriftung, open(alt, 'w'), indent=1)

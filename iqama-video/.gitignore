@@ -4,3 +4,7 @@ out/phase2/ebenen/
 out/phase2/zustaende.json
 .venv-blender
 __pycache__/
+out/roh/
+out/*_log.txt
+out/speedtest/
+out/phase3/stimmen.wav

@@ -1,0 +1,756 @@
+[
+ {
+  "start": 0.0,
+  "end": 4.14,
+  "text": "Es gibt Minuten am Tag, in denen dein Bittgebet nicht abgelehnt wird.",
+  "words": [
+   {
+    "w": "Es",
+    "start": 0.0,
+    "end": 0.18
+   },
+   {
+    "w": "gibt",
+    "start": 0.18,
+    "end": 0.36
+   },
+   {
+    "w": "Minuten",
+    "start": 0.36,
+    "end": 0.78
+   },
+   {
+    "w": "am",
+    "start": 0.78,
+    "end": 1.06
+   },
+   {
+    "w": "Tag,",
+    "start": 1.06,
+    "end": 1.4
+   },
+   {
+    "w": "in",
+    "start": 1.76,
+    "end": 1.86
+   },
+   {
+    "w": "denen",
+    "start": 1.86,
+    "end": 2.06
+   },
+   {
+    "w": "dein",
+    "start": 2.06,
+    "end": 2.3
+   },
+   {
+    "w": "Bittgebet",
+    "start": 2.3,
+    "end": 2.88
+   },
+   {
+    "w": "nicht",
+    "start": 2.88,
+    "end": 3.24
+   },
+   {
+    "w": "abgelehnt",
+    "start": 3.24,
+    "end": 3.9
+   },
+   {
+    "w": "wird.",
+    "start": 3.9,
+    "end": 4.14
+   }
+  ]
+ },
+ {
+  "start": 4.68,
+  "end": 6.58,
+  "text": "Und die meisten verbringen sie am Handy.",
+  "words": [
+   {
+    "w": "Und",
+    "start": 4.68,
+    "end": 4.86
+   },
+   {
+    "w": "die",
+    "start": 4.86,
+    "end": 5.0
+   },
+   {
+    "w": "meisten",
+    "start": 5.0,
+    "end": 5.36
+   },
+   {
+    "w": "verbringen",
+    "start": 5.36,
+    "end": 5.86
+   },
+   {
+    "w": "sie",
+    "start": 5.86,
+    "end": 6.1
+   },
+   {
+    "w": "am",
+    "start": 6.1,
+    "end": 6.26
+   },
+   {
+    "w": "Handy.",
+    "start": 6.26,
+    "end": 6.58
+   }
+  ]
+ },
+ {
+  "start": 7.36,
+  "end": 9.46,
+  "text": "Weißt du, welche Zeit das gerade ist?",
+  "words": [
+   {
+    "w": "Weißt",
+    "start": 7.36,
+    "end": 7.66
+   },
+   {
+    "w": "du,",
+    "start": 7.66,
+    "end": 7.82
+   },
+   {
+    "w": "welche",
+    "start": 7.96,
+    "end": 8.12
+   },
+   {
+    "w": "Zeit",
+    "start": 8.12,
+    "end": 8.56
+   },
+   {
+    "w": "das",
+    "start": 8.56,
+    "end": 8.76
+   },
+   {
+    "w": "gerade",
+    "start": 8.76,
+    "end": 9.04
+   },
+   {
+    "w": "ist?",
+    "start": 9.04,
+    "end": 9.46
+   }
+  ]
+ },
+ {
+  "start": 10.2,
+  "end": 13.44,
+  "text": "Der Prophet, Allas Segen und Frieden auf ihm, sagte,",
+  "words": [
+   {
+    "w": "Der",
+    "start": 10.2,
+    "end": 10.38
+   },
+   {
+    "w": "Prophet,",
+    "start": 10.38,
+    "end": 10.7
+   },
+   {
+    "w": "Allas",
+    "start": 11.16,
+    "end": 11.66
+   },
+   {
+    "w": "Segen",
+    "start": 11.66,
+    "end": 12.08
+   },
+   {
+    "w": "und",
+    "start": 12.08,
+    "end": 12.26
+   },
+   {
+    "w": "Frieden",
+    "start": 12.26,
+    "end": 12.68
+   },
+   {
+    "w": "auf",
+    "start": 12.68,
+    "end": 12.88
+   },
+   {
+    "w": "ihm,",
+    "start": 12.88,
+    "end": 13.08
+   },
+   {
+    "w": "sagte,",
+    "start": 13.3,
+    "end": 13.44
+   }
+  ]
+ },
+ {
+  "start": 14.26,
+  "end": 18.1,
+  "text": "das Bittgebet zwischen Erdhörn und Iraama wird nicht abgelehnt.",
+  "words": [
+   {
+    "w": "das",
+    "start": 14.26,
+    "end": 14.4
+   },
+   {
+    "w": "Bittgebet",
+    "start": 14.4,
+    "end": 15.0
+   },
+   {
+    "w": "zwischen",
+    "start": 15.0,
+    "end": 15.26
+   },
+   {
+    "w": "Erdhörn",
+    "start": 15.26,
+    "end": 15.94
+   },
+   {
+    "w": "und",
+    "start": 15.94,
+    "end": 16.1
+   },
+   {
+    "w": "Iraama",
+    "start": 16.1,
+    "end": 16.62
+   },
+   {
+    "w": "wird",
+    "start": 16.62,
+    "end": 16.98
+   },
+   {
+    "w": "nicht",
+    "start": 16.98,
+    "end": 17.32
+   },
+   {
+    "w": "abgelehnt.",
+    "start": 17.32,
+    "end": 18.1
+   }
+  ]
+ },
+ {
+  "start": 18.6,
+  "end": 19.52,
+  "text": "Genau jetzt!",
+  "words": [
+   {
+    "w": "Genau",
+    "start": 18.6,
+    "end": 18.94
+   },
+   {
+    "w": "jetzt!",
+    "start": 18.94,
+    "end": 19.52
+   }
+  ]
+ },
+ {
+  "start": 20.24,
+  "end": 24.64,
+  "text": "Und wer auf das Gebet wartet, gilt die ganze Zeit, als wäre er im Gebet.",
+  "words": [
+   {
+    "w": "Und",
+    "start": 20.24,
+    "end": 20.34
+   },
+   {
+    "w": "wer",
+    "start": 20.34,
+    "end": 20.5
+   },
+   {
+    "w": "auf",
+    "start": 20.5,
+    "end": 20.68
+   },
+   {
+    "w": "das",
+    "start": 20.68,
+    "end": 20.84
+   },
+   {
+    "w": "Gebet",
+    "start": 20.84,
+    "end": 21.14
+   },
+   {
+    "w": "wartet,",
+    "start": 21.14,
+    "end": 21.62
+   },
+   {
+    "w": "gilt",
+    "start": 22.0,
+    "end": 22.14
+   },
+   {
+    "w": "die",
+    "start": 22.14,
+    "end": 22.36
+   },
+   {
+    "w": "ganze",
+    "start": 22.36,
+    "end": 22.68
+   },
+   {
+    "w": "Zeit,",
+    "start": 22.68,
+    "end": 23.18
+   },
+   {
+    "w": "als",
+    "start": 23.32,
+    "end": 23.5
+   },
+   {
+    "w": "wäre",
+    "start": 23.5,
+    "end": 23.86
+   },
+   {
+    "w": "er",
+    "start": 23.86,
+    "end": 24.1
+   },
+   {
+    "w": "im",
+    "start": 24.1,
+    "end": 24.3
+   },
+   {
+    "w": "Gebet.",
+    "start": 24.3,
+    "end": 24.64
+   }
+  ]
+ },
+ {
+  "start": 25.28,
+  "end": 27.72,
+  "text": "Fünfmal am Tag öffnet sich diese Tür.",
+  "words": [
+   {
+    "w": "Fünfmal",
+    "start": 25.28,
+    "end": 25.9
+   },
+   {
+    "w": "am",
+    "start": 25.9,
+    "end": 26.1
+   },
+   {
+    "w": "Tag",
+    "start": 26.1,
+    "end": 26.42
+   },
+   {
+    "w": "öffnet",
+    "start": 26.42,
+    "end": 26.9
+   },
+   {
+    "w": "sich",
+    "start": 26.9,
+    "end": 27.14
+   },
+   {
+    "w": "diese",
+    "start": 27.14,
+    "end": 27.42
+   },
+   {
+    "w": "Tür.",
+    "start": 27.42,
+    "end": 27.72
+   }
+  ]
+ },
+ {
+  "start": 27.72,
+  "end": 33.6,
+  "text": "Bitte um alles, was du brauchst, für dich, für deine Eltern, für dein Jenseits.",
+  "words": [
+   {
+    "w": "Bitte",
+    "start": 27.72,
+    "end": 28.54
+   },
+   {
+    "w": "um",
+    "start": 28.54,
+    "end": 28.76
+   },
+   {
+    "w": "alles,",
+    "start": 28.76,
+    "end": 29.14
+   },
+   {
+    "w": "was",
+    "start": 29.28,
+    "end": 29.4
+   },
+   {
+    "w": "du",
+    "start": 29.4,
+    "end": 29.56
+   },
+   {
+    "w": "brauchst,",
+    "start": 29.56,
+    "end": 30.14
+   },
+   {
+    "w": "für",
+    "start": 30.38,
+    "end": 30.6
+   },
+   {
+    "w": "dich,",
+    "start": 30.6,
+    "end": 30.86
+   },
+   {
+    "w": "für",
+    "start": 31.44,
+    "end": 31.48
+   },
+   {
+    "w": "deine",
+    "start": 31.48,
+    "end": 31.66
+   },
+   {
+    "w": "Eltern,",
+    "start": 31.66,
+    "end": 32.04
+   },
+   {
+    "w": "für",
+    "start": 32.66,
+    "end": 32.68
+   },
+   {
+    "w": "dein",
+    "start": 32.68,
+    "end": 32.86
+   },
+   {
+    "w": "Jenseits.",
+    "start": 32.86,
+    "end": 33.6
+   }
+  ]
+ },
+ {
+  "start": 34.18,
+  "end": 35.82,
+  "text": "Zwischen Erdhörn und Iraama.",
+  "words": [
+   {
+    "w": "Zwischen",
+    "start": 34.18,
+    "end": 34.56
+   },
+   {
+    "w": "Erdhörn",
+    "start": 34.56,
+    "end": 35.18
+   },
+   {
+    "w": "und",
+    "start": 35.18,
+    "end": 35.32
+   },
+   {
+    "w": "Iraama.",
+    "start": 35.32,
+    "end": 35.82
+   }
+  ]
+ },
+ {
+  "start": 36.38,
+  "end": 38.08,
+  "text": "Handy weg, Hände hoch.",
+  "words": [
+   {
+    "w": "Handy",
+    "start": 36.38,
+    "end": 36.68
+   },
+   {
+    "w": "weg,",
+    "start": 36.68,
+    "end": 37.0
+   },
+   {
+    "w": "Hände",
+    "start": 37.5,
+    "end": 37.7
+   },
+   {
+    "w": "hoch.",
+    "start": 37.7,
+    "end": 38.08
+   }
+  ]
+ },
+ {
+  "start": 38.7,
+  "end": 40.68,
+  "text": "Noch zehn Minuten bis zur Iraama.",
+  "words": [
+   {
+    "w": "Noch",
+    "start": 38.7,
+    "end": 38.98
+   },
+   {
+    "w": "zehn",
+    "start": 38.98,
+    "end": 39.32
+   },
+   {
+    "w": "Minuten",
+    "start": 39.32,
+    "end": 39.72
+   },
+   {
+    "w": "bis",
+    "start": 39.72,
+    "end": 39.92
+   },
+   {
+    "w": "zur",
+    "start": 39.92,
+    "end": 40.14
+   },
+   {
+    "w": "Iraama.",
+    "start": 40.14,
+    "end": 40.68
+   }
+  ]
+ },
+ {
+  "start": 41.16,
+  "end": 42.16,
+  "text": "Kurz noch was gucken.",
+  "words": [
+   {
+    "w": "Kurz",
+    "start": 41.16,
+    "end": 41.48
+   },
+   {
+    "w": "noch",
+    "start": 41.48,
+    "end": 41.68
+   },
+   {
+    "w": "was",
+    "start": 41.68,
+    "end": 41.86
+   },
+   {
+    "w": "gucken.",
+    "start": 41.86,
+    "end": 42.16
+   }
+  ]
+ },
+ {
+  "start": 42.84,
+  "end": 44.48,
+  "text": "Naja, Wartezeit eben.",
+  "words": [
+   {
+    "w": "Naja,",
+    "start": 42.84,
+    "end": 43.2
+   },
+   {
+    "w": "Wartezeit",
+    "start": 43.62,
+    "end": 44.24
+   },
+   {
+    "w": "eben.",
+    "start": 44.24,
+    "end": 44.48
+   }
+  ]
+ },
+ {
+  "start": 45.2,
+  "end": 48.1,
+  "text": "Nicht abgelehnt, in diesen paar Minuten.",
+  "words": [
+   {
+    "w": "Nicht",
+    "start": 45.2,
+    "end": 45.54
+   },
+   {
+    "w": "abgelehnt,",
+    "start": 45.54,
+    "end": 46.42
+   },
+   {
+    "w": "in",
+    "start": 46.82,
+    "end": 46.94
+   },
+   {
+    "w": "diesen",
+    "start": 46.94,
+    "end": 47.32
+   },
+   {
+    "w": "paar",
+    "start": 47.32,
+    "end": 47.64
+   },
+   {
+    "w": "Minuten.",
+    "start": 47.64,
+    "end": 48.1
+   }
+  ]
+ },
+ {
+  "start": 48.84,
+  "end": 51.5,
+  "text": "Und ich habe die Zeit jeden Tag am Handy verbracht.",
+  "words": [
+   {
+    "w": "Und",
+    "start": 48.84,
+    "end": 49.06
+   },
+   {
+    "w": "ich",
+    "start": 49.06,
+    "end": 49.18
+   },
+   {
+    "w": "habe",
+    "start": 49.18,
+    "end": 49.28
+   },
+   {
+    "w": "die",
+    "start": 49.28,
+    "end": 49.44
+   },
+   {
+    "w": "Zeit",
+    "start": 49.44,
+    "end": 49.7
+   },
+   {
+    "w": "jeden",
+    "start": 49.7,
+    "end": 50.06
+   },
+   {
+    "w": "Tag",
+    "start": 50.06,
+    "end": 50.48
+   },
+   {
+    "w": "am",
+    "start": 50.48,
+    "end": 50.68
+   },
+   {
+    "w": "Handy",
+    "start": 50.68,
+    "end": 50.96
+   },
+   {
+    "w": "verbracht.",
+    "start": 50.96,
+    "end": 51.5
+   }
+  ]
+ },
+ {
+  "start": 52.26,
+  "end": 54.46,
+  "text": "Dann bleibt das Handy jetzt in der Tasche.",
+  "words": [
+   {
+    "w": "Dann",
+    "start": 52.26,
+    "end": 52.56
+   },
+   {
+    "w": "bleibt",
+    "start": 52.56,
+    "end": 52.82
+   },
+   {
+    "w": "das",
+    "start": 52.82,
+    "end": 53.04
+   },
+   {
+    "w": "Handy",
+    "start": 53.04,
+    "end": 53.34
+   },
+   {
+    "w": "jetzt",
+    "start": 53.34,
+    "end": 53.74
+   },
+   {
+    "w": "in",
+    "start": 53.74,
+    "end": 53.98
+   },
+   {
+    "w": "der",
+    "start": 53.98,
+    "end": 54.1
+   },
+   {
+    "w": "Tasche.",
+    "start": 54.1,
+    "end": 54.46
+   }
+  ]
+ }
+]

@@ -1,0 +1,49 @@
+[
+ {
+  "start": 0.0,
+  "end": 4.12,
+  "text": "Zwischen Adhan und Iqamah, Handy weg, Hände hoch",
+  "words": [
+   {
+    "w": "Zwischen",
+    "start": 0.0,
+    "end": 0.92
+   },
+   {
+    "w": "Adhan",
+    "start": 0.92,
+    "end": 1.4
+   },
+   {
+    "w": "und",
+    "start": 1.4,
+    "end": 1.64
+   },
+   {
+    "w": "Iqamah,",
+    "start": 1.64,
+    "end": 2.42
+   },
+   {
+    "w": "Handy",
+    "start": 2.5,
+    "end": 2.82
+   },
+   {
+    "w": "weg,",
+    "start": 2.82,
+    "end": 3.14
+   },
+   {
+    "w": "Hände",
+    "start": 3.6,
+    "end": 3.84
+   },
+   {
+    "w": "hoch",
+    "start": 3.84,
+    "end": 4.12
+   }
+  ]
+ }
+]

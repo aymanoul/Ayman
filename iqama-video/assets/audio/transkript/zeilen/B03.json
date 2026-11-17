@@ -1,0 +1,39 @@
+[
+ {
+  "start": 0.0,
+  "end": 3.14,
+  "text": "Nicht abgelehnt in diesen paar Minuten?",
+  "words": [
+   {
+    "w": "Nicht",
+    "start": 0.0,
+    "end": 0.78
+   },
+   {
+    "w": "abgelehnt",
+    "start": 0.78,
+    "end": 1.68
+   },
+   {
+    "w": "in",
+    "start": 1.68,
+    "end": 2.02
+   },
+   {
+    "w": "diesen",
+    "start": 2.02,
+    "end": 2.38
+   },
+   {
+    "w": "paar",
+    "start": 2.38,
+    "end": 2.72
+   },
+   {
+    "w": "Minuten?",
+    "start": 2.72,
+    "end": 3.14
+   }
+  ]
+ }
+]

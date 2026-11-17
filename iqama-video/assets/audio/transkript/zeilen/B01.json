@@ -1,0 +1,59 @@
+[
+ {
+  "start": 0.0,
+  "end": 3.52,
+  "text": "Noch 10 Minuten bis zur Iqamah. Kurz noch was gucken.",
+  "words": [
+   {
+    "w": "Noch",
+    "start": 0.0,
+    "end": 0.6
+   },
+   {
+    "w": "10",
+    "start": 0.6,
+    "end": 0.96
+   },
+   {
+    "w": "Minuten",
+    "start": 0.96,
+    "end": 1.34
+   },
+   {
+    "w": "bis",
+    "start": 1.34,
+    "end": 1.56
+   },
+   {
+    "w": "zur",
+    "start": 1.56,
+    "end": 1.78
+   },
+   {
+    "w": "Iqamah.",
+    "start": 1.78,
+    "end": 2.34
+   },
+   {
+    "w": "Kurz",
+    "start": 2.56,
+    "end": 2.84
+   },
+   {
+    "w": "noch",
+    "start": 2.84,
+    "end": 3.08
+   },
+   {
+    "w": "was",
+    "start": 3.08,
+    "end": 3.26
+   },
+   {
+    "w": "gucken.",
+    "start": 3.26,
+    "end": 3.52
+   }
+  ]
+ }
+]
