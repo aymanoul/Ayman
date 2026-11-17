@@ -114,6 +114,7 @@ export function bildschirmzeit(g, { minuten = 47, a = 1 } = {}) {
 export function goldSchrift(g, text, { y = 640, a = 1, size = 64 } = {}) {
   g.save(); g.globalAlpha = a;
   g.font = `900 ${size}px "Cairo"`; g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.lineJoin = 'round'; g.lineWidth = 14; g.strokeStyle = 'rgba(33,34,66,0.9)'; g.strokeText(text, CX, y);
   g.shadowColor = 'rgba(255,200,120,0.7)'; g.shadowBlur = 26;
   const gr = g.createLinearGradient(0, y - size / 2, 0, y + size / 2);
   gr.addColorStop(0, '#F3DCA4'); gr.addColorStop(1, GOLD);

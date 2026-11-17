@@ -100,7 +100,8 @@
 - ~60 s, 9:16, gleicher Three.js-Baukasten wie das Gebet-Video, nur Gebetsraum, A und B wie im Gebet-Video.
 - Phase 1: Beweisliste `iqama-video/docs/phase1-beweisliste.md`. H1 hadeethenc 5479 (Abū Dāwūd 521, at-Tirmidhī 212, ṣaḥīḥ),
   geprüfte Übersetzung „Das Bittgebet zwischen Adhan und Iqamah wird nicht abgelehnt.“ → **Beweisliste freigegeben (17.11.)**; A04 wird mit dem geprüften
-  Wortlaut neu aufgenommen, A01/B03/Schlusssatz ebenfalls „abgelehnt“ (Drehbuch in `iqama-video/PLAN.md`). H2 hadeethenc 3435 (Muslim 649, al-Bukhārī 647) passt zu A05. Stand: `iqama-video/PLAN.md`.
+  Wortlaut neu aufgenommen, A01/B03/Schlusssatz ebenfalls „abgelehnt“ (Drehbuch in `iqama-video/PLAN.md`).
+  Phase 2: Storyboard `iqama-video/out/phase2/storyboard.jpg` an Ayman, **Freigabe offen**. H2 hadeethenc 3435 (Muslim 649, al-Bukhārī 647) passt zu A05. Stand: `iqama-video/PLAN.md`.
 
 ## 4. Wo was liegt (in `gebet-video/`)
 

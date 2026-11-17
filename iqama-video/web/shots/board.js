@@ -30,18 +30,18 @@ function lichtTor() {
   const ri = r - 0.12;
   innen.moveTo(-ri, 0); innen.lineTo(-ri, h - r); innen.absarc(0, h - r, ri, Math.PI, 0, true); innen.lineTo(ri, 0); innen.lineTo(-ri, 0);
   aussen.holes.push(innen);
-  const rahmen = new THREE.Mesh(new THREE.ShapeGeometry(aussen, 48), new THREE.MeshBasicMaterial({ color: '#ffe3a6', transparent: true, opacity: 0.95, blending: THREE.AdditiveBlending, depthWrite: false }));
+  const rahmen = new THREE.Mesh(new THREE.ShapeGeometry(aussen, 48), new THREE.MeshBasicMaterial({ color: '#f2b544', transparent: true, opacity: 0.95, depthWrite: false, toneMapped: false }));
   g.add(rahmen);
   const fuell = new THREE.Shape();
   fuell.moveTo(-ri, 0); fuell.lineTo(-ri, h - r); fuell.absarc(0, h - r, ri, Math.PI, 0, true); fuell.lineTo(ri, 0); fuell.lineTo(-ri, 0);
-  const licht = new THREE.Mesh(new THREE.ShapeGeometry(fuell, 48), new THREE.MeshBasicMaterial({ color: '#ffd58a', transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false }));
+  const licht = new THREE.Mesh(new THREE.ShapeGeometry(fuell, 48), new THREE.MeshBasicMaterial({ color: '#ffd27a', transparent: true, opacity: 0.38, depthWrite: false, toneMapped: false }));
   licht.position.z = -0.01; g.add(licht);
-  for (const [s, o] of [[5.5, 0.55], [9, 0.3]]) {
+  for (const [s, o] of [[5.0, 0.22], [8, 0.12]]) {
     const glow = new THREE.Mesh(new THREE.PlaneGeometry(s, s), new THREE.MeshBasicMaterial({ map: glowTexture(), color: '#ffcf7a', transparent: true, opacity: o, blending: THREE.AdditiveBlending, depthWrite: false }));
     glow.position.set(0, h * 0.55, -0.02); g.add(glow);
   }
   g.traverse((o) => { o.renderOrder = 6; });
-  const pl = new THREE.PointLight('#ffcf7a', 6, 9, 1.3); pl.position.set(0, h * 0.6, 0.6); g.add(pl);
+  
   return g;
 }
 
@@ -68,6 +68,7 @@ export async function build({ W, H }) {
   // ruhiges, warmes Licht kurz vor dem Gebet
   scene.traverse((o) => { if (o.isLight && o.color) o.color.lerp(new THREE.Color('#ffe2bf'), 0.25); });
 
+  const lichter = []; scene.traverse((o) => { if (o.isLight) lichter.push([o, o.intensity]); });
   const fx = { tor: lichtTor(), punkte: lichtPunkte() };
   fx.tor.position.set(0, 0.55, -4.9);
   scene.add(fx.tor, fx.punkte);
@@ -115,6 +116,7 @@ export async function build({ W, H }) {
     for (const f of all) f.root.parent.remove(f.root);
     figs = {}; all = [];
     for (const k in fx) fx[k].visible = (cell.fx || []).includes(k);
+    for (const [l, i] of lichter) l.intensity = i * (cell.dimmen || 1);          // Raum abdunkeln, damit das Licht-Tor wirkt
     for (const d of cell.figs) {
       const opts = { footwear: 'socks' };
       const f = d.who === 'A' ? createFigureA(opts) : d.who === 'B' ? createFigureB(opts) : createFigure({ ...EXTRAS[d.extra], ...opts });

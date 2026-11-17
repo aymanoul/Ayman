@@ -14,7 +14,7 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 | Phase | Inhalt | Stand |
 |---|---|---|
 | 1 | Beweisliste H1/H2 (`docs/phase1-beweisliste.md`) | geprüft: H1 = hadeethenc 5479 (Abū Dāwūd 521, at-Tirmidhī 212, ṣaḥīḥ), H2 = hadeethenc 3435 (Muslim 649, al-Bukhārī 647). ✅ **freigegeben** (17.11.); A04 neu (geprüfter Wortlaut), dazu A01/B03/Schlusssatz „abgelehnt“ |
-| 2 | Storyboard 12 Bilder + Handy-Display, Zeitbalken, Licht-Tor | offen |
+| 2 | Storyboard 12 Bilder + Handy-Display, Zeitbalken, Licht-Tor | Blatt fertig `out/phase2/storyboard.jpg`, `einzelbilder.jpg` – Freigabe offen |
 | 3 | Stimmen (A und B von Ayman), Zeitplan, Rohschnitt 720p | offen |
 | 4 | Zeitbalken, Licht-Tor, Lichtpunkte, Karten, Untertitel, Geräusche; Vorschau 720p | offen |
 | 5 | Endfassung, Schlussprüfung, 2 Titelbilder, Beschreibung (genau 5 deutsche Hashtags) | offen |
@@ -54,3 +54,10 @@ dich / für deine Eltern / für dein Jenseits“, A06 · S11 B steckt Handy ein,
   Bedienflächen, Marineblau #212242 / Gold #CA9E4E / Weiß. Licht-Tor weich golden, ohne Figur. Logo klein oben.
 - Stimmen: zwei ElevenLabs-Dateien (A komplett, B komplett) von Ayman. Adhan-Ende weich ausblenden. Geräusche: Raumklang,
   Handy-Tippen (S3), Ton bei Karte, Rascheln beim Einstecken. Keine Musik.
+
+## Technik (Phase 2)
+- `web/index.html` + `web/main.js` (Kopie des Gebet-Renderers; Shots aus `/iq/web/shots`, Bausteine aus `/web/lib` des Gebet-Videos, nur gelesen).
+- `web/board-data.js` (Shots S1–S12: Figuren, Posen, Kamera, Einblendungen), `web/shots/board.js` (Licht-Tor, fünf Lichtpunkte,
+  Handy-Display als Textur, Raum dimmen), `web/grafik.js` (Zeitbalken, Display, Bildschirmzeit, Goldschrift, Wörter, Logo), `web/cards.js` (H1).
+- `node tools/storyboard.mjs` → `out/phase2/cells/*.png`, `out/phase2/einzel/*.png`; `python3 tools/blatt.py` → Blätter.
+- Server: `/iq/…` = iqama-video, sonst gebet-video.
