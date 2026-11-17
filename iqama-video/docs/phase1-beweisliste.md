@@ -1,4 +1,6 @@
-# Phase 1 – Beweisliste „Zwischen Adhan und Iqama“ (Stand 17.11.2026)
+# Phase 1 – Beweisliste „Zwischen Adhan und Iqama“ (Stand 17.11.2026) – ✅ von Ayman freigegeben (17.11.)
+
+Entscheidung: A04 wird mit dem geprüften Wortlaut neu aufgenommen; A01, B03 und Schlusssatz sagen ebenfalls „abgelehnt“.
 
 Rohdaten in `docs/quellen/` (Abruf über die hadeethenc-API am 17.11.2026). Regel: Hadithe wörtlich, mit Quelle und Nummer,
 nur ṣaḥīḥ/ḥasan, an der Originalquelle geprüft. Im Hadith-Wortlaut wird nichts ergänzt (kein ﷻ/ﷺ auf der Karte).
