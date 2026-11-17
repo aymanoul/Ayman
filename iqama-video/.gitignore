@@ -1,2 +1,6 @@
 out/phase2/cells/
-node_modules/
+out/proben/
+out/phase2/ebenen/
+out/phase2/zustaende.json
+.venv-blender
+__pycache__/

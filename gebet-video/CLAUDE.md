@@ -96,8 +96,10 @@
 - Phasen: 1 Beweisliste · 2 Storyboard (11 Bilder + Handy-Display) · 3 Stimmen/Zeitplan/Rohschnitt 720p ·
   4 Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche · 5 Endfassung, 2 Titelbilder, Beschreibung (genau 5 Hashtags).
 
-### D) Iqama-Video „Zwischen Adhan und Iqama“ (Three.js, Ordner `iqama-video/`) – Auftrag 17.11.2026
-- ~60 s, 9:16, gleicher Three.js-Baukasten wie das Gebet-Video, nur Gebetsraum, A und B wie im Gebet-Video.
+### D) Iqama-Video „Zwischen Adhan und Iqama“ (Ordner `iqama-video/`) – Auftrag 17.11.2026
+- ~60 s, 9:16, nur Gebetsraum. **Ayman 17.11.: „mit Blender, im bekannten Stil“** (wie „Jeder Schritt zählt“) statt Three.js →
+  Blender-Gebetsraum `gebetsraum.blend`, A = `A_Qamis`, B = `B_Hemd`, Nebenfiguren = umgefärbte Kopien. Code `iqama-video/blender/`.
+  Das Three.js-Storyboard (freigegeben) bleibt als Vorlage für Ablauf und Einblendungen; Blender-Storyboard neu zur Freigabe.
 - Phase 1: Beweisliste `iqama-video/docs/phase1-beweisliste.md`. H1 hadeethenc 5479 (Abū Dāwūd 521, at-Tirmidhī 212, ṣaḥīḥ),
   geprüfte Übersetzung „Das Bittgebet zwischen Adhan und Iqamah wird nicht abgelehnt.“ → **Beweisliste freigegeben (17.11.)**; A04 wird mit dem geprüften
   Wortlaut neu aufgenommen, A01/B03/Schlusssatz ebenfalls „abgelehnt“ (Drehbuch in `iqama-video/PLAN.md`).
