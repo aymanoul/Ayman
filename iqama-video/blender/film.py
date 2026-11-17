@@ -161,7 +161,7 @@ def S9(u, tl, d):     # B schaut aufs Handy (Bildschirmzeit als Einblendung davo
 def S10(u, tl, d):    # Draufsicht, fünf Lichtpunkte leuchten nacheinander (A06)
     SB.grundstellung(); SB.a_b([], [], handy=False)
     punkte_an([ease((u - 0.05 - i * 0.09) / 0.07) for i in range(5)])
-    kam((-0.4, 0.2, 3.3), (-0.4, 0.5, 3.3), (-0.3, 2.3, 0.0), (-0.3, 2.5, 0.0), 86, 84, u)
+    kam((0.0, -0.6, 3.3), (0.0, -0.3, 3.3), (0.1, 2.3, 0.0), (0.1, 2.5, 0.0), 92, 90, u)   # alle 5 Punkte im sicheren Bereich (x ≈ 220–810)
 
 
 def S11(u, tl, d):    # B steckt das Handy in die Tasche (B05)

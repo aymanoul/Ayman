@@ -9,7 +9,7 @@
   die Zeit läuft schnell bis 0:00 genau bei „Hände hoch“ (A07).
 - Hook-Titel in S1, Untertitel Wort für Wort (Gruppen wie im Gebet-Video, ﷻ nach „Allah“ außerhalb von Zitaten).
   Während A04 keine Untertitel: dort steht die Karte H1 mit genau diesem Wortlaut.
-- S8 goldene Schrift, S9 Bildschirmzeit (Hintergrund abgedunkelt und weich), S10 Gebetsnamen an den Lichtpunkten +
+- Gebetsnamen abwechselnd über/unter dem Punkt (rechts wird das Schild an den Rand geschoben). S8 goldene Schrift, S9 Bildschirmzeit (Hintergrund abgedunkelt und weich), S10 Gebetsnamen an den Lichtpunkten +
   Wörter „für dich / für deine Eltern / für dein Jenseits“ (zur Stimme), S12 Schlusssatz + Quelle. Logo klein oben.
 """
 import json, os, re, subprocess, sys
@@ -129,7 +129,7 @@ def zustand(n):
         for k, (name, xy) in enumerate(zip(NAMEN, p['punkte'])):
             a = ease((u - (0.05 + k * 0.09) - 0.02) / 0.06)
             if a > 0:
-                z['schilder'].append({'text': name, 'xy': [round(xy[0]), round(xy[1] - 75)], 'a': round(a, 3)})
+                z['schilder'].append({'text': name, 'xy': [round(xy[0]), round(xy[1] + (-75 if k % 2 == 0 else 80))], 'a': round(a, 3)})
         if t >= T_WORTE[0]:
             z['worte'] = ['für dich', 'für deine Eltern', 'für dein Jenseits']
             z['worteT0'] = [round(x, 3) for x in T_WORTE]; z['worteT1'] = round(ende_shot('S10') - 0.05, 3); z['worteY'] = 1150
