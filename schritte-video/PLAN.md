@@ -131,3 +131,6 @@ klein „Muslim 666 · Muslim 251“.
   und `… --hoehe 1280 --aus out/schritte_video_vorschau_720p.mp4`.
 - Titelbilder `out/phase5/titelbild_variante1.png` (Hof, Zähler, „Jeder Schritt zählt.“), `…variante2.png` (offene Tür,
   „Wohin führen deine Schritte?“). Beschreibung `docs/phase5-beschreibung.md` (#moschee #gebet #islam #muslime #ratingen).
+- Die Umgebung wird bei Untätigkeit abgeschaltet (Hintergrund-Berechnung stoppt). Deshalb: `sh tools/endfassung_weiter.sh`
+  (startet neu / baut zusammen, idempotent) + stündlicher Weckruf (geplante Aufgabe „Schritte-Video Endfassung weiterrechnen“,
+  nach der Abgabe löschen).
