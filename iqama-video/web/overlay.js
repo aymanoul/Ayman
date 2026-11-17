@@ -24,13 +24,23 @@ window.zeichne = async (z) => {
   if (z.abdunkeln) { g.fillStyle = `rgba(20,21,44,${z.abdunkeln})`; g.fillRect(0, 0, 1080, 1920); }
   if (z.logo) G.zeichneLogo(g, z.logo);
   if (z.balken) G.zeitbalken(g, z.balken);
-  if (z.bildschirmzeit) G.bildschirmzeit(g, { minuten: z.bildschirmzeit });
-  if (z.gold) G.goldSchrift(g, z.gold, { y: z.goldY || 640 });
+  if (z.bildschirmzeit) G.bildschirmzeit(g, typeof z.bildschirmzeit === 'number' ? { minuten: z.bildschirmzeit } : z.bildschirmzeit);
+  if (z.gold) G.goldSchrift(g, z.gold, { y: z.goldY || 640, a: z.goldA ?? 1 });
   (z.schilder || []).forEach((s) => G.beschriftung(g, s.text, s.xy[0], s.xy[1], s.a ?? 1));
-  if (z.worte) G.worte(g, z.worte, { y: z.worteY || 1180 });
+  // Film (Phase 4): mit z.t laufen Wörter, Karte, Titel und Untertitel nach der Zeit (Ein-/Ausblenden wie im Gebet-Video)
+  const t = z.t ?? 5;
+  if (z.worte) G.worte(g, z.worte, { y: z.worteY || 1180, t, t0s: z.worteT0 || null, t1: z.worteT1 ?? 99 });
   let card = null;
-  if (z.karte) card = drawCard(g, 5, CARDS[z.karte], { t0: 0, t1: 99 });
-  if (z.titel) drawTitle(g, 1080, 1920, 5, z.titel, { t0: 0, t1: 99, y: z.titelY || 600, style: 'b', size: 84 });
+  if (z.karte) card = typeof z.karte === 'string' ? drawCard(g, 5, CARDS[z.karte], { t0: 0, t1: 99 }) : drawCard(g, t, CARDS[z.karte.id], z.karte);
+  if (z.titel) {
+    if (Array.isArray(z.titel)) drawTitle(g, 1080, 1920, 5, z.titel, { t0: 0, t1: 99, y: z.titelY || 600, style: 'b', size: 84 });
+    else drawTitle(g, 1080, 1920, t, z.titel.zeilen, { t0: z.titel.t0, t1: z.titel.t1, y: z.titel.y || 600, style: 'b', size: z.titel.size || 84 });
+  }
+  if (z.fuss) {
+    g.save(); g.globalAlpha = z.fussA ?? 1; g.font = '700 30px "Montserrat"'; g.fillStyle = 'rgba(255,255,255,0.88)'; g.textAlign = 'center';
+    g.shadowColor = 'rgba(0,0,0,0.7)'; g.shadowBlur = 10; g.fillText(z.fuss, 500, z.fussY || 1000); g.restore();
+  }
+  if (z.sub) drawSubtitles(g, 1080, 1920, t, [z.sub.gruppe], { style: 'b', y: z.sub.y || subtitleY(card) });
   if (z.untertitel) untertitelStill(z.untertitel, z.untertitelY || subtitleY(card));
   return true;
 };

@@ -121,8 +121,12 @@ export function goldSchrift(g, text, { y = 640, a = 1, size = 64 } = {}) {
   g.fillStyle = gr; g.fillText(text, CX, y);
   g.restore();
 }
-export function worte(g, liste, { y = 620, a = [1, 1, 1] } = {}) {
-  liste.forEach((wort, i) => { if (a[i] > 0) drawTitle(g, 1080, 1920, 5, [wort], { t0: 0, t1: 99, y: y + i * 105, style: 'b', size: 72 }); });
+// t / t0s (optional): Zeit und Startzeiten je Wort → weiches Einblenden wie bei den Titeln (Film); sonst alle sichtbar
+export function worte(g, liste, { y = 620, a = [1, 1, 1], t = 5, t0s = null, t1 = 99 } = {}) {
+  liste.forEach((wort, i) => {
+    if (t0s) drawTitle(g, 1080, 1920, t, [wort], { t0: t0s[i], t1, y: y + i * 105, style: 'b', size: 72 });
+    else if (a[i] > 0) drawTitle(g, 1080, 1920, 5, [wort], { t0: 0, t1: 99, y: y + i * 105, style: 'b', size: 72 });
+  });
 }
 export function beschriftung(g, text, x, y, a = 1) {
   g.save(); g.globalAlpha = a;
