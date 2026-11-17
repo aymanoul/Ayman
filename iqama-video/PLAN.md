@@ -14,7 +14,7 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 | Phase | Inhalt | Stand |
 |---|---|---|
 | 1 | Beweisliste H1/H2 (`docs/phase1-beweisliste.md`) | geprüft: H1 = hadeethenc 5479 (Abū Dāwūd 521, at-Tirmidhī 212, ṣaḥīḥ), H2 = hadeethenc 3435 (Muslim 649, al-Bukhārī 647). ✅ **freigegeben** (17.11.); A04 neu (geprüfter Wortlaut), dazu A01/B03/Schlusssatz „abgelehnt“ |
-| 2 | Storyboard 12 Bilder + Handy-Display, Zeitbalken, Licht-Tor | Three.js-Fassung freigegeben (17.11.), dann Ayman: **„mit Blender, im bekannten Stil“** → Blender-Storyboard `out/phase2/storyboard.jpg`, `einzelbilder.jpg`, Freigabe offen |
+| 2 | Storyboard 12 Bilder + Handy-Display, Zeitbalken, Licht-Tor | Three.js-Fassung freigegeben (17.11.), dann Ayman: **„mit Blender, im bekannten Stil“** → Blender-Storyboard `out/phase2/storyboard.jpg`, `einzelbilder.jpg` ✅ **freigegeben** (17.11.) |
 | 3 | Stimmen (A und B von Ayman), Zeitplan, Rohschnitt 720p | offen |
 | 4 | Zeitbalken, Licht-Tor, Lichtpunkte, Karten, Untertitel, Geräusche; Vorschau 720p | offen |
 | 5 | Endfassung, Schlussprüfung, 2 Titelbilder, Beschreibung (genau 5 deutsche Hashtags) | offen |
