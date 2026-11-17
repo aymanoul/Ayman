@@ -96,6 +96,12 @@
 - Phasen: 1 Beweisliste · 2 Storyboard (11 Bilder + Handy-Display) · 3 Stimmen/Zeitplan/Rohschnitt 720p ·
   4 Zähler, Fußabdrücke, fünf Wege, Karten, Untertitel, Geräusche · 5 Endfassung, 2 Titelbilder, Beschreibung (genau 5 Hashtags).
 
+### D) Iqama-Video „Zwischen Adhan und Iqama“ (Three.js, Ordner `iqama-video/`) – Auftrag 17.11.2026
+- ~60 s, 9:16, gleicher Three.js-Baukasten wie das Gebet-Video, nur Gebetsraum, A und B wie im Gebet-Video.
+- Phase 1: Beweisliste `iqama-video/docs/phase1-beweisliste.md`. H1 hadeethenc 5479 (Abū Dāwūd 521, at-Tirmidhī 212, ṣaḥīḥ),
+  geprüfte Übersetzung „Das Bittgebet zwischen Adhan und Iqamah wird nicht abgelehnt.“ → **weicht von A04 ab, gestoppt**,
+  Ayman soll A04 neu aufnehmen. H2 hadeethenc 3435 (Muslim 649, al-Bukhārī 647) passt zu A05. Stand: `iqama-video/PLAN.md`.
+
 ## 4. Wo was liegt (in `gebet-video/`)
 
 | Pfad | Inhalt |
