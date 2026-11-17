@@ -16,7 +16,7 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 | 1 | Beweisliste H1/H2 (`docs/phase1-beweisliste.md`) | geprüft: H1 = hadeethenc 5479 (Abū Dāwūd 521, at-Tirmidhī 212, ṣaḥīḥ), H2 = hadeethenc 3435 (Muslim 649, al-Bukhārī 647). ✅ **freigegeben** (17.11.); A04 neu (geprüfter Wortlaut), dazu A01/B03/Schlusssatz „abgelehnt“ |
 | 2 | Storyboard 12 Bilder + Handy-Display, Zeitbalken, Licht-Tor | Three.js-Fassung freigegeben (17.11.), dann Ayman: **„mit Blender, im bekannten Stil“** → Blender-Storyboard `out/phase2/storyboard.jpg`, `einzelbilder.jpg` ✅ **freigegeben** (17.11.) |
 | 3 | Stimmen (A und B von Ayman), Zeitplan, Rohschnitt 720p | in Arbeit: eine Datei `assets/audio/roh/stimme_A_helmut.mp3` (Helmut spricht A **und** B – Ayman: „so lassen“), zerlegt in A01–A07/B01–B05, alle Zeilen geprüft (A04 = Karte); Adhan-Ende = letzte Worte von `adhan_neu.mp3` (72,0–77,5 s, Ayman); Zeitplan 61,3 s; Rohschnitt fertig `out/phase3/rohschnitt_720p.mp4` (3D mit 12 Bildern/s, 480 breit, auf 720p/30 hochgerechnet; 61,3 s, −14,9 LUFS; Kontaktbogen geprüft: keine Augen, Posen, Licht-Tor, Lichtpunkte, Dua) → **freigegeben (17.11.)** |
-| 4 | Zeitbalken, Licht-Tor, Lichtpunkte, Karten, Untertitel, Geräusche; Vorschau 720p | offen |
+| 4 | Zeitbalken, Licht-Tor, Lichtpunkte, Karten, Untertitel, Geräusche; Vorschau 720p | Vorschau `out/phase4/vorschau_720p.mp4` (61,3 s, −14,0 LUFS): Zeitbalken Echtzeit ab 10:00 bis S5, ab S6 gold und schnell bis 0:00 bei „Hände hoch“; Karte H1 statt Untertitel bei A04; Goldschrift S8; Bildschirmzeit S9; Gebetsnamen an den Lichtpunkten (S10-Kamera neu, alle Punkte im sicheren Bereich) + 3 Wörter; Schlusssatz + Quelle; Logo klein oben; Ton: Adhan-Ende, Raumklang, Tippen, Wische, Klicks, Rascheln, keine Musik → **wartet auf Freigabe** |
 | 5 | Endfassung, Schlussprüfung, 2 Titelbilder, Beschreibung (genau 5 deutsche Hashtags) | offen |
 
 ## Drehbuch (fest; Änderungen vom 17.11. fett)
@@ -77,3 +77,7 @@ dich / für deine Eltern / für dein Jenseits“, A06 · S11 B steckt Handy ein,
   Lichtpunkte nacheinander, Handy in die Tasche, Hände heben), Mund nach Hüllkurve. ~9–14 s/Bild.
 - `sh tools/rohschnitt_weiter.sh` (idempotent, startet Blender neu falls gestoppt) → `tools/rohschnitt.py` → `out/phase3/rohschnitt_720p.mp4`.
   Umgebung schaltet bei Untätigkeit ab → eine vom Werkzeug verfolgte Hintergrund-Schleife ruft das Skript jede Minute auf.
+
+## Technik (Phase 4)
+- `.venv-blender/bin/python blender/film.py --punkte` → `audio/punkte.json` (Lichtpunkte S10 im Bild).
+- `python3 tools/ton.py` → `out/phase4/ton.wav`; `python3 tools/einblendungen.py` → `out/phase4/ebenen/`; `python3 tools/vorschau.py` → `out/phase4/vorschau_720p.mp4` (S9 weichgezeichnet, Ton −14 LUFS).
