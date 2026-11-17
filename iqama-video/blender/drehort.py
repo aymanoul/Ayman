@@ -37,9 +37,9 @@ SITZEN = {                                           # Schneidersitz: Oberschenk
     'Bauch': (4, 0, 0), 'Brust': (3, 0, 0),
     'Oberarm.L': (-14, 0, -6), 'Oberarm.R': (-14, 0, 6), 'Unterarm.L': (-42, 0, 0), 'Unterarm.R': (-42, 0, 0),
 }
-HANDY = {'Oberarm.R': (-24, 0, -10), 'Unterarm.R': (-82, 0, 0), 'Hand.R': (-10, 0, 0), 'Hals': (12, 0, 0), 'Kopf': (16, 0, 0)}
+HANDY = {'Oberarm.R': (-58, -46, 65), 'Unterarm.R': (-69, 0, 17), 'Hand.R': (-10, 0, 0), 'Hals': (16, 0, 0), 'Kopf': (26, 0, 0)}   # Handy vor der Brust, Blick nach unten
 HANDY_UNTEN = {'Oberarm.R': (-16, 0, -6), 'Unterarm.R': (-50, 0, 0), 'Hand.R': (-8, 0, 0), 'Hals': (2, 0, 0), 'Kopf': (4, 0, 0)}
-TASCHE = {'Oberarm.R': (-10, 0, 22), 'Unterarm.R': (-96, 0, -30), 'Hand.R': (0, 0, 0), 'Kopf': (14, 0, 0)}
+TASCHE = {'Oberarm.R': (-60, -45, 39), 'Unterarm.R': (-102, 0, 84), 'Hand.R': (0, 0, 0), 'Hals': (10, 0, 0), 'Kopf': (18, 0, 0)}   # Hand an der Brusttasche
 SPRECHEN = {'Oberarm.R': (-26, 0, -12), 'Unterarm.R': (-58, 0, 0), 'Hand.R': (0, 0, 0)}
 DUA = {                                              # Bittgebet: Hände offen vor der Brust, Handflächen nach oben (per Suche)
     'Oberarm.L': (-42, 30, -40), 'Unterarm.L': (-80, 0, -10), 'Hand.L': (-30, -135, -20),

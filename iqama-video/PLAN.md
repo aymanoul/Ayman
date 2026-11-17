@@ -14,7 +14,7 @@ Nach jeder Phase stoppen, Vorschau schicken, Freigabe abwarten.
 | Phase | Inhalt | Stand |
 |---|---|---|
 | 1 | Beweisliste H1/H2 (`docs/phase1-beweisliste.md`) | geprüft: H1 = hadeethenc 5479 (Abū Dāwūd 521, at-Tirmidhī 212, ṣaḥīḥ), H2 = hadeethenc 3435 (Muslim 649, al-Bukhārī 647). ✅ **freigegeben** (17.11.); A04 neu (geprüfter Wortlaut), dazu A01/B03/Schlusssatz „abgelehnt“ |
-| 2 | Storyboard 12 Bilder + Handy-Display, Zeitbalken, Licht-Tor | ✅ **freigegeben** (17.11.) `out/phase2/storyboard.jpg`, `einzelbilder.jpg` |
+| 2 | Storyboard 12 Bilder + Handy-Display, Zeitbalken, Licht-Tor | Three.js-Fassung freigegeben (17.11.), dann Ayman: **„mit Blender, im bekannten Stil“** → Blender-Storyboard `out/phase2/storyboard.jpg`, `einzelbilder.jpg`, Freigabe offen |
 | 3 | Stimmen (A und B von Ayman), Zeitplan, Rohschnitt 720p | offen |
 | 4 | Zeitbalken, Licht-Tor, Lichtpunkte, Karten, Untertitel, Geräusche; Vorschau 720p | offen |
 | 5 | Endfassung, Schlussprüfung, 2 Titelbilder, Beschreibung (genau 5 deutsche Hashtags) | offen |
@@ -61,3 +61,11 @@ dich / für deine Eltern / für dein Jenseits“, A06 · S11 B steckt Handy ein,
   Handy-Display als Textur, Raum dimmen), `web/grafik.js` (Zeitbalken, Display, Bildschirmzeit, Goldschrift, Wörter, Logo), `web/cards.js` (H1).
 - `node tools/storyboard.mjs` → `out/phase2/cells/*.png`, `out/phase2/einzel/*.png`; `python3 tools/blatt.py` → Blätter.
 - Server: `/iq/…` = iqama-video, sonst gebet-video.
+
+## Technik (Blender, ab 17.11.)
+- `blender/drehort.py`: `gebetsraum.blend` + A_Qamis, B_Hemd, 6 Nebenfiguren (umgefärbte Kopien), warmes Licht; Posen SITZEN
+  (Schneidersitz, per Suche), HANDY, HANDY_UNTEN, TASCHE, SPRECHEN, DUA (Hände vor der Brust, Handflächen oben); `sitzen()`.
+  Nutzt `schritte-video/blender/szene.py` (Mund, Handy, Kamera, stell, bildpunkt) und `gebet-video/blender` (nur lesen).
+- `blender/storyboard.py --samples 16 [--nur S6]` → `out/phase2/3d_S*.png` (+ Licht-Tor, Lichtpunkte, Display-Textur aus `out/phase2/tex`).
+- `tools/storyboard.py`: Einblendungen (`web/overlay.html|js`, `tools/overlay.mjs`, `web/grafik.js`) + Blätter.
+- Die Three.js-Dateien (`web/shots/board.js`, `web/board-data.js`, `tools/storyboard.mjs`, `tools/blatt.py`) sind nur noch Archiv.

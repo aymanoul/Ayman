@@ -64,12 +64,12 @@ def licht_tor(coll):
     vi = [bm.verts.new((x, 0, z)) for x, z in inn]
     for i in range(len(va) - 1):
         bm.faces.new((va[i], va[i + 1], vi[i + 1], vi[i]))
-    rahmen = R.bm_object('Licht_Tor_Rahmen', bm, emission('Tor_Rahmen', '#f2b544', 9.0), coll, parent=g, smooth=False)
+    rahmen = R.bm_object('Licht_Tor_Rahmen', bm, emission('Tor_Rahmen', '#f2b544', 5.0), coll, parent=g, smooth=False)
     bm = bmesh.new()
     vf = [bm.verts.new((x, 0.02, z)) for x, z in inn]
     bm.faces.new(vf)
-    R.bm_object('Licht_Tor_Flaeche', bm, emission('Tor_Flaeche', '#ffd27a', 2.2, alpha=0.35), coll, parent=g, smooth=False)
-    li = bpy.data.lights.new('Licht_Tor_Licht', 'AREA'); li.energy = 220; li.color = (1.0, 0.8, 0.45); li.shape = 'RECTANGLE'; li.size, li.size_y = 2.2, 2.8
+    R.bm_object('Licht_Tor_Flaeche', bm, emission('Tor_Flaeche', '#ffd27a', 1.2, alpha=0.3), coll, parent=g, smooth=False)
+    li = bpy.data.lights.new('Licht_Tor_Licht', 'AREA'); li.energy = 70; li.color = (1.0, 0.8, 0.45); li.shape = 'RECTANGLE'; li.size, li.size_y = 2.2, 2.8
     lo = bpy.data.objects.new('Licht_Tor_Licht', li); coll.objects.link(lo); lo.parent = g
     lo.location = (0, -0.3, 1.5); lo.rotation_euler = (math.radians(90), 0, 0)
     g.location = (0, 4.9, 0.5)
@@ -209,7 +209,11 @@ def S10():  # Draufsicht, fünf Lichtpunkte
 
 
 def S11():  # B steckt das Handy in die Tasche
-    grundstellung(); a_b([D.TASCHE])
+    grundstellung(); a_b([D.TASCHE], handy=False)
+    zeige(ph, True); ph.parent = None
+    bpy.context.view_layer.update()
+    pb = B.pose.bones['Hand.R']; hand = B.matrix_world @ ((pb.head + pb.tail) / 2)
+    ph.location = hand + Vector((0, 0, 0.06)); ph.rotation_euler = (0, 0, math.radians(B_ROT))      # Handy gleitet in die Tasche
     k = kopf(B)
     SZ.kamera(S, (k.x + 0.75, k.y + 1.75, k.z - 0.05), (k.x, k.y, k.z - 0.4), objektiv(38))
 
