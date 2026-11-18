@@ -19,4 +19,4 @@ Quellen im Video:
 Hinweise vor dem Posten:
 - Hadith-Nummern Abū Dāwūd 521, at-Tirmidhī 212, Muslim 649 und al-Bukhārī 647 kurz auf sunnah.com prüfen
   (bestätigt über hadeethenc.com Nr. 5479 und Nr. 3435; al-Bukhārī je nach Ausgabe auch 620/659).
-- Titelbild: `out/phase5/titelbild_variante1.png` oder `titelbild_variante2.png`.
+- Titelbild: `out/phase5/titelbild_variante1.png` (gewählt).
