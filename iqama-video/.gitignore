@@ -19,3 +19,5 @@ out/phase5/titel/
 out/end_log.txt
 out/endschnitt_log.txt
 out/phase5/check/
+out/look_test/*.png
+out/look_test/vergleich_*.jpg
