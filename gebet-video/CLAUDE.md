@@ -151,6 +151,9 @@ Z oben (Three.js: (x, y, z)_Blender = (x, −z, y)_Three). Figuren-Knochen: loka
   faster-whisper), sunnah.com/dorar.net (dort aber Cloudflare-Sperre – nicht umgehen).
 - Spracherkennung: faster-whisper „small“ (int8, CPU), Audio über ffmpeg dekodieren.
 - Kein Blender auf Aymans Gerät erreichbar (kein Computer verbunden); Blender läuft nur hier im Container.
+- Blender-Skills (Auswahl aus github.com/arjun988/blender-skills, MIT, 18.11. auf Aymans Wunsch): `.claude/skills/` im
+  Repo-Wurzelordner – lighting, camera-cinematography, rendering, animation, materials. Nur als Fachwissen nutzen; feste Regeln
+  gehen vor (keine Augen); die Skills setzen „Blender MCP“ voraus, wir arbeiten mit bpy. Siehe `.claude/skills/README-blender-skills.md`.
 
 ## 7. Nächste Schritte (Reihenfolge)
 
