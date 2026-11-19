@@ -33,8 +33,9 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
    Blender-MCP einbinden. Dieser Ordner im Repo ist das Gedächtnis.
 3. **Notlösung:** Blender hier im Container (5.2.3, CPU, langsam: EEVEE-Rendern ohne GPU kaum möglich, Cycles ~20–40 s/Bild bei 720p).
 
-## Offene Fragen an Ayman (Phase 0)
-- Portal-Lage (Vorschlag aus AUFTRAG: rechtes Ende Richtung Parkfläche)
-- Einfahrt/Schiebetor (rechtes Ende laut roter Markierung? freitragend, 5–6 m)
-- PV-Anordnung (wie in der Bau-Roadmap – Bild nötig)
-- Fassade des sanierten Nachbargebäudes rechts
+## Entscheidungen von Ayman (19.11.)
+- Verbindung: **Ordner freigeben** (Remote Control, Ordner „Neubau“ in Filme) – wartet darauf, dass Ayman ihn auf dem Mac hinzufügt.
+- Portal: **rechtes Ende** der Glasfassade (Richtung Parkfläche).
+- Einfahrt: **rechtes Ende, freitragendes Schiebetor**, ohne Bodenschiene, 5–6 m Durchfahrt (im Video geschlossen).
+- Nachbargebäude rechts: **helle Putzfassade**, graues Dach mit Dachfenstern.
+- Noch offen: PV-Anordnung (wie in der Bau-Roadmap – Bild abwarten).
