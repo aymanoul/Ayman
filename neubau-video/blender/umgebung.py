@@ -404,15 +404,23 @@ def laubbaum_fern(name, x, y, h):
 
 
 # ------------------------------------------------------------------ Boden, Gasse, Grundstück
-flaeche('Boden_weit', [(-200, -200), (260, -200), (260, 260), (-200, 260)], -0.02, M['asphalt'], 'Boden')
+# Boden mit Aussparung für die Baugrube (Moschee-Grundfläche x 0…BT, y 3…15)
+GX0, GX1, GY0, GY1 = 0.0, BT, 3.0, 15.0
+mesh('Boden_weit', [(-200, -200, -0.02), (260, -200, -0.02), (260, GY0, -0.02), (-200, GY0, -0.02),
+                    (-200, GY1, -0.02), (260, GY1, -0.02), (260, 260, -0.02), (-200, 260, -0.02),
+                    (GX0, GY0, -0.02), (GX0, GY1, -0.02), (GX1, GY0, -0.02), (GX1, GY1, -0.02)],
+     [(0, 1, 2, 3), (4, 5, 6, 7), (3, 8, 9, 4), (10, 2, 5, 11)], M['asphalt'], 'Boden')
 flaeche('Gasse_Pflaster', [(-18.4, GASSE), (68, GASSE), (68, 0), (-18.4, 0)], 0.0, M['pflaster'], 'Boden')
 for i, (y0, y1) in enumerate(((GASSE - 0.25, GASSE), (0, 0.25))):
     flaeche(f'Randstein_{i}', [(-18.4, y0), (68, y0), (68, y1), (-18.4, y1)], 0.012, M['randstein'], 'Boden')
 for i, x in enumerate((8, 26, 44)):
     flaeche(f'Gully_{i}', [(x, -3.6), (x + 0.5, -3.6), (x + 0.5, -3.1), (x, -3.1)], 0.015, M['metall_dunkel'], 'Boden')
 # Grundstück: eingeebneter Schotter (Stufe 0)
-GR = [(0, 0.25), (L, 0.25), (L, LT), (BT, LT), (BT, TT), (0, TT)]
-flaeche('Grundstueck_Schotter', GR, 0.02, M['schotter'], 'Grundstueck')
+# ohne die Moschee-Grundfläche; die liegt als eigenes Stück „Grube_Boden“ darin (senkt sich in Stufe 1 ab)
+mesh('Grundstueck_Schotter', [(0, 0.25, 0.02), (L, 0.25, 0.02), (L, GY0, 0.02), (0, GY0, 0.02),
+                              (GX1, GY0, 0.02), (L, LT, 0.02), (GX1, LT, 0.02), (0, GY1, 0.02), (GX1, GY1, 0.02), (GX1, TT, 0.02), (0, TT, 0.02)],
+     [(0, 1, 2, 3), (4, 2, 5, 6), (7, 8, 9, 10)], M['schotter'], 'Grundstueck')
+flaeche('Grube_Boden', [(GX0, GY0), (GX1, GY0), (GX1, GY1), (GX0, GY1)], 0.02, M['schotter'], 'Grundstueck')
 # gegenüber: Vorfläche weißes Haus (rötliches Pflaster), Flächen zwischen den Hallen (Beton)
 flaeche('Pflaster_rot_weissesHaus', [(3.3, -8.2), (15.3, -8.2), (15.3, GASSE - 0.25), (3.3, GASSE - 0.25)], 0.01, M['pflaster_rot'], 'Boden')
 flaeche('Hofflaeche_gegenueber', [(-18.4, -40), (68, -40), (68, GASSE - 0.25), (-18.4, GASSE - 0.25)], 0.0, M['beton_boden'], 'Boden')
