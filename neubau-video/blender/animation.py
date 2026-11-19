@@ -14,6 +14,7 @@ Nichts fliegt herein, kein Kran, keine Maschine, kein Mensch.
 Kameras: Drohne_A (Start tief in der Gasse hinter dem Schornstein) und Drohne_B (Start hoch über Hochstraße/Sheddächern),
 ab 4 s identisch. 24 mm, leicht nach unten geneigt, nie durch Gebäude.
 """
+import fnmatch
 import math
 import os
 import sys
@@ -26,7 +27,7 @@ END_STAGE = int(arg('endstufe', 6))
 bpy.ops.wm.open_mainfile(filepath=os.path.join(HERE, 'neubau.blend'))
 sc = bpy.context.scene
 FPS = 30
-sc.render.fps = FPS; sc.frame_start = 0; sc.frame_end = 42 * FPS
+sc.render.fps = FPS; sc.frame_start = 0; sc.frame_end = 45 * FPS
 sc['END_STAGE'] = END_STAGE
 F = lambda t: int(round(t * FPS))
 BT, Y0, Y1, KZ = 16.5, 3.0, 15.0, -3.2
@@ -135,10 +136,16 @@ def spanne(ob, achse):
     return min(w), max(w)
 
 
+ZUGEWIESEN = {}
+
+
 def aufbau(ob, t0, t1, achse=(0, 0, 1), weg=False, stufe=0):
     """t0→t1: Teil wächst entlang achse (weg=True: verschwindet rückwärts). Stufen über END_STAGE bleiben unsichtbar."""
     if ob.type != 'MESH' or not ob.data.vertices:
         return
+    if ob.name in ZUGEWIESEN and not weg:
+        print('WARNUNG doppelt:', ob.name); return
+    ZUGEWIESEN[ob.name] = t0
     mod = ob.modifiers.get('Aufbau') or ob.modifiers.new('Aufbau', 'NODES'); mod.node_group = ng
     setzen(mod, ID['Achse'], tuple(float(c) for c in achse))
     lo, hi = spanne(ob, achse); aus, an = lo - 0.02, hi + 0.02
@@ -159,7 +166,7 @@ def obs(*muster, sammlung=None, ohne=None):
             continue
         if ohne and ohne in o.name:
             continue
-        if any(o.name == m or (m.endswith('*') and o.name.startswith(m[:-1])) for m in muster):
+        if any(fnmatch.fnmatchcase(o.name, m) for m in muster):
             out.append(o)
     return sorted(out, key=lambda o: o.name)
 
@@ -191,57 +198,72 @@ aufbau(bpy.data.objects['Kellerdecke'], 11.8, 13.0, X, stufe=2)
 # Stufe 3 – Erdgeschoss
 gruppe(['EG_Wand*', 'EG_Tuer_Hof'], 13.0, 15.2, Z, 3, 0.2)
 gruppe('EG_Saeule*', 13.3, 15.0, Z, 3, 0.15)
-gruppe(['EG_Glas', 'EG_Pfosten'], 15.4, 18.6, X, 3)
+gruppe(['EG_Glas', 'EG_Pfosten', 'Fassade_Lisenen_EG', 'Fassade_Sockel'], 15.4, 18.6, X, 3)
 gruppe('EG_Seitenfenster*', 16.0, 17.4, Z, 3, 0.1)
-gruppe('Portal_*', 16.6, 19.6, Z, 3)
-gruppe(['EG_Teppich', 'Mihrab*', 'Minbar*'], 17.0, 18.8, X, 3)
+gruppe(['Portal_Pfeiler*', 'Portal_Sturz', 'Portal_Glastuer', 'Portal_Feld_oben', 'Portal_Zwickel*', 'Portal_Sprossen', 'Portal_Goldkante', 'Portal_Laternen*'], 16.6, 19.6, Z, 3)
+gruppe(['EG_Teppich', 'Mihrab*', 'Minbar*', 'Innen_Regal*'], 17.0, 18.8, X, 3)
+gruppe('Innen_Ringleuchte*', 18.4, 19.6, Z, 3, 0.1)
 # Stufe 4 – 1. Etage
 gruppe(['Geschossdecke', 'Geschossband'], 20.0, 21.4, X, 4, 0.2)
 gruppe('OG_Wand*', 21.0, 22.8, Z, 4, 0.2)
 gruppe('OG_Saeule*', 21.2, 22.6, Z, 4, 0.1)
-gruppe(['OG_Glas', 'OG_Pfosten', 'OG_Teppich'], 22.4, 24.6, X, 4)
+gruppe(['OG_Glas', 'OG_Pfosten', 'OG_Teppich', 'Fassade_Lisenen_OG', 'LED_Geschossband'], 22.4, 24.6, X, 4)
+gruppe('Rueckseite_Fenster*', 22.6, 24.4, Z, 4)
 gruppe('OG_Seitenfenster*', 23.0, 24.2, Z, 4, 0.1)
 aufbau(bpy.data.objects['Deckenleuchten'], 19.5, 24.0, Z, stufe=4)
 # Stufe 5 – Decke & PV-Dach
 aufbau(bpy.data.objects['Dachplatte'], 25.0, 26.0, X, stufe=5)
-gruppe('Attika*', 25.8, 27.0, Z, 5, 0.1)
+gruppe('Attika?', 25.8, 27.0, Z, 5, 0.1)
+gruppe(['Attika_Abdeckung', 'LED_Attika'], 26.6, 27.4, X, 5)
+aufbau(bpy.data.objects['Dach_Technik'], 28.6, 29.6, Z, stufe=5)
 aufbau(bpy.data.objects['Dachkies'], 26.2, 27.2, X, stufe=5)
 aufbau(bpy.data.objects['Gruendach'], 26.6, 28.2, X, stufe=5)
 gruppe(['PV_Gestell', 'PV_Module'], 27.4, 30.0, X, 5)
-# Stufe 6 – Fertigstellung
-aufbau(bpy.data.objects['Vorplatz'], 30.0, 31.0, X, stufe=6)
-aufbau(bpy.data.objects['Hof_Boden'], 30.0, 31.6, Y, stufe=6)
-gruppe('Hofmauer_*', 30.4, 31.6, Z, 6, 0.1)
-aufbau(bpy.data.objects['Hof_Wandleuchten'], 31.4, 31.9, Z, stufe=6)
-gruppe(['Kuebel*', 'Pflanzkasten*'], 31.0, 32.0, Z, 6, 0.08, ohne='_Gruen')
-gruppe('Olive*', 31.6, 33.6, Z, 6, 0.04)
-gruppe('Pflanzkasten*_Gruen*', 32.0, 33.2, Z, 6, 0.04)
-gruppe(['Hof_Baenke', 'Tisch*', 'Hocker*', 'Schirm*'], 32.4, 33.6, Z, 6, 0.03)
-aufbau(bpy.data.objects['Parken_Belag'], 30.4, 31.4, X, stufe=6)
-aufbau(bpy.data.objects['Wohnwagen_Belag'], 30.8, 32.0, X, stufe=6)
-aufbau(bpy.data.objects['Markierungen'], 31.6, 34.0, X, stufe=6)
-aufbau(bpy.data.objects['Hecke'], 32.0, 34.0, X, stufe=6)
-aufbau(bpy.data.objects['Wandleuchten_Brandwand'], 32.6, 33.6, X, stufe=6)
-aufbau(bpy.data.objects['Zaun_fest'], 33.0, 35.0, X, stufe=6)
-gruppe(['Schiebetor', 'Schiebetor_Fuehrung'], 34.0, 35.2, X, 6)
+# Stufe 6 – Fertigstellung (Ayman 19.11.: Hof voller, länger zeigen; Wohnwagen auf den Plätzen; Zaun + Schiebetor deutlich)
+aufbau(bpy.data.objects['Vorplatz'], 30.0, 30.8, X, stufe=6)
+aufbau(bpy.data.objects['Hof_Boden'], 30.2, 31.0, Y, stufe=6)
+gruppe(['Hofmauer_*'], 30.4, 31.2, Z, 6, 0.1)
+gruppe(['Hof_Pflanzbeete', 'Hof_Beeterde'], 30.8, 31.6, Y, 6)
+gruppe(['Hof_Busch*', 'Hof_Zypresse*'], 31.2, 32.4, Z, 6, 0.015)
+gruppe(['Kuebel*', 'Olive*', 'Palme_*'], 31.6, 33.0, Z, 6, 0.03)
+gruppe(['Tische', 'Stuehle', 'Schirm*', 'Lounge_*', 'Aussenkueche*'], 32.2, 33.4, Z, 6, 0.04)
+gruppe(['Hof_Wandleuchten', 'Hof_Bodenstrahler', 'Hoftuer_Vordach'], 33.0, 33.6, Z, 6)
+gruppe(['Portal_Stufen', 'Portal_Kuebel*', 'Portal_Zypresse*'], 30.2, 31.2, Z, 6)
+aufbau(bpy.data.objects['Parken_Belag'], 36.4, 37.2, X, stufe=6)
+aufbau(bpy.data.objects['Wohnwagen_Belag'], 36.6, 37.4, X, stufe=6)
+aufbau(bpy.data.objects['Markierungen'], 36.8, 38.0, X, stufe=6)
+aufbau(bpy.data.objects['Parken_Radstopper'], 37.6, 38.0, Z, stufe=6)
+aufbau(bpy.data.objects['Hecke'], 37.0, 38.2, X, stufe=6)
+aufbau(bpy.data.objects['Wandleuchten_Brandwand'], 37.4, 38.0, X, stufe=6)
+for i in range(7):
+    gruppe([f'Wohnwagen{i}_*'], 37.6 + i * 0.2, 38.6 + i * 0.2, Z, 6)
+gruppe(['Zaun_fest', 'Zaun_Steinpfeiler'], 38.2, 39.4, X, 6)
+gruppe(['Schiebetor', 'Schiebetor_*'], 38.8, 39.6, Z, 6)
+
+# Sicherheit: jedes Bauteil der Moschee/Außenanlagen braucht einen Aufbau, sonst wäre es von Anfang an sichtbar
+for c in ('S2_Keller', 'S3_EG', 'S4_OG', 'S5_Dach', 'S6_Aussen', 'Innen', 'Wohnwagen'):
+    for o in bpy.data.collections[c].objects:
+        if o.type == 'MESH' and not o.modifiers.get('Aufbau'):
+            print('ohne Aufbau, ergänze Stufe 6:', o.name)
+            aufbau(o, 36.0, 37.0, Z, stufe=6)
 
 
 # Licht an + Dämmerung (34–36 s)
 an = END_STAGE >= 6
 for mname, st_an in (('Innenlicht_warm', 4.0), ('Wandleuchte_warm', 10.0)):
     b = bpy.data.materials[mname].node_tree.nodes['Principled BSDF'].inputs['Emission Strength']
-    for t, v in ((0, 0.0), (33.6, 0.0), (35.4, st_an if an else 0.0)):
+    for t, v in ((0, 0.0), (39.6, 0.0), (41.2, st_an if an else 0.0)):
         b.default_value = v; b.keyframe_insert('default_value', frame=F(t))
 for lo in obs('Innenlicht*'):
     if lo.type == 'LIGHT':
-        for t, v in ((0, 0.0), (33.6, 0.0), (35.4, 900.0 if an else 0.0)):
+        for t, v in ((0, 0.0), (39.6, 0.0), (41.2, 900.0 if an else 0.0)):
             lo.data.energy = v; lo.data.keyframe_insert('energy', frame=F(t))
 sonne = bpy.data.objects['Sonne'].data
-for t, e, c in ((0, 5.0, (1.0, 0.78, 0.56)), (32.8, 5.0, (1.0, 0.78, 0.56)), (36.0, 0.9 if an else 5.0, (1.0, 0.58, 0.36))):
+for t, e, c in ((0, 5.0, (1.0, 0.78, 0.56)), (39.0, 5.0, (1.0, 0.78, 0.56)), (42.0, 0.9 if an else 5.0, (1.0, 0.58, 0.36))):
     sonne.energy = e; sonne.color = c
     sonne.keyframe_insert('energy', frame=F(t)); sonne.keyframe_insert('color', frame=F(t))
 bg = sc.world.node_tree.nodes['Background'].inputs['Strength']
-for t, v in ((0, 0.22), (32.8, 0.22), (36.0, 0.05 if an else 0.22)):
+for t, v in ((0, 0.22), (39.0, 0.22), (42.0, 0.05 if an else 0.22)):
     bg.default_value = v; bg.keyframe_insert('default_value', frame=F(t))
 
 # ------------------------------------------------------------------ Drohnenflug
@@ -254,14 +276,16 @@ GEMEINSAM = [  # (s, Position, Blickziel)
     (24.8, (26, -13, 15), (9, 9, 7)),
     (27.4, (13, -1.5, 24), (8, 9, 9)),
     (30.0, (6, 5, 27), (8, 10, 9)),
-    (32.2, (4, 22, 24), (8, 9, 5)),
-    (34.2, (30, 10, 20), (11, 8, 3)),
-    (36.0, (27, -16, 13), (7, 8, 4)),
-    (42.0, (26.4, -15.6, 12.8), (7, 8, 4)),
+    (31.6, (7, 10.5, 22), (8, 22.5, 0.5)),       # über den Hof, Blick hinein
+    (36.0, (9.5, 13.5, 16.5), (8, 23.0, 0.5)),   # langsam tiefer, Hof ein paar Sekunden zeigen
+    (38.0, (30, -5, 10), (38, 6.5, 1.0)),        # zu Parken + Wohnwagen
+    (39.8, (44, -7, 7.5), (44, 3, 1.0)),         # Zaun + Schiebetor nah
+    (42.4, (10.5, -12.5, 8.5), (8.5, 5, 5.2)),   # Schlussansicht: Moschee mittig von vorn, Licht an
+    (45.0, (10.2, -12.0, 8.4), (8.5, 5, 5.2)),
 ]
 START = {
     'A': [(0.0, (33, -3.6, 2.0), (16.9, -8.9, 5.0)), (1.8, (26, -3.8, 7.5), (11, 5, 2.5)), (3.0, (25, -14, 15), (9, 5, 0.0))],
-    'B': [(0.0, (-46, -42, 50), (16.9, -8.9, 14.0)), (2.0, (4, -36, 32), (11, 3, 2.0))],
+    'B': [(0.0, (-46, -42, 50), (12, -6, 6.0)), (2.0, (4, -36, 32), (11, 3, 2.0))],
 }
 for v, start in START.items():
     cd = bpy.data.cameras.new(f'Drohne_{v}'); cd.lens = 24; cd.sensor_width = 36; cd.clip_end = 2000
@@ -275,7 +299,7 @@ for v, start in START.items():
         for fc in ob.animation_data.action.fcurves if hasattr(ob.animation_data.action, 'fcurves') else []:
             for kp in fc.keyframe_points:
                 kp.interpolation = 'BEZIER'; kp.handle_left_type = kp.handle_right_type = 'AUTO_CLAMPED'
-sc.camera = bpy.data.objects['Drohne_A']
+sc.camera = bpy.data.objects['Drohne_B']      # Aymans Wahl (19.11.)
 
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(HERE, 'neubau.blend'), relative_remap=True)
 print('Animation gespeichert, END_STAGE =', END_STAGE, '| Aufbau-Modifier:', sum(1 for o in bpy.data.objects if o.modifiers.get('Aufbau')))

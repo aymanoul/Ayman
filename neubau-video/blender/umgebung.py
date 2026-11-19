@@ -510,8 +510,10 @@ fenster('Zeile_vor_Torgebaeude_F', '-y', 0.3, [58, 61, 64], [1.0, 3.8], 1.1, 1.3
 
 # ------------------------------------------------------------------ gegenüber: weißes Haus + Schornstein
 SX, SY = BT + 0.4, -8.9
-zylinder('Schornstein', SX, SY, 0, 2.1, 1.35, 28.0, schornstein_mat(SX, SY, 1.7), 48, 'Schornstein')
-zylinder('Schornstein_Kopf', SX, SY, 27.6, 1.42, 1.42, 0.6, M['backstein2'], 48, 'Schornstein')
+SCHORNSTEIN = False      # Ayman 19.11.: Schornstein steht zu sehr im Weg → weg (Code bleibt für später)
+if SCHORNSTEIN:
+    zylinder('Schornstein', SX, SY, 0, 2.1, 1.35, 28.0, schornstein_mat(SX, SY, 1.7), 48, 'Schornstein')
+    zylinder('Schornstein_Kopf', SX, SY, 27.6, 1.42, 1.42, 0.6, M['backstein2'], 48, 'Schornstein')
 WX0, WX1, WY0, WY1 = 3.3, SX - 1.9, -16.5, -8.2
 quader('Weisses_Haus', WX0, WY0, 0, WX1, WY1, 6.2, M['putz_weiss'], 'Gegenueber')
 satteldach('Weisses_Haus_Dach', WX0, WY0, WX1, WY1, 6.2, 8.6, 'x', M['dach_grau'], 0.35, 'Gegenueber', giebel=M['putz_weiss'])
