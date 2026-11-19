@@ -31,7 +31,9 @@ ANSICHTEN = {
     'ki_plakat': ((-12, -40, 38), (20, 9, 2), 28, 1600, 900, 0),           # ki_bau_roadmap_plakat (oben)
     'ki_schraeg': ((-6, -27, 21), (24, 7, 2), 26, 1600, 912, 0),           # ki_schraeg_rote_markierungen
     'portal':  ((22, -9, 2.2), (9, 4, 5.0), 24, 720, 1280, 0),              # Glasfront + Portal aus der Gasse
-    'keller':  ((30, -16, 24), (8, 9, -2.5), 30, 1280, 720, 0),             # Schnitt: Keller unter der Moschee
+    'keller':  ((34, 2, 22), (8, 9, -2.5), 30, 1280, 720, 0),
+    'hof':     ((8, 11, 23), (8, 23.5, 0), 26, 1280, 720, 0),                # Hof hinter der Moschee
+    'parken':  ((22, -14, 9), (38, 6, 0.5), 24, 1280, 720, 0),             # Parken, Wohnwagen-Plätze, Zaun + Schiebetor             # Schnitt: Keller unter der Moschee
 }
 VERSTECKT = {'keller': ['S3_EG', 'S4_OG', 'S5_Dach', 'Innen', 'S6_Aussen', '#Boden_weit', '#Grundstueck_Schotter', '#Kellerdecke']}
 nur = [x for x in arg('nur', '').split(',') if x] or list(ANSICHTEN)

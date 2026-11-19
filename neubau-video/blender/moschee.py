@@ -254,8 +254,8 @@ for i, y in enumerate((5.5, 9.0, 12.5)):
 # Portal: Rahmen aus hellem Naturstein, Spitzbogen-Glastür
 PX0, PX1 = PORTAL_X, BT
 quader('Portal_Pfeiler_links', PX0, Y0 - 0.6, 0.0, PX0 + 0.45, Y0 + 0.6, 9.6, M['stein'], 'S3_EG')
-quader('Portal_Pfeiler_rechts', PX1 - 0.45, Y0 - 0.6, 0.0, PX1, Y0 + 0.6, 9.6, M['stein'], 'S3_EG')
-quader('Portal_Sturz', PX0, Y0 - 0.6, 7.2, PX1, Y0 + 0.6, 9.6, M['stein'], 'S3_EG')
+quader('Portal_Pfeiler_rechts', PX1 - 0.45, Y0 - 0.6, 0.0, PX1 + 0.03, Y0 + 0.6, 9.6, M['stein'], 'S3_EG')
+quader('Portal_Sturz', PX0 + 0.45, Y0 - 0.55, 7.2, PX1 - 0.45, Y0 + 0.55, 9.6, M['stein'], 'S3_EG')   # zwischen den Pfeilern (keine deckungsgleichen Flächen)
 bogen = spitzbogen((PX0 + PX1) / 2, PX1 - PX0 - 0.9, 0.15, 4.6)
 # Stein-Fläche zwischen Bogen und Sturz (vorn) + Glas im Bogen
 gl = [(x, Y0 - 0.35, z) for x, z in bogen]
@@ -304,7 +304,7 @@ for i, z in enumerate((3.0, 7.5)):
 
 # ------------------------------------------------------------------ S4: Geschossdecke + 1. Etage (Frauen)
 quader('Geschossdecke', 0, Y0, H_EG, BT, Y1, H_DECKE, M['beton_roh'], 'S4_OG')
-quader('Geschossband', -0.02, Y0 - 0.04, H_EG, PORTAL_X, Y0 + 0.2, H_DECKE, M['band'], 'S4_OG')
+quader('Geschossband', -0.02, Y0 - 0.04, H_EG, PORTAL_X + 0.1, Y0 + 0.2, H_DECKE, M['band'], 'S4_OG')
 quader('OG_Wand_links', 0, Y0, H_DECKE, 0.3, Y1, H_OG, M['putz'], 'S4_OG')
 quader('OG_Wand_hinten', 0.3, Y1 - 0.3, H_DECKE, BT, Y1, H_OG, M['putz'], 'S4_OG')
 quader('OG_Wand_rechts', BT - 0.3, Y0 + 0.6, H_DECKE, BT, Y1 - 0.3, H_OG, M['putz'], 'S4_OG')
@@ -319,7 +319,7 @@ for i, (x, y) in enumerate(((5.5, 7.0), (11.0, 7.0), (5.5, 11.0), (11.0, 11.0)))
 
 # ------------------------------------------------------------------ S5: Dachplatte, Attika, Gründach, PV
 quader('Dachplatte', 0, Y0, H_OG, BT, Y1, H_DACH, M['beton_roh'], 'S5_Dach')
-for i, (x0, y0, x1, y1) in enumerate(((0, Y0 - 0.05, BT, Y0 + 0.3), (0, Y1 - 0.3, BT, Y1), (0, Y0, 0.3, Y1), (BT - 0.3, Y0, BT, Y1))):
+for i, (x0, y0, x1, y1) in enumerate(((-0.015, Y0 - 0.05, BT + 0.015, Y0 + 0.3), (0, Y1 - 0.3, BT, Y1 + 0.01), (0, Y0 + 0.3, 0.3, Y1 - 0.3), (BT - 0.3, Y0 + 0.3, BT, Y1 - 0.3))):
     quader(f'Attika{i}', x0, y0, H_OG if i == 0 else H_DACH, x1, y1, H_ATTIKA, M['attika'], 'S5_Dach')
 flaeche('Dachkies', [(0.3, Y0 + 0.3), (BT - 0.3, Y0 + 0.3), (BT - 0.3, Y1 - 0.3), (0.3, Y1 - 0.3)], H_DACH + 0.06, M['kies'], 'S5_Dach')
 flaeche('Gruendach', [(0.8, Y0 + 0.8), (BT - 0.8, Y0 + 0.8), (BT - 0.8, Y1 - 0.8), (0.8, Y1 - 0.8)], H_DACH + 0.1, M['gruendach'], 'S5_Dach')
