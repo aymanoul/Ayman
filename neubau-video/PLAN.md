@@ -14,7 +14,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 | Phase | Inhalt | Stand |
 |---|---|---|
 | 0 | Blender-Verbindung, Datei anlegen, Unterlagen sichten, offene Punkte abfragen | **läuft (19.11.)**: Ordner `neubau-video/` + `AUFTRAG.md` angelegt. Unterlagen gesichtet (`docs/phase0-sichtung.md`): 4 Fotos, 9 Bilder/Entwürfe, 2 Karten. **Fehlt:** Architektenplan; Verbindung zum Mac (Ordner noch nicht freigegeben). |
-| 1 | Lageplan von oben mit Maßen | offen |
+| 1 | Lageplan von oben mit Maßen | Vorschau `out/phase1/lageplan.png` (`python3 tools/lageplan.py`, Schrift Montserrat in `assets/fonts/`, OFL) → **wartet auf Freigabe**. Hinweis: Maße aus dem Auftrag ergeben ca. 818 m² statt 900 m² → mit Architektenplan abgleichen. |
 | 2 | Umgebung in Blender + Vergleich mit Fotos | offen |
 | 3 | Moschee Endzustand + Keller + Vergleichsblatt | offen |
 | 4 | Animatic 360×640 (Varianten A/B) | offen |
