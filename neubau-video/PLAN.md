@@ -13,7 +13,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 ## Phasen
 | Phase | Inhalt | Stand |
 |---|---|---|
-| 0 | Blender-Verbindung, Datei anlegen, Unterlagen sichten, offene Punkte abfragen | **läuft (19.11.)**: Ordner `neubau-video/` + `AUFTRAG.md` angelegt. **Blockiert:** (a) Diese Cloud-Sitzung erreicht den Mac noch nicht – keine Blender-MCP-Werkzeuge hier, kein freigegebener Computer-Ordner. (b) Unterlagen fehlen noch (`assets/ref/neubau/plan|bilder|umgebung|karte` leer; vorhanden nur `gebet-video/assets/ref/aussen-neubau-visualisierung.jpg`). |
+| 0 | Blender-Verbindung, Datei anlegen, Unterlagen sichten, offene Punkte abfragen | **läuft (19.11.)**: Ordner `neubau-video/` + `AUFTRAG.md` angelegt. Unterlagen gesichtet (`docs/phase0-sichtung.md`): 4 Fotos, 9 Bilder/Entwürfe, 2 Karten. **Fehlt:** Architektenplan; Verbindung zum Mac (Ordner noch nicht freigegeben). |
 | 1 | Lageplan von oben mit Maßen | offen |
 | 2 | Umgebung in Blender + Vergleich mit Fotos | offen |
 | 3 | Moschee Endzustand + Keller + Vergleichsblatt | offen |
@@ -38,4 +38,4 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 - Portal: **rechtes Ende** der Glasfassade (Richtung Parkfläche).
 - Einfahrt: **rechtes Ende, freitragendes Schiebetor**, ohne Bodenschiene, 5–6 m Durchfahrt (im Video geschlossen).
 - Nachbargebäude rechts: **helle Putzfassade**, graues Dach mit Dachfenstern.
-- Noch offen: PV-Anordnung (wie in der Bau-Roadmap – Bild abwarten).
+- PV-Anordnung: wie Bau-Roadmap, ca. 10 Modul-Streifen von der Glasfront nach hinten, Rest Gründach.
