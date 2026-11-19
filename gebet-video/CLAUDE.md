@@ -109,7 +109,7 @@
 - **Zuerst `neubau-video/AUFTRAG.md` (wörtlicher Auftrag) und `neubau-video/PLAN.md` (Stand) lesen.**
 - Ausnahmen nur für dieses Video: **Higgsfield erlaubt** (vor jedem Auftrag Kosten nennen, Freigabe abwarten; nie Text/Logo/QR);
   Blender läuft auf **Aymans MacBook** (`~/Movies/Neubau/neubau.blend`). Keine Figuren/Autos/Maschinen im Bild, keine Musik.
-- Stand: Unterlagen + Architektenplan da; **Phase 1 Lageplan freigegeben (19.11.)** (`neubau-video/out/phase1/lageplan.png`, Grundstück 900 m², ~50 m). Phase 2 (Umgebung) im Container gebaut (`neubau-video/blender/umgebung.py` → `neubau.blend`), Vorschau `neubau-video/out/phase2/uebersicht.jpg` + `vergleich.jpg` wartet auf Freigabe und Wahl der Sonnenrichtung. Mac weiterhin nicht verbunden.
+- Stand: Unterlagen + Architektenplan da; **Phase 1 Lageplan freigegeben (19.11.)** (`neubau-video/out/phase1/lageplan.png`, Grundstück 900 m², ~50 m). Phase 2 (Umgebung) im Container gebaut (`neubau-video/blender/umgebung.py` → `neubau.blend`), Vorschau `neubau-video/out/phase2/uebersicht.jpg` + `vergleich.jpg` wartet auf Freigabe und Wahl der Sonnenrichtung. Phase 2 freigegeben (Sonne von vorn). Phase 3 im Container angefangen (`neubau-video/blender/moschee.py`), dann **gestoppt: Ayman will LIVE in seinem Blender (execute_blender_code, MCP), Datei `~/Movies/Neubau/neubau.blend`, nach jedem Schritt melden** → nur aus einer Claude-Sitzung auf dem Mac möglich. Siehe `neubau-video/PLAN.md`.
 
 ## 4. Wo was liegt (in `gebet-video/`)
 

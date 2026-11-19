@@ -5,7 +5,7 @@
 
 Koordinaten wie im freigegebenen Lageplan (tools/lageplan.py), Meter: X entlang der Gasse (0 = linke Grundstücksecke an den
 Altbauten, + Richtung Torgebäude), Y nach hinten (0 = Grundstücksgrenze an der Gasse), Z nach oben. Die Gasse liegt bei Y < 0.
-Norden ≈ +X (22° zur Gasse hin) → Sonne am späten Nachmittag aus Südwest = von hinten links.
+Norden ≈ +X (22° zur Gasse hin). Sonne: Aymans Wahl „von vorn“ (tief, warm, von vorn links über der Gasse), nicht die echte Nachmittagsrichtung.
 Grundstück leer (Stufe 0: eingeebneter Schotter). Moschee folgt in Phase 3.
 Alle Objekte liegen im Ursprung, Eckpunkte in Weltkoordinaten → Material-Koordinaten „Object“ = Meter.
 Nichts im Bild: Menschen, Autos, Gerüste, Bauzaun, Folien, Schutt, Tonnen, Schriftzüge.
@@ -580,7 +580,8 @@ except Exception:
     SKY = None
 SUED = Vector((-NORD.x, -NORD.y, 0)); WEST = Vector((NORD.y, -NORD.x, 0))   # West = Nord um 90° gegen den Uhrzeigersinn
 WEST = Vector((-NORD.y, NORD.x, 0)) if WEST.y < 0 else WEST              # West zeigt nach hinten (+Y)
-SW = (SUED * 0.45 + WEST * 0.89).normalized()                           # Azimut ≈ 243° (Nov., ca. 15:30)
+SW = (SUED * 0.45 + WEST * 0.89).normalized()                           # echt: Azimut ≈ 243° (Nov., ca. 15:30) = von hinten
+SW = Vector((-0.55, -0.83, 0)).normalized()                            # Aymans Wahl (19.11.): tiefe warme Sonne von vorn links → Glasfront im Licht
 HOEHE = math.radians(13)
 zur_sonne = Vector((SW.x * math.cos(HOEHE), SW.y * math.cos(HOEHE), math.sin(HOEHE)))
 sd = bpy.data.lights.new('Sonne', 'SUN'); sd.energy = 5.0; sd.color = (1.0, 0.78, 0.56); sd.angle = math.radians(0.8)
