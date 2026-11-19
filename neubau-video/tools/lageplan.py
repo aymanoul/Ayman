@@ -2,7 +2,7 @@
 """Phase 1: Lageplan von oben mit Maßen und Beschriftung → out/phase1/lageplan.png (3000 × 2100).
 
 Koordinaten in Metern: x nach rechts entlang der Gasse (0 = linke Grundstücksecke an den Altbauten),
-y nach hinten (0 = Grundstücksgrenze an der Gasse). Maße aus AUFTRAG.md (ca. ±1 m), Umgebung nach Fotos/Karte (ca.).
+y nach hinten (0 = Grundstücksgrenze an der Gasse). Grundstück nach Architektenplan 1.01 (900 m²), Umgebung nach Fotos/Karte (ca.).
     python3 tools/lageplan.py
 """
 import math
@@ -106,117 +106,136 @@ text(-12.2, 4.6, 'Hellblaues Haus', 19, 700, NAVY); text(-12.2, 3.1, 'mit Außen
 # Hinten: Backsteinmauer mit Betonpfeilern, dahinter altes Hallendach
 rect(-0.3, 28.3, 52, 33.5, fill='#C7C4BB')
 text(8, 31, 'altes Hallendach (Wellplatten)', 20, 600, '#5E5B53')
-# Langes Nachbargebäude (rechts / hinter dem langen Teil)
-rect(15.8, 12.3, 52, 28.3, fill='#C9CAD3', outline='#8E8FA0', width=3)
+# Maße nach Architektenplan 1.01 (Konzept Ersatzbau, 24.03.2025), aus dem Plan-Foto abgegriffen (ca. ±0,5 m):
+# Grundstück 900 m², Länge an der Gasse ca. 50 m; tiefer Teil 16,5 × 29 m, langer Teil 33,5 × 12,3 m (16,5·29 + 33,5·12,3 ≈ 891 m²).
+L, BT, TT, LT = 50.0, 16.5, 29.0, 12.3     # Länge, Breite tiefer Teil, Tiefe tiefer Teil, Tiefe langer Teil
+VOR, MT = 3.0, 12.0                         # Vorplatz, Moschee-Tiefe → Hof = TT − VOR − MT = 14 m
+HOF0 = VOR + MT
+PK = BT + 9.0                               # Ende Parkfläche
+TOR = L - 6.0                               # Beginn Schiebetor
+# Langes Nachbargebäude (hinter dem langen Teil, Stirnwand zum Hof)
+rect(BT + 0.3, LT + 0.3, L + 4.5, TT + 0.3, fill='#C9CAD3', outline='#8E8FA0', width=3)
 for i in range(9):
-    rect(19 + i * 3.6, 22.5, 20.6 + i * 3.6, 24.3, fill='#9FB6CF')
-text(34, 18.6, 'LANGES NACHBARGEBÄUDE', 24, 800, NAVY)
-text(34, 16.8, 'helle Putzfassade, graues Dach mit Dachfenstern', 19, 600, NAVY)
-text(17, 20.2, 'Stirnwand', 17, 700, NAVY, anchor='lm')
+    rect(BT + 4 + i * 3.6, 23.5, BT + 5.6 + i * 3.6, 25.3, fill='#9FB6CF')
+text((BT + L) / 2 + 2, 19.6, 'LANGES NACHBARGEBÄUDE', 24, 800, NAVY)
+text((BT + L) / 2 + 2, 17.8, 'helle Putzfassade, graues Dach mit Dachfenstern', 19, 600, NAVY)
+text(BT + 1.5, 21.2, 'Stirnwand', 17, 700, NAVY, anchor='lm')
 # Rechts daneben
-rect(48, 0, 58, 12.3, fill='#E3DED3', outline='#B9B2A3', width=2)
-text(53, 8.5, 'Nachbar', 17, 600, GRAU)
-# Gegenüber: weißes Haus + Schornstein
-rect(3, -16.5, 14, -8.2, fill='#FFFFFF', outline='#A7A7A7', width=3)
-rect(3, -8.2, 14, -6.5, fill='#C9A79E')
-text(8.5, -11.6, 'Weißes Haus', 19, 800, NAVY); text(8.5, -13.2, '2 Geschosse, Glas-Vordach', 15, 600, NAVY)
-cx, cy, r = 15.6, -8.4, 1.6
+rect(L + 0.5, 0, L + 4.5, LT + 0.3, fill='#E3DED3', outline='#B9B2A3', width=2)
+text(L + 2.5, 8.5, 'Nachbar', 15, 600, GRAU)
+# Gegenüber: weißes Haus + Schornstein (gegenüber dem Portal)
+cx, cy, r = BT + 0.4, -8.4, 1.6
+rect(cx - 13.5, -16.5, cx - 1.7, -8.2, fill='#FFFFFF', outline='#A7A7A7', width=3)
+rect(cx - 13.5, -8.2, cx - 1.7, -6.5, fill='#C9A79E')
+text(cx - 7.6, -11.6, 'Weißes Haus', 19, 800, NAVY); text(cx - 7.6, -13.2, '2 Geschosse, Glas-Vordach', 15, 600, NAVY)
 d.ellipse([P(cx - r, cy + r), P(cx + r, cy - r)], fill='#9C3B2A', outline='#5E2015', width=4)
 d.ellipse([P(cx - 0.8, cy + 0.8), P(cx + 0.8, cy - 0.8)], fill='#3A1A12')
 text(cx + 2.4, -8.6, 'SCHORNSTEIN', 24, 800, '#9C3B2A', anchor='lm')
 text(cx + 2.4, -10.1, 'rund, Backstein, ca. 25–30 m hoch', 18, 600, '#9C3B2A', anchor='lm')
-# Torgebäude am Ende der Gasse
+# Torgebäude am Ende der Gasse (weiter hinten)
 rect(62, -11, 72, 7, fill='#EFE7D6', outline='#B7A98C', width=3)
 rect(63.2, -6.5, 70.8, 0, fill='#3D3B38')
 text(67, 4.6, 'Torgebäude', 19, 800, NAVY); text(67, 3.0, '(weiter hinten)', 15, 600, NAVY)
 text(67, -3.3, 'Durchfahrt', 15, 700, '#FFFFFF')
-for (tx, ty, tr, col) in ((68, 11.5, 2.6, '#3F5E3A'), (59, 15, 1.9, '#7B6E5B')):
+for (tx, ty, tr, col) in ((68, 11.5, 2.6, '#3F5E3A'), (60, 16, 1.9, '#7B6E5B')):
     d.ellipse([P(tx - tr, ty + tr), P(tx + tr, ty - tr)], fill=col)
-text(68, 15.2, 'Kiefer', 16, 700, NAVY); text(59, 18, 'Laubbaum', 16, 700, NAVY)
-d.rectangle([P(55.6, 23.6), P(56.4, 22.8)], fill=NAVY); text(56, 25, 'Funkmast', 16, 700, NAVY)
+text(68, 15.2, 'Kiefer', 16, 700, NAVY); text(60, 19, 'Laubbaum', 16, 700, NAVY)
+d.rectangle([P(57.6, 24.6), P(58.4, 23.8)], fill=NAVY); text(58, 26, 'Funkmast', 16, 700, NAVY)
 
 # ------------------------------------------------------------------ Grundstück
-GR = [(0, 0), (47.5, 0), (47.5, 12), (15.5, 12), (15.5, 28), (0, 28)]
+GR = [(0, 0), (L, 0), (L, LT), (BT, LT), (BT, TT), (0, TT)]
 # Vorplatz
-rect(0, 0, 15.5, 3, fill='#E4DCCB')
-for i in range(1, 16):
-    d.line([P(i, 0), P(i, 3)], fill='#D2C8B4', width=1)
+rect(0, 0, BT, VOR, fill='#E4DCCB')
+for i in range(1, int(BT) + 1):
+    d.line([P(i, 0), P(i, VOR)], fill='#D2C8B4', width=1)
 text(5.0, 0.95, 'VORPLATZ ~3 m', 16, 800, NAVY)
-# Moschee (Dach: Gründach + PV)
-rect(0, 3, 15.5, 15, fill='#7FA36A')
+# Moschee (Dach: Gründach + PV, 10 Reihen von der Glasfront nach hinten)
+rect(0, VOR, BT, HOF0, fill='#7FA36A')
 for i in range(10):
-    x = 1.0 + i * 1.42
-    rect(x, 4.0, x + 0.95, 14.0, fill=NAVY_D)
-d.line([P(0, 3), P(15.5, 3)], fill='#5FA3D6', width=9)          # Glasfassade
-rect(12.9, 2.5, 15.5, 3.6, fill='#E9E0CC', outline='#B5A786', width=2)   # Portal
-rect(0, 3, 15.5, 15, outline=NAVY, width=5)
-lab = [(7.75, 9.9, 'MOSCHEE', 34, 800, '#FFFFFF'), (7.75, 8.3, '2 Geschosse + Keller · ca. 10 m hoch', 18, 700, '#FFFFFF'),
-       (7.75, 6.9, 'Gründach + 10 PV-Reihen', 18, 600, '#FFFFFF')]
+    x = 1.0 + i * (BT - 2.0) / 10 + 0.1
+    rect(x, VOR + 1.0, x + 1.0, HOF0 - 1.0, fill=NAVY_D)
+d.line([P(0, VOR), P(BT, VOR)], fill='#5FA3D6', width=9)                 # Glasfassade
+rect(BT - 2.6, VOR - 0.5, BT, VOR + 0.6, fill='#E9E0CC', outline='#B5A786', width=2)   # Portal
+rect(0, VOR, BT, HOF0, outline=NAVY, width=5)
+lab = [(BT / 2, 9.9, 'MOSCHEE', 34, 800, '#FFFFFF'), (BT / 2, 8.3, '16,5 × 12 m · 2 Geschosse + Keller · ca. 10 m', 17, 700, '#FFFFFF'),
+       (BT / 2, 6.9, 'Gründach + 10 PV-Reihen', 17, 600, '#FFFFFF')]
 for x, y, s, sz, w, c in lab:
     tw = d.textlength(s, font=f(w, sz))
     d.rectangle([P(x, y)[0] - tw / 2 - 10, P(x, y)[1] - sz * 0.7, P(x, y)[0] + tw / 2 + 10, P(x, y)[1] + sz * 0.7], fill=NAVY)
     text(x, y, s, sz, w, c)
-text(14.2, 1.2, 'Portal', 17, 800, GOLD_D)
+text(BT - 1.3, 1.2, 'Portal', 17, 800, GOLD_D)
 # Keller (gestrichelt, nur unter der Moschee)
-for a, b in (((-0.6, 2.4), (16.1, 2.4)), ((16.1, 2.4), (16.1, 15.6)), ((16.1, 15.6), (-0.6, 15.6)), ((-0.6, 15.6), (-0.6, 2.4))):
+k0, k1, k2, k3 = -0.6, BT + 0.6, VOR - 0.6, HOF0 + 0.6
+for a, b in (((k0, k2), (k1, k2)), ((k1, k2), (k1, k3)), ((k1, k3), (k0, k3)), ((k0, k3), (k0, k2))):
     gestrichelt(P(*a), P(*b), GOLD, 3)
 # Hof
-rect(0, 15, 15.5, 28, fill='#E8DFCE')
-for i in range(1, 13):
-    d.line([P(0, 15 + i), P(15.5, 15 + i)], fill='#D9CDB6', width=1)
-rect(0, 15, 15.5, 28, outline='#9A8F7A', width=8)
-for (tx, ty) in ((4.5, 19.5), (11, 19.5), (2.2, 26), (13.3, 26)):
+rect(0, HOF0, BT, TT, fill='#E8DFCE')
+for i in range(1, int(TT - HOF0)):
+    d.line([P(0, HOF0 + i), P(BT, HOF0 + i)], fill='#D9CDB6', width=1)
+rect(0, HOF0, BT, TT, outline='#9A8F7A', width=8)
+for (tx, ty) in ((4.6, 19.8), (BT - 4.6, 19.8), (2.2, TT - 2.2), (BT - 2.2, TT - 2.2)):
     rect(tx - 1.1, ty - 1.1, tx + 1.1, ty + 1.1, fill='#B9A98C'); d.ellipse([P(tx - 1.4, ty + 1.4), P(tx + 1.4, ty - 1.4)], fill='#6F8F55')
-for (bx, by) in ((5.5, 26.6), (10, 26.6)):
+for (bx, by) in ((BT / 2 - 2.4, TT - 1.4), (BT / 2 + 2.4, TT - 1.4)):
     rect(bx - 1.2, by - 0.4, bx + 1.2, by + 0.4, fill='#8B5E3C')
-for (sx, sy) in ((5, 23), (10.5, 23)):
+for (sx, sy) in ((BT / 2 - 2.8, 23.8), (BT / 2 + 2.8, 23.8)):
     d.ellipse([P(sx - 1.4, sy + 1.4), P(sx + 1.4, sy - 1.4)], fill='#F4F1EA', outline='#B9A98C', width=3)
-box(7.75, 17.0, 'HOF', 26, 800); text(7.75, 21.2, 'Olivenbäume, Bänke, Schirme', 15, 700, NAVY)
+box(BT / 2, 17.0, 'HOF', 26, 800); text(BT / 2, 21.4, 'Olivenbäume, Bänke, Schirme', 15, 700, NAVY)
 # Parken (4 schräge Plätze)
-rect(15.5, 0, 24.5, 12, fill='#8C8D94')
+rect(BT, 0, PK, LT, fill='#8C8D94')
 for i in range(5):
     y = 1.5 + i * 2.5
-    d.line([P(15.5, y), P(20.0, y + 2.2)], fill='#FFFFFF', width=4)
-d.line([P(15.5, 1.5), P(15.5, 11.5)], fill='#FFFFFF', width=4)
-box(21.7, 10.6, 'PARKEN', 19, 800); box(21.7, 9.3, '4 schräg, leer', 14, 600)
-# Wohnwagen-Stellplätze
-rect(24.5, 0, 47.5, 12, fill='#7E7F86')
-rect(24.5, 11.3, 47.5, 12, fill='#4E7A43')
+    d.line([P(BT, y), P(BT + 4.5, y + 2.2)], fill='#FFFFFF', width=4)
+d.line([P(BT, 1.5), P(BT, 11.5)], fill='#FFFFFF', width=4)
+box(BT + 6.2, 10.6, 'PARKEN', 19, 800); box(BT + 6.2, 9.3, '4 schräg, leer', 14, 600)
+# Wohnwagen-Stellplätze (7 × 3,5 m)
+WB = (L - PK) / 7
+rect(PK, 0, L, LT, fill='#7E7F86')
+rect(PK, LT - 0.7, L, LT, fill='#4E7A43')
 for i in range(8):
-    x = 24.5 + i * 23 / 7
-    d.line([P(x, 4.5), P(x, 11.3)], fill='#FFFFFF', width=4)
-d.line([P(24.5, 4.5), P(47.5, 4.5)], fill='#FFFFFF', width=3)
+    x = PK + i * WB
+    d.line([P(x, LT - 7.5), P(x, LT - 0.7)], fill='#FFFFFF', width=4)
+d.line([P(PK, LT - 7.5), P(L, LT - 7.5)], fill='#FFFFFF', width=3)
 for i in range(7):
-    d.ellipse([P(26.1 + i * 23 / 7 - 0.25, 11.85), P(26.1 + i * 23 / 7 + 0.25, 11.45)], fill=GOLD)
-box(36, 8.9, 'WOHNWAGEN-STELLPLÄTZE', 21, 800); box(36, 7.5, '7 Plätze je ca. 3,3 × 7,5 m, leer', 15, 600); box(36, 6.3, 'hinten Hecke + Wandleuchten', 15, 600)
+    d.ellipse([P(PK + (i + 0.5) * WB - 0.25, LT - 0.15), P(PK + (i + 0.5) * WB + 0.25, LT - 0.55)], fill=GOLD)
+mx = (PK + L) / 2
+box(mx, 9.2, 'WOHNWAGEN-STELLPLÄTZE', 21, 800); box(mx, 7.8, '7 Plätze je ca. 3,5 × 7,5 m, leer', 15, 600); box(mx, 6.6, 'hinten Hecke + Wandleuchten', 15, 600)
 # Zaun + Schiebetor (rechts, freitragend, rollt nach links hinter das feste Feld)
-d.line([P(24.5, 0.3), P(41.5, 0.3)], fill=NAVY_D, width=8)
+d.line([P(PK, 0.3), P(TOR, 0.3)], fill=NAVY_D, width=8)
 for i in range(4):
-    x = 24.5 + i * 17 / 3
+    x = PK + i * (TOR - PK) / 3
     d.ellipse([P(x - 0.25, 0.55), P(x + 0.25, 0.05)], fill=NAVY_D)
-d.line([P(41.5, 0.3), P(47.5, 0.3)], fill=GOLD, width=10)
-gestrichelt(P(35.2, 0.9), P(41.5, 0.9), GOLD_D, 3)
-d.line([P(43.5, 1.6), P(39.5, 1.6)], fill=GOLD_D, width=4)
-d.polygon([P(38.8, 1.6), P(39.6, 2.0), P(39.6, 1.2)], fill=GOLD_D)
-box(44.5, 3.0, 'Schiebetor 6 m', 15, 800, NAVY, GOLD)
-text(30, 1.6, 'Stabgitterzaun', 15, 700, '#FFFFFF')
+d.line([P(TOR, 0.3), P(L, 0.3)], fill=GOLD, width=10)
+gestrichelt(P(TOR - 6.3, 0.9), P(TOR, 0.9), GOLD_D, 3)
+d.line([P(TOR + 2, 1.6), P(TOR - 2, 1.6)], fill=GOLD_D, width=4)
+d.polygon([P(TOR - 2.7, 1.6), P(TOR - 1.9, 2.0), P(TOR - 1.9, 1.2)], fill=GOLD_D)
+box(TOR + 3, 3.0, 'Schiebetor 6 m', 15, 800, NAVY, GOLD)
+text(PK + 5.5, 1.6, 'Stabgitterzaun', 15, 700, '#FFFFFF')
 # Grundstücksgrenze
 for a, b in zip(GR, GR[1:] + GR[:1]):
     gestrichelt(P(*a), P(*b), '#C0392B', 5, 22, 10)
 
 # ------------------------------------------------------------------ Maße
-mass_h(0, 47.5, 37.6, 'ca. 48 m an der Gasse (15,5 + 32)')
-mass_h(0, 15.5, 35.4, '15,5 m')
-mass_h(15.5, 24.5, 35.4, '9 m'); mass_h(24.5, 47.5, 35.4, '23 m')
-mass_v(-5.0, 0, 28, 'ca. 28 m tief')
-mass_v(50.0, 0, 12, '12 m')
-
-# kleine Teilmaße als Text
-d.line([P(-1.8, 0), P(-1.8, 28)], fill=GOLD_D, width=3)
-for yy in (0, 3, 15, 28):
+mass_h(0, L, 37.6, 'ca. 50 m an der Gasse')
+mass_h(0, BT, 35.4, '16,5 m')
+mass_h(BT, PK, 35.4, '9 m'); mass_h(PK, L, 35.4, '24,5 m')
+mass_v(-5.0, 0, TT, 'ca. 29 m tief')
+mass_v(L + 6.0, 0, LT, 'ca. 12,3 m')
+d.line([P(-1.8, 0), P(-1.8, TT)], fill=GOLD_D, width=3)
+for yy in (0, VOR, HOF0, TT):
     d.line([P(-2.3, yy), P(-1.3, yy)], fill=GOLD_D, width=3)
-for yy, s_ in ((1.5, '3'), (9.0, '12 m'), (21.5, '13 m')):
+for yy, s_ in ((1.5, '3'), (9.0, '12 m'), (22.0, '14 m')):
     box(-1.8, yy, s_, 15, 800, GOLD_D, PAPIER)
+
+# Nordpfeil (nach dem Lageplan im Architektenplan, ca.): Gasse läuft etwa nach NNW
+nx, ny = 2620, 330
+ang = math.radians(-22)          # Nord zeigt ca. 22° unter die Gassenrichtung (+x), zur Gasse hin
+ux, uy = math.cos(ang), -math.sin(ang)
+d.ellipse([nx - 58, ny - 58, nx + 58, ny + 58], outline=NAVY, width=3)
+tip = (nx + ux * 52, ny + uy * 52); tail = (nx - ux * 40, ny - uy * 40)
+d.line([tail, tip], fill=NAVY, width=5)
+d.polygon([tip, (nx + ux * 18 - uy * 15, ny + uy * 18 + ux * 15), (nx + ux * 18 + uy * 15, ny + uy * 18 - ux * 15)], fill=NAVY)
+d.text((nx + ux * 84, ny + uy * 84), 'N', font=f(800, 34), fill=NAVY, anchor='mm')
+d.text((nx, ny + 92), 'Norden (ca.)', font=f(600, 18), fill=NAVY, anchor='mm')
 
 # ------------------------------------------------------------------ Kopf, Legende, Maßstab, Hinweise
 d.rectangle([0, 0, W, 150], fill=NAVY)
@@ -239,7 +258,7 @@ d.text((bx - 20, by + 7), 'Maßstab', font=f(700, 20), fill=NAVY, anchor='rm')
 # Legende
 lx, ly = 2240, 1700
 d.text((lx, ly), 'LEGENDE', font=f(800, 26), fill=NAVY)
-items = [('#C0392B', 'Grundstücksgrenze (ca. 818 m² bei diesen Maßen)', 'strich'), (GOLD, 'Keller (nur unter der Moschee, ca. 3 m tief)', 'strich'),
+items = [('#C0392B', 'Grundstücksgrenze (900 m² laut Plan)', 'strich'), (GOLD, 'Keller (nur unter der Moschee, ca. 3 m tief)', 'strich'),
          ('#5FA3D6', 'Glasfassade', 'linie'), (GOLD, 'Schiebetor, freitragend (im Video zu)', 'linie'), (NAVY_D, 'PV-Module auf Gründach', 'kasten')]
 for i, (c, s, art) in enumerate(items):
     y = ly + 50 + i * 40
@@ -253,8 +272,8 @@ for i, (c, s, art) in enumerate(items):
 
 # Hinweise
 hx, hy = 70, 1760
-hinweise = ['Maße aus dem Auftrag (aus dem Architektenplan abgeleitet, ca. ±1 m). Umgebung nach Fotos und Karte, Lage ca.',
-            'Prüfen: 15,5 × 28 m + 32 × 12 m ergeben ca. 818 m², laut Plan 900 m² → Abgleich, sobald der Architektenplan da ist.',
+hinweise = ['Grundstück nach Architektenplan 1.01 (kretz architekten, 24.03.2025): 900 m², Maße aus dem Plan abgegriffen, ca. ±0,5 m.',
+            'Moschee, Hof, Parken, Wohnwagen und Tor nach Auftrag und Bildern. Umgebung nach Fotos und Karte, Lage ca.',
             'Im Video bleiben Parken und Wohnwagen-Plätze leer (nur Markierungen). Keine Autos, keine Menschen.']
 for i, s in enumerate(hinweise):
     d.text((hx, hy + i * 40), '•  ' + s, font=f(600, 22), fill=NAVY)

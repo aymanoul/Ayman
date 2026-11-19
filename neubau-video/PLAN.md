@@ -14,7 +14,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 | Phase | Inhalt | Stand |
 |---|---|---|
 | 0 | Blender-Verbindung, Datei anlegen, Unterlagen sichten, offene Punkte abfragen | **läuft (19.11.)**: Ordner `neubau-video/` + `AUFTRAG.md` angelegt. Unterlagen gesichtet (`docs/phase0-sichtung.md`): 4 Fotos, 9 Bilder/Entwürfe, 2 Karten. **Fehlt:** Architektenplan; Verbindung zum Mac (Ordner noch nicht freigegeben). |
-| 1 | Lageplan von oben mit Maßen | Vorschau `out/phase1/lageplan.png` (`python3 tools/lageplan.py`, Schrift Montserrat in `assets/fonts/`, OFL) → **wartet auf Freigabe**. Hinweis: Maße aus dem Auftrag ergeben ca. 818 m² statt 900 m² → mit Architektenplan abgleichen. |
+| 1 | Lageplan von oben mit Maßen | Vorschau `out/phase1/lageplan.png` (`python3 tools/lageplan.py`, Montserrat in `assets/fonts/`, OFL). **Maße nach Architektenplan** (`assets/ref/neubau/plan/architektenplan_1-01_konzept_ersatzbau.jpg`, Foto 1206 px, Maße per Pixel abgegriffen, Maßstab über BF 745 m² = 28,4 px/m in 4×-Ausschnitt): Grundstück 900 m², ca. 50 m an der Gasse; tiefer Teil 16,5 × 29 m, langer Teil 33,5 × 12,3 m; Moschee 16,5 × 12 m, Vorplatz 3 m, Hof 14 m tief, Parken 9 m, Wohnwagen 24,5 m (7 × 3,5 m), Schiebetor 6 m. Norden ca. 22° unter der Gassenrichtung (Gasse läuft nach NNW, Grundstück liegt westlich der Gasse) → **wartet auf Freigabe** |
 | 2 | Umgebung in Blender + Vergleich mit Fotos | offen |
 | 3 | Moschee Endzustand + Keller + Vergleichsblatt | offen |
 | 4 | Animatic 360×640 (Varianten A/B) | offen |
