@@ -105,6 +105,12 @@
   Wortlaut neu aufgenommen, A01/B03/Schlusssatz ebenfalls „abgelehnt“ (Drehbuch in `iqama-video/PLAN.md`).
   Phase 2: Storyboard `iqama-video/out/phase2/storyboard.jpg` **freigegeben (17.11.)**. H2 hadeethenc 3435 (Muslim 649, al-Bukhārī 647) passt zu A05. Stand: `iqama-video/PLAN.md`.
 
+### E) NEUES VIDEO „Projekt Moschee Neubau – Drohnenflug mit Bau-Zeitraffer“ (Ordner `neubau-video/`) – Auftrag 19.11.2026
+- **Zuerst `neubau-video/AUFTRAG.md` (wörtlicher Auftrag) und `neubau-video/PLAN.md` (Stand) lesen.**
+- Ausnahmen nur für dieses Video: **Higgsfield erlaubt** (vor jedem Auftrag Kosten nennen, Freigabe abwarten; nie Text/Logo/QR);
+  Blender läuft auf **Aymans MacBook** (`~/Movies/Neubau/neubau.blend`). Keine Figuren/Autos/Maschinen im Bild, keine Musik.
+- Stand: Phase 0 läuft – Mac noch nicht verbunden, Unterlagen (Plan, Bilder, Fotos, Karte) noch nicht hochgeladen.
+
 ## 4. Wo was liegt (in `gebet-video/`)
 
 | Pfad | Inhalt |
