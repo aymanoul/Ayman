@@ -109,7 +109,7 @@
 - **Zuerst `neubau-video/AUFTRAG.md` (wörtlicher Auftrag) und `neubau-video/PLAN.md` (Stand) lesen.**
 - Ausnahmen nur für dieses Video: **Higgsfield erlaubt** (vor jedem Auftrag Kosten nennen, Freigabe abwarten; nie Text/Logo/QR);
   Blender läuft auf **Aymans MacBook** (`~/Movies/Neubau/neubau.blend`). Keine Figuren/Autos/Maschinen im Bild, keine Musik.
-- Stand: Unterlagen + Architektenplan da; **Phase 1 Lageplan freigegeben (19.11.)** (`neubau-video/out/phase1/lageplan.png`, Grundstück 900 m², ~50 m). Nächstes: Phase 2 Umgebung in Blender – wartet auf Mac-Verbindung (Ordner „Neubau“ über Remote Control).
+- Stand: Unterlagen + Architektenplan da; **Phase 1 Lageplan freigegeben (19.11.)** (`neubau-video/out/phase1/lageplan.png`, Grundstück 900 m², ~50 m). Phase 2 (Umgebung) im Container gebaut (`neubau-video/blender/umgebung.py` → `neubau.blend`), Vorschau `neubau-video/out/phase2/uebersicht.jpg` + `vergleich.jpg` wartet auf Freigabe und Wahl der Sonnenrichtung. Mac weiterhin nicht verbunden.
 
 ## 4. Wo was liegt (in `gebet-video/`)
 
