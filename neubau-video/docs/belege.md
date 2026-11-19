@@ -11,7 +11,7 @@ Quelle: hadeethenc.com Nr. **65089** (API-Abruf, Rohdaten `docs/quellen/he_65089
 Muslim 533 („… etwas Gleiches“ / „مِثْلَهُ“). Mit „ein Haus“ (بَيْتًا) gibt es eine andere Überlieferung (Jābir, Ibn Māja, hadeethenc 65410:
 „… wie das Nest eines Flughuhns oder kleiner …“). Nach Regel 6 außerdem: im Hadith-Wortlaut **kein ﷻ ergänzen**.
 → Vorschlag für die Karte: „Wer für Allah eine Moschee baut, dem wird Allah im Paradies etwas Gleiches bauen.“
-(Ṣaḥīḥ al-Bukhārī 450 · Ṣaḥīḥ Muslim 533) – **Ayman fragen** (Phase 8). Bitte zusätzlich auf sunnah.com prüfen (für mich gesperrt).
+(Ṣaḥīḥ al-Bukhārī 450 · Ṣaḥīḥ Muslim 533) – ✅ **von Ayman so gewählt (19.11.)**, ohne arabischen Text. Ayman prüft zusätzlich auf sunnah.com (für mich gesperrt).
 
 ## PayPal-QR-Code
 `tools/qr.py` → `assets/qr/paypal_qr.png` (segno, Fehlerkorrektur H, Version 10, Marineblau #191a36 auf Weiß).

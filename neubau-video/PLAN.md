@@ -21,7 +21,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 | 5 | Rendering 720×1280, 30 fps, EEVEE auf dem Mac | offen |
 | 6 | Higgsfield-Test 5 s (ca. 35 Credits, vorher nennen) | offen |
 | 7 | Higgsfield ganz (ca. 250 Credits + Reserve, vorher nennen) | offen |
-| 8 | Einblendungen, Abschlusskarte, Ton, Vorschau 720p | offen |
+| 8 | Einblendungen, Abschlusskarte, Ton, Vorschau 720p | vorbereitet: Hadith geprüft + gewählt (`docs/belege.md`: „Wer für Allah eine Moschee baut, dem wird Allah im Paradies etwas Gleiches bauen.“ al-Bukhārī 450 · Muslim 533, ohne Arabisch), QR `assets/qr/paypal_qr.png` (`tools/qr.py`, zxing-geprüft) |
 | 9 | Endfassung 1080×1920, −14 LUFS, Prüfung, Titelbild, Beschreibung | offen |
 
 ## Verbindung zum Mac (Optionen)
