@@ -53,3 +53,21 @@ Plan: Seedance 2.5 (`seedance_2_5`), mode `video_edit`, 720p, 9:16, `generate_au
 Kosten laut Higgsfield: 225 Credits je 30 s → **450 Credits** (Guthaben ~996). Danach Claude selbst: beide Teile zusammenschneiden,
 auf 1080×1920 hochskalieren, eigenen Ton (tools/ton.py, −14 LUFS) darunterlegen, auf Text/Personen/Gesichter prüfen.
 Start erst nach Aymans ausdrücklichem „los“.
+
+### Video-Prompt (beide Teile gleich, Ayman 20.11.: Gebäude zu 100 % wie im 3D-Video)
+> Restyle this video into a photorealistic real-world drone video. The source video is the master: follow it 100 % exactly.
+> Keep every building, wall, window, roof, fence, gate, caravan, tree and object exactly as it is in the source video, frame by frame:
+> same shapes, same positions, same sizes, same number, same timing. Do NOT remove anything that is in the source video and do
+> NOT add anything that is not in the source video – no extra buildings, floors, domes, minarets, signs, cameras, lamps, plants,
+> vehicles or decorations. When the source video shows a construction stage (pit, basement, walls growing, roof appearing,
+> parts appearing or disappearing), show exactly that stage at exactly that moment – never show the finished building earlier.
+> Keep the exact camera path, camera angles, speed and cuts of the source video.
+> Change ONLY the look: real materials (light beige natural limestone, glass with real reflections, dark aluminium frames, real
+> asphalt, concrete, wood, plants, gravel, solar panels), realistic light and shadows, realistic sky, natural colours, real
+> photographic detail like a high-end drone camera. The reference images show ONLY the desired photographic look and materials
+> of the finished building – use them for style, not for content or timing.
+> Absolutely no text, no letters, no numbers, no signs, no logos, no watermark. No people, no animals, no cars, no faces.
+> No music, no sound.
+
+Medien je Teil: `video_references` = der 30-s-Teil aus `out/neubau_drohne.mp4`; `image_references` = die 4 Bilder aus
+`out/higgsfield/echt/` (nur als Look-Vorlage, siehe Satz im Prompt).
