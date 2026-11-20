@@ -280,8 +280,9 @@ GEMEINSAM = [  # (s, Position, Blickziel)
     (36.0, (9.5, 13.5, 16.5), (8, 23.0, 0.5)),   # langsam tiefer, Hof ein paar Sekunden zeigen
     (38.0, (30, -5, 10), (38, 6.5, 1.0)),        # zu Parken + Wohnwagen
     (39.8, (44, -7, 7.5), (44, 3, 1.0)),         # Zaun + Schiebetor nah
-    (42.4, (10.5, -12.5, 8.5), (8.5, 5, 5.2)),   # Schlussansicht: Moschee mittig von vorn, Licht an
-    (45.0, (10.2, -12.0, 8.4), (8.5, 5, 5.2)),
+    (41.2, (26, -9, 10.5), (12, 5, 3.0)),        # über die Garagen zurück (nicht durch das weiße Haus)
+    (42.6, (10, -13, 12.5), (8.5, 5, 5.0)),      # Schlussansicht über dem weißen Haus: Moschee mittig von vorn, Licht an
+    (45.0, (9.8, -12.6, 12.3), (8.5, 5, 5.0)),
 ]
 START = {
     'A': [(0.0, (33, -3.6, 2.0), (16.9, -8.9, 5.0)), (1.8, (26, -3.8, 7.5), (11, 5, 2.5)), (3.0, (25, -14, 15), (9, 5, 0.0))],
