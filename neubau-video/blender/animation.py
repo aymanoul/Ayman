@@ -139,12 +139,18 @@ def spanne(ob, achse):
 ZUGEWIESEN = {}
 
 
+ACHSEN = {}
+
+
 def aufbau(ob, t0, t1, achse=(0, 0, 1), weg=False, stufe=0):
     """t0→t1: Teil wächst entlang achse (weg=True: verschwindet rückwärts). Stufen über END_STAGE bleiben unsichtbar."""
     if ob.type != 'MESH' or not ob.data.vertices:
         return
     if ob.name in ZUGEWIESEN and not weg:
         print('WARNUNG doppelt:', ob.name); return
+    if weg and ob.name in ACHSEN:
+        achse = ACHSEN[ob.name]          # Abbau entlang derselben Achse wie der Aufbau (sonst ist das Teil am Anfang schon sichtbar)
+    ACHSEN.setdefault(ob.name, achse)
     ZUGEWIESEN[ob.name] = t0
     mod = ob.modifiers.get('Aufbau') or ob.modifiers.new('Aufbau', 'NODES'); mod.node_group = ng
     setzen(mod, ID['Achse'], tuple(float(c) for c in achse))
@@ -311,7 +317,7 @@ GEMEINSAM = [  # (s, Position, Blickziel)
     (49.2, (37, 5.2, 34), (37, 6.2, 0.0)),       # senkrecht von oben über den Wohnwagen
     (50.6, (31, 4.6, 32), (31, 6.0, 0.0)),
     (52.8, (-1, -15, 24), (9, 10, 0.0)),         # Schlussansicht schräg von oben (wie Beispielbild), Dach öffnet sich
-    (60.0, (9, -18, 26), (22, 9, 0.0)),          # langsam nach rechts: Parken, Zaun, Wohnwagen kommen ins Bild
+    (60.0, (4, -19, 27), (10, 9.5, 0.0)),        # ruhig zurück, Moschee bleibt mittig (Ayman 20.11.)
 ]
 START = {
     'A': [(0.0, (33, -3.6, 2.0), (16.9, -8.9, 5.0)), (1.8, (26, -3.8, 7.5), (11, 5, 2.5)), (3.0, (25, -14, 15), (9, 5, 0.0))],
