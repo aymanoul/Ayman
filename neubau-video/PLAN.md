@@ -61,4 +61,11 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   (vorn rechts am Portal, hinten links unter dem Hof), warme Wandleuchten (`moschee.py`). Neue Kamerapunkte 10,6 s und 12,6 s tief über der Grube.
 - **Wohnwagen** werden nicht mehr von unten aufgebaut: fertig, unsichtbar bis 42,0 + i·0,2 s, fallen 1,8 m leicht auf den Platz
   und federn kurz nach (`animation.py`), Aufsetz-Geräusch in `tools/ton.py`.
-- Neu gerendert: 0–34 s und 42–44 s (Rest unverändert).
+- **Keller ohne Trennwand** (eine durchgehende Fläche, Ayman 20.11. abends).
+- **Rückwand EG zum Hof aus Glas** (Hinweis aus der Gemeinde, „für Sommer und so“): 6 Hebe-Schiebetüren, Felder 2 und 5 aufgeschoben,
+  Blick vom Hof in den Gebetsraum bis zum Mihrab. EG-Tür und EG-Rückfenster entfallen; Quran-Regale an die rechte Seitenwand;
+  Waschraum aus dem EG entfernt (gedacht im Keller).
+- **Schiebedach über dem Hof**: Alu-Stützen + Laufschienen auf den Hofmauern (4,8 m), 5 Dachfelder; Eigenschaft `offen` an
+  `Hofdach_Schienen` (Treiber). Im Video: entsteht geschlossen (33,8–34,2 = Regen), öffnet 35,0–36,6 (Sonne), Kamera schwebt
+  darüber und taucht danach durch die offene Fläche in den Hof (Keys 36,2 / 37,4). Motorbrummen in `tools/ton.py`.
+- Neu gerendert: alles außer 44–48 s (per Bildvergleich identisch).

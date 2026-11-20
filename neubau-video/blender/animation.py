@@ -209,9 +209,10 @@ gruppe(['Keller_Treppe*'], 10.0, 11.0, Z, 2)
 aufbau(bpy.data.objects['Keller_Wandleuchten'], 10.8, 11.2, Z, stufe=2)
 aufbau(bpy.data.objects['Kellerdecke_Hof'], 12.4, 13.6, Y, stufe=2)
 # Stufe 3 – Erdgeschoss
-gruppe(['EG_Wand*', 'EG_Tuer_Hof'], 13.0, 15.2, Z, 3, 0.2)
+gruppe(['EG_Wand_links_Qibla', 'EG_Wand_rechts', 'EG_Wand_hinten_*'], 13.0, 15.2, Z, 3, 0.2)
 gruppe('EG_Saeule*', 13.3, 15.0, Z, 3, 0.15)
 gruppe(['EG_Glas', 'EG_Pfosten', 'Fassade_Lisenen_EG', 'Fassade_Sockel'], 15.4, 18.6, X, 3)
+gruppe(['EG_Glas_hinten', 'EG_Pfosten_hinten'], 16.0, 18.8, X, 3)
 gruppe('EG_Seitenfenster*', 16.0, 17.4, Z, 3, 0.1)
 gruppe(['Portal_Pfeiler*', 'Portal_Sturz', 'Portal_Glastuer', 'Portal_Feld_oben', 'Portal_Zwickel*', 'Portal_Sprossen', 'Portal_Goldkante', 'Portal_Laternen*'], 16.6, 19.6, Z, 3)
 gruppe(['EG_Teppich', 'Mihrab*', 'Minbar*', 'Innen_Regal*'], 17.0, 18.8, X, 3)
@@ -242,6 +243,13 @@ gruppe(['Hof_Busch*', 'Hof_Zypresse*'], 31.2, 32.4, Z, 6, 0.015)
 gruppe(['Kuebel*', 'Olive*', 'Palme_*'], 31.6, 33.0, Z, 6, 0.03)
 gruppe(['Tische', 'Stuehle', 'Schirm*', 'Lounge_*', 'Aussenkueche*'], 32.2, 33.4, Z, 6, 0.04)
 gruppe(['Hof_Wandleuchten', 'Hof_Bodenstrahler', 'Hoftuer_Vordach'], 33.0, 33.6, Z, 6)
+# Schiebedach über dem Hof (Ayman 20.11.): entsteht geschlossen (Regen), schiebt sich dann auf (Sonne)
+aufbau(bpy.data.objects['Hofdach_Stuetzen'], 33.2, 33.8, Z, stufe=6)
+aufbau(bpy.data.objects['Hofdach_Schienen'], 33.5, 34.0, Y, stufe=6)
+gruppe(['Hofdach_Feld?'], 33.8, 34.2, X, 6, 0.08)
+sch = bpy.data.objects['Hofdach_Schienen']
+for t, v in ((0, 0.0), (35.0, 0.0), (36.6, 1.0)):
+    sch['offen'] = v; sch.keyframe_insert('["offen"]', frame=F(t))
 gruppe(['Portal_Stufen', 'Portal_Kuebel*', 'Portal_Zypresse*'], 30.2, 31.2, Z, 6)
 aufbau(bpy.data.objects['Parken_Belag'], 40.8, 41.6, X, stufe=6)
 aufbau(bpy.data.objects['Wohnwagen_Belag'], 41.0, 41.8, X, stufe=6)
@@ -330,7 +338,8 @@ GEMEINSAM = [  # (s, Position, Blickziel)
     (29.6, (7, 6, 15.5), (8, 12, 9.3)),          # nah über den PV-Reihen
     (31.6, (7, 10.5, 22), (8, 22.5, 0.5)),       # über den Hof, Blick hinein (von oben)
     (34.6, (9.5, 13.5, 16.5), (8, 23.0, 0.5)),
-    (36.4, (13.5, 26.5, 5.5), (7, 18, 2.0)),     # hinten im Hof hinunter
+    (36.2, (9, 12.5, 15), (8, 22, 1.0)),         # schwebt über dem Hof: Schiebedach schiebt sich auf (35,0–36,6)
+    (37.4, (12.5, 22.5, 6.0), (7, 18, 2.0)),     # durch die offene Dachfläche in den Hof hinunter
     (38.6, (13.8, 27.2, 2.1), (6, 18.5, 2.2)),   # Hof in Augenhöhe: Essplätze, Oliven, Rückseite der Moschee
     (40.0, (11.5, 26.2, 2.0), (5, 17.5, 2.2)),
     (41.0, (11, 24.5, 13), (20, 12, 2.0)),       # senkrecht aus dem Hof hinaus

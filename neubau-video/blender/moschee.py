@@ -230,8 +230,8 @@ def spitzbogen(cx, breite, z0, h_gerade, n=10):
 # ------------------------------------------------------------------ S2: Keller (Ayman 20.11.: unter Moschee UND Hof, nicht unter den Parkplätzen) + Kellerdecke
 KZ = -3.2
 quader('Keller_Bodenplatte', -0.2, Y0 - 0.2, KZ - 0.3, BT + 0.2, TT, KZ, M['beton_roh'], 'S2_Keller')
-for i, (x0, y0, x1, y1) in enumerate(((0, Y0, BT, Y0 + 0.3), (0, TT - 0.3, BT, TT), (0, Y0, 0.3, TT), (BT - 0.3, Y0, BT, TT),
-                                      (0.3, Y1 - 0.3, BT - 0.3, Y1))):   # Wand4 = Innenwand unter der Moschee-Rückwand
+for i, (x0, y0, x1, y1) in enumerate(((0, Y0, BT, Y0 + 0.3), (0, TT - 0.3, BT, TT), (0, Y0, 0.3, TT), (BT - 0.3, Y0, BT, TT))):
+    # Ayman 20.11.: EIN durchgehender Keller unter Moschee und Hof, keine Trennwand
     quader(f'Keller_Wand{i}', x0, y0, KZ, x1, y1, -0.3, M['beton_roh'], 'S2_Keller')
 quader('Kellerdecke', 0, Y0, -0.3, BT, Y1, 0.15, M['beton_roh'], 'S2_Keller')
 quader('Kellerdecke_Hof', 0, Y1, -0.3, BT, TT, 0.0, M['beton_roh'], 'S2_Keller')   # endet unter den Hofplatten (0,035)
@@ -288,9 +288,23 @@ viele_quader('Keller_Wandleuchten', wl_k, M['wandleuchte'], 'S2_Keller')
 
 # ------------------------------------------------------------------ S3: Erdgeschoss (Männer) 0 … 5,5
 quader('EG_Wand_links_Qibla', 0, Y0, 0.15, 0.3, Y1, H_EG, M['putz'], 'S3_EG')
-quader('EG_Wand_hinten', 0.3, Y1 - 0.3, 0.15, BT, Y1, H_EG, M['putz'], 'S3_EG')
+# Rückwand zum Hof (Ayman 20.11.): ganz aus Glas, große Hebe-Schiebetüren – zwei Felder offen, Blick vom Hof in den Gebetsraum
+quader('EG_Wand_hinten_Ecke', BT - 0.3, Y1 - 0.3, 0.15, BT, Y1, H_EG, M['putz'], 'S3_EG')
+quader('EG_Wand_hinten_Sturz', 0.3, Y1 - 0.3, H_EG - 0.35, BT - 0.3, Y1, H_EG, M['putz'], 'S3_EG')
+_nb = 6; _w = (BT - 0.6) / _nb; _gx = [0.3 + k * _w for k in range(_nb + 1)]
+_gl = []
+for k in range(_nb):
+    if k in (1, 4):                      # diese Felder sind aufgeschoben (liegen hinter dem Nachbarfeld)
+        a = _gx[k - 1] if k == 1 else _gx[k + 1]; yy = Y1 - 0.22
+    else:
+        a = _gx[k]; yy = Y1 - 0.10
+    _gl.append((a + 0.04, yy - 0.01, 0.2, a + _w - 0.04, yy + 0.01, H_EG - 0.4))
+viele_quader('EG_Glas_hinten', _gl, M['glas'], 'S3_EG')
+_pf = [(x - 0.045, Y1 - 0.28, 0.15, x + 0.045, Y1 - 0.04, H_EG - 0.35) for x in _gx]
+_pf += [(0.3, Y1 - 0.28, 0.15, BT - 0.3, Y1 - 0.04, 0.22), (0.3, Y1 - 0.28, H_EG - 0.42, BT - 0.3, Y1 - 0.04, H_EG - 0.35)]
+_pf += [(a + 0.02, yy - 0.03, 0.2, a + 0.07, yy + 0.03, H_EG - 0.4) for (a, yy, _, b, _, _) in [(g[0], (g[1] + g[4]) / 2, 0, 0, 0, 0) for g in _gl]]
+viele_quader('EG_Pfosten_hinten', _pf, M['pfosten'], 'S3_EG')
 quader('EG_Wand_rechts', BT - 0.3, Y0 + 0.6, 0.15, BT, Y1 - 0.3, H_EG, M['putz'], 'S3_EG')
-quader('EG_Tuer_Hof', 7.0, Y1 + 0.001, 0.15, 9.2, Y1 + 0.03, 2.8, M['pfosten'], 'S3_EG')
 # Glasfassade EG (x 0 … PORTAL_X), Pfosten alle ~1,5 m, Riegel bei 2,8 m
 N_F = 9
 fx = [i * PORTAL_X / N_F for i in range(N_F + 1)]
@@ -518,19 +532,39 @@ for n in ('EG_Wand_rechts', 'OG_Wand_rechts'):
     bpy.data.objects[n].data.materials[0] = M['stein']
 # Rückseite zum Hof: Fenster, Vordach über der Hoftür
 fen = []
-for x in (2.2, 4.6, 11.9, 14.3):
-    fen.append((x - 0.6, Y1 + 0.005, 1.2, x + 0.6, Y1 + 0.02, 4.4))
+# EG-Rückseite ist jetzt Glas (siehe S3) – nur noch OG-Fenster
 for x in (2.2, 5.0, 8.25, 11.5, 14.3):
     fen.append((x - 0.6, Y1 + 0.005, H_DECKE + 0.6, x + 0.6, Y1 + 0.02, H_OG - 0.5))
 viele_quader('Rueckseite_Fenster', fen, M['glas'], 'S4_OG')
 viele_quader('Rueckseite_Fensterrahmen', [(a - 0.07, b + 0.0, c - 0.07, d + 0.07, e - 0.008, f + 0.07) for a, b, c, d, e, f in fen], M['pfosten'], 'S4_OG')
 quader('Hoftuer_Vordach', 6.6, Y1, 2.95, 9.6, Y1 + 1.3, 3.1, M['pv_rahmen'], 'S6_Aussen')
+# Schiebedach über dem Hof (Ayman 20.11.): bei Regen zu, bei Sonne auf. Stützen + Laufschienen auf den Hofmauern,
+# 5 Dachfelder, die sich nach hinten zusammenschieben. Steuerung: Eigenschaft „offen“ (0 = zu, 1 = auf) an Hofdach_Schienen.
+HD = 4.8
+dach_feld = farbe('Hofdach_Feld', '#E9E6DF', 0.45, 0.15, 0.02)
+alu = farbe('Hofdach_Alu', '#A9AEB4', 0.35, 0.85, 0)
+_st = [(x0, y - 0.07, 3.28, x0 + 0.14, y + 0.07, HD) for x0 in (0.055, BT - 0.195) for y in (Y1 + 0.35, 19.0, 22.4, 25.8, TT - 0.2)]
+viele_quader('Hofdach_Stuetzen', _st, alu, 'S6_Aussen')
+sch = viele_quader('Hofdach_Schienen', [(0.02, Y1 + 0.05, HD, 0.26, TT, HD + 0.16), (BT - 0.26, Y1 + 0.05, HD, BT - 0.02, TT, HD + 0.16)], alu, 'S6_Aussen')
+sch['offen'] = 0.0
+_L = 3.0
+for k in range(5):
+    y0 = Y1 + 0.1 + k * 2.78; z0 = HD + 0.17 + k * 0.05
+    f = viele_quader(f'Hofdach_Feld{k}', [(0.15, y0, z0, BT - 0.15, y0 + _L, z0 + 0.035),           # Feld
+                                          (0.12, y0, z0 - 0.01, BT - 0.12, y0 + 0.08, z0 + 0.05),   # Profil vorn
+                                          (0.12, y0 + _L - 0.08, z0 - 0.01, BT - 0.12, y0 + _L, z0 + 0.05)], dach_feld, 'S6_Aussen')
+    ziel = TT - _L - 0.05 - (4 - k) * 0.12                       # Endlage: hinten zusammengeschoben
+    d = ziel - y0
+    fc = f.driver_add('location', 1); dv = fc.driver; dv.type = 'SCRIPTED'
+    var = dv.variables.new(); var.name = 'offen'; var.targets[0].id = sch; var.targets[0].data_path = '["offen"]'
+    dv.expression = f'{d:.3f} * offen'
 # Innen: Hängeleuchten (Ringe), Quran-Regal an der Rückwand
 for i, (x, y) in enumerate(((5.5, 9.0), (11.0, 9.0))):
     zylinder(f'Innen_Ringleuchte{i}', x, y, 4.2, 1.1, 1.1, 0.08, M['licht_innen'], 'Innen', 32)
     zylinder(f'Innen_Ringleuchte{i}_Seil', x, y, 4.28, 0.01, 0.01, H_EG - 4.3, M['zaun'], 'Innen', 6)
-viele_quader('Innen_Regal', [(3.0, Y1 - 0.65, 0.17, 13.0, Y1 - 0.31, 1.9)], M['holz'], 'Innen')
-viele_quader('Innen_Regal_Buecher', [(3.1 + j * 0.5, Y1 - 0.68, 0.3 + r * 0.55, 3.5 + j * 0.5, Y1 - 0.64, 0.6 + r * 0.55) for j in range(19) for r in range(3)], M['gold'], 'Innen')
+# Quran-Regale an der rechten Seitenwand zwischen den Fenstern (Rückwand ist jetzt Glas, Ayman 20.11.)
+viele_quader('Innen_Regal', [(BT - 0.65, 6.25, 0.17, BT - 0.31, 8.25, 1.9), (BT - 0.65, 9.75, 0.17, BT - 0.31, 11.75, 1.9)], M['holz'], 'Innen')
+viele_quader('Innen_Regal_Buecher', [(BT - 0.68, y0 + 0.1 + j * 0.5, 0.3 + r * 0.55, BT - 0.64, y0 + 0.5 + j * 0.5, 0.6 + r * 0.55) for y0 in (6.25, 9.75) for j in range(4) for r in range(3)], M['gold'], 'Innen')
 # Dach: Ausstieg, zwei Lüftungsgeräte
 viele_quader('Dach_Technik', [(BT - 2.2, Y1 - 1.6, H_DACH, BT - 1.0, Y1 - 0.5, H_DACH + 0.7), (1.0, Y1 - 1.4, H_DACH, 2.1, Y1 - 0.6, H_DACH + 0.9),
                                (3.0, Y1 - 1.4, H_DACH, 4.1, Y1 - 0.6, H_DACH + 0.9)], M['pv_rahmen'], 'S5_Dach')
@@ -585,11 +619,11 @@ viele_quader('Innen2_Ornamentrahmen', [(0.33, a - 0.03, b - 0.03, 0.36, c + 0.03
 # Schuhregale links und rechts innen neben dem Portal
 viele_quader('Innen2_Schuhregal', [(PORTAL_X - 2.6, Y0 + 0.35, 0.17, PORTAL_X - 0.4, Y0 + 0.75, 1.2),
                                     (PORTAL_X + 0.3, Y0 + 2.4, 0.17, PORTAL_X + 0.7, Y0 + 4.6, 1.2)], M['holz'], 'Innen')
-# Waschraum hinten rechts (Trennwände, Waschbecken-Theke)
-viele_quader('Innen2_Waschraum_Wand', [(BT - 3.6, Y1 - 3.0, 0.17, BT - 3.45, Y1 - 0.3, 2.6), (BT - 3.6, Y1 - 3.0, 0.17, BT - 0.3, Y1 - 2.85, 2.6)], M['putz'], 'Innen')
-viele_quader('Innen2_Waschraum_Theke', [(BT - 3.3, Y1 - 0.85, 0.17, BT - 0.4, Y1 - 0.35, 0.85)], M['stein'], 'Innen')
+# Waschraum: nicht mehr im EG (Rückwand ist Glas zum Hof, Ayman 20.11.) – gedacht im Keller
+# (entfernt 20.11.: Waschraum nicht mehr hinter der Glas-Rückwand) 
+# (entfernt 20.11.: Waschraum nicht mehr hinter der Glas-Rückwand) 
 fl = farbe('Fliesen_Waschraum', '#CFCBC2', 0.4, 0, 0.03)
-flaeche('Innen2_Waschraum_Boden', [(BT - 3.45, Y1 - 2.85), (BT - 0.3, Y1 - 2.85), (BT - 0.3, Y1 - 0.3), (BT - 3.45, Y1 - 0.3)], 0.18, fl, 'Innen')
+# (entfernt 20.11.: Waschraum nicht mehr hinter der Glas-Rückwand) 
 
 # Abschluss
 for o in bpy.data.objects:

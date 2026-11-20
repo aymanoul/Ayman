@@ -59,6 +59,12 @@ for k in range(7):                       # Wohnwagen setzen auf (Ayman 20.11.: f
     setze(impact, 42.45 + k * 0.2, -31, -0.2 + k * 0.08)
 setze(whoosh, 51.6, -24)                 # Dach öffnet sich
 
+# Schiebedach über dem Hof öffnet (35,0–36,6): leises Motorbrummen
+_n = int(1.6 * SR); _tt = np.arange(_n) / SR
+_m = (np.sin(2 * np.pi * 80 * _tt) * 0.6 + np.sin(2 * np.pi * 160 * _tt) * 0.2 + rng.standard_normal(_n) * 0.05)
+_m *= np.minimum(1, np.minimum(_tt / 0.2, (1.6 - _tt) / 0.2))
+setze(_m, 35.0, -32)
+setze(pop, 36.6, -27)
 # Schiebetor: Motorbrummen beim Öffnen (44,6–45,9) und Schließen (46,5–47,8), Klick am Ende
 for a, b in ((44.6, 45.9), (46.5, 47.8)):
     n = int((b - a) * SR); tt = np.arange(n) / SR
