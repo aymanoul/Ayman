@@ -31,6 +31,7 @@ sc.render.fps = FPS; sc.frame_start = 0; sc.frame_end = 60 * FPS
 sc['END_STAGE'] = END_STAGE
 F = lambda t: int(round(t * FPS))
 BT, Y0, Y1, KZ = 16.5, 3.0, 15.0, -3.2
+TT, LT = 29.0, 12.3
 
 
 def hexrgb(h):
@@ -70,15 +71,16 @@ def holz(name, hexf):
 # ------------------------------------------------------------------ Stufe 1: Baugrube (Holzverbau, Geländer, 2 Treppen)
 HV = holz('Holz_Verbau', '#8A6A45'); HG = holz('Holz_Gelaender', '#A9875C'); ER = holz('Erde_Grube', '#6E5A44')
 D = 0.18
-verbau = [(0, Y0, KZ - 0.05, BT, Y0 + D, 0.35), (0, Y1 - D, KZ - 0.05, BT, Y1, 0.35),
-          (0, Y0 + D, KZ - 0.05, D, Y1 - D, 0.35), (BT - D, Y0 + D, KZ - 0.05, BT, Y1 - D, 0.35)]
+YG = TT     # Ayman 20.11.: Grube reicht unter den Hof bis zur hinteren Grenze
+verbau = [(0, Y0, KZ - 0.05, BT, Y0 + D, 0.35), (0, YG - D, KZ - 0.05, BT, YG, 0.35),
+          (0, Y0 + D, KZ - 0.05, D, YG - D, 0.35), (BT - D, Y0 + D, KZ - 0.05, BT, YG - D, 0.35)]
 viele_quader('Verbau', verbau, HV, 'S1_Aushub')
 # senkrechte Bohlen-Fugen als dünne dunklere Leisten
 fugen = [(x, Y0 + D, KZ, x + 0.04, Y0 + D + 0.02, 0.3) for x in [0.6 + k * 0.9 for k in range(17)]]
-fugen += [(x, Y1 - D - 0.02, KZ, x + 0.04, Y1 - D, 0.3) for x in [0.6 + k * 0.9 for k in range(17)]]
+fugen += [(x, YG - D - 0.02, KZ, x + 0.04, YG - D, 0.3) for x in [0.6 + k * 0.9 for k in range(17)]]
 viele_quader('Verbau_Fugen', fugen, ER, 'S1_Aushub')
 gel = []
-for (x0, y0, x1, y1) in ((0, Y0 - 0.25, BT, Y0 - 0.15), (0, Y1 + 0.15, BT, Y1 + 0.25), (BT + 0.15, Y0 - 0.25, BT + 0.25, Y1 + 0.25)):
+for (x0, y0, x1, y1) in ((0, Y0 - 0.25, BT, Y0 - 0.15), (BT + 0.15, Y0 - 0.25, BT + 0.25, LT - 0.1)):   # hinten steht die Grenzmauer, rechts ab LT das Nachbargebäude
     for z in (0.55, 1.05):
         gel.append((x0, y0, z, x1, y1, z + 0.08))
     n = int(max(x1 - x0, y1 - y0) / 2.0)
@@ -92,7 +94,7 @@ for i in range(16):        # Treppe vorn rechts: entlang der Vorderwand nach lin
     tr.append((x, Y0 + D, KZ, x + 0.28, Y0 + D + 1.0, -0.2 * (i + 1)))
 for i in range(16):        # Treppe hinten links: entlang der Rückwand nach rechts hinunter
     x = 0.4 + i * 0.28
-    tr.append((x, Y1 - D - 1.0, KZ, x + 0.28, Y1 - D, -0.2 * (i + 1)))
+    tr.append((x, YG - D - 1.0, KZ, x + 0.28, YG - D, -0.2 * (i + 1)))
 viele_quader('Treppen_Grube', tr, HG, 'S1_Aushub')
 grube = bpy.data.objects['Grube_Boden']
 
@@ -194,13 +196,18 @@ aufbau(bpy.data.objects['Gelaender_Grube'], 6.3, 7.8, X, stufe=1)
 aufbau(bpy.data.objects['Treppen_Grube'], 6.6, 8.0, Z, stufe=1)
 # Stufe 2 – Keller & Bodenplatte; Verbau verschwindet
 aufbau(bpy.data.objects['Keller_Bodenplatte'], 8.0, 9.0, X, stufe=2)
-gruppe('Keller_Wand*', 9.0, 10.8, Z, 2, 0.15)
+gruppe('Keller_Wand?', 9.0, 10.8, Z, 2, 0.15)
 if END_STAGE >= 2:
     for n in ('Verbau', 'Verbau_Fugen'):
         aufbau(bpy.data.objects[n], 10.6, 12.0, Z, weg=True, stufe=2)
     aufbau(bpy.data.objects['Gelaender_Grube'], 10.6, 11.6, X, weg=True, stufe=2)
     aufbau(bpy.data.objects['Treppen_Grube'], 10.6, 11.6, Z, weg=True, stufe=2)
-aufbau(bpy.data.objects['Kellerdecke'], 11.8, 13.0, X, stufe=2)
+aufbau(bpy.data.objects['Kellerdecke'], 12.0, 13.2, X, stufe=2)
+aufbau(bpy.data.objects['Keller_Estrich'], 9.2, 9.8, X, stufe=2)
+aufbau(bpy.data.objects['Keller_Saeulen'], 9.6, 10.8, Z, stufe=2)
+gruppe(['Keller_Treppe*'], 10.0, 11.0, Z, 2)
+aufbau(bpy.data.objects['Keller_Wandleuchten'], 10.8, 11.2, Z, stufe=2)
+aufbau(bpy.data.objects['Kellerdecke_Hof'], 12.4, 13.6, Y, stufe=2)
 # Stufe 3 – Erdgeschoss
 gruppe(['EG_Wand*', 'EG_Tuer_Hof'], 13.0, 15.2, Z, 3, 0.2)
 gruppe('EG_Saeule*', 13.3, 15.0, Z, 3, 0.15)
@@ -242,8 +249,24 @@ aufbau(bpy.data.objects['Markierungen'], 41.2, 42.4, X, stufe=6)
 aufbau(bpy.data.objects['Parken_Radstopper'], 42.0, 42.4, Z, stufe=6)
 aufbau(bpy.data.objects['Hecke'], 41.4, 42.6, X, stufe=6)
 aufbau(bpy.data.objects['Wandleuchten_Brandwand'], 41.8, 42.4, X, stufe=6)
+# Wohnwagen (Ayman 20.11.): fertig, werden leicht auf den Platz „fallen gelassen“ (nicht von unten aufgebaut)
 for i in range(7):
-    gruppe([f'Wohnwagen{i}_*'], 42.0 + i * 0.2, 43.0 + i * 0.2, Z, 6)
+    t0 = 42.0 + i * 0.2
+    for o in obs(f'Wohnwagen{i}_*'):
+        ZUGEWIESEN[o.name] = t0
+        o.hide_render = True; o.keyframe_insert('hide_render', frame=0)
+        o.hide_render = False; o.keyframe_insert('hide_render', frame=F(t0))
+        z = o.location.z
+        for t, dz in ((t0, 1.8), (t0 + 0.45, 0.0), (t0 + 0.6, 0.06), (t0 + 0.75, 0.0)):
+            o.location.z = z + dz; o.keyframe_insert('location', index=2, frame=F(t))
+        o.location.z = z
+        fcs = o.animation_data.action.fcurves if hasattr(o.animation_data.action, 'fcurves') else []
+        for fc in fcs:
+            if fc.data_path == 'location':
+                kps = fc.keyframe_points
+                kps[0].interpolation = 'QUAD'; kps[0].easing = 'EASE_IN'     # beschleunigt fallen
+                for kp in kps[1:]:
+                    kp.interpolation = 'SINE'
 gruppe(['Zaun_fest', 'Zaun_Steinpfeiler'], 42.4, 43.6, X, 6)
 gruppe(['Schiebetor', 'Schiebetor_*'], 43.2, 44.0, Z, 6)
 
@@ -271,7 +294,7 @@ for n in ('PV_Module', 'PV_Gestell', 'Dach_Technik', 'Gruendach', 'Dachkies', 'A
 # Sicherheit: jedes Bauteil der Moschee/Außenanlagen braucht einen Aufbau, sonst wäre es von Anfang an sichtbar
 for c in ('S2_Keller', 'S3_EG', 'S4_OG', 'S5_Dach', 'S6_Aussen', 'Innen', 'Wohnwagen'):
     for o in bpy.data.collections[c].objects:
-        if o.type == 'MESH' and not o.modifiers.get('Aufbau'):
+        if o.type == 'MESH' and not o.modifiers.get('Aufbau') and o.name not in ZUGEWIESEN:
             print('ohne Aufbau, ergänze Stufe 6:', o.name)
             aufbau(o, 36.0, 37.0, Z, stufe=6)
 
@@ -298,7 +321,8 @@ for t, v in ((0, 0.22), (48.0, 0.22), (51.0, 0.11 if an else 0.22)):
 GEMEINSAM = [  # (s, Position, Blickziel)
     (4.0, (24, -21, 22), (8, 9, -1.5)),
     (8.0, (14, -24, 23), (8, 9, -1.5)),
-    (12.6, (4, -21, 24), (8, 9, 0.0)),
+    (10.6, (13, -4, 11.5), (8, 15, -2.6)),        # tief und nah über die Grube: Keller mit Säulen, Treppen, Leuchten (Ayman 20.11.)
+    (12.6, (6, -6, 12.5), (8, 16, -1.5)),
     (14.6, (-3, -5.6, 8.5), (4, 4, 3.5)),
     (19.6, (21, -5.6, 6.8), (12, 4, 4.5)),
     (24.8, (26, -13, 15), (9, 9, 7)),

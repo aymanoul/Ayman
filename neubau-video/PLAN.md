@@ -52,3 +52,13 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 - Einfahrt: **rechtes Ende, freitragendes Schiebetor**, ohne Bodenschiene, 5–6 m Durchfahrt (im Video geschlossen).
 - Nachbargebäude rechts: **helle Putzfassade**, graues Dach mit Dachfenstern.
 - PV-Anordnung: wie Bau-Roadmap, ca. 10 Modul-Streifen von der Glasfront nach hinten, Rest Gründach.
+
+
+## Änderungen von Ayman am 20.11. nachmittags (gehen dem AUFTRAG vor)
+- **Keller unter Moschee UND Hof** (nicht unter Parken/Wohnwagen): Grube x 0…16,5, y 3…29 (`umgebung.py` GY1 = TT, `animation.py` YG = TT),
+  Keller-Bodenplatte/Wände bis TT, Innenwand unter der Moschee-Rückwand (Keller_Wand4), `Kellerdecke_Hof` (oben 0,0 unter den Hofplatten).
+- **Keller-Innenausbau nach Aymans Beispielbild**: heller Estrich, 12 Betonsäulen, 2 Betontreppen mit Metallgeländer
+  (vorn rechts am Portal, hinten links unter dem Hof), warme Wandleuchten (`moschee.py`). Neue Kamerapunkte 10,6 s und 12,6 s tief über der Grube.
+- **Wohnwagen** werden nicht mehr von unten aufgebaut: fertig, unsichtbar bis 42,0 + i·0,2 s, fallen 1,8 m leicht auf den Platz
+  und federn kurz nach (`animation.py`), Aufsetz-Geräusch in `tools/ton.py`.
+- Neu gerendert: 0–34 s und 42–44 s (Rest unverändert).

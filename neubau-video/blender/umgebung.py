@@ -404,8 +404,8 @@ def laubbaum_fern(name, x, y, h):
 
 
 # ------------------------------------------------------------------ Boden, Gasse, Grundstück
-# Boden mit Aussparung für die Baugrube (Moschee-Grundfläche x 0…BT, y 3…15)
-GX0, GX1, GY0, GY1 = 0.0, BT, 3.0, 15.0
+# Boden mit Aussparung für die Baugrube (Ayman 20.11.: Keller unter Moschee UND Hof → x 0…BT, y 3…TT; nicht unter den Parkplätzen)
+GX0, GX1, GY0, GY1 = 0.0, BT, 3.0, TT
 mesh('Boden_weit', [(-200, -200, -0.02), (260, -200, -0.02), (260, GY0, -0.02), (-200, GY0, -0.02),
                     (-200, GY1, -0.02), (260, GY1, -0.02), (260, 260, -0.02), (-200, 260, -0.02),
                     (GX0, GY0, -0.02), (GX0, GY1, -0.02), (GX1, GY0, -0.02), (GX1, GY1, -0.02)],
@@ -418,8 +418,8 @@ for i, x in enumerate((8, 26, 44)):
 # Grundstück: eingeebneter Schotter (Stufe 0)
 # ohne die Moschee-Grundfläche; die liegt als eigenes Stück „Grube_Boden“ darin (senkt sich in Stufe 1 ab)
 mesh('Grundstueck_Schotter', [(0, 0.25, 0.02), (L, 0.25, 0.02), (L, GY0, 0.02), (0, GY0, 0.02),
-                              (GX1, GY0, 0.02), (L, LT, 0.02), (GX1, LT, 0.02), (0, GY1, 0.02), (GX1, GY1, 0.02), (GX1, TT, 0.02), (0, TT, 0.02)],
-     [(0, 1, 2, 3), (4, 2, 5, 6), (7, 8, 9, 10)], M['schotter'], 'Grundstueck')
+                              (GX1, GY0, 0.02), (L, LT, 0.02), (GX1, LT, 0.02)],
+     [(0, 1, 2, 3), (4, 2, 5, 6)], M['schotter'], 'Grundstueck')
 flaeche('Grube_Boden', [(GX0, GY0), (GX1, GY0), (GX1, GY1), (GX0, GY1)], 0.02, M['schotter'], 'Grundstueck')
 # gegenüber: Vorfläche weißes Haus (rötliches Pflaster), Flächen zwischen den Hallen (Beton)
 flaeche('Pflaster_rot_weissesHaus', [(3.3, -8.2), (15.3, -8.2), (15.3, GASSE - 0.25), (3.3, GASSE - 0.25)], 0.01, M['pflaster_rot'], 'Boden')

@@ -55,8 +55,8 @@ for k in range(26):                      # PV-Module Reihe für Reihe: feine Kli
     setze(pop, 27.4 + k * 0.1, -32, rng.uniform(-0.6, 0.6))
 for zeit in (30.0, 31.6, 41.0, 42.6, 49.2):
     setze(wk, zeit, -28)
-for k in range(7):                       # Wohnwagen erscheinen
-    setze(pop, 42.0 + k * 0.2, -30, -0.2 + k * 0.08)
+for k in range(7):                       # Wohnwagen setzen auf (Ayman 20.11.: fallen leicht auf den Platz)
+    setze(impact, 42.45 + k * 0.2, -31, -0.2 + k * 0.08)
 setze(whoosh, 51.6, -24)                 # Dach öffnet sich
 
 # Schiebetor: Motorbrummen beim Öffnen (44,6–45,9) und Schließen (46,5–47,8), Klick am Ende

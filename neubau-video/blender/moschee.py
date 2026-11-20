@@ -227,12 +227,64 @@ def spitzbogen(cx, breite, z0, h_gerade, n=10):
     return pts
 
 
-# ------------------------------------------------------------------ S2: Keller (nur unter der Moschee) + Kellerdecke
+# ------------------------------------------------------------------ S2: Keller (Ayman 20.11.: unter Moschee UND Hof, nicht unter den Parkplätzen) + Kellerdecke
 KZ = -3.2
-quader('Keller_Bodenplatte', -0.2, Y0 - 0.2, KZ - 0.3, BT + 0.2, Y1 + 0.2, KZ, M['beton_roh'], 'S2_Keller')
-for i, (x0, y0, x1, y1) in enumerate(((0, Y0, BT, Y0 + 0.3), (0, Y1 - 0.3, BT, Y1), (0, Y0, 0.3, Y1), (BT - 0.3, Y0, BT, Y1))):
+quader('Keller_Bodenplatte', -0.2, Y0 - 0.2, KZ - 0.3, BT + 0.2, TT, KZ, M['beton_roh'], 'S2_Keller')
+for i, (x0, y0, x1, y1) in enumerate(((0, Y0, BT, Y0 + 0.3), (0, TT - 0.3, BT, TT), (0, Y0, 0.3, TT), (BT - 0.3, Y0, BT, TT),
+                                      (0.3, Y1 - 0.3, BT - 0.3, Y1))):   # Wand4 = Innenwand unter der Moschee-Rückwand
     quader(f'Keller_Wand{i}', x0, y0, KZ, x1, y1, -0.3, M['beton_roh'], 'S2_Keller')
 quader('Kellerdecke', 0, Y0, -0.3, BT, Y1, 0.15, M['beton_roh'], 'S2_Keller')
+quader('Kellerdecke_Hof', 0, Y1, -0.3, BT, TT, 0.0, M['beton_roh'], 'S2_Keller')   # endet unter den Hofplatten (0,035)
+# Keller-Innenausbau nach Aymans Beispielbild (20.11.): heller Estrich, Betonsäulen, 2 Treppen mit Metallgeländer, warme Wandleuchten
+beton_k = farbe('Beton_Keller_hell', '#CFC9BE', 0.75, 0, 0.08)
+estrich = farbe('Estrich_hell', '#C9C3B7', 0.45, 0, 0.05)
+gel_k = farbe('Gelaender_Metall', '#9EA3A8', 0.35, 0.85, 0)
+quader('Keller_Estrich', 0.3, Y0 + 0.3, KZ, BT - 0.3, TT - 0.3, KZ + 0.03, estrich, 'S2_Keller')
+viele_quader('Keller_Saeulen', [(x - 0.25, y - 0.25, KZ + 0.03, x + 0.25, y + 0.25, -0.3)
+                                for x in (4.2, 8.25, 12.3) for y in (7.2, 11.0, 19.0, 23.0)], beton_k, 'S2_Keller')
+
+
+def schraeg(p0, p1, t):
+    """Kantiger Stab von p0 nach p1 (für Handläufe entlang x)."""
+    v = []
+    for (x, y, z) in (p0, p1):
+        v += [(x, y - t, z - t), (x, y + t, z - t), (x, y + t, z + t), (x, y - t, z + t)]
+    return v
+
+
+def treppe(name, x_oben, richtung, y0, y1):
+    """Betontreppe vom Gelände (0) in den Keller (KZ), läuft entlang x; richtung = ±1 (Laufrichtung nach unten)."""
+    stufen, n, auf, tritt = [], 16, -KZ / 16, 0.28
+    for i in range(n):
+        xa = x_oben + richtung * i * tritt; xb = xa + richtung * tritt
+        stufen.append((min(xa, xb), y0, KZ, max(xa, xb), y1, -auf * (i + 1) + auf * 0 + (0 if i == 0 else 0)))
+    viele_quader(name + '_Stufen', stufen, beton_k, 'S2_Keller')
+    x_unten = x_oben + richtung * n * tritt
+    v, f = [], []
+    for yy in (y0 + 0.05, y1 - 0.05):                 # Handläufe beidseitig
+        k = len(v); v += schraeg((x_oben, yy, 0.95), (x_unten, yy, KZ + 0.95), 0.025)
+        f += [(k, k + 1, k + 2, k + 3), (k + 4, k + 7, k + 6, k + 5), (k, k + 4, k + 5, k + 1), (k + 1, k + 5, k + 6, k + 2),
+              (k + 2, k + 6, k + 7, k + 3), (k + 3, k + 7, k + 4, k)]
+    mesh(name + '_Handlauf', v, f, gel_k, 'S2_Keller')
+    pf = []
+    for yy in (y0 + 0.05, y1 - 0.05):                 # Pfosten
+        for j in range(0, n + 1, 3):
+            x = x_oben + richtung * j * tritt; zf = -auf * j
+            pf.append((x - 0.025, yy - 0.025, zf, x + 0.025, yy + 0.025, zf + 0.95))
+    viele_quader(name + '_Pfosten', pf, gel_k, 'S2_Keller')
+
+
+treppe('Keller_TreppeA', BT - 0.6, -1, Y0 + 0.3, Y0 + 1.6)      # vorn rechts beim Portal, nach links hinunter
+treppe('Keller_TreppeB', 0.6, 1, TT - 1.6, TT - 0.3)            # hinten links unter dem Hof, nach rechts hinunter
+wl_k = []
+for x in (2.2, 6.2, 10.3, 14.3):
+    for y in (Y0 + 0.3, TT - 0.3):
+        if not (y > Y1 and x < 6) and not (y < Y1 and x > 10):    # nicht hinter den Treppen
+            d = 0.06 if y < Y1 else -0.06
+            wl_k.append((x - 0.12, min(y, y + d), KZ + 1.9, x + 0.12, max(y, y + d), KZ + 2.15))
+for y in (6.0, 10.0, 14.0, 18.0, 22.0, 26.0):
+    wl_k.append((0.3, y - 0.12, KZ + 1.9, 0.36, y + 0.12, KZ + 2.15)); wl_k.append((BT - 0.36, y - 0.12, KZ + 1.9, BT - 0.3, y + 0.12, KZ + 2.15))
+viele_quader('Keller_Wandleuchten', wl_k, M['wandleuchte'], 'S2_Keller')
 
 # ------------------------------------------------------------------ S3: Erdgeschoss (Männer) 0 … 5,5
 quader('EG_Wand_links_Qibla', 0, Y0, 0.15, 0.3, Y1, H_EG, M['putz'], 'S3_EG')
