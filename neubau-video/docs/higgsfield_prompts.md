@@ -45,3 +45,11 @@ Erstellt mit Nano Banana 2.1, 2k (1536 × 2752, 9:16), je 1 Bild → `out/higgsf
 Higgsfield hat von sich aus 2 kleine Überwachungskameras an die Fassade gesetzt (Bild 1). Higgsfield-Job-IDs:
 bc0d001a… (1), edbbf0e0… (2), 3dd6afe8… (3), 3a562533… (4).
 Netz: `upload.higgsfield.ai` und `d8j0ntlcm91z4.cloudfront.net` mussten in der Umgebung freigegeben werden (Hochladen/Herunterladen).
+
+## Nächster Schritt: Video fotorealistisch (Ayman 20.11., entschieden, aber NOCH NICHT starten)
+Ayman: „ganzes Video 720p, aber erst wenn das Video fertig gerendert ist und ich es mir angeguckt habe“.
+Plan: Seedance 2.5 (`seedance_2_5`), mode `video_edit`, 720p, 9:16, `generate_audio: false` (keine Musik), 2 Teile à 30 s
+(0–30 s, 30–60 s) aus `out/neubau_drohne.mp4`, die 4 Bilder `out/higgsfield/echt/*` als image_references für den Look.
+Kosten laut Higgsfield: 225 Credits je 30 s → **450 Credits** (Guthaben ~996). Danach Claude selbst: beide Teile zusammenschneiden,
+auf 1080×1920 hochskalieren, eigenen Ton (tools/ton.py, −14 LUFS) darunterlegen, auf Text/Personen/Gesichter prüfen.
+Start erst nach Aymans ausdrücklichem „los“.
