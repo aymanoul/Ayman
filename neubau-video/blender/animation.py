@@ -27,7 +27,7 @@ END_STAGE = int(arg('endstufe', 6))
 bpy.ops.wm.open_mainfile(filepath=os.path.join(HERE, 'neubau.blend'))
 sc = bpy.context.scene
 FPS = 30
-sc.render.fps = FPS; sc.frame_start = 0; sc.frame_end = 45 * FPS
+sc.render.fps = FPS; sc.frame_start = 0; sc.frame_end = 60 * FPS
 sc['END_STAGE'] = END_STAGE
 F = lambda t: int(round(t * FPS))
 BT, Y0, Y1, KZ = 16.5, 3.0, 15.0, -3.2
@@ -203,6 +203,7 @@ gruppe('EG_Seitenfenster*', 16.0, 17.4, Z, 3, 0.1)
 gruppe(['Portal_Pfeiler*', 'Portal_Sturz', 'Portal_Glastuer', 'Portal_Feld_oben', 'Portal_Zwickel*', 'Portal_Sprossen', 'Portal_Goldkante', 'Portal_Laternen*'], 16.6, 19.6, Z, 3)
 gruppe(['EG_Teppich', 'Mihrab*', 'Minbar*', 'Innen_Regal*'], 17.0, 18.8, X, 3)
 gruppe('Innen_Ringleuchte*', 18.4, 19.6, Z, 3, 0.1)
+gruppe(['Innen2_*'], 17.4, 19.4, Z, 3, 0.02)
 # Stufe 4 – 1. Etage
 gruppe(['Geschossdecke', 'Geschossband'], 20.0, 21.4, X, 4, 0.2)
 gruppe('OG_Wand*', 21.0, 22.8, Z, 4, 0.2)
@@ -229,16 +230,37 @@ gruppe(['Kuebel*', 'Olive*', 'Palme_*'], 31.6, 33.0, Z, 6, 0.03)
 gruppe(['Tische', 'Stuehle', 'Schirm*', 'Lounge_*', 'Aussenkueche*'], 32.2, 33.4, Z, 6, 0.04)
 gruppe(['Hof_Wandleuchten', 'Hof_Bodenstrahler', 'Hoftuer_Vordach'], 33.0, 33.6, Z, 6)
 gruppe(['Portal_Stufen', 'Portal_Kuebel*', 'Portal_Zypresse*'], 30.2, 31.2, Z, 6)
-aufbau(bpy.data.objects['Parken_Belag'], 36.4, 37.2, X, stufe=6)
-aufbau(bpy.data.objects['Wohnwagen_Belag'], 36.6, 37.4, X, stufe=6)
-aufbau(bpy.data.objects['Markierungen'], 36.8, 38.0, X, stufe=6)
-aufbau(bpy.data.objects['Parken_Radstopper'], 37.6, 38.0, Z, stufe=6)
-aufbau(bpy.data.objects['Hecke'], 37.0, 38.2, X, stufe=6)
-aufbau(bpy.data.objects['Wandleuchten_Brandwand'], 37.4, 38.0, X, stufe=6)
+aufbau(bpy.data.objects['Parken_Belag'], 40.8, 41.6, X, stufe=6)
+aufbau(bpy.data.objects['Wohnwagen_Belag'], 41.0, 41.8, X, stufe=6)
+aufbau(bpy.data.objects['Markierungen'], 41.2, 42.4, X, stufe=6)
+aufbau(bpy.data.objects['Parken_Radstopper'], 42.0, 42.4, Z, stufe=6)
+aufbau(bpy.data.objects['Hecke'], 41.4, 42.6, X, stufe=6)
+aufbau(bpy.data.objects['Wandleuchten_Brandwand'], 41.8, 42.4, X, stufe=6)
 for i in range(7):
-    gruppe([f'Wohnwagen{i}_*'], 37.6 + i * 0.2, 38.6 + i * 0.2, Z, 6)
-gruppe(['Zaun_fest', 'Zaun_Steinpfeiler'], 38.2, 39.4, X, 6)
-gruppe(['Schiebetor', 'Schiebetor_*'], 38.8, 39.6, Z, 6)
+    gruppe([f'Wohnwagen{i}_*'], 42.0 + i * 0.2, 43.0 + i * 0.2, Z, 6)
+gruppe(['Zaun_fest', 'Zaun_Steinpfeiler'], 42.4, 43.6, X, 6)
+gruppe(['Schiebetor', 'Schiebetor_*'], 43.2, 44.0, Z, 6)
+
+# Schiebetor zeigen: öffnet und schließt (Warnleuchte blinkt dabei)
+tor = bpy.data.objects['Schiebetor']
+for t, v in ((0, 0.0), (44.6, 0.0), (45.9, 1.0), (46.5, 1.0), (47.8, 0.0)):
+    tor['offen'] = v; tor.keyframe_insert('["offen"]', frame=F(t))
+wl = bpy.data.materials['Warnleuchte_orange'].node_tree.nodes['Principled BSDF'].inputs['Emission Strength']
+wl.default_value = 0.0; wl.keyframe_insert('default_value', frame=F(0))
+for a, b in ((44.4, 46.0), (46.4, 47.9)):
+    t = a
+    while t < b:
+        wl.default_value = 6.0; wl.keyframe_insert('default_value', frame=F(t))
+        wl.default_value = 0.0; wl.keyframe_insert('default_value', frame=F(t + 0.25))
+        t += 0.5
+for fc in (wl.id_data.animation_data.action.fcurves if hasattr(wl.id_data.animation_data.action, 'fcurves') else []):
+    for kp in fc.keyframe_points:
+        kp.interpolation = 'CONSTANT'
+
+# Schluss (Ayman 20.11., Beispielbild): Dach und Obergeschoss-Decke öffnen sich → Blick von oben in den Gebetsraum
+for n in ('PV_Module', 'PV_Gestell', 'Dach_Technik', 'Gruendach', 'Dachkies', 'Attika_Abdeckung', 'LED_Attika', 'Dachplatte',
+          'Attika0', 'Attika1', 'Attika2', 'Attika3', 'Geschossdecke', 'OG_Teppich', 'OG_Saeule0', 'OG_Saeule1', 'OG_Saeule2', 'OG_Saeule3', 'Deckenleuchten'):
+    aufbau(bpy.data.objects[n], 51.6, 53.6, X, weg=True, stufe=6)
 
 # Sicherheit: jedes Bauteil der Moschee/Außenanlagen braucht einen Aufbau, sonst wäre es von Anfang an sichtbar
 for c in ('S2_Keller', 'S3_EG', 'S4_OG', 'S5_Dach', 'S6_Aussen', 'Innen', 'Wohnwagen'):
@@ -252,18 +274,18 @@ for c in ('S2_Keller', 'S3_EG', 'S4_OG', 'S5_Dach', 'S6_Aussen', 'Innen', 'Wohnw
 an = END_STAGE >= 6
 for mname, st_an in (('Innenlicht_warm', 4.0), ('Wandleuchte_warm', 10.0)):
     b = bpy.data.materials[mname].node_tree.nodes['Principled BSDF'].inputs['Emission Strength']
-    for t, v in ((0, 0.0), (39.6, 0.0), (41.2, st_an if an else 0.0)):
+    for t, v in ((0, 0.0), (49.0, 0.0), (50.6, st_an if an else 0.0)):
         b.default_value = v; b.keyframe_insert('default_value', frame=F(t))
 for lo in obs('Innenlicht*'):
     if lo.type == 'LIGHT':
-        for t, v in ((0, 0.0), (39.6, 0.0), (41.2, 900.0 if an else 0.0)):
+        for t, v in ((0, 0.0), (49.0, 0.0), (50.6, 260.0 if an else 0.0)):
             lo.data.energy = v; lo.data.keyframe_insert('energy', frame=F(t))
 sonne = bpy.data.objects['Sonne'].data
-for t, e, c in ((0, 5.0, (1.0, 0.78, 0.56)), (39.0, 5.0, (1.0, 0.78, 0.56)), (42.0, 0.9 if an else 5.0, (1.0, 0.58, 0.36))):
+for t, e, c in ((0, 5.0, (1.0, 0.78, 0.56)), (48.0, 5.0, (1.0, 0.78, 0.56)), (51.0, 2.4 if an else 5.0, (1.0, 0.62, 0.40))):
     sonne.energy = e; sonne.color = c
     sonne.keyframe_insert('energy', frame=F(t)); sonne.keyframe_insert('color', frame=F(t))
 bg = sc.world.node_tree.nodes['Background'].inputs['Strength']
-for t, v in ((0, 0.22), (39.0, 0.22), (42.0, 0.05 if an else 0.22)):
+for t, v in ((0, 0.22), (48.0, 0.22), (51.0, 0.11 if an else 0.22)):
     bg.default_value = v; bg.keyframe_insert('default_value', frame=F(t))
 
 # ------------------------------------------------------------------ Drohnenflug
@@ -275,14 +297,21 @@ GEMEINSAM = [  # (s, Position, Blickziel)
     (19.6, (21, -5.6, 6.8), (12, 4, 4.5)),
     (24.8, (26, -13, 15), (9, 9, 7)),
     (27.4, (13, -1.5, 24), (8, 9, 9)),
-    (30.0, (6, 5, 27), (8, 10, 9)),
-    (31.6, (7, 10.5, 22), (8, 22.5, 0.5)),       # über den Hof, Blick hinein
-    (36.0, (9.5, 13.5, 16.5), (8, 23.0, 0.5)),   # langsam tiefer, Hof ein paar Sekunden zeigen
-    (38.0, (30, -5, 10), (38, 6.5, 1.0)),        # zu Parken + Wohnwagen
-    (39.8, (44, -7, 7.5), (44, 3, 1.0)),         # Zaun + Schiebetor nah
-    (41.2, (26, -9, 10.5), (12, 5, 3.0)),        # über die Garagen zurück (nicht durch das weiße Haus)
-    (42.6, (10, -13, 12.5), (8.5, 5, 5.0)),      # Schlussansicht über dem weißen Haus: Moschee mittig von vorn, Licht an
-    (45.0, (9.8, -12.6, 12.3), (8.5, 5, 5.0)),
+    (29.6, (7, 6, 15.5), (8, 12, 9.3)),          # nah über den PV-Reihen
+    (31.6, (7, 10.5, 22), (8, 22.5, 0.5)),       # über den Hof, Blick hinein (von oben)
+    (34.6, (9.5, 13.5, 16.5), (8, 23.0, 0.5)),
+    (36.4, (13.5, 26.5, 5.5), (7, 18, 2.0)),     # hinten im Hof hinunter
+    (38.6, (13.8, 27.2, 2.1), (6, 18.5, 2.2)),   # Hof in Augenhöhe: Essplätze, Oliven, Rückseite der Moschee
+    (40.0, (11.5, 26.2, 2.0), (5, 17.5, 2.2)),
+    (41.0, (11, 24.5, 13), (20, 12, 2.0)),       # senkrecht aus dem Hof hinaus
+    (42.6, (26, 9, 15), (37, 6, 0.0)),           # über die Parkfläche: Markierungen, Wohnwagen
+    (43.8, (40, -6, 4.5), (44, 1.5, 1.2)),       # tief an Zaun + Schiebetor
+    (45.8, (45.5, -6.4, 4.0), (45, 1.5, 1.0)),   # Tor öffnet …
+    (47.8, (47, -6, 4.2), (44, 2, 1.2)),         # … und schließt
+    (49.2, (37, 5.2, 34), (37, 6.2, 0.0)),       # senkrecht von oben über den Wohnwagen
+    (50.6, (31, 4.6, 32), (31, 6.0, 0.0)),
+    (52.8, (-1, -15, 24), (9, 10, 0.0)),         # Schlussansicht schräg von oben (wie Beispielbild), Dach öffnet sich
+    (60.0, (9, -18, 26), (22, 9, 0.0)),          # langsam nach rechts: Parken, Zaun, Wohnwagen kommen ins Bild
 ]
 START = {
     'A': [(0.0, (33, -3.6, 2.0), (16.9, -8.9, 5.0)), (1.8, (26, -3.8, 7.5), (11, 5, 2.5)), (3.0, (25, -14, 15), (9, 5, 0.0))],

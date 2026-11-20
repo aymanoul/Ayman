@@ -516,6 +516,29 @@ viele_quader('Schiebetor_Antrieb', [(TOR - 1.3, 0.85, 0, TOR - 0.8, 1.2, 0.55)],
 viele_quader('Schiebetor_Warnleuchte', [(L - 0.3, 0.3, 2.15, L - 0.12, 0.48, 2.35)], leuchte('Warnleuchte_orange', '#FF9A2E', 3.0), 'S6_Aussen')
 viele_quader('Schiebetor_Laufrollen', [(x - 0.12, 0.6, 0, x + 0.12, 0.72, 0.18) for x in (TOR - 2.4, TOR - 0.9)], M['zaun'], 'S6_Aussen')
 
+# ------------------------------------------------------------------ Innen für die Schlussansicht von oben (Ayman 20.11.: Blick wie im Beispielbild)
+# Zimmerpflanzen, senkrechte Lichtleisten, Ornamentfelder neben dem Mihrab, Schuhregale am Eingang, kleiner Waschraum hinten rechts.
+for i, (x, y) in enumerate(((0.8, 4.0), (0.8, Y1 - 0.9), (BT - 0.9, Y1 - 0.9), (6.0, Y1 - 0.9), (10.5, Y1 - 0.9))):
+    quader(f'Innen2_Topf{i}', x - 0.25, y - 0.25, 0.17, x + 0.25, y + 0.25, 0.65, M['kuebel'], 'Innen')
+    krone(f'Innen2_Pflanze{i}', x, y, 1.15, 0.45, M['pflanzen'], 'Innen', 2)
+viele_quader('Innen2_Lichtleisten', [(0.31, y - 0.05, 0.6, 0.36, y + 0.05, H_EG - 0.6) for y in (5.0, 7.0, 11.0, 13.0)]
+             + [(x - 0.05, Y1 - 0.36, 0.6, x + 0.05, Y1 - 0.31, H_EG - 0.6) for x in (2.0, 14.5)], M['wandleuchte'], 'Innen')
+orn = []
+for yc in (Y0 + MT / 2 - 2.6, Y0 + MT / 2 + 2.6):
+    orn += [(0.31, yc - 0.7, 1.6, 0.34, yc + 0.7, 3.4)]
+viele_quader('Innen2_Ornamentfeld', orn, M['mihrab'], 'Innen')
+viele_quader('Innen2_Ornamentrahmen', [(0.33, a - 0.03, b - 0.03, 0.36, c + 0.03, d + 0.03) for (_, a, b, _, c, d) in orn]
+             + [(0.345, (a + c) / 2 - 0.02, b, 0.36, (a + c) / 2 + 0.02, d) for (_, a, b, _, c, d) in orn]
+             + [(0.345, a, (b + d) / 2 - 0.02, 0.36, c, (b + d) / 2 + 0.02) for (_, a, b, _, c, d) in orn], M['gold'], 'Innen')
+# Schuhregale links und rechts innen neben dem Portal
+viele_quader('Innen2_Schuhregal', [(PORTAL_X - 2.6, Y0 + 0.35, 0.17, PORTAL_X - 0.4, Y0 + 0.75, 1.2),
+                                    (PORTAL_X + 0.3, Y0 + 2.4, 0.17, PORTAL_X + 0.7, Y0 + 4.6, 1.2)], M['holz'], 'Innen')
+# Waschraum hinten rechts (Trennwände, Waschbecken-Theke)
+viele_quader('Innen2_Waschraum_Wand', [(BT - 3.6, Y1 - 3.0, 0.17, BT - 3.45, Y1 - 0.3, 2.6), (BT - 3.6, Y1 - 3.0, 0.17, BT - 0.3, Y1 - 2.85, 2.6)], M['putz'], 'Innen')
+viele_quader('Innen2_Waschraum_Theke', [(BT - 3.3, Y1 - 0.85, 0.17, BT - 0.4, Y1 - 0.35, 0.85)], M['stein'], 'Innen')
+fl = farbe('Fliesen_Waschraum', '#CFCBC2', 0.4, 0, 0.03)
+flaeche('Innen2_Waschraum_Boden', [(BT - 3.45, Y1 - 2.85), (BT - 0.3, Y1 - 2.85), (BT - 0.3, Y1 - 0.3), (BT - 3.45, Y1 - 0.3)], 0.18, fl, 'Innen')
+
 # Abschluss
 for o in bpy.data.objects:
     if o.type == 'MESH' and any(o.name.startswith(p) for p in ('EG_Saeule', 'OG_Saeule', 'Olive', 'Tisch', 'Schirm')):
