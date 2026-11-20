@@ -68,4 +68,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 - **Schiebedach über dem Hof**: Alu-Stützen + Laufschienen auf den Hofmauern (4,8 m), 5 Dachfelder; Eigenschaft `offen` an
   `Hofdach_Schienen` (Treiber). Im Video: entsteht geschlossen (33,8–34,2 = Regen), öffnet 35,0–36,6 (Sonne), Kamera schwebt
   darüber und taucht danach durch die offene Fläche in den Hof (Keys 36,2 / 37,4). Motorbrummen in `tools/ton.py`.
+- **Neue Endfassung fertig (20.11., 23:32 UTC)**: neu gerendert alles außer 44–48 s; geprüft 1080×1920, 30 fps, 60,0 s,
+  −14,2 LUFS, Kontaktbogen ohne Text, Übergänge bei 44 s/48 s ohne Sprung (Bilddifferenz wie Nachbarbilder). An Ayman geschickt.
+  Nächster Schritt erst nach Aymans „los“: Higgsfield-Video (`docs/higgsfield_prompts.md`).
 - Neu gerendert: alles außer 44–48 s (per Bildvergleich identisch).
