@@ -685,7 +685,7 @@ for i, x in enumerate((-0.4 - 0.45, 56 + 0.45)):
 ast('Halle_hinten_Rinne', (-0.85, TT - 0.15, 5.55), (56.45, TT - 0.15, 5.55), 0.1, 0.1, M['rinne'], 'Hinten')
 
 # ------------------------------------------------------------------ rechts: langes Nachbargebäude (helle Fassade, großes dunkles Ziegeldach)
-NX0, NY0, NX1, NY1 = BT + 0.3, LT + 0.3, L + 4.5, TT + 0.3
+NX0, NY0, NX1, NY1 = BT + 0.3, LT + 0.3, L + 0.3, TT + 0.3      # Ayman 23.11.: endet rechts bündig mit unserem Grundstück (Bild von oben)
 quader('Nachbar_lang', NX0, NY0, 0, NX1, NY1, 5.2, M['putz_hell'], 'Rechts')
 quader('Nachbar_lang_Sockel', NX0 - 0.05, NY0 - 0.05, 0, NX1 + 0.05, NY1, 0.6, M['sockel'], 'Rechts')
 walmdach('Nachbar_lang_Dach', NX0, NY0, NX1, NY1, 5.2, 12.0, M['ziegel_dunkel'], 4.5, 0.5, 'Rechts')
@@ -694,13 +694,26 @@ for k_, (dx_, rel_) in enumerate(((6.0, 0.6), (16.0, 0.32), (26.0, 0.6))):     #
                       [NX0 + dx_], [rel_], M['dachfenster_blau'], 1.4, 1.7, 'Rechts')
 ast('Nachbar_lang_Rinne', (NX0 - 0.5, NY0 - 0.55, 5.15), (NX1 + 0.5, NY0 - 0.55, 5.15), 0.1, 0.1, M['rinne'], 'Rechts')
 fenster('Nachbar_lang_F_Stirn', '-x', NX0, [16, 20, 24], [2.2], 1.0, 1.4, c='Rechts')
-# kleiner Nachbar rechts außen: helles Haus mit rotem Ziegeldach (wie im Bild)
-quader('Nachbar_rechts', L + 0.5, 0.3, 0, L + 5.5, NY0, 4.6, M['putz_weiss'], 'Rechts')
-satteldach('Nachbar_rechts_Dach', L + 0.5, 0.3, L + 5.5, NY0, 4.6, 6.8, 'y', M['ziegel_rot'], 0.35, 'Rechts', giebel=M['putz_weiss'])
-fenster('Nachbar_rechts_F', '-y', 0.3, [L + 3.0], [1.2], 1.4, 1.2, c='Rechts')
-quader('Zeile_vor_Torgebaeude', L + 5.5, 0.3, 0, 68, 9, 6.2, M['putz_creme'], 'Rechts')
-satteldach('Zeile_vor_Torgebaeude_Dach', L + 5.5, 0.3, 68, 9, 6.2, 8.4, 'x', M['ziegel_dunkel'], 0.3, 'Rechts', giebel=M['putz_creme'])
-fenster('Zeile_vor_Torgebaeude_F', '-y', 0.3, [58, 61, 64], [1.0, 3.8], 1.1, 1.3, c='Rechts')
+# Nachbar rechts (Ayman 23.11., Bild von oben): KEIN eigenes Haus, sondern ein ANBAU mit rotem PULTDACH, der seitlich am langen
+# Nachbargebäude hängt: vorn BÜNDIG mit dessen Front (ragt NICHT zur Gasse hin vor), gleiche Tiefe wie das lange Gebäude, Dach fällt zur
+# Gasse hin ab; rechts geht es mit dem nächsten Haus weiter. Davor bis zur Gasse ein heller Plattenhof, zu unseren Wohnwagen eine Grenzmauer.
+NR_X0, NR_X1, NR_Y0, NR_Y1 = NX1, L + 10.0, NY0, NY1
+NR_ZV, NR_ZH = 3.6, 5.6                                    # Traufe vorn (zur Gasse), hinten hoch
+mesh('Nachbar_rechts', [(NR_X0, NR_Y0, 0), (NR_X1, NR_Y0, 0), (NR_X1, NR_Y1, 0), (NR_X0, NR_Y1, 0),
+                        (NR_X0, NR_Y0, NR_ZV), (NR_X1, NR_Y0, NR_ZV), (NR_X1, NR_Y1, NR_ZH), (NR_X0, NR_Y1, NR_ZH)],
+     [(0, 3, 2, 1), (0, 1, 5, 4), (1, 2, 6, 5), (2, 3, 7, 6), (3, 0, 4, 7), (4, 5, 6, 7)], M['putz_weiss'], 'Rechts')
+_u = 0.35
+mesh('Nachbar_rechts_Dach', [(NR_X0, NR_Y0 - _u, NR_ZV - 0.04), (NR_X1 + 0.1, NR_Y0 - _u, NR_ZV - 0.04), (NR_X1 + 0.1, NR_Y1, NR_ZH + 0.02), (NR_X0, NR_Y1, NR_ZH + 0.02)],
+     [(0, 1, 2, 3)], M['ziegel_rot'], 'Rechts')
+ast('Nachbar_rechts_Rinne', (NR_X0, NR_Y0 - _u - 0.05, NR_ZV - 0.08), (NR_X1 + 0.1, NR_Y0 - _u - 0.05, NR_ZV - 0.08), 0.08, 0.08, M['rinne'], 'Rechts')
+fenster('Nachbar_rechts_F', '-y', NR_Y0, [NR_X0 + 1.6, NR_X1 - 2.0], [1.2], 1.0, 1.1, c='Rechts')
+quader('Nachbar_rechts_Tuer', NR_X0 + 4.2, NR_Y0 - 0.04, 0, NR_X0 + 5.2, NR_Y0, 2.1, M['tuer_dunkel'], 'Rechts')
+flaeche('Nachbar_rechts_Hof', [(L + 0.25, 0.25), (NR_X1, 0.25), (NR_X1, NR_Y0), (L + 0.25, NR_Y0)], 0.025, M['beton_hell'], 'Rechts')
+quader('Grenzmauer_rechts', L, 0.3, 0, L + 0.25, NR_Y0, 2.0, M['putz_weiss'], 'Rechts')
+# dahinter/rechts geht es mit dem nächsten Haus weiter (bis an den Anbau und das lange Gebäude)
+quader('Zeile_vor_Torgebaeude', NR_X1, 0.3, 0, 72, NY0, 6.2, M['putz_creme'], 'Rechts')
+satteldach('Zeile_vor_Torgebaeude_Dach', NR_X1, 0.3, 72, NY0, 6.2, 9.0, 'x', M['ziegel_dunkel'], 0.3, 'Rechts', giebel=M['putz_creme'])
+fenster('Zeile_vor_Torgebaeude_F', '-y', 0.3, [NR_X1 + 2.5, NR_X1 + 6.0, NR_X1 + 9.5], [1.0, 3.8], 1.1, 1.3, c='Rechts')
 
 # ------------------------------------------------------------------ gegenüber: weißes Haus + Schornstein
 SX, SY = BT + 0.4, -8.9
