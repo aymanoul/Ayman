@@ -479,16 +479,92 @@ for i, (x0, y0, x1, y1) in enumerate(((-0.015, Y0 - 0.05, BT + 0.015, Y0 + 0.3),
     quader(f'Attika{i}', x0, y0, H_OG if i == 0 else H_DACH, x1, y1, H_ATTIKA, M['attika'], 'S5_Dach')
 flaeche('Dachkies', [(0.3, Y0 + 0.3), (BT - 0.3, Y0 + 0.3), (BT - 0.3, Y1 - 0.3), (0.3, Y1 - 0.3)], H_DACH + 0.06, M['kies'], 'S5_Dach')
 flaeche('Gruendach', [(0.8, Y0 + 0.8), (BT - 0.8, Y0 + 0.8), (BT - 0.8, Y1 - 0.8), (0.8, Y1 - 0.8)], H_DACH + 0.1, M['gruendach'], 'S5_Dach')
-mods, gest = [], []
-for r in range(3):                       # Ayman 23.11. (Bild von oben): 3 lange PV-Reihen quer über das Dach
-    y0 = Y0 + 1.5 + r * 3.0
-    for i in range(14):
-        x = 1.0 + i * (BT - 2.0) / 14 + 0.03
-        mods.append((x, y0, H_DACH + 0.42, x + (BT - 2.0) / 14 - 0.06, y0 + 1.9, H_DACH + 0.46))
-    for x in (1.2, BT / 2, BT - 1.3):
-        gest += [(x, y0 + 0.2, H_DACH + 0.1, x + 0.08, y0 + 0.28, H_DACH + 0.42), (x, y0 + 1.6, H_DACH + 0.1, x + 0.08, y0 + 1.68, H_DACH + 0.42)]
-viele_quader('PV_Module', mods, M['pv'], 'S5_Dach')
-viele_quader('PV_Gestell', gest, M['pv_rahmen'], 'S5_Dach')
+# PV wie Aymans Vorlage (23.11., assets/gruendach_pv_vorlage_ayman.jpg): aufgeständerte Module (~25° zur Sonne/Gasse geneigt)
+# mit silbernem Rahmen auf Alu-Dreiecksgestellen, 3 lange Reihen; darunter/dazwischen üppiges Gründach (Gräser, Sedum, Kräuter)
+import bmesh as _bm5
+_r5 = random.Random(51)
+PV_NEIG = math.radians(25)
+MOD_B, MOD_T = 1.0, 1.7                  # Modul quer: Breite entlang x, Tiefe in Neigungsrichtung
+pvb = _bm5.new(); PV_MATS = [M['pv'], M['pv_rahmen']]
+
+
+def _pv_quad(pts, mi):
+    f = pvb.faces.new([pvb.verts.new(p_) for p_ in pts]); f.material_index = mi
+    return f
+
+
+def _pv_box(c, s_, mi, rot=None):
+    m_ = Matrix.Translation(c) @ (rot.to_4x4() if rot else Matrix.Identity(4)) @ Matrix.Diagonal((*s_, 1))
+    r = _bm5.ops.create_cube(pvb, size=1.0, matrix=m_)
+    for f in {f for v in r['verts'] for f in v.link_faces}:
+        f.material_index = mi
+
+
+cn, sn = math.cos(PV_NEIG), math.sin(PV_NEIG)
+Z_UNTEN = H_DACH + 0.45                  # Unterkante der Module (Gras wächst darunter)
+for r in range(3):
+    yv = Y0 + 1.4 + r * 3.1              # vordere (untere) Modulkante
+    yh = yv + MOD_T * cn; zh = Z_UNTEN + MOD_T * sn
+    n = 17; x0r = 1.0; dx = (BT - 2.0) / n
+    for i in range(n):
+        xa, xb = x0r + i * dx + 0.015, x0r + (i + 1) * dx - 0.015
+        _pv_quad([(xa + 0.03, yv + 0.03 * cn, Z_UNTEN + 0.03 * sn + 0.012), (xb - 0.03, yv + 0.03 * cn, Z_UNTEN + 0.03 * sn + 0.012),
+                  (xb - 0.03, yh - 0.03 * cn, zh - 0.03 * sn + 0.012), (xa + 0.03, yh - 0.03 * cn, zh - 0.03 * sn + 0.012)], 0)
+        # silberner Rahmen (4 Leisten) um jedes Modul
+        for (pa, pb) in (((xa, yv, Z_UNTEN), (xb, yv, Z_UNTEN)), ((xa, yh, zh), (xb, yh, zh))):
+            _pv_box(((pa[0] + pb[0]) / 2, pa[1], pa[2]), (xb - xa, 0.035, 0.035), 1, Matrix.Rotation(-PV_NEIG, 3, 'X'))
+        for xx in (xa + 0.015, xb - 0.015):
+            _pv_box((xx, (yv + yh) / 2, (Z_UNTEN + zh) / 2), (0.03, MOD_T, 0.035), 1, Matrix.Rotation(PV_NEIG, 3, 'X'))
+    # Alu-Dreiecksgestelle alle ~2 m: vorderer kurzer Fuß, hinterer langer Fuß, Strebe, Bodenschiene; Längsträger unter den Modulen
+    for xg in [x0r + 0.2 + k * (BT - 2.4) / 8 for k in range(9)]:
+        _pv_box((xg, yv + 0.15, (H_DACH + 0.12 + Z_UNTEN + 0.1 * sn) / 2), (0.05, 0.05, Z_UNTEN + 0.1 * sn - H_DACH - 0.12), 1)
+        _pv_box((xg, yh - 0.15, (H_DACH + 0.12 + zh - 0.1 * sn) / 2), (0.05, 0.05, zh - 0.1 * sn - H_DACH - 0.12), 1)
+        _pv_box((xg, (yv + yh) / 2, H_DACH + 0.14), (0.06, yh - yv + 0.2, 0.04), 1)
+        ln = math.hypot(yh - yv - 0.3, zh - Z_UNTEN); ang = math.atan2(zh - Z_UNTEN - 0.15, yh - yv - 0.3)
+        _pv_box((xg, (yv + yh) / 2, (H_DACH + 0.14 + zh) / 2 - 0.05), (0.035, 0.035, ln * 0.9), 1, Matrix.Rotation(-ang + math.pi / 2, 3, 'X'))
+    for t in (0.25, 0.75):
+        _pv_box(((x0r + BT - 1.0) / 2, yv + (yh - yv) * t, Z_UNTEN + (zh - Z_UNTEN) * t - 0.05), (BT - 2.0, 0.04, 0.05), 1)
+me_ = bpy.data.meshes.new('PV_Module'); pvb.to_mesh(me_); pvb.free()
+for m_ in PV_MATS:
+    me_.materials.append(m_)
+_o = bpy.data.objects.new('PV_Module', me_); coll('S5_Dach').objects.link(_o)
+quader('PV_Gestell', 0.9, Y0 + 1.0, H_DACH + 0.1, 1.0, Y0 + 1.1, H_DACH + 0.12, M['pv_rahmen'], 'S5_Dach')   # (Gestelle stecken in PV_Module)
+
+# Gründach-Bewuchs: Grashorste (schmale Halme, grün bis strohgelb), Sedum-Polster, ein paar rote/gelbe Blütenpunkte
+GRAS_M = [farbe('Gras_gruen', '#5E8A35', 0.8, 0, 0.25, 9), farbe('Gras_hell', '#8FAE4E', 0.8, 0, 0.25, 9), farbe('Gras_stroh', '#B8B06A', 0.85, 0, 0.2, 9),
+          farbe('Sedum_gruen', '#6E9A3E', 0.7, 0, 0.3, 12), farbe('Sedum_rot', '#A5443A', 0.7, 0, 0.2), farbe('Bluete_gelb_Dach', '#D9C23A', 0.7, 0, 0.1)]
+gb = _bm5.new()
+
+
+def _halm(x, y, z, h, a, neig, mi):
+    w = 0.012; dx_, dy_ = math.cos(a), math.sin(a)
+    tip = (x + dx_ * h * neig, y + dy_ * h * neig, z + h)
+    vs = [gb.verts.new((x - dy_ * w, y + dx_ * w, z)), gb.verts.new((x + dy_ * w, y - dx_ * w, z)), gb.verts.new(tip)]
+    f = gb.faces.new(vs); f.material_index = mi; f.smooth = True
+
+
+X0g, X1g, Y0g, Y1g = 0.8, BT - 0.8, Y0 + 0.8, Y1 - 0.8
+zb = H_DACH + 0.1
+for k in range(950):                                          # Grashorste
+    x, y = _r5.uniform(X0g, X1g), _r5.uniform(Y0g, Y1g)
+    h0 = _r5.uniform(0.2, 0.55); mi = _r5.choice((0, 0, 1, 1, 2))
+    for j in range(_r5.randint(8, 14)):
+        _halm(x + _r5.uniform(-0.06, 0.06), y + _r5.uniform(-0.06, 0.06), zb, h0 * _r5.uniform(0.6, 1.1), _r5.uniform(0, 2 * math.pi), _r5.uniform(0.15, 0.5), mi)
+for k in range(520):                                          # Sedum-/Kräuterpolster
+    x, y = _r5.uniform(X0g, X1g), _r5.uniform(Y0g, Y1g); r_ = _r5.uniform(0.12, 0.3)
+    res = _bm5.ops.create_icosphere(gb, subdivisions=1, radius=r_, matrix=Matrix.Translation((x, y, zb + r_ * 0.15)) @ Matrix.Diagonal((1, 1, 0.35, 1)))
+    mi = 4 if _r5.random() < 0.12 else 3
+    for f in {f for v in res['verts'] for f in v.link_faces}:
+        f.material_index = mi; f.smooth = True
+for k in range(160):                                          # Blütenpunkte
+    x, y = _r5.uniform(X0g, X1g), _r5.uniform(Y0g, Y1g)
+    res = _bm5.ops.create_icosphere(gb, subdivisions=1, radius=0.03, matrix=Matrix.Translation((x, y, zb + _r5.uniform(0.15, 0.35))))
+    for f in {f for v in res['verts'] for f in v.link_faces}:
+        f.material_index = 5
+me_ = bpy.data.meshes.new('Gruendach_Bewuchs'); gb.to_mesh(me_); gb.free()
+for m_ in GRAS_M:
+    me_.materials.append(m_)
+_o = bpy.data.objects.new('Gruendach_Bewuchs', me_); coll('S5_Dach').objects.link(_o)
 
 # ------------------------------------------------------------------ S6: Außenanlagen (Vorplatz, Hof, Parken, Wohnwagen, Zaun, Tor, Licht)
 # (Ayman 23.11.: KEINE Bodenplatte vor der Moschee – die Glasfront ist bündig mit dem Nachbarhaus, davor wie beim Nachbarn Randstein + Gasse)

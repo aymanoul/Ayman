@@ -207,3 +207,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   nach rechts weiter (bis x 72). Davor hängt der orangene Anbau mit Pultdach (x 50,3 … 60, nur 4 m tief, y 8,6 … 12,6; hohe Seite am langen Haus),
   davor ein heller Plattenhof bis zur Gasse, Grenzmauer zu den Wohnwagen. Rechts daneben (ab x 60) das nächste Haus, das vorn bis an die Gasse
   reicht. Kahler Baum nach hinten versetzt. Vorschau `out/phase5/nachbar_rechts.jpg` (oben Vorlage, Mitte Modell).
+- **Dach wie Vorlage (Ayman 23.11., `assets/gruendach_pv_vorlage_ayman.jpg`):** 3 Reihen à 17 aufgeständerte PV-Module (25° zur Gasse geneigt,
+  silberner Rahmen, Alu-Dreiecksgestelle, Längsträger) – Objekt `PV_Module` enthält Module + Gestelle; Gründach mit 3D-Bewuchs
+  (`Gruendach_Bewuchs`: ~950 Grashorste grün bis strohgelb, Sedum-Polster, Blütenpunkte). Higgsfield soll das später fotoreal machen.
+- **Bilder für den Chef:** `out/chef/1…10_*.jpg` (1280×720; 9 = Hof mit Blick durch die Glaswand in die Moschee, 10 = Dach).
