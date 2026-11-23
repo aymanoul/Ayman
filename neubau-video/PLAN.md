@@ -159,3 +159,9 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   Zarge, Querstreben, Polster Sitz + Lehne); Teegläser kräftig bunt durchscheinend mit breitem Goldband; Atay-Kanne gebürstetes Silber
   (**nicht so stark spiegelnd**), gerillter Deckel mit Spitze, eckiger Griff; Tablett matt; Tischdecke Damast creme (`tools/damast_textur.py`);
   **Säulen unten (bis 1,1 m) + Band unter dem Kapitell in dunklem Holz.** Vorschau `out/phase5/saal_wahl.jpg`.
+- **Wohnwagen-Ausfahrt (Ayman 23.11.):** Mit festem Zaun (x 29–44) + Steinpfeilern + nur 6 m Schiebetor kamen 5 von 7 Wohnwagen nicht heraus
+  (Rangierfläche nur 4,5 m tief, nötig ≈ 8 m). **Neu:** fester Zaun, Zwischenpfeiler, Torantrieb entfallen; über die ganze Breite
+  (21 m) **3 Schiebeflügel à ~7 m auf 3 parallelen Bodenschienen mit Kippsicherung**, von Hand verschiebbar und hintereinander schiebbar
+  → jede Stelle bis 14 m breit zu öffnen, jeder Wohnwagen fährt gerade nach vorn hinaus. Nur außen schlanke Stahl-Endpfosten (12 cm),
+  Abstand zum äußeren Wohnwagen 0,23 m. Objekte `Schiebetor` (rechter Flügel, Eigenschaft „offen“), `Schiebetor_FluegelA/B`,
+  `Schiebetor_Schienen`, `Schiebetor_Pfosten`. Vorschau `out/phase5/tor_neu.jpg`. Genaue Ausführung (Schienen, Kippsicherung) mit einem Metallbauer klären.

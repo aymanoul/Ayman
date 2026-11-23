@@ -278,7 +278,7 @@ for i in range(7):
                 kps[0].interpolation = 'QUAD'; kps[0].easing = 'EASE_IN'     # beschleunigt fallen
                 for kp in kps[1:]:
                     kp.interpolation = 'SINE'
-gruppe(['Zaun_fest', 'Zaun_Steinpfeiler'], 42.4, 43.6, X, 6)
+# (23.11.: fester Zaun entfällt – Schienen, Endpfosten und 3 Schiebeflügel kommen mit 'Schiebetor*')
 gruppe(['Schiebetor', 'Schiebetor_*'], 43.2, 44.0, Z, 6)
 
 # Schiebetor zeigen: öffnet und schließt (Warnleuchte blinkt dabei)

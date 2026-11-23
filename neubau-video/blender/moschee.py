@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phase 3: Moschee im Endzustand + Keller, Vorplatz, Hof, Parken, Wohnwagen-Stellplätze, Zaun + Schiebetor.
+"""Phase 3: Moschee im Endzustand + Keller, Vorplatz, Hof, Parken, Wohnwagen-Stellplätze, 3 Schiebeflügel über die ganze Breite.
 Öffnet blender/neubau.blend (aus umgebung.py) und speichert dorthin zurück.
 
     .venv-blender/bin/python blender/umgebung.py && .venv-blender/bin/python blender/moschee.py
@@ -540,22 +540,39 @@ quader('Hecke', PK, LT - 0.75, 0, L, LT, 1.3, M['hecke'], 'S6_Aussen')
 quader('Parken_Hecke', BT + 0.3, LT - 0.35, 0, PK, LT, 0.9, M['hecke'], 'S6_Aussen')   # niedrig, hinter den Parkplätzen
 viele_quader('Wandleuchten_Brandwand', [(PK + (i + 0.5) * WB - 0.15, LT + 0.22, 2.4, PK + (i + 0.5) * WB + 0.15, LT + 0.3, 2.75) for i in range(7)],
              M['wandleuchte'], 'S6_Aussen')
-# Zaun (Stabgitter, fest) + freitragendes Schiebetor
+# Front der Wohnwagen-Plätze (Ayman 23.11.: mit festem Zaun + Pfeilern kamen 5 von 7 Wohnwagen nicht heraus):
+# KEIN fester Zaun, KEINE Zwischenpfeiler. Über die ganze Breite (PK … L, 21 m) 3 Schiebeflügel à ~7 m auf 3 parallelen
+# Bodenschienen mit Kippsicherung (U-Profil mit seitlichen Führungsrollen), von Hand verschiebbar und hintereinander
+# schiebbar → jede Stelle lässt sich öffnen (bis 14 m breit), jeder Wohnwagen fährt gerade nach vorn hinaus.
+# Nur ganz außen schlanke Stahl-Endpfosten (12 cm) – Abstand zum äußeren Wohnwagen ≥ 0,2 m.
 H_Z = 1.9
-z = [(x - 0.04, 0.32, 0, x + 0.04, 0.4, H_Z + 0.05) for x in [PK + k * (TOR - PK) / 7 for k in range(8)]]
-z += [(PK, 0.34, zz, TOR, 0.38, zz + 0.05) for zz in (0.12, H_Z - 0.1)]
-z += [(x - 0.012, 0.345, 0.12, x + 0.012, 0.375, H_Z - 0.05) for x in [PK + 0.1 + k * 0.12 for k in range(int((TOR - PK - 0.2) / 0.12))]]
-viele_quader('Zaun_fest', z, M['zaun'], 'S6_Aussen')
-t = [(TOR - 2.6, 0.62, zz, L, 0.68, zz + 0.07) for zz in (0.08, H_Z - 0.12)]
-t += [(x - 0.012, 0.635, 0.12, x + 0.012, 0.665, H_Z - 0.08) for x in [TOR + 0.08 + k * 0.12 for k in range(int((L - TOR - 0.1) / 0.12))]]
-t += [(x - 0.04, 0.6, 0.08, x + 0.04, 0.7, H_Z - 0.05) for x in (TOR - 2.6, TOR, L - 0.05)]
-t += [(TOR - 2.6 + k * 0.65, 0.63, 0.15, TOR - 2.6 + k * 0.65 + 0.05, 0.67, H_Z - 0.15) for k in range(4)]     # Gegengewicht-Teil
-tor = viele_quader('Schiebetor', t, M['zaun'], 'S6_Aussen')
+SPUR = (0.40, 0.58, 0.76)                                # Mittellinien der 3 Schienen
+F_X0, F_X1, UEB = PK + 0.15, L - 0.15, 0.2               # Flügelbereich, Überlappung im geschlossenen Zustand
+F_LEN = (F_X1 - F_X0 + 2 * UEB) / 3
+viele_quader('Schiebetor_Schienen', [(PK, y - 0.04, 0.0, L, y + 0.04, 0.035) for y in SPUR]
+             + [(PK, y - 0.012, 0.035, L, y + 0.012, 0.05) for y in SPUR], M['zaun'], 'S6_Aussen')
+viele_quader('Schiebetor_Pfosten', [(PK, 0.30, 0, PK + 0.12, 0.86, H_Z + 0.15), (L - 0.12, 0.30, 0, L, 0.86, H_Z + 0.15)], M['zaun'], 'S6_Aussen')
+
+
+def fluegel(x0, y):
+    """Ein Schiebeflügel: Rahmen, Stabgitter, 2 Rollenwagen in der Schiene, Griffstange, Bodenriegel."""
+    x1 = x0 + F_LEN; t = []
+    t += [(x0, y - 0.03, zz, x1, y + 0.03, zz + 0.07) for zz in (0.10, H_Z - 0.07)]
+    t += [(x, y - 0.035, 0.10, x + 0.07, y + 0.035, H_Z) for x in (x0, x1 - 0.07)]
+    t += [(x - 0.012, y - 0.015, 0.17, x + 0.012, y + 0.015, H_Z - 0.07) for x in [x0 + 0.13 + k * 0.12 for k in range(int((F_LEN - 0.2) / 0.12))]]
+    t += [(x - 0.18, y - 0.05, 0.035, x + 0.18, y + 0.05, 0.12) for x in (x0 + 0.6, x1 - 0.6)]                       # Rollenwagen
+    t += [(x0 + 0.25, y + 0.035, 0.9, x0 + 0.29, y + 0.075, 1.4), (x1 - 0.29, y + 0.035, 0.9, x1 - 0.25, y + 0.075, 1.4)]   # Griffe
+    t += [(x0 + 0.12, y + 0.035, 0.12, x0 + 0.16, y + 0.07, 0.6)]                                                    # Bodenriegel
+    return t
+
+
+tor = viele_quader('Schiebetor', fluegel(F_X1 - F_LEN, SPUR[2]), M['zaun'], 'S6_Aussen')     # rechter Flügel (wird im Video geöffnet)
+viele_quader('Schiebetor_FluegelA', fluegel(F_X0, SPUR[0]), M['zaun'], 'S6_Aussen')
+viele_quader('Schiebetor_FluegelB', fluegel(F_X0 + F_LEN - UEB, SPUR[1]), M['zaun'], 'S6_Aussen')
 tor['offen'] = 0.0
 fc = tor.driver_add('location', 0); dv = fc.driver; dv.type = 'SCRIPTED'
 var = dv.variables.new(); var.name = 'offen'; var.targets[0].id = tor; var.targets[0].data_path = '["offen"]'
-dv.expression = '-6.0 * offen'
-viele_quader('Schiebetor_Fuehrung', [(L - 0.15, 0.5, 0, L + 0.1, 0.85, H_Z + 0.1), (TOR - 3.0, 0.75, 0, TOR - 0.4, 1.05, 0.25)], M['zaun'], 'S6_Aussen')
+dv.expression = f'-{F_LEN - UEB:.3f} * offen'                 # schiebt sich hinter den mittleren Flügel
 
 # ------------------------------------------------------------------ Details (Ayman 19.11.: „viel zu wenig Details“)
 granit = farbe('Granit_Sockel', '#3A3C40', 0.4, 0, 0.08, 6)
@@ -773,10 +790,8 @@ for i in range(4):                       # Radstopper quer zur Platzachse, 0,8 m
         stopper_v += [m - q - t + Vector((0, 0, zz)), m + q - t + Vector((0, 0, zz)), m + q + t + Vector((0, 0, zz)), m - q + t + Vector((0, 0, zz))]
     stopper_f += [(k, k + 3, k + 2, k + 1), (k + 4, k + 5, k + 6, k + 7), (k, k + 1, k + 5, k + 4), (k + 1, k + 2, k + 6, k + 5), (k + 2, k + 3, k + 7, k + 6), (k + 3, k, k + 4, k + 7)]
 mesh('Parken_Radstopper', stopper_v, stopper_f, granit, 'S6_Aussen')
-viele_quader('Zaun_Steinpfeiler', [(x - 0.22, 0.26, 0, x + 0.22, 0.5, 2.15) for x in (PK + 0.22, PK + (TOR - PK) / 3, PK + 2 * (TOR - PK) / 3, TOR - 0.22, L - 0.22)], M['stein'], 'S6_Aussen')
-viele_quader('Schiebetor_Antrieb', [(TOR - 1.3, 0.85, 0, TOR - 0.8, 1.2, 0.55)], M['pv_rahmen'], 'S6_Aussen')
-viele_quader('Schiebetor_Warnleuchte', [(L - 0.3, 0.3, 2.15, L - 0.12, 0.48, 2.35)], leuchte('Warnleuchte_orange', '#FF9A2E', 3.0), 'S6_Aussen')
-viele_quader('Schiebetor_Laufrollen', [(x - 0.12, 0.6, 0, x + 0.12, 0.72, 0.18) for x in (TOR - 2.4, TOR - 0.9)], M['zaun'], 'S6_Aussen')
+# (23.11.: Steinpfeiler, Torantrieb und separate Laufrollen entfallen – Flügel von Hand, Rollenwagen sind Teil der Flügel)
+viele_quader('Schiebetor_Warnleuchte', [(L - 0.11, 0.48, H_Z + 0.15, L - 0.01, 0.68, H_Z + 0.33)], leuchte('Warnleuchte_orange', '#FF9A2E', 3.0), 'S6_Aussen')
 
 # ------------------------------------------------------------------ Innen für die Schlussansicht von oben (Ayman 20.11.: Blick wie im Beispielbild)
 # Zimmerpflanzen, senkrechte Lichtleisten, Ornamentfelder neben dem Mihrab, Schuhregale am Eingang, kleiner Waschraum hinten rechts.
