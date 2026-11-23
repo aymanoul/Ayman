@@ -103,4 +103,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   jedem Platz, Fahrgasse 3,7 m mit Pfeil (Symbol), Randlinie zu den Wohnwagen; niedrige Hecke hinter den Plätzen.
 - **Wetter heller** (Ayman: „viel zu dunkel“): Sonne 38° hoch (statt 13°), neutral-warmes Tageslicht, hellerer blauer Himmel,
   keine Dämmerung mehr am Schluss (`umgebung.py` Licht, `animation.py` Sonne/Himmel-Keys).
-- Neu-Rendern komplett seit 23.11. ~16:15 UTC, ~8 h (`sh tools/endfassung_weiter.sh`).
+- **Nachkorrektur 23.11. abends**: Pfeil und lange Linien bei den Parkplätzen entfernt (nur die parallelen Platzstriche);
+  Helligkeit auf die Mitte gestellt (Sonne 25°, Sonne 4,8 warm-neutral, Himmel 0,3, Belichtung −0,1).
+  Vergleichsbild wie Aymans Draufsicht: `out/phase5/neu4_von_oben.jpg`.
+- Neu-Rendern komplett seit 23.11. abends, ~8 h (`sh tools/endfassung_weiter.sh`).

@@ -317,11 +317,11 @@ for lo in obs('Innenlicht*'):
         for t, v in ((0, 0.0), (49.0, 0.0), (50.6, 260.0 if an else 0.0)):
             lo.data.energy = v; lo.data.keyframe_insert('energy', frame=F(t))
 sonne = bpy.data.objects['Sonne'].data
-for t, e, c in ((0, 4.6, (1.0, 0.94, 0.86)), (48.0, 4.6, (1.0, 0.94, 0.86)), (51.0, 4.6, (1.0, 0.92, 0.83))):   # Ayman 23.11.: hell bis zum Schluss, keine Dämmerung
+for t, e, c in ((0, 4.8, (1.0, 0.88, 0.74)), (48.0, 4.8, (1.0, 0.88, 0.74)), (51.0, 4.8, (1.0, 0.86, 0.72))):   # Ayman 23.11.: hell bis zum Schluss, keine Dämmerung
     sonne.energy = e; sonne.color = c
     sonne.keyframe_insert('energy', frame=F(t)); sonne.keyframe_insert('color', frame=F(t))
 bg = sc.world.node_tree.nodes['Background'].inputs['Strength']
-for t, v in ((0, 0.4), (48.0, 0.4), (51.0, 0.4)):
+for t, v in ((0, 0.3), (48.0, 0.3), (51.0, 0.3)):
     bg.default_value = v; bg.keyframe_insert('default_value', frame=F(t))
 
 # ------------------------------------------------------------------ Drohnenflug

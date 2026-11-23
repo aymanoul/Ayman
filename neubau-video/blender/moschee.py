@@ -487,12 +487,7 @@ def strich(a, b, w=0.06, z=0.04):
 mk = []
 for i in range(5):
     pa = Vector((P_XA, P_Y0 + i * P_DY, 0)); mk.append(strich(pa, pa + P_U * P_LANG))
-mk.append(strich((P_XA, P_Y0), (P_XA, P_Y0 + 4 * P_DY)))                     # Abschlusslinie zur Fahrgasse
-mk.append(strich((PK - 0.15, 0.6), (PK - 0.15, LT - 0.4)))                    # Randlinie zu den Wohnwagen-Plätzen
-# Pfeil auf der Fahrgasse (Symbol, kein Text)
-_px = (P_XA + PK) / 2
-mk.append(strich((_px, 2.2), (_px, 4.6), 0.09))
-mk.append([Vector((_px - 0.45, 4.4, 0.04)), Vector((_px + 0.45, 4.4, 0.04)), Vector((_px, 5.3, 0.04)), Vector((_px, 5.3, 0.04))])
+# (Ayman 23.11.: kein Pfeil, keine langen Linien – nur die parallelen Platzstriche)
 # Wohnwagen: 7 Plätze à 3,5 × 7,5 m, leer; Hecke + Wandleuchten an der Brandwand
 quader('Parken_Bordstein', BT, 0.3, 0, BT + P_BORD, P_Y0 + 4 * P_DY + P_TIEFE / math.tan(P_WINKEL) + 0.3, 0.14, M['stein'], 'S6_Aussen')
 flaeche('Wohnwagen_Belag', [(PK, 0.25), (L, 0.25), (L, LT), (PK, LT)], 0.03, M['asphalt'], 'S6_Aussen')
