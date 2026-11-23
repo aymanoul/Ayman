@@ -495,7 +495,7 @@ def baue_auto(a):
 
 # ------------------------------------------------------------------ auf die Parkplätze stellen (Front voran eingeparkt)
 GIER = math.atan2(P_U.y, P_U.x)                     # Fahrtrichtung in den Platz (165°)
-PLATZ = {'Auto3': 0, 'Auto4': 1, 'Auto1': 2, 'Auto2': 3}   # Ayman 23.11.: von der Gasse aus weiß, SUV, schwarzer Sportwagen, grau; weiß + Sportwagen parken im Video ein
+PLATZ = {'Auto3': 0, 'Auto4': 1, 'Auto2': 2, 'Auto1': 3}   # Ayman 23.11.: von der Gasse aus weiß, SUV, grau, schwarzer Sportwagen; grau + weiß parken im Video ein
 AUTO_ZIEL = {}
 for a in AUTOS:
     body, raeder = baue_auto(a)

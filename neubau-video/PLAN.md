@@ -173,6 +173,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   per exec ausgeführt – keine eigene Pipeline-Stufe). Karosserie als Loft (Seitenlinie, Gürtellinie, Grundriss, Radhäuser), Scheiben/Säulen
   per Material, Lichter/Grill/Kennzeichen/Türfugen als projizierte Aufkleber, Räder eigene Objekte (drehen + lenken).
   **Kein Text: keine Logos/Schriftzüge, Kennzeichen leer.** **Reihenfolge (Ayman 23.11.) von der Gasse aus: Platz 0 weißer
-  Sportback (Auto3), Platz 1 schwarzes SUV (Auto4), Platz 2 schwarzer Kompakt-Sportwagen (Auto1), Platz 3 grauer Kompakt (Auto2).**
-  Video: Auto4/Auto2 werden bei 42,5/42,75 s wie die Wohnwagen auf den Platz gesetzt; **Auto3 (weiß) parkt 48,4–54,8 s ein, Auto1 50,6–57,4 s**.
+  Sportback (Auto3), Platz 1 schwarzes SUV (Auto4), Platz 2 grauer Kompakt (Auto2), Platz 3 schwarzer Kompakt-Sportwagen (Auto1).**
+  Video: die beiden schwarzen (Auto4, Auto1) werden bei 42,5/42,75 s wie die Wohnwagen auf den Platz gesetzt; **Auto3 (weiß) parkt 48,4–54,8 s ein,
+  Auto2 (grau) 50,6–57,4 s**.
   Vorschau `out/phase5/autos_parkplatz.jpg`. Feinheiten macht Ayman später mit Higgsfield (ebenfalls ohne Text/Logo).
