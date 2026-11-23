@@ -483,7 +483,8 @@ M.update({
     'schiefer': dachziegel('Dach_Schiefer_dunkel', '#43464B', 0.26, 0.34),
     'ziegel_dunkel': dachziegel('Dach_Ziegel_anthrazit', '#4B4C50', 0.32, 0.30),
     'ziegel_rot': dachziegel('Dach_Ziegel_rot2', '#B0502F', 0.30, 0.28),
-    'dachfenster_blau': leuchtglas('Dachfenster_blau', '#7CC3F0', 0.6),
+    'dachfenster_blau': leuchtglas('Dachfenster_blau', '#5FA4DE', 0.35),
+    'rahmen_dach': farbe('Dachfenster_Rahmen', '#3A3D42', 0.45, 0.6, 0),
     'laermschutz': glas('Laermschutz_gruen', '#5E8A63', 0.25),
     'rinne': farbe('Dachrinne', '#6B6E72', 0.45, 0.7, 0),
     'lampe': leuchtglas('Lampe_Hauseingang', '#FFC877', 4.0),
@@ -497,8 +498,8 @@ sys.path.insert(0, HERE)
 from ph_texturen import ph
 M.update({
     'schiefer': ph('PH_Schiefer', 'roof_slates_02', 2.5, 90, '#4A4E55', 1.0, 0.0, 0.4),
-    'ziegel_dunkel': ph('PH_Ziegel_grau', 'grey_roof_tiles', 3.0, 0, '#5A5D63', 1.0, 0.0, 0.4),
-    'ziegel_dunkel_y': ph('PH_Ziegel_grau_y', 'grey_roof_tiles', 3.0, 90, '#5A5D63', 1.0, 0.0, 0.4),
+    'ziegel_dunkel': ph('PH_Ziegel_grau', 'grey_roof_tiles', 3.0, 0, '#46423E', 1.0, 0.0, 0.4),
+    'ziegel_dunkel_y': ph('PH_Ziegel_grau_y', 'grey_roof_tiles', 3.0, 90, '#46423E', 1.0, 0.0, 0.4),
     'ziegel_rot': ph('PH_Ziegel_rot', 'clay_roof_tiles_02', 2.5, 90, None, 0, 0.0, 0.4),
     'putz_alt': ph('PH_Putz_creme', 'beige_wall_001', 3.0, 0, '#E9D6AE', 1.0, 0.0, 0.15),
     'putz_alt2': ph('PH_Putz_sand', 'beige_wall_001', 3.0, 0, '#DCC497', 1.0, 0.0, 0.15),
@@ -531,6 +532,35 @@ def walmdach(name, x0, y0, x1, y1, zt, zf, mat, walm=4.0, ueber=0.4, c='Umgebung
     return mesh(name, v, f, mat, c)
 
 
+def dachfenster_bauen(name, quads, c):
+    """Echtes Dachfenster (Ayman 23.11.: „nicht draufgeklatscht, sondern eingebaut“): Eindeckrahmen, Blendrahmen der aus der
+    Dachfläche ragt, eingesetztes Glas, Sprossen. quads: je 4 Eckpunkte auf der Dachfläche."""
+    vr, fr, vg, fg, vs, fs, ve, fe = [], [], [], [], [], [], [], []
+    for q in quads:
+        q = [Vector(p) for p in q]
+        n = (q[1] - q[0]).cross(q[3] - q[0]).normalized()
+        if n.z < 0:
+            n = -n; q = [q[0], q[3], q[2], q[1]]
+        mitte = sum(q, Vector()) / 4
+        groesser = lambda d, h: [p + (p - mitte).normalized() * d + n * h for p in q]
+        k = len(ve); ve += groesser(0.12, 0.02); fe.append((k, k + 1, k + 2, k + 3))                     # Eindeckrahmen
+        unten, oben = groesser(0.0, 0.0), groesser(0.0, 0.14)
+        innen_o = [mitte + (p - mitte) * 0.86 + n * 0.14 for p in q]; innen_u = [mitte + (p - mitte) * 0.86 + n * 0.08 for p in q]
+        k = len(vr); vr += unten + oben + innen_o + innen_u          # Rahmen als Ring: außen, oben, innen (Glas bleibt sichtbar)
+        for j in range(4):
+            j2 = (j + 1) % 4
+            fr += [(k + j, k + j2, k + 4 + j2, k + 4 + j), (k + 4 + j, k + 4 + j2, k + 8 + j2, k + 8 + j), (k + 8 + j, k + 8 + j2, k + 12 + j2, k + 12 + j)]
+        gl = [mitte + (p - mitte) * 0.86 + n * 0.09 for p in q]
+        k = len(vg); vg += gl; fg.append((k, k + 1, k + 2, k + 3))
+        for m0, m1 in (((gl[0] + gl[1]) / 2, (gl[2] + gl[3]) / 2), ((gl[1] + gl[2]) / 2, (gl[3] + gl[0]) / 2)):   # Sprossen (Kreuz)
+            d = (m1 - m0).normalized(); s_ = d.cross(n).normalized() * 0.025
+            k = len(vs); vs += [m0 - s_ + n * 0.005, m1 - s_ + n * 0.005, m1 + s_ + n * 0.005, m0 + s_ + n * 0.005]; fs.append((k, k + 1, k + 2, k + 3))
+    mesh(name + '_Eindeckrahmen', ve, fe, M['rinne'], c)
+    mesh(name + '_Rahmen', vr, fr, M['rahmen_dach'], c)
+    mesh(name + '_Glas', vg, fg, M['dachfenster_blau'], c)
+    mesh(name + '_Sprossen', vs, fs, M['rahmen_dach'], c)
+
+
 def dachfenster_reihe(name, x0, x1, y_trauf, y_first, zt, zf, xs, ys_rel, mat, w=1.3, l=1.6, c='Umgebung'):
     """Dachfenster auf einer Dachfläche (First entlang x). ys_rel: 0 = Traufe … 1 = First."""
     vd, fd = [], []
@@ -538,9 +568,8 @@ def dachfenster_reihe(name, x0, x1, y_trauf, y_first, zt, zf, xs, ys_rel, mat, w
         for r in ys_rel:
             ya = y_trauf + (y_first - y_trauf) * r; yb = ya + (l if y_first > y_trauf else -l) * abs(y_first - y_trauf) / math.hypot(y_first - y_trauf, zf - zt)
             za = zt + (zf - zt) * (ya - y_trauf) / (y_first - y_trauf) + 0.05; zb = zt + (zf - zt) * (yb - y_trauf) / (y_first - y_trauf) + 0.05
-            k = len(vd); vd += [(x, ya, za), (x + w, ya, za), (x + w, yb, zb), (x, yb, zb)]
-            fd.append((k, k + 1, k + 2, k + 3) if y_first > y_trauf else (k + 3, k + 2, k + 1, k))
-    mesh(name, vd, fd, mat, c)
+            vd.append([(x, ya, za - 0.04), (x + w, ya, za - 0.04), (x + w, yb, zb - 0.04), (x, yb, zb - 0.04)])
+    dachfenster_bauen(name, vd, c)
 
 
 def altbau(name, x0, y0, x1, y1, zt, zf, wand, seiten, gauben=(), kamine=(), c='Links', giebel_vorn=False):
@@ -601,9 +630,8 @@ def dachfenster_y(name, x_trauf, x_first, zt, zf, ys, rels, mat, w=0.9, l=1.1, c
         for r in rels:
             xa = x_trauf + dx * r; xb = xa + dx * l / ln
             za = zt + (zf - zt) * (xa - x_trauf) / dx + 0.05; zb = zt + (zf - zt) * (xb - x_trauf) / dx + 0.05
-            k = len(vd); vd += [(xa, y - w / 2, za), (xa, y + w / 2, za), (xb, y + w / 2, zb), (xb, y - w / 2, zb)]
-            fd.append((k, k + 1, k + 2, k + 3) if dx < 0 else (k + 3, k + 2, k + 1, k))
-    mesh(name, vd, fd, mat, c)
+            vd.append([(xa, y - w / 2, za - 0.04), (xa, y + w / 2, za - 0.04), (xb, y + w / 2, zb - 0.04), (xb, y - w / 2, zb - 0.04)])
+    dachfenster_bauen(name, vd, c)
 
 
 # ------------------------------------------------------------------ links: schmale lange Häuserzeile (Ayman 23.11., Bild von oben):
@@ -614,7 +642,7 @@ ZEILE = [('Altbau_vorn', 0.3, 9.5, 9.4, 12.5, M['putz_alt']), ('Altbau_2', 9.5, 
 for i, (n, y0, y1, zt, zf, mat) in enumerate(ZEILE):
     us = [y0 + 1.4 + k * 2.0 for k in range(int((y1 - y0 - 1.0) // 2.0))]
     altbau(n, HX0, y0, HX1, y1, zt, zf, mat, {'+x': us, '-x': us[::2]}, kamine=[(-2.2, y0 + 1.2)] if i % 2 == 0 else [(-5.6, y1 - 1.2)])
-    dachfenster_y(n + '_Dachfenster', HX1 + 0.45, (HX0 + HX1) / 2, zt, zf, [y0 + (y1 - y0) * 0.3, y0 + (y1 - y0) * 0.7], [0.35], M['dachfenster'], 0.8, 1.0)
+    dachfenster_y(n + '_Dachfenster', HX1 + 0.45, (HX0 + HX1) / 2, zt, zf, [y0 + (y1 - y0) * 0.5], [0.35], M['dachfenster'], 0.8, 1.0)
 # Vorderseite (Giebel zur Gasse): 3 Fensterachsen, Haustür mit Rundbogen, zwei Laternen
 fenster('Altbau_vorn_F_vorn_OG', '-y', 0.3, [-6.0, -4.0, -2.0], [4.45, 7.65], 1.05, 1.6, c='Links')
 fenster('Altbau_vorn_F_vorn_EG', '-y', 0.3, [-6.0, -2.0], [1.25], 1.05, 1.6, c='Links')
@@ -647,7 +675,7 @@ for i, x in enumerate((0.0, BT / 2 - 0.2, BT - 0.4)):
 quader('Halle_hinten', -0.4, TT + 0.3, 0, 56, 44, 5.6, M['putz_hell'], 'Hinten')
 walmdach('Halle_hinten_Dach', -0.4, TT + 0.3, 56, 44, 5.6, 11.0, M['ziegel_dunkel'], 5.0, 0.45, 'Hinten')
 dachfenster_reihe('Halle_hinten_Dachfenster', -0.4, 56, TT + 0.3 - 0.45, (TT + 0.3 + 44) / 2, 5.6, 11.0,
-                  [4.0, 14.0, 24.0, 34.0, 44.0], [0.35], M['dachfenster_blau'], 1.6, 1.8, 'Hinten')
+                  [6.0, 24.0, 43.0], [0.4], M['dachfenster_blau'], 1.4, 1.7, 'Hinten')     # Ayman 23.11.: wenige, wie Referenz
 for i, x in enumerate((-0.4 - 0.45, 56 + 0.45)):
     pass
 ast('Halle_hinten_Rinne', (-0.85, TT - 0.15, 5.55), (56.45, TT - 0.15, 5.55), 0.1, 0.1, M['rinne'], 'Hinten')
@@ -657,10 +685,9 @@ NX0, NY0, NX1, NY1 = BT + 0.3, LT + 0.3, L + 4.5, TT + 0.3
 quader('Nachbar_lang', NX0, NY0, 0, NX1, NY1, 5.2, M['putz_hell'], 'Rechts')
 quader('Nachbar_lang_Sockel', NX0 - 0.05, NY0 - 0.05, 0, NX1 + 0.05, NY1, 0.6, M['sockel'], 'Rechts')
 walmdach('Nachbar_lang_Dach', NX0, NY0, NX1, NY1, 5.2, 12.0, M['ziegel_dunkel'], 4.5, 0.5, 'Rechts')
-dachfenster_reihe('Nachbar_lang_Dachfenster', NX0, NX1, NY0 - 0.5, (NY0 + NY1) / 2, 5.2, 12.0,
-                  [NX0 + 5 + i * 5.2 for i in range(6)], [0.3], M['dachfenster_blau'], 1.5, 1.7, 'Rechts')
-dachfenster_reihe('Nachbar_lang_Dachfenster2', NX0, NX1, NY0 - 0.5, (NY0 + NY1) / 2, 5.2, 12.0,
-                  [NX0 + 7.6 + i * 5.2 for i in range(5)], [0.62], M['dachfenster_blau'], 1.5, 1.7, 'Rechts')
+for k_, (dx_, rel_) in enumerate(((6.0, 0.6), (16.0, 0.32), (26.0, 0.6))):     # Ayman 23.11.: 3 versetzte Dachfenster, wie Referenz
+    dachfenster_reihe(f'Nachbar_lang_Dachfenster{k_}', NX0, NX1, NY0 - 0.5, (NY0 + NY1) / 2, 5.2, 12.0,
+                      [NX0 + dx_], [rel_], M['dachfenster_blau'], 1.4, 1.7, 'Rechts')
 ast('Nachbar_lang_Rinne', (NX0 - 0.5, NY0 - 0.55, 5.15), (NX1 + 0.5, NY0 - 0.55, 5.15), 0.1, 0.1, M['rinne'], 'Rechts')
 fenster('Nachbar_lang_F_Stirn', '-x', NX0, [16, 20, 24], [2.2], 1.0, 1.4, c='Rechts')
 # kleiner Nachbar rechts außen: helles Haus mit rotem Ziegeldach (wie im Bild)
@@ -687,8 +714,8 @@ for i, gx in enumerate(GXS):
     quader(f'Halle_gegenueber{i}', x0 + 0.15, GY_H, 0, x1 - 0.15, GY_V, zt, wand, 'Gegenueber')
     satteldach(f'Halle_gegenueber{i}_Dach', x0 + 0.15, GY_H, x1 - 0.15, GY_V, zt, zf, 'y', M['ziegel_dunkel_y'] if i % 2 else M['schiefer'], 0.15, 'Gegenueber', giebel=wand)
     quader(f'Halle_gegenueber{i}_Brandwand', x1 - 0.15, GY_H, 0, x1 + 0.15, GY_V, zt + 0.5, M['beton_hell'], 'Gegenueber')
-    for sgn, xt in ((1, x0), (-1, x1)):
-        dachfenster_y(f'Halle_gegenueber{i}_Dachfenster{sgn}', xt + sgn * 0.15, (x0 + x1) / 2, zt, zf, [GY_V - 6.0, GY_V - 14.5], [0.4], M['dachfenster'], 1.2, 1.3, 'Gegenueber')
+    sgn, xt = (1, x0) if i % 2 else (-1, x1)                                    # je Halle 1 Dachfenster (Ayman 23.11.)
+    dachfenster_y(f'Halle_gegenueber{i}_Dachfenster', xt + sgn * 0.15, (x0 + x1) / 2, zt, zf, [GY_V - (6.0 if i % 3 else 13.0)], [0.4], M['dachfenster'], 1.1, 1.3, 'Gegenueber')
     zylinder(f'Halle_gegenueber{i}_Luefter', (x0 + x1) / 2 - 1.2, GY_V - 10.0, zf - 0.6, 0.25, 0.25, 1.0, M['metall_grau'], 10, 'Gegenueber')
     fenster(f'Halle_gegenueber{i}_F', '+y', GY_V, [x0 + 2.0, x1 - 2.0], [1.2, 3.2] if zt > 5.2 else [1.4], 1.3, 1.2, c='Gegenueber')
     quader(f'Halle_gegenueber{i}_Tor', x0 + 3.6, GY_V, 0, x1 - 3.6, GY_V + 0.05, 3.2, M['rollladen'] if i % 2 else M['tuer_dunkel'], 'Gegenueber')

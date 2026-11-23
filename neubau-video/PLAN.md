@@ -123,4 +123,8 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   und Vorhängen, Tür mit Fenster und Griff, Schweller, Radkästen, Tandemachse mit 4 Rädern + Alufelgen, Deichsel (A-Rahmen,
   Haube, Kupplung, Stützrad), L-Rücklichter + Lichtband, Stoßfänger, leeres Kennzeichenfeld, 3 Dachluken, Klimagerät.
   KEINE Schriftzüge/Logos (Regel). Alle Teile heißen `Wohnwagen{i}_*` (Fall-Animation greift sie).
-- Neu-Rendern komplett seit 23.11. ~18:45 UTC, ~10 h (`sh tools/endfassung_weiter.sh`).
+- **Dachfenster echt eingebaut** (Vorlage `assets/dachfenster_vorlage_ayman.png`, „nicht draufgeklatscht, nicht so viele“):
+  `dachfenster_bauen()` in `umgebung.py`: Eindeckrahmen, Blendrahmen als Ring (ragt 14 cm aus dem Dach), eingesetztes blaues Glas,
+  Sprossenkreuz. Anzahl: Halle hinten 3, langes Nachbargebäude 3 versetzt, je Halle gegenüber 1, je Altbau-Abschnitt 1.
+  Dunklere Ziegel (#46423E).
+- Neu-Rendern komplett seit 23.11. ~19:15 UTC, ~10 h (`sh tools/endfassung_weiter.sh`).
