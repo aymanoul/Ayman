@@ -114,4 +114,8 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 - **3 Technik-Kästen auf dem Moscheedach entfernt** (Ayman 23.11.).
 - Hinweis an Ayman: sein Vergleichsbild ist KI-erzeugt (Bild-KI), nicht Blender; den Foto-Look bringt später der Higgsfield-Schritt.
 - Offen: Schlussansicht höher + Zoom (weniger Perspektive)? Ayman noch nicht geantwortet.
-- Neu-Rendern komplett seit 23.11. ~17:45 UTC, ~10 h (`sh tools/endfassung_weiter.sh`).
+- **Proportionen nach Aymans Chef** (`assets/proportionen_chef.jpg`: „Bau länger, Parkplatz kürzer“): BT = 20 m statt 16,5 m
+  (Plan sagt 16,43 m – bewusste Abweichung für die Wirkung im Video), Parken 9 m (PK = 29), Wohnwagen 7 × 3,0 m (statt 3,5 m).
+  Innenpositionen mit X() skaliert (`moschee.py`), Kamera-x mit XU() umgerechnet (`animation.py`, Tor-Szene 43–48,5 s unverändert),
+  Glasfront 11 Felder. Kamerapfad geprüft (keine Kollision). Verhältnis Moschee : Rest jetzt ~1 : 1,5 im Bild.
+- Neu-Rendern komplett seit 23.11. ~18:15 UTC, ~10 h (`sh tools/endfassung_weiter.sh`).

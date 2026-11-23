@@ -30,7 +30,7 @@ FPS = 30
 sc.render.fps = FPS; sc.frame_start = 0; sc.frame_end = 60 * FPS
 sc['END_STAGE'] = END_STAGE
 F = lambda t: int(round(t * FPS))
-BT, Y0, Y1, KZ = 16.5, 0.3, 12.3, -3.2
+BT, Y0, Y1, KZ = 20.0, 0.3, 12.3, -3.2
 TT, LT = 29.0, 12.3
 
 
@@ -356,6 +356,23 @@ START = {
     'A': [(0.0, (33, -3.6, 2.0), (16.9, -8.9, 5.0)), (1.8, (26, -3.8, 7.5), (11, 5, 2.5)), (3.0, (25, -14, 15), (9, 5, 0.0))],
     'B': [(0.0, (9, 5, 64), (9, 9, 0.0)), (1.8, (12, -3, 26), (13, 5, 0.0)), (3.4, (15, -5.8, 1.6), (15, 3, 4.2))],   # Ayman 23.11.: von oben herab bis zum Eingang
 }
+def XU(x):
+    """Kamera-x vom alten Plan (Moschee 16,5 m, Parken bis 25,5) auf den neuen (Moschee 20 m, Parken bis 29) umrechnen."""
+    if 0 <= x <= 16.5:
+        return x * BT / 16.5
+    if 16.5 < x <= 25.5:
+        return x + (BT - 16.5)
+    if 25.5 < x <= 50:
+        return 29.0 + (x - 25.5) * (50 - 29.0) / (50 - 25.5)
+    return x
+
+
+def umrechnen(keys):
+    return [(t, (XU(p[0]), p[1], p[2]), (XU(z[0]), z[1], z[2])) if not (43.0 <= t <= 48.5) else (t, p, z) for t, p, z in keys]
+
+
+GEMEINSAM = umrechnen(GEMEINSAM)
+START = {k: umrechnen(v) for k, v in START.items()}
 for v, start in START.items():
     cd = bpy.data.cameras.new(f'Drohne_{v}'); cd.lens = 24; cd.sensor_width = 36; cd.clip_end = 2000
     cam = bpy.data.objects.new(f'Drohne_{v}', cd); sc.collection.objects.link(cam)

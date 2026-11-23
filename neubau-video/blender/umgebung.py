@@ -23,7 +23,7 @@ TEX = os.path.join(ROOT, 'assets', 'tex')
 random.seed(7)
 
 # Lageplan-Maße (freigegeben 19.11.)
-L, BT, TT, LT = 50.0, 16.5, 29.0, 12.3
+L, BT, TT, LT = 50.0, 20.0, 29.0, 12.3      # Ayman/Chef 23.11.: Moschee 20 m
 GASSE = -6.5
 NORD = Vector((math.cos(math.radians(-22)), math.sin(math.radians(-22)), 0))   # +X, leicht zur Gasse
 
@@ -642,7 +642,7 @@ for i, y in enumerate(range(-120, 161, 4)):
 # ------------------------------------------------------------------ hinten: Mauer + große Halle mit dunklem Ziegeldach und blauen Dachfenstern
 quader('Mauer_hinten', 0, TT, 0, BT, TT + 0.3, 4.6, M['mauer'], 'Hinten')
 quader('Mauer_Abdeckung', -0.05, TT - 0.05, 4.6, BT + 0.05, TT + 0.35, 4.75, M['beton_hell'], 'Hinten')
-for i, x in enumerate((0.0, 8.0, 16.1)):
+for i, x in enumerate((0.0, BT / 2 - 0.2, BT - 0.4)):
     quader(f'Mauer_Pfeiler{i}', x, TT - 0.15, 0, x + 0.42, TT + 0.3, 4.9, M['beton_hell'], 'Hinten')
 quader('Halle_hinten', -0.4, TT + 0.3, 0, 56, 44, 5.6, M['putz_hell'], 'Hinten')
 walmdach('Halle_hinten_Dach', -0.4, TT + 0.3, 56, 44, 5.6, 11.0, M['ziegel_dunkel'], 5.0, 0.45, 'Hinten')
