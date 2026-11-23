@@ -98,4 +98,9 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 - **PV** in 3 langen Reihen quer über das Gründach (wie Aymans Bild von oben).
 - Kamera: Key 6,0 s über der Gasse, neuer Key 22,2 s – Kamerapfad per Skript geprüft (keine Kollision mit Hallen/Häusern).
 - Wichtig: Szene immer komplett neu bauen (umgebung → moschee → animation), sonst bleiben alte Kameras im .blend.
-- Neu-Rendern komplett seit 23.11. ~15:45 UTC, ~7,5 h (`sh tools/endfassung_weiter.sh`).
+- **Parkplätze neu geplant** (Ayman: „Sinn ergeben, quer aber parallel und ordentlich“): 4 Schrägplätze 75° zur Fahrgasse,
+  2,45 × 4,8 m, alle Striche parallel, Abschlusslinie zur Fahrgasse, Bordstein (0,5 m) vor der Glaswand, Radstopper quer in
+  jedem Platz, Fahrgasse 3,7 m mit Pfeil (Symbol), Randlinie zu den Wohnwagen; niedrige Hecke hinter den Plätzen.
+- **Wetter heller** (Ayman: „viel zu dunkel“): Sonne 38° hoch (statt 13°), neutral-warmes Tageslicht, hellerer blauer Himmel,
+  keine Dämmerung mehr am Schluss (`umgebung.py` Licht, `animation.py` Sonne/Himmel-Keys).
+- Neu-Rendern komplett seit 23.11. ~16:15 UTC, ~8 h (`sh tools/endfassung_weiter.sh`).

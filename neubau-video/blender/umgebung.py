@@ -720,10 +720,10 @@ try:
             sky.sky_type = t; break
         except TypeError:
             continue
-    mixw = w.node_tree.nodes.new('ShaderNodeMix'); mixw.data_type = 'RGBA'; mixw.inputs['Factor'].default_value = 0.55
-    w.node_tree.links.new(sky.outputs['Color'], mixw.inputs['A']); mixw.inputs['B'].default_value = (0.95, 0.80, 0.66, 1)
+    mixw = w.node_tree.nodes.new('ShaderNodeMix'); mixw.data_type = 'RGBA'; mixw.inputs['Factor'].default_value = 0.2
+    w.node_tree.links.new(sky.outputs['Color'], mixw.inputs['A']); mixw.inputs['B'].default_value = (0.80, 0.88, 1.0, 1)   # Ayman 23.11.: helles, freundliches Wetter
     w.node_tree.links.new(mixw.outputs['Result'], bg.inputs['Color'])
-    bg.inputs['Strength'].default_value = 0.22
+    bg.inputs['Strength'].default_value = 0.4
     SKY = sky
 except Exception:
     bg.inputs['Color'].default_value = (0.55, 0.65, 0.85, 1); bg.inputs['Strength'].default_value = 0.8
@@ -732,9 +732,9 @@ SUED = Vector((-NORD.x, -NORD.y, 0)); WEST = Vector((NORD.y, -NORD.x, 0))   # We
 WEST = Vector((-NORD.y, NORD.x, 0)) if WEST.y < 0 else WEST              # West zeigt nach hinten (+Y)
 SW = (SUED * 0.45 + WEST * 0.89).normalized()                           # echt: Azimut ≈ 243° (Nov., ca. 15:30) = von hinten
 SW = Vector((-0.55, -0.83, 0)).normalized()                            # Aymans Wahl (19.11.): tiefe warme Sonne von vorn links → Glasfront im Licht
-HOEHE = math.radians(13)
+HOEHE = math.radians(38)     # Ayman 23.11.: „viel heller“ → Sonne höher (heller Tag statt tiefer Abendsonne)
 zur_sonne = Vector((SW.x * math.cos(HOEHE), SW.y * math.cos(HOEHE), math.sin(HOEHE)))
-sd = bpy.data.lights.new('Sonne', 'SUN'); sd.energy = 5.0; sd.color = (1.0, 0.78, 0.56); sd.angle = math.radians(0.8)
+sd = bpy.data.lights.new('Sonne', 'SUN'); sd.energy = 5.5; sd.color = (1.0, 0.95, 0.88); sd.angle = math.radians(0.8)
 so = bpy.data.objects.new('Sonne', sd); sc.collection.objects.link(so)
 so.rotation_euler = (-zur_sonne).to_track_quat('-Z', 'Y').to_euler()
 if SKY is not None:
@@ -753,6 +753,7 @@ sc.render.engine = 'CYCLES'
 sc.cycles.device = 'CPU'; sc.cycles.samples = 32; sc.cycles.use_denoising = True
 sc.cycles.max_bounces = 4
 sc.view_settings.view_transform = 'AgX'
+sc.view_settings.exposure = -0.2
 try:
     sc.view_settings.look = 'AgX - Medium High Contrast'
 except TypeError:

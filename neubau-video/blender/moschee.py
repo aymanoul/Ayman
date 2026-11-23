@@ -469,12 +469,32 @@ quader('Aussenkueche_Platte', BT - 5.45, TT - 1.8, 0.9, BT - 1.45, TT - 1.0, 0.9
 quader('Aussenkueche_Grill', BT - 3.0, TT - 1.6, 0.95, BT - 2.1, TT - 1.15, 1.35, M['pv_rahmen'], 'S6_Aussen')
 # Parken: 4 schräge Plätze, leer
 flaeche('Parken_Belag', [(BT, 0.25), (PK, 0.25), (PK, LT), (BT, LT)], 0.03, M['asphalt'], 'S6_Aussen')
+# Parken (Ayman 23.11.: „Sinn ergeben, quer aber parallel und ordentlich“): 4 Schrägplätze im Winkel 75° zur Fahrgasse,
+# je 2,45 m breit und 4,8 m tief, alle Striche parallel; Autos fahren von der Gasse (vorn) vorwärts schräg hinein.
+# Vor der Glaswand ein 0,5 m Bordstein-Streifen, in jedem Platz ein Radstopper; Fahrgasse 3,7 m, Pfeil Richtung Einfahrt.
+P_WINKEL, P_BREITE, P_TIEFE, P_BORD, P_Y0 = math.radians(75), 2.45, 4.8, 0.5, 0.45
+P_U = Vector((-math.sin(P_WINKEL), math.cos(P_WINKEL), 0))          # in den Platz hinein (zur Moschee, leicht nach hinten)
+P_DY = P_BREITE / math.sin(P_WINKEL)                                 # Abstand der Striche entlang der Fahrgasse
+P_XA = BT + P_BORD + P_TIEFE                                         # Außenkante der Plätze (Fahrgassen-Seite)
+P_LANG = P_TIEFE / math.sin(P_WINKEL)
+
+
+def strich(a, b, w=0.06, z=0.04):
+    a, b = Vector((a[0], a[1], 0)), Vector((b[0], b[1], 0)); d = (b - a).normalized(); n = Vector((-d.y, d.x, 0)) * w
+    return [Vector((p.x, p.y, z)) for p in (a - n, b - n, b + n, a + n)]
+
+
 mk = []
-for i in range(5):   # Ayman 23.11.: Schrägparker andersherum → Autos fahren von der Gasse (vorn) vorwärts schräg hinein
-    y = 2.4 + i * 2.4; d = Vector((4.5, -2.2, 0)).normalized()
-    p0 = Vector((BT + 0.3, y, 0.04)); p1 = p0 + d * 5.0; nrm = Vector((-d.y, d.x, 0)) * 0.06
-    mk.append([p0 - nrm, p1 - nrm, p1 + nrm, p0 + nrm])
+for i in range(5):
+    pa = Vector((P_XA, P_Y0 + i * P_DY, 0)); mk.append(strich(pa, pa + P_U * P_LANG))
+mk.append(strich((P_XA, P_Y0), (P_XA, P_Y0 + 4 * P_DY)))                     # Abschlusslinie zur Fahrgasse
+mk.append(strich((PK - 0.15, 0.6), (PK - 0.15, LT - 0.4)))                    # Randlinie zu den Wohnwagen-Plätzen
+# Pfeil auf der Fahrgasse (Symbol, kein Text)
+_px = (P_XA + PK) / 2
+mk.append(strich((_px, 2.2), (_px, 4.6), 0.09))
+mk.append([Vector((_px - 0.45, 4.4, 0.04)), Vector((_px + 0.45, 4.4, 0.04)), Vector((_px, 5.3, 0.04)), Vector((_px, 5.3, 0.04))])
 # Wohnwagen: 7 Plätze à 3,5 × 7,5 m, leer; Hecke + Wandleuchten an der Brandwand
+quader('Parken_Bordstein', BT, 0.3, 0, BT + P_BORD, P_Y0 + 4 * P_DY + P_TIEFE / math.tan(P_WINKEL) + 0.3, 0.14, M['stein'], 'S6_Aussen')
 flaeche('Wohnwagen_Belag', [(PK, 0.25), (L, 0.25), (L, LT), (PK, LT)], 0.03, M['asphalt'], 'S6_Aussen')
 WB = (L - PK) / 7
 for i in range(8):
@@ -482,7 +502,8 @@ for i in range(8):
     mk.append([Vector((x - 0.06, LT - 7.5, 0.04)), Vector((x + 0.06, LT - 7.5, 0.04)), Vector((x + 0.06, LT - 0.8, 0.04)), Vector((x - 0.06, LT - 0.8, 0.04))])
 mk.append([Vector((PK, LT - 7.56, 0.04)), Vector((L, LT - 7.56, 0.04)), Vector((L, LT - 7.44, 0.04)), Vector((PK, LT - 7.44, 0.04))])
 mesh('Markierungen', [p for q in mk for p in q], [tuple(range(4 * i, 4 * i + 4)) for i in range(len(mk))], M['markierung'], 'S6_Aussen')
-quader('Hecke', BT + 0.3, LT - 0.75, 0, L, LT, 1.3, M['hecke'], 'S6_Aussen')
+quader('Hecke', PK, LT - 0.75, 0, L, LT, 1.3, M['hecke'], 'S6_Aussen')
+quader('Parken_Hecke', BT + 0.3, LT - 0.35, 0, PK, LT, 0.9, M['hecke'], 'S6_Aussen')   # niedrig, hinter den Parkplätzen
 viele_quader('Wandleuchten_Brandwand', [(PK + (i + 0.5) * WB - 0.15, LT + 0.22, 2.4, PK + (i + 0.5) * WB + 0.15, LT + 0.3, 2.75) for i in range(7)],
              M['wandleuchte'], 'S6_Aussen')
 # Zaun (Stabgitter, fest) + freitragendes Schiebetor
@@ -591,12 +612,15 @@ for i in range(7):
         for v in rad.data.vertices:
             v.co = Vector((cx + sx + v.co.z, (y0 + y1) / 2 + v.co.x, 0.34 + v.co.y))
 # Parken: Radstopper; Zaun: Steinpfeiler; Schiebetor: Antrieb, Laufrollen, Warnleuchte
-stopper = []
-for i in range(4):
-    y = 2.4 + i * 2.4 + 1.2; d = Vector((4.5, -2.2, 0)).normalized()
-    p = Vector((BT + 0.3, y, 0)) + d * 0.9
-    stopper.append((p.x - 0.4, p.y - 0.4, 0.03, p.x + 0.4, p.y + 0.4, 0.13))
-viele_quader('Parken_Radstopper', stopper, granit, 'S6_Aussen')
+stopper_v, stopper_f = [], []
+for i in range(4):                       # Radstopper quer zur Platzachse, 0,8 m vor dem Bordstein
+    m = Vector((P_XA, P_Y0 + (i + 0.5) * P_DY, 0)) + P_U * (P_LANG - 0.8)
+    q = Vector((-P_U.y, P_U.x, 0)) * 0.85; t = P_U * 0.09
+    k = len(stopper_v)
+    for zz in (0.03, 0.13):
+        stopper_v += [m - q - t + Vector((0, 0, zz)), m + q - t + Vector((0, 0, zz)), m + q + t + Vector((0, 0, zz)), m - q + t + Vector((0, 0, zz))]
+    stopper_f += [(k, k + 3, k + 2, k + 1), (k + 4, k + 5, k + 6, k + 7), (k, k + 1, k + 5, k + 4), (k + 1, k + 2, k + 6, k + 5), (k + 2, k + 3, k + 7, k + 6), (k + 3, k, k + 4, k + 7)]
+mesh('Parken_Radstopper', stopper_v, stopper_f, granit, 'S6_Aussen')
 viele_quader('Zaun_Steinpfeiler', [(x - 0.22, 0.26, 0, x + 0.22, 0.5, 2.15) for x in (PK + 0.22, PK + (TOR - PK) / 3, PK + 2 * (TOR - PK) / 3, TOR - 0.22, L - 0.22)], M['stein'], 'S6_Aussen')
 viele_quader('Schiebetor_Antrieb', [(TOR - 1.3, 0.85, 0, TOR - 0.8, 1.2, 0.55)], M['pv_rahmen'], 'S6_Aussen')
 viele_quader('Schiebetor_Warnleuchte', [(L - 0.3, 0.3, 2.15, L - 0.12, 0.48, 2.35)], leuchte('Warnleuchte_orange', '#FF9A2E', 3.0), 'S6_Aussen')

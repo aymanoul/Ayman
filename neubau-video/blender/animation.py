@@ -256,6 +256,8 @@ aufbau(bpy.data.objects['Wohnwagen_Belag'], 41.0, 41.8, X, stufe=6)
 aufbau(bpy.data.objects['Markierungen'], 41.2, 42.4, X, stufe=6)
 aufbau(bpy.data.objects['Parken_Radstopper'], 42.0, 42.4, Z, stufe=6)
 aufbau(bpy.data.objects['Hecke'], 41.4, 42.6, X, stufe=6)
+aufbau(bpy.data.objects['Parken_Hecke'], 41.0, 41.8, X, stufe=6)
+aufbau(bpy.data.objects['Parken_Bordstein'], 40.9, 41.5, Y, stufe=6)
 aufbau(bpy.data.objects['Wandleuchten_Brandwand'], 41.8, 42.4, X, stufe=6)
 # Wohnwagen (Ayman 20.11.): fertig, werden leicht auf den Platz „fallen gelassen“ (nicht von unten aufgebaut)
 for i in range(7):
@@ -315,11 +317,11 @@ for lo in obs('Innenlicht*'):
         for t, v in ((0, 0.0), (49.0, 0.0), (50.6, 260.0 if an else 0.0)):
             lo.data.energy = v; lo.data.keyframe_insert('energy', frame=F(t))
 sonne = bpy.data.objects['Sonne'].data
-for t, e, c in ((0, 5.0, (1.0, 0.78, 0.56)), (48.0, 5.0, (1.0, 0.78, 0.56)), (51.0, 2.4 if an else 5.0, (1.0, 0.62, 0.40))):
+for t, e, c in ((0, 4.6, (1.0, 0.94, 0.86)), (48.0, 4.6, (1.0, 0.94, 0.86)), (51.0, 4.6, (1.0, 0.92, 0.83))):   # Ayman 23.11.: hell bis zum Schluss, keine Dämmerung
     sonne.energy = e; sonne.color = c
     sonne.keyframe_insert('energy', frame=F(t)); sonne.keyframe_insert('color', frame=F(t))
 bg = sc.world.node_tree.nodes['Background'].inputs['Strength']
-for t, v in ((0, 0.22), (48.0, 0.22), (51.0, 0.11 if an else 0.22)):
+for t, v in ((0, 0.4), (48.0, 0.4), (51.0, 0.4)):
     bg.default_value = v; bg.keyframe_insert('default_value', frame=F(t))
 
 # ------------------------------------------------------------------ Drohnenflug
