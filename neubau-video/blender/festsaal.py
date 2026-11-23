@@ -82,7 +82,12 @@ TEPPICH = bild_mat('Saal_Teppich', 'teppich.jpg', 2.4, 3.6, rough=0.95, **{'Shee
 FARBE = os.environ.get('FARBE', '')
 VAR = {'A': dict(wand='#E0D3C0', stoff='#958675', laeufer='#8A9A79', holz_unten=True, boden='marmor'),
        'B': dict(wand='#B3BEA6', stoff='#8C918A', laeufer='#C9B696', holz_unten=False, boden='marmor'),
-       'C': dict(wand='#EAE2D6', stoff='#6C6864', laeufer='#AE6A4E', holz_unten=False, boden='holz')}.get(FARBE)
+       'C': dict(wand='#EAE2D6', stoff='#6C6864', laeufer='#AE6A4E', holz_unten=False, boden='holz'),
+       # Ayman 23.11.: C gewählt (Holzboden bleibt), Tischdecken + Stühle besser kombinieren → C1/C2/C3
+       'C1': dict(wand='#EAE2D6', stoff='#8A7A69', laeufer='#8A9A79', tuch='#E4DACA', gestell='#5E5A55', holz_unten=False, boden='holz'),
+       'C2': dict(wand='#EAE2D6', stoff='#6E7458', laeufer='#6E7458', tuch='#F1EEE7', gestell='#8F8D88', holz_unten=False, boden='holz'),
+       'C3': dict(wand='#EAE2D6', stoff='#946A4B', laeufer=None, tuch='#DCD8D0', gestell='#3E3C3A', holz_unten=False, boden='holz'),
+       }.get(FARBE)
 EICHE = os.path.join(HERE, '..', 'assets', 'tex', 'ph', 'laminate_floor_02_diff.jpg')
 HOLZ_M = bild_mat('Saal_Eiche', EICHE, 2.0, 2.0, rough=0.45)
 WAND = mat('Saal_Wand', VAR['wand'] if VAR else '#EFECE7', 0.55)
@@ -91,7 +96,7 @@ WEISS_GL = mat('Saal_Weiss_glanz', '#F1EFEA', 0.5)
 GOLD = mat('Saal_Gold', '#C8B89A', 0.5, 0.55)              # Ayman 23.11.: weniger Gold → mattes Champagner
 GOLD_MATT = mat('Saal_Gold_matt', '#C4B699', 0.6, 0.4)
 SAMT = mat('Saal_Samt_beige', '#D3C8B6', 0.85, **{'Sheen Weight': 0.4, 'Sheen Roughness': 0.5})
-TUCH = mat('Saal_Tischdecke', '#F3F1EC', 0.7, **{'Sheen Weight': 0.2, 'Sheen Roughness': 0.5})
+TUCH = mat('Saal_Tischdecke', VAR.get('tuch', '#F3F1EC') if VAR else '#F3F1EC', 0.7, **{'Sheen Weight': 0.2, 'Sheen Roughness': 0.5})
 PORZELLAN = mat('Saal_Porzellan', '#FBFAF7', 0.15)
 GLAS = mat('Saal_Glas', '#FFFFFF', 0.0, **{'Transmission Weight': 1.0, 'IOR': 1.45})
 KRISTALL = mat('Saal_Kristall', '#FFFFFF', 0.0, **{'Transmission Weight': 1.0, 'IOR': 1.6})
@@ -372,7 +377,7 @@ for k, z in enumerate((0.0, 0.25, 0.5, 0.70, 0.745)):
 ringe.append([(0.915 * math.cos(2 * math.pi * i / n), 0.915 * math.sin(2 * math.pi * i / n), 0.76) for i in range(n)])
 b.ring(ringe, 0, True, True, False)
 b.polygon([(0.915 * math.cos(2 * math.pi * i / n), 0.915 * math.sin(2 * math.pi * i / n), 0.76) for i in range(n)], 0)
-if VAR:                                                              # Tischläufer quer über den Tisch, an den Enden herabhängend
+if VAR and VAR.get('laeufer'):                                      # Tischläufer quer über den Tisch, an den Enden herabhängend
     LAEUFER = mat('Saal_Tischlaeufer', VAR['laeufer'], 0.85, **{'Sheen Weight': 0.3})
     b.mats.append(LAEUFER); mi = len(b.mats) - 1
     b.quader(-0.958, -0.19, 0.76, 0.958, 0.19, 0.766, mi)
@@ -382,7 +387,7 @@ if VAR:                                                              # Tischläu
 TISCH = b.objekt('Saal_Tisch0')
 
 # ------------------------------------------------------------------ Stuhl: schlichter, stapelbarer Bankettstuhl (Ayman 23.11.)
-GESTELL = mat('Saal_Stuhlgestell', '#9E9D99', 0.55, 0.5)
+GESTELL = mat('Saal_Stuhlgestell', VAR.get('gestell', '#9E9D99') if VAR else '#9E9D99', 0.55, 0.5)
 STOFF = mat('Saal_Stuhlstoff', VAR['stoff'] if VAR else '#B8B1A5', 0.9)
 b = Bau([GESTELL, STOFF])
 b.quader(-0.22, -0.21, 0.42, 0.22, 0.21, 0.445, 0)                                           # Sitzrahmen

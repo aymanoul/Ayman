@@ -149,4 +149,5 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 
 - **Farbvarianten (23.11.)**, Ayman: „zu weiß“: `FARBE=A|B|C` beim Bauen (→ `festsaal_A.blend` …), Probebild `out/phase5/saal_farbvarianten.jpg`.
   A Warm & Holz (Wände sand, Eiche unten, Stühle taupe, Läufer salbeigrün) · B Salbeigrün (Wände grün, Stühle grau, Läufer sand) ·
-  C Holzboden (Eiche, Wände hell-warm, Stühle anthrazit, Läufer terrakotta). Wahl von Ayman steht aus.
+  C Holzboden (Eiche, Wände hell-warm, Stühle anthrazit, Läufer terrakotta). **Ayman wählt C, Boden bleibt; Tischdecken + Stühle besser
+  kombinieren** → `FARBE=C1|C2|C3`, Probebild `out/phase5/saal_farbvarianten_C.jpg` (1 sand/taupe/salbei, 2 olivgrün, 3 cognac). Wahl steht aus.
