@@ -2,7 +2,7 @@
 """Festsaal im Keller (Ayman 23.11.): Einrichtung nach seinem Video von einem Festsaal (Hochzeitssaal-Stil, für Babyfeiern,
 Nikah usw.): weißer, glänzender Marmorboden 120×120 mit feinen braun-goldenen Adern, Teppiche mit Ornament-Bordüre,
 Kassettendecke mit indirekten LED-Bändern und Einbaustrahlern, Kristall-Kronleuchter, runde Tische mit weißen Tischdecken,
-goldene Stühle mit ovaler Polsterlehne, Blumen-Säulen, Bühne mit Sofa und Bögen, Bogen-Spiegel an den Wänden.
+goldene Stühle mit ovaler Polsterlehne, Blumen-Säulen am Eingang, Bogen-Spiegel an den Wänden. KEINE Bühne/Brautpaar-Sofa (Ayman 23.11.: kein reiner Hochzeitssaal).
 Keine Menschen, keine Schrift, keine Gesichter (FESTE REGELN).
 
 Öffnet blender/neubau.blend (fertig gebaut: umgebung → moschee → animation) und speichert nach blender/festsaal.blend
@@ -72,15 +72,15 @@ def bild_mat(name, datei, meter_u, meter_v, rough=0.5, **kw):
     return m
 
 
-MARMOR = bild_mat('Saal_Marmor', 'marmor.jpg', 4.8, 4.8, rough=0.07, **{'Coat Weight': 0.4, 'Coat Roughness': 0.03})
+MARMOR = bild_mat('Saal_Marmor', 'marmor.jpg', 4.8, 4.8, rough=0.2)          # Ayman 23.11.: nicht so glänzend
 TEPPICH = bild_mat('Saal_Teppich', 'teppich.jpg', 2.4, 3.6, rough=0.95, **{'Sheen Weight': 0.4})
 WAND = mat('Saal_Wand', '#EFECE7', 0.55)
 DECKE_M = mat('Saal_Decke', '#F4F3F1', 0.7)
-WEISS_GL = mat('Saal_Weiss_glanz', '#F3F1EC', 0.25)
-GOLD = mat('Saal_Gold', '#E8C27A', 0.22, 1.0)
-GOLD_MATT = mat('Saal_Gold_matt', '#D9B36B', 0.38, 1.0)
-SAMT = mat('Saal_Samt_beige', '#D7C6AA', 0.75, **{'Sheen Weight': 0.8, 'Sheen Roughness': 0.4})
-TUCH = mat('Saal_Tischdecke', '#F5F3EF', 0.4, **{'Sheen Weight': 0.5, 'Sheen Roughness': 0.3})
+WEISS_GL = mat('Saal_Weiss_glanz', '#F1EFEA', 0.5)
+GOLD = mat('Saal_Gold', '#C8B89A', 0.5, 0.55)              # Ayman 23.11.: weniger Gold → mattes Champagner
+GOLD_MATT = mat('Saal_Gold_matt', '#C4B699', 0.6, 0.4)
+SAMT = mat('Saal_Samt_beige', '#D3C8B6', 0.85, **{'Sheen Weight': 0.4, 'Sheen Roughness': 0.5})
+TUCH = mat('Saal_Tischdecke', '#F3F1EC', 0.7, **{'Sheen Weight': 0.2, 'Sheen Roughness': 0.5})
 PORZELLAN = mat('Saal_Porzellan', '#FBFAF7', 0.15)
 GLAS = mat('Saal_Glas', '#FFFFFF', 0.0, **{'Transmission Weight': 1.0, 'IOR': 1.45})
 KRISTALL = mat('Saal_Kristall', '#FFFFFF', 0.0, **{'Transmission Weight': 1.0, 'IOR': 1.6})
@@ -88,12 +88,9 @@ SPIEGEL = mat('Saal_Spiegel', '#E9ECEE', 0.02, 1.0)
 BLUETE_W = mat('Saal_Bluete_weiss', '#F6F2EA', 0.6, **{'Subsurface Weight': 0.3})
 BLUETE_R = mat('Saal_Bluete_rosa', '#E9BFC0', 0.6, **{'Subsurface Weight': 0.3})
 BLATT = mat('Saal_Blatt', '#5E7550', 0.6)
-VORHANG = mat('Saal_Vorhang', '#FBF7F2', 0.6, **{'Transmission Weight': 0.35, 'Sheen Weight': 0.6})
 LED_KALT = licht_mat('Saal_LED_kalt', (0.86, 0.93, 1.0), 40.0)
-LED_WARM = licht_mat('Saal_LED_warm', (1.0, 0.82, 0.6), 18.0)
 SPOT_M = licht_mat('Saal_Spot', (1.0, 0.97, 0.92), 25.0)
 KERZE = licht_mat('Saal_Kerzenbirne', (1.0, 0.84, 0.62), 30.0)
-BUEHNE_LICHT = licht_mat('Saal_Buehne_hinterleuchtet', (1.0, 0.92, 0.85), 2.5)
 
 
 # ------------------------------------------------------------------ Bau-Hilfen (bmesh mit Materialindex)
@@ -324,8 +321,6 @@ for (x, y) in SAULEN:
     b.quader(x - 0.32, y - 0.32, FB, x + 0.32, y + 0.32, BAND_U, 0)
     b.quader(x - 0.38, y - 0.38, FB, x + 0.38, y + 0.38, FB + 0.18, 0, fase=0.02)
     b.quader(x - 0.37, y - 0.37, BAND_U - 0.16, x + 0.37, y + 0.37, BAND_U, 0, fase=0.02)
-    b.quader(x - 0.335, y - 0.335, FB + 0.2, x + 0.335, y + 0.335, FB + 0.23, 1)
-    b.quader(x - 0.335, y - 0.335, BAND_U - 0.2, x + 0.335, y + 0.335, BAND_U - 0.17, 1)
 b.objekt('Saal_Stuetzen')
 
 
@@ -372,17 +367,15 @@ b.ring(ringe, 0, True, True, False)
 b.polygon([(0.915 * math.cos(2 * math.pi * i / n), 0.915 * math.sin(2 * math.pi * i / n), 0.76) for i in range(n)], 0)
 for i in range(10):
     a = 2 * math.pi * i / 10; x, y = 0.66 * math.cos(a), 0.66 * math.sin(a)
-    b.scheibe((x, y), 0.16, 0.76, 0.768, 1, 28); b.scheibe((x, y), 0.12, 0.768, 0.778, 2, 28)
-    b.quader(x - 0.05, y - 0.05, 0.778, x + 0.05, y + 0.05, 0.80, 0)                         # gefaltete Serviette
+    b.scheibe((x, y), 0.13, 0.76, 0.77, 2, 28)                                              # schlichter weißer Teller
+    b.quader(x - 0.05, y - 0.05, 0.77, x + 0.05, y + 0.05, 0.79, 0)                         # gefaltete Serviette
     gx, gy = 0.70 * math.cos(a + 0.2), 0.70 * math.sin(a + 0.2)
     b.ring([[(gx + rr * math.cos(2 * math.pi * j / 14), gy + rr * math.sin(2 * math.pi * j / 14), 0.76 + z) for j in range(14)]
             for rr, z in ((0.03, 0.0), (0.03, 0.005), (0.005, 0.01), (0.005, 0.09), (0.035, 0.12), (0.042, 0.19))], 3, True, True, False)
-# Mittelstück: hohe Glasvase mit Goldfuß und weißem Blumenball
-b.scheibe((0, 0), 0.12, 0.76, 0.78, 1, 24)
-b.ring([[(0.045 * math.cos(2 * math.pi * j / 16), 0.045 * math.sin(2 * math.pi * j / 16), z) for j in range(16)]
-        for z in (0.78, 1.28)], 3, True, True, False)
-b.scheibe((0, 0), 0.09, 1.28, 1.3, 1, 24)
-blumenball(b, (0, 0, 1.48), 0.22, 120, 4, 5, 0.25, 6)
+# Mittelstück: schlichte, niedrige Glasschale mit kleinem Blumengesteck (Ayman 23.11.: nicht zu edel)
+b.ring([[(rr * math.cos(2 * math.pi * j / 20), rr * math.sin(2 * math.pi * j / 20), z) for j in range(20)]
+        for rr, z in ((0.06, 0.76), (0.09, 0.80), (0.10, 0.86))], 3, True, True, False)
+blumenball(b, (0, 0, 0.88), 0.13, 60, 4, 5, 0.25, 6)
 for i in range(6):                                                    # kleine Teelichter
     a = 2 * math.pi * i / 6 + 0.3
     b.scheibe((0.3 * math.cos(a), 0.3 * math.sin(a)), 0.03, 0.76, 0.82, 3, 12)
@@ -413,7 +406,7 @@ for p in STUHL.data.polygons:
 
 # Tischordnung: 4 Reihen in x (Mittelgang mit Teppichen frei), 6 Reihen in y → 24 Tische × 10 Stühle = 240 Plätze
 TX = (2.95, 6.85, 13.15, 17.05)
-TY = (4.1, 7.95, 11.8, 15.65, 19.5, 23.35)
+TY = (4.1, 8.25, 12.4, 16.55, 20.7, 24.85)              # gleichmäßig bis zur Rückwand (keine Bühne)
 erster = True
 for tx in TX:
     for ty in TY:
@@ -428,7 +421,7 @@ for tx in TX:
 
 # ------------------------------------------------------------------ Teppiche im Mittelgang (wie im Video)
 b = Bau([TEPPICH])
-for (y0, y1) in ((1.7, 5.3), (21.6, 25.2)):
+for (y0, y1) in ((1.7, 5.3),):
     b.quader(8.8, y0, FB, 11.2, y1, FB + 0.012, 0)
 ob = b.objekt('Saal_Teppiche')
 uv = ob.data.uv_layers.new(name='UVMap')
@@ -438,20 +431,9 @@ for poly in ob.data.polygons:
         y0 = 1.7 if co.y < 13 else 21.6
         uv.data[li].uv = ((co.x - 8.8) / 2.4, (co.y - y0) / 3.6)
 
-# ------------------------------------------------------------------ Bühne mit Sofa, Bögen und Blumen (hinten, Mitte)
-SB0, SB1, SY0, SH = 6.0, 14.0, 25.9, 0.35
-b = Bau([MARMOR, WEISS_GL, LED_WARM, GOLD_MATT])
-b.quader(SB0, SY0, FB, SB1, RY1 - 0.02, FB + SH, 0)
-b.quader(SB0 - 0.01, SY0 - 0.01, FB + 0.02, SB1 + 0.01, SY0, FB + SH - 0.04, 1)
-b.quader(SB0, SY0 - 0.03, FB + SH - 0.03, SB1, SY0 - 0.01, FB + SH - 0.015, 2)                # Lichtkante
-for k, (yy, zz) in enumerate(((SY0 - 0.35, SH * 2 / 3), (SY0 - 0.7, SH / 3))):
-    b.quader(8.6, yy, FB, 11.4, yy + 0.35, FB + zz, 0)
-ob = b.objekt('Saal_Buehne', (4.8, 4.8))
-# Rückwand der Bühne: drei Bögen mit Goldrahmen, hinterleuchteter Stoff
-b = Bau([WEISS_GL, GOLD, VORHANG, BUEHNE_LICHT])
-yw = RY1 - 0.05
-zb = FB + SH
-b.quader(5.6, yw - 0.06, zb, 14.4, yw, BAND_U, 0)
+# (Ayman 23.11.: KEINE Bühne mit Sofa für ein Brautpaar und kein Teppich davor – der Saal ist kein reiner Hochzeitssaal,
+#  sondern für alle Feiern der Gemeinde: Babyfeier, Nikah, Iftar usw.)
+zb = FB
 
 
 def bogen_pts(cx, w, z0, zg, n=24, y=0.0):
@@ -463,46 +445,12 @@ def bogen_pts(cx, w, z0, zg, n=24, y=0.0):
     return pts
 
 
-for cx, w, hg in ((10.0, 2.6, 0.9), (7.3, 1.7, 0.75), (12.7, 1.7, 0.75)):
-    pts = bogen_pts(cx, w, zb, zb + hg, 24, yw - 0.07)
-    b.pfad(pts, 0.035, 1, 8)
-    b.polygon(list(reversed([(x, yw - 0.065, z) for x, _, z in pts])), 3)
-    # Stoffbahnen in Falten vor dem Licht
-    for k in range(int(w / 0.12)):
-        x = cx - w / 2 + 0.06 + k * 0.12
-        top = zb + hg + math.sqrt(max(0, (w / 2) ** 2 - (x - cx) ** 2)) - 0.02
-        b.rohr((x, yw - 0.12, zb), (x, yw - 0.12, top), 0.05, 0.03, 2, 8)
-b.objekt('Saal_Buehne_Boegen')
-# Sofa (getuftet angedeutet)
-b = Bau([SAMT, GOLD])
-sy = 27.9
-b.quader(8.95, sy - 0.45, zb + 0.08, 11.05, sy + 0.35, zb + 0.45, 0, fase=0.04)
-b.quader(8.95, sy + 0.18, zb + 0.45, 11.05, sy + 0.42, zb + 1.0, 0, fase=0.06)
-for sx in (8.95, 10.88):
-    b.quader(sx, sy - 0.45, zb + 0.45, sx + 0.17, sy + 0.3, zb + 0.72, 0, fase=0.06)
-for i in range(9):
-    for j in range(2):
-        b.kugel((9.15 + i * 0.21, sy + 0.17, zb + 0.62 + j * 0.2), 0.012, 1)
-for sx in (9.0, 11.0):
-    for sy2 in (sy - 0.4, sy + 0.3):
-        b.rohr((sx, sy2, zb), (sx, sy2, zb + 0.08), 0.02, 0.015, 1)
-b.objekt('Saal_Sofa')
-# Blumen: Säulen links/rechts der Bühne, Girlande an der Bühnenkante, Säulen am Eingang des Mittelgangs
-blumensaeule('Saal_Blumensaeule_BL', 5.4, 25.4); blumensaeule('Saal_Blumensaeule_BR', 14.6, 25.4)
+# Blumen-Säulen am Eingang des Mittelgangs
 blumensaeule('Saal_Blumensaeule_EL', 8.3, 1.4, 1.1); blumensaeule('Saal_Blumensaeule_ER', 11.7, 1.4, 1.1)
-b = Bau([BLUETE_W, BLUETE_R, BLATT])
-for k in range(30):
-    x = SB0 + 0.1 + k * (SB1 - SB0 - 0.2) / 29
-    if 8.5 < x < 11.5:
-        continue
-    blumenball(b, (x, SY0 - 0.05, FB + SH + 0.06), 0.13, 26, 0, 1, 0.5, 2)
-for x in (8.7, 11.3):
-    blumenball(b, (x, 27.9, zb + 0.35), 0.28, 120, 0, 1, 0.45, 2)
-b.objekt('Saal_Blumen_Buehne')
 
 # ------------------------------------------------------------------ Seitenwände: Bogen-Spiegel mit Goldrahmen + Wandleuchten
 b = Bau([SPIEGEL, GOLD, KERZE, WEISS_GL])
-spiegel_y = (3.6, 7.95, 11.8, 15.65, 19.5, 23.35)
+spiegel_y = (3.6, 8.25, 12.4, 16.55, 20.7, 24.85)
 for xw, s in ((RX0 + 0.02, 1), (RX1 - 0.02, -1)):
     for yc in spiegel_y:
         if s < 0 and yc < 3.0:
@@ -518,13 +466,19 @@ for xw, s in ((RX0 + 0.02, 1), (RX1 - 0.02, -1)):
             b.rohr((xw + s * 0.03, yy, FB + 1.8), (xw + s * 0.16, yy, FB + 1.85), 0.012, mi=1)
             b.scheibe((xw + s * 0.16, yy), 0.025, FB + 1.85, FB + 1.93, 3, 12)
             b.kugel((xw + s * 0.16, yy, FB + 1.96), 0.02, 2, sz=1.5)
+yw = RY1 - 0.02
+for xc in (8.0, 11.0, 14.0, 17.0):                                    # Rückwand (links davon das Treppenhaus)
+    w, z0, zg = 1.2, FB + 0.25, FB + 1.55
+    pts = [(xc + p[0], yw - 0.015, p[2]) for p in bogen_pts(0.0, w, z0, zg, 24)]
+    b.polygon(pts, 0)
+    b.pfad([(x, yw - 0.03, z) for (x, _, z) in pts], 0.03, 1, 8)
+    b.pfad([(pts[0][0], yw - 0.03, z0), (pts[-1][0], yw - 0.03, z0)], 0.03, 1, 8)
+for xx in (6.5, 9.5, 12.5, 15.5, 18.5):                               # Wandleuchten zwischen den Spiegeln
+    b.quader(xx - 0.06, yw - 0.03, FB + 1.75, xx + 0.06, yw, FB + 1.95, 1)
+    b.rohr((xx, yw - 0.03, FB + 1.8), (xx, yw - 0.16, FB + 1.85), 0.012, mi=1)
+    b.scheibe((xx, yw - 0.16), 0.025, FB + 1.85, FB + 1.93, 3, 12)
+    b.kugel((xx, yw - 0.16, FB + 1.96), 0.02, 2, sz=1.5)
 b.objekt('Saal_Spiegel_Wandleuchten')
-
-# ------------------------------------------------------------------ Licht-Stimmung: zartes Flieder an der Bühnenwand (wie im Video)
-for i, x in enumerate((6.2, 13.8)):
-    ld = bpy.data.lights.new(f'Saal_Flieder{i}', 'AREA'); ld.energy = 220; ld.size = 0.6; ld.color = (0.78, 0.6, 1.0)
-    lo = bpy.data.objects.new(f'Saal_Flieder{i}', ld); lo.location = (x, RY1 - 0.6, zb + 0.05)
-    lo.rotation_euler = (math.radians(-60), 0, 0); C.objects.link(lo)
 
 # Rohbau-Teile des Kellers, die der Ausbau ersetzt/verdeckt
 for o in bpy.data.objects:

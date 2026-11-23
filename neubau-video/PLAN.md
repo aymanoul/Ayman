@@ -142,5 +142,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   `blender/festsaal.py` (öffnet neubau.blend, speichert `blender/festsaal.blend`; Video unverändert), Texturen `tools/festsaal_texturen.py`
   (Marmor 120×120 weiß mit braun-goldenen Adern, Teppich mit Ornament-Bordüre, nur Geometrie). Inhalt: Kassettendecke mit LED-Lichtfugen +
   80 Einbaustrahler, 10 Kristall-Kronleuchter, 3 weiß verkleidete Stützen, 24 runde Tische × 10 goldene Stühle (240 Plätze), Mittelgang mit
-  2 Teppichen, Bühne mit 3 hinterleuchteten Bögen + Sofa + Blumen, Bogen-Spiegel + Wandleuchten, Treppen hinter weißen Wänden mit Doppeltür.
-  Standbilder: `blender/festsaal_bild.py` → `out/phase5/festsaal_buehne.jpg`, `festsaal_ecke.jpg`.
+  1 Teppich am Eingang, Bogen-Spiegel + Wandleuchten (auch an der Rückwand), Treppen hinter weißen Wänden mit Doppeltür.
+  **Ayman 23.11.: KEINE Bühne/Sofa fürs Brautpaar und kein Teppich davor (kein reiner Hochzeitssaal); weniger Gold → mattes Champagner,
+  nicht zu edel, nichts zu glänzend; keine Platzteller, niedrige Tischblumen.**
+  Standbilder: `blender/festsaal_bild.py` → `out/phase5/festsaal_blick.jpg`, `festsaal_ecke.jpg`.
