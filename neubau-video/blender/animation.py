@@ -30,7 +30,7 @@ FPS = 30
 sc.render.fps = FPS; sc.frame_start = 0; sc.frame_end = 60 * FPS
 sc['END_STAGE'] = END_STAGE
 F = lambda t: int(round(t * FPS))
-BT, Y0, Y1, KZ = 16.5, 3.0, 15.0, -3.2
+BT, Y0, Y1, KZ = 16.5, 0.3, 12.3, -3.2
 TT, LT = 29.0, 12.3
 
 
@@ -209,11 +209,11 @@ gruppe(['Keller_Treppe*'], 10.0, 11.0, Z, 2)
 aufbau(bpy.data.objects['Keller_Wandleuchten'], 10.8, 11.2, Z, stufe=2)
 aufbau(bpy.data.objects['Kellerdecke_Hof'], 12.4, 13.6, Y, stufe=2)
 # Stufe 3 – Erdgeschoss
-gruppe(['EG_Wand_links_Qibla', 'EG_Wand_rechts', 'EG_Wand_hinten_*'], 13.0, 15.2, Z, 3, 0.2)
+gruppe(['EG_Wand_links_Qibla', 'EG_Wand_hinten_*'], 13.0, 15.2, Z, 3, 0.2)
 gruppe('EG_Saeule*', 13.3, 15.0, Z, 3, 0.15)
 gruppe(['EG_Glas', 'EG_Pfosten', 'Fassade_Lisenen_EG', 'Fassade_Sockel'], 15.4, 18.6, X, 3)
 gruppe(['EG_Glas_hinten', 'EG_Pfosten_hinten'], 16.0, 18.8, X, 3)
-gruppe('EG_Seitenfenster*', 16.0, 17.4, Z, 3, 0.1)
+gruppe(['EG_Glas_rechts', 'EG_Pfosten_rechts'], 15.8, 18.4, Y, 3)
 gruppe(['Portal_Pfeiler*', 'Portal_Sturz', 'Portal_Glastuer', 'Portal_Feld_oben', 'Portal_Zwickel*', 'Portal_Sprossen', 'Portal_Goldkante', 'Portal_Laternen*'], 16.6, 19.6, Z, 3)
 gruppe(['EG_Teppich', 'Mihrab*', 'Minbar*', 'Innen_Regal*'], 17.0, 18.8, X, 3)
 gruppe('Innen_Ringleuchte*', 18.4, 19.6, Z, 3, 0.1)
@@ -224,7 +224,7 @@ gruppe('OG_Wand*', 21.0, 22.8, Z, 4, 0.2)
 gruppe('OG_Saeule*', 21.2, 22.6, Z, 4, 0.1)
 gruppe(['OG_Glas', 'OG_Pfosten', 'OG_Teppich', 'Fassade_Lisenen_OG', 'LED_Geschossband'], 22.4, 24.6, X, 4)
 gruppe('Rueckseite_Fenster*', 22.6, 24.4, Z, 4)
-gruppe('OG_Seitenfenster*', 23.0, 24.2, Z, 4, 0.1)
+gruppe(['OG_Glas_rechts', 'OG_Pfosten_rechts', 'Geschossband_rechts'], 22.6, 24.6, Y, 4)
 aufbau(bpy.data.objects['Deckenleuchten'], 19.5, 24.0, Z, stufe=4)
 # Stufe 5 – Decke & PV-Dach
 aufbau(bpy.data.objects['Dachplatte'], 25.0, 26.0, X, stufe=5)
@@ -325,12 +325,13 @@ for t, v in ((0, 0.22), (48.0, 0.22), (51.0, 0.11 if an else 0.22)):
 # ------------------------------------------------------------------ Drohnenflug
 GEMEINSAM = [  # (s, Position, Blickziel)
     (4.2, (15.5, -6.8, 2.0), (14, 4, 3.2)),       # unten am (künftigen) Eingang
-    (6.0, (19, -15, 10), (9, 9, -1.0)),          # steigt auf, Grube entsteht
+    (6.0, (20, -3.5, 13), (9, 9, -1.0)),         # steigt über der Gasse auf, Grube entsteht
     (8.0, (14, -24, 23), (8, 9, -1.5)),
     (10.6, (13, -4, 11.5), (8, 15, -2.6)),        # tief und nah über die Grube: Keller mit Säulen, Treppen, Leuchten (Ayman 20.11.)
     (12.6, (6, -6, 12.5), (8, 16, -1.5)),
     (14.6, (-3, -5.6, 8.5), (4, 4, 3.5)),
     (19.6, (21, -5.6, 6.8), (12, 4, 4.5)),
+    (22.2, (24, -6.8, 11.0), (10.8, 6.0, 5.6)),   # über der Gasse bleiben (Hallen gegenüber, Ayman 23.11.)
     (24.8, (26, -13, 15), (9, 9, 7)),
     (27.4, (13, -1.5, 24), (8, 9, 9)),
     (29.6, (7, 6, 15.5), (8, 12, 9.3)),          # nah über den PV-Reihen

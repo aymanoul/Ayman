@@ -23,8 +23,8 @@ bpy.ops.wm.open_mainfile(filepath=os.path.join(HERE, 'neubau.blend'))
 sc = bpy.context.scene
 
 L, BT, TT, LT = 50.0, 16.5, 29.0, 12.3
-VOR, MT = 3.0, 12.0
-Y0, Y1 = VOR, VOR + MT                  # Moschee: y 3 … 15
+VOR, MT = 0.3, 12.0                      # Ayman 23.11.: Front bündig mit den Nachbarhäusern (kein Vorplatz)
+Y0, Y1 = VOR, VOR + MT                  # Moschee: y 0,3 … 12,3
 PORTAL_X = BT - 2.9                     # Portal am rechten Ende: x 13,6 … 16,5
 PK, TOR = BT + 9.0, L - 6.0
 H_EG, H_DECKE, H_OG, H_DACH, H_ATTIKA = 5.5, 5.95, 8.7, 9.2, 10.0
@@ -304,7 +304,11 @@ _pf = [(x - 0.045, Y1 - 0.28, 0.15, x + 0.045, Y1 - 0.04, H_EG - 0.35) for x in 
 _pf += [(0.3, Y1 - 0.28, 0.15, BT - 0.3, Y1 - 0.04, 0.22), (0.3, Y1 - 0.28, H_EG - 0.42, BT - 0.3, Y1 - 0.04, H_EG - 0.35)]
 _pf += [(a + 0.02, yy - 0.03, 0.2, a + 0.07, yy + 0.03, H_EG - 0.4) for (a, yy, _, b, _, _) in [(g[0], (g[1] + g[4]) / 2, 0, 0, 0, 0) for g in _gl]]
 viele_quader('EG_Pfosten_hinten', _pf, M['pfosten'], 'S3_EG')
-quader('EG_Wand_rechts', BT - 0.3, Y0 + 0.6, 0.15, BT, Y1 - 0.3, H_EG, M['putz'], 'S3_EG')
+# rechte Seite zum Parkplatz (Ayman 23.11.): Glasfassade wie vorn, möglichst viel Glas
+_ry = [Y0 + 0.6 + k * (Y1 - 0.3 - Y0 - 0.6) / 7 for k in range(8)]
+mesh('EG_Glas_rechts', [(BT - 0.07, _ry[0], 0.15), (BT - 0.07, _ry[-1], 0.15), (BT - 0.07, _ry[-1], H_EG), (BT - 0.07, _ry[0], H_EG)], [(0, 1, 2, 3)], M['glas'], 'S3_EG')
+viele_quader('EG_Pfosten_rechts', [(BT - 0.16, y - 0.05, 0.15, BT, y + 0.05, H_EG) for y in _ry]
+             + [(BT - 0.14, _ry[0], z - 0.04, BT, _ry[-1], z + 0.04) for z in (0.2, 2.8)], M['pfosten'], 'S3_EG')
 # Glasfassade EG (x 0 … PORTAL_X), Pfosten alle ~1,5 m, Riegel bei 2,8 m
 N_F = 9
 fx = [i * PORTAL_X / N_F for i in range(N_F + 1)]
@@ -313,10 +317,6 @@ flaeche_v('EG_Glas', 0.05, PORTAL_X, Y0 + 0.07, 0.15, H_EG, M['glas'], 'S3_EG')
 pf = [(x - 0.05, Y0, 0.15, x + 0.05, Y0 + 0.16, H_EG) for x in fx[1:-1]] + [(0, Y0, 0.15, 0.12, Y0 + 0.16, H_EG)]
 pf += [(0, Y0, z - 0.04, PORTAL_X, Y0 + 0.14, z + 0.04) for z in (0.2, 2.8)]
 viele_quader('EG_Pfosten', pf, M['pfosten'], 'S3_EG')
-# rechte Seite: drei hohe schmale Fenster
-for i, y in enumerate((5.5, 9.0, 12.5)):
-    quader(f'EG_Seitenfenster{i}', BT + 0.001, y - 0.45, 1.0, BT + 0.03, y + 0.45, 4.6, M['glas'], 'S3_EG')
-    quader(f'EG_Seitenfenster{i}_Rahmen', BT, y - 0.55, 0.9, BT + 0.02, y + 0.55, 4.7, M['pfosten'], 'S3_EG')
 # Portal: Rahmen aus hellem Naturstein, Spitzbogen-Glastür
 PX0, PX1 = PORTAL_X, BT
 quader('Portal_Pfeiler_links', PX0, Y0 - 0.6, 0.0, PX0 + 0.45, Y0 + 0.6, 9.6, M['stein'], 'S3_EG')
@@ -338,7 +338,7 @@ for seite, xs in (('l', PX0 + 0.45), ('r', PX1 - 0.45)):
     mesh(f'Portal_Zwickel_{seite}', v, [tuple(range(len(v)))], M['stein'], 'S3_EG')
 viele_quader('Portal_Sprossen', [(cxm - 0.03, Y0 - 0.4, 0.15, cxm + 0.03, Y0 - 0.32, top - 0.05), (PX0 + 0.45, Y0 - 0.4, 2.6, PX1 - 0.45, Y0 - 0.32, 2.68)], M['gold'], 'S3_EG')
 # Säulen EG
-for i, (x, y) in enumerate(((5.5, 7.0), (11.0, 7.0), (5.5, 11.0), (11.0, 11.0))):
+for i, (x, y) in enumerate(((5.5, Y0 + 4.0), (11.0, Y0 + 4.0), (5.5, Y0 + 8.0), (11.0, Y0 + 8.0))):
     zylinder(f'EG_Saeule{i}', x, y, 0.15, 0.28, 0.28, H_EG - 0.15, M['saeule'], 'S3_EG')
 
 # ------------------------------------------------------------------ Innen (durch das Glas sichtbar)
@@ -360,7 +360,7 @@ quader('Minbar_Kanzel', 0.4, Y0 + MT / 2 + 1.55, 0.17, 0.7, Y0 + MT / 2 + 2.55, 
 dl = []
 for z in (H_EG - 0.02, H_OG - 0.02):
     for x in (3.0, 8.25, 13.5):
-        for y in (5.5, 9.0, 12.5):
+        for y in (Y0 + 2.5, Y0 + 6.0, Y0 + 9.5):
             dl.append((x - 0.6, y - 0.6, z - 0.04, x + 0.6, y + 0.6, z))
 viele_quader('Deckenleuchten', dl, M['licht_innen'], 'Innen')
 for i, z in enumerate((3.0, 7.5)):
@@ -373,14 +373,14 @@ quader('Geschossdecke', 0, Y0, H_EG, BT, Y1, H_DECKE, M['beton_roh'], 'S4_OG')
 quader('Geschossband', -0.02, Y0 - 0.04, H_EG, PORTAL_X + 0.1, Y0 + 0.2, H_DECKE, M['band'], 'S4_OG')
 quader('OG_Wand_links', 0, Y0, H_DECKE, 0.3, Y1, H_OG, M['putz'], 'S4_OG')
 quader('OG_Wand_hinten', 0.3, Y1 - 0.3, H_DECKE, BT, Y1, H_OG, M['putz'], 'S4_OG')
-quader('OG_Wand_rechts', BT - 0.3, Y0 + 0.6, H_DECKE, BT, Y1 - 0.3, H_OG, M['putz'], 'S4_OG')
+mesh('OG_Glas_rechts', [(BT - 0.07, _ry[0], H_DECKE), (BT - 0.07, _ry[-1], H_DECKE), (BT - 0.07, _ry[-1], H_OG), (BT - 0.07, _ry[0], H_OG)], [(0, 1, 2, 3)], M['glas'], 'S4_OG')
+viele_quader('OG_Pfosten_rechts', [(BT - 0.16, y - 0.05, H_DECKE, BT, y + 0.05, H_OG) for y in _ry], M['pfosten'], 'S4_OG')
+quader('Geschossband_rechts', BT - 0.2, Y0 + 0.6, H_EG, BT + 0.02, Y1, H_DECKE, M['band'], 'S4_OG')
 flaeche_v('OG_Glas', 0.05, PORTAL_X, Y0 + 0.07, H_DECKE, H_OG, M['glas'], 'S4_OG')
 pf = [(x - 0.05, Y0, H_DECKE, x + 0.05, Y0 + 0.16, H_OG) for x in fx[1:-1]] + [(0, Y0, H_DECKE, 0.12, Y0 + 0.16, H_OG)]
 viele_quader('OG_Pfosten', pf, M['pfosten'], 'S4_OG')
-for i, y in enumerate((5.5, 9.0, 12.5)):
-    quader(f'OG_Seitenfenster{i}', BT + 0.001, y - 0.45, H_DECKE + 0.5, BT + 0.03, y + 0.45, H_OG - 0.4, M['glas'], 'S4_OG')
 flaeche('OG_Teppich', [(0.3, Y0 + 0.2), (BT - 0.3, Y0 + 0.2), (BT - 0.3, Y1 - 0.3), (0.3, Y1 - 0.3)], H_DECKE + 0.01, M['teppich'], 'Innen')
-for i, (x, y) in enumerate(((5.5, 7.0), (11.0, 7.0), (5.5, 11.0), (11.0, 11.0))):
+for i, (x, y) in enumerate(((5.5, Y0 + 4.0), (11.0, Y0 + 4.0), (5.5, Y0 + 8.0), (11.0, Y0 + 8.0))):
     zylinder(f'OG_Saeule{i}', x, y, H_DECKE, 0.24, 0.24, H_OG - H_DECKE, M['saeule'], 'S4_OG')
 
 # ------------------------------------------------------------------ S5: Dachplatte, Attika, Gründach, PV
@@ -390,17 +390,18 @@ for i, (x0, y0, x1, y1) in enumerate(((-0.015, Y0 - 0.05, BT + 0.015, Y0 + 0.3),
 flaeche('Dachkies', [(0.3, Y0 + 0.3), (BT - 0.3, Y0 + 0.3), (BT - 0.3, Y1 - 0.3), (0.3, Y1 - 0.3)], H_DACH + 0.06, M['kies'], 'S5_Dach')
 flaeche('Gruendach', [(0.8, Y0 + 0.8), (BT - 0.8, Y0 + 0.8), (BT - 0.8, Y1 - 0.8), (0.8, Y1 - 0.8)], H_DACH + 0.1, M['gruendach'], 'S5_Dach')
 mods, gest = [], []
-for i in range(10):
-    x = 1.0 + i * (BT - 2.0) / 10 + 0.1
-    for k in range(5):
-        y0 = Y0 + 1.1 + k * 1.95
-        mods.append((x, y0, H_DACH + 0.42, x + 1.0, y0 + 1.75, H_DACH + 0.46))
-        gest += [(x + 0.1, y0 + 0.2, H_DACH + 0.1, x + 0.16, y0 + 0.26, H_DACH + 0.42), (x + 0.84, y0 + 1.5, H_DACH + 0.1, x + 0.9, y0 + 1.56, H_DACH + 0.42)]
+for r in range(3):                       # Ayman 23.11. (Bild von oben): 3 lange PV-Reihen quer über das Dach
+    y0 = Y0 + 1.5 + r * 3.0
+    for i in range(14):
+        x = 1.0 + i * (BT - 2.0) / 14 + 0.03
+        mods.append((x, y0, H_DACH + 0.42, x + (BT - 2.0) / 14 - 0.06, y0 + 1.9, H_DACH + 0.46))
+    for x in (1.2, BT / 2, BT - 1.3):
+        gest += [(x, y0 + 0.2, H_DACH + 0.1, x + 0.08, y0 + 0.28, H_DACH + 0.42), (x, y0 + 1.6, H_DACH + 0.1, x + 0.08, y0 + 1.68, H_DACH + 0.42)]
 viele_quader('PV_Module', mods, M['pv'], 'S5_Dach')
 viele_quader('PV_Gestell', gest, M['pv_rahmen'], 'S5_Dach')
 
 # ------------------------------------------------------------------ S6: Außenanlagen (Vorplatz, Hof, Parken, Wohnwagen, Zaun, Tor, Licht)
-flaeche('Vorplatz', [(0, 0.25), (BT, 0.25), (BT, Y0), (0, Y0)], 0.035, M['vorplatz'], 'S6_Aussen')
+flaeche('Vorplatz', [(0, -0.9), (BT, -0.9), (BT, Y0), (0, Y0)], 0.035, M['vorplatz'], 'S6_Aussen')   # schmaler Gehweg-Streifen vor der Glasfront
 # Hof (Ayman 19.11.: „besser bebauen wie in den Beispielen“): Plattenboden, Mauern mit Leuchten, durchgehende Pflanzbeete
 # mit Büschen und Zypressen, Bodenstrahler, 2 Olivenbäume, 1 Palme, 2 Essplätze mit Sonnenschirm, Lounge-Ecke, Außenküche.
 flaeche('Hof_Boden', [(0.25, Y1), (BT - 0.25, Y1), (BT - 0.25, TT), (0.25, TT)], 0.035, M['hofplatten'], 'S6_Aussen')
@@ -408,7 +409,7 @@ quader('Hofmauer_links', 0, Y1, 0, 0.25, TT, 3.2, M['hofwand'], 'S6_Aussen')
 quader('Hofmauer_rechts', BT - 0.25, Y1, 0, BT, TT, 3.2, M['hofwand'], 'S6_Aussen')
 viele_quader('Hofmauer_Abdeckung', [(-0.03, Y1, 3.2, 0.28, TT, 3.28), (BT - 0.28, Y1, 3.2, BT + 0.03, TT, 3.28)], M['band'], 'S6_Aussen')
 wl = []
-for y in (17.0, 19.6, 22.2, 24.8, 27.4):
+for y in (14.4, 17.0, 19.6, 22.2, 24.8, 27.4):
     wl += [(0.25, y - 0.12, 2.4, 0.33, y + 0.12, 2.7), (BT - 0.33, y - 0.12, 2.4, BT - 0.25, y + 0.12, 2.7)]
 viele_quader('Hof_Wandleuchten', wl, M['wandleuchte'], 'S6_Aussen')
 BEET = [(0.25, Y1 + 0.6, 1.15, TT - 0.1), (BT - 1.15, Y1 + 0.6, BT - 0.25, TT - 0.1), (1.15, TT - 0.95, BT - 1.15, TT - 0.1)]
@@ -523,13 +524,11 @@ for i in range(1, len(bogen) - 1):
 mesh('Portal_Goldkante', gv, gf, M['gold'], 'S3_EG')
 viele_quader('Portal_Laternen_Gehaeuse', [(x - 0.16, Y0 - 0.72, 2.45, x + 0.16, Y0 - 0.6, 3.15) for x in (PX0 + 0.22, PX1 - 0.22)], M['pfosten'], 'S3_EG')
 viele_quader('Portal_Laternen_Licht', [(x - 0.11, Y0 - 0.74, 2.52, x + 0.11, Y0 - 0.71, 3.08) for x in (PX0 + 0.22, PX1 - 0.22)], M['wandleuchte'], 'S3_EG')
-viele_quader('Portal_Stufen', [(PX0 + 0.3, Y0 - 1.25, 0.0, PX1 - 0.3, Y0 - 0.6, 0.08), (PX0 + 0.4, Y0 - 0.95, 0.0, PX1 - 0.4, Y0 - 0.6, 0.15)], M['stein'], 'S6_Aussen')
+viele_quader('Portal_Stufen', [(PX0 + 0.3, Y0 - 0.95, 0.0, PX1 - 0.3, Y0 - 0.6, 0.08), (PX0 + 0.4, Y0 - 0.8, 0.0, PX1 - 0.4, Y0 - 0.6, 0.15)], M['stein'], 'S6_Aussen')
 for i, x in enumerate((PX0 - 0.55, PX1 + 0.55)):
-    quader(f'Portal_Kuebel{i}', x - 0.35, Y0 - 1.1, 0, x + 0.35, Y0 - 0.4, 0.6, granit, 'S6_Aussen')
-    zylinder(f'Portal_Zypresse{i}', x, Y0 - 0.75, 0.6, 0.32, 0.02, 2.6, M['hecke'], 'S6_Aussen', 10)
+    quader(f'Portal_Kuebel{i}', x - 0.3, Y0 - 0.9, 0, x + 0.3, Y0 - 0.3, 0.6, granit, 'S6_Aussen')
+    zylinder(f'Portal_Zypresse{i}', x, Y0 - 0.6, 0.6, 0.32, 0.02, 2.6, M['hecke'], 'S6_Aussen', 10)
 # rechte Seite mit Natursteinplatten statt Putz
-for n in ('EG_Wand_rechts', 'OG_Wand_rechts'):
-    bpy.data.objects[n].data.materials[0] = M['stein']
 # Rückseite zum Hof: Fenster, Vordach über der Hoftür
 fen = []
 # EG-Rückseite ist jetzt Glas (siehe S3) – nur noch OG-Fenster
@@ -543,13 +542,14 @@ quader('Hoftuer_Vordach', 6.6, Y1, 2.95, 9.6, Y1 + 1.3, 3.1, M['pv_rahmen'], 'S6
 HD = 4.8
 dach_feld = farbe('Hofdach_Feld', '#E9E6DF', 0.45, 0.15, 0.02)
 alu = farbe('Hofdach_Alu', '#A9AEB4', 0.35, 0.85, 0)
-_st = [(x0, y - 0.07, 3.28, x0 + 0.14, y + 0.07, HD) for x0 in (0.055, BT - 0.195) for y in (Y1 + 0.35, 19.0, 22.4, 25.8, TT - 0.2)]
+_st = [(x0, y - 0.07, 3.28, x0 + 0.14, y + 0.07, HD) for x0 in (0.055, BT - 0.195) for y in [Y1 + 0.35 + k * (TT - 0.55 - Y1) / 5 for k in range(6)]]
 viele_quader('Hofdach_Stuetzen', _st, alu, 'S6_Aussen')
 sch = viele_quader('Hofdach_Schienen', [(0.02, Y1 + 0.05, HD, 0.26, TT, HD + 0.16), (BT - 0.26, Y1 + 0.05, HD, BT - 0.02, TT, HD + 0.16)], alu, 'S6_Aussen')
 sch['offen'] = 0.0
-_L = 3.0
+_L = 3.6
+_SCH = (TT - 0.15 - _L - Y1 - 0.1) / 4
 for k in range(5):
-    y0 = Y1 + 0.1 + k * 2.78; z0 = HD + 0.17 + k * 0.05
+    y0 = Y1 + 0.1 + k * _SCH; z0 = HD + 0.17 + k * 0.05
     f = viele_quader(f'Hofdach_Feld{k}', [(0.15, y0, z0, BT - 0.15, y0 + _L, z0 + 0.035),           # Feld
                                           (0.12, y0, z0 - 0.01, BT - 0.12, y0 + 0.08, z0 + 0.05),   # Profil vorn
                                           (0.12, y0 + _L - 0.08, z0 - 0.01, BT - 0.12, y0 + _L, z0 + 0.05)], dach_feld, 'S6_Aussen')
@@ -559,12 +559,12 @@ for k in range(5):
     var = dv.variables.new(); var.name = 'offen'; var.targets[0].id = sch; var.targets[0].data_path = '["offen"]'
     dv.expression = f'{d:.3f} * offen'
 # Innen: Hängeleuchten (Ringe), Quran-Regal an der Rückwand
-for i, (x, y) in enumerate(((5.5, 9.0), (11.0, 9.0))):
+for i, (x, y) in enumerate(((5.5, Y0 + 6.0), (11.0, Y0 + 6.0))):
     zylinder(f'Innen_Ringleuchte{i}', x, y, 4.2, 1.1, 1.1, 0.08, M['licht_innen'], 'Innen', 32)
     zylinder(f'Innen_Ringleuchte{i}_Seil', x, y, 4.28, 0.01, 0.01, H_EG - 4.3, M['zaun'], 'Innen', 6)
 # Quran-Regale an der rechten Seitenwand zwischen den Fenstern (Rückwand ist jetzt Glas, Ayman 20.11.)
-viele_quader('Innen_Regal', [(BT - 0.65, 6.25, 0.17, BT - 0.31, 8.25, 1.9), (BT - 0.65, 9.75, 0.17, BT - 0.31, 11.75, 1.9)], M['holz'], 'Innen')
-viele_quader('Innen_Regal_Buecher', [(BT - 0.68, y0 + 0.1 + j * 0.5, 0.3 + r * 0.55, BT - 0.64, y0 + 0.5 + j * 0.5, 0.6 + r * 0.55) for y0 in (6.25, 9.75) for j in range(4) for r in range(3)], M['gold'], 'Innen')
+viele_quader('Innen_Regal', [(BT - 0.75, Y0 + 3.25, 0.17, BT - 0.41, Y0 + 5.25, 1.25), (BT - 0.75, Y0 + 6.75, 0.17, BT - 0.41, Y0 + 8.75, 1.25)], M['holz'], 'Innen')   # niedrig, vor der Glaswand
+viele_quader('Innen_Regal_Buecher', [(BT - 0.78, y0 + 0.1 + j * 0.5, 0.3 + r * 0.45, BT - 0.74, y0 + 0.5 + j * 0.5, 0.6 + r * 0.45) for y0 in (Y0 + 3.25, Y0 + 6.75) for j in range(4) for r in range(2)], M['gold'], 'Innen')
 # Dach: Ausstieg, zwei Lüftungsgeräte
 viele_quader('Dach_Technik', [(BT - 2.2, Y1 - 1.6, H_DACH, BT - 1.0, Y1 - 0.5, H_DACH + 0.7), (1.0, Y1 - 1.4, H_DACH, 2.1, Y1 - 0.6, H_DACH + 0.9),
                                (3.0, Y1 - 1.4, H_DACH, 4.1, Y1 - 0.6, H_DACH + 0.9)], M['pv_rahmen'], 'S5_Dach')
@@ -593,8 +593,8 @@ for i in range(7):
 # Parken: Radstopper; Zaun: Steinpfeiler; Schiebetor: Antrieb, Laufrollen, Warnleuchte
 stopper = []
 for i in range(4):
-    y = 1.5 + i * 2.5 + 1.25; d = Vector((4.5, 2.2, 0)).normalized()
-    p = Vector((BT + 0.3, y, 0)) + d * 4.3
+    y = 2.4 + i * 2.4 + 1.2; d = Vector((4.5, -2.2, 0)).normalized()
+    p = Vector((BT + 0.3, y, 0)) + d * 0.9
     stopper.append((p.x - 0.4, p.y - 0.4, 0.03, p.x + 0.4, p.y + 0.4, 0.13))
 viele_quader('Parken_Radstopper', stopper, granit, 'S6_Aussen')
 viele_quader('Zaun_Steinpfeiler', [(x - 0.22, 0.26, 0, x + 0.22, 0.5, 2.15) for x in (PK + 0.22, PK + (TOR - PK) / 3, PK + 2 * (TOR - PK) / 3, TOR - 0.22, L - 0.22)], M['stein'], 'S6_Aussen')
@@ -604,10 +604,10 @@ viele_quader('Schiebetor_Laufrollen', [(x - 0.12, 0.6, 0, x + 0.12, 0.72, 0.18) 
 
 # ------------------------------------------------------------------ Innen für die Schlussansicht von oben (Ayman 20.11.: Blick wie im Beispielbild)
 # Zimmerpflanzen, senkrechte Lichtleisten, Ornamentfelder neben dem Mihrab, Schuhregale am Eingang, kleiner Waschraum hinten rechts.
-for i, (x, y) in enumerate(((0.8, 4.0), (0.8, Y1 - 0.9), (BT - 0.9, Y1 - 0.9), (6.0, Y1 - 0.9), (10.5, Y1 - 0.9))):
+for i, (x, y) in enumerate(((0.8, Y0 + 1.0), (0.8, Y1 - 0.9), (BT - 0.9, Y1 - 0.9), (6.0, Y1 - 0.9), (10.5, Y1 - 0.9))):
     quader(f'Innen2_Topf{i}', x - 0.25, y - 0.25, 0.17, x + 0.25, y + 0.25, 0.65, M['kuebel'], 'Innen')
     krone(f'Innen2_Pflanze{i}', x, y, 1.15, 0.45, M['pflanzen'], 'Innen', 2)
-viele_quader('Innen2_Lichtleisten', [(0.31, y - 0.05, 0.6, 0.36, y + 0.05, H_EG - 0.6) for y in (5.0, 7.0, 11.0, 13.0)]
+viele_quader('Innen2_Lichtleisten', [(0.31, y - 0.05, 0.6, 0.36, y + 0.05, H_EG - 0.6) for y in (Y0 + 2.0, Y0 + 4.0, Y0 + 8.0, Y0 + 10.0)]
              + [(x - 0.05, Y1 - 0.36, 0.6, x + 0.05, Y1 - 0.31, H_EG - 0.6) for x in (2.0, 14.5)], M['wandleuchte'], 'Innen')
 orn = []
 for yc in (Y0 + MT / 2 - 2.6, Y0 + MT / 2 + 2.6):

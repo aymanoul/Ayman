@@ -412,7 +412,7 @@ def laubbaum_fern(name, x, y, h):
 
 # ------------------------------------------------------------------ Boden, Gasse, Grundstück
 # Boden mit Aussparung für die Baugrube (Ayman 20.11.: Keller unter Moschee UND Hof → x 0…BT, y 3…TT; nicht unter den Parkplätzen)
-GX0, GX1, GY0, GY1 = 0.0, BT, 3.0, TT
+GX0, GX1, GY0, GY1 = 0.0, BT, 0.3, TT     # Ayman 23.11.: Moschee bündig an der Gasse
 mesh('Boden_weit', [(-200, -200, -0.02), (260, -200, -0.02), (260, GY0, -0.02), (-200, GY0, -0.02),
                     (-200, GY1, -0.02), (260, GY1, -0.02), (260, 260, -0.02), (-200, 260, -0.02),
                     (GX0, GY0, -0.02), (GX0, GY1, -0.02), (GX1, GY0, -0.02), (GX1, GY1, -0.02)],
@@ -429,7 +429,6 @@ mesh('Grundstueck_Schotter', [(0, 0.25, 0.02), (L, 0.25, 0.02), (L, GY0, 0.02), 
      [(0, 1, 2, 3), (4, 2, 5, 6)], M['schotter'], 'Grundstueck')
 flaeche('Grube_Boden', [(GX0, GY0), (GX1, GY0), (GX1, GY1), (GX0, GY1)], 0.02, M['schotter'], 'Grundstueck')
 # gegenüber: Vorfläche weißes Haus (rötliches Pflaster), Flächen zwischen den Hallen (Beton)
-flaeche('Pflaster_rot_weissesHaus', [(3.3, -8.2), (15.3, -8.2), (15.3, GASSE - 0.25), (3.3, GASSE - 0.25)], 0.01, M['pflaster_rot'], 'Boden')
 flaeche('Hofflaeche_gegenueber', [(-18.4, -40), (68, -40), (68, GASSE - 0.25), (-18.4, GASSE - 0.25)], 0.0, M['beton_boden'], 'Boden')
 
 # ------------------------------------------------------------------ Hochstraße (leer, ohne Graffiti)
@@ -569,24 +568,45 @@ def altbau(name, x0, y0, x1, y1, zt, zf, wand, seiten, gauben=(), kamine=(), c='
     return name
 
 
-# ------------------------------------------------------------------ links: Altbauten (Rückseiten zum Grundstück)
-altbau('Altbau_vorn', -14.5, 0.3, -0.4, 10.0, 12.2, 18.0, M['putz_alt'],
-       {'-y': [-12.2, -9.6, -5.3, -2.7], '+x': [2.0, 4.6, 7.4], '-x': [2.5, 7.5]}, gauben=[(5.0, '+x')], kamine=[(-3.5, 2.0), (-11.5, 8.0)], giebel_vorn=True)
-altbau('Altbau_mitte', -12.5, 10.0, -0.4, 19.5, 11.0, 16.2, M['putz_alt2'],
-       {'+x': [11.6, 14.0, 16.4, 18.4], '-x': [12.5, 17.0]}, gauben=[(12.7, '+x'), (17.2, '+x')], kamine=[(-4.0, 11.0)])
-altbau('Altbau_hinten', -14.5, 19.5, -0.4, 30.5, 12.8, 18.6, M['putz_alt'],
-       {'+x': [21.0, 23.6, 26.2, 28.8], '-x': [22.0, 28.0]}, gauben=[(22.3, '+x'), (27.7, '+x')], kamine=[(-3.0, 20.8), (-11.0, 29.0)])
-# Hauseingang vorn: Tür, Stufe, zwei warme Laternen (wie im Bild)
-quader('Altbau_vorn_Tuer', -8.6, 0.24, 0.3, -7.2, 0.3, 2.5, M['tuer_holz'], 'Links')
-quader('Altbau_vorn_Stufe', -9.0, -0.4, 0, -6.8, 0.3, 0.3, M['sockel'], 'Links')
-viele = [(-9.15, 0.12, 2.0, -8.85, 0.3, 2.45), (-6.95, 0.12, 2.0, -6.65, 0.3, 2.45)]
-for i, q in enumerate(viele):
-    quader(f'Altbau_vorn_Laterne{i}', *q, M['lampe'], 'Links')
-for i, (x, y) in enumerate(((-10.2, -0.1), (-5.6, -0.1))):
-    quader(f'Altbau_vorn_Kuebel{i}', x - 0.3, y - 0.3, 0, x + 0.3, y + 0.3, 0.5, M['sockel'], 'Links')
-    kugelkrone(f'Altbau_vorn_Pflanze{i}', x, y, 0.85, 0.35, 0.4, M['kiefer'], 'Links')
-# Baum hinter den Altbauten (wie im Bild)
-kiefer('Kiefer_Altbau', -16.5, 31.5, 15)
+def dachfenster_y(name, x_trauf, x_first, zt, zf, ys, rels, mat, w=0.9, l=1.1, c='Links'):
+    """Dachfenster auf einer Dachfläche mit First entlang y (Fläche von x_trauf bis x_first)."""
+    vd, fd = [], []
+    dx = x_first - x_trauf; ln = math.hypot(dx, zf - zt)
+    for y in ys:
+        for r in rels:
+            xa = x_trauf + dx * r; xb = xa + dx * l / ln
+            za = zt + (zf - zt) * (xa - x_trauf) / dx + 0.05; zb = zt + (zf - zt) * (xb - x_trauf) / dx + 0.05
+            k = len(vd); vd += [(xa, y - w / 2, za), (xa, y + w / 2, za), (xb, y + w / 2, zb), (xb, y - w / 2, zb)]
+            fd.append((k, k + 1, k + 2, k + 3) if dx < 0 else (k + 3, k + 2, k + 1, k))
+    mesh(name, vd, fd, mat, c)
+
+
+# ------------------------------------------------------------------ links: schmale lange Häuserzeile (Ayman 23.11., Bild von oben):
+# ca. 7 m breit, Giebel zur Gasse, 3 Geschosse, mehrere Dachabschnitte mit kleinen Dachfenstern zur Moschee hin
+HX0, HX1 = -7.6, -0.4
+ZEILE = [('Altbau_vorn', 0.3, 9.5, 9.4, 13.2, M['putz_alt']), ('Altbau_2', 9.5, 18.0, 9.0, 12.8, M['putz_alt2']),
+         ('Altbau_3', 18.0, 26.5, 9.6, 13.4, M['putz_alt']), ('Altbau_4', 26.5, 35.0, 9.1, 12.9, M['putz_alt2'])]
+for i, (n, y0, y1, zt, zf, mat) in enumerate(ZEILE):
+    us = [y0 + 1.4 + k * 2.0 for k in range(int((y1 - y0 - 1.0) // 2.0))]
+    altbau(n, HX0, y0, HX1, y1, zt, zf, mat, {'+x': us, '-x': us[::2]}, kamine=[(-2.2, y0 + 1.2)] if i % 2 == 0 else [(-5.6, y1 - 1.2)])
+    dachfenster_y(n + '_Dachfenster', HX1 + 0.45, (HX0 + HX1) / 2, zt, zf, [y0 + (y1 - y0) * 0.3, y0 + (y1 - y0) * 0.7], [0.35], M['dachfenster'], 0.8, 1.0)
+# Vorderseite (Giebel zur Gasse): 3 Fensterachsen, Haustür mit Rundbogen, zwei Laternen
+fenster('Altbau_vorn_F_vorn_OG', '-y', 0.3, [-6.0, -4.0, -2.0], [4.45, 7.65], 1.05, 1.6, c='Links')
+fenster('Altbau_vorn_F_vorn_EG', '-y', 0.3, [-6.0, -2.0], [1.25], 1.05, 1.6, c='Links')
+fenster('Altbau_vorn_F_Giebel', '-y', 0.3, [-4.0], [10.0], 0.9, 1.2, c='Links')
+quader('Altbau_vorn_Tuer', -4.6, 0.24, 0.3, -3.4, 0.3, 2.6, M['tuer_holz'], 'Links')
+quader('Altbau_vorn_Stufe', -4.9, -0.3, 0, -3.1, 0.3, 0.3, M['sockel'], 'Links')
+for i, x in enumerate((-5.0, -3.0)):
+    quader(f'Altbau_vorn_Laterne{i}', x - 0.15, 0.12, 2.1, x + 0.15, 0.3, 2.5, M['lampe'], 'Links')
+for i, x in enumerate((-6.9, -1.1)):
+    quader(f'Altbau_vorn_Kuebel{i}', x - 0.3, -0.4, 0, x + 0.3, 0.2, 0.5, M['sockel'], 'Links')
+    kugelkrone(f'Altbau_vorn_Pflanze{i}', x, -0.1, 0.85, 0.35, 0.4, M['kiefer'], 'Links')
+kiefer('Kiefer_Altbau', -3.5, 37.5, 14)
+# Straße zwischen Häuserzeile und Hochstraße: Gehweg + gestrichelte Mittellinie
+flaeche('Gehweg_links', [(-9.3, -6.5), (HX0, -6.5), (HX0, 40), (-9.3, 40)], 0.03, M['pflaster'], 'Boden')
+flaeche('Randstein_links', [(-9.5, -6.5), (-9.3, -6.5), (-9.3, 40), (-9.5, 40)], 0.035, M['randstein'], 'Boden')
+mesh('Strasse_links_Mittellinie', [p for y in range(-60, 120, 6) for p in ((-14.3, y, 0.01), (-14.15, y, 0.01), (-14.15, y + 3, 0.01), (-14.3, y + 3, 0.01))],
+     [tuple(range(4 * i, 4 * i + 4)) for i in range(30)], M['markierung'], 'Boden')
 
 # ------------------------------------------------------------------ Lärmschutzwand auf der Hochstraße (grünliches Glas mit Pfosten)
 quader('Laermschutz_Glas', -19.4, -120, DZ + 1.05, -19.25, 160, DZ + 4.2, M['laermschutz'], 'Hochstrasse')
@@ -632,18 +652,23 @@ SCHORNSTEIN = False      # Ayman 19.11.: Schornstein steht zu sehr im Weg → we
 if SCHORNSTEIN:
     zylinder('Schornstein', SX, SY, 0, 2.1, 1.35, 28.0, schornstein_mat(SX, SY, 1.7), 48, 'Schornstein')
     zylinder('Schornstein_Kopf', SX, SY, 27.6, 1.42, 1.42, 0.6, M['backstein2'], 48, 'Schornstein')
-WX0, WX1, WY0, WY1 = 3.3, SX - 1.9, -16.5, -8.2
-quader('Weisses_Haus', WX0, WY0, 0, WX1, WY1, 6.2, M['putz_weiss'], 'Gegenueber')
-satteldach('Weisses_Haus_Dach', WX0, WY0, WX1, WY1, 6.2, 8.6, 'x', M['ziegel_dunkel'], 0.35, 'Gegenueber', giebel=M['putz_weiss'])
-fenster('Weisses_Haus_F_OG', '+y', WY1, [5.0, 7.7, 10.4, 13.1], [3.6], 1.1, 1.35, rollladen=True, c='Gegenueber')
-fenster('Weisses_Haus_F_EG', '+y', WY1, [5.0, 7.7, 10.4], [0.9], 1.1, 1.35, rollladen=True, c='Gegenueber')
-quader('Weisses_Haus_Tuer', 12.4, WY1, 0, 13.6, WY1 + 0.06, 2.15, M['holz_tuer'], 'Gegenueber')
-# Glas-Vordach mit schwarzem Ziergestell
-flaeche('Vordach_Glas', [(11.9, WY1), (14.1, WY1), (14.1, WY1 + 1.0), (11.9, WY1 + 1.0)], 2.55, M['glas_vordach'], 'Gegenueber')
-for i, x in enumerate((11.95, 14.05)):
-    ast(f'Vordach_Strebe{i}', (x, WY1, 2.05), (x, WY1 + 1.0, 2.55), 0.025, 0.025, M['metall_dunkel'], 'Gegenueber')
-    ast(f'Vordach_Kante{i}', (x, WY1 + 1.0, 2.55), (x, WY1, 2.75), 0.02, 0.02, M['metall_dunkel'], 'Gegenueber')
-ast('Vordach_Vorderkante', (11.9, WY1 + 1.0, 2.55), (14.1, WY1 + 1.0, 2.55), 0.025, 0.025, M['metall_dunkel'], 'Gegenueber')
+# gegenüber (Ayman 23.11., Bild von oben): durchgehende Reihe alter Hallen, je ca. 9,5 m breit, Giebel zur Gasse,
+# dunkle Ziegel-/Schieferdächer mit Dachfenstern und kleinen Lüftern, Brandwände dazwischen
+GY_V, GY_H = -8.4, -30.0
+GXS = [-18.0 + k * 9.5 for k in range(10)]
+for i, gx in enumerate(GXS):
+    x0, x1 = gx, gx + 9.5; zt, zf = 5.0 + (i % 3) * 0.35, 8.6 + (i % 3) * 0.35
+    wand = [M['putz_hell'], M['beton'], M['putz_creme'], M['backstein2']][i % 4]
+    quader(f'Halle_gegenueber{i}', x0 + 0.15, GY_H, 0, x1 - 0.15, GY_V, zt, wand, 'Gegenueber')
+    satteldach(f'Halle_gegenueber{i}_Dach', x0 + 0.15, GY_H, x1 - 0.15, GY_V, zt, zf, 'y', M['ziegel_dunkel'] if i % 2 else M['schiefer'], 0.15, 'Gegenueber', giebel=wand)
+    quader(f'Halle_gegenueber{i}_Brandwand', x1 - 0.15, GY_H, 0, x1 + 0.15, GY_V, zt + 0.5, M['beton_hell'], 'Gegenueber')
+    for sgn, xt in ((1, x0), (-1, x1)):
+        dachfenster_y(f'Halle_gegenueber{i}_Dachfenster{sgn}', xt + sgn * 0.15, (x0 + x1) / 2, zt, zf, [GY_V - 6.0, GY_V - 14.5], [0.4], M['dachfenster'], 1.2, 1.3, 'Gegenueber')
+    zylinder(f'Halle_gegenueber{i}_Luefter', (x0 + x1) / 2 - 1.2, GY_V - 10.0, zf - 0.6, 0.25, 0.25, 1.0, M['metall_grau'], 10, 'Gegenueber')
+    fenster(f'Halle_gegenueber{i}_F', '+y', GY_V, [x0 + 2.0, x1 - 2.0], [1.2, 3.2] if zt > 5.2 else [1.4], 1.3, 1.2, c='Gegenueber')
+    quader(f'Halle_gegenueber{i}_Tor', x0 + 3.6, GY_V, 0, x1 - 3.6, GY_V + 0.05, 3.2, M['rollladen'] if i % 2 else M['tuer_dunkel'], 'Gegenueber')
+    fenster(f'Halle_gegenueber{i}_F_Giebel', '+y', GY_V, [(x0 + x1) / 2], [zt + 0.5], 1.0, 1.0, c='Gegenueber')
+flaeche('Gehweg_gegenueber', [(-18.4, GY_V), (68, GY_V), (68, GASSE - 0.25), (-18.4, GASSE - 0.25)], 0.02, M['pflaster'], 'Boden')
 
 # ------------------------------------------------------------------ Ende der Gasse: Torgebäude, Kiefer, Laubbaum, Funkmast
 quader('Torgebaeude', 68, -14, 0, 80, 9, 7.4, M['putz_creme'], 'Torgebaeude')
@@ -662,10 +687,7 @@ for i, a in enumerate((0, 2.1, 4.2)):
     quader(f'Funkmast_Antenne{i}', 58 + math.cos(a) * 0.5 - 0.15, 24 + math.sin(a) * 0.5 - 0.1, 23.5, 58 + math.cos(a) * 0.5 + 0.15, 24 + math.sin(a) * 0.5 + 0.1, 25.8, M['beton_hell'], 'Baeume')
 
 # ------------------------------------------------------------------ ringsum: alte Fabrikhallen (Sheddächer), helle Gewerbehallen, Parkplatz
-shedhalle('Shedhalle_gegenueber', 21, -38, 66, -12.5, 4.4)
-quader('Garagen_gegenueber', 19.5, -12.5, 0, 66, -9.5, 3.0, M['putz_hell'], 'Hallen')
-flaeche('Garagen_gegenueber_Dach', [(19.5, -12.5), (66, -12.5), (66, -9.5), (19.5, -9.5)], 3.02, M['flachdach'], 'Hallen')
-shedhalle('Shedhalle_links_gegenueber', -17, -42, 2.5, -18.5, 5.0)
+shedhalle('Shedhalle_gegenueber_hinten', -17, -48, 34, -33, 5.0)
 flachhalle('Halle_hinten_flach1', -16, 45, 40, 70, 7.5)          # Ayman 23.11.: Flachdach-Hallen mit Dachlüftern
 flachhalle('Halle_hinten_flach2', 42, 45, 95, 72, 8.0)
 shedhalle('Shedhalle_rechts', 82, -40, 116, 20, 6.5)

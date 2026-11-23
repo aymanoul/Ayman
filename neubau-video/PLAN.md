@@ -84,4 +84,18 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 - **Schluss**: Dach öffnet sich NICHT mehr (kein Blick ins OG/Frauenbereich); stattdessen ganzes Grundstück von vorn oben, Hof etwas sichtbar.
 - **Maße** (Pläne in `docs/plaene/`): Bestand 1.01 → Hallenteil 16,43 × ca. 25,6 m (Ayman: „ca. 26 × 16“), langer Teil ca. 33 × 10,3 m,
   Gesamtlänge ca. 50 m, Grundstück 900 m². Unser Modell: Moschee + Hof 16,5 × 26 m, Parken/Wohnwagen 33,5 × 12,3 m (mit Vorstreifen) → passt.
-- Neu-Rendern komplett (alles ändert sich) seit 23.11., ~7,5 h (`sh tools/endfassung_weiter.sh`).
+
+## Korrektur von Ayman am 23.11. nachmittags (Bilder `assets/korrektur_pfeile_ayman.jpg`, `front_vorlage_ayman.jpg`, `oben_vorlage_ayman.jpg`)
+- **Front bündig** mit den Nachbarhäusern: kein Vorplatz mehr, Moschee y 0,3 … 12,3 (`moschee.py` VOR = 0,3; `animation.py` Y0/Y1;
+  `umgebung.py` GY0 = 0,3). Vor der Glasfront nur ein schmaler heller Gehweg-Streifen („Vorplatz“, 1,2 m). Hof jetzt 12,3 … 29 (16,7 m),
+  Schiebedach mit 5 Feldern à 3,6 m angepasst. Parken/Wohnwagen enden hinten bei LT = 12,3 = Moschee-Rückwand.
+- **Rechte Seite (zum Parkplatz) ganz aus Glas**, EG und OG, Pfosten wie vorn (`EG/OG_Glas_rechts`, `EG/OG_Pfosten_rechts`); Quran-Regale niedrig davor.
+- **Proportionen**: Häuserzeile links jetzt schmal (7,2 m, x −7,6 … −0,4) und lang (4 Abschnitte bis y 35), 3 Geschosse (Traufe ~9,4 m),
+  Giebel zur Gasse mit Haustür + Laternen, kleine Dachfenster zur Moschee → Moschee-Front (16,5 m) wirkt im richtigen Verhältnis.
+  Dahinter Gehweg + Straße mit Mittellinie unter/neben der Hochstraße.
+- **Gegenüber**: durchgehende Reihe aus 10 alten Hallen (je 9,5 m, Giebel zur Gasse, dunkle Ziegel-/Schieferdächer mit Dachfenstern,
+  Lüfter, Brandwände, Fenster + Rolltore); weißes Haus, Garagen und Shedhallen vorn entfernt.
+- **PV** in 3 langen Reihen quer über das Gründach (wie Aymans Bild von oben).
+- Kamera: Key 6,0 s über der Gasse, neuer Key 22,2 s – Kamerapfad per Skript geprüft (keine Kollision mit Hallen/Häusern).
+- Wichtig: Szene immer komplett neu bauen (umgebung → moschee → animation), sonst bleiben alte Kameras im .blend.
+- Neu-Rendern komplett seit 23.11. ~15:45 UTC, ~7,5 h (`sh tools/endfassung_weiter.sh`).
