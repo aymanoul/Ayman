@@ -138,3 +138,9 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   Wand, dort steht die mittlere Stütze frei. Unterzüge entlang der Rasterlinien (`Keller_Unterzuege`).
 - Keller wird ein **Festsaal** (Hochzeitssaal-Stil: Tische, Stühle; für Babyfeiern, Nikah usw.). Ayman schickt noch ein Bild, wie er ihn eingerichtet haben möchte.
 - Vorschau: `out/phase5/keller_raster.jpg`.
+- **Festsaal-Einrichtung (23.11. abends, Vorlage: Aymans Video, Standbilder `assets/festsaal_vorlage_ayman.jpg`):**
+  `blender/festsaal.py` (öffnet neubau.blend, speichert `blender/festsaal.blend`; Video unverändert), Texturen `tools/festsaal_texturen.py`
+  (Marmor 120×120 weiß mit braun-goldenen Adern, Teppich mit Ornament-Bordüre, nur Geometrie). Inhalt: Kassettendecke mit LED-Lichtfugen +
+  80 Einbaustrahler, 10 Kristall-Kronleuchter, 3 weiß verkleidete Stützen, 24 runde Tische × 10 goldene Stühle (240 Plätze), Mittelgang mit
+  2 Teppichen, Bühne mit 3 hinterleuchteten Bögen + Sofa + Blumen, Bogen-Spiegel + Wandleuchten, Treppen hinter weißen Wänden mit Doppeltür.
+  Standbilder: `blender/festsaal_bild.py` → `out/phase5/festsaal_buehne.jpg`, `festsaal_ecke.jpg`.
