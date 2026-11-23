@@ -511,6 +511,29 @@ erde = farbe('Erde_Beet', '#4A3326', 0.95, 0, 0.2, 6)
 BEET = [(HX0 + 0.25, Y1 + 0.8, HX0 + 1.45, TT - 1.5), (BT - 1.45, Y1 + 0.8, BT - 0.25, TT - 1.5), (HX0 + 0.25, TT - 1.5, BT - 0.25, TT)]
 viele_quader('Hof_Pflanzbeete', [(x0, y0, 0, x1, y1, 0.42) for x0, y0, x1, y1 in BEET], RAND_STEIN, 'S6_Aussen')
 viele_quader('Hof_Beeterde', [(x0 + 0.08, y0 + 0.08, 0.42, x1 - 0.08, y1 - 0.08, 0.45) for x0, y0, x1, y1 in BEET], erde, 'S6_Aussen')
+BETON_HELL = farbe('Kuebel_Beton_hell', '#BDB8AE', 0.8, 0, 0.06)
+
+
+def kegel_thuja(name, x, y, z0, r, h, c='S6_Aussen', seed=0):
+    """Kegelförmige Thuja/Formschnitt-Konifere: dichte, leicht unregelmäßige Laub-Oberfläche (keine glatte Kegelform)."""
+    rnd = random.Random(seed); n, m = 20, 14
+    v, f = [], []
+    for j in range(m + 1):
+        t = j / m; rr = r * (1 - t) ** 0.85
+        for i in range(n):
+            a_ = 2 * math.pi * i / n; ru = rr * (0.86 + 0.24 * rnd.random()) if 0 < j < m else rr
+            v.append((x + ru * math.cos(a_), y + ru * math.sin(a_), z0 + h * t + (0.03 * rnd.random() if 0 < j < m else 0)))
+    for j in range(m):
+        for i in range(n):
+            a0, a1 = j * n + i, j * n + (i + 1) % n
+            f.append((a0, a1, a1 + n, a0 + n))
+    f.append(tuple(range(n - 1, -1, -1)))
+    ob = mesh(name, v, f, M['hecke'], c)
+    for p_ in ob.data.polygons:
+        p_.use_smooth = True
+    return ob
+
+
 _rnd = random.Random(23)
 
 
@@ -531,74 +554,39 @@ def _busch_mesh(name, kugeln, mats, c='S6_Aussen'):
     return ob
 
 
-def _palme(name, x, y, z0, h, n=11, r=1.2, kuebel=None):
-    """Kleine Palme: geringelter Stamm, gebogene Wedel mit Fiederblättchen."""
-    v, f = [], []
-    nst = 8
-    for j in range(13):
-        t = j / 12; rr = 0.11 - 0.035 * t + (0.012 if j % 2 else 0)
-        for i in range(nst):
-            a = 2 * math.pi * i / nst; v.append((x + rr * math.cos(a) + 0.15 * t * t, y + rr * math.sin(a), z0 + h * t))
-    for j in range(12):
-        for i in range(nst):
-            a0, a1 = j * nst + i, j * nst + (i + 1) % nst; f.append((a0, a1, a1 + nst, a0 + nst))
-    stamm = mesh(name + '_Stamm', v, f, M['stamm'], 'S6_Aussen')
-    for pp in stamm.data.polygons:
-        pp.use_smooth = True
-    tx, ty, tz = x + 0.15, y, z0 + h
-    v, f = [], []
-    for k in range(n):                                   # Wedel: Mittelrippe + gefiederte Blättchen (schmal, nach unten hängend)
-        a = 2 * math.pi * k / n + _rnd.uniform(-0.15, 0.15); hebe = _rnd.uniform(0.25, 0.55)
-        seg = 12
-        sp = []
-        for j in range(seg + 1):
-            t = j / seg; d = r * t
-            sp.append((tx + d * math.cos(a), ty + d * math.sin(a), tz + hebe * math.sin(t * math.pi * 0.9) - 0.45 * t * t * r))
-        ux, uy = math.cos(a), math.sin(a); nx, ny = -uy, ux
-        for j in range(seg):
-            (x0_, y0_, z0_), (x1_, y1_, z1_) = sp[j], sp[j + 1]
-            kk = len(v); v += [(x0_ - nx * 0.012, y0_ - ny * 0.012, z0_), (x1_ - nx * 0.012, y1_ - ny * 0.012, z1_),
-                               (x1_ + nx * 0.012, y1_ + ny * 0.012, z1_), (x0_ + nx * 0.012, y0_ + ny * 0.012, z0_)]
-            f.append((kk, kk + 1, kk + 2, kk + 3))
-            if j == 0:
-                continue
-            t = j / seg; lb = 0.42 * math.sin(math.pi * min(1.0, t * 1.05)) + 0.05
-            for sg in (-1, 1):
-                for o in (0.0, 0.5):                       # 2 Blättchen je Segment und Seite
-                    bx = x0_ + (x1_ - x0_) * o; by = y0_ + (y1_ - y0_) * o; bz = z0_ + (z1_ - z0_) * o
-                    ex = bx + (nx * sg * 0.85 + ux * 0.5) * lb; ey = by + (ny * sg * 0.85 + uy * 0.5) * lb; ez = bz - 0.35 * lb
-                    w_ = 0.025
-                    kk = len(v); v += [(bx - ux * w_, by - uy * w_, bz), (bx + ux * w_, by + uy * w_, bz), (ex + ux * 0.004, ey + uy * 0.004, ez), (ex - ux * 0.004, ey - uy * 0.004, ez)]
-                    f.append((kk, kk + 1, kk + 2, kk + 3))
-    mesh(name + '_Wedel', v, f, PALMWEDEL, 'S6_Aussen')
-    if kuebel:
-        zylinder(name + '_Kuebel', x, y, 0, kuebel, kuebel * 0.8, z0, M['pv_rahmen'], 'S6_Aussen', 20)
-
-
-# Bepflanzung der Beete: dichte Büsche (3 Größen, 4 Grüntöne), Blütenpunkte, alle ~2,4 m eine Palme, Thujen in den Ecken
-_kugeln = []; _palmen = []; _thujen = []
+# Bepflanzung der Beete (Ayman 23.11.: KEINE Palmen): dichte Laubbüsche (4 Grüntöne), Blütenpunkte, alle ~3 m eine schlanke Thuja,
+# vorn an der Beetkante runde Buchskugeln, Thujen in den Ecken
+_kugeln = []; _thujen = []; _buchs = []
 for bi, (x0, y0, x1, y1) in enumerate(BEET):
     lang = max(x1 - x0, y1 - y0); quer_x = (x1 - x0) > (y1 - y0)
     n = int(lang / 0.42)
     for j in range(n):
         t = (j + 0.5) / n
-        for q in (0.3, 0.7):
+        for q in (0.35, 0.72):
             px = x0 + (x1 - x0) * (t if quer_x else q); py = y0 + (y1 - y0) * (q if quer_x else t)
-            if _rnd.random() < 0.85:
-                r = _rnd.uniform(0.3, 0.52) * (1.15 if q > 0.5 else 1.0); _kugeln.append((px + _rnd.uniform(-0.1, 0.1), py + _rnd.uniform(-0.1, 0.1), 0.45 + r * 0.7, r, _rnd.uniform(0.75, 1.15), _rnd.randrange(4)))
-            if _rnd.random() < 0.18:
+            if _rnd.random() < 0.8:
+                r = _rnd.uniform(0.28, 0.5) * (1.15 if q > 0.5 else 1.0); _kugeln.append((px + _rnd.uniform(-0.1, 0.1), py + _rnd.uniform(-0.1, 0.1), 0.45 + r * 0.7, r, _rnd.uniform(0.75, 1.15), _rnd.randrange(4)))
+            if _rnd.random() < 0.15:
                 _kugeln.append((px + _rnd.uniform(-0.2, 0.2), py + _rnd.uniform(-0.2, 0.2), 0.45 + _rnd.uniform(0.35, 0.7), 0.05, 1.0, 4 + _rnd.randrange(2)))
-    k = int(lang / 3.6)
+    k = max(1, int(lang / 3.0))
     for j in range(k):
         t = (j + 0.5) / k
-        _palmen.append(((x0 + x1) / 2 if not quer_x else x0 + (x1 - x0) * t, (y0 + y1) / 2 if quer_x else y0 + (y1 - y0) * t))
-_kugeln = [kk for kk in _kugeln if all(math.hypot(kk[0] - px, kk[1] - py) > 0.3 for px, py in _palmen)]
-print('Hof-Büsche:', len(_kugeln), 'Palmen:', len(_palmen))
+        _thujen.append(((x0 + x1) / 2 if not quer_x else x0 + (x1 - x0) * t, (y0 + y1) / 2 if quer_x else y0 + (y1 - y0) * t))
+    m_ = int(lang / 1.5)
+    for j in range(m_):                                   # Buchskugeln an der Beetkante (zum Hof hin)
+        t = (j + 0.5) / m_
+        if quer_x:
+            _buchs.append((x0 + (x1 - x0) * t, y0 + 0.28))
+        else:
+            _buchs.append((x1 - 0.28 if x0 < BT / 2 + HX0 / 2 else x0 + 0.28, y0 + (y1 - y0) * t))
+_kugeln = [kk for kk in _kugeln if all(math.hypot(kk[0] - px, kk[1] - py) > 0.32 for px, py in _thujen + _buchs)]
+_kugeln += [(px, py, 0.45 + 0.26, 0.3, 0.92, 2) for px, py in _buchs]
+print('Hof-Büsche:', len(_kugeln), 'Thujen:', len(_thujen))
 _busch_mesh('Hof_Busch_Beete', _kugeln, LAUB + BLUETEN)
-for k, (px, py) in enumerate(_palmen):
-    _palme(f'Hof_Busch_Palme{k}', px, py, 0.45, _rnd.uniform(1.6, 2.4), r=_rnd.uniform(0.75, 1.0))
+for k, (px, py) in enumerate(_thujen):
+    kegel_thuja(f'Hof_Zypresse_B{k}', px, py, 0.45, 0.32, _rnd.uniform(2.2, 2.8), seed=60 + k)
 for k, (px, py) in enumerate(((HX0 + 0.85, Y1 + 1.1), (BT - 0.85, Y1 + 1.1), (HX0 + 0.85, TT - 0.75), (BT - 0.85, TT - 0.75))):
-    zylinder(f'Hof_Zypresse{k}', px, py, 0.45, 0.4, 0.03, 3.0, M['hecke'], 'S6_Aussen', 12)
+    kegel_thuja(f'Hof_Zypresse{k}', px, py, 0.45, 0.42, 3.0, seed=70 + k)
 # Strahler im Beet (leuchten die Wände an) + Wandleuchten (Licht nach oben/unten) an den Hofmauern
 strahler = []
 _hs = [(HX0 + 0.55, y) for y in (14.6, 17.4, 20.2, 23.0, 25.8)] + [(BT - 0.55, y) for y in (14.6, 17.4, 20.2, 23.0, 25.8)] + [(HX0 + 2.4 + k * 3.0, TT - 0.35) for k in range(5)]
@@ -629,76 +617,221 @@ viele_quader('Hof_Wandleuchten', _wl, farbe('Leuchte_schwarz_Hof', '#151617', 0.
 viele_quader('Hof_Wandleuchten_Glas', _wlg, M['wandleuchte'], 'S6_Aussen')
 
 
-def _drehquader(lst, cx, cy, z0, z1, sx, sy, ang, ox=0.0, oy=0.0):
-    """Quader (Mitte cx,cy + lokaler Versatz ox,oy), um z gedreht → Liste aus (Ecken) für mesh()."""
+# ---------------- Hof-Möbel hochwertig (Ayman 23.11.): Teakholz mit Maserung, gepolsterte Armlehnstühle, Lounge mit Teppich + Laternen
+def _teak():
+    m = bpy.data.materials.get('Teak_gemasert')
+    if m:
+        return m
+    m, nt, b = node_mat('Teak_gemasert')
+    tc = nt.nodes.new('ShaderNodeTexCoord'); wv = nt.nodes.new('ShaderNodeTexWave')
+    wv.inputs['Scale'].default_value = 9; wv.inputs['Distortion'].default_value = 6; wv.inputs['Detail'].default_value = 3
+    nt.links.new(tc.outputs['Object'], wv.inputs['Vector'])
+    rp = nt.nodes.new('ShaderNodeValToRGB')
+    rp.color_ramp.elements[0].color = hexrgb('#6E4426'); rp.color_ramp.elements[1].color = hexrgb('#A77548')
+    nt.links.new(wv.outputs['Fac'], rp.inputs['Fac']); nt.links.new(rp.outputs['Color'], b.inputs['Base Color'])
+    b.inputs['Roughness'].default_value = 0.45; b.inputs['Coat Weight'].default_value = 0.25
+    return m
+
+
+TEAK = _teak()
+STOFF_CREME = farbe('Polster_Creme', '#E9E1D2', 0.9, 0, 0.03)
+TRAVERTIN = farbe('Travertin_Platte', '#E1D4BC', 0.4, 0, 0.06)
+LATERNE = farbe('Laterne_schwarz', '#1B1C1E', 0.35, 0.7, 0)
+LICHT_WARM = leuchte('Laternenlicht_warm', '#FFC98A', 6.0)
+
+
+class _Moebel:
+    """Möbel aus abgerundeten, gedrehten Quadern/Zylindern in einem Objekt (bmesh)."""
+    def __init__(self):
+        self.bm = _bmesh.new(); self.mats = []
+
+    def mi(self, m):
+        if m not in self.mats:
+            self.mats.append(m)
+        return self.mats.index(m)
+
+    def box(self, c, s_, mat, ang=0.0, fase=0.0, seg=2, glatt=False):
+        vor = set(self.bm.faces)
+        r = _bmesh.ops.create_cube(self.bm, size=1.0, matrix=Matrix.Translation(c) @ Matrix.Rotation(ang, 4, 'Z') @ Matrix.Diagonal((*s_, 1)))
+        if fase:
+            _bmesh.ops.bevel(self.bm, geom=list({e for v in r['verts'] for e in v.link_edges}), offset=fase, segments=seg, affect='EDGES', profile=0.5)
+        k = self.mi(mat)
+        for f in self.bm.faces:
+            if f not in vor:
+                f.material_index = k; f.smooth = glatt
+
+    def zyl(self, x, y, z0, z1, r, mat, n=32, r1=None):
+        r1 = r if r1 is None else r1
+        vs = [[self.bm.verts.new((x + rr * math.cos(2 * math.pi * i / n), y + rr * math.sin(2 * math.pi * i / n), z)) for i in range(n)] for rr, z in ((r, z0), (r1, z1))]
+        k = self.mi(mat)
+        for i in range(n):
+            f = self.bm.faces.new((vs[0][i], vs[0][(i + 1) % n], vs[1][(i + 1) % n], vs[1][i])); f.material_index = k; f.smooth = True
+        for ring, rev in ((vs[0], True), (vs[1], False)):
+            f = self.bm.faces.new(list(reversed(ring)) if rev else ring); f.material_index = k
+
+    def obj(self, name):
+        me = bpy.data.meshes.new(name); self.bm.to_mesh(me); self.bm.free()
+        for m in self.mats:
+            me.materials.append(m)
+        ob = bpy.data.objects.new(name, me); coll('S6_Aussen').objects.link(ob)
+        return ob
+
+
+def _lok(cx, cy, ang, lx, ly, z):
     ca, sa = math.cos(ang), math.sin(ang)
-    pts = []
-    for dx, dy in ((-sx / 2, -sy / 2), (sx / 2, -sy / 2), (sx / 2, sy / 2), (-sx / 2, sy / 2)):
-        lx, ly = dx + ox, dy + oy
-        pts.append((cx + lx * ca - ly * sa, cy + lx * sa + ly * ca))
-    lst.append([(x, y, z0) for x, y in pts] + [(x, y, z1) for x, y in pts])
+    return (cx + lx * ca - ly * sa, cy + lx * sa + ly * ca, z)
 
 
-def _quader_mesh(name, lst, mat):
-    v, f = [], []
-    for q in lst:
-        k = len(v); v += q
-        f += [(k, k + 3, k + 2, k + 1), (k + 4, k + 5, k + 6, k + 7), (k, k + 1, k + 5, k + 4), (k + 1, k + 2, k + 6, k + 5),
-              (k + 2, k + 3, k + 7, k + 6), (k + 3, k, k + 4, k + 7)]
-    return mesh(name, v, f, mat, 'S6_Aussen')
+def _armlehnstuhl(mb, cx, cy, ang):
+    """Teak-Armlehnstuhl mit dicken Creme-Polstern; lokale +x = Rückenlehne (vom Tisch weg)."""
+    P = lambda lx, ly, z: _lok(cx, cy, ang, lx, ly, z)
+    mb.box(P(0, 0, 0.385), (0.54, 0.56, 0.05), TEAK, ang, 0.012)                                    # Sitzrahmen
+    for lx, ly in ((-0.23, -0.24), (-0.23, 0.24), (0.23, -0.24), (0.23, 0.24)):
+        mb.box(P(lx, ly, 0.18), (0.05, 0.05, 0.38), TEAK, ang, 0.008)                               # Beine
+    for ly in (-0.27, 0.27):
+        mb.box(P(-0.02, ly, 0.64), (0.54, 0.07, 0.035), TEAK, ang, 0.012)                           # Armlehnen
+        mb.box(P(-0.22, ly, 0.52), (0.045, 0.045, 0.24), TEAK, ang, 0.006)                          # Armstütze
+    for ly in (-0.25, 0.25):
+        mb.box(P(0.255, ly, 0.66), (0.045, 0.045, 0.54), TEAK, ang, 0.008)                          # Lehnenholme
+    for z in (0.58, 0.72, 0.86):
+        mb.box(P(0.26, 0, z), (0.028, 0.5, 0.075), TEAK, ang, 0.006)                                # Lehnenlatten
+    mb.box(P(-0.02, 0, 0.465), (0.5, 0.48, 0.1), STOFF_CREME, ang, 0.035, 3, True)                   # Sitzpolster
+    mb.box(P(0.2, 0, 0.7), (0.09, 0.46, 0.38), STOFF_CREME, ang, 0.035, 3, True)                     # Rückenpolster
 
 
-def _stuhl(lst, cx, cy, ang):
-    """Holz-Gartenstuhl (Blick zum Tisch = Richtung ang+π): Sitz, 4 Beine, Lehne mit Latten."""
-    _drehquader(lst, cx, cy, 0.43, 0.47, 0.46, 0.46, ang)
-    for ox, oy in ((-0.2, -0.2), (0.2, -0.2), (-0.2, 0.2), (0.2, 0.2)):
-        _drehquader(lst, cx, cy, 0.0, 0.43, 0.04, 0.04, ang, ox, oy)
-    for oy in (-0.2, 0.2):
-        _drehquader(lst, cx, cy, 0.47, 0.92, 0.04, 0.04, ang, 0.21, oy)
-    for z in (0.6, 0.72, 0.84):
-        _drehquader(lst, cx, cy, z, z + 0.07, 0.025, 0.42, ang, 0.21, 0)
+def _laterne(mb, x, y, z, h=0.32, b_=0.16):
+    """Kleine schwarze Laterne mit Kerzenlicht (Tisch/Boden)."""
+    mb.box((x, y, z + 0.015), (b_ + 0.03, b_ + 0.03, 0.03), LATERNE)
+    for dx, dy in ((-1, -1), (-1, 1), (1, -1), (1, 1)):
+        mb.box((x + dx * b_ / 2, y + dy * b_ / 2, z + h / 2), (0.015, 0.015, h), LATERNE)
+    mb.box((x, y, z + h + 0.02), (b_ + 0.04, b_ + 0.04, 0.04), LATERNE)
+    mb.zyl(x, y, z + 0.03, z + 0.03 + h * 0.45, b_ * 0.22, LICHT_WARM, 16)
 
 
-tisch, stuhl = [], []
-# 2 runde Essplätze mit runden Sonnenschirmen (links), 6 Stühle je Tisch
+tische = _Moebel(); stuehle = _Moebel(); laternen = _Moebel(); _ltpos = []
+# 2 runde Teak-Tische mit Säulenfuß, je 6 Armlehnstühle, hochwertige Sonnenschirme (Holzstange, 8 Speichen, Volant)
 for i, (sx, sy) in enumerate(((HX0 + 3.05, 18.4), (HX0 + 6.05, 22.0))):
-    zylinder(f'Tische_rund{i}', sx, sy, 0.72, 0.62, 0.62, 0.045, M['bank'], 'S6_Aussen', 32)
-    zylinder(f'Tische_rund{i}_Fuss', sx, sy, 0.0, 0.08, 0.05, 0.72, M['pv_rahmen'], 'S6_Aussen', 12)
+    tische.zyl(sx, sy, 0.72, 0.77, 0.66, TEAK, 48)
+    tische.zyl(sx, sy, 0.08, 0.72, 0.07, TEAK, 16, 0.06)
+    for a_ in (0, math.pi / 2):
+        tische.box((sx, sy, 0.04), (0.75, 0.08, 0.08), TEAK, a_, 0.01)
     for k in range(6):
-        a = 2 * math.pi * k / 6; _stuhl(stuhl, sx + 0.95 * math.cos(a), sy + 0.95 * math.sin(a), a)
-    zylinder(f'Schirm{i}_Stange', sx, sy, 0.77, 0.025, 0.025, 1.75, M['zaun'], 'S6_Aussen', 8)
-    v = [(sx, sy, 2.7)]; f = []
-    for k in range(16):
-        a = 2 * math.pi * k / 16; rr = 1.45 if k % 2 == 0 else 1.38
-        v.append((sx + rr * math.cos(a), sy + rr * math.sin(a), 2.25))
-    for k in range(16):
-        f.append((0, 1 + k, 1 + (k + 1) % 16))
+        a = 2 * math.pi * k / 6 + 0.3; _armlehnstuhl(stuehle, sx + 1.02 * math.cos(a), sy + 1.02 * math.sin(a), a)
+    _laterne(laternen, sx + 0.3, sy, 0.77); _ltpos.append((sx + 0.3, sy, 0.92))
+    sm = _Moebel()
+    sm.zyl(sx, sy, 0.77, 2.62, 0.028, TEAK, 12)
+    sm.zyl(sx, sy, 2.55, 2.75, 0.05, TEAK, 12, 0.02)
+    v = [(sx, sy, 2.74)]; f = []
+    for k in range(8):
+        a = 2 * math.pi * k / 8
+        v.append((sx + 1.6 * math.cos(a), sy + 1.6 * math.sin(a), 2.28))
+    for k in range(8):
+        f.append((0, 1 + k, 1 + (k + 1) % 8))
+    for k in range(8):                                                       # Volant (senkrechter Saum)
+        a0, a1 = 2 * math.pi * k / 8, 2 * math.pi * (k + 1) / 8
+        kk = len(v)
+        v += [(sx + 1.6 * math.cos(a0), sy + 1.6 * math.sin(a0), 2.28), (sx + 1.6 * math.cos(a1), sy + 1.6 * math.sin(a1), 2.28),
+              (sx + 1.6 * math.cos(a1), sy + 1.6 * math.sin(a1), 2.16), (sx + 1.6 * math.cos(a0), sy + 1.6 * math.sin(a0), 2.16)]
+        f.append((kk, kk + 1, kk + 2, kk + 3))
+    for k in range(8):                                                       # Speichen
+        a = 2 * math.pi * k / 8
+        mx, my = sx + 0.8 * math.cos(a), sy + 0.8 * math.sin(a)
+        sm.box((mx, my, 2.49), (1.6, 0.018, 0.018), TEAK, a)
+    sm.obj(f'Schirm{i}_Gestell')
     mesh(f'Schirm{i}', v, f, M['schirm'], 'S6_Aussen')
-# 2 lange Holztische (rechts), je 8 Stühle
+# 2 lange Teak-Tafeln mit Zarge, je 8 Armlehnstühle
 for i, (sx, sy) in enumerate(((14.6, 17.6), (14.6, 22.4))):
-    _drehquader(tisch, sx, sy, 0.72, 0.77, 1.0, 2.2, 0)
-    for ox, oy in ((-0.4, -0.95), (0.4, -0.95), (-0.4, 0.95), (0.4, 0.95)):
-        _drehquader(tisch, sx, sy, 0.0, 0.72, 0.07, 0.07, 0, ox, oy)
-    for dy in (-0.75, -0.25, 0.25, 0.75):
-        _stuhl(stuhl, sx - 0.85, sy + dy, math.pi); _stuhl(stuhl, sx + 0.85, sy + dy, 0.0)
-_quader_mesh('Tische', tisch, M['bank'])
-_quader_mesh('Stuehle', stuhl, M['bank'])
-# Lounge hinten links: weißes L-Sofa mit Kissen, Couchtisch
-polster = farbe('Polster_hell', '#EFEAE0', 0.9, 0, 0.03)
+    tische.box((sx, sy, 0.745), (1.05, 2.5, 0.055), TEAK, 0, 0.014, 3)
+    tische.box((sx, sy, 0.66), (0.9, 2.3, 0.1), TEAK, 0, 0.008)
+    for ox, oy in ((-0.43, -1.13), (0.43, -1.13), (-0.43, 1.13), (0.43, 1.13)):
+        tische.box((sx + ox, sy + oy, 0.36), (0.085, 0.085, 0.72), TEAK, 0, 0.01)
+    for dy in (-0.9, -0.3, 0.3, 0.9):
+        _armlehnstuhl(stuehle, sx - 0.98, sy + dy, math.pi); _armlehnstuhl(stuehle, sx + 0.98, sy + dy, 0.0)
+    for dy in (-0.6, 0.6):
+        _laterne(laternen, sx, sy + dy, 0.775, 0.26, 0.13); _ltpos.append((sx, sy + dy, 0.9))
+tische.obj('Tische'); stuehle.obj('Stuehle')
+# Lounge hinten links: Outdoor-Teppich, großes L-Sofa (Teak-Sockel, dicke Polster, Zierkissen), 2 Sessel, Couchtisch mit Travertin
 _lx = HX0 + 1.6
-viele_quader('Lounge_Sofa_Gestell', [(_lx, 24.4, 0, _lx + 0.8, 27.4, 0.38), (_lx + 0.8, 26.6, 0, _lx + 4.6, 27.4, 0.38)], M['pv_rahmen'], 'S6_Aussen')
-viele_quader('Lounge_Sofa_Kissen', [(_lx + 0.05, 24.45, 0.38, _lx + 0.75, 27.35, 0.56), (_lx + 0.8, 26.65, 0.38, _lx + 4.55, 27.35, 0.56),
-                                      (_lx, 24.4, 0.56, _lx + 0.25, 27.4, 0.92), (_lx + 0.8, 27.15, 0.56, _lx + 4.6, 27.4, 0.92)]
-             + [(_lx + 0.85 + k * 0.9, 26.95, 0.56, _lx + 1.45 + k * 0.9, 27.15, 0.86) for k in range(4)], polster, 'S6_Aussen')
-quader('Lounge_Tisch', _lx + 1.6, 24.9, 0, _lx + 3.2, 25.9, 0.36, M['bank'], 'S6_Aussen')
-# Außenküche hinten rechts (Steintheke, dunkle Platte) + schwarzer Grill
+lg = _Moebel()
+lg.box((_lx + 2.4, 25.6, 0.006), (4.4, 3.2, 0.012), farbe('Teppich_aussen', '#CFC3AD', 0.95, 0, 0.05))
+lg.box((_lx + 2.4, 25.6, 0.013), (4.1, 2.9, 0.004), farbe('Teppich_aussen_Feld', '#DCD2BF', 0.95, 0, 0.04))
+lg.box((_lx + 0.45, 25.85, 0.08), (0.9, 3.1, 0.16), TEAK, 0, 0.012)                                        # Sockel kurzer Schenkel
+lg.box((_lx + 2.75, 27.0, 0.08), (3.7, 0.9, 0.16), TEAK, 0, 0.012)                                        # Sockel langer Schenkel
+for k in range(3):                                                                                     # Sitzpolster
+    lg.box((_lx + 0.45, 24.75 + k * 0.82, 0.27), (0.84, 0.78, 0.2), STOFF_CREME, 0, 0.05, 3, True)
+for k in range(4):
+    lg.box((_lx + 1.32 + k * 0.9, 26.95, 0.27), (0.86, 0.84, 0.2), STOFF_CREME, 0, 0.05, 3, True)
+for k in range(3):                                                                                     # Rückenpolster
+    lg.box((_lx + 0.1, 24.75 + k * 0.82, 0.6), (0.22, 0.76, 0.48), STOFF_CREME, 0, 0.06, 3, True)
+for k in range(4):
+    lg.box((_lx + 1.32 + k * 0.9, 27.33, 0.6), (0.84, 0.22, 0.48), STOFF_CREME, 0, 0.06, 3, True)
+KISSEN = [farbe('Kissen_terrakotta', '#B5643E', 0.9, 0, 0.03), farbe('Kissen_salbei', '#8C9A78', 0.9, 0, 0.03),
+          farbe('Kissen_sand', '#C9B28C', 0.9, 0, 0.03)]
+for k, (x, y, a_) in enumerate(((_lx + 0.32, 24.6, 0.15), (_lx + 0.32, 25.5, -0.1), (_lx + 1.0, 27.15, 0.1), (_lx + 2.1, 27.15, -0.15),
+                                 (_lx + 3.0, 27.15, 0.12), (_lx + 3.9, 27.15, 0.0))):
+    lg.box((x, y, 0.55), (0.14, 0.46, 0.44) if x < _lx + 0.6 else (0.46, 0.14, 0.44), KISSEN[k % 3], a_, 0.05, 3, True)
+lg.box((_lx + 2.4, 25.4, 0.33), (1.4, 0.8, 0.04), TRAVERTIN, 0, 0.01)                                   # Couchtisch
+lg.box((_lx + 2.4, 25.4, 0.16), (1.3, 0.7, 0.04), TEAK, 0, 0.005)
+for dx, dy in ((-0.62, -0.32), (0.62, -0.32), (-0.62, 0.32), (0.62, 0.32)):
+    lg.box((_lx + 2.4 + dx, 25.4 + dy, 0.155), (0.06, 0.06, 0.31), TEAK)
+for k, x in enumerate((_lx + 1.6, _lx + 3.4)):                                                       # 2 Sessel (zum Sofa gewandt)
+    lg.box((x, 24.05, 0.1), (0.85, 0.85, 0.2), TEAK, 0, 0.012)
+    lg.box((x, 24.1, 0.29), (0.8, 0.76, 0.18), STOFF_CREME, 0, 0.05, 3, True)
+    lg.box((x, 23.72, 0.58), (0.8, 0.2, 0.45), STOFF_CREME, 0, 0.06, 3, True)
+    for dx in (-0.42, 0.42):
+        lg.box((x + dx, 24.05, 0.42), (0.08, 0.82, 0.18), TEAK, 0, 0.012)
+lg.obj('Lounge_Sofa')
+_laterne(laternen, _lx + 2.15, 25.4, 0.35, 0.26, 0.13); _ltpos.append((_lx + 2.15, 25.4, 0.48))
+for x, y in ((_lx + 0.4, 23.8), (_lx + 5.05, 27.0)):                                                 # Bodenlaternen
+    _laterne(laternen, x, y, 0.0, 0.75, 0.28); _ltpos.append((x, y, 0.35))
+laternen.obj('Lounge_Laternen')
+for k, (x, y, z) in enumerate(_ltpos):
+    ld = bpy.data.lights.new(f'Wandlicht_L{k}', 'POINT'); ld.energy = 0.0; ld.shadow_soft_size = 0.05; ld.color = (1.0, 0.75, 0.45)
+    ld['ziel_energie'] = 12.0 if z < 0.5 else 6.0
+    lo = bpy.data.objects.new(f'Wandlicht_L{k}', ld); coll('S6_Aussen').objects.link(lo); lo.location = (x, y, z)
+# Außenküche hinten rechts: Naturstein-Theke, dunkle Arbeitsplatte, eingebauter Edelstahl-Grill
 quader('Aussenkueche', BT - 5.8, TT - 2.3, 0, BT - 2.0, TT - 1.6, 0.9, RAND_STEIN, 'S6_Aussen')
 quader('Aussenkueche_Platte', BT - 5.85, TT - 2.35, 0.9, BT - 1.95, TT - 1.55, 0.95, M['pfosten'], 'S6_Aussen')
-quader('Aussenkueche_Grill', BT - 4.4, TT - 2.2, 0.95, BT - 3.4, TT - 1.7, 1.25, M['pv_rahmen'], 'S6_Aussen')
-quader('Aussenkueche_Grill_Haube', BT - 4.35, TT - 2.15, 1.25, BT - 3.45, TT - 1.75, 1.45, M['pv_rahmen'], 'S6_Aussen')
-# Palmen in Kübeln an den Sitzplätzen
-for k, (px, py) in enumerate(((HX0 + 2.4, 15.4), (BT - 2.6, 15.4), (11.2, 18.4), (11.6, 25.4), (13.4, 25.8))):
-    _palme(f'Palme_{k}', px, py, 0.55, _rnd.uniform(1.6, 2.2), r=1.0, kuebel=0.32)
+_inox = farbe('Edelstahl_Grill', '#B4B7BA', 0.3, 1.0, 0)
+quader('Aussenkueche_Grill', BT - 4.4, TT - 2.25, 0.95, BT - 3.3, TT - 1.65, 1.02, _inox, 'S6_Aussen')
+quader('Aussenkueche_Grill_Haube', BT - 4.38, TT - 2.0, 1.02, BT - 3.32, TT - 1.67, 1.32, _inox, 'S6_Aussen')
+# Olivenbäume in hohen Betonkübeln (statt Palmen), von unten angestrahlt
+for k, (px, py) in enumerate(((HX0 + 2.4, 15.4), (BT - 2.6, 15.4), (11.2, 18.4), (11.6, 25.2), (13.3, 25.6))):
+    quader(f'Kuebel_Olive{k}', px - 0.36, py - 0.36, 0, px + 0.36, py + 0.36, 0.8, BETON_HELL, 'S6_Aussen')
+    v, f = [], []
+    for st in range(3):                                                        # 3 knorrige Stämmchen
+        a0 = 2 * math.pi * st / 3 + k
+        pts = [(px + 0.03 * math.cos(a0), py + 0.03 * math.sin(a0), 0.8)]
+        for j in range(1, 6):
+            t = j / 5
+            pts.append((px + (0.04 + 0.28 * t) * math.cos(a0 + 0.6 * t) + _rnd.uniform(-0.03, 0.03),
+                        py + (0.04 + 0.28 * t) * math.sin(a0 + 0.6 * t) + _rnd.uniform(-0.03, 0.03), 0.8 + 1.25 * t))
+        for (xa, ya, za), (xb, yb, zb) in zip(pts, pts[1:]):
+            kk = len(v); rr = 0.045
+            v += [(xa + rr * math.cos(2 * math.pi * i / 6), ya + rr * math.sin(2 * math.pi * i / 6), za) for i in range(6)]
+            v += [(xb + rr * 0.85 * math.cos(2 * math.pi * i / 6), yb + rr * 0.85 * math.sin(2 * math.pi * i / 6), zb) for i in range(6)]
+            f += [(kk + i, kk + (i + 1) % 6, kk + 6 + (i + 1) % 6, kk + 6 + i) for i in range(6)]
+    mesh(f'Olive{k}_Stamm', v, f, M['stamm'], 'S6_Aussen')
+    _busch_mesh(f'Olive{k}_Krone', [(px + 0.45 * math.cos(2 * math.pi * j / 7 + k) * _rnd.uniform(0.4, 1.0),
+                                     py + 0.45 * math.sin(2 * math.pi * j / 7 + k) * _rnd.uniform(0.4, 1.0),
+                                     2.15 + _rnd.uniform(-0.1, 0.35), _rnd.uniform(0.3, 0.45), 0.75, 0) for j in range(9)], [M['oliven']])
+    ld = bpy.data.lights.new(f'Parken_Strahler_O{k}', 'SPOT'); ld.energy = 0.0; ld.spot_size = math.radians(45); ld.spot_blend = 0.5
+    ld.color = (1.0, 0.8, 0.55); ld['ziel_energie'] = 40.0
+    lo = bpy.data.objects.new(f'Parken_Strahler_O{k}', ld); coll('S6_Aussen').objects.link(lo)
+    lo.location = (px + 0.3, py - 0.3, 0.82); lo.rotation_euler = (math.pi - 0.25, 0, 0)
+# Wandleuchten auch an der hinteren Wand (Licht nach oben/unten, wie am Eingang)
+_wr = []; _wrg = []
+WYH = TT + 0.3
+for k, x in enumerate([HX0 + 2.2 + j * 3.0 for j in range(5)]):
+    _wr += [(x - 0.05, WYH - 0.13, 2.25, x + 0.05, WYH - 0.03, 2.6), (x - 0.03, WYH - 0.05, 2.4, x + 0.03, WYH, 2.45)]
+    _wrg += [(x - 0.04, WYH - 0.12, z, x + 0.04, WYH - 0.04, z + 0.005) for z in (2.245, 2.6)]
+    for richtung, z in (('auf', 2.62), ('ab', 2.23)):
+        ld = bpy.data.lights.new(f'Wandlicht_R{k}_{richtung}', 'SPOT'); ld.energy = 0.0; ld.spot_size = math.radians(38); ld.spot_blend = 0.5
+        ld.color = (1.0, 0.78, 0.5); ld.shadow_soft_size = 0.02; ld['ziel_energie'] = 70.0
+        lo = bpy.data.objects.new(f'Wandlicht_R{k}_{richtung}', ld); coll('S6_Aussen').objects.link(lo)
+        lo.location = (x, WYH - 0.08, z); lo.rotation_euler = (math.pi, 0, 0) if richtung == 'auf' else (0, 0, 0)
+viele_quader('Hof_Wandleuchten_hinten', _wr, bpy.data.materials['Leuchte_schwarz_Hof'], 'S6_Aussen')
+viele_quader('Hof_Wandleuchten_hinten_Glas', _wrg, M['wandleuchte'], 'S6_Aussen')
 # Parken: 4 schräge Plätze, leer
 flaeche('Parken_Belag', [(BT, 0.25), (PK, 0.25), (PK, LT), (BT, LT)], 0.03, M['asphalt'], 'S6_Aussen')
 # Parken (Ayman 23.11.: „Sinn ergeben, quer aber parallel und ordentlich“): 4 Schrägplätze im Winkel 75° zur Fahrgasse,
@@ -811,29 +944,6 @@ for k, ((lx, ly), (ox, oy)) in enumerate(LEUCHTEN):
         lo.location = (lx + ox * 0.08, ly + oy * 0.08, z)
         lo.rotation_euler = (math.pi, 0, 0) if richtung == 'auf' else (0, 0, 0)          # Spot leuchtet entlang −Z
 viele_quader('Portal_Stufen', [(PX0 + 0.3, Y0 - 0.95, 0.0, PX1 - 0.3, Y0 - 0.6, 0.08), (PX0 + 0.4, Y0 - 0.8, 0.0, PX1 - 0.4, Y0 - 0.6, 0.15)], M['stein'], 'S6_Aussen')
-BETON_HELL = farbe('Kuebel_Beton_hell', '#BDB8AE', 0.8, 0, 0.06)
-
-
-def kegel_thuja(name, x, y, z0, r, h, c='S6_Aussen', seed=0):
-    """Kegelförmige Thuja/Formschnitt-Konifere: dichte, leicht unregelmäßige Laub-Oberfläche (keine glatte Kegelform)."""
-    rnd = random.Random(seed); n, m = 20, 14
-    v, f = [], []
-    for j in range(m + 1):
-        t = j / m; rr = r * (1 - t) ** 0.85
-        for i in range(n):
-            a_ = 2 * math.pi * i / n; ru = rr * (0.86 + 0.24 * rnd.random()) if 0 < j < m else rr
-            v.append((x + ru * math.cos(a_), y + ru * math.sin(a_), z0 + h * t + (0.03 * rnd.random() if 0 < j < m else 0)))
-    for j in range(m):
-        for i in range(n):
-            a0, a1 = j * n + i, j * n + (i + 1) % n
-            f.append((a0, a1, a1 + n, a0 + n))
-    f.append(tuple(range(n - 1, -1, -1)))
-    ob = mesh(name, v, f, M['hecke'], c)
-    for p_ in ob.data.polygons:
-        p_.use_smooth = True
-    return ob
-
-
 for i, x in enumerate((PX0 - 0.55, PX1 + 0.55)):
     quader(f'Portal_Kuebel{i}', x - 0.32, Y0 - 0.92, 0, x + 0.32, Y0 - 0.28, 0.62, BETON_HELL, 'S6_Aussen')
     kegel_thuja(f'Portal_Zypresse{i}', x, Y0 - 0.6, 0.58, 0.36, 1.75, seed=10 + i)

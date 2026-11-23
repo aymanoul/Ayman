@@ -197,3 +197,9 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   unter dem Hof nur 16,43 m; Wand 4 = Absatz, Wand 5 = linke Wand unter dem Hof), Stützenraster Hofteil x = HX0 / Mitte / BT, Treppe B nach
   rechts verschoben, Baugrube L-förmig, Nachbarstreifen mit eigenem Pflaster (`Nachbar_Hof_Pflaster`); Festsaal L-förmig, 20 Tische (200 Plätze),
   Bildschirm in der Mitte der Rückwand unter dem Hof. Vorschau Saal `out/phase5/saal_lform.jpg`.
+- **Hof überarbeitet (Ayman 23.11.): KEINE Palmen.** Beete: Laubbüsche, Buchskugeln an der Kante, schlanke Thujen (alle ~3 m + Ecken);
+  in Kübeln 5 Olivenbäume (hohe Betonkübel, von unten angestrahlt). **Hochwertige Möbel aus gemasertem Teak:** 2 runde Säulentische + 2 Tafeln
+  mit Zarge, 28 Armlehnstühle mit dicken Creme-Polstern, Sonnenschirme mit Holzstange/8 Speichen/Volant, Laternen auf den Tischen;
+  Lounge: Outdoor-Teppich, großes L-Sofa (Teak-Sockel, dicke Polster, Zierkissen terrakotta/salbei/sand), 2 Sessel, Couchtisch mit
+  Travertin-Platte, Bodenlaternen; Außenküche mit Edelstahl-Grill. Licht: Wandleuchten (auf/ab) an den Seitenmauern UND an der hinteren Wand,
+  Strahler in den Beeten, Laternenlicht. Vorschau `out/phase5/hof_neu.jpg`.
