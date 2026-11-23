@@ -216,7 +216,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 Higgsfield-Preise (Abfrage 23.11., Seedance 2.5 `video_edit`, 9:16, ohne Ton): **720p = 7,5 Credits/s** (30 s = 225, 13 s = 98),
 480p = 3,5 Credits/s (30 s = 105); **ein Auftrag max. 30 s**. Guthaben 996,5.
 → **Bei 720p reichen 550 Credits für höchstens 73 s.** Vorschläge: (a) **72 s = 3 Teile à 24 s = 540 Credits** (+ 8 Credits für 4 neue
-Stil-Referenzbilder = 548), kein Puffer; (b) 60 s = 2 × 30 s = 450 Credits, 100 Credits Puffer für eine Wiederholung (~13 s). Wahl von Ayman steht aus.
+Stil-Referenzbilder = 548), kein Puffer; (b) 60 s = 2 × 30 s = 450 Credits, 100 Credits Puffer für eine Wiederholung (~13 s). **Ayman wählt (a): 72 s, 3 × 24 s, 548 Credits.**
 1. Ayman prüft das Vogelperspektive-Bild (`out/chef/11_vogelperspektive.jpg`) – letzte Korrekturen am Modell.
 2. Videolänge festlegen (60 oder 72 s) → Claude passt Kamerafahrt + Ablauf an (bei 72 s: mehr Zeit für Dach/Solar, Hof, Parkplatz/Einparken,
    Wohnwagen/Schiebetore), zeigt Standbilder der Schlüsselstellen.
