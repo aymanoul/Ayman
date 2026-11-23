@@ -35,7 +35,7 @@ cam.location = p; cam.rotation_euler = (z - p).to_track_quat('-Z', 'Y').to_euler
 sc.render.engine = 'CYCLES'
 sc.render.resolution_x, sc.render.resolution_y, sc.render.resolution_percentage = int(a[4]), int(a[5]), 100
 sc.cycles.samples = int(a[6]); sc.cycles.use_denoising = True
-sc.cycles.max_bounces = 8; sc.cycles.transmission_bounces = 8; sc.cycles.glossy_bounces = 4
+sc.cycles.max_bounces = 16; sc.cycles.transmission_bounces = 16; sc.cycles.glossy_bounces = 4; sc.cycles.transparent_max_bounces = 16
 sc.cycles.caustics_reflective = False; sc.cycles.caustics_refractive = False; sc.cycles.blur_glossy = 1.0
 sc.view_settings.exposure = float(a[7]) if len(a) > 7 else 0.0
 sc.render.filepath = a[3]

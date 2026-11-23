@@ -103,6 +103,16 @@ GOLD = mat('Saal_Gold', '#C8B89A', 0.5, 0.55)              # Ayman 23.11.: wenig
 GOLD_MATT = mat('Saal_Gold_matt', '#C4B699', 0.6, 0.4)
 SAMT = mat('Saal_Samt_beige', '#D3C8B6', 0.85, **{'Sheen Weight': 0.4, 'Sheen Roughness': 0.5})
 TUCH = mat('Saal_Tischdecke', VAR.get('tuch', '#F3F1EC') if VAR else '#F3F1EC', 0.7, **{'Sheen Weight': 0.2, 'Sheen Roughness': 0.5})
+if VAR and VAR.get('atay'):
+    # Damast-Tischdecke creme (Aymans Vorlage), Muster über Objektkoordinaten (Würfelprojektion, Wiederholung 0,4 m)
+    TUCH = bpy.data.materials.new('Saal_Tischdecke_Damast'); TUCH.use_nodes = True; _nt = TUCH.node_tree
+    _bs = _nt.nodes['Principled BSDF']; _bs.inputs['Roughness'].default_value = 0.6
+    _bs.inputs['Sheen Weight'].default_value = 0.45; _bs.inputs['Sheen Roughness'].default_value = 0.35
+    _tc = _nt.nodes.new('ShaderNodeTexCoord'); _mp = _nt.nodes.new('ShaderNodeMapping'); _mp.inputs['Scale'].default_value = (2.5, 2.5, 2.5)
+    _im = _nt.nodes.new('ShaderNodeTexImage'); _im.image = bpy.data.images.load(os.path.join(TEX, 'damast.jpg'))
+    _im.projection = 'BOX'; _im.projection_blend = 0.3
+    _nt.links.new(_tc.outputs['Object'], _mp.inputs['Vector']); _nt.links.new(_mp.outputs['Vector'], _im.inputs['Vector'])
+    _nt.links.new(_im.outputs['Color'], _bs.inputs['Base Color'])
 PORZELLAN = mat('Saal_Porzellan', '#FBFAF7', 0.15)
 GLAS = mat('Saal_Glas', '#FFFFFF', 0.0, **{'Transmission Weight': 1.0, 'IOR': 1.45})
 KRISTALL = mat('Saal_Kristall', '#FFFFFF', 0.0, **{'Transmission Weight': 1.0, 'IOR': 1.6})
@@ -124,14 +134,25 @@ class Bau:
         for f in faces:
             f.material_index = mi; f.smooth = glatt
 
-    def quader(self, x0, y0, z0, x1, y1, z1, mi=0, fase=0.0):
+    def quader(self, x0, y0, z0, x1, y1, z1, mi=0, fase=0.0, seg=2, glatt=False, scher=None, wulst=0.0):
         vor = set(self.bm.faces)
         r = bmesh.ops.create_cube(self.bm, size=1.0, matrix=Matrix.Translation(((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2))
                                   @ Matrix.Diagonal((x1 - x0, y1 - y0, z1 - z0, 1)))
         if fase:
             es = list({e for v in r['verts'] for e in v.link_edges})
-            bmesh.ops.bevel(self.bm, geom=es, offset=fase, segments=2, affect='EDGES', profile=0.5)
-        self._setze([f for f in self.bm.faces if f not in vor], mi)
+            bmesh.ops.bevel(self.bm, geom=es, offset=fase, segments=seg, affect='EDGES', profile=0.5)
+        neu = [f for f in self.bm.faces if f not in vor]
+        vs = {v for f in neu for v in f.verts}
+        if wulst:                                    # Polster: Mitte leicht aufgewölbt (Unterteilen + Aufwölben der Oberseite)
+            for v in vs:
+                if v.co.z > (z0 + z1) / 2:
+                    u = 1 - (2 * (v.co.x - (x0 + x1) / 2) / (x1 - x0)) ** 2; w = 1 - (2 * (v.co.y - (y0 + y1) / 2) / (y1 - y0)) ** 2
+                    v.co.z += wulst * max(0, u) * max(0, w)
+        if scher:                                    # Scherung y += k·(z − zref) (geneigte Lehne)
+            zref, k = scher
+            for v in vs:
+                v.co.y += k * (v.co.z - zref)
+        self._setze(neu, mi, glatt)
 
     def kugel(self, c, r, mi=0, sx=1, sy=1, sz=1, n=1, glatt=True):
         res = bmesh.ops.create_icosphere(self.bm, subdivisions=n, radius=r,
@@ -340,6 +361,13 @@ for (x, y) in SAULEN:
     b.quader(x - 0.38, y - 0.38, FB, x + 0.38, y + 0.38, FB + 0.18, 0, fase=0.02)
     b.quader(x - 0.37, y - 0.37, BAND_U - 0.16, x + 0.37, y + 0.37, BAND_U, 0, fase=0.02)
 b.objekt('Saal_Stuetzen')
+if VAR and VAR['holz_unten']:                                         # Ayman 23.11.: Holz auch an den Säulen (wie die Wände, bis 1,1 m)
+    b = Bau([HOLZ_M])
+    for (x, y) in SAULEN:
+        b.quader(x - 0.345, y - 0.345, FB + 0.18, x + 0.345, y + 0.345, FB + 1.1, 0)
+        b.quader(x - 0.365, y - 0.365, FB + 1.1, x + 0.365, y + 0.365, FB + 1.13, 0, fase=0.006)
+        b.quader(x - 0.335, y - 0.335, BAND_U - 0.36, x + 0.335, y + 0.335, BAND_U - 0.2, 0)   # Holzband unter dem Kapitell
+    b.objekt('Saal_Stuetzen_Holz', (2.0, 2.0))
 
 
 # ------------------------------------------------------------------ Blumen
@@ -392,63 +420,145 @@ if VAR and VAR.get('laeufer'):                                      # Tischläuf
         b.quader(x0, -0.19, 0.50, x1, 0.19, 0.766, mi)
 if VAR and VAR.get('atay'):
     # Marokkanische Atay-Kanne (Berrad, Silber, etwas größer als üblich) auf rundem Silbertablett mit 6 traditionellen Teegläsern
-    SILBER = mat('Saal_Silber', '#D8D8D4', 0.24, 1.0)
-    TEE = mat('Saal_Tee', '#D98A4A', 0.02, **{'Transmission Weight': 1.0, 'IOR': 1.33})
-    GLAS_F = [mat(f'Saal_Teeglas_{k}', c, 0.02, **{'Transmission Weight': 1.0, 'IOR': 1.5})
-              for k, c in (('gruen', '#4FA06F'), ('blau', '#5A86C8'), ('rot', '#C2545A'))]
-    GOLDRAND = mat('Saal_Glas_Goldrand', '#D4B26A', 0.3, 1.0)
-    base = len(b.mats); b.mats += [SILBER, TEE] + GLAS_F + [GOLDRAND]
-    MS, MT, MG, MGR = base, base + 1, (base + 2, base + 3, base + 4), base + 5
+    SILBER = mat('Saal_Silber', '#D2D2CE', 0.34, 1.0)                 # Ayman 23.11.: Kanne nicht so stark spiegelnd (gebürstet)
+    SILBER_T = mat('Saal_Silber_Tablett', '#CFCFCB', 0.4, 1.0)
+    TEE = None  # unten nach helles_glas gesetzt
+    def helles_glas(name, hexf, deckend=0.4):
+        """Helles, buntes Teeglas: durchsichtig getönt (ohne Brechung → bleibt hell) + Spiegelung am Rand (Fresnel)."""
+        m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
+        for nd in list(nt.nodes):
+            nt.nodes.remove(nd)
+        tr0 = nt.nodes.new('ShaderNodeBsdfTransparent'); tr0.inputs['Color'].default_value = hexrgb(hexf)
+        df = nt.nodes.new('ShaderNodeBsdfDiffuse'); df.inputs['Color'].default_value = hexrgb(hexf)
+        tr = nt.nodes.new('ShaderNodeMixShader'); tr.inputs[0].default_value = deckend      # halb deckend bemalt → hell und bunt
+        nt.links.new(tr0.outputs[0], tr.inputs[1]); nt.links.new(df.outputs[0], tr.inputs[2])
+        gl = nt.nodes.new('ShaderNodeBsdfGlossy'); gl.inputs['Roughness'].default_value = 0.02
+        fr = nt.nodes.new('ShaderNodeFresnel'); fr.inputs['IOR'].default_value = 1.5
+        mx = nt.nodes.new('ShaderNodeMixShader'); out = nt.nodes.new('ShaderNodeOutputMaterial')
+        nt.links.new(fr.outputs[0], mx.inputs[0]); nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(gl.outputs[0], mx.inputs[2])
+        nt.links.new(mx.outputs[0], out.inputs[0])
+        return m
+    # nach Aymans Vorlage (assets/tisch_vorlage_ayman.png): kräftig bunt, durchscheinend – Blau, Rot, Grün, Bernstein, Rauchglas, Rot
+    GLAS_F = [helles_glas(f'Saal_Teeglas_{k}', c, 0.12) for k, c in (('blau', '#4F86DE'), ('rot', '#D8463E'), ('gruen', '#3FAF5C'),
+                                                                   ('bernstein', '#E7922E'), ('rauch', '#6E6280'), ('rubin', '#C23A4A'))]
+    TEE = helles_glas('Saal_Tee', '#F6C78E', 0.3)
+    GOLDRAND = mat('Saal_Glas_Goldrand', '#D8B25E', 0.32, 1.0)
+    _nt = GOLDRAND.node_tree; _tc = _nt.nodes.new('ShaderNodeTexCoord'); _wv = _nt.nodes.new('ShaderNodeTexWave')   # eingeprägtes Ornament
+    _wv.inputs['Scale'].default_value = 260; _wv.inputs['Distortion'].default_value = 6; _wv.inputs['Detail'].default_value = 4
+    _bp = _nt.nodes.new('ShaderNodeBump'); _bp.inputs['Strength'].default_value = 0.6
+    _nt.links.new(_tc.outputs['Object'], _wv.inputs['Vector']); _nt.links.new(_wv.outputs['Fac'], _bp.inputs['Height'])
+    _nt.links.new(_bp.outputs['Normal'], _nt.nodes['Principled BSDF'].inputs['Normal'])
+    base = len(b.mats); b.mats += [SILBER, TEE] + GLAS_F + [GOLDRAND, SILBER_T]
+    MS, MT, MG, MGR, MST = base, base + 1, tuple(range(base + 2, base + 8)), base + 8, base + 9
     z0 = 0.766
-    def drehkoerper(profil, mi, n=32, x=0.0, y=0.0, deckel=True):
-        b.ring([[(x + r * math.cos(2 * math.pi * i / n), y + r * math.sin(2 * math.pi * i / n), z) for i in range(n)]
+    def drehkoerper(profil, mi, n=32, x=0.0, y=0.0, deckel=True, rippen=0, tiefe=0.0):
+        f = lambda i: 1 + tiefe * abs(math.cos(rippen * math.pi * i / n)) if rippen else 1
+        b.ring([[(x + r * f(i) * math.cos(2 * math.pi * i / n), y + r * f(i) * math.sin(2 * math.pi * i / n), z) for i in range(n)]
                 for r, z in profil], mi, True, True, deckel)
     # Tablett
-    drehkoerper([(0.245, z0), (0.245, z0 + 0.022), (0.235, z0 + 0.022), (0.235, z0 + 0.006)], MS, 48, deckel=False)
-    b.polygon([(0.236 * math.cos(2 * math.pi * i / 48), 0.236 * math.sin(2 * math.pi * i / 48), z0 + 0.006) for i in range(48)], MS)
+    drehkoerper([(0.245, z0), (0.245, z0 + 0.022), (0.235, z0 + 0.022), (0.235, z0 + 0.006)], MST, 48, deckel=False)
+    b.polygon([(0.236 * math.cos(2 * math.pi * i / 48), 0.236 * math.sin(2 * math.pi * i / 48), z0 + 0.006) for i in range(48)], MST)
     # Kanne (Profil r, z über dem Tablett), Maßstab 1,25
     k = 1.25; zt = z0 + 0.006
     prof = [(0.050, 0.0), (0.054, 0.006), (0.040, 0.022), (0.060, 0.045), (0.074, 0.075), (0.072, 0.105), (0.055, 0.135),
-            (0.040, 0.150), (0.038, 0.158), (0.048, 0.162), (0.046, 0.168), (0.036, 0.185), (0.020, 0.205), (0.012, 0.215),
-            (0.016, 0.222), (0.010, 0.235), (0.002, 0.245)]
-    drehkoerper([(r * k, zt + z * k) for r, z in prof], MS, 32)
+            (0.040, 0.150), (0.038, 0.158), (0.048, 0.162)]
+    drehkoerper([(r * k, zt + z * k) for r, z in prof], MS, 48)
+    deckel_p = [(0.048, 0.162), (0.050, 0.168), (0.046, 0.176), (0.038, 0.192), (0.026, 0.207), (0.014, 0.216)]   # gerillte Kuppel
+    drehkoerper([(r * k, zt + z * k) for r, z in deckel_p], MS, 96, rippen=12, tiefe=0.07, deckel=False)
+    spitze = [(0.014, 0.216), (0.017, 0.222), (0.009, 0.232), (0.013, 0.241), (0.005, 0.254), (0.009, 0.262), (0.004, 0.275),
+              (0.0005, 0.29)]                                           # Knauf mit Spitze
+    drehkoerper([(r * k, zt + z * k) for r, z in spitze], MS, 24)
     sp = [Vector((0.068 * k, 0, zt + 0.08 * k)), Vector((0.10 * k, 0, zt + 0.10 * k)), Vector((0.125 * k, 0, zt + 0.14 * k)),
           Vector((0.145 * k, 0, zt + 0.175 * k)), Vector((0.17 * k, 0, zt + 0.19 * k))]
     for i in range(len(sp) - 1):                                       # Ausguss, verjüngt
         r0 = 0.014 - 0.0022 * i; b.rohr(sp[i], sp[i + 1], r0 * k, (r0 - 0.0022) * k, MS, 10, deckel=(i == len(sp) - 2))
-    hd = [Vector((-0.05 * k, 0, zt + 0.145 * k)), Vector((-0.11 * k, 0, zt + 0.15 * k)), Vector((-0.13 * k, 0, zt + 0.11 * k)),
-          Vector((-0.115 * k, 0, zt + 0.07 * k)), Vector((-0.07 * k, 0, zt + 0.055 * k))]
-    b.pfad(hd, 0.0075 * k, MS, 8)                                       # Griff
+    hd = [Vector((-0.045 * k, 0, zt + 0.15 * k)), Vector((-0.112 * k, 0, zt + 0.153 * k)), Vector((-0.128 * k, 0, zt + 0.137 * k)),
+          Vector((-0.128 * k, 0, zt + 0.078 * k)), Vector((-0.105 * k, 0, zt + 0.058 * k)), Vector((-0.066 * k, 0, zt + 0.055 * k))]
+    b.pfad(hd, 0.0085 * k, MS, 4)                                       # eckiger Griff wie in der Vorlage
     # Teegläser: leicht ausgestellt, farbiges Glas mit Goldrand-Band, mit Tee gefüllt
     for i in range(6):
         a = 2 * math.pi * i / 6 + math.pi / 6; gx, gy = 0.175 * math.cos(a), 0.175 * math.sin(a)
-        drehkoerper([(0.022, zt), (0.024, zt + 0.004), (0.031, zt + 0.095), (0.0295, zt + 0.095), (0.0225, zt + 0.006)],
-                    MG[i % 3], 20, gx, gy, deckel=True)
-        drehkoerper([(0.0312, zt + 0.06), (0.0326, zt + 0.08)], MGR, 20, gx, gy, deckel=False)
-        drehkoerper([(0.021, zt + 0.006), (0.027, zt + 0.07)], MT, 20, gx, gy, deckel=True)
+        # einwandig (nur Außenhaut, Boden zu, oben offen) → wenige Glasschichten, bleibt hell
+        drehkoerper([(0.024, zt + 0.004), (0.031, zt + 0.095)], MG[i % 6], 20, gx, gy, deckel=False)
+        b.polygon([(gx + 0.024 * math.cos(2 * math.pi * j / 20), gy + 0.024 * math.sin(2 * math.pi * j / 20), zt + 0.004)
+                   for j in reversed(range(20))], MG[i % 6])
+        drehkoerper([(0.0302, zt + 0.048), (0.0322, zt + 0.08)], MGR, 24, gx, gy, deckel=False)   # breites Goldband
+        drehkoerper([(0.0225, zt + 0.006), (0.0285, zt + 0.07)], MT, 20, gx, gy, deckel=True)
 TISCH = b.objekt('Saal_Tisch0')
 
-# ------------------------------------------------------------------ Stuhl: schlichter, stapelbarer Bankettstuhl (Ayman 23.11.)
-GESTELL = mat('Saal_Stuhlgestell', VAR.get('gestell', '#9E9D99') if VAR else '#9E9D99', 0.55, 0.5)
+# ------------------------------------------------------------------ Stuhl
+def holz_maserung(name, hexf):
+    """Echtholz-Optik ohne UV: gestrecktes Rauschen entlang z (Maserung), dunkles Braun, seidenmatt."""
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; bs = nt.nodes['Principled BSDF']
+    tc = nt.nodes.new('ShaderNodeTexCoord'); mp = nt.nodes.new('ShaderNodeMapping'); mp.inputs['Scale'].default_value = (60, 60, 3)
+    nz = nt.nodes.new('ShaderNodeTexNoise'); nz.inputs['Scale'].default_value = 6; nz.inputs['Detail'].default_value = 8
+    nz.inputs['Distortion'].default_value = 0.6
+    rp = nt.nodes.new('ShaderNodeValToRGB'); c = hexrgb(hexf)
+    rp.color_ramp.elements[0].position = 0.35; rp.color_ramp.elements[0].color = tuple(v * 0.55 for v in c[:3]) + (1,)
+    rp.color_ramp.elements[1].position = 0.7; rp.color_ramp.elements[1].color = tuple(min(1, v * 1.45) for v in c[:3]) + (1,)
+    nt.links.new(tc.outputs['Object'], mp.inputs['Vector']); nt.links.new(mp.outputs['Vector'], nz.inputs['Vector'])
+    nt.links.new(nz.outputs['Fac'], rp.inputs['Fac']); nt.links.new(rp.outputs['Color'], bs.inputs['Base Color'])
+    bs.inputs['Roughness'].default_value = 0.42; bs.inputs['Coat Weight'].default_value = 0.15
+    return m
+
+
+def polsterstoff(name, hexf):
+    """Polsterstoff: feine Webstruktur (Bump), leichter Samtglanz."""
+    m = mat(name, hexf, 0.92, **{'Sheen Weight': 0.5, 'Sheen Roughness': 0.45}); nt = m.node_tree; bs = nt.nodes['Principled BSDF']
+    tc = nt.nodes.new('ShaderNodeTexCoord'); nz = nt.nodes.new('ShaderNodeTexNoise'); nz.inputs['Scale'].default_value = 900
+    bp = nt.nodes.new('ShaderNodeBump'); bp.inputs['Strength'].default_value = 0.15
+    nt.links.new(tc.outputs['Object'], nz.inputs['Vector']); nt.links.new(nz.outputs['Fac'], bp.inputs['Height'])
+    nt.links.new(bp.outputs['Normal'], bs.inputs['Normal'])
+    return m
+
+
 if VAR and VAR.get('holzstuhl'):
-    GESTELL = mat('Saal_Stuhl_Holz_dunkel', VAR['gestell'], 0.5)
-STOFF = mat('Saal_Stuhlstoff', VAR['stoff'] if VAR else '#B8B1A5', 0.9)
-b = Bau([GESTELL, STOFF])
-b.quader(-0.22, -0.21, 0.42, 0.22, 0.21, 0.445, 0)                                           # Sitzrahmen
-b.quader(-0.215, -0.22, 0.445, 0.215, 0.2, 0.5, 1, fase=0.015)                               # Sitzpolster
-for sx in (-1, 1):
-    d = 0.019 if VAR and VAR.get('holzstuhl') else 0.0125                                        # Holzstuhl: kräftigere Beine
-    b.quader(sx * 0.2 - d, -0.2 - d, 0.0, sx * 0.2 + d, -0.2 + d, 0.42, 0)                       # Vorderbeine
-    b.rohr((sx * 0.2, 0.21, 0.0), (sx * 0.2, 0.2, 0.43), d * 1.1, mi=0, n=4)                     # Hinterbeine
-    b.rohr((sx * 0.2, 0.2, 0.43), (sx * 0.2, 0.25, 0.93), d * 1.1, mi=0, n=4)                    # Holme der Lehne
-neig = 0.05 / 0.5
-for dy in (0.0,):
-    b.quader(-0.2, 0.205, 0.58, 0.2, 0.245, 0.9, 1, fase=0.015)                                  # Rückenpolster
-STUHL = b.objekt('Saal_Stuhl0')
-# Lehne leicht nach hinten geneigt
-for v in STUHL.data.vertices:
-    if v.co.z > 0.55 and v.co.y > 0.19 and abs(v.co.x) < 0.21:
-        v.co.y += (v.co.z - 0.58) * neig
+    # Ayman 23.11.: Stuhl aus echtem Holz und gepolstert – runde Holzbeine, Zarge, Querstreben, dickes Sitzpolster,
+    # gepolsterte Rückenlehne zwischen den Holmen, Holz-Abschlussleiste oben
+    GESTELL = mat('Saal_Metall_grau', '#9E9D99', 0.55, 0.5)                                     # für Bildschirmrahmen/Pult
+    HOLZ_S = holz_maserung('Saal_Stuhl_Holz', VAR['gestell'])
+    STOFF = polsterstoff('Saal_Stuhl_Polster', VAR['stoff'])
+    b = Bau([HOLZ_S, STOFF])
+    for sx in (-1, 1):
+        x = sx * 0.195
+        b.rohr((x, -0.2, 0.0), (x, -0.195, 0.40), 0.016, 0.021, 0, 12)                            # Vorderbein, verjüngt
+        b.pfad([(x, 0.225, 0.0), (x, 0.2, 0.40), (x, 0.212, 0.56), (x, 0.245, 0.78), (x, 0.27, 0.96)], 0.019, 0, 12)  # Hinterbein + Holm
+        b.kugel((x, 0.27, 0.96), 0.019, 0, n=2)
+        b.rohr((x, -0.195, 0.15), (x, 0.215, 0.15), 0.009, mi=0, n=10)                           # seitliche Querstrebe
+    b.rohr((-0.195, 0.06, 0.15), (0.195, 0.06, 0.15), 0.009, mi=0, n=10)                         # mittlere Querstrebe
+    b.quader(-0.18, -0.215, 0.34, 0.18, -0.19, 0.405, 0, fase=0.005)                             # Zarge vorn
+    b.quader(-0.18, 0.18, 0.34, 0.18, 0.205, 0.405, 0, fase=0.005)                               # Zarge hinten
+    for sx in (-1, 1):
+        b.quader(sx * 0.18 - 0.0125, -0.19, 0.34, sx * 0.18 + 0.0125, 0.18, 0.405, 0, fase=0.005)  # Zarge seitlich
+    b.quader(-0.222, -0.232, 0.405, 0.222, 0.198, 0.475, 1, fase=0.03, seg=4, glatt=True, wulst=0.012)  # Sitzpolster
+    b.quader(-0.172, 0.205, 0.54, 0.172, 0.255, 0.885, 1, fase=0.022, seg=4, glatt=True, scher=(0.54, 0.16))  # Rückenpolster
+    b.pfad([(-0.195, 0.268, 0.935), (0.0, 0.285, 0.945), (0.195, 0.268, 0.935)], 0.016, 0, 12)  # obere Holzleiste
+    b.rohr((-0.195, 0.212, 0.53), (0.195, 0.212, 0.53), 0.011, mi=0, n=10)                       # untere Lehnenleiste
+    STUHL = b.objekt('Saal_Stuhl0')
+    for p in STUHL.data.polygons:
+        p.use_smooth = True
+else:
+  # ---------------------------------------------------------------- schlichter, stapelbarer Bankettstuhl (Ayman 23.11.)
+  GESTELL = mat('Saal_Stuhlgestell', VAR.get('gestell', '#9E9D99') if VAR else '#9E9D99', 0.55, 0.5)
+  if VAR and VAR.get('holzstuhl'):
+      GESTELL = mat('Saal_Stuhl_Holz_dunkel', VAR['gestell'], 0.5)
+  STOFF = mat('Saal_Stuhlstoff', VAR['stoff'] if VAR else '#B8B1A5', 0.9)
+  b = Bau([GESTELL, STOFF])
+  b.quader(-0.22, -0.21, 0.42, 0.22, 0.21, 0.445, 0)                                           # Sitzrahmen
+  b.quader(-0.215, -0.22, 0.445, 0.215, 0.2, 0.5, 1, fase=0.015)                               # Sitzpolster
+  for sx in (-1, 1):
+      d = 0.019 if VAR and VAR.get('holzstuhl') else 0.0125                                        # Holzstuhl: kräftigere Beine
+      b.quader(sx * 0.2 - d, -0.2 - d, 0.0, sx * 0.2 + d, -0.2 + d, 0.42, 0)                       # Vorderbeine
+      b.rohr((sx * 0.2, 0.21, 0.0), (sx * 0.2, 0.2, 0.43), d * 1.1, mi=0, n=4)                     # Hinterbeine
+      b.rohr((sx * 0.2, 0.2, 0.43), (sx * 0.2, 0.25, 0.93), d * 1.1, mi=0, n=4)                    # Holme der Lehne
+  neig = 0.05 / 0.5
+  for dy in (0.0,):
+      b.quader(-0.2, 0.205, 0.58, 0.2, 0.245, 0.9, 1, fase=0.015)                                  # Rückenpolster
+  STUHL = b.objekt('Saal_Stuhl0')
+  # Lehne leicht nach hinten geneigt
+  for v in STUHL.data.vertices:
+      if v.co.z > 0.55 and v.co.y > 0.19 and abs(v.co.x) < 0.21:
+          v.co.y += (v.co.z - 0.58) * neig
 
 # Tischordnung: 4 Reihen in x (Mittelgang mit Teppichen frei), 6 Reihen in y → 24 Tische × 10 Stühle = 240 Plätze
 TX = (2.95, 6.85, 13.15, 17.05)

@@ -155,3 +155,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   den Wänden), aber **dunkelbraunes Holz** (`assets/tex/festsaal/holz_dunkel.jpg`) an der Wand und bei den Stühlen (Holzstühle dunkelbraun),
   **Tischläufer in derselben Farbe**, Tischdecken weiß, in der Tischmitte je eine **etwas größere marokkanische Atay-Kanne** (Silber) auf
   Silbertablett mit **6 traditionellen Teegläsern** (grün/blau/rot, Goldrand, mit Tee). Vorschau `out/phase5/saal_wahl.jpg`.
+- **Ayman 23.11. (Tisch-Vorlage `assets/tisch_vorlage_ayman.png`, „daran halten“):** Stühle aus echtem Holz, gepolstert (runde Beine,
+  Zarge, Querstreben, Polster Sitz + Lehne); Teegläser kräftig bunt durchscheinend mit breitem Goldband; Atay-Kanne gebürstetes Silber
+  (**nicht so stark spiegelnd**), gerillter Deckel mit Spitze, eckiger Griff; Tablett matt; Tischdecke Damast creme (`tools/damast_textur.py`);
+  **Säulen unten (bis 1,1 m) + Band unter dem Kapitell in dunklem Holz.** Vorschau `out/phase5/saal_wahl.jpg`.
