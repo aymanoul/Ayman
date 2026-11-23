@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Festsaal im Keller (Ayman 23.11.): Einrichtung nach seinem Video von einem Festsaal (Hochzeitssaal-Stil, für Babyfeiern,
 Nikah usw.): weißer, glänzender Marmorboden 120×120 mit feinen braun-goldenen Adern, Teppiche mit Ornament-Bordüre,
-Kassettendecke mit indirekten LED-Bändern und Einbaustrahlern, Kristall-Kronleuchter, runde Tische mit weißen Tischdecken,
-goldene Stühle mit ovaler Polsterlehne, Blumen-Säulen am Eingang, Bogen-Spiegel an den Wänden. KEINE Bühne/Brautpaar-Sofa (Ayman 23.11.: kein reiner Hochzeitssaal).
+Kassettendecke mit indirekten LED-Bändern und Einbaustrahlern, schlichte Ringleuchten, runde Tische mit weißen Tischdecken,
+schlichte Bankettstühle, Bildschirm + Rednerpult. Ayman 23.11.: Mehrzweckraum für Feiern UND Wissens-Seminare – kein reiner
+Hochzeitssaal (keine Bühne/Sofa), wenig Schmuck, kein Gold, nicht zu edel, nicht zu glänzend.
 Keine Menschen, keine Schrift, keine Gesichter (FESTE REGELN).
 
 Öffnet blender/neubau.blend (fertig gebaut: umgebung → moschee → animation) und speichert nach blender/festsaal.blend
@@ -270,50 +271,33 @@ for i, (x, y) in enumerate(spots):
     ld.color = (1.0, 0.95, 0.88); ld.shadow_soft_size = 0.05
     lo = bpy.data.objects.new(f'Saal_Spot{i}', ld); lo.location = (x, y, BAND_U - 0.02); C.objects.link(lo)
 
-# ------------------------------------------------------------------ Kristall-Kronleuchter (einer gebaut, Rest verknüpfte Kopien)
-b = Bau([GOLD, KRISTALL, KERZE, PORZELLAN])
-b.scheibe((0, 0), 0.13, -0.05, 0.0, 0, 24); b.rohr((0, 0, -0.05), (0, 0, -0.14), 0.07, 0.03, 0, 16)
-for k in range(8):                                                    # Kristallkette im Schaft
-    b.kugel((0, 0, -0.16 - k * 0.032), 0.016, 1, sz=1.3)
-RINGE = [(0.48, -0.36, 40, 5), (0.34, -0.47, 28, 4), (0.20, -0.57, 18, 4)]
-for (r, z, n, lang) in RINGE:
-    b.pfad([(r * math.cos(2 * math.pi * i / 36), r * math.sin(2 * math.pi * i / 36), z) for i in range(36)], 0.009, 0, 6, True)
-    for i in range(n):
-        a = 2 * math.pi * (i + 0.5) / n
-        for k in range(lang):
-            b.kugel((r * math.cos(a), r * math.sin(a), z - 0.03 - k * 0.034), 0.0135, 1, sz=1.35)
-        b.kugel((r * math.cos(a), r * math.sin(a), z - 0.035 - lang * 0.034), 0.022, 1, sz=1.8)     # Tropfen
-for i in range(6):                                                    # Arme vom Schaft zu den Ringen
-    a = 2 * math.pi * i / 6
-    b.pfad([(0, 0, -0.30), (0.25 * math.cos(a), 0.25 * math.sin(a), -0.33), (0.48 * math.cos(a), 0.48 * math.sin(a), -0.36)], 0.01, 0)
-# Krone oben: Vorhang aus Kristallketten
-for i in range(24):
-    a = 2 * math.pi * i / 24
-    for k in range(5):
-        b.kugel((0.24 * math.cos(a), 0.24 * math.sin(a), -0.13 - k * 0.034), 0.012, 1, sz=1.3)
-b.pfad([(0.24 * math.cos(2 * math.pi * i / 24), 0.24 * math.sin(2 * math.pi * i / 24), -0.12) for i in range(24)], 0.007, 0, 6, True)
-# Girlanden zwischen den Ringpunkten
-for i in range(12):
-    a0, a1 = 2 * math.pi * i / 12, 2 * math.pi * (i + 1) / 12
-    for k in range(1, 9):
-        t = k / 9; a = a0 + (a1 - a0) * t
-        b.kugel((0.48 * math.cos(a), 0.48 * math.sin(a), -0.36 - 0.07 * math.sin(math.pi * t)), 0.011, 1)
-# Kerzenbirnen auf dem oberen Ring
-for i in range(12):
-    a = 2 * math.pi * i / 12; x, y = 0.48 * math.cos(a), 0.48 * math.sin(a)
-    b.scheibe((x, y), 0.022, -0.355, -0.27, 3, 10); b.kugel((x, y, -0.245), 0.02, 2, sz=1.5)
-b.kugel((0, 0, -0.66), 0.055, 1, n=2)                                 # Kristallkugel unten
-KRONE = b.objekt('Saal_Kronleuchter0')
+# ------------------------------------------------------------------ Ringleuchten (Ayman 23.11.: schlicht statt Kronleuchter)
+LEUCHTRING = licht_mat('Saal_Leuchtring', (1.0, 0.95, 0.88), 12.0)
+b = Bau([GOLD_MATT, LEUCHTRING])
+R, ZR = 0.55, -0.42
+n = 48
+for k in range(n):                                                    # Ring: flaches Profil, unten leuchtend
+    a0, a1 = 2 * math.pi * k / n, 2 * math.pi * (k + 1) / n
+    pts = lambda r, z: [(r * math.cos(a0), r * math.sin(a0), z), (r * math.cos(a1), r * math.sin(a1), z)]
+    (p0, p1), (p2, p3) = pts(R - 0.035, ZR), pts(R + 0.035, ZR)
+    (q0, q1), (q2, q3) = pts(R - 0.035, ZR + 0.05), pts(R + 0.035, ZR + 0.05)
+    b.polygon([p0, p2, p3, p1], 1); b.polygon([q0, q1, q3, q2], 0)
+    b.polygon([p0, p1, q1, q0], 0); b.polygon([p2, q2, q3, p3], 0)
+for i in range(3):                                                    # Abhängung: 3 dünne Seile
+    a = 2 * math.pi * i / 3
+    b.rohr((R * math.cos(a), R * math.sin(a), ZR + 0.05), (R * math.cos(a), R * math.sin(a), 0.0), 0.002, mi=0, n=4)
+b.scheibe((0, 0), 0.0001, 0, 0.0001, 0, 3)
+RINGL = b.objekt('Saal_Ringleuchte0')
 orte = []
 for (xa, ya, xb, yb) in kassetten:
     cx, cy = (xa + xb) / 2, (ya + yb) / 2
     orte += [(cx, cy - (yb - ya) / 4), (cx, cy + (yb - ya) / 4)] if (yb - ya) > 7 else [(cx, cy)]
 for k, (cx, cy) in enumerate(orte):
-    o = KRONE if k == 0 else kopie(KRONE, 'Saal_Kronleuchter', (0, 0, 0))
+    o = RINGL if k == 0 else kopie(RINGL, 'Saal_Ringleuchte', (0, 0, 0))
     o.location = (cx, cy, DECKE - 0.02)
-    ld = bpy.data.lights.new('Saal_Kronleuchter_Licht', 'POINT'); ld.energy = 140; ld.shadow_soft_size = 0.2
-    ld.color = (1.0, 0.86, 0.68)
-    lo = bpy.data.objects.new('Saal_Kronleuchter_Licht', ld); lo.location = (cx, cy, DECKE - 0.45); C.objects.link(lo)
+    ld = bpy.data.lights.new('Saal_Ringleuchte_Licht', 'POINT'); ld.energy = 110; ld.shadow_soft_size = 0.5
+    ld.color = (1.0, 0.94, 0.86)
+    lo = bpy.data.objects.new('Saal_Ringleuchte_Licht', ld); lo.location = (cx, cy, DECKE - 0.5); C.objects.link(lo)
 
 # ------------------------------------------------------------------ Stützen weiß verkleidet (Sockel, Kapitell, Goldband)
 b = Bau([WEISS_GL, GOLD_MATT])
@@ -354,8 +338,8 @@ def blumensaeule(name, x, y, h=1.05, r=0.32):
     return b.objekt(name)
 
 
-# ------------------------------------------------------------------ Tisch (rund, Tischdecke bis zum Boden) + Gedeck + Blumen
-b = Bau([TUCH, GOLD, PORZELLAN, GLAS, BLUETE_W, BLUETE_R, BLATT])
+# ------------------------------------------------------------------ Tisch (rund, schlichte weiße Tischdecke, ohne Deko)
+b = Bau([TUCH])
 n = 64; ringe = []
 for k, z in enumerate((0.0, 0.25, 0.5, 0.70, 0.745)):
     amp = 0.018 * (1 - z / 0.75) ** 1.5
@@ -365,48 +349,30 @@ for k, z in enumerate((0.0, 0.25, 0.5, 0.70, 0.745)):
 ringe.append([(0.915 * math.cos(2 * math.pi * i / n), 0.915 * math.sin(2 * math.pi * i / n), 0.76) for i in range(n)])
 b.ring(ringe, 0, True, True, False)
 b.polygon([(0.915 * math.cos(2 * math.pi * i / n), 0.915 * math.sin(2 * math.pi * i / n), 0.76) for i in range(n)], 0)
-for i in range(10):
-    a = 2 * math.pi * i / 10; x, y = 0.66 * math.cos(a), 0.66 * math.sin(a)
-    b.scheibe((x, y), 0.13, 0.76, 0.77, 2, 28)                                              # schlichter weißer Teller
-    b.quader(x - 0.05, y - 0.05, 0.77, x + 0.05, y + 0.05, 0.79, 0)                         # gefaltete Serviette
-    gx, gy = 0.70 * math.cos(a + 0.2), 0.70 * math.sin(a + 0.2)
-    b.ring([[(gx + rr * math.cos(2 * math.pi * j / 14), gy + rr * math.sin(2 * math.pi * j / 14), 0.76 + z) for j in range(14)]
-            for rr, z in ((0.03, 0.0), (0.03, 0.005), (0.005, 0.01), (0.005, 0.09), (0.035, 0.12), (0.042, 0.19))], 3, True, True, False)
-# Mittelstück: schlichte, niedrige Glasschale mit kleinem Blumengesteck (Ayman 23.11.: nicht zu edel)
-b.ring([[(rr * math.cos(2 * math.pi * j / 20), rr * math.sin(2 * math.pi * j / 20), z) for j in range(20)]
-        for rr, z in ((0.06, 0.76), (0.09, 0.80), (0.10, 0.86))], 3, True, True, False)
-blumenball(b, (0, 0, 0.88), 0.13, 60, 4, 5, 0.25, 6)
-for i in range(6):                                                    # kleine Teelichter
-    a = 2 * math.pi * i / 6 + 0.3
-    b.scheibe((0.3 * math.cos(a), 0.3 * math.sin(a)), 0.03, 0.76, 0.82, 3, 12)
 TISCH = b.objekt('Saal_Tisch0')
 
-# ------------------------------------------------------------------ Stuhl: goldenes Gestell, ovale Polsterlehne (Blick nach −y)
-b = Bau([GOLD, SAMT])
-b.quader(-0.225, -0.215, 0.43, 0.225, 0.215, 0.455, 0)                                       # Sitzrahmen
-b.quader(-0.215, -0.21, 0.455, 0.215, 0.205, 0.52, 1, fase=0.025)                             # Sitzpolster
+# ------------------------------------------------------------------ Stuhl: schlichter, stapelbarer Bankettstuhl (Ayman 23.11.)
+GESTELL = mat('Saal_Stuhlgestell', '#9E9D99', 0.55, 0.5)
+STOFF = mat('Saal_Stuhlstoff', '#B8B1A5', 0.9)
+b = Bau([GESTELL, STOFF])
+b.quader(-0.22, -0.21, 0.42, 0.22, 0.21, 0.445, 0)                                           # Sitzrahmen
+b.quader(-0.215, -0.22, 0.445, 0.215, 0.2, 0.5, 1, fase=0.015)                               # Sitzpolster
 for sx in (-1, 1):
-    b.rohr((sx * 0.215, -0.235, 0.0), (sx * 0.2, -0.2, 0.44), 0.013, 0.017, 0)                  # Vorderbeine (leicht gespreizt)
-    b.rohr((sx * 0.215, 0.27, 0.0), (sx * 0.2, 0.2, 0.44), 0.013, 0.017, 0)                      # Hinterbeine (nach hinten)
-ell = []
-for i in range(40):
-    t = 2 * math.pi * i / 40
-    x, z = 0.205 * math.sin(t), 0.285 * math.cos(t)
-    ell.append((x, z))
-neig = math.radians(8)
-P = lambda x, z, dy=0.0: (x, 0.215 + dy + (z + 0.285) * math.sin(neig), 0.52 + (z + 0.285) * math.cos(neig))
-b.pfad([P(x, z) for x, z in ell], 0.016, 0, 8, True)                                         # Goldrahmen der Lehne
-for dy in (-0.022, 0.022):                                                                    # Polster (Vorder- und Rückseite)
-    pts = [P(x * 0.92, z * 0.93, dy) for x, z in ell]
-    b.polygon(pts if dy > 0 else list(reversed(pts)), 1)
-b.ring([[P(x * 0.92, z * 0.93, dy) for x, z in ell] for dy in (-0.022, 0.022)], 1, True, True, False)
+    b.quader(sx * 0.2 - 0.0125, -0.2 - 0.0125, 0.0, sx * 0.2 + 0.0125, -0.2 + 0.0125, 0.42, 0)   # Vorderbeine
+    b.rohr((sx * 0.2, 0.21, 0.0), (sx * 0.2, 0.2, 0.43), 0.012, mi=0, n=4)                       # Hinterbeine
+    b.rohr((sx * 0.2, 0.2, 0.43), (sx * 0.2, 0.25, 0.93), 0.012, mi=0, n=4)                      # Holme der Lehne
+neig = 0.05 / 0.5
+for dy in (0.0,):
+    b.quader(-0.2, 0.205, 0.58, 0.2, 0.245, 0.9, 1, fase=0.015)                                  # Rückenpolster
 STUHL = b.objekt('Saal_Stuhl0')
-for p in STUHL.data.polygons:
-    p.use_smooth = p.material_index == 0 or len(p.vertices) == 4
+# Lehne leicht nach hinten geneigt
+for v in STUHL.data.vertices:
+    if v.co.z > 0.55 and v.co.y > 0.19 and abs(v.co.x) < 0.21:
+        v.co.y += (v.co.z - 0.58) * neig
 
 # Tischordnung: 4 Reihen in x (Mittelgang mit Teppichen frei), 6 Reihen in y → 24 Tische × 10 Stühle = 240 Plätze
 TX = (2.95, 6.85, 13.15, 17.05)
-TY = (4.1, 8.25, 12.4, 16.55, 20.7, 24.85)              # gleichmäßig bis zur Rückwand (keine Bühne)
+TY = (4.1, 8.25, 12.4, 16.55, 20.7, 24.3)               # vor dem Bildschirm etwas Platz (Seminare)
 erster = True
 for tx in TX:
     for ty in TY:
@@ -445,41 +411,20 @@ def bogen_pts(cx, w, z0, zg, n=24, y=0.0):
     return pts
 
 
-# Blumen-Säulen am Eingang des Mittelgangs
-blumensaeule('Saal_Blumensaeule_EL', 8.3, 1.4, 1.1); blumensaeule('Saal_Blumensaeule_ER', 11.7, 1.4, 1.1)
-
-# ------------------------------------------------------------------ Seitenwände: Bogen-Spiegel mit Goldrahmen + Wandleuchten
-b = Bau([SPIEGEL, GOLD, KERZE, WEISS_GL])
-spiegel_y = (3.6, 8.25, 12.4, 16.55, 20.7, 24.85)
-for xw, s in ((RX0 + 0.02, 1), (RX1 - 0.02, -1)):
-    for yc in spiegel_y:
-        if s < 0 and yc < 3.0:
-            continue                                                 # dort ist das Treppenhaus vorn rechts
-        w, z0, zg = 1.2, FB + 0.25, FB + 1.55
-        pts = [(xw + s * 0.015, yc + (y - 0), z) for (y, _, z) in [(p[0] - 0, p[1], p[2]) for p in bogen_pts(0.0, w, z0, zg, 24)]]
-        b.polygon(pts if s > 0 else list(reversed(pts)), 0)
-        b.pfad([(xw + s * 0.03, yy, zz) for (_, yy, zz) in pts], 0.03, 1, 8)
-        b.pfad([(xw + s * 0.03, pts[0][1], z0), (xw + s * 0.03, pts[-1][1], z0)], 0.03, 1, 8)
-        for dy in (-1.0, 1.0):                                        # Wandleuchten links/rechts vom Spiegel
-            yy = yc + dy
-            b.quader(min(xw, xw + s * 0.03), yy - 0.06, FB + 1.75, max(xw, xw + s * 0.03), yy + 0.06, FB + 1.95, 1)
-            b.rohr((xw + s * 0.03, yy, FB + 1.8), (xw + s * 0.16, yy, FB + 1.85), 0.012, mi=1)
-            b.scheibe((xw + s * 0.16, yy), 0.025, FB + 1.85, FB + 1.93, 3, 12)
-            b.kugel((xw + s * 0.16, yy, FB + 1.96), 0.02, 2, sz=1.5)
+# ------------------------------------------------------------------ Seminar: großer Bildschirm an der Rückwand + Rednerpult
+SCHIRM = mat('Saal_Bildschirm', '#0E0F11', 0.18)
+HOLZ = mat('Saal_Holz_hell', '#CDB792', 0.6)
 yw = RY1 - 0.02
-for xc in (8.0, 11.0, 14.0, 17.0):                                    # Rückwand (links davon das Treppenhaus)
-    w, z0, zg = 1.2, FB + 0.25, FB + 1.55
-    pts = [(xc + p[0], yw - 0.015, p[2]) for p in bogen_pts(0.0, w, z0, zg, 24)]
-    b.polygon(pts, 0)
-    b.pfad([(x, yw - 0.03, z) for (x, _, z) in pts], 0.03, 1, 8)
-    b.pfad([(pts[0][0], yw - 0.03, z0), (pts[-1][0], yw - 0.03, z0)], 0.03, 1, 8)
-for xx in (6.5, 9.5, 12.5, 15.5, 18.5):                               # Wandleuchten zwischen den Spiegeln
-    b.quader(xx - 0.06, yw - 0.03, FB + 1.75, xx + 0.06, yw, FB + 1.95, 1)
-    b.rohr((xx, yw - 0.03, FB + 1.8), (xx, yw - 0.16, FB + 1.85), 0.012, mi=1)
-    b.scheibe((xx, yw - 0.16), 0.025, FB + 1.85, FB + 1.93, 3, 12)
-    b.kugel((xx, yw - 0.16, FB + 1.96), 0.02, 2, sz=1.5)
-b.objekt('Saal_Spiegel_Wandleuchten')
-
+b = Bau([SCHIRM, GESTELL])
+b.quader(8.45, yw - 0.06, FB + 0.62, 11.55, yw, FB + 2.36, 1)                                   # Rahmen
+b.quader(8.48, yw - 0.065, FB + 0.65, 11.52, yw - 0.06, FB + 2.33, 0)                           # Bildfläche (aus)
+b.objekt('Saal_Bildschirm')
+b = Bau([HOLZ, GESTELL])
+px, py = 12.6, 27.3
+b.quader(px - 0.3, py - 0.2, FB, px + 0.3, py + 0.2, FB + 0.05, 1)
+b.quader(px - 0.27, py - 0.17, FB + 0.05, px + 0.27, py + 0.17, FB + 1.05, 0, fase=0.01)
+b.quader(px - 0.31, py - 0.24, FB + 1.05, px + 0.31, py + 0.2, FB + 1.09, 0, fase=0.008)
+b.objekt('Saal_Rednerpult')
 # Rohbau-Teile des Kellers, die der Ausbau ersetzt/verdeckt
 for o in bpy.data.objects:
     if o.name.startswith(('Keller_Wandleuchten', 'Keller_Unterzuege', 'Keller_Saeulen', 'Keller_Treppe')):
