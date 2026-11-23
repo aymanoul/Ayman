@@ -165,3 +165,5 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   → jede Stelle bis 14 m breit zu öffnen, jeder Wohnwagen fährt gerade nach vorn hinaus. Nur außen schlanke Stahl-Endpfosten (12 cm),
   Abstand zum äußeren Wohnwagen 0,23 m. Objekte `Schiebetor` (rechter Flügel, Eigenschaft „offen“), `Schiebetor_FluegelA/B`,
   `Schiebetor_Schienen`, `Schiebetor_Pfosten`. Vorschau `out/phase5/tor_neu.jpg`. Genaue Ausführung (Schienen, Kippsicherung) mit einem Metallbauer klären.
+- **Ayman 23.11.: keine Bodenplatte vor der Moschee** (Objekt `Vorplatz` entfernt). Glasfront bündig mit dem Nachbarhaus links, davor wie beim
+  Nachbarn Randstein + Gasse. Portal mit Stufen, Laternen und Zypressen-Kübeln bleibt. Vorschau `out/phase5/front_buendig.jpg`.

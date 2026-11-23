@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phase 3: Moschee im Endzustand + Keller, Vorplatz, Hof, Parken, Wohnwagen-Stellplätze, 3 Schiebeflügel über die ganze Breite.
+"""Phase 3: Moschee im Endzustand + Keller, Hof, Parken, Wohnwagen-Stellplätze, 3 Schiebeflügel über die ganze Breite.
 Öffnet blender/neubau.blend (aus umgebung.py) und speichert dorthin zurück.
 
     .venv-blender/bin/python blender/umgebung.py && .venv-blender/bin/python blender/moschee.py
@@ -440,7 +440,7 @@ viele_quader('PV_Module', mods, M['pv'], 'S5_Dach')
 viele_quader('PV_Gestell', gest, M['pv_rahmen'], 'S5_Dach')
 
 # ------------------------------------------------------------------ S6: Außenanlagen (Vorplatz, Hof, Parken, Wohnwagen, Zaun, Tor, Licht)
-flaeche('Vorplatz', [(0, -0.9), (BT, -0.9), (BT, Y0), (0, Y0)], 0.035, M['vorplatz'], 'S6_Aussen')   # schmaler Gehweg-Streifen vor der Glasfront
+# (Ayman 23.11.: KEINE Bodenplatte vor der Moschee – die Glasfront ist bündig mit dem Nachbarhaus, davor wie beim Nachbarn Randstein + Gasse)
 # Hof (Ayman 19.11.: „besser bebauen wie in den Beispielen“): Plattenboden, Mauern mit Leuchten, durchgehende Pflanzbeete
 # mit Büschen und Zypressen, Bodenstrahler, 2 Olivenbäume, 1 Palme, 2 Essplätze mit Sonnenschirm, Lounge-Ecke, Außenküche.
 flaeche('Hof_Boden', [(0.25, Y1), (BT - 0.25, Y1), (BT - 0.25, TT), (0.25, TT)], 0.035, M['hofplatten'], 'S6_Aussen')
