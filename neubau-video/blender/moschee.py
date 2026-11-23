@@ -8,7 +8,7 @@ Maße wie im freigegebenen Lageplan (Phase 1). Höhen: Keller −3,2…0, EG 0�
 OG 5,95…8,7 (Frauen, 2,75 m), Dachplatte 8,7…9,2, Attika bis 10,0 m.
 Sammlungen je Baustufe (für den Zeitraffer in Phase 4): S1_Aushub (folgt), S2_Keller, S3_EG, S4_OG, S5_Dach, S6_Aussen, Innen.
 Qibla von Ratingen ≈ 127° → im Modell Richtung −X (linke Wand zu den Altbauten): dort Mihrab und Minbar, Gebetsreihen parallel dazu.
-Keine Menschen, Autos, Wohnwagen; Parken und Wohnwagen-Plätze leer (nur Markierungen). Schiebetor geschlossen
+Keine Menschen. Wohnwagen + 4 Autos (blender/autos.py, wird am Ende ausgeführt; Ayman 23.11.). Schiebetor geschlossen
 (Eigenschaft „offen“ 0…1 am Objekt Schiebetor schiebt es per Treiber 6 m nach links, steht auf 0).
 """
 import math
@@ -826,6 +826,9 @@ viele_quader('Innen2_Schuhregal', [(PORTAL_X - 2.6, Y0 + 0.35, 0.17, PORTAL_X - 
 # (entfernt 20.11.: Waschraum nicht mehr hinter der Glas-Rückwand) 
 fl = farbe('Fliesen_Waschraum', '#CFCBC2', 0.4, 0, 0.03)
 # (entfernt 20.11.: Waschraum nicht mehr hinter der Glas-Rückwand) 
+
+# 4 Autos auf den Parkplätzen (Ayman 23.11.) – eigene Datei, läuft im Namensraum dieses Skripts
+exec(compile(open(os.path.join(HERE, 'autos.py'), encoding='utf-8').read(), os.path.join(HERE, 'autos.py'), 'exec'))
 
 # Abschluss
 for o in bpy.data.objects:

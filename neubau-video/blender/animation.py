@@ -278,6 +278,101 @@ for i in range(7):
                 kps[0].interpolation = 'QUAD'; kps[0].easing = 'EASE_IN'     # beschleunigt fallen
                 for kp in kps[1:]:
                     kp.interpolation = 'SINE'
+# Autos (Ayman 23.11.): 2 stehen schon (werden wie die Wohnwagen auf den Platz gesetzt), 2 parken im Video ein
+def _auto_teile(name):
+    b = bpy.data.objects[name + '_Karosserie']
+    return b, [b] + [o for o in bpy.data.objects if o.parent == b]
+
+
+def _sichtbar_ab(teile, t):
+    for o in teile:
+        ZUGEWIESEN[o.name] = t
+        o.hide_render = True; o.keyframe_insert('hide_render', frame=0)
+        o.hide_render = False; o.keyframe_insert('hide_render', frame=F(t))
+
+
+for name, t0 in (('Auto2', 42.5), ('Auto3', 42.75)):
+    b, teile = _auto_teile(name)
+    _sichtbar_ab(teile, t0)
+    z = b.location.z
+    for t, dz in ((t0, 1.2), (t0 + 0.38, 0.0), (t0 + 0.5, 0.04), (t0 + 0.62, 0.0)):
+        b.location.z = z + dz; b.keyframe_insert('location', index=2, frame=F(t))
+    b.location.z = z
+
+
+def _bezier(p0, p1, p2, p3, n=40):
+    return [p0 * (1 - t) ** 3 + p1 * 3 * (1 - t) ** 2 * t + p2 * 3 * (1 - t) * t * t + p3 * t ** 3 for t in [k / n for k in range(n + 1)]]
+
+
+def einparken(name, t0, t1, x_start=58.0):
+    """Fährt auf der Gasse heran (von rechts), biegt in die Fahrgasse und parkt vorwärts schräg ein. Räder drehen, Vorderräder lenken."""
+    b, teile = _auto_teile(name)
+    ziel = b.location.copy().to_2d(); gier = b.rotation_euler.z
+    U = Vector((math.cos(gier), math.sin(gier)))
+    i = int(b['platz']); E = Vector((25.3, 0.45 + (i + 0.5) * 2.5364))         # Einfahrt in den Platz (Fahrgassen-Kante)
+    xg, yl = 27.45, -2.3                                                      # Mitte Fahrgasse, Fahrspur auf der Gasse
+    weg = [Vector((x_start, yl)), Vector((31.6, yl))]
+    weg += _bezier(Vector((31.6, yl)), Vector((29.2, yl)), Vector((xg, -0.6)), Vector((xg, 1.4)))[1:]
+    weg += [Vector((xg, E.y - 3.2))]
+    weg += _bezier(Vector((xg, E.y - 3.2)), Vector((xg, E.y - 1.6)), E - U * 0.9, E + U * 0.6)[1:]
+    weg += [ziel]
+    # dicht abtasten, Bogenlänge
+    pts = [weg[0]]
+    for a_, b_ in zip(weg, weg[1:]):
+        n = max(1, int((b_ - a_).length / 0.1))
+        pts += [a_.lerp(b_, k / n) for k in range(1, n + 1)]
+    sl = [0.0]
+    for a_, b_ in zip(pts, pts[1:]):
+        sl.append(sl[-1] + (a_ - b_).length)
+    Lw = sl[-1]; T = t1 - t0; v0 = 8.0
+
+    def s_von(tau):                                                           # Hermite: Startgeschwindigkeit v0, Ende steht
+        h10 = tau ** 3 - 2 * tau ** 2 + tau; h01 = -2 * tau ** 3 + 3 * tau ** 2
+        return h10 * v0 * T + h01 * Lw
+
+    def bei(sv):
+        sv = max(0.0, min(Lw, sv)); k = 0
+        while k < len(sl) - 2 and sl[k + 1] < sv:
+            k += 1
+        f = (sv - sl[k]) / max(1e-6, sl[k + 1] - sl[k])
+        return pts[k].lerp(pts[k + 1], f), k
+
+    _sichtbar_ab(teile, t0)
+    R = b['radius']; wb = b['radstand']; z = b.location.z
+    raeder = [o for o in teile if o.name.endswith(('_vl', '_vr', '_hl', '_hr'))]
+    gier_alt = None
+    for fr in range(F(t0), F(t1) + 1):
+        tau = (fr / FPS - t0) / T; sv = s_von(tau)
+        p, k = bei(sv)
+        d = pts[min(k + 1, len(pts) - 1)] - pts[max(k - 1, 0)]
+        g = math.atan2(d.y, d.x) if d.length > 1e-6 else gier
+        if fr == F(t1):
+            p, g = ziel, gier
+        if gier_alt is not None:                                              # Winkel stetig halten
+            while g - gier_alt > math.pi: g -= 2 * math.pi
+            while g - gier_alt < -math.pi: g += 2 * math.pi
+        # Lenkwinkel aus der Krümmung kurz voraus
+        p2, k2 = bei(sv + 1.0); d2 = pts[min(k2 + 1, len(pts) - 1)] - pts[max(k2 - 1, 0)]
+        g2 = math.atan2(d2.y, d2.x) if d2.length > 1e-6 else g
+        dg = (g2 - g + math.pi) % (2 * math.pi) - math.pi
+        lenk = max(-0.6, min(0.6, math.atan(wb * dg / 1.0)))
+        b.location = (p.x, p.y, z); b.rotation_euler = (0, 0, g)
+        b.keyframe_insert('location', frame=fr); b.keyframe_insert('rotation_euler', index=2, frame=fr)
+        for r in raeder:
+            r.rotation_euler = (0, sv / R, lenk if r.get('vorn') else 0.0)
+            r.keyframe_insert('rotation_euler', frame=fr)
+        gier_alt = g
+    for o in teile:
+        ad = o.animation_data
+        for fc in (ad.action.fcurves if ad and ad.action and hasattr(ad.action, 'fcurves') else []):
+            if fc.data_path in ('location', 'rotation_euler'):
+                for kp in fc.keyframe_points:
+                    kp.interpolation = 'LINEAR'
+
+
+einparken('Auto1', 48.4, 55.6)                 # schwarzer Kompakt → Platz 3 (hinten)
+einparken('Auto4', 50.6, 57.4)                 # schwarzes SUV → Platz 2
+
 # (23.11.: fester Zaun entfällt – Schienen, Endpfosten und 3 Schiebeflügel kommen mit 'Schiebetor*')
 gruppe(['Schiebetor', 'Schiebetor_*'], 43.2, 44.0, Z, 6)
 

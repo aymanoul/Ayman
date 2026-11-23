@@ -169,3 +169,10 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   Nachbarn Randstein + Gasse. Portal mit Stufen, Laternen und Zypressen-Kübeln bleibt. Vorschau `out/phase5/front_buendig.jpg`.
 - **Ayman 23.11.: roter Gebetsteppich** in der Moschee (EG + OG, Vorlage `assets/moschee_teppich_vorlage_ayman.png`): kräftiges Rot mit samtigem
   Flor, beige Reihenstreifen alle 1,2 m parallel zur Qibla-Wand (vorher grün, Streifenabstand war fälschlich 0,38 m). Vorschau `out/phase5/teppich_rot.jpg`.
+- **4 Autos auf den Parkplätzen (Ayman 23.11., Vorlagen `assets/autos/auto1…4_*.png`):** `blender/autos.py` (wird am Ende von moschee.py
+  per exec ausgeführt – keine eigene Pipeline-Stufe). Karosserie als Loft (Seitenlinie, Gürtellinie, Grundriss, Radhäuser), Scheiben/Säulen
+  per Material, Lichter/Grill/Kennzeichen/Türfugen als projizierte Aufkleber, Räder eigene Objekte (drehen + lenken).
+  **Kein Text: keine Logos/Schriftzüge, Kennzeichen leer.** Auto1 schwarzer Kompakt-Sportwagen → Platz 3, Auto2 grauer Kompakt → Platz 0,
+  Auto3 weißer Sportback → Platz 1, Auto4 schwarzes SUV → Platz 2 (Platz 0 = an der Gasse). Video: Auto2/Auto3 werden bei 42,5/42,75 s
+  wie die Wohnwagen auf den Platz gesetzt; **Auto1 parkt 48,4–55,6 s ein, Auto4 50,6–57,4 s** (über die Gasse, Fahrgasse, vorwärts schräg).
+  Vorschau `out/phase5/autos_parkplatz.jpg`. Feinheiten macht Ayman später mit Higgsfield (ebenfalls ohne Text/Logo).
