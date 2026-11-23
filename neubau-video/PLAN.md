@@ -203,7 +203,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   Lounge: Outdoor-Teppich, großes L-Sofa (Teak-Sockel, dicke Polster, Zierkissen terrakotta/salbei/sand), 2 Sessel, Couchtisch mit
   Travertin-Platte, Bodenlaternen; Außenküche mit Edelstahl-Grill. Licht: Wandleuchten (auf/ab) an den Seitenmauern UND an der hinteren Wand,
   Strahler in den Beeten, Laternenlicht. Vorschau `out/phase5/hof_neu.jpg`.
-- **Nachbar rechts korrigiert (Ayman 23.11., Bild von oben):** Das orangene Dach ist KEIN eigenes Haus, sondern ein Anbau mit rotem Pultdach, der
-  seitlich am langen Nachbargebäude hängt: vorn bündig mit dessen Front (ragt nicht zur Gasse vor), gleiche Tiefe (y 12,6 … 29,3), x 50,3 … 60,
-  Dach fällt zur Gasse ab; das lange Gebäude endet jetzt bündig bei x 50,3. Davor heller Plattenhof bis zur Gasse, Grenzmauer zu den
-  Wohnwagen; rechts davon (ab x 60) das nächste Haus. Vorschau `out/phase5/nachbar_rechts.jpg` (oben Vorlage, Mitte Modell).
+- **Nachbar rechts (Ayman 23.11., mehrfach korrigiert – Bild von oben „genau so“):** Das lange Nachbarhaus hinter den Wohnwagen läuft
+  nach rechts weiter (bis x 72). Davor hängt der orangene Anbau mit Pultdach (x 50,3 … 60, nur 4 m tief, y 8,6 … 12,6; hohe Seite am langen Haus),
+  davor ein heller Plattenhof bis zur Gasse, Grenzmauer zu den Wohnwagen. Rechts daneben (ab x 60) das nächste Haus, das vorn bis an die Gasse
+  reicht. Kahler Baum nach hinten versetzt. Vorschau `out/phase5/nachbar_rechts.jpg` (oben Vorlage, Mitte Modell).
