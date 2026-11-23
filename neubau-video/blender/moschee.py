@@ -601,26 +601,145 @@ viele_quader('Innen_Regal_Buecher', [(BT - 0.78, y0 + 0.1 + j * 0.5, 0.3 + r * 0
 # Dach_Technik (3 Kästen) entfernt – Ayman 23.11.
 
 # ------------------------------------------------------------------ Wohnwagen (Ayman 19.11.: „wie im Beispiel“) – 7 Stück, Deichsel zur Gasse
-weiss = farbe('Wohnwagen_weiss', '#F1F1EC', 0.35, 0, 0.02)
-grau = farbe('Wohnwagen_Streifen', '#9AA0A6', 0.5, 0, 0)
-dunkel = farbe('Wohnwagen_Fenster', '#1F252B', 0.15, 0.2, 0)
-reifen = farbe('Reifen', '#161616', 0.8, 0, 0)
+# Wohnwagen (Ayman 23.11., Vorlage assets/wohnwagen_vorlage_ayman.png): moderner Tandem-Wohnwagen, abgerundet, Panorama-Front,
+# LED-Leiste, grauer Seitenstreifen, Fenster mit Rahmen, Tür, Radkästen, 4 Alufelgen, Deichsel mit Kupplung und Stützrad,
+# rote Rücklichter, Dachluken + Klima. KEINE Schriftzüge/Logos (Regel: kein Text im Video).
+weiss = farbe('Wohnwagen_weiss', '#F3F3F0', 0.22, 0, 0.01)
+grau = farbe('Wohnwagen_Streifen', '#8E9297', 0.4, 0, 0)
+dunkel = farbe('Wohnwagen_Fenster', '#15191E', 0.06, 0.3, 0)
+rahmen_ww = farbe('Wohnwagen_Rahmen', '#202226', 0.5, 0, 0)
+kunst = farbe('Wohnwagen_Kunststoff', '#2C2E33', 0.55, 0, 0.02)
+reifen = farbe('Reifen', '#161616', 0.85, 0, 0)
+felge = farbe('Alufelge', '#C7CBD0', 0.28, 0.9, 0)
+chassis = farbe('Chassis_verzinkt', '#A4A8AD', 0.4, 0.8, 0.03)
+led = leuchte('Wohnwagen_LED', '#F4F8FF', 3.0)
+rot = leuchte('Wohnwagen_Ruecklicht', '#E0261B', 1.5)
+vorhang = farbe('Wohnwagen_Vorhang', '#6E6A64', 0.9, 0, 0.05)
+W_W, W_L0, W_L1 = 2.3, LT - 7.3, LT - 1.0           # Breite, Front (zur Gasse), Heck
+
+
+def ww_profil(y0, y1):
+    return [(y0 + 0.15, 0.42), (y1 - 0.1, 0.42), (y1, 0.58), (y1, 2.55), (y1 - 0.22, 2.72), (y0 + 0.95, 2.72),
+            (y0 + 0.28, 2.47), (y0, 1.92), (y0, 0.78), (y0 + 0.04, 0.52)]
+
+
+def extrudiere(name, prof, xa, xb, mat, c='Wohnwagen'):
+    n = len(prof)
+    v = [(xa, y, z) for y, z in prof] + [(xb, y, z) for y, z in prof]
+    f = [tuple(reversed(range(n))), tuple(range(n, 2 * n))] + [(k, (k + 1) % n, n + (k + 1) % n, n + k) for k in range(n)]
+    return mesh(name, v, f, mat, c)
+
+
+def seitenflaeche(pts, x, aussen):
+    """Polygon (y, z) auf der Seitenwand bei x; aussen = +1/-1 (Blickrichtung)."""
+    v = [(x, y, z) for y, z in pts]
+    return v, (list(range(len(pts))) if aussen > 0 else list(reversed(range(len(pts)))))
+
+
+def sammle(name, polys, mat):
+    v, f = [], []
+    for pv, pf in polys:
+        k = len(v); v += pv; f.append(tuple(k + i for i in pf))
+    if v:
+        mesh(name, v, f, mat, 'Wohnwagen')
+
+
+def balken(p0, p1, b, h):
+    p0, p1 = Vector(p0), Vector(p1); d = (p1 - p0).normalized(); s = Vector((-d.y, d.x, 0)).normalized() * b / 2; u = Vector((0, 0, h / 2))
+    return [p0 - s - u, p0 + s - u, p1 + s - u, p1 - s - u, p0 - s + u, p0 + s + u, p1 + s + u, p1 - s + u]
+
+
+def box_faces(k):
+    return [(k, k + 3, k + 2, k + 1), (k + 4, k + 5, k + 6, k + 7), (k, k + 1, k + 5, k + 4), (k + 1, k + 2, k + 6, k + 5), (k + 2, k + 3, k + 7, k + 6), (k + 3, k, k + 4, k + 7)]
+
+
+def rad(name, x, y, z, r, b, mat, n=24):
+    ob = zylinder(name, 0, 0, -b / 2, r, r, b, mat, 'Wohnwagen', n)
+    for vv in ob.data.vertices:
+        vv.co = Vector((x + vv.co.z, y + vv.co.x, z + vv.co.y))
+    return ob
+
+
 for i in range(7):
     cx = PK + (i + 0.5) * WB
-    y0, y1 = LT - 7.0, LT - 1.0
-    kor = quader(f'Wohnwagen{i}_Aufbau', cx - 1.15, y0, 0.45, cx + 1.15, y1, 2.75, weiss, 'Wohnwagen')
-    bev = kor.modifiers.new('Rundung', 'BEVEL'); bev.width = 0.22; bev.segments = 4
-    viele_quader(f'Wohnwagen{i}_Fenster', [(cx - 1.17, y0 + 0.8, 1.65, cx - 1.14, y1 - 1.6, 2.1), (cx + 1.14, y0 + 0.8, 1.65, cx + 1.17, y1 - 1.6, 2.1),
-                                            (cx - 0.95, y0 - 0.03, 1.75, cx + 0.95, y0 + 0.02, 2.2)], dunkel, 'Wohnwagen')
-    viele_quader(f'Wohnwagen{i}_Streifen', [(cx - 1.17, y0 + 0.3, 1.0, cx - 1.15, y1 - 0.3, 1.12), (cx + 1.15, y0 + 0.3, 1.0, cx + 1.17, y1 - 0.3, 1.12),
-                                             (cx + 1.14, y1 - 1.3, 0.7, cx + 1.17, y1 - 0.5, 2.3)], grau, 'Wohnwagen')
-    viele_quader(f'Wohnwagen{i}_Dach', [(cx - 0.4, y0 + 1.5, 2.75, cx + 0.4, y0 + 2.3, 2.92), (cx - 0.35, y1 - 2.2, 2.75, cx + 0.35, y1 - 1.5, 2.88)], grau, 'Wohnwagen')
-    viele_quader(f'Wohnwagen{i}_Deichsel', [(cx - 0.75, y0 - 0.9, 0.42, cx - 0.65, y0 + 0.1, 0.5), (cx + 0.65, y0 - 0.9, 0.42, cx + 0.75, y0 + 0.1, 0.5),
-                                             (cx - 0.75, y0 - 1.05, 0.42, cx + 0.75, y0 - 0.9, 0.5), (cx - 0.05, y0 - 1.0, 0.05, cx + 0.05, y0 - 0.9, 0.42)], M['zaun'], 'Wohnwagen')
-    for j, sx in enumerate((-1.2, 1.2)):
-        rad = zylinder(f'Wohnwagen{i}_Rad{j}', 0, 0, -0.12, 0.34, 0.34, 0.24, reifen, 'Wohnwagen', 20)
-        for v in rad.data.vertices:
-            v.co = Vector((cx + sx + v.co.z, (y0 + y1) / 2 + v.co.x, 0.34 + v.co.y))
+    y0, y1 = W_L0, W_L1
+    xa, xb = cx - W_W / 2, cx + W_W / 2
+    kor = extrudiere(f'Wohnwagen{i}_Aufbau', ww_profil(y0, y1), xa, xb, weiss)
+    bev = kor.modifiers.new('Rundung', 'BEVEL'); bev.width = 0.07; bev.segments = 3; bev.limit_method = 'ANGLE'
+    for p in kor.data.polygons:
+        p.use_smooth = True
+    # Front: Panoramafenster (läuft über die Schräge aufs Dach), LED-Leiste, dunkle Schürze mit Leuchten
+    fr = []
+    for ((ya, za), (yb, zb)), (xl, xr) in ((((y0, 1.5), (y0, 1.92)), (xa + 0.18, xb - 0.18)), (((y0, 1.92), (y0 + 0.28, 2.47)), (xa + 0.2, xb - 0.2)),
+                                          (((y0 + 0.28, 2.47), (y0 + 0.8, 2.66)), (xa + 0.28, xb - 0.28))):
+        dy, dz = yb - ya, zb - za; ln = math.hypot(dy, dz); ny, nz = -dz / ln * 0.012, dy / ln * 0.012
+        fr.append(([(xl, ya + ny, za + nz), (xr, ya + ny, za + nz), (xr, yb + ny, zb + nz), (xl, yb + ny, zb + nz)], [3, 2, 1, 0]))
+    sammle(f'Wohnwagen{i}_Panorama', fr, dunkel)
+    sammle(f'Wohnwagen{i}_LED', [([(xa + 0.3, y0 - 0.012, 1.34), (xb - 0.3, y0 - 0.012, 1.34), (xb - 0.3, y0 - 0.012, 1.39), (xa + 0.3, y0 - 0.012, 1.39)], [3, 2, 1, 0]),
+                                 ([(xa + 0.12, y0 - 0.012, 1.24), (xa + 0.32, y0 - 0.012, 1.34), (xa + 0.32, y0 - 0.012, 1.39), (xa + 0.12, y0 - 0.012, 1.3)], [3, 2, 1, 0]),
+                                 ([(xb - 0.32, y0 - 0.012, 1.34), (xb - 0.12, y0 - 0.012, 1.24), (xb - 0.12, y0 - 0.012, 1.3), (xb - 0.32, y0 - 0.012, 1.39)], [3, 2, 1, 0])], led)
+    sammle(f'Wohnwagen{i}_Frontschuerze', [([(xa + 0.15, y0 - 0.01, 0.62), (xb - 0.15, y0 - 0.01, 0.62), (xb - 0.15, y0 - 0.01, 0.98), (xa + 0.15, y0 - 0.01, 0.98)], [3, 2, 1, 0])], kunst)
+    # Seiten: grauer Streifen, 2 Fenster je Seite, Tür (rechts), Schweller, Radkästen
+    band, fen, glas_w, vh, schw, kast = [], [], [], [], [], []
+    yc = (y0 + y1) / 2 + 0.25; ya_, yb_ = yc - 0.42, yc + 0.42
+    for sx, x in ((-1, xa), (1, xb)):
+        e = x + sx * 0.006
+        band.append(seitenflaeche([(y0 + 0.55, 1.05), (y1 - 0.45, 1.05), (y1 - 0.45, 2.22), (y0 + 1.55, 2.22), (y0 + 0.95, 1.7)], e, sx))
+        for wy in (y0 + 2.1, y0 + 3.6):
+            fen.append(seitenflaeche([(wy - 0.56, 1.5), (wy + 0.56, 1.5), (wy + 0.56, 2.12), (wy - 0.56, 2.12)], x + sx * 0.01, sx))
+            glas_w.append(seitenflaeche([(wy - 0.48, 1.56), (wy + 0.48, 1.56), (wy + 0.48, 2.06), (wy - 0.48, 2.06)], x + sx * 0.014, sx))
+            vh.append(seitenflaeche([(wy - 0.46, 1.58), (wy - 0.2, 1.58), (wy - 0.2, 2.04), (wy - 0.46, 2.04)], x + sx * 0.016, sx))
+            vh.append(seitenflaeche([(wy + 0.2, 1.58), (wy + 0.46, 1.58), (wy + 0.46, 2.04), (wy + 0.2, 2.04)], x + sx * 0.016, sx))
+        schw.append(seitenflaeche([(y0 + 0.15, 0.42), (y1 - 0.1, 0.42), (y1 - 0.1, 0.56), (y0 + 0.15, 0.56)], x + sx * 0.012, sx))
+        arc = [(ya_ - 0.45, 0.42)] + [(ya_ - 0.45 * math.cos(a), 0.42 + 0.42 * math.sin(a)) for a in [k * math.pi / 16 for k in range(1, 8)]]
+        arc += [(ya_, 0.84), (yb_, 0.84)] + [(yb_ + 0.45 * math.sin(a), 0.42 + 0.42 * math.cos(a)) for a in [k * math.pi / 16 for k in range(1, 8)]] + [(yb_ + 0.45, 0.42)]
+        kast.append(seitenflaeche(arc, x + sx * 0.014, sx))
+    sammle(f'Wohnwagen{i}_Streifen', band, grau)
+    sammle(f'Wohnwagen{i}_Fensterrahmen', fen, rahmen_ww)
+    sammle(f'Wohnwagen{i}_Fenster', glas_w, dunkel)
+    sammle(f'Wohnwagen{i}_Vorhang', vh, vorhang)
+    sammle(f'Wohnwagen{i}_Schweller', schw, kunst)
+    sammle(f'Wohnwagen{i}_Radkasten', kast, kunst)
+    # Tür auf der rechten Seite (Fuge als dunkler Rahmen, kleines Fenster, Griff)
+    tx, ty0, ty1 = xb + 0.012, y1 - 1.75, y1 - 1.05
+    tuer = [seitenflaeche(p, tx, 1) for p in ([(ty0, 0.6), (ty1, 0.6), (ty1, 0.63), (ty0, 0.63)], [(ty0, 2.02), (ty1, 2.02), (ty1, 2.05), (ty0, 2.05)],
+                                                [(ty0, 0.6), (ty0 + 0.03, 0.6), (ty0 + 0.03, 2.05), (ty0, 2.05)], [(ty1 - 0.03, 0.6), (ty1, 0.6), (ty1, 2.05), (ty1 - 0.03, 2.05)])]
+    sammle(f'Wohnwagen{i}_Tuerfuge', tuer, rahmen_ww)
+    sammle(f'Wohnwagen{i}_Tuerfenster', [seitenflaeche([(ty0 + 0.15, 1.5), (ty1 - 0.15, 1.5), (ty1 - 0.15, 1.92), (ty0 + 0.15, 1.92)], tx + 0.002, 1)], dunkel)
+    quader(f'Wohnwagen{i}_Tuergriff', xb + 0.01, ty1 - 0.14, 1.2, xb + 0.05, ty1 - 0.08, 1.34, rahmen_ww, 'Wohnwagen')
+    # Heck: L-förmige Rücklichter, Lichtband oben, Stoßfänger, leeres Kennzeichenfeld (ohne Schrift)
+    hk = []
+    for s_ in (-1, 1):
+        xo = cx + s_ * (W_W / 2 - 0.12)
+        hk.append(([(min(xo, xo - s_ * 0.08), y1 + 0.012, 0.8), (max(xo, xo - s_ * 0.08), y1 + 0.012, 0.8), (max(xo, xo - s_ * 0.08), y1 + 0.012, 1.25), (min(xo, xo - s_ * 0.08), y1 + 0.012, 1.25)], [0, 1, 2, 3]))
+        hk.append(([(min(xo, xo - s_ * 0.3), y1 + 0.012, 0.8), (max(xo, xo - s_ * 0.3), y1 + 0.012, 0.8), (max(xo, xo - s_ * 0.3), y1 + 0.012, 0.88), (min(xo, xo - s_ * 0.3), y1 + 0.012, 0.88)], [0, 1, 2, 3]))
+    hk.append(([(cx - 0.6, y1 + 0.012, 2.32), (cx + 0.6, y1 + 0.012, 2.32), (cx + 0.6, y1 + 0.012, 2.36), (cx - 0.6, y1 + 0.012, 2.36)], [0, 1, 2, 3]))
+    sammle(f'Wohnwagen{i}_Ruecklichter', hk, rot)
+    quader(f'Wohnwagen{i}_Stossfaenger', xa + 0.1, y1 - 0.05, 0.45, xb - 0.1, y1 + 0.04, 0.68, kunst, 'Wohnwagen')
+    quader(f'Wohnwagen{i}_Kennzeichenfeld', cx - 0.26, y1 + 0.04, 0.52, cx + 0.26, y1 + 0.05, 0.63, rahmen_ww, 'Wohnwagen')
+    # Dach: 3 Luken, großes Panorama-Dachfenster, Klimagerät
+    dv, df = [], []
+    for (ly, lw, ll) in ((y0 + 1.6, 0.55, 0.55), (y0 + 3.0, 0.9, 0.7), (y1 - 1.0, 0.45, 0.45)):
+        k = len(dv); dv += [Vector(p) for p in [(cx - lw / 2, ly - ll / 2, 2.72), (cx + lw / 2, ly - ll / 2, 2.72), (cx + lw / 2, ly + ll / 2, 2.72), (cx - lw / 2, ly + ll / 2, 2.72),
+                                                (cx - lw / 2 + 0.04, ly - ll / 2 + 0.04, 2.8), (cx + lw / 2 - 0.04, ly - ll / 2 + 0.04, 2.8), (cx + lw / 2 - 0.04, ly + ll / 2 - 0.04, 2.8), (cx - lw / 2 + 0.04, ly + ll / 2 - 0.04, 2.8)]]
+        df += box_faces(k)
+    mesh(f'Wohnwagen{i}_Dachluken', dv, df, dunkel, 'Wohnwagen')
+    quader(f'Wohnwagen{i}_Klima', cx - 0.4, y0 + 4.2, 2.72, cx + 0.4, y0 + 5.05, 2.96, weiss, 'Wohnwagen')
+    # Fahrwerk: Tandemachse, 4 Räder mit Alufelgen und Nabe
+    for j, yy in enumerate((ya_, yb_)):
+        for k_, sx in enumerate((-1, 1)):
+            xr = cx + sx * (W_W / 2 - 0.02)
+            rad(f'Wohnwagen{i}_Rad{j}{k_}', xr, yy, 0.34, 0.34, 0.2, reifen)
+            rad(f'Wohnwagen{i}_Felge{j}{k_}', xr + sx * 0.1, yy, 0.34, 0.22, 0.02, felge, 16)
+            rad(f'Wohnwagen{i}_Nabe{j}{k_}', xr + sx * 0.115, yy, 0.34, 0.06, 0.02, kunst, 10)
+    # Deichsel (A-Rahmen), Abdeckhaube, Kupplung, Stützrad
+    bv = balken((cx - 0.85, y0 + 0.3, 0.45), (cx - 0.05, y0 - 1.25, 0.48), 0.08, 0.12) + balken((cx + 0.85, y0 + 0.3, 0.45), (cx + 0.05, y0 - 1.25, 0.48), 0.08, 0.12)
+    bv += balken((cx, y0 - 1.25, 0.5), (cx, y0 - 1.55, 0.52), 0.1, 0.12)
+    mesh(f'Wohnwagen{i}_Deichsel', bv, box_faces(0) + box_faces(8) + box_faces(16), chassis, 'Wohnwagen')
+    quader(f'Wohnwagen{i}_Deichselhaube', cx - 0.45, y0 - 0.75, 0.5, cx + 0.45, y0 - 0.05, 0.78, kunst, 'Wohnwagen')
+    quader(f'Wohnwagen{i}_Kupplung', cx - 0.08, y0 - 1.72, 0.48, cx + 0.08, y0 - 1.5, 0.62, chassis, 'Wohnwagen')
+    zylinder(f'Wohnwagen{i}_Stuetzrohr', cx + 0.15, y0 - 1.0, 0.16, 0.04, 0.04, 0.42, chassis, 'Wohnwagen', 10)
+    rad(f'Wohnwagen{i}_Stuetzrad', cx + 0.15, y0 - 1.0, 0.1, 0.1, 0.06, reifen, 14)
 # Parken: Radstopper; Zaun: Steinpfeiler; Schiebetor: Antrieb, Laufrollen, Warnleuchte
 stopper_v, stopper_f = [], []
 for i in range(4):                       # Radstopper quer zur Platzachse, 0,8 m vor dem Bordstein

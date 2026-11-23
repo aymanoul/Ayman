@@ -118,4 +118,9 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   (Plan sagt 16,43 m – bewusste Abweichung für die Wirkung im Video), Parken 9 m (PK = 29), Wohnwagen 7 × 3,0 m (statt 3,5 m).
   Innenpositionen mit X() skaliert (`moschee.py`), Kamera-x mit XU() umgerechnet (`animation.py`, Tor-Szene 43–48,5 s unverändert),
   Glasfront 11 Felder. Kamerapfad geprüft (keine Kollision). Verhältnis Moschee : Rest jetzt ~1 : 1,5 im Bild.
-- Neu-Rendern komplett seit 23.11. ~18:15 UTC, ~10 h (`sh tools/endfassung_weiter.sh`).
+- **Wohnwagen neu modelliert** (Vorlage `assets/wohnwagen_vorlage_ayman.png`): abgerundeter Aufbau (Profil + Bevel), Panorama-Front
+  über die Schräge, LED-Leiste, dunkle Frontschürze, grauer Seitenstreifen mit schräger Vorderkante, je Seite 2 Fenster mit Rahmen
+  und Vorhängen, Tür mit Fenster und Griff, Schweller, Radkästen, Tandemachse mit 4 Rädern + Alufelgen, Deichsel (A-Rahmen,
+  Haube, Kupplung, Stützrad), L-Rücklichter + Lichtband, Stoßfänger, leeres Kennzeichenfeld, 3 Dachluken, Klimagerät.
+  KEINE Schriftzüge/Logos (Regel). Alle Teile heißen `Wohnwagen{i}_*` (Fall-Animation greift sie).
+- Neu-Rendern komplett seit 23.11. ~18:45 UTC, ~10 h (`sh tools/endfassung_weiter.sh`).
