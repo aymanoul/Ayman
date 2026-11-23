@@ -167,3 +167,5 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   `Schiebetor_Schienen`, `Schiebetor_Pfosten`. Vorschau `out/phase5/tor_neu.jpg`. Genaue Ausführung (Schienen, Kippsicherung) mit einem Metallbauer klären.
 - **Ayman 23.11.: keine Bodenplatte vor der Moschee** (Objekt `Vorplatz` entfernt). Glasfront bündig mit dem Nachbarhaus links, davor wie beim
   Nachbarn Randstein + Gasse. Portal mit Stufen, Laternen und Zypressen-Kübeln bleibt. Vorschau `out/phase5/front_buendig.jpg`.
+- **Ayman 23.11.: roter Gebetsteppich** in der Moschee (EG + OG, Vorlage `assets/moschee_teppich_vorlage_ayman.png`): kräftiges Rot mit samtigem
+  Flor, beige Reihenstreifen alle 1,2 m parallel zur Qibla-Wand (vorher grün, Streifenabstand war fälschlich 0,38 m). Vorschau `out/phase5/teppich_rot.jpg`.

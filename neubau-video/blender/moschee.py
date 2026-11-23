@@ -104,16 +104,27 @@ def glas_fassade(name):
 
 
 def teppich(name):
-    """Grüner Gebetsteppich, Reihen parallel zur Qibla-Wand (x = 0) alle 1,2 m."""
+    """Roter Gebetsteppich (Ayman 23.11., Vorlage assets/moschee_teppich_vorlage_ayman.png): kräftiges Rot mit samtigem,
+    fleckigem Flor, beige Reihenstreifen parallel zur Qibla-Wand (x = 0) alle 1,2 m."""
     m, nt, b = node_mat(name)
     tc = nt.nodes.new('ShaderNodeTexCoord'); wv = nt.nodes.new('ShaderNodeTexWave')
-    wv.bands_direction = 'X'; wv.wave_profile = 'SAW'; wv.inputs['Scale'].default_value = 1 / 1.2 / 1.0
+    wv.bands_direction = 'X'; wv.wave_profile = 'SAW'; wv.inputs['Scale'].default_value = 2 * math.pi / (20 * 1.2)   # Periode 1,2 m
     nt.links.new(tc.outputs['Object'], wv.inputs['Vector'])
-    ramp = nt.nodes.new('ShaderNodeValToRGB')
-    ramp.color_ramp.elements[0].position = 0.0; ramp.color_ramp.elements[0].color = hexrgb('#E6D9A8')
-    ramp.color_ramp.elements[1].position = 0.06; ramp.color_ramp.elements[1].color = hexrgb('#2E6A44')
-    nt.links.new(wv.outputs['Fac'], ramp.inputs['Fac'])
-    nt.links.new(ramp.outputs['Color'], b.inputs['Base Color']); b.inputs['Roughness'].default_value = 0.95
+    nz = nt.nodes.new('ShaderNodeTexNoise'); nz.inputs['Scale'].default_value = 3.5; nz.inputs['Detail'].default_value = 6
+    nt.links.new(tc.outputs['Object'], nz.inputs['Vector'])
+    flor = nt.nodes.new('ShaderNodeValToRGB')                       # samtiger Flor: dunkle und helle Rot-Flecken
+    flor.color_ramp.elements[0].position = 0.35; flor.color_ramp.elements[0].color = hexrgb('#7C1119')
+    flor.color_ramp.elements[1].position = 0.65; flor.color_ramp.elements[1].color = hexrgb('#A81F27')
+    nt.links.new(nz.outputs['Fac'], flor.inputs['Fac'])
+    streif = nt.nodes.new('ShaderNodeValToRGB'); streif.color_ramp.interpolation = 'CONSTANT'
+    streif.color_ramp.elements[0].position = 0.0; streif.color_ramp.elements[0].color = (1, 1, 1, 1)
+    streif.color_ramp.elements[1].position = 0.11; streif.color_ramp.elements[1].color = (0, 0, 0, 1)
+    nt.links.new(wv.outputs['Fac'], streif.inputs['Fac'])
+    mix = nt.nodes.new('ShaderNodeMix'); mix.data_type = 'RGBA'
+    nt.links.new(streif.outputs['Color'], mix.inputs['Factor']); nt.links.new(flor.outputs['Color'], mix.inputs['A'])
+    mix.inputs['B'].default_value = hexrgb('#CDBD98')               # beige Reihenstreifen
+    nt.links.new(mix.outputs['Result'], b.inputs['Base Color']); b.inputs['Roughness'].default_value = 0.9
+    b.inputs['Sheen Weight'].default_value = 0.6; b.inputs['Sheen Roughness'].default_value = 0.4
     return m
 
 
@@ -131,7 +142,7 @@ M = {
     'stein': raster('Naturstein_Portal', '#E4D8C0', '#D9CBB0', '#CBBFA6', 0.9, 0.45, 0.006, False, 0.55),
     'putz': farbe('Putz_Moschee', '#ECE7DD', 0.75, 0, 0.04),
     'beton_roh': farbe('Beton_roh', '#A8A49C', 0.9, 0, 0.12, 0.8),
-    'teppich': teppich('Gebetsteppich_gruen'),
+    'teppich': teppich('Gebetsteppich_rot'),
     'mihrab': farbe('Mihrab_Stein', '#EADFC8', 0.5, 0, 0.03),
     'gold': farbe('Gold_Zier', '#CA9E4E', 0.3, 0.9, 0),
     'holz': farbe('Holz_Minbar', '#7A4E2C', 0.55, 0, 0.1, 6),
