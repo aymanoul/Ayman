@@ -183,3 +183,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   Parkplatz; Kegel-Thujen in hellen Betonkübeln am Eingang; **am Parkplatz an jeder Platzgrenze vor der Glaswand eine schlanke Thuja im
   Kübel mit Bodenstrahler** (`Parken_Thuja*`, `Parken_Strahler*`). Lichter gehen bei 49–50,6 s an (bei Tageslicht nur schwach sichtbar).
   Vorschau `out/phase5/eingang.jpg`.
+- **Rückwand hinter Wohnwagen + Parkplatz (Ayman 23.11., wie rechts im Eingangs-Vorlagebild):** Hecke → Rindenmulch-Beet mit Reihe Kegel-Thujen
+  (`Parken_Thuja_B*`; hinter den Wohnwagen 3,0–3,45 m hoch, hinter dem Parkplatz 2,0–2,45 m), jede 2. mit Bodenstrahler; an der Brandwand
+  10 schwarze Zylinder-Wandleuchten mit Licht nach oben/unten (hinter den Wohnwagen auf 3,35 m, hinter dem Parkplatz auf 2,25 m).
+  Korrigiert: Lichtkegel der Wandleuchten waren vertauscht, Bodenstrahler zeigten nach unten. Vorschau `out/phase5/rueckwand_gruen.jpg`.

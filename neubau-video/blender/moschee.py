@@ -586,10 +586,10 @@ for i in range(8):
     mk.append([Vector((x - 0.06, LT - 7.5, 0.04)), Vector((x + 0.06, LT - 7.5, 0.04)), Vector((x + 0.06, LT - 0.8, 0.04)), Vector((x - 0.06, LT - 0.8, 0.04))])
 mk.append([Vector((PK, LT - 7.56, 0.04)), Vector((L, LT - 7.56, 0.04)), Vector((L, LT - 7.44, 0.04)), Vector((PK, LT - 7.44, 0.04))])
 mesh('Markierungen', [p for q in mk for p in q], [tuple(range(4 * i, 4 * i + 4)) for i in range(len(mk))], M['markierung'], 'S6_Aussen')
-quader('Hecke', PK, LT - 0.75, 0, L, LT, 1.3, M['hecke'], 'S6_Aussen')
-quader('Parken_Hecke', BT + 0.3, LT - 0.35, 0, PK, LT, 0.9, M['hecke'], 'S6_Aussen')   # niedrig, hinter den Parkplätzen
-viele_quader('Wandleuchten_Brandwand', [(PK + (i + 0.5) * WB - 0.15, LT + 0.22, 2.4, PK + (i + 0.5) * WB + 0.15, LT + 0.3, 2.75) for i in range(7)],
-             M['wandleuchte'], 'S6_Aussen')
+MULCH = farbe('Rindenmulch', '#4A3326', 0.95, 0, 0.25, 8)
+quader('Hecke', PK, LT - 0.75, 0, L, LT + 0.24, 0.08, MULCH, 'S6_Aussen')      # Ayman 23.11.: Pflanzbeet mit Thujen-Reihe statt Hecke (Thujen weiter unten)
+quader('Parken_Hecke', BT + 0.3, LT - 0.35, 0, PK, LT + 0.24, 0.08, MULCH, 'S6_Aussen')   # Pflanzbeet hinter den Parkplätzen
+# (Wandleuchten an der Brandwand: siehe unten, nach den Portal-Leuchten – gleiche Bauart)
 # Front der Wohnwagen-Plätze (Ayman 23.11.: mit festem Zaun + Pfeilern kamen 5 von 7 Wohnwagen nicht heraus):
 # KEIN fester Zaun, KEINE Zwischenpfeiler. Über die ganze Breite (PK … L, 21 m) 3 Schiebeflügel à ~7 m auf 3 parallelen
 # Bodenschienen mit Kippsicherung (U-Profil mit seitlichen Führungsrollen), von Hand verschiebbar und hintereinander
@@ -666,7 +666,7 @@ for k, ((lx, ly), (ox, oy)) in enumerate(LEUCHTEN):
         ld.color = (1.0, 0.78, 0.5); ld.shadow_soft_size = 0.02; ld['ziel_energie'] = 90.0
         lo = bpy.data.objects.new(f'Wandlicht_{k}_{richtung}', ld); coll('S3_EG').objects.link(lo)
         lo.location = (lx + ox * 0.08, ly + oy * 0.08, z)
-        lo.rotation_euler = (0, 0, 0) if richtung == 'auf' else (math.pi, 0, 0)
+        lo.rotation_euler = (math.pi, 0, 0) if richtung == 'auf' else (0, 0, 0)          # Spot leuchtet entlang −Z
 viele_quader('Portal_Stufen', [(PX0 + 0.3, Y0 - 0.95, 0.0, PX1 - 0.3, Y0 - 0.6, 0.08), (PX0 + 0.4, Y0 - 0.8, 0.0, PX1 - 0.4, Y0 - 0.6, 0.15)], M['stein'], 'S6_Aussen')
 BETON_HELL = farbe('Kuebel_Beton_hell', '#BDB8AE', 0.8, 0, 0.06)
 
@@ -893,7 +893,33 @@ for i in range(5):
     ld = bpy.data.lights.new(f'Parken_Strahler{i}', 'SPOT'); ld.energy = 0.0; ld.spot_size = math.radians(30); ld.spot_blend = 0.4
     ld.color = (1.0, 0.8, 0.55); ld['ziel_energie'] = 45.0
     lo = bpy.data.objects.new(f'Parken_Strahler{i}', ld); coll('S6_Aussen').objects.link(lo)
-    lo.location = (BT + 0.62, ty, 0.2); lo.rotation_euler = (0, math.radians(-20), 0)
+    lo.location = (BT + 0.62, ty, 0.2); lo.rotation_euler = (0, math.pi - 0.35, 0)      # nach oben, leicht zur Thuja/Wand
+# Rückwand hinter Wohnwagen + Parkplatz (Ayman 23.11., wie rechts im Vorlagebild): Reihe Kegel-Thujen im Mulchbeet mit Bodenstrahlern,
+# an der Brandwand schwarze Zylinder-Wandleuchten mit Licht nach oben/unten (wie am Eingang)
+WY = LT + 0.25                                            # Wandfläche (Nachbar_lang, Sockel)
+_bx = [PK + (i + 0.5) * WB for i in range(7)] + [BT + 1.6, BT + 4.4, BT + 7.2]
+_wl, _wg = [], []
+for k, x in enumerate(_bx):
+    zl = 3.35 if x > PK else 2.25                        # hinter den Wohnwagen höher (über den Wohnwagen sichtbar)
+    _wl += [(x - 0.05, WY - 0.13, zl, x + 0.05, WY - 0.03, zl + 0.35), (x - 0.03, WY - 0.05, zl + 0.15, x + 0.03, WY, zl + 0.2)]
+    _wg += [(x - 0.04, WY - 0.12, z, x + 0.04, WY - 0.04, z + 0.005) for z in (zl - 0.005, zl + 0.35)]
+    for richtung, z in (('auf', zl + 0.37), ('ab', zl - 0.02)):
+        ld = bpy.data.lights.new(f'Wandlicht_B{k}_{richtung}', 'SPOT'); ld.energy = 0.0; ld.spot_size = math.radians(38); ld.spot_blend = 0.5
+        ld.color = (1.0, 0.78, 0.5); ld.shadow_soft_size = 0.02; ld['ziel_energie'] = 90.0
+        lo = bpy.data.objects.new(f'Wandlicht_B{k}_{richtung}', ld); coll('S6_Aussen').objects.link(lo)
+        lo.location = (x, WY - 0.08, z); lo.rotation_euler = (math.pi, 0, 0) if richtung == 'auf' else (0, 0, 0)
+viele_quader('Wandleuchten_Brandwand', _wl, SCHWARZ_L, 'S6_Aussen')
+viele_quader('Wandleuchten_Brandwand_Glas', _wg, M['wandleuchte'], 'S6_Aussen')
+_tx = [PK + 0.75 + 1.5 * k for k in range(14)] + [BT + 0.9 + 1.45 * k for k in range(6)]
+for k, x in enumerate(_tx):
+    hinten = x > PK
+    h = (3.0 if hinten else 2.0) + 0.45 * ((k * 7) % 5) / 4      # hinter den Wohnwagen höher (über die Wohnwagen hinaus)
+    kegel_thuja(f'Parken_Thuja_B{k}', x, LT - 0.3, 0.08, 0.36 if hinten else 0.3, h, seed=40 + k)
+    if k % 2 == 0:
+        ld = bpy.data.lights.new(f'Parken_Strahler_B{k}', 'SPOT'); ld.energy = 0.0; ld.spot_size = math.radians(30); ld.spot_blend = 0.4
+        ld.color = (1.0, 0.8, 0.55); ld['ziel_energie'] = 45.0
+        lo = bpy.data.objects.new(f'Parken_Strahler_B{k}', ld); coll('S6_Aussen').objects.link(lo)
+        lo.location = (x, LT - 0.85, 0.12); lo.rotation_euler = (math.pi - 0.35, 0, 0)        # nach oben, zur Thuja/Wand hin
 # (23.11.: Steinpfeiler, Torantrieb und separate Laufrollen entfallen – Flügel von Hand, Rollenwagen sind Teil der Flügel)
 viele_quader('Schiebetor_Warnleuchte', [(L - 0.11, 0.48, H_Z + 0.15, L - 0.01, 0.68, H_Z + 0.33)], leuchte('Warnleuchte_orange', '#FF9A2E', 3.0), 'S6_Aussen')
 

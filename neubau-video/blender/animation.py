@@ -262,6 +262,7 @@ aufbau(bpy.data.objects['Hecke'], 41.4, 42.6, X, stufe=6)
 aufbau(bpy.data.objects['Parken_Hecke'], 41.0, 41.8, X, stufe=6)
 aufbau(bpy.data.objects['Parken_Bordstein'], 40.9, 41.5, Y, stufe=6)
 aufbau(bpy.data.objects['Wandleuchten_Brandwand'], 41.8, 42.4, X, stufe=6)
+aufbau(bpy.data.objects['Wandleuchten_Brandwand_Glas'], 41.8, 42.4, X, stufe=6)
 # Wohnwagen (Ayman 20.11.): fertig, werden leicht auf den Platz „fallen gelassen“ (nicht von unten aufgebaut)
 for i in range(7):
     t0 = 42.0 + i * 0.2
