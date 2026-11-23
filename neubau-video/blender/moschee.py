@@ -242,6 +242,12 @@ def krone(name, x, y, z, r, mat, c, n=4):
         coll(c).objects.link(ob)
 
 
+def rundbogen(cx, breite, z0, h_gerade, n=24):
+    """Umriss eines Rundbogens (x, z) im selben Format wie spitzbogen: unten links, unten rechts, Kämpfer rechts, Bogen bis Kämpfer links."""
+    r = breite / 2; x0, x1 = cx - r, cx + r; zk = z0 + h_gerade
+    return [(x0, z0), (x1, z0), (x1, zk)] + [(cx + r * math.cos(math.pi * i / n), zk + r * math.sin(math.pi * i / n)) for i in range(1, n + 1)]
+
+
 def spitzbogen(cx, breite, z0, h_gerade, n=10):
     """Umriss eines Spitzbogens (x, z) – Breite, gerade Höhe bis zum Kämpfer, dann zwei Kreisbögen (Radius = Breite)."""
     r = breite; x0, x1 = cx - breite / 2, cx + breite / 2; zk = z0 + h_gerade
@@ -366,12 +372,13 @@ flaeche_v('EG_Glas', 0.05, PORTAL_X, Y0 + 0.07, 0.15, H_EG, M['glas'], 'S3_EG')
 pf = [(x - 0.05, Y0, 0.15, x + 0.05, Y0 + 0.16, H_EG) for x in fx[1:-1]] + [(0, Y0, 0.15, 0.12, Y0 + 0.16, H_EG)]
 pf += [(0, Y0, z - 0.04, PORTAL_X, Y0 + 0.14, z + 0.04) for z in (0.2, 2.8)]
 viele_quader('EG_Pfosten', pf, M['pfosten'], 'S3_EG')
-# Portal: Rahmen aus hellem Naturstein, Spitzbogen-Glastür
+# Portal (Ayman 23.11., Vorlage assets/eingang_vorlage_ayman.jpg): heller Sandstein-Block, RUNDBOGEN mit Bogenrahmen,
+# dunkel gerahmte Glas-Doppeltür, Oberlicht, Bogenfenster mit Sprossen; Wandleuchten (Licht nach oben/unten)
 PX0, PX1 = PORTAL_X, BT
 quader('Portal_Pfeiler_links', PX0, Y0 - 0.6, 0.0, PX0 + 0.45, Y0 + 0.6, 9.6, M['stein'], 'S3_EG')
 quader('Portal_Pfeiler_rechts', PX1 - 0.45, Y0 - 0.6, 0.0, PX1 + 0.03, Y0 + 0.6, 9.6, M['stein'], 'S3_EG')
 quader('Portal_Sturz', PX0 + 0.45, Y0 - 0.55, 7.2, PX1 - 0.45, Y0 + 0.55, 9.6, M['stein'], 'S3_EG')   # zwischen den Pfeilern (keine deckungsgleichen Flächen)
-bogen = spitzbogen((PX0 + PX1) / 2, PX1 - PX0 - 0.9, 0.15, 4.6)
+bogen = rundbogen((PX0 + PX1) / 2, PX1 - PX0 - 0.9, 0.15, 4.45)
 # Stein-Fläche zwischen Bogen und Sturz (vorn) + Glas im Bogen
 gl = [(x, Y0 - 0.35, z) for x, z in bogen]
 mesh('Portal_Glastuer', gl, [tuple(range(len(gl)))], M['glas'], 'S3_EG')
@@ -385,7 +392,39 @@ for seite, xs in (('l', PX0 + 0.45), ('r', PX1 - 0.45)):
     pts.sort(key=lambda p: p[1])
     v = [(xs, Y0 - 0.5, pts[0][1]), (xs, Y0 - 0.5, top)] + [(x, Y0 - 0.5, z) for x, z in reversed(pts)]
     mesh(f'Portal_Zwickel_{seite}', v, [tuple(range(len(v)))], M['stein'], 'S3_EG')
-viele_quader('Portal_Sprossen', [(cxm - 0.03, Y0 - 0.4, 0.15, cxm + 0.03, Y0 - 0.32, top - 0.05), (PX0 + 0.45, Y0 - 0.4, 2.6, PX1 - 0.45, Y0 - 0.32, 2.68)], M['gold'], 'S3_EG')
+# Rahmen + Sprossen (anthrazit): Doppeltür 0,15–2,65 mit Kämpfer, Oberlicht, 2 senkrechte Sprossen bis zum Bogen, Fächer im Bogen
+_bx0, _bx1 = PX0 + 0.45, PX1 - 0.45; _zk = 0.15 + 4.45; _r = (_bx1 - _bx0) / 2; _yf = Y0 - 0.36
+_spr = [(cxm - 0.04, _yf - 0.06, 0.15, cxm + 0.04, _yf, _zk + _r - 0.05)]                         # Mittelsprosse / Türstoß
+_spr += [(_bx0 + 0.04, _yf - 0.06, z - 0.045, _bx1 - 0.04, _yf, z + 0.045) for z in (2.65, 3.6, _zk)]   # Kämpfer + Querriegel
+_spr += [(x - 0.025, _yf - 0.05, 2.7, x + 0.025, _yf, _zk) for x in (_bx0 + (_bx1 - _bx0) / 4, _bx1 - (_bx1 - _bx0) / 4)]
+_spr += [(_bx0, _yf - 0.07, 0.15, _bx0 + 0.07, _yf, _zk), (_bx1 - 0.07, _yf - 0.07, 0.15, _bx1, _yf, _zk)]   # Rahmen seitlich
+_spr += [(_bx0 + 0.07, _yf - 0.07, 0.15, _bx1 - 0.07, _yf, 0.22)]                                    # Schwelle
+_spr += [(x - 0.06, _yf - 0.07, 0.15, x + 0.06, _yf, 2.65) for x in (_bx0 + 0.1, _bx1 - 0.1)]       # Türblatt-Rahmen außen
+_spr += [(x - 0.06, _yf - 0.07, 0.15, x + 0.06, _yf, 2.65) for x in (cxm - 0.1, cxm + 0.1)]         # Türblatt-Rahmen Mitte
+viele_quader('Portal_Sprossen', _spr, M['pfosten'], 'S3_EG')
+# Fächersprossen + Rahmen im Rundbogen
+_fv, _ff = [], []
+def _stab(p0, p1, w=0.025, y0=_yf - 0.05, y1=_yf):
+    (xa, za), (xb, zb) = p0, p1; dx, dz = xb - xa, zb - za; ln = math.hypot(dx, dz) or 1; nx, nz = -dz / ln * w, dx / ln * w
+    k = len(_fv)
+    for yy in (y0, y1):
+        _fv.extend([(xa - nx, yy, za - nz), (xb - nx, yy, zb - nz), (xb + nx, yy, zb + nz), (xa + nx, yy, za + nz)])
+    _ff.extend([(k, k + 1, k + 2, k + 3), (k + 4, k + 7, k + 6, k + 5), (k, k + 4, k + 5, k + 1), (k + 1, k + 5, k + 6, k + 2),
+                (k + 2, k + 6, k + 7, k + 3), (k + 3, k + 7, k + 4, k)])
+for i in range(1, 5):
+    a_ = math.pi * i / 5
+    _stab((cxm + 0.18 * math.cos(a_), _zk + 0.18 * math.sin(a_)), (cxm + _r * math.cos(a_), _zk + _r * math.sin(a_)))
+_bp = [(cxm + _r * math.cos(math.pi * i / 24), _zk + _r * math.sin(math.pi * i / 24)) for i in range(25)]
+for p0_, p1_ in zip(_bp, _bp[1:]):
+    _stab(p0_, p1_, 0.04, _yf - 0.07)
+_ip = [(cxm + 0.18 * math.cos(math.pi * i / 12), _zk + 0.18 * math.sin(math.pi * i / 12)) for i in range(13)]
+for p0_, p1_ in zip(_ip, _ip[1:]):
+    _stab(p0_, p1_, 0.022)
+mesh('Portal_Bogensprossen', _fv, _ff, M['pfosten'], 'S3_EG')
+# Türgriffe (lange Edelstahl-Stangen)
+viele_quader('Portal_Tuergriffe', [(x - 0.018, _yf - 0.16, 0.9, x + 0.018, _yf - 0.12, 2.0) for x in (cxm - 0.22, cxm + 0.22)]
+             + [(x - 0.012, _yf - 0.12, z - 0.012, x + 0.012, _yf - 0.07, z + 0.012) for x in (cxm - 0.22, cxm + 0.22) for z in (1.0, 1.9)],
+             farbe('Edelstahl', '#B9BCC0', 0.25, 1.0, 0), 'S3_EG')
 # Säulen EG – Raster 3×3 nach Architekt (Ayman 23.11.): nur die Mittelstütze steht frei im Raum, die 8 übrigen sitzen
 # stark nach außen versetzt in den Außenwänden bzw. hinter den Pfosten der Glasfassaden (kein Platzverlust innen)
 for i, (x, y) in enumerate(((BT / 2, (Y0 + Y1) / 2),)):
@@ -595,22 +634,66 @@ viele_quader('LED_Geschossband', [(0.0, Y0 - 0.07, H_EG - 0.04, PORTAL_X, Y0 - 0
 viele_quader('Attika_Abdeckung', [(-0.05, Y0 - 0.1, H_ATTIKA - 0.01, BT + 0.05, Y0 + 0.35, H_ATTIKA + 0.07), (-0.05, Y1 - 0.35, H_ATTIKA - 0.01, BT + 0.05, Y1 + 0.05, H_ATTIKA + 0.07),
                                     (-0.05, Y0 + 0.35, H_ATTIKA - 0.01, 0.35, Y1 - 0.35, H_ATTIKA + 0.07), (BT - 0.35, Y0 + 0.35, H_ATTIKA - 0.01, BT + 0.05, Y1 - 0.35, H_ATTIKA + 0.07)], M['pv_rahmen'], 'S5_Dach')
 viele_quader('LED_Attika', [(0.0, Y0 - 0.08, H_OG - 0.02, PORTAL_X, Y0 - 0.04, H_OG + 0.02)], M['wandleuchte'], 'S5_Dach')
-# Portal: Goldkante um den Spitzbogen, zwei Laternen, zwei Stufen, Zypressen in Pflanzkübeln links und rechts
+# Portal: Bogenrahmen aus Sandstein (vorstehend) mit Schlussstein, Wandleuchten (Licht nach oben/unten), zwei Stufen,
+# Kegel-Thujen in hellen Betonkübeln (Ayman 23.11., Vorlage assets/eingang_vorlage_ayman.jpg)
 gv, gf = [], []
-w = 0.09
+w = 0.24
 for i in range(1, len(bogen) - 1):
     (xa, za), (xb, zb) = bogen[i], bogen[i + 1]
     dx, dz = xb - xa, zb - za; ln = math.hypot(dx, dz) or 1; nx, nz = dz / ln, -dx / ln
     k0 = len(gv)
-    gv += [(xa, Y0 - 0.52, za), (xb, Y0 - 0.52, zb), (xb + nx * w, Y0 - 0.52, zb + nz * w), (xa + nx * w, Y0 - 0.52, za + nz * w)]
-    gf.append((k0, k0 + 1, k0 + 2, k0 + 3))
-mesh('Portal_Goldkante', gv, gf, M['gold'], 'S3_EG')
-viele_quader('Portal_Laternen_Gehaeuse', [(x - 0.16, Y0 - 0.72, 2.45, x + 0.16, Y0 - 0.6, 3.15) for x in (PX0 + 0.22, PX1 - 0.22)], M['pfosten'], 'S3_EG')
-viele_quader('Portal_Laternen_Licht', [(x - 0.11, Y0 - 0.74, 2.52, x + 0.11, Y0 - 0.71, 3.08) for x in (PX0 + 0.22, PX1 - 0.22)], M['wandleuchte'], 'S3_EG')
+    for yy in (Y0 - 0.49, Y0 - 0.66):
+        gv += [(xa, yy, za), (xb, yy, zb), (xb + nx * w, yy, zb + nz * w), (xa + nx * w, yy, za + nz * w)]
+    gf += [(k0, k0 + 1, k0 + 2, k0 + 3), (k0 + 4, k0 + 7, k0 + 6, k0 + 5), (k0 + 2, k0 + 6, k0 + 7, k0 + 3), (k0, k0 + 4, k0 + 5, k0 + 1)]
+mesh('Portal_Bogenrahmen', gv, gf, farbe('Sandstein_Bogen', '#E2CFA6', 0.6, 0, 0.05), 'S3_EG')
+_ks = max(bogen, key=lambda p: p[1])
+quader('Portal_Schlussstein', _ks[0] - 0.15, Y0 - 0.7, _ks[1] - 0.02, _ks[0] + 0.15, Y0 - 0.49, _ks[1] + 0.34, bpy.data.materials['Sandstein_Bogen'], 'S3_EG')
+# Wandleuchten: schwarze Zylinder, Licht nach oben und unten (Lichtkegel auf dem Stein); an den Portalpfeilern + an der Glaswand zum Parkplatz
+SCHWARZ_L = farbe('Leuchte_schwarz', '#151617', 0.4, 0.6, 0)
+LEUCHTEN = [((PX0 + 0.225, Y0 - 0.6), (0, -1)), ((PX1 - 0.225, Y0 - 0.6), (0, -1)), ((PX1 + 0.03, Y0 + 0.2), (1, 0))]
+LEUCHTEN += [((BT, y), (1, 0)) for y in _ry[1::2]]
+_lv = []
+for (lx, ly), (ox, oy) in LEUCHTEN:
+    cx_, cy_ = lx + ox * 0.08, ly + oy * 0.08
+    _lv.append((cx_ - 0.05, cy_ - 0.05, 2.25, cx_ + 0.05, cy_ + 0.05, 2.6))
+    _lv.append((min(lx, cx_) - (0.03 if oy else 0), min(ly, cy_) - (0.03 if ox else 0), 2.4, max(lx, cx_) + (0.03 if oy else 0), max(ly, cy_) + (0.03 if ox else 0), 2.45))
+viele_quader('Portal_Wandleuchten', _lv, SCHWARZ_L, 'S3_EG')
+viele_quader('Portal_Wandleuchten_Glas', [(lx + ox * 0.08 - 0.04, ly + oy * 0.08 - 0.04, z, lx + ox * 0.08 + 0.04, ly + oy * 0.08 + 0.04, z + 0.005)
+                                          for (lx, ly), (ox, oy) in LEUCHTEN for z in (2.245, 2.6)], M['wandleuchte'], 'S3_EG')
+for k, ((lx, ly), (ox, oy)) in enumerate(LEUCHTEN):
+    for richtung, z in (('auf', 2.62), ('ab', 2.23)):
+        ld = bpy.data.lights.new(f'Wandlicht_{k}_{richtung}', 'SPOT'); ld.energy = 0.0; ld.spot_size = math.radians(38); ld.spot_blend = 0.5
+        ld.color = (1.0, 0.78, 0.5); ld.shadow_soft_size = 0.02; ld['ziel_energie'] = 90.0
+        lo = bpy.data.objects.new(f'Wandlicht_{k}_{richtung}', ld); coll('S3_EG').objects.link(lo)
+        lo.location = (lx + ox * 0.08, ly + oy * 0.08, z)
+        lo.rotation_euler = (0, 0, 0) if richtung == 'auf' else (math.pi, 0, 0)
 viele_quader('Portal_Stufen', [(PX0 + 0.3, Y0 - 0.95, 0.0, PX1 - 0.3, Y0 - 0.6, 0.08), (PX0 + 0.4, Y0 - 0.8, 0.0, PX1 - 0.4, Y0 - 0.6, 0.15)], M['stein'], 'S6_Aussen')
+BETON_HELL = farbe('Kuebel_Beton_hell', '#BDB8AE', 0.8, 0, 0.06)
+
+
+def kegel_thuja(name, x, y, z0, r, h, c='S6_Aussen', seed=0):
+    """Kegelförmige Thuja/Formschnitt-Konifere: dichte, leicht unregelmäßige Laub-Oberfläche (keine glatte Kegelform)."""
+    rnd = random.Random(seed); n, m = 20, 14
+    v, f = [], []
+    for j in range(m + 1):
+        t = j / m; rr = r * (1 - t) ** 0.85
+        for i in range(n):
+            a_ = 2 * math.pi * i / n; ru = rr * (0.86 + 0.24 * rnd.random()) if 0 < j < m else rr
+            v.append((x + ru * math.cos(a_), y + ru * math.sin(a_), z0 + h * t + (0.03 * rnd.random() if 0 < j < m else 0)))
+    for j in range(m):
+        for i in range(n):
+            a0, a1 = j * n + i, j * n + (i + 1) % n
+            f.append((a0, a1, a1 + n, a0 + n))
+    f.append(tuple(range(n - 1, -1, -1)))
+    ob = mesh(name, v, f, M['hecke'], c)
+    for p_ in ob.data.polygons:
+        p_.use_smooth = True
+    return ob
+
+
 for i, x in enumerate((PX0 - 0.55, PX1 + 0.55)):
-    quader(f'Portal_Kuebel{i}', x - 0.3, Y0 - 0.9, 0, x + 0.3, Y0 - 0.3, 0.6, granit, 'S6_Aussen')
-    zylinder(f'Portal_Zypresse{i}', x, Y0 - 0.6, 0.6, 0.32, 0.02, 2.6, M['hecke'], 'S6_Aussen', 10)
+    quader(f'Portal_Kuebel{i}', x - 0.32, Y0 - 0.92, 0, x + 0.32, Y0 - 0.28, 0.62, BETON_HELL, 'S6_Aussen')
+    kegel_thuja(f'Portal_Zypresse{i}', x, Y0 - 0.6, 0.58, 0.36, 1.75, seed=10 + i)
 # rechte Seite mit Natursteinplatten statt Putz
 # Rückseite zum Hof: Fenster, Vordach über der Hoftür
 fen = []
@@ -801,6 +884,16 @@ for i in range(4):                       # Radstopper quer zur Platzachse, 0,8 m
         stopper_v += [m - q - t + Vector((0, 0, zz)), m + q - t + Vector((0, 0, zz)), m + q + t + Vector((0, 0, zz)), m - q + t + Vector((0, 0, zz))]
     stopper_f += [(k, k + 3, k + 2, k + 1), (k + 4, k + 5, k + 6, k + 7), (k, k + 1, k + 5, k + 4), (k + 1, k + 2, k + 6, k + 5), (k + 2, k + 3, k + 7, k + 6), (k + 3, k, k + 4, k + 7)]
 mesh('Parken_Radstopper', stopper_v, stopper_f, granit, 'S6_Aussen')
+# Parkplatz-Grün (Ayman 23.11.): schlanke Thujen an den Platzgrenzen vor der Glaswand (zwischen den Autos), je ein Bodenstrahler
+for i in range(5):
+    pe = Vector((P_XA, P_Y0 + i * P_DY, 0)) + P_U * P_LANG
+    ty = min(pe.y, LT - 0.6)
+    quader(f'Parken_Kuebel{i}', BT + 0.05, ty - 0.22, 0.14, BT + 0.47, ty + 0.22, 0.6, BETON_HELL, 'S6_Aussen')
+    kegel_thuja(f'Parken_Thuja{i}', BT + 0.26, ty, 0.58, 0.24, 1.9, seed=20 + i)
+    ld = bpy.data.lights.new(f'Parken_Strahler{i}', 'SPOT'); ld.energy = 0.0; ld.spot_size = math.radians(30); ld.spot_blend = 0.4
+    ld.color = (1.0, 0.8, 0.55); ld['ziel_energie'] = 45.0
+    lo = bpy.data.objects.new(f'Parken_Strahler{i}', ld); coll('S6_Aussen').objects.link(lo)
+    lo.location = (BT + 0.62, ty, 0.2); lo.rotation_euler = (0, math.radians(-20), 0)
 # (23.11.: Steinpfeiler, Torantrieb und separate Laufrollen entfallen – Flügel von Hand, Rollenwagen sind Teil der Flügel)
 viele_quader('Schiebetor_Warnleuchte', [(L - 0.11, 0.48, H_Z + 0.15, L - 0.01, 0.68, H_Z + 0.33)], leuchte('Warnleuchte_orange', '#FF9A2E', 3.0), 'S6_Aussen')
 

@@ -216,7 +216,8 @@ gruppe('EG_Saeule*', 13.3, 15.0, Z, 3, 0.15)
 gruppe(['EG_Glas', 'EG_Pfosten', 'Fassade_Lisenen_EG', 'Fassade_Sockel'], 15.4, 18.6, X, 3)
 gruppe(['EG_Glas_hinten', 'EG_Pfosten_hinten'], 16.0, 18.8, X, 3)
 gruppe(['EG_Glas_rechts', 'EG_Pfosten_rechts'], 15.8, 18.4, Y, 3)
-gruppe(['Portal_Pfeiler*', 'Portal_Sturz', 'Portal_Glastuer', 'Portal_Feld_oben', 'Portal_Zwickel*', 'Portal_Sprossen', 'Portal_Goldkante', 'Portal_Laternen*'], 16.6, 19.6, Z, 3)
+gruppe(['Portal_Pfeiler*', 'Portal_Sturz', 'Portal_Glastuer', 'Portal_Feld_oben', 'Portal_Zwickel*', 'Portal_Sprossen', 'Portal_Bogen*',
+        'Portal_Schlussstein', 'Portal_Tuergriffe', 'Portal_Wandleuchten*'], 16.6, 19.6, Z, 3)
 gruppe(['EG_Teppich', 'Mihrab*', 'Minbar*', 'Innen_Regal*'], 17.0, 18.8, X, 3)
 gruppe('Innen_Ringleuchte*', 18.4, 19.6, Z, 3, 0.1)
 gruppe(['Innen2_*'], 17.4, 19.4, Z, 3, 0.02)
@@ -252,6 +253,7 @@ sch = bpy.data.objects['Hofdach_Schienen']
 for t, v in ((0, 0.0), (35.0, 0.0), (36.6, 1.0)):
     sch['offen'] = v; sch.keyframe_insert('["offen"]', frame=F(t))
 gruppe(['Portal_Stufen', 'Portal_Kuebel*', 'Portal_Zypresse*'], 30.2, 31.2, Z, 6)
+gruppe(['Parken_Kuebel*', 'Parken_Thuja*'], 41.6, 42.4, Z, 6)
 aufbau(bpy.data.objects['Parken_Belag'], 40.8, 41.6, X, stufe=6)
 aufbau(bpy.data.objects['Wohnwagen_Belag'], 41.0, 41.8, X, stufe=6)
 aufbau(bpy.data.objects['Markierungen'], 41.2, 42.4, X, stufe=6)
@@ -411,6 +413,10 @@ for mname, st_an in (('Innenlicht_warm', 4.0), ('Wandleuchte_warm', 10.0)):
 for lo in obs('Innenlicht*'):
     if lo.type == 'LIGHT':
         for t, v in ((0, 0.0), (49.0, 0.0), (50.6, 260.0 if an else 0.0)):
+            lo.data.energy = v; lo.data.keyframe_insert('energy', frame=F(t))
+for lo in obs('Wandlicht_*', 'Parken_Strahler*'):                    # Wandleuchten Eingang/Glaswand + Thujen-Strahler (Ayman 23.11.)
+    if lo.type == 'LIGHT':
+        for t, v in ((0, 0.0), (49.0, 0.0), (50.6, lo.data.get('ziel_energie', 60.0) if an else 0.0)):
             lo.data.energy = v; lo.data.keyframe_insert('energy', frame=F(t))
 sonne = bpy.data.objects['Sonne'].data
 for t, e, c in ((0, 4.8, (1.0, 0.88, 0.74)), (48.0, 4.8, (1.0, 0.88, 0.74)), (51.0, 4.8, (1.0, 0.86, 0.72))):   # Ayman 23.11.: hell bis zum Schluss, keine Dämmerung

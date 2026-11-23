@@ -177,3 +177,9 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   Video: die beiden schwarzen (Auto4, Auto1) werden bei 42,5/42,75 s wie die Wohnwagen auf den Platz gesetzt; **Auto3 (weiß) parkt 48,4–54,8 s ein,
   Auto2 (grau) 50,6–57,4 s**.
   Vorschau `out/phase5/autos_parkplatz.jpg`. Feinheiten macht Ayman später mit Higgsfield (ebenfalls ohne Text/Logo).
+- **Eingang hübscher (Ayman 23.11., Vorlage `assets/eingang_vorlage_ayman.jpg`):** Rundbogen statt Spitzbogen, vorstehender Sandstein-Bogenrahmen
+  mit Schlussstein, anthrazit gerahmte Glas-Doppeltür (Edelstahl-Stangengriffe), Kämpfer + Oberlicht, Sprossen, Fächer im Bogen; schwarze
+  Zylinder-Wandleuchten mit Licht nach oben/unten (Spots `Wandlicht_*`) an den Portalpfeilern und an jedem 2. Pfosten der Glaswand zum
+  Parkplatz; Kegel-Thujen in hellen Betonkübeln am Eingang; **am Parkplatz an jeder Platzgrenze vor der Glaswand eine schlanke Thuja im
+  Kübel mit Bodenstrahler** (`Parken_Thuja*`, `Parken_Strahler*`). Lichter gehen bei 49–50,6 s an (bei Tageslicht nur schwach sichtbar).
+  Vorschau `out/phase5/eingang.jpg`.
