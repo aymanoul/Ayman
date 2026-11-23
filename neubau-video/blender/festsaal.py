@@ -79,7 +79,7 @@ TEPPICH = bild_mat('Saal_Teppich', 'teppich.jpg', 2.4, 3.6, rough=0.95, **{'Shee
 #  A „Warm & Holz“: Wände sandbeige, Eichen-Verkleidung unten, Stühle taupe, Tischläufer salbeigrün
 #  B „Salbeigrün“: Wände salbeigrün, Stühle grau, Tischläufer sand
 #  C „Holzboden“: Boden Eiche (Laminat-Optik), Wände hell-warm, Stühle anthrazit, Tischläufer terrakotta
-FARBE = os.environ.get('FARBE', '')
+FARBE = os.environ.get('FARBE', 'W')                     # W = Aymans Wahl (23.11.)
 VAR = {'A': dict(wand='#E0D3C0', stoff='#958675', laeufer='#8A9A79', holz_unten=True, boden='marmor'),
        'B': dict(wand='#B3BEA6', stoff='#8C918A', laeufer='#C9B696', holz_unten=False, boden='marmor'),
        'C': dict(wand='#EAE2D6', stoff='#6C6864', laeufer='#AE6A4E', holz_unten=False, boden='holz'),
@@ -87,9 +87,15 @@ VAR = {'A': dict(wand='#E0D3C0', stoff='#958675', laeufer='#8A9A79', holz_unten=
        'C1': dict(wand='#EAE2D6', stoff='#8A7A69', laeufer='#8A9A79', tuch='#E4DACA', gestell='#5E5A55', holz_unten=False, boden='holz'),
        'C2': dict(wand='#EAE2D6', stoff='#6E7458', laeufer='#6E7458', tuch='#F1EEE7', gestell='#8F8D88', holz_unten=False, boden='holz'),
        'C3': dict(wand='#EAE2D6', stoff='#946A4B', laeufer=None, tuch='#DCD8D0', gestell='#3E3C3A', holz_unten=False, boden='holz'),
+       # Aymans Wahl 23.11. (Bild `assets/saal_wahl_ayman.jpg`): wie A, aber DUNKELBRAUNES Holz an der Wand und bei den Stühlen,
+       # Tischläufer in derselben Farbe, in der Tischmitte eine größere marokkanische Atay-Kanne mit traditionellen Teegläsern
+       'W': dict(wand='#E0D3C0', stoff='#5C4434', laeufer='#4A3326', gestell='#3B2719', holz_unten=True, holz='dunkel',
+                 boden='marmor', holzstuhl=True, atay=True),
        }.get(FARBE)
 EICHE = os.path.join(HERE, '..', 'assets', 'tex', 'ph', 'laminate_floor_02_diff.jpg')
 HOLZ_M = bild_mat('Saal_Eiche', EICHE, 2.0, 2.0, rough=0.45)
+if VAR and VAR.get('holz') == 'dunkel':
+    HOLZ_M = bild_mat('Saal_Holz_dunkel', 'holz_dunkel.jpg', 2.0, 2.0, rough=0.5)
 WAND = mat('Saal_Wand', VAR['wand'] if VAR else '#EFECE7', 0.55)
 DECKE_M = mat('Saal_Decke', '#F4F3F1', 0.7)
 WEISS_GL = mat('Saal_Weiss_glanz', '#F1EFEA', 0.5)
@@ -384,18 +390,57 @@ if VAR and VAR.get('laeufer'):                                      # Tischläuf
     for sx in (-1, 1):
         x0, x1 = (0.946, 0.958) if sx > 0 else (-0.958, -0.946)
         b.quader(x0, -0.19, 0.50, x1, 0.19, 0.766, mi)
+if VAR and VAR.get('atay'):
+    # Marokkanische Atay-Kanne (Berrad, Silber, etwas größer als üblich) auf rundem Silbertablett mit 6 traditionellen Teegläsern
+    SILBER = mat('Saal_Silber', '#D8D8D4', 0.24, 1.0)
+    TEE = mat('Saal_Tee', '#D98A4A', 0.02, **{'Transmission Weight': 1.0, 'IOR': 1.33})
+    GLAS_F = [mat(f'Saal_Teeglas_{k}', c, 0.02, **{'Transmission Weight': 1.0, 'IOR': 1.5})
+              for k, c in (('gruen', '#4FA06F'), ('blau', '#5A86C8'), ('rot', '#C2545A'))]
+    GOLDRAND = mat('Saal_Glas_Goldrand', '#D4B26A', 0.3, 1.0)
+    base = len(b.mats); b.mats += [SILBER, TEE] + GLAS_F + [GOLDRAND]
+    MS, MT, MG, MGR = base, base + 1, (base + 2, base + 3, base + 4), base + 5
+    z0 = 0.766
+    def drehkoerper(profil, mi, n=32, x=0.0, y=0.0, deckel=True):
+        b.ring([[(x + r * math.cos(2 * math.pi * i / n), y + r * math.sin(2 * math.pi * i / n), z) for i in range(n)]
+                for r, z in profil], mi, True, True, deckel)
+    # Tablett
+    drehkoerper([(0.245, z0), (0.245, z0 + 0.022), (0.235, z0 + 0.022), (0.235, z0 + 0.006)], MS, 48, deckel=False)
+    b.polygon([(0.236 * math.cos(2 * math.pi * i / 48), 0.236 * math.sin(2 * math.pi * i / 48), z0 + 0.006) for i in range(48)], MS)
+    # Kanne (Profil r, z über dem Tablett), Maßstab 1,25
+    k = 1.25; zt = z0 + 0.006
+    prof = [(0.050, 0.0), (0.054, 0.006), (0.040, 0.022), (0.060, 0.045), (0.074, 0.075), (0.072, 0.105), (0.055, 0.135),
+            (0.040, 0.150), (0.038, 0.158), (0.048, 0.162), (0.046, 0.168), (0.036, 0.185), (0.020, 0.205), (0.012, 0.215),
+            (0.016, 0.222), (0.010, 0.235), (0.002, 0.245)]
+    drehkoerper([(r * k, zt + z * k) for r, z in prof], MS, 32)
+    sp = [Vector((0.068 * k, 0, zt + 0.08 * k)), Vector((0.10 * k, 0, zt + 0.10 * k)), Vector((0.125 * k, 0, zt + 0.14 * k)),
+          Vector((0.145 * k, 0, zt + 0.175 * k)), Vector((0.17 * k, 0, zt + 0.19 * k))]
+    for i in range(len(sp) - 1):                                       # Ausguss, verjüngt
+        r0 = 0.014 - 0.0022 * i; b.rohr(sp[i], sp[i + 1], r0 * k, (r0 - 0.0022) * k, MS, 10, deckel=(i == len(sp) - 2))
+    hd = [Vector((-0.05 * k, 0, zt + 0.145 * k)), Vector((-0.11 * k, 0, zt + 0.15 * k)), Vector((-0.13 * k, 0, zt + 0.11 * k)),
+          Vector((-0.115 * k, 0, zt + 0.07 * k)), Vector((-0.07 * k, 0, zt + 0.055 * k))]
+    b.pfad(hd, 0.0075 * k, MS, 8)                                       # Griff
+    # Teegläser: leicht ausgestellt, farbiges Glas mit Goldrand-Band, mit Tee gefüllt
+    for i in range(6):
+        a = 2 * math.pi * i / 6 + math.pi / 6; gx, gy = 0.175 * math.cos(a), 0.175 * math.sin(a)
+        drehkoerper([(0.022, zt), (0.024, zt + 0.004), (0.031, zt + 0.095), (0.0295, zt + 0.095), (0.0225, zt + 0.006)],
+                    MG[i % 3], 20, gx, gy, deckel=True)
+        drehkoerper([(0.0312, zt + 0.06), (0.0326, zt + 0.08)], MGR, 20, gx, gy, deckel=False)
+        drehkoerper([(0.021, zt + 0.006), (0.027, zt + 0.07)], MT, 20, gx, gy, deckel=True)
 TISCH = b.objekt('Saal_Tisch0')
 
 # ------------------------------------------------------------------ Stuhl: schlichter, stapelbarer Bankettstuhl (Ayman 23.11.)
 GESTELL = mat('Saal_Stuhlgestell', VAR.get('gestell', '#9E9D99') if VAR else '#9E9D99', 0.55, 0.5)
+if VAR and VAR.get('holzstuhl'):
+    GESTELL = mat('Saal_Stuhl_Holz_dunkel', VAR['gestell'], 0.5)
 STOFF = mat('Saal_Stuhlstoff', VAR['stoff'] if VAR else '#B8B1A5', 0.9)
 b = Bau([GESTELL, STOFF])
 b.quader(-0.22, -0.21, 0.42, 0.22, 0.21, 0.445, 0)                                           # Sitzrahmen
 b.quader(-0.215, -0.22, 0.445, 0.215, 0.2, 0.5, 1, fase=0.015)                               # Sitzpolster
 for sx in (-1, 1):
-    b.quader(sx * 0.2 - 0.0125, -0.2 - 0.0125, 0.0, sx * 0.2 + 0.0125, -0.2 + 0.0125, 0.42, 0)   # Vorderbeine
-    b.rohr((sx * 0.2, 0.21, 0.0), (sx * 0.2, 0.2, 0.43), 0.012, mi=0, n=4)                       # Hinterbeine
-    b.rohr((sx * 0.2, 0.2, 0.43), (sx * 0.2, 0.25, 0.93), 0.012, mi=0, n=4)                      # Holme der Lehne
+    d = 0.019 if VAR and VAR.get('holzstuhl') else 0.0125                                        # Holzstuhl: kräftigere Beine
+    b.quader(sx * 0.2 - d, -0.2 - d, 0.0, sx * 0.2 + d, -0.2 + d, 0.42, 0)                       # Vorderbeine
+    b.rohr((sx * 0.2, 0.21, 0.0), (sx * 0.2, 0.2, 0.43), d * 1.1, mi=0, n=4)                     # Hinterbeine
+    b.rohr((sx * 0.2, 0.2, 0.43), (sx * 0.2, 0.25, 0.93), d * 1.1, mi=0, n=4)                    # Holme der Lehne
 neig = 0.05 / 0.5
 for dy in (0.0,):
     b.quader(-0.2, 0.205, 0.58, 0.2, 0.245, 0.9, 1, fase=0.015)                                  # Rückenpolster
@@ -465,4 +510,4 @@ for o in bpy.data.objects:
     if o.name.startswith(('Keller_Wandleuchten', 'Keller_Unterzuege', 'Keller_Saeulen', 'Keller_Treppe')):
         o.hide_render = True
 print('Festsaal gebaut:', len(C.objects), 'Objekte,', len(spots), 'Strahler,', len(kassetten), 'Kassetten')
-bpy.ops.wm.save_as_mainfile(filepath=os.path.join(HERE, f'festsaal{"_" + FARBE if FARBE else ""}.blend'), relative_remap=True)
+bpy.ops.wm.save_as_mainfile(filepath=os.path.join(HERE, f'festsaal{"_" + FARBE if FARBE not in ("", "W") else ""}.blend'), relative_remap=True)
