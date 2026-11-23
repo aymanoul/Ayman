@@ -136,7 +136,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   Nur die **Mittelstütze steht frei**, alle anderen sitzen **stark nach außen versetzt in den Außenwänden** (Keller: `Keller_Wandstuetzen`;
   EG/OG: in Wänden bzw. Glasfassaden, nur `EG_Saeule0`/`OG_Saeule0` in der Mitte). An der Grenze Moschee/Hof (y = Y1) gibt es im Keller keine
   Wand, dort steht die mittlere Stütze frei. Unterzüge entlang der Rasterlinien (`Keller_Unterzuege`).
-- Keller wird ein **Festsaal** (Hochzeitssaal-Stil: Tische, Stühle; für Babyfeiern, Nikah usw.). Ayman schickt noch ein Bild, wie er ihn eingerichtet haben möchte.
+- Keller wird ein **Mehrzweckraum** für Feiern (Babyfeier, Nikah …) und Wissens-Seminare (siehe unten).
 - Vorschau: `out/phase5/keller_raster.jpg`.
 - **Mehrzweckraum im Keller (23.11. abends, Vorlage: Aymans Festsaal-Video, Standbilder `assets/festsaal_vorlage_ayman.jpg`):**
   `blender/festsaal.py` (öffnet neubau.blend, speichert `blender/festsaal.blend`; Video unverändert), Texturen `tools/festsaal_texturen.py`
