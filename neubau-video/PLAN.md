@@ -187,3 +187,13 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   (`Parken_Thuja_B*`; hinter den Wohnwagen 3,0–3,45 m hoch, hinter dem Parkplatz 2,0–2,45 m), jede 2. mit Bodenstrahler; an der Brandwand
   10 schwarze Zylinder-Wandleuchten mit Licht nach oben/unten (hinter den Wohnwagen auf 3,35 m, hinter dem Parkplatz auf 2,25 m).
   Korrigiert: Lichtkegel der Wandleuchten waren vertauscht, Bodenstrahler zeigten nach unten. Vorschau `out/phase5/rueckwand_gruen.jpg`.
+- **Hof nach Aymans Bild von oben (23.11., `assets/oben_vorlage_ayman.jpg`):** warme beige Platten, breite Beete ringsum (211 Laubbüsche in 4 Grüntönen,
+  Blütenpunkte, Palmen mit gefiederten Wedeln, Thujen in den Ecken), Strahler in den Beeten (leuchten die Mauern an), Zylinder-Wandleuchten,
+  2 runde Essplätze mit runden weißen Schirmen, 2 lange Holztische mit Holzstühlen, weiße Lounge hinten links, Außenküche + Grill hinten rechts,
+  Palmen in Kübeln. Vorschau `out/phase5/hof_neu.jpg`.
+- **WICHTIG (Ayman 23.11.): Hof NICHT über die ganze Breite – nur HX0 = BT − 16,43 … BT (16,43 m, rechtsbündig, wie im Vorlagebild und
+  Architektenplan). Links davon (x 0 … 3,57, hinter der Moschee) ist Fläche des NACHBARN – nicht nutzen.** Konstante `HX0` in moschee.py,
+  festsaal.py, umgebung.py, animation.py. Folgen: Hofmauern, Beete, Möbel, Schiebedach schmaler; Keller **L-förmig** (unter der Moschee voll,
+  unter dem Hof nur 16,43 m; Wand 4 = Absatz, Wand 5 = linke Wand unter dem Hof), Stützenraster Hofteil x = HX0 / Mitte / BT, Treppe B nach
+  rechts verschoben, Baugrube L-förmig, Nachbarstreifen mit eigenem Pflaster (`Nachbar_Hof_Pflaster`); Festsaal L-förmig, 20 Tische (200 Plätze),
+  Bildschirm in der Mitte der Rückwand unter dem Hof. Vorschau Saal `out/phase5/saal_lform.jpg`.

@@ -15,7 +15,7 @@ import math
 import os
 import random
 import bpy
-from mathutils import Vector
+from mathutils import Matrix, Vector
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 random.seed(11)
@@ -28,6 +28,7 @@ VOR, MT = 0.3, 12.0                      # Ayman 23.11.: Front bündig mit den N
 Y0, Y1 = VOR, VOR + MT                  # Moschee: y 0,3 … 12,3
 PORTAL_X = BT - 2.9                     # Portal am rechten Ende: x 13,6 … 16,5
 PK, TOR = BT + 9.0, L - 6.0
+HX0 = BT - 16.43                        # Ayman 23.11.: Hof (und Keller darunter) nur 16,43 m breit, rechtsbündig; links davon Fläche des Nachbarn
 H_EG, H_DECKE, H_OG, H_DACH, H_ATTIKA = 5.5, 5.95, 8.7, 9.2, 10.0
 COLL = {}
 
@@ -180,7 +181,7 @@ M.update({
     'kies': ph('PH_Dachkies', 'gravel_floor', 1.5, 0, None, 0, 0.05, 0.4),
     'gruendach': ph('PH_Gruendach', 'leafy_grass', 2.5, 0, '#5D7A3A', 1.0, 0.0, 0.3),
     'hecke': ph('PH_Hecke', 'forest_leaves_02', 1.5, 0, '#3D5C2F', 1.0, 0.0, 0.6),
-    'hofplatten': ph('PH_Hofplatten', 'concrete_tiles', 2.4, 0, '#DCD3C2', 1.0, 0.0, 0.2),
+    'hofplatten': ph('PH_Hofplatten', 'concrete_tiles', 2.4, 0, '#E2C99C', 1.0, 0.0, 0.2),   # warmes Beige (Ayman 23.11.)
     'vorplatz': ph('PH_Gehweg', 'concrete_pavers_02', 2.0, 0, '#D8D1C3', 1.0, 0.0, 0.2),
 })
 
@@ -262,40 +263,37 @@ def spitzbogen(cx, breite, z0, h_gerade, n=10):
 
 # ------------------------------------------------------------------ S2: Keller (Ayman 20.11.: unter Moschee UND Hof, nicht unter den Parkplätzen) + Kellerdecke
 KZ = -3.2
-quader('Keller_Bodenplatte', -0.2, Y0 - 0.2, KZ - 0.3, BT + 0.2, TT, KZ, M['beton_roh'], 'S2_Keller')
-for i, (x0, y0, x1, y1) in enumerate(((0, Y0, BT, Y0 + 0.3), (0, TT - 0.3, BT, TT), (0, Y0 + 0.3, 0.3, TT - 0.3), (BT - 0.3, Y0 + 0.3, BT, TT - 0.3))):
-    # Ayman 20.11.: EIN durchgehender Keller unter Moschee und Hof, keine Trennwand
+# Ayman 23.11.: Keller L-förmig – unter der Moschee volle Breite, unter dem Hof nur HX0 … BT (links davon Nachbarfläche)
+viele_quader('Keller_Bodenplatte', [(-0.2, Y0 - 0.2, KZ - 0.3, BT + 0.2, Y1 + 0.3, KZ), (HX0 - 0.2, Y1 + 0.3, KZ - 0.3, BT + 0.2, TT, KZ)], M['beton_roh'], 'S2_Keller')
+for i, (x0, y0, x1, y1) in enumerate(((0, Y0, BT, Y0 + 0.3), (HX0, TT - 0.3, BT, TT), (0, Y0 + 0.3, 0.3, Y1), (BT - 0.3, Y0 + 0.3, BT, TT - 0.3),
+                                      (0, Y1, HX0 + 0.3, Y1 + 0.3), (HX0, Y1 + 0.3, HX0 + 0.3, TT - 0.3))):
+    # EIN durchgehender Keller (keine Trennwand zwischen Moschee- und Hofteil); Wand 4 = Absatz, Wand 5 = linke Wand unter dem Hof
     quader(f'Keller_Wand{i}', x0, y0, KZ, x1, y1, -0.3, M['beton_roh'], 'S2_Keller')
 quader('Kellerdecke', 0, Y0, -0.3, BT, Y1, 0.15, M['beton_roh'], 'S2_Keller')
-quader('Kellerdecke_Hof', 0, Y1, -0.3, BT, TT, 0.0, M['beton_roh'], 'S2_Keller')   # endet unter den Hofplatten (0,035)
+quader('Kellerdecke_Hof', HX0, Y1, -0.3, BT, TT, 0.0, M['beton_roh'], 'S2_Keller')   # endet unter den Hofplatten (0,035)
 # Keller-Innenausbau nach Aymans Beispielbild (20.11.): heller Estrich, Betonsäulen, 2 Treppen mit Metallgeländer, warme Wandleuchten
 beton_k = farbe('Beton_Keller_hell', '#CFC9BE', 0.75, 0, 0.08)
 estrich = farbe('Estrich_hell', '#C9C3B7', 0.45, 0, 0.05)
 gel_k = farbe('Gelaender_Metall', '#9EA3A8', 0.35, 0.85, 0)
-quader('Keller_Estrich', 0.3, Y0 + 0.3, KZ, BT - 0.3, TT - 0.3, KZ + 0.03, estrich, 'S2_Keller')
-# Stützenraster nach Architekt (Ayman 23.11.): je Raum (unter Moschee / unter Hof) 3×3 = 9 Stützen. Die mittlere bleibt
-# frei in der Mitte, alle übrigen sitzen in den Außenwänden (bündig, nur 5 cm Lisene sichtbar) → der Saal bleibt frei.
-# An der Grenze Moschee/Hof (y = Y1) gibt es keine Wand: dort steht die mittlere Stütze frei (trägt Unterzüge).
-K_XS = (0.0, BT / 2, BT)
-K_YS = (Y0, (Y0 + Y1) / 2, Y1, (Y1 + TT) / 2, TT)
-K_FREI = [(BT / 2, (Y0 + Y1) / 2), (BT / 2, Y1), (BT / 2, (Y1 + TT) / 2)]
-_ks, _kw = [], []
-for x in K_XS:
-    for y in K_YS:
-        if (x, y) in K_FREI:
-            _ks.append((x - 0.25, y - 0.25, KZ + 0.03, x + 0.25, y + 0.25, -0.5))   # endet im Unterzug
-            continue
-        # Wandstütze: in der Wand (0,3 m), 5 cm Lisene nach innen, 0,5 m breit entlang der Wand
-        xa = 0.03 if x == 0 else (BT - 0.35 if x == BT else x - 0.25)          # 3 cm hinter der Außenfläche (keine
-        xb = 0.35 if x == 0 else (BT - 0.03 if x == BT else x + 0.25)          # deckungsgleichen Flächen mit der Wand)
-        ya = Y0 + 0.03 if y == Y0 else (TT - 0.35 if y == TT else y - 0.25)
-        yb = Y0 + 0.35 if y == Y0 else (TT - 0.03 if y == TT else y + 0.25)
-        _kw.append((xa, ya, KZ + 0.03, xb, yb, -0.32))
+viele_quader('Keller_Estrich', [(0.3, Y0 + 0.3, KZ, BT - 0.3, Y1, KZ + 0.03), (HX0 + 0.3, Y1, KZ, BT - 0.3, TT - 0.3, KZ + 0.03)], estrich, 'S2_Keller')
+# Stützenraster nach Architekt (Ayman 23.11.): je Raum (unter Moschee / unter Hof) 3×3 Stützen. Die mittlere bleibt frei,
+# alle übrigen sitzen in den Außenwänden (bündig, nur 5 cm Lisene sichtbar). An der Grenze Moschee/Hof (y = Y1) steht die
+# mittlere Stütze frei (trägt den Unterzug). Raster Hofteil: x = HX0, Mitte, BT.
+XM_A, XM_B, YM_A, YM_B = BT / 2, (HX0 + BT) / 2, (Y0 + Y1) / 2, (Y1 + TT) / 2
+K_FREI = [(XM_A, YM_A), (XM_A, Y1), (XM_B, YM_B)]
+_ks = [(x - 0.25, y - 0.25, KZ + 0.03, x + 0.25, y + 0.25, -0.5) for x, y in K_FREI]     # enden im Unterzug
+_kw = [(0.03, Y0 + 0.03, 0.35, Y0 + 0.35), (XM_A - 0.25, Y0 + 0.03, XM_A + 0.25, Y0 + 0.35), (BT - 0.35, Y0 + 0.03, BT - 0.03, Y0 + 0.35),
+       (0.03, YM_A - 0.25, 0.35, YM_A + 0.25), (BT - 0.35, YM_A - 0.25, BT - 0.03, YM_A + 0.25),
+       (0.03, Y1 - 0.05, 0.35, Y1 + 0.27), (BT - 0.35, Y1 - 0.25, BT - 0.03, Y1 + 0.25),
+       (HX0 + 0.03, Y1 + 0.03, HX0 + 0.35, Y1 + 0.35),
+       (HX0 + 0.03, YM_B - 0.25, HX0 + 0.35, YM_B + 0.25), (BT - 0.35, YM_B - 0.25, BT - 0.03, YM_B + 0.25),
+       (HX0 + 0.03, TT - 0.35, HX0 + 0.35, TT - 0.03), (XM_B - 0.25, TT - 0.35, XM_B + 0.25, TT - 0.03), (BT - 0.35, TT - 0.35, BT - 0.03, TT - 0.03)]
 viele_quader('Keller_Saeulen', _ks, beton_k, 'S2_Keller')
-viele_quader('Keller_Wandstuetzen', _kw, beton_k, 'S2_Keller')
+viele_quader('Keller_Wandstuetzen', [(a, b, KZ + 0.03, c, d, -0.32) for a, b, c, d in _kw], beton_k, 'S2_Keller')
 # Unterzüge unter der Decke entlang der Rasterlinien (wie im Architektenbild), 0,4 breit, 0,45 tief
-_uz = [(BT / 2 - 0.2, Y0 + 0.3, -0.75, BT / 2 + 0.2, TT - 0.3, -0.3)]
-_uz += [(0.3, y - 0.2, -0.74, BT - 0.3, y + 0.2, -0.31) for y in K_YS[1:4]]     # 1 cm versetzt: keine deckungsgleichen Flächen
+_uz = [(XM_A - 0.2, Y0 + 0.3, -0.75, XM_A + 0.2, Y1 - 0.2, -0.3), (XM_B - 0.2, Y1 + 0.2, -0.75, XM_B + 0.2, TT - 0.3, -0.3)]
+_uz += [(0.3, YM_A - 0.2, -0.74, BT - 0.3, YM_A + 0.2, -0.31), (HX0 + 0.3, Y1 - 0.2, -0.74, BT - 0.3, Y1 + 0.2, -0.31),
+        (HX0 + 0.3, YM_B - 0.2, -0.74, BT - 0.3, YM_B + 0.2, -0.31)]                  # 1 cm versetzt: keine deckungsgleichen Flächen
 viele_quader('Keller_Unterzuege', _uz, beton_k, 'S2_Keller')
 
 
@@ -330,15 +328,18 @@ def treppe(name, x_oben, richtung, y0, y1):
 
 
 treppe('Keller_TreppeA', BT - 0.6, -1, Y0 + 0.3, Y0 + 1.6)      # vorn rechts beim Portal, nach links hinunter
-treppe('Keller_TreppeB', 0.6, 1, TT - 1.6, TT - 0.3)            # hinten links unter dem Hof, nach rechts hinunter
+treppe('Keller_TreppeB', HX0 + 0.6, 1, TT - 1.6, TT - 0.3)      # hinten links unter dem Hof, nach rechts hinunter
 wl_k = []
-for x in (X(2.2), X(6.2), X(10.3), X(14.3)):
-    for y in (Y0 + 0.3, TT - 0.3):
-        if not (y > Y1 and x < X(6)) and not (y < Y1 and x > X(10)):    # nicht hinter den Treppen
-            d = 0.06 if y < Y1 else -0.06
-            wl_k.append((x - 0.12, min(y, y + d), KZ + 1.9, x + 0.12, max(y, y + d), KZ + 2.15))
-for y in (3.3, 9.3, 16.5, 24.8):            # zwischen den Wandstützen
-    wl_k.append((0.3, y - 0.12, KZ + 1.9, 0.36, y + 0.12, KZ + 2.15)); wl_k.append((BT - 0.36, y - 0.12, KZ + 1.9, BT - 0.3, y + 0.12, KZ + 2.15))
+for x in (2.7, 7.5, 12.5):                                   # Vorderwand (rechts die Treppe)
+    wl_k.append((x - 0.12, Y0 + 0.3, KZ + 1.9, x + 0.12, Y0 + 0.36, KZ + 2.15))
+for x in (11.0, 15.0, 18.4):                                 # Rückwand unter dem Hof (links die Treppe)
+    wl_k.append((x - 0.12, TT - 0.36, KZ + 1.9, x + 0.12, TT - 0.3, KZ + 2.15))
+for y in (3.3, 9.3):
+    wl_k.append((0.3, y - 0.12, KZ + 1.9, 0.36, y + 0.12, KZ + 2.15))
+for y in (16.5, 24.8):
+    wl_k.append((HX0 + 0.3, y - 0.12, KZ + 1.9, HX0 + 0.36, y + 0.12, KZ + 2.15))
+for y in (3.3, 9.3, 16.5, 24.8):
+    wl_k.append((BT - 0.36, y - 0.12, KZ + 1.9, BT - 0.3, y + 0.12, KZ + 2.15))
 viele_quader('Keller_Wandleuchten', wl_k, M['wandleuchte'], 'S2_Keller')
 
 # ------------------------------------------------------------------ S3: Erdgeschoss (Männer) 0 … 5,5
@@ -491,71 +492,213 @@ viele_quader('PV_Gestell', gest, M['pv_rahmen'], 'S5_Dach')
 
 # ------------------------------------------------------------------ S6: Außenanlagen (Vorplatz, Hof, Parken, Wohnwagen, Zaun, Tor, Licht)
 # (Ayman 23.11.: KEINE Bodenplatte vor der Moschee – die Glasfront ist bündig mit dem Nachbarhaus, davor wie beim Nachbarn Randstein + Gasse)
-# Hof (Ayman 19.11.: „besser bebauen wie in den Beispielen“): Plattenboden, Mauern mit Leuchten, durchgehende Pflanzbeete
-# mit Büschen und Zypressen, Bodenstrahler, 2 Olivenbäume, 1 Palme, 2 Essplätze mit Sonnenschirm, Lounge-Ecke, Außenküche.
-flaeche('Hof_Boden', [(0.25, Y1), (BT - 0.25, Y1), (BT - 0.25, TT), (0.25, TT)], 0.035, M['hofplatten'], 'S6_Aussen')
-quader('Hofmauer_links', 0, Y1, 0, 0.25, TT, 3.2, M['hofwand'], 'S6_Aussen')
+# Hof (Ayman 23.11., Vorlage assets/oben_vorlage_ayman.jpg): warme beige Steinplatten, breite Beete ringsum mit üppigem Grün
+# (Büsche, kleine Palmen, Farne, Thujen), Strahler in den Beeten (Wände angeleuchtet), Wandleuchten (Licht nach oben/unten),
+# 2 runde Essplätze mit runden weißen Sonnenschirmen, 2 lange Holztische, weiße Lounge hinten links, Außenküche + Grill hinten rechts,
+# Palmen in Kübeln.
+import bmesh as _bmesh
+# Ayman 23.11.: Hof nur HX0 … BT (16,43 m, wie im Vorlagebild) – links davon Fläche des Nachbarn (nicht nutzen)
+flaeche('Hof_Boden', [(HX0 + 0.25, Y1), (BT - 0.25, Y1), (BT - 0.25, TT), (HX0 + 0.25, TT)], 0.035, M['hofplatten'], 'S6_Aussen')
+quader('Hofmauer_links', HX0, Y1, 0, HX0 + 0.25, TT, 3.2, M['hofwand'], 'S6_Aussen')
 quader('Hofmauer_rechts', BT - 0.25, Y1, 0, BT, TT, 3.2, M['hofwand'], 'S6_Aussen')
-viele_quader('Hofmauer_Abdeckung', [(-0.03, Y1, 3.2, 0.28, TT, 3.28), (BT - 0.28, Y1, 3.2, BT + 0.03, TT, 3.28)], M['band'], 'S6_Aussen')
-wl = []
-for y in (14.4, 17.0, 19.6, 22.2, 24.8, 27.4):
-    wl += [(0.25, y - 0.12, 2.4, 0.33, y + 0.12, 2.7), (BT - 0.33, y - 0.12, 2.4, BT - 0.25, y + 0.12, 2.7)]
-viele_quader('Hof_Wandleuchten', wl, M['wandleuchte'], 'S6_Aussen')
-BEET = [(0.25, Y1 + 0.6, 1.15, TT - 0.1), (BT - 1.15, Y1 + 0.6, BT - 0.25, TT - 0.1), (1.15, TT - 0.95, BT - 1.15, TT - 0.1)]
-viele_quader('Hof_Pflanzbeete', [(x0, y0, 0, x1, y1, 0.5) for x0, y0, x1, y1 in BEET], M['kuebel'], 'S6_Aussen')
-erde = farbe('Erde_Beet', '#4A3C2E', 0.95, 0, 0.2, 6)
-viele_quader('Hof_Beeterde', [(x0 + 0.08, y0 + 0.08, 0.5, x1 - 0.08, y1 - 0.08, 0.52) for x0, y0, x1, y1 in BEET], erde, 'S6_Aussen')
-k = 0
-strahler = []
-for x0, y0, x1, y1 in BEET:
-    lang = max(x1 - x0, y1 - y0); n = int(lang / 1.25)
+viele_quader('Hofmauer_Abdeckung', [(HX0 - 0.03, Y1, 3.2, HX0 + 0.28, TT, 3.28), (BT - 0.28, Y1, 3.2, BT + 0.03, TT, 3.28)], M['band'], 'S6_Aussen')
+LAUB = [M['hecke'], farbe('Laub_hell', '#5F8239', 0.85, 0, 0.3, 7), farbe('Laub_dunkel', '#2E4A25', 0.9, 0, 0.3, 7),
+        farbe('Laub_blau', '#47684A', 0.85, 0, 0.25, 7)]
+PALMWEDEL = farbe('Palmwedel', '#4D7A33', 0.75, 0, 0.25, 6)
+BLUETEN = [farbe('Bluete_weiss_Hof', '#F3EFE6', 0.8, 0, 0.05), farbe('Bluete_rosa_Hof', '#D98AA0', 0.8, 0, 0.05)]
+RAND_STEIN = farbe('Beet_Randstein', '#CDBB98', 0.75, 0, 0.06)
+erde = farbe('Erde_Beet', '#4A3326', 0.95, 0, 0.2, 6)
+BEET = [(HX0 + 0.25, Y1 + 0.8, HX0 + 1.45, TT - 1.5), (BT - 1.45, Y1 + 0.8, BT - 0.25, TT - 1.5), (HX0 + 0.25, TT - 1.5, BT - 0.25, TT)]
+viele_quader('Hof_Pflanzbeete', [(x0, y0, 0, x1, y1, 0.42) for x0, y0, x1, y1 in BEET], RAND_STEIN, 'S6_Aussen')
+viele_quader('Hof_Beeterde', [(x0 + 0.08, y0 + 0.08, 0.42, x1 - 0.08, y1 - 0.08, 0.45) for x0, y0, x1, y1 in BEET], erde, 'S6_Aussen')
+_rnd = random.Random(23)
+
+
+def _busch_mesh(name, kugeln, mats, c='S6_Aussen'):
+    """Viele unregelmäßige Laubkugeln in einem Objekt (Büsche/Stauden)."""
+    bm = _bmesh.new()
+    for (cx, cy, cz, r, sz, mi) in kugeln:
+        res = _bmesh.ops.create_icosphere(bm, subdivisions=2, radius=r,
+                                          matrix=Matrix.Translation((cx, cy, cz)) @ Matrix.Diagonal((1, 1, sz, 1)))
+        for v in res['verts']:
+            v.co += (v.co - Vector((cx, cy, cz))).normalized() * r * (_rnd.random() - 0.5) * 0.35
+        for f in {f for v in res['verts'] for f in v.link_faces}:
+            f.material_index = mi; f.smooth = True
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    for m in mats:
+        me.materials.append(m)
+    ob = bpy.data.objects.new(name, me); coll(c).objects.link(ob)
+    return ob
+
+
+def _palme(name, x, y, z0, h, n=11, r=1.2, kuebel=None):
+    """Kleine Palme: geringelter Stamm, gebogene Wedel mit Fiederblättchen."""
+    v, f = [], []
+    nst = 8
+    for j in range(13):
+        t = j / 12; rr = 0.11 - 0.035 * t + (0.012 if j % 2 else 0)
+        for i in range(nst):
+            a = 2 * math.pi * i / nst; v.append((x + rr * math.cos(a) + 0.15 * t * t, y + rr * math.sin(a), z0 + h * t))
+    for j in range(12):
+        for i in range(nst):
+            a0, a1 = j * nst + i, j * nst + (i + 1) % nst; f.append((a0, a1, a1 + nst, a0 + nst))
+    stamm = mesh(name + '_Stamm', v, f, M['stamm'], 'S6_Aussen')
+    for pp in stamm.data.polygons:
+        pp.use_smooth = True
+    tx, ty, tz = x + 0.15, y, z0 + h
+    v, f = [], []
+    for k in range(n):                                   # Wedel: Mittelrippe + gefiederte Blättchen (schmal, nach unten hängend)
+        a = 2 * math.pi * k / n + _rnd.uniform(-0.15, 0.15); hebe = _rnd.uniform(0.25, 0.55)
+        seg = 12
+        sp = []
+        for j in range(seg + 1):
+            t = j / seg; d = r * t
+            sp.append((tx + d * math.cos(a), ty + d * math.sin(a), tz + hebe * math.sin(t * math.pi * 0.9) - 0.45 * t * t * r))
+        ux, uy = math.cos(a), math.sin(a); nx, ny = -uy, ux
+        for j in range(seg):
+            (x0_, y0_, z0_), (x1_, y1_, z1_) = sp[j], sp[j + 1]
+            kk = len(v); v += [(x0_ - nx * 0.012, y0_ - ny * 0.012, z0_), (x1_ - nx * 0.012, y1_ - ny * 0.012, z1_),
+                               (x1_ + nx * 0.012, y1_ + ny * 0.012, z1_), (x0_ + nx * 0.012, y0_ + ny * 0.012, z0_)]
+            f.append((kk, kk + 1, kk + 2, kk + 3))
+            if j == 0:
+                continue
+            t = j / seg; lb = 0.42 * math.sin(math.pi * min(1.0, t * 1.05)) + 0.05
+            for sg in (-1, 1):
+                for o in (0.0, 0.5):                       # 2 Blättchen je Segment und Seite
+                    bx = x0_ + (x1_ - x0_) * o; by = y0_ + (y1_ - y0_) * o; bz = z0_ + (z1_ - z0_) * o
+                    ex = bx + (nx * sg * 0.85 + ux * 0.5) * lb; ey = by + (ny * sg * 0.85 + uy * 0.5) * lb; ez = bz - 0.35 * lb
+                    w_ = 0.025
+                    kk = len(v); v += [(bx - ux * w_, by - uy * w_, bz), (bx + ux * w_, by + uy * w_, bz), (ex + ux * 0.004, ey + uy * 0.004, ez), (ex - ux * 0.004, ey - uy * 0.004, ez)]
+                    f.append((kk, kk + 1, kk + 2, kk + 3))
+    mesh(name + '_Wedel', v, f, PALMWEDEL, 'S6_Aussen')
+    if kuebel:
+        zylinder(name + '_Kuebel', x, y, 0, kuebel, kuebel * 0.8, z0, M['pv_rahmen'], 'S6_Aussen', 20)
+
+
+# Bepflanzung der Beete: dichte Büsche (3 Größen, 4 Grüntöne), Blütenpunkte, alle ~2,4 m eine Palme, Thujen in den Ecken
+_kugeln = []; _palmen = []; _thujen = []
+for bi, (x0, y0, x1, y1) in enumerate(BEET):
+    lang = max(x1 - x0, y1 - y0); quer_x = (x1 - x0) > (y1 - y0)
+    n = int(lang / 0.42)
     for j in range(n):
-        t = (j + 0.5) / n; px, py = x0 + (x1 - x0) * t if x1 - x0 > 1 else (x0 + x1) / 2, y0 + (y1 - y0) * t if y1 - y0 > 1 else (y0 + y1) / 2
-        if j % 3 == 1:
-            zylinder(f'Hof_Zypresse{k}', px, py, 0.5, 0.42, 0.03, 3.4, M['hecke'], 'S6_Aussen', 10)
-        else:
-            krone(f'Hof_Busch{k}', px, py, 0.95, 0.55, M['pflanzen'], 'S6_Aussen', 2)
-        if j % 2 == 0:
-            strahler.append((px - 0.1, py - 0.1, 0.52, px + 0.1, py + 0.1, 0.58))
-        k += 1
+        t = (j + 0.5) / n
+        for q in (0.3, 0.7):
+            px = x0 + (x1 - x0) * (t if quer_x else q); py = y0 + (y1 - y0) * (q if quer_x else t)
+            if _rnd.random() < 0.85:
+                r = _rnd.uniform(0.3, 0.52) * (1.15 if q > 0.5 else 1.0); _kugeln.append((px + _rnd.uniform(-0.1, 0.1), py + _rnd.uniform(-0.1, 0.1), 0.45 + r * 0.7, r, _rnd.uniform(0.75, 1.15), _rnd.randrange(4)))
+            if _rnd.random() < 0.18:
+                _kugeln.append((px + _rnd.uniform(-0.2, 0.2), py + _rnd.uniform(-0.2, 0.2), 0.45 + _rnd.uniform(0.35, 0.7), 0.05, 1.0, 4 + _rnd.randrange(2)))
+    k = int(lang / 3.6)
+    for j in range(k):
+        t = (j + 0.5) / k
+        _palmen.append(((x0 + x1) / 2 if not quer_x else x0 + (x1 - x0) * t, (y0 + y1) / 2 if quer_x else y0 + (y1 - y0) * t))
+_kugeln = [kk for kk in _kugeln if all(math.hypot(kk[0] - px, kk[1] - py) > 0.3 for px, py in _palmen)]
+print('Hof-Büsche:', len(_kugeln), 'Palmen:', len(_palmen))
+_busch_mesh('Hof_Busch_Beete', _kugeln, LAUB + BLUETEN)
+for k, (px, py) in enumerate(_palmen):
+    _palme(f'Hof_Busch_Palme{k}', px, py, 0.45, _rnd.uniform(1.6, 2.4), r=_rnd.uniform(0.75, 1.0))
+for k, (px, py) in enumerate(((HX0 + 0.85, Y1 + 1.1), (BT - 0.85, Y1 + 1.1), (HX0 + 0.85, TT - 0.75), (BT - 0.85, TT - 0.75))):
+    zylinder(f'Hof_Zypresse{k}', px, py, 0.45, 0.4, 0.03, 3.0, M['hecke'], 'S6_Aussen', 12)
+# Strahler im Beet (leuchten die Wände an) + Wandleuchten (Licht nach oben/unten) an den Hofmauern
+strahler = []
+_hs = [(HX0 + 0.55, y) for y in (14.6, 17.4, 20.2, 23.0, 25.8)] + [(BT - 0.55, y) for y in (14.6, 17.4, 20.2, 23.0, 25.8)] + [(HX0 + 2.4 + k * 3.0, TT - 0.35) for k in range(5)]
+for k, (px, py) in enumerate(_hs):
+    strahler.append((px - 0.08, py - 0.08, 0.45, px + 0.08, py + 0.08, 0.53))
+    ld = bpy.data.lights.new(f'Parken_Strahler_H{k}', 'SPOT'); ld.energy = 0.0; ld.spot_size = math.radians(34); ld.spot_blend = 0.5
+    ld.color = (1.0, 0.8, 0.55); ld['ziel_energie'] = 55.0
+    lo = bpy.data.objects.new(f'Parken_Strahler_H{k}', ld); coll('S6_Aussen').objects.link(lo)
+    lo.location = (px, py, 0.55)
+    if px < HX0 + 1.5:
+        lo.rotation_euler = (0, -(math.pi - 0.3), 0)          # nach oben, zur linken Mauer
+    elif px > BT - 1.5:
+        lo.rotation_euler = (0, math.pi - 0.3, 0)             # nach oben, zur rechten Mauer
+    else:
+        lo.rotation_euler = (math.pi - 0.3, 0, 0)             # nach oben, zur hinteren Wand
 viele_quader('Hof_Bodenstrahler', strahler, M['wandleuchte'], 'S6_Aussen')
-# Olivenbäume (2) und Palme
-for i, (tx, ty) in enumerate(((4.0, 17.6), (BT - 4.0, 17.6))):
-    quader(f'Kuebel{i}', tx - 0.75, ty - 0.75, 0, tx + 0.75, ty + 0.75, 0.75, M['kuebel'], 'S6_Aussen')
-    zylinder(f'Olive{i}_Stamm', tx, ty, 0.7, 0.13, 0.08, 1.7, M['stamm'], 'S6_Aussen', 8)
-    krone(f'Olive{i}_Krone', tx, ty, 2.7, 1.4, M['oliven'], 'S6_Aussen', 5)
-quader('Kuebel_Palme', BT / 2 - 0.6, 24.6, 0, BT / 2 + 0.6, 25.8, 0.7, M['kuebel'], 'S6_Aussen')
-zylinder('Palme_Stamm', BT / 2, 25.2, 0.7, 0.16, 0.11, 3.2, M['stamm'], 'S6_Aussen', 10)
-for j in range(9):
-    a = j * 2 * math.pi / 9
-    v = [(BT / 2, 25.2, 3.9), (BT / 2 + math.cos(a - 0.18) * 0.4, 25.2 + math.sin(a - 0.18) * 0.4, 4.05),
-         (BT / 2 + math.cos(a) * 1.7, 25.2 + math.sin(a) * 1.7, 3.55), (BT / 2 + math.cos(a + 0.18) * 0.4, 25.2 + math.sin(a + 0.18) * 0.4, 4.05)]
-    mesh(f'Palme_Blatt{j}', v, [(0, 1, 2, 3)], M['pflanzen'], 'S6_Aussen')
-# zwei Essplätze mit 6 Stühlen und eckigem Sonnenschirm
-stuhl, tisch = [], []
-for i, (sx, sy) in enumerate(((4.4, 21.6), (BT - 4.4, 21.6))):
-    tisch += [(sx - 0.5, sy - 1.0, 0.72, sx + 0.5, sy + 1.0, 0.77), (sx - 0.06, sy - 0.06, 0, sx + 0.06, sy + 0.06, 0.72)]
-    for dx in (-0.85, 0.85):
-        for dy in (-0.65, 0.0, 0.65):
-            stuhl += [(sx + dx - 0.22, sy + dy - 0.22, 0.42, sx + dx + 0.22, sy + dy + 0.22, 0.47)]
-            bx = sx + dx + (0.2 if dx > 0 else -0.24)
-            stuhl += [(bx, sy + dy - 0.22, 0.47, bx + 0.04, sy + dy + 0.22, 0.95)]
-            stuhl += [(sx + dx - 0.2, sy + dy - 0.2, 0, sx + dx - 0.16, sy + dy - 0.16, 0.42), (sx + dx + 0.16, sy + dy + 0.16, 0, sx + dx + 0.2, sy + dy + 0.2, 0.42)]
-    zylinder(f'Schirm{i}_Stange', sx, sy, 0.77, 0.03, 0.03, 1.8, M['zaun'], 'S6_Aussen', 8)
-    v = [(sx - 1.5, sy - 1.5, 2.2), (sx + 1.5, sy - 1.5, 2.2), (sx + 1.5, sy + 1.5, 2.2), (sx - 1.5, sy + 1.5, 2.2), (sx, sy, 2.65)]
-    mesh(f'Schirm{i}', v, [(0, 1, 4), (1, 2, 4), (2, 3, 4), (3, 0, 4)], M['schirm'], 'S6_Aussen')
-viele_quader('Tische', tisch, M['bank'], 'S6_Aussen')
-viele_quader('Stuehle', stuhl, M['bank'], 'S6_Aussen')
-# Lounge-Ecke hinten links (L-Sofa mit Kissen, Couchtisch)
-polster = farbe('Polster_hell', '#E7E0D2', 0.9, 0, 0.03)
-viele_quader('Lounge_Sofa_Gestell', [(1.4, 25.2, 0, 2.2, 27.8, 0.42), (2.2, 27.0, 0, 5.4, 27.8, 0.42)], M['zaun'], 'S6_Aussen')
-viele_quader('Lounge_Sofa_Kissen', [(1.45, 25.25, 0.42, 2.15, 27.75, 0.58), (2.2, 27.05, 0.42, 5.35, 27.75, 0.58),
-                                      (1.4, 25.2, 0.58, 1.65, 27.8, 0.95), (2.2, 27.55, 0.58, 5.4, 27.8, 0.95)], polster, 'S6_Aussen')
-quader('Lounge_Tisch', 2.9, 25.5, 0, 4.3, 26.5, 0.38, M['bank'], 'S6_Aussen')
-# Außenküche hinten rechts (Steintheke mit dunkler Platte, Grillhaube)
-quader('Aussenkueche', BT - 5.4, TT - 1.75, 0, BT - 1.5, TT - 1.05, 0.9, M['stein'], 'S6_Aussen')
-quader('Aussenkueche_Platte', BT - 5.45, TT - 1.8, 0.9, BT - 1.45, TT - 1.0, 0.95, M['pfosten'], 'S6_Aussen')
-quader('Aussenkueche_Grill', BT - 3.0, TT - 1.6, 0.95, BT - 2.1, TT - 1.15, 1.35, M['pv_rahmen'], 'S6_Aussen')
+_wl = []; _wlg = []
+for k, (wx, ox, y) in enumerate([(HX0 + 0.25, 1, y) for y in (16.0, 18.8, 21.6, 24.4)] + [(BT - 0.25, -1, y) for y in (16.0, 18.8, 21.6, 24.4)]):
+    cx_ = wx + ox * 0.08
+    _wl += [(cx_ - 0.05, y - 0.05, 2.25, cx_ + 0.05, y + 0.05, 2.6), (min(wx, cx_), y - 0.03, 2.4, max(wx, cx_), y + 0.03, 2.45)]
+    _wlg += [(cx_ - 0.04, y - 0.04, z, cx_ + 0.04, y + 0.04, z + 0.005) for z in (2.245, 2.6)]
+    for richtung, z in (('auf', 2.62), ('ab', 2.23)):
+        ld = bpy.data.lights.new(f'Wandlicht_H{k}_{richtung}', 'SPOT'); ld.energy = 0.0; ld.spot_size = math.radians(38); ld.spot_blend = 0.5
+        ld.color = (1.0, 0.78, 0.5); ld.shadow_soft_size = 0.02; ld['ziel_energie'] = 70.0
+        lo = bpy.data.objects.new(f'Wandlicht_H{k}_{richtung}', ld); coll('S6_Aussen').objects.link(lo)
+        lo.location = (cx_, y, z); lo.rotation_euler = (math.pi, 0, 0) if richtung == 'auf' else (0, 0, 0)
+viele_quader('Hof_Wandleuchten', _wl, farbe('Leuchte_schwarz_Hof', '#151617', 0.4, 0.6, 0), 'S6_Aussen')
+viele_quader('Hof_Wandleuchten_Glas', _wlg, M['wandleuchte'], 'S6_Aussen')
+
+
+def _drehquader(lst, cx, cy, z0, z1, sx, sy, ang, ox=0.0, oy=0.0):
+    """Quader (Mitte cx,cy + lokaler Versatz ox,oy), um z gedreht → Liste aus (Ecken) für mesh()."""
+    ca, sa = math.cos(ang), math.sin(ang)
+    pts = []
+    for dx, dy in ((-sx / 2, -sy / 2), (sx / 2, -sy / 2), (sx / 2, sy / 2), (-sx / 2, sy / 2)):
+        lx, ly = dx + ox, dy + oy
+        pts.append((cx + lx * ca - ly * sa, cy + lx * sa + ly * ca))
+    lst.append([(x, y, z0) for x, y in pts] + [(x, y, z1) for x, y in pts])
+
+
+def _quader_mesh(name, lst, mat):
+    v, f = [], []
+    for q in lst:
+        k = len(v); v += q
+        f += [(k, k + 3, k + 2, k + 1), (k + 4, k + 5, k + 6, k + 7), (k, k + 1, k + 5, k + 4), (k + 1, k + 2, k + 6, k + 5),
+              (k + 2, k + 3, k + 7, k + 6), (k + 3, k, k + 4, k + 7)]
+    return mesh(name, v, f, mat, 'S6_Aussen')
+
+
+def _stuhl(lst, cx, cy, ang):
+    """Holz-Gartenstuhl (Blick zum Tisch = Richtung ang+π): Sitz, 4 Beine, Lehne mit Latten."""
+    _drehquader(lst, cx, cy, 0.43, 0.47, 0.46, 0.46, ang)
+    for ox, oy in ((-0.2, -0.2), (0.2, -0.2), (-0.2, 0.2), (0.2, 0.2)):
+        _drehquader(lst, cx, cy, 0.0, 0.43, 0.04, 0.04, ang, ox, oy)
+    for oy in (-0.2, 0.2):
+        _drehquader(lst, cx, cy, 0.47, 0.92, 0.04, 0.04, ang, 0.21, oy)
+    for z in (0.6, 0.72, 0.84):
+        _drehquader(lst, cx, cy, z, z + 0.07, 0.025, 0.42, ang, 0.21, 0)
+
+
+tisch, stuhl = [], []
+# 2 runde Essplätze mit runden Sonnenschirmen (links), 6 Stühle je Tisch
+for i, (sx, sy) in enumerate(((HX0 + 3.05, 18.4), (HX0 + 6.05, 22.0))):
+    zylinder(f'Tische_rund{i}', sx, sy, 0.72, 0.62, 0.62, 0.045, M['bank'], 'S6_Aussen', 32)
+    zylinder(f'Tische_rund{i}_Fuss', sx, sy, 0.0, 0.08, 0.05, 0.72, M['pv_rahmen'], 'S6_Aussen', 12)
+    for k in range(6):
+        a = 2 * math.pi * k / 6; _stuhl(stuhl, sx + 0.95 * math.cos(a), sy + 0.95 * math.sin(a), a)
+    zylinder(f'Schirm{i}_Stange', sx, sy, 0.77, 0.025, 0.025, 1.75, M['zaun'], 'S6_Aussen', 8)
+    v = [(sx, sy, 2.7)]; f = []
+    for k in range(16):
+        a = 2 * math.pi * k / 16; rr = 1.45 if k % 2 == 0 else 1.38
+        v.append((sx + rr * math.cos(a), sy + rr * math.sin(a), 2.25))
+    for k in range(16):
+        f.append((0, 1 + k, 1 + (k + 1) % 16))
+    mesh(f'Schirm{i}', v, f, M['schirm'], 'S6_Aussen')
+# 2 lange Holztische (rechts), je 8 Stühle
+for i, (sx, sy) in enumerate(((14.6, 17.6), (14.6, 22.4))):
+    _drehquader(tisch, sx, sy, 0.72, 0.77, 1.0, 2.2, 0)
+    for ox, oy in ((-0.4, -0.95), (0.4, -0.95), (-0.4, 0.95), (0.4, 0.95)):
+        _drehquader(tisch, sx, sy, 0.0, 0.72, 0.07, 0.07, 0, ox, oy)
+    for dy in (-0.75, -0.25, 0.25, 0.75):
+        _stuhl(stuhl, sx - 0.85, sy + dy, math.pi); _stuhl(stuhl, sx + 0.85, sy + dy, 0.0)
+_quader_mesh('Tische', tisch, M['bank'])
+_quader_mesh('Stuehle', stuhl, M['bank'])
+# Lounge hinten links: weißes L-Sofa mit Kissen, Couchtisch
+polster = farbe('Polster_hell', '#EFEAE0', 0.9, 0, 0.03)
+_lx = HX0 + 1.6
+viele_quader('Lounge_Sofa_Gestell', [(_lx, 24.4, 0, _lx + 0.8, 27.4, 0.38), (_lx + 0.8, 26.6, 0, _lx + 4.6, 27.4, 0.38)], M['pv_rahmen'], 'S6_Aussen')
+viele_quader('Lounge_Sofa_Kissen', [(_lx + 0.05, 24.45, 0.38, _lx + 0.75, 27.35, 0.56), (_lx + 0.8, 26.65, 0.38, _lx + 4.55, 27.35, 0.56),
+                                      (_lx, 24.4, 0.56, _lx + 0.25, 27.4, 0.92), (_lx + 0.8, 27.15, 0.56, _lx + 4.6, 27.4, 0.92)]
+             + [(_lx + 0.85 + k * 0.9, 26.95, 0.56, _lx + 1.45 + k * 0.9, 27.15, 0.86) for k in range(4)], polster, 'S6_Aussen')
+quader('Lounge_Tisch', _lx + 1.6, 24.9, 0, _lx + 3.2, 25.9, 0.36, M['bank'], 'S6_Aussen')
+# Außenküche hinten rechts (Steintheke, dunkle Platte) + schwarzer Grill
+quader('Aussenkueche', BT - 5.8, TT - 2.3, 0, BT - 2.0, TT - 1.6, 0.9, RAND_STEIN, 'S6_Aussen')
+quader('Aussenkueche_Platte', BT - 5.85, TT - 2.35, 0.9, BT - 1.95, TT - 1.55, 0.95, M['pfosten'], 'S6_Aussen')
+quader('Aussenkueche_Grill', BT - 4.4, TT - 2.2, 0.95, BT - 3.4, TT - 1.7, 1.25, M['pv_rahmen'], 'S6_Aussen')
+quader('Aussenkueche_Grill_Haube', BT - 4.35, TT - 2.15, 1.25, BT - 3.45, TT - 1.75, 1.45, M['pv_rahmen'], 'S6_Aussen')
+# Palmen in Kübeln an den Sitzplätzen
+for k, (px, py) in enumerate(((HX0 + 2.4, 15.4), (BT - 2.6, 15.4), (11.2, 18.4), (11.6, 25.4), (13.4, 25.8))):
+    _palme(f'Palme_{k}', px, py, 0.55, _rnd.uniform(1.6, 2.2), r=1.0, kuebel=0.32)
 # Parken: 4 schräge Plätze, leer
 flaeche('Parken_Belag', [(BT, 0.25), (PK, 0.25), (PK, LT), (BT, LT)], 0.03, M['asphalt'], 'S6_Aussen')
 # Parken (Ayman 23.11.: „Sinn ergeben, quer aber parallel und ordentlich“): 4 Schrägplätze im Winkel 75° zur Fahrgasse,
@@ -708,17 +851,17 @@ quader('Hoftuer_Vordach', X(6.6), Y1, 2.95, X(9.6), Y1 + 1.3, 3.1, M['pv_rahmen'
 HD = 4.8
 dach_feld = farbe('Hofdach_Feld', '#E9E6DF', 0.45, 0.15, 0.02)
 alu = farbe('Hofdach_Alu', '#A9AEB4', 0.35, 0.85, 0)
-_st = [(x0, y - 0.07, 3.28, x0 + 0.14, y + 0.07, HD) for x0 in (0.055, BT - 0.195) for y in [Y1 + 0.35 + k * (TT - 0.55 - Y1) / 5 for k in range(6)]]
+_st = [(x0, y - 0.07, 3.28, x0 + 0.14, y + 0.07, HD) for x0 in (HX0 + 0.055, BT - 0.195) for y in [Y1 + 0.35 + k * (TT - 0.55 - Y1) / 5 for k in range(6)]]
 viele_quader('Hofdach_Stuetzen', _st, alu, 'S6_Aussen')
-sch = viele_quader('Hofdach_Schienen', [(0.02, Y1 + 0.05, HD, 0.26, TT, HD + 0.16), (BT - 0.26, Y1 + 0.05, HD, BT - 0.02, TT, HD + 0.16)], alu, 'S6_Aussen')
+sch = viele_quader('Hofdach_Schienen', [(HX0 + 0.02, Y1 + 0.05, HD, HX0 + 0.26, TT, HD + 0.16), (BT - 0.26, Y1 + 0.05, HD, BT - 0.02, TT, HD + 0.16)], alu, 'S6_Aussen')
 sch['offen'] = 0.0
 _L = 3.6
 _SCH = (TT - 0.15 - _L - Y1 - 0.1) / 4
 for k in range(5):
     y0 = Y1 + 0.1 + k * _SCH; z0 = HD + 0.17 + k * 0.05
-    f = viele_quader(f'Hofdach_Feld{k}', [(0.15, y0, z0, BT - 0.15, y0 + _L, z0 + 0.035),           # Feld
-                                          (0.12, y0, z0 - 0.01, BT - 0.12, y0 + 0.08, z0 + 0.05),   # Profil vorn
-                                          (0.12, y0 + _L - 0.08, z0 - 0.01, BT - 0.12, y0 + _L, z0 + 0.05)], dach_feld, 'S6_Aussen')
+    f = viele_quader(f'Hofdach_Feld{k}', [(HX0 + 0.15, y0, z0, BT - 0.15, y0 + _L, z0 + 0.035),           # Feld
+                                          (HX0 + 0.12, y0, z0 - 0.01, BT - 0.12, y0 + 0.08, z0 + 0.05),   # Profil vorn
+                                          (HX0 + 0.12, y0 + _L - 0.08, z0 - 0.01, BT - 0.12, y0 + _L, z0 + 0.05)], dach_feld, 'S6_Aussen')
     ziel = TT - _L - 0.05 - (4 - k) * 0.12                       # Endlage: hinten zusammengeschoben
     d = ziel - y0
     fc = f.driver_add('location', 1); dv = fc.driver; dv.type = 'SCRIPTED'

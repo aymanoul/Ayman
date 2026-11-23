@@ -72,12 +72,14 @@ def holz(name, hexf):
 HV = holz('Holz_Verbau', '#8A6A45'); HG = holz('Holz_Gelaender', '#A9875C'); ER = holz('Erde_Grube', '#6E5A44')
 D = 0.18
 YG = TT     # Ayman 20.11.: Grube reicht unter den Hof bis zur hinteren Grenze
-verbau = [(0, Y0, KZ - 0.05, BT, Y0 + D, 0.35), (0, YG - D, KZ - 0.05, BT, YG, 0.35),
-          (0, Y0 + D, KZ - 0.05, D, YG - D, 0.35), (BT - D, Y0 + D, KZ - 0.05, BT, YG - D, 0.35)]
+HX0 = BT - 16.43    # Ayman 23.11.: Hof/Keller hinten nur 16,43 m breit (links Nachbarfläche) → Grube L-förmig
+verbau = [(0, Y0, KZ - 0.05, BT, Y0 + D, 0.35), (HX0, YG - D, KZ - 0.05, BT, YG, 0.35),
+          (0, Y0 + D, KZ - 0.05, D, Y1, 0.35), (0, Y1, KZ - 0.05, HX0 + D, Y1 + D, 0.35),
+          (HX0, Y1 + D, KZ - 0.05, HX0 + D, YG - D, 0.35), (BT - D, Y0 + D, KZ - 0.05, BT, YG - D, 0.35)]
 viele_quader('Verbau', verbau, HV, 'S1_Aushub')
 # senkrechte Bohlen-Fugen als dünne dunklere Leisten
 fugen = [(x, Y0 + D, KZ, x + 0.04, Y0 + D + 0.02, 0.3) for x in [0.6 + k * 0.9 for k in range(17)]]
-fugen += [(x, YG - D - 0.02, KZ, x + 0.04, YG - D, 0.3) for x in [0.6 + k * 0.9 for k in range(17)]]
+fugen += [(x, YG - D - 0.02, KZ, x + 0.04, YG - D, 0.3) for x in [HX0 + 0.6 + k * 0.9 for k in range(14)]]
 viele_quader('Verbau_Fugen', fugen, ER, 'S1_Aushub')
 gel = []
 for (x0, y0, x1, y1) in ((0, Y0 - 0.25, BT, Y0 - 0.15), (BT + 0.15, Y0 - 0.25, BT + 0.25, LT - 0.1)):   # hinten steht die Grenzmauer, rechts ab LT das Nachbargebäude
@@ -93,7 +95,7 @@ for i in range(16):        # Treppe vorn rechts: entlang der Vorderwand nach lin
     x = BT - 0.4 - (i + 1) * 0.28
     tr.append((x, Y0 + D, KZ, x + 0.28, Y0 + D + 1.0, -0.2 * (i + 1)))
 for i in range(16):        # Treppe hinten links: entlang der Rückwand nach rechts hinunter
-    x = 0.4 + i * 0.28
+    x = HX0 + 0.4 + i * 0.28
     tr.append((x, YG - D - 1.0, KZ, x + 0.28, YG - D, -0.2 * (i + 1)))
 viele_quader('Treppen_Grube', tr, HG, 'S1_Aushub')
 grube = bpy.data.objects['Grube_Boden']
@@ -243,8 +245,8 @@ gruppe(['Hofmauer_*'], 30.4, 31.2, Z, 6, 0.1)
 gruppe(['Hof_Pflanzbeete', 'Hof_Beeterde'], 30.8, 31.6, Y, 6)
 gruppe(['Hof_Busch*', 'Hof_Zypresse*'], 31.2, 32.4, Z, 6, 0.015)
 gruppe(['Kuebel*', 'Olive*', 'Palme_*'], 31.6, 33.0, Z, 6, 0.03)
-gruppe(['Tische', 'Stuehle', 'Schirm*', 'Lounge_*', 'Aussenkueche*'], 32.2, 33.4, Z, 6, 0.04)
-gruppe(['Hof_Wandleuchten', 'Hof_Bodenstrahler', 'Hoftuer_Vordach'], 33.0, 33.6, Z, 6)
+gruppe(['Tische*', 'Stuehle', 'Schirm*', 'Lounge_*', 'Aussenkueche*'], 32.2, 33.4, Z, 6, 0.04)
+gruppe(['Hof_Wandleuchten*', 'Hof_Bodenstrahler', 'Hoftuer_Vordach'], 33.0, 33.6, Z, 6)
 # Schiebedach über dem Hof (Ayman 20.11.): entsteht geschlossen (Regen), schiebt sich dann auf (Sonne)
 aufbau(bpy.data.objects['Hofdach_Stuetzen'], 33.2, 33.8, Z, stufe=6)
 aufbau(bpy.data.objects['Hofdach_Schienen'], 33.5, 34.0, Y, stufe=6)

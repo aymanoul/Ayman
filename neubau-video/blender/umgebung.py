@@ -427,7 +427,11 @@ for i, x in enumerate((8, 26, 44)):
 mesh('Grundstueck_Schotter', [(0, 0.25, 0.02), (L, 0.25, 0.02), (L, GY0, 0.02), (0, GY0, 0.02),
                               (GX1, GY0, 0.02), (L, LT, 0.02), (GX1, LT, 0.02)],
      [(0, 1, 2, 3), (4, 2, 5, 6)], M['schotter'], 'Grundstueck')
-flaeche('Grube_Boden', [(GX0, GY0), (GX1, GY0), (GX1, GY1), (GX0, GY1)], 0.02, M['schotter'], 'Grundstueck')
+HX0 = BT - 16.43     # Ayman 23.11.: Hof (und Keller darunter) nur 16,43 m breit, rechtsbündig – links davon Fläche des Nachbarn
+flaeche('Grube_Boden', [(GX0, GY0), (GX1, GY0), (GX1, GY1), (HX0, GY1), (HX0, 12.3), (GX0, 12.3)], 0.02, M['schotter'], 'Grundstueck')
+# Nachbarfläche hinter der Moschee links (gehört nicht zu uns): Boden schließen + Pflaster des Nachbarn
+flaeche('Boden_Nachbar_Hof', [(GX0, 12.3), (HX0, 12.3), (HX0, GY1), (GX0, GY1)], -0.02, M['asphalt'], 'Boden')
+flaeche('Nachbar_Hof_Pflaster', [(-0.4, 12.3), (HX0, 12.3), (HX0, TT + 0.3), (-0.4, TT + 0.3)], 0.025, M['pflaster'], 'Links')
 # gegenüber: Vorfläche weißes Haus (rötliches Pflaster), Flächen zwischen den Hallen (Beton)
 flaeche('Hofflaeche_gegenueber', [(-18.4, -40), (68, -40), (68, GASSE - 0.25), (-18.4, GASSE - 0.25)], 0.0, M['beton_boden'], 'Boden')
 

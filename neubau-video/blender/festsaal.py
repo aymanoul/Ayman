@@ -30,7 +30,25 @@ RX0, RX1, RY0, RY1 = 0.3, BT - 0.3, Y0 + 0.3, TT - 0.3     # Innenkante der Kell
 FB = KZ + 0.035                                              # Oberkante Marmorboden
 DECKE = -0.32                                                # weiße Decke (unter der Rohdecke)
 BAND_U, BAND_O = -0.80, -0.64                                # abgehängte Bänder (Kassetten-Rahmen)
-SAULEN = [(BT / 2, (Y0 + Y1) / 2), (BT / 2, Y1), (BT / 2, (Y1 + TT) / 2)]   # die 3 frei stehenden Stützen
+HX0 = BT - 16.43                                             # Ayman 23.11.: Keller unter dem Hof nur HX0 … BT (L-Form)
+HXI = HX0 + 0.3                                              # Innenkante der linken Kellerwand unter dem Hof
+XM_A, XM_B, YM_A, YM_B = BT / 2, (HX0 + BT) / 2, (Y0 + Y1) / 2, (Y1 + TT) / 2
+SAULEN = [(XM_A, YM_A), (XM_A, Y1), (XM_B, YM_B)]            # die 3 frei stehenden Stützen
+RAUM_A, RAUM_B = (RX0, RY0, RX1, Y1), (HXI, Y1, RX1, RY1)    # Raum unter der Moschee / Raum unter dem Hof
+# Innenkanten der Kellerwände (L-Form) mit Normale in den Raum
+WAND_LINIEN = [((RX0, RY0), (RX1, RY0), (0, 1)), ((RX1, RY0), (RX1, RY1), (-1, 0)), ((HXI, RY1), (RX1, RY1), (0, -1)),
+               ((HXI, Y1), (HXI, RY1), (1, 0)), ((RX0, Y1), (HXI, Y1), (0, -1)), ((RX0, RY0), (RX0, Y1), (1, 0))]
+
+
+def wand_streifen(b, dicke, z0, z1, mi, abstand=0.0, kuerzen=0.0):
+    """Für jede Wandlinie einen Quader (dicke) innen an der Wand (abstand = Versatz von der Wand)."""
+    for (x0, y0), (x1, y1), (nx, ny) in WAND_LINIEN:
+        if nx:
+            xa = x0 + nx * abstand; xb = xa + nx * dicke
+            b.quader(min(xa, xb), y0 + kuerzen, z0, max(xa, xb), y1 - kuerzen, z1, mi)
+        else:
+            ya = y0 + ny * abstand; yb = ya + ny * dicke
+            b.quader(x0 + kuerzen, min(ya, yb), z0, x1 - kuerzen, max(ya, yb), z1, mi)
 
 C = bpy.data.collections.new('Festsaal'); sc.collection.children.link(C)
 
@@ -219,20 +237,16 @@ def kopie(ob, name, ort, dreh=0.0):
 
 # ------------------------------------------------------------------ Boden, Wände, Treppenhäuser
 if VAR and VAR['boden'] == 'holz':
-    b = Bau([HOLZ_M]); b.quader(RX0, RY0, KZ + 0.03, RX1, RY1, FB, 0); b.objekt('Saal_Boden', (2.0, 2.0))
+    b = Bau([HOLZ_M]); [b.quader(r[0], r[1], KZ + 0.03, r[2], r[3], FB, 0) for r in (RAUM_A, RAUM_B)]; b.objekt('Saal_Boden', (2.0, 2.0))
 else:
-    b = Bau([MARMOR]); b.quader(RX0, RY0, KZ + 0.03, RX1, RY1, FB, 0); b.objekt('Saal_Boden', (4.8, 4.8))
+    b = Bau([MARMOR]); [b.quader(r[0], r[1], KZ + 0.03, r[2], r[3], FB, 0) for r in (RAUM_A, RAUM_B)]; b.objekt('Saal_Boden', (4.8, 4.8))
 
 b = Bau([WAND, WEISS_GL, GOLD_MATT])
 d = 0.02
-b.quader(RX0, RY0, FB, RX0 + d, RY1, DECKE, 0); b.quader(RX1 - d, RY0, FB, RX1, RY1, DECKE, 0)
-b.quader(RX0 + d, RY0, FB, RX1 - d, RY0 + d, DECKE, 0); b.quader(RX0 + d, RY1 - d, FB, RX1 - d, RY1, DECKE, 0)
-# Sockelleiste
-for (x0, y0, x1, y1) in ((RX0 + d, RY0 + d, RX0 + 0.035, RY1 - d), (RX1 - 0.035, RY0 + d, RX1 - d, RY1 - d),
-                         (RX0 + 0.035, RY0 + d, RX1 - 0.035, RY0 + 0.035), (RX0 + 0.035, RY1 - 0.035, RX1 - 0.035, RY1 - d)):
-    b.quader(x0, y0, FB, x1, y1, FB + 0.12, 1)
+wand_streifen(b, d, FB, DECKE, 0)                                           # Wandputz (L-Form)
+wand_streifen(b, 0.015, FB, FB + 0.12, 1, abstand=d)                       # Sockelleiste
 # Treppenhäuser: die beiden Kellertreppen liegen hinter weißen Wänden mit Doppeltür (Tür weiß mit Goldgriffen)
-TH = [(14.6, RY0, RX1, 2.2, 'y'), (RX0, 27.0, 5.5, RY1, 'y')]
+TH = [(14.6, RY0, RX1, 2.2, 'y'), (HXI, 27.0, HXI + 5.2, RY1, 'y')]
 for (x0, y0, x1, y1, _) in TH:
     if y0 <= RY0 + 0.01:                                  # vorn rechts: Wand bei y1, Seite bei x0
         b.quader(x0, y1 - 0.15, FB, x1 - d, y1, DECKE, 0); b.quader(x0, y0 + d, FB, x0 + 0.15, y1 - 0.15, DECKE, 0)
@@ -242,14 +256,9 @@ for (x0, y0, x1, y1, _) in TH:
         b.quader(x0 + d, y0 - 0.03, FB, x1 - 0.15, y0, FB + 0.12, 1)
 b.objekt('Saal_Waende')
 if VAR and VAR['holz_unten']:                                         # Eichen-Verkleidung bis 1,1 m mit Abschlussleiste
-    b = Bau([HOLZ_M]); h = FB + 1.1; t = 0.035
-    b.quader(RX0 + 0.02, RY0 + 0.02, FB + 0.12, RX0 + 0.02 + t, RY1 - 0.02, h, 0)
-    b.quader(RX1 - 0.02 - t, RY0 + 0.02, FB + 0.12, RX1 - 0.02, RY1 - 0.02, h, 0)
-    b.quader(RX0 + 0.02 + t, RY1 - 0.02 - t, FB + 0.12, RX1 - 0.02 - t, RY1 - 0.02, h, 0)
-    b.quader(RX0 + 0.02 + t, RY0 + 0.02, FB + 0.12, RX1 - 0.02 - t, RY0 + 0.02 + t, h, 0)
-    for (x0, y0, x1, y1) in ((RX0 + 0.02, RY0 + 0.02, RX0 + 0.075, RY1 - 0.02), (RX1 - 0.075, RY0 + 0.02, RX1 - 0.02, RY1 - 0.02),
-                             (RX0 + 0.075, RY1 - 0.075, RX1 - 0.075, RY1 - 0.02), (RX0 + 0.075, RY0 + 0.02, RX1 - 0.075, RY0 + 0.075)):
-        b.quader(x0, y0, h, x1, y1, h + 0.03, 0)
+    b = Bau([HOLZ_M]); h = FB + 1.1
+    wand_streifen(b, 0.035, FB + 0.12, h, 0, abstand=0.02)
+    wand_streifen(b, 0.055, h, h + 0.03, 0, abstand=0.02)
     b.objekt('Saal_Holzverkleidung', (2.0, 2.0))
 
 
@@ -269,11 +278,14 @@ def tuer(cx, y, richtung):
     return b.objekt(f'Saal_Tuer_{cx:.0f}_{y:.0f}')
 
 
-tuer(16.9, 2.2, 1); tuer(3.0, 27.0, -1)
+tuer(16.9, 2.2, 1); tuer(HXI + 2.7, 27.0, -1)
 
 # ------------------------------------------------------------------ Kassettendecke mit indirekten LED-Bändern + Strahlern
-XB = [(RX0, 1.2), (9.45, 10.55), (18.8, RX1)]
-YB = [(RY0, 1.5), (5.75, 6.85), (11.75, 12.85), (20.1, 21.2), (27.8, RY1)]
+# Bänder je Raum (Raum A unter der Moschee, Raum B unter dem Hof): Rand 0,9 m, Mittelachsen 1,1 m, gemeinsame Grenze y = Y1
+RAEUME = [dict(r=RAUM_A, XB=[(RX0, RX0 + 0.9), (XM_A - 0.55, XM_A + 0.55), (RX1 - 0.9, RX1)],
+               YB=[(RY0, RY0 + 0.9), (YM_A - 0.55, YM_A + 0.55), (Y1 - 0.55, Y1)], xm=XM_A, ym=YM_A),
+          dict(r=RAUM_B, XB=[(HXI, HXI + 0.9), (XM_B - 0.55, XM_B + 0.55), (RX1 - 0.9, RX1)],
+               YB=[(Y1, Y1 + 0.55), (YM_B - 0.55, YM_B + 0.55), (RY1 - 0.9, RY1)], xm=XM_B, ym=YM_B)]
 
 
 def intervalle(bands, a, z):
@@ -281,21 +293,20 @@ def intervalle(bands, a, z):
     return [((u, v), any(abs(u - bb[0]) < 1e-6 and abs(v - bb[1]) < 1e-6 for bb in bands)) for u, v in zip(grenzen, grenzen[1:])]
 
 
-XI, YI = intervalle(XB, RX0, RX1), intervalle(YB, RY0, RY1)
 b = Bau([DECKE_M, LED_KALT])
-b.quader(RX0, RY0, DECKE - 0.02, RX1, RY1, DECKE, 0)                       # weiße Deckenfläche
 kassetten = []
-for (xa, xb), xband in XI:
-    for (ya, yb), yband in YI:
-        if xband or yband:
-            b.quader(xa, ya, BAND_U, xb, yb, BAND_O, 0)
-        else:
-            kassetten.append((xa, ya, xb, yb))
-# Unterzüge weiß verkleidet (über den Bändern sichtbar in der Lichtfuge)
-b.quader(BT / 2 - 0.25, RY0, BAND_O, BT / 2 + 0.25, RY1, DECKE - 0.02, 0)
-for (ya, yb) in YB[1:4]:
-    yc = (ya + yb) / 2; b.quader(RX0, yc - 0.25, BAND_O, BT / 2 - 0.25, yc + 0.25, DECKE - 0.02, 0)
-    b.quader(BT / 2 + 0.25, yc - 0.25, BAND_O, RX1, yc + 0.25, DECKE - 0.02, 0)
+for R_ in RAEUME:
+    x0r, y0r, x1r, y1r = R_['r']
+    b.quader(x0r, y0r, DECKE - 0.02, x1r, y1r, DECKE, 0)                   # weiße Deckenfläche
+    for (xa, xb), xband in intervalle(R_['XB'], x0r, x1r):
+        for (ya, yb), yband in intervalle(R_['YB'], y0r, y1r):
+            if xband or yband:
+                b.quader(xa, ya, BAND_U, xb, yb, BAND_O, 0)
+            else:
+                kassetten.append((xa, ya, xb, yb))
+    # Unterzüge weiß verkleidet (in der Lichtfuge sichtbar)
+    b.quader(R_['xm'] - 0.25, y0r, BAND_O, R_['xm'] + 0.25, y1r, DECKE - 0.02, 0)
+    b.quader(x0r, R_['ym'] - 0.25, BAND_O, x1r, R_['ym'] + 0.25, DECKE - 0.02, 0)
 # Lichtfuge: LED-Streifen auf dem Band, davor eine kleine Aufkantung (Streifen von unten nicht sichtbar)
 for (xa, ya, xb, yb) in kassetten:
     o, w = 0.10, 0.03
@@ -309,14 +320,19 @@ b.objekt('Saal_Decke')
 
 # Einbaustrahler in den Bändern (Leuchtscheibe + Spot nach unten)
 spots = []
-for x in [i * 1.9 + 1.0 for i in range(10)]:
-    if 0.6 < x < 19.4:
-        for (ya, yb) in YB:
+for R_ in RAEUME:
+    x0r, y0r, x1r, y1r = R_['r']
+    nx_ = int((x1r - x0r - 0.6) / 1.9) + 1
+    for i in range(nx_):
+        x = x0r + 0.7 + i * (x1r - x0r - 1.4) / max(1, nx_ - 1)
+        for (ya, yb) in R_['YB']:
             spots.append((x, (ya + yb) / 2))
-for y in [i * 2.0 + 2.6 for i in range(13)]:
-    for (xa, xb) in XB:
-        if not any(ya - 0.3 < y < yb + 0.3 for ya, yb in YB):
-            spots.append(((xa + xb) / 2, y))
+    ny_ = int((y1r - y0r) / 2.0)
+    for j in range(ny_):
+        y = y0r + 1.0 + j * (y1r - y0r - 2.0) / max(1, ny_ - 1)
+        for (xa, xb) in R_['XB']:
+            if not any(ya - 0.3 < y < yb + 0.3 for ya, yb in R_['YB']):
+                spots.append(((xa + xb) / 2, y))
 b = Bau([GOLD_MATT, SPOT_M])
 for (x, y) in spots:
     b.scheibe((x, y), 0.075, BAND_U - 0.008, BAND_U, 0, 20); b.scheibe((x, y), 0.05, BAND_U - 0.012, BAND_U - 0.008, 1, 20)
@@ -561,11 +577,12 @@ else:
           v.co.y += (v.co.z - 0.58) * neig
 
 # Tischordnung: 4 Reihen in x (Mittelgang mit Teppichen frei), 6 Reihen in y → 24 Tische × 10 Stühle = 240 Plätze
-TX = (2.95, 6.85, 13.15, 17.05)
-TY = (4.1, 8.25, 12.4, 16.55, 20.7, 24.3)               # vor dem Bildschirm etwas Platz (Seminare)
+# Ayman 23.11. (L-Form): unter der Moschee 2 Reihen à 4, unter dem Hof 3 Reihen à 4 (Lücke um die freie Stütze) → 20 Tische, 200 Plätze
+PLAETZE = [(tx, ty) for ty in (3.9, 8.0) for tx in (2.95, 6.85, 13.15, 17.05)]
+PLAETZE += [(tx, ty) for ty in (15.6, 19.7, 23.8) for tx in (HXI + 2.1, HXI + 5.6, XM_B + 2.35, XM_B + 5.85)]
 erster = True
-for tx in TX:
-    for ty in TY:
+for tx, ty in PLAETZE:
+    if True:
         t = TISCH if erster else kopie(TISCH, 'Saal_Tisch', (0, 0, 0))
         t.location = (tx, ty, FB); t.rotation_euler = (0, 0, random.random() * 0.6)
         for i in range(10):
@@ -606,11 +623,11 @@ SCHIRM = mat('Saal_Bildschirm', '#0E0F11', 0.18)
 HOLZ = mat('Saal_Holz_hell', '#CDB792', 0.6)
 yw = RY1 - 0.02
 b = Bau([SCHIRM, GESTELL])
-b.quader(8.45, yw - 0.06, FB + 0.62, 11.55, yw, FB + 2.36, 1)                                   # Rahmen
-b.quader(8.48, yw - 0.065, FB + 0.65, 11.52, yw - 0.06, FB + 2.33, 0)                           # Bildfläche (aus)
+b.quader(XM_B - 1.55, yw - 0.06, FB + 0.62, XM_B + 1.55, yw, FB + 2.36, 1)                     # Rahmen (Mitte der Rückwand)
+b.quader(XM_B - 1.52, yw - 0.065, FB + 0.65, XM_B + 1.52, yw - 0.06, FB + 2.33, 0)               # Bildfläche (aus)
 b.objekt('Saal_Bildschirm')
 b = Bau([HOLZ, GESTELL])
-px, py = 12.6, 27.3
+px, py = XM_B + 2.3, 27.3
 b.quader(px - 0.3, py - 0.2, FB, px + 0.3, py + 0.2, FB + 0.05, 1)
 b.quader(px - 0.27, py - 0.17, FB + 0.05, px + 0.27, py + 0.17, FB + 1.05, 0, fase=0.01)
 b.quader(px - 0.31, py - 0.24, FB + 1.05, px + 0.31, py + 0.2, FB + 1.09, 0, fase=0.008)
