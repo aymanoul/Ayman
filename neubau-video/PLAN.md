@@ -211,3 +211,18 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   silberner Rahmen, Alu-Dreiecksgestelle, Längsträger) – Objekt `PV_Module` enthält Module + Gestelle; Gründach mit 3D-Bewuchs
   (`Gruendach_Bewuchs`: ~950 Grashorste grün bis strohgelb, Sedum-Polster, Blütenpunkte). Higgsfield soll das später fotoreal machen.
 - **Bilder für den Chef:** `out/chef/1…10_*.jpg` (1280×720; 9 = Hof mit Blick durch die Glaswand in die Moschee, 10 = Dach).
+
+## FAHRPLAN ab 23.11. abends (mit Ayman abgestimmt) – Higgsfield-Budget max. 550 Credits
+Higgsfield-Preise (Abfrage 23.11., Seedance 2.5 `video_edit`, 9:16, ohne Ton): **720p = 7,5 Credits/s** (30 s = 225, 13 s = 98),
+480p = 3,5 Credits/s (30 s = 105); **ein Auftrag max. 30 s**. Guthaben 996,5.
+→ **Bei 720p reichen 550 Credits für höchstens 73 s.** Vorschläge: (a) **72 s = 3 Teile à 24 s = 540 Credits** (+ 8 Credits für 4 neue
+Stil-Referenzbilder = 548), kein Puffer; (b) 60 s = 2 × 30 s = 450 Credits, 100 Credits Puffer für eine Wiederholung (~13 s). Wahl von Ayman steht aus.
+1. Ayman prüft das Vogelperspektive-Bild (`out/chef/11_vogelperspektive.jpg`) – letzte Korrekturen am Modell.
+2. Videolänge festlegen (60 oder 72 s) → Claude passt Kamerafahrt + Ablauf an (bei 72 s: mehr Zeit für Dach/Solar, Hof, Parkplatz/Einparken,
+   Wohnwagen/Schiebetore), zeigt Standbilder der Schlüsselstellen.
+3. **Nur auf Aymans ausdrücklichen Befehl:** Blender-Video rendern (720×1280, ~25 s/Bild → 60 s ≈ 12 h, 72 s ≈ 15 h), automatisch mit Ton.
+4. Claude prüft (kein Text/Logo, Übergänge, Lautheit −14 LUFS) und schickt es Ayman.
+5. Ayman schaut es an und sagt „los“ → Claude aktualisiert `docs/higgsfield_prompts.md` (neuer Stand: kein Dachöffnen, Hof 16,43 m, Autos ohne
+   Logos/Kennzeichen leer, Gründach + aufgeständerte PV, Thujen/Lichter, orangener Anbau …), nennt die genauen Kosten, Ayman bestätigt.
+6. Higgsfield Seedance 2.5 video_edit 720p in Teilen (≤ 30 s), keine Musik, kein Text.
+7. Claude schneidet die Teile zusammen, skaliert auf 1080×1920, eigener Ton (keine Musik), prüft und schickt das Endvideo.
