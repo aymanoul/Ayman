@@ -246,7 +246,7 @@ def spitzbogen(cx, breite, z0, h_gerade, n=10):
 # ------------------------------------------------------------------ S2: Keller (Ayman 20.11.: unter Moschee UND Hof, nicht unter den Parkplätzen) + Kellerdecke
 KZ = -3.2
 quader('Keller_Bodenplatte', -0.2, Y0 - 0.2, KZ - 0.3, BT + 0.2, TT, KZ, M['beton_roh'], 'S2_Keller')
-for i, (x0, y0, x1, y1) in enumerate(((0, Y0, BT, Y0 + 0.3), (0, TT - 0.3, BT, TT), (0, Y0, 0.3, TT), (BT - 0.3, Y0, BT, TT))):
+for i, (x0, y0, x1, y1) in enumerate(((0, Y0, BT, Y0 + 0.3), (0, TT - 0.3, BT, TT), (0, Y0 + 0.3, 0.3, TT - 0.3), (BT - 0.3, Y0 + 0.3, BT, TT - 0.3))):
     # Ayman 20.11.: EIN durchgehender Keller unter Moschee und Hof, keine Trennwand
     quader(f'Keller_Wand{i}', x0, y0, KZ, x1, y1, -0.3, M['beton_roh'], 'S2_Keller')
 quader('Kellerdecke', 0, Y0, -0.3, BT, Y1, 0.15, M['beton_roh'], 'S2_Keller')
@@ -256,8 +256,30 @@ beton_k = farbe('Beton_Keller_hell', '#CFC9BE', 0.75, 0, 0.08)
 estrich = farbe('Estrich_hell', '#C9C3B7', 0.45, 0, 0.05)
 gel_k = farbe('Gelaender_Metall', '#9EA3A8', 0.35, 0.85, 0)
 quader('Keller_Estrich', 0.3, Y0 + 0.3, KZ, BT - 0.3, TT - 0.3, KZ + 0.03, estrich, 'S2_Keller')
-viele_quader('Keller_Saeulen', [(x - 0.25, y - 0.25, KZ + 0.03, x + 0.25, y + 0.25, -0.3)
-                                for x in (X(4.2), X(8.25), X(12.3)) for y in (7.2, 11.0, 19.0, 23.0)], beton_k, 'S2_Keller')
+# Stützenraster nach Architekt (Ayman 23.11.): je Raum (unter Moschee / unter Hof) 3×3 = 9 Stützen. Die mittlere bleibt
+# frei in der Mitte, alle übrigen sitzen in den Außenwänden (bündig, nur 5 cm Lisene sichtbar) → der Saal bleibt frei.
+# An der Grenze Moschee/Hof (y = Y1) gibt es keine Wand: dort steht die mittlere Stütze frei (trägt Unterzüge).
+K_XS = (0.0, BT / 2, BT)
+K_YS = (Y0, (Y0 + Y1) / 2, Y1, (Y1 + TT) / 2, TT)
+K_FREI = [(BT / 2, (Y0 + Y1) / 2), (BT / 2, Y1), (BT / 2, (Y1 + TT) / 2)]
+_ks, _kw = [], []
+for x in K_XS:
+    for y in K_YS:
+        if (x, y) in K_FREI:
+            _ks.append((x - 0.25, y - 0.25, KZ + 0.03, x + 0.25, y + 0.25, -0.5))   # endet im Unterzug
+            continue
+        # Wandstütze: in der Wand (0,3 m), 5 cm Lisene nach innen, 0,5 m breit entlang der Wand
+        xa = 0.03 if x == 0 else (BT - 0.35 if x == BT else x - 0.25)          # 3 cm hinter der Außenfläche (keine
+        xb = 0.35 if x == 0 else (BT - 0.03 if x == BT else x + 0.25)          # deckungsgleichen Flächen mit der Wand)
+        ya = Y0 + 0.03 if y == Y0 else (TT - 0.35 if y == TT else y - 0.25)
+        yb = Y0 + 0.35 if y == Y0 else (TT - 0.03 if y == TT else y + 0.25)
+        _kw.append((xa, ya, KZ + 0.03, xb, yb, -0.32))
+viele_quader('Keller_Saeulen', _ks, beton_k, 'S2_Keller')
+viele_quader('Keller_Wandstuetzen', _kw, beton_k, 'S2_Keller')
+# Unterzüge unter der Decke entlang der Rasterlinien (wie im Architektenbild), 0,4 breit, 0,45 tief
+_uz = [(BT / 2 - 0.2, Y0 + 0.3, -0.75, BT / 2 + 0.2, TT - 0.3, -0.3)]
+_uz += [(0.3, y - 0.2, -0.74, BT - 0.3, y + 0.2, -0.31) for y in K_YS[1:4]]     # 1 cm versetzt: keine deckungsgleichen Flächen
+viele_quader('Keller_Unterzuege', _uz, beton_k, 'S2_Keller')
 
 
 def schraeg(p0, p1, t):
@@ -298,7 +320,7 @@ for x in (X(2.2), X(6.2), X(10.3), X(14.3)):
         if not (y > Y1 and x < X(6)) and not (y < Y1 and x > X(10)):    # nicht hinter den Treppen
             d = 0.06 if y < Y1 else -0.06
             wl_k.append((x - 0.12, min(y, y + d), KZ + 1.9, x + 0.12, max(y, y + d), KZ + 2.15))
-for y in (6.0, 10.0, 14.0, 18.0, 22.0, 26.0):
+for y in (3.3, 9.3, 16.5, 24.8):            # zwischen den Wandstützen
     wl_k.append((0.3, y - 0.12, KZ + 1.9, 0.36, y + 0.12, KZ + 2.15)); wl_k.append((BT - 0.36, y - 0.12, KZ + 1.9, BT - 0.3, y + 0.12, KZ + 2.15))
 viele_quader('Keller_Wandleuchten', wl_k, M['wandleuchte'], 'S2_Keller')
 
@@ -353,8 +375,9 @@ for seite, xs in (('l', PX0 + 0.45), ('r', PX1 - 0.45)):
     v = [(xs, Y0 - 0.5, pts[0][1]), (xs, Y0 - 0.5, top)] + [(x, Y0 - 0.5, z) for x, z in reversed(pts)]
     mesh(f'Portal_Zwickel_{seite}', v, [tuple(range(len(v)))], M['stein'], 'S3_EG')
 viele_quader('Portal_Sprossen', [(cxm - 0.03, Y0 - 0.4, 0.15, cxm + 0.03, Y0 - 0.32, top - 0.05), (PX0 + 0.45, Y0 - 0.4, 2.6, PX1 - 0.45, Y0 - 0.32, 2.68)], M['gold'], 'S3_EG')
-# Säulen EG
-for i, (x, y) in enumerate(((X(5.5), Y0 + 4.0), (X(11.0), Y0 + 4.0), (X(5.5), Y0 + 8.0), (X(11.0), Y0 + 8.0))):
+# Säulen EG – Raster 3×3 nach Architekt (Ayman 23.11.): nur die Mittelstütze steht frei im Raum, die 8 übrigen sitzen
+# stark nach außen versetzt in den Außenwänden bzw. hinter den Pfosten der Glasfassaden (kein Platzverlust innen)
+for i, (x, y) in enumerate(((BT / 2, (Y0 + Y1) / 2),)):
     zylinder(f'EG_Saeule{i}', x, y, 0.15, 0.28, 0.28, H_EG - 0.15, M['saeule'], 'S3_EG')
 
 # ------------------------------------------------------------------ Innen (durch das Glas sichtbar)
@@ -396,7 +419,7 @@ flaeche_v('OG_Glas', 0.05, PORTAL_X, Y0 + 0.07, H_DECKE, H_OG, M['glas'], 'S4_OG
 pf = [(x - 0.05, Y0, H_DECKE, x + 0.05, Y0 + 0.16, H_OG) for x in fx[1:-1]] + [(0, Y0, H_DECKE, 0.12, Y0 + 0.16, H_OG)]
 viele_quader('OG_Pfosten', pf, M['pfosten'], 'S4_OG')
 flaeche('OG_Teppich', [(0.3, Y0 + 0.2), (BT - 0.3, Y0 + 0.2), (BT - 0.3, Y1 - 0.3), (0.3, Y1 - 0.3)], H_DECKE + 0.01, M['teppich'], 'Innen')
-for i, (x, y) in enumerate(((X(5.5), Y0 + 4.0), (X(11.0), Y0 + 4.0), (X(5.5), Y0 + 8.0), (X(11.0), Y0 + 8.0))):
+for i, (x, y) in enumerate(((BT / 2, (Y0 + Y1) / 2),)):     # wie EG: nur die Mittelstütze frei
     zylinder(f'OG_Saeule{i}', x, y, H_DECKE, 0.24, 0.24, H_OG - H_DECKE, M['saeule'], 'S4_OG')
 
 # ------------------------------------------------------------------ S5: Dachplatte, Attika, Gründach, PV

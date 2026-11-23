@@ -128,3 +128,13 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   Sprossenkreuz. Anzahl: Halle hinten 3, langes Nachbargebäude 3 versetzt, je Halle gegenüber 1, je Altbau-Abschnitt 1.
   Dunklere Ziegel (#46423E).
 - Neu-Rendern komplett seit 23.11. ~19:15 UTC, ~10 h (`sh tools/endfassung_weiter.sh`).
+
+## Keller-Stützenraster + Festsaal (Ayman 23.11. abends; Bilder `assets/keller_raster_architekt.jpg`, `keller_raster_architekt2.jpg`)
+- **WICHTIG: KEIN Video-Rendern ohne ausdrücklichen Befehl von Ayman!** (Das Neu-Rendern vom 23.11. wurde auf seinen Wunsch
+  bei Bild 386/1800 gestoppt. Die Bilder in `out/phase5/end/` sind veraltet und müssen vor dem nächsten Rendern gelöscht werden.) Standbilder als Vorschau sind erlaubt.
+- Stützen wie beim Architekten: **je Raum 3×3 = 9 Stützen** (Raum unter der Moschee und Raum unter dem Hof), auf allen Geschossen.
+  Nur die **Mittelstütze steht frei**, alle anderen sitzen **stark nach außen versetzt in den Außenwänden** (Keller: `Keller_Wandstuetzen`;
+  EG/OG: in Wänden bzw. Glasfassaden, nur `EG_Saeule0`/`OG_Saeule0` in der Mitte). An der Grenze Moschee/Hof (y = Y1) gibt es im Keller keine
+  Wand, dort steht die mittlere Stütze frei. Unterzüge entlang der Rasterlinien (`Keller_Unterzuege`).
+- Keller wird ein **Festsaal** (Hochzeitssaal-Stil: Tische, Stühle; für Babyfeiern, Nikah usw.). Ayman schickt noch ein Bild, wie er ihn eingerichtet haben möchte.
+- Vorschau: `out/phase5/keller_raster.jpg`.

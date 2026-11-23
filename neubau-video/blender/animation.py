@@ -205,6 +205,8 @@ if END_STAGE >= 2:
 aufbau(bpy.data.objects['Kellerdecke'], 12.0, 13.2, X, stufe=2)
 aufbau(bpy.data.objects['Keller_Estrich'], 9.2, 9.8, X, stufe=2)
 aufbau(bpy.data.objects['Keller_Saeulen'], 9.6, 10.8, Z, stufe=2)
+aufbau(bpy.data.objects['Keller_Wandstuetzen'], 9.6, 10.8, Z, stufe=2)
+aufbau(bpy.data.objects['Keller_Unterzuege'], 10.4, 10.9, Z, stufe=2)
 gruppe(['Keller_Treppe*'], 10.0, 11.0, Z, 2)
 aufbau(bpy.data.objects['Keller_Wandleuchten'], 10.8, 11.2, Z, stufe=2)
 aufbau(bpy.data.objects['Kellerdecke_Hof'], 12.4, 13.6, Y, stufe=2)
