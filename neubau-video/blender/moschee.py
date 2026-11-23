@@ -156,6 +156,21 @@ M = {
     'hofwand': farbe('Hofmauer_hell', '#E9E3D6', 0.8, 0, 0.05),
 }
 
+# Fototexturen (Ayman 23.11.: detailreicher) – freie Poly-Haven-Texturen, siehe ph_texturen.py
+import sys
+sys.path.insert(0, HERE)
+from ph_texturen import ph
+M.update({
+    'stein': ph('PH_Naturstein_Moschee', 'large_sandstone_blocks', 3.2, 0, '#E6CFA2', 1.0, 0.0, 0.35, detail=0.3),
+    'putz': ph('PH_Putz_Moschee', 'plastered_wall_02', 3.5, 0, '#EEE9DF', 1.0, 0.0, 0.1),
+    'hofwand': ph('PH_Hofmauer', 'plastered_wall_02', 3.5, 0, '#E9E3D6', 1.0, 0.0, 0.1),
+    'asphalt': ph('PH_Asphalt_neu', 'asphalt_02', 4.0, 0, '#3E3F42', 1.0, 0.0, 0.25),
+    'kies': ph('PH_Dachkies', 'gravel_floor', 1.5, 0, None, 0, 0.05, 0.4),
+    'gruendach': ph('PH_Gruendach', 'leafy_grass', 2.5, 0, '#5D7A3A', 1.0, 0.0, 0.3),
+    'hecke': ph('PH_Hecke', 'forest_leaves_02', 1.5, 0, '#3D5C2F', 1.0, 0.0, 0.6),
+    'hofplatten': ph('PH_Hofplatten', 'concrete_tiles', 2.4, 0, '#DCD3C2', 1.0, 0.0, 0.2),
+    'vorplatz': ph('PH_Gehweg', 'concrete_pavers_02', 2.0, 0, '#D8D1C3', 1.0, 0.0, 0.2),
+})
 
 def mesh(name, verts, faces, mat, c):
     me = bpy.data.meshes.new(name); me.from_pydata([tuple(v) for v in verts], [], faces); me.update()
@@ -582,8 +597,7 @@ for i, (x, y) in enumerate(((5.5, Y0 + 6.0), (11.0, Y0 + 6.0))):
 viele_quader('Innen_Regal', [(BT - 0.75, Y0 + 3.25, 0.17, BT - 0.41, Y0 + 5.25, 1.25), (BT - 0.75, Y0 + 6.75, 0.17, BT - 0.41, Y0 + 8.75, 1.25)], M['holz'], 'Innen')   # niedrig, vor der Glaswand
 viele_quader('Innen_Regal_Buecher', [(BT - 0.78, y0 + 0.1 + j * 0.5, 0.3 + r * 0.45, BT - 0.74, y0 + 0.5 + j * 0.5, 0.6 + r * 0.45) for y0 in (Y0 + 3.25, Y0 + 6.75) for j in range(4) for r in range(2)], M['gold'], 'Innen')
 # Dach: Ausstieg, zwei Lüftungsgeräte
-viele_quader('Dach_Technik', [(BT - 2.2, Y1 - 1.6, H_DACH, BT - 1.0, Y1 - 0.5, H_DACH + 0.7), (1.0, Y1 - 1.4, H_DACH, 2.1, Y1 - 0.6, H_DACH + 0.9),
-                               (3.0, Y1 - 1.4, H_DACH, 4.1, Y1 - 0.6, H_DACH + 0.9)], M['pv_rahmen'], 'S5_Dach')
+# Dach_Technik (3 Kästen) entfernt – Ayman 23.11.
 
 # ------------------------------------------------------------------ Wohnwagen (Ayman 19.11.: „wie im Beispiel“) – 7 Stück, Deichsel zur Gasse
 weiss = farbe('Wohnwagen_weiss', '#F1F1EC', 0.35, 0, 0.02)

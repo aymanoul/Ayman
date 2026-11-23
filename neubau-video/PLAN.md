@@ -106,4 +106,12 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 - **Nachkorrektur 23.11. abends**: Pfeil und lange Linien bei den Parkplätzen entfernt (nur die parallelen Platzstriche);
   Helligkeit auf die Mitte gestellt (Sonne 25°, Sonne 4,8 warm-neutral, Himmel 0,3, Belichtung −0,1).
   Vergleichsbild wie Aymans Draufsicht: `out/phase5/neu4_von_oben.jpg`.
-- Neu-Rendern komplett seit 23.11. abends, ~8 h (`sh tools/endfassung_weiter.sh`).
+- **Fototexturen** (Ayman: „blockartig, bitte detailreicher“): freie CC0-Texturen von Poly Haven (`tools/polyhaven_laden.py` →
+  `assets/tex/ph/`, Netz: api.polyhaven.com + dl.polyhaven.org freigegeben). `blender/ph_texturen.py`: Box-Projektion auf
+  Objektkoordinaten, Farbe auf Zielton normiert (Details bleiben), Rauheit + Höhen-Bump. Schiefer, graue/rote Ziegel, Putz,
+  Beton, Asphalt, Kies, Backstein, Rasen, Hecke, Hofplatten, Gehweg, Naturstein Moschee (nur 30 % Textur → neu und sauber).
+  Dächer < 45° geneigt (Box-Projektion). Renderzeit ~20 s/Bild.
+- **3 Technik-Kästen auf dem Moscheedach entfernt** (Ayman 23.11.).
+- Hinweis an Ayman: sein Vergleichsbild ist KI-erzeugt (Bild-KI), nicht Blender; den Foto-Look bringt später der Higgsfield-Schritt.
+- Offen: Schlussansicht höher + Zoom (weniger Perspektive)? Ayman noch nicht geantwortet.
+- Neu-Rendern komplett seit 23.11. ~17:45 UTC, ~10 h (`sh tools/endfassung_weiter.sh`).

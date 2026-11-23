@@ -492,6 +492,31 @@ M.update({
 })
 
 
+# Fototexturen (Ayman 23.11.: „detailreicher, wie bei anderen“): freie Poly-Haven-Texturen statt einfarbiger Flächen
+sys.path.insert(0, HERE)
+from ph_texturen import ph
+M.update({
+    'schiefer': ph('PH_Schiefer', 'roof_slates_02', 2.5, 90, '#4A4E55', 1.0, 0.0, 0.4),
+    'ziegel_dunkel': ph('PH_Ziegel_grau', 'grey_roof_tiles', 3.0, 0, '#5A5D63', 1.0, 0.0, 0.4),
+    'ziegel_dunkel_y': ph('PH_Ziegel_grau_y', 'grey_roof_tiles', 3.0, 90, '#5A5D63', 1.0, 0.0, 0.4),
+    'ziegel_rot': ph('PH_Ziegel_rot', 'clay_roof_tiles_02', 2.5, 90, None, 0, 0.0, 0.4),
+    'putz_alt': ph('PH_Putz_creme', 'beige_wall_001', 3.0, 0, '#E9D6AE', 1.0, 0.0, 0.15),
+    'putz_alt2': ph('PH_Putz_sand', 'beige_wall_001', 3.0, 0, '#DCC497', 1.0, 0.0, 0.15),
+    'putz_hell': ph('PH_Putz_hell', 'plastered_wall_02', 3.5, 0, '#DCD6C8', 1.0, 0.0, 0.15),
+    'putz_creme': ph('PH_Putz_creme2', 'beige_wall_001', 3.0, 0, '#E6DCC4', 1.0, 0.0, 0.15),
+    'putz_weiss': ph('PH_Putz_weiss', 'plastered_wall_02', 3.5, 0, '#F0EEE8', 1.0, 0.0, 0.15),
+    'beton': ph('PH_Beton', 'concrete_wall_008', 3.0, 0, None, 0, 0.0, 0.2),
+    'beton_hell': ph('PH_Beton_hell', 'grey_plaster', 3.0, 0, None, 0, 0.05, 0.15),
+    'asphalt': ph('PH_Asphalt', 'asphalt_02', 4.0, 0, None, 0, -0.05, 0.3),
+    'schotter': ph('PH_Schotter', 'gravel_floor', 2.0, 0, None, 0, 0.0, 0.5),
+    'backstein': ph('PH_Backstein', 'red_brick_03', 1.6, 0, None, 0, 0.0, 0.3),
+    'backstein2': ph('PH_Backstein_dunkel', 'red_brick_03', 1.6, 0, None, 0, -0.08, 0.3),
+    'kamin': ph('PH_Kamin', 'red_brick_03', 1.2, 0, None, 0, 0.0, 0.3),
+    'mauer': ph('PH_Mauer', 'brick_wall_02', 1.8, 0, None, 0, 0.0, 0.3),
+    'gruen': ph('PH_Wiese', 'leafy_grass', 3.0, 0, None, 0, 0.0, 0.2),
+})
+
+
 def roof_z(x0, x1, zt, zf, x):
     xm = (x0 + x1) / 2
     return zt + (zf - zt) * (1 - abs(x - xm) / ((x1 - x0) / 2))
@@ -584,8 +609,8 @@ def dachfenster_y(name, x_trauf, x_first, zt, zf, ys, rels, mat, w=0.9, l=1.1, c
 # ------------------------------------------------------------------ links: schmale lange Häuserzeile (Ayman 23.11., Bild von oben):
 # ca. 7 m breit, Giebel zur Gasse, 3 Geschosse, mehrere Dachabschnitte mit kleinen Dachfenstern zur Moschee hin
 HX0, HX1 = -7.6, -0.4
-ZEILE = [('Altbau_vorn', 0.3, 9.5, 9.4, 13.2, M['putz_alt']), ('Altbau_2', 9.5, 18.0, 9.0, 12.8, M['putz_alt2']),
-         ('Altbau_3', 18.0, 26.5, 9.6, 13.4, M['putz_alt']), ('Altbau_4', 26.5, 35.0, 9.1, 12.9, M['putz_alt2'])]
+ZEILE = [('Altbau_vorn', 0.3, 9.5, 9.4, 12.5, M['putz_alt']), ('Altbau_2', 9.5, 18.0, 9.0, 12.1, M['putz_alt2']),
+         ('Altbau_3', 18.0, 26.5, 9.6, 12.7, M['putz_alt']), ('Altbau_4', 26.5, 35.0, 9.1, 12.2, M['putz_alt2'])]
 for i, (n, y0, y1, zt, zf, mat) in enumerate(ZEILE):
     us = [y0 + 1.4 + k * 2.0 for k in range(int((y1 - y0 - 1.0) // 2.0))]
     altbau(n, HX0, y0, HX1, y1, zt, zf, mat, {'+x': us, '-x': us[::2]}, kamine=[(-2.2, y0 + 1.2)] if i % 2 == 0 else [(-5.6, y1 - 1.2)])
@@ -640,7 +665,7 @@ ast('Nachbar_lang_Rinne', (NX0 - 0.5, NY0 - 0.55, 5.15), (NX1 + 0.5, NY0 - 0.55,
 fenster('Nachbar_lang_F_Stirn', '-x', NX0, [16, 20, 24], [2.2], 1.0, 1.4, c='Rechts')
 # kleiner Nachbar rechts außen: helles Haus mit rotem Ziegeldach (wie im Bild)
 quader('Nachbar_rechts', L + 0.5, 0.3, 0, L + 5.5, NY0, 4.6, M['putz_weiss'], 'Rechts')
-satteldach('Nachbar_rechts_Dach', L + 0.5, 0.3, L + 5.5, NY0, 4.6, 7.4, 'y', M['ziegel_rot'], 0.35, 'Rechts', giebel=M['putz_weiss'])
+satteldach('Nachbar_rechts_Dach', L + 0.5, 0.3, L + 5.5, NY0, 4.6, 6.8, 'y', M['ziegel_rot'], 0.35, 'Rechts', giebel=M['putz_weiss'])
 fenster('Nachbar_rechts_F', '-y', 0.3, [L + 3.0], [1.2], 1.4, 1.2, c='Rechts')
 quader('Zeile_vor_Torgebaeude', L + 5.5, 0.3, 0, 68, 9, 6.2, M['putz_creme'], 'Rechts')
 satteldach('Zeile_vor_Torgebaeude_Dach', L + 5.5, 0.3, 68, 9, 6.2, 8.4, 'x', M['ziegel_dunkel'], 0.3, 'Rechts', giebel=M['putz_creme'])
@@ -660,7 +685,7 @@ for i, gx in enumerate(GXS):
     x0, x1 = gx, gx + 9.5; zt, zf = 5.0 + (i % 3) * 0.35, 8.6 + (i % 3) * 0.35
     wand = [M['putz_hell'], M['beton'], M['putz_creme'], M['backstein2']][i % 4]
     quader(f'Halle_gegenueber{i}', x0 + 0.15, GY_H, 0, x1 - 0.15, GY_V, zt, wand, 'Gegenueber')
-    satteldach(f'Halle_gegenueber{i}_Dach', x0 + 0.15, GY_H, x1 - 0.15, GY_V, zt, zf, 'y', M['ziegel_dunkel'] if i % 2 else M['schiefer'], 0.15, 'Gegenueber', giebel=wand)
+    satteldach(f'Halle_gegenueber{i}_Dach', x0 + 0.15, GY_H, x1 - 0.15, GY_V, zt, zf, 'y', M['ziegel_dunkel_y'] if i % 2 else M['schiefer'], 0.15, 'Gegenueber', giebel=wand)
     quader(f'Halle_gegenueber{i}_Brandwand', x1 - 0.15, GY_H, 0, x1 + 0.15, GY_V, zt + 0.5, M['beton_hell'], 'Gegenueber')
     for sgn, xt in ((1, x0), (-1, x1)):
         dachfenster_y(f'Halle_gegenueber{i}_Dachfenster{sgn}', xt + sgn * 0.15, (x0 + x1) / 2, zt, zf, [GY_V - 6.0, GY_V - 14.5], [0.4], M['dachfenster'], 1.2, 1.3, 'Gegenueber')
