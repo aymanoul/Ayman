@@ -9,7 +9,7 @@ from mathutils import Vector
 
 a = sys.argv[sys.argv.index('--') + 1:]
 HERE = os.path.dirname(os.path.abspath(__file__))
-bpy.ops.wm.open_mainfile(filepath=os.path.join(HERE, 'festsaal.blend'))
+bpy.ops.wm.open_mainfile(filepath=os.path.join(HERE, os.environ.get('SAAL_BLEND', 'festsaal.blend')))
 sc = bpy.context.scene
 sc.frame_set(1799)
 behalten = {o.name for o in bpy.data.collections['Festsaal'].all_objects}

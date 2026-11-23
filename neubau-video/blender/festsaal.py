@@ -65,7 +65,7 @@ def bild_mat(name, datei, meter_u, meter_v, rough=0.5, **kw):
     """Material mit Bildtextur über UV (die UV wird beim Bauen in Metern / Kachelgröße gesetzt)."""
     m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
     b = nt.nodes['Principled BSDF']
-    t = nt.nodes.new('ShaderNodeTexImage'); t.image = bpy.data.images.load(os.path.join(TEX, datei))
+    t = nt.nodes.new('ShaderNodeTexImage'); t.image = bpy.data.images.load(datei if os.path.isabs(datei) else os.path.join(TEX, datei))
     nt.links.new(t.outputs['Color'], b.inputs['Base Color'])
     b.inputs['Roughness'].default_value = rough
     for k, v in kw.items():
@@ -75,7 +75,17 @@ def bild_mat(name, datei, meter_u, meter_v, rough=0.5, **kw):
 
 MARMOR = bild_mat('Saal_Marmor', 'marmor.jpg', 4.8, 4.8, rough=0.2)          # Ayman 23.11.: nicht so glänzend
 TEPPICH = bild_mat('Saal_Teppich', 'teppich.jpg', 2.4, 3.6, rough=0.95, **{'Sheen Weight': 0.4})
-WAND = mat('Saal_Wand', '#EFECE7', 0.55)
+# Farbvarianten (Ayman 23.11.: „zu weiß, zu eintönig“): Umgebungsvariable FARBE = A | B | C (leer = alles hell)
+#  A „Warm & Holz“: Wände sandbeige, Eichen-Verkleidung unten, Stühle taupe, Tischläufer salbeigrün
+#  B „Salbeigrün“: Wände salbeigrün, Stühle grau, Tischläufer sand
+#  C „Holzboden“: Boden Eiche (Laminat-Optik), Wände hell-warm, Stühle anthrazit, Tischläufer terrakotta
+FARBE = os.environ.get('FARBE', '')
+VAR = {'A': dict(wand='#E0D3C0', stoff='#958675', laeufer='#8A9A79', holz_unten=True, boden='marmor'),
+       'B': dict(wand='#B3BEA6', stoff='#8C918A', laeufer='#C9B696', holz_unten=False, boden='marmor'),
+       'C': dict(wand='#EAE2D6', stoff='#6C6864', laeufer='#AE6A4E', holz_unten=False, boden='holz')}.get(FARBE)
+EICHE = os.path.join(HERE, '..', 'assets', 'tex', 'ph', 'laminate_floor_02_diff.jpg')
+HOLZ_M = bild_mat('Saal_Eiche', EICHE, 2.0, 2.0, rough=0.45)
+WAND = mat('Saal_Wand', VAR['wand'] if VAR else '#EFECE7', 0.55)
 DECKE_M = mat('Saal_Decke', '#F4F3F1', 0.7)
 WEISS_GL = mat('Saal_Weiss_glanz', '#F1EFEA', 0.5)
 GOLD = mat('Saal_Gold', '#C8B89A', 0.5, 0.55)              # Ayman 23.11.: weniger Gold → mattes Champagner
@@ -176,7 +186,10 @@ def kopie(ob, name, ort, dreh=0.0):
 
 
 # ------------------------------------------------------------------ Boden, Wände, Treppenhäuser
-b = Bau([MARMOR]); b.quader(RX0, RY0, KZ + 0.03, RX1, RY1, FB, 0); b.objekt('Saal_Boden', (4.8, 4.8))
+if VAR and VAR['boden'] == 'holz':
+    b = Bau([HOLZ_M]); b.quader(RX0, RY0, KZ + 0.03, RX1, RY1, FB, 0); b.objekt('Saal_Boden', (2.0, 2.0))
+else:
+    b = Bau([MARMOR]); b.quader(RX0, RY0, KZ + 0.03, RX1, RY1, FB, 0); b.objekt('Saal_Boden', (4.8, 4.8))
 
 b = Bau([WAND, WEISS_GL, GOLD_MATT])
 d = 0.02
@@ -196,6 +209,16 @@ for (x0, y0, x1, y1, _) in TH:
         b.quader(x0 + d, y0, FB, x1, y0 + 0.15, DECKE, 0); b.quader(x1 - 0.15, y0 + 0.15, FB, x1, y1 - d, DECKE, 0)
         b.quader(x0 + d, y0 - 0.03, FB, x1 - 0.15, y0, FB + 0.12, 1)
 b.objekt('Saal_Waende')
+if VAR and VAR['holz_unten']:                                         # Eichen-Verkleidung bis 1,1 m mit Abschlussleiste
+    b = Bau([HOLZ_M]); h = FB + 1.1; t = 0.035
+    b.quader(RX0 + 0.02, RY0 + 0.02, FB + 0.12, RX0 + 0.02 + t, RY1 - 0.02, h, 0)
+    b.quader(RX1 - 0.02 - t, RY0 + 0.02, FB + 0.12, RX1 - 0.02, RY1 - 0.02, h, 0)
+    b.quader(RX0 + 0.02 + t, RY1 - 0.02 - t, FB + 0.12, RX1 - 0.02 - t, RY1 - 0.02, h, 0)
+    b.quader(RX0 + 0.02 + t, RY0 + 0.02, FB + 0.12, RX1 - 0.02 - t, RY0 + 0.02 + t, h, 0)
+    for (x0, y0, x1, y1) in ((RX0 + 0.02, RY0 + 0.02, RX0 + 0.075, RY1 - 0.02), (RX1 - 0.075, RY0 + 0.02, RX1 - 0.02, RY1 - 0.02),
+                             (RX0 + 0.075, RY1 - 0.075, RX1 - 0.075, RY1 - 0.02), (RX0 + 0.075, RY0 + 0.02, RX1 - 0.075, RY0 + 0.075)):
+        b.quader(x0, y0, h, x1, y1, h + 0.03, 0)
+    b.objekt('Saal_Holzverkleidung', (2.0, 2.0))
 
 
 def tuer(cx, y, richtung):
@@ -349,11 +372,18 @@ for k, z in enumerate((0.0, 0.25, 0.5, 0.70, 0.745)):
 ringe.append([(0.915 * math.cos(2 * math.pi * i / n), 0.915 * math.sin(2 * math.pi * i / n), 0.76) for i in range(n)])
 b.ring(ringe, 0, True, True, False)
 b.polygon([(0.915 * math.cos(2 * math.pi * i / n), 0.915 * math.sin(2 * math.pi * i / n), 0.76) for i in range(n)], 0)
+if VAR:                                                              # Tischläufer quer über den Tisch, an den Enden herabhängend
+    LAEUFER = mat('Saal_Tischlaeufer', VAR['laeufer'], 0.85, **{'Sheen Weight': 0.3})
+    b.mats.append(LAEUFER); mi = len(b.mats) - 1
+    b.quader(-0.958, -0.19, 0.76, 0.958, 0.19, 0.766, mi)
+    for sx in (-1, 1):
+        x0, x1 = (0.946, 0.958) if sx > 0 else (-0.958, -0.946)
+        b.quader(x0, -0.19, 0.50, x1, 0.19, 0.766, mi)
 TISCH = b.objekt('Saal_Tisch0')
 
 # ------------------------------------------------------------------ Stuhl: schlichter, stapelbarer Bankettstuhl (Ayman 23.11.)
 GESTELL = mat('Saal_Stuhlgestell', '#9E9D99', 0.55, 0.5)
-STOFF = mat('Saal_Stuhlstoff', '#B8B1A5', 0.9)
+STOFF = mat('Saal_Stuhlstoff', VAR['stoff'] if VAR else '#B8B1A5', 0.9)
 b = Bau([GESTELL, STOFF])
 b.quader(-0.22, -0.21, 0.42, 0.22, 0.21, 0.445, 0)                                           # Sitzrahmen
 b.quader(-0.215, -0.22, 0.445, 0.215, 0.2, 0.5, 1, fase=0.015)                               # Sitzpolster
@@ -430,4 +460,4 @@ for o in bpy.data.objects:
     if o.name.startswith(('Keller_Wandleuchten', 'Keller_Unterzuege', 'Keller_Saeulen', 'Keller_Treppe')):
         o.hide_render = True
 print('Festsaal gebaut:', len(C.objects), 'Objekte,', len(spots), 'Strahler,', len(kassetten), 'Kassetten')
-bpy.ops.wm.save_as_mainfile(filepath=os.path.join(HERE, 'festsaal.blend'), relative_remap=True)
+bpy.ops.wm.save_as_mainfile(filepath=os.path.join(HERE, f'festsaal{"_" + FARBE if FARBE else ""}.blend'), relative_remap=True)

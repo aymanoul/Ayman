@@ -146,3 +146,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   10 schlichte Ringleuchten, 3 weiß verkleidete Stützen, 24 runde Tische mit weißer Decke (ohne Deko) × 10 schlichte Bankettstühle,
   1 Teppich am Eingang, Bildschirm + Rednerpult an der Rückwand, Treppen hinter weißen Wänden mit Doppeltür.
   Standbilder: `blender/festsaal_bild.py` → `out/phase5/festsaal_blick.jpg`, `festsaal_ecke.jpg`.
+
+- **Farbvarianten (23.11.)**, Ayman: „zu weiß“: `FARBE=A|B|C` beim Bauen (→ `festsaal_A.blend` …), Probebild `out/phase5/saal_farbvarianten.jpg`.
+  A Warm & Holz (Wände sand, Eiche unten, Stühle taupe, Läufer salbeigrün) · B Salbeigrün (Wände grün, Stühle grau, Läufer sand) ·
+  C Holzboden (Eiche, Wände hell-warm, Stühle anthrazit, Läufer terrakotta). Wahl von Ayman steht aus.
