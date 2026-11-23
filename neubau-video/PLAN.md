@@ -172,7 +172,7 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
 - **4 Autos auf den Parkplätzen (Ayman 23.11., Vorlagen `assets/autos/auto1…4_*.png`):** `blender/autos.py` (wird am Ende von moschee.py
   per exec ausgeführt – keine eigene Pipeline-Stufe). Karosserie als Loft (Seitenlinie, Gürtellinie, Grundriss, Radhäuser), Scheiben/Säulen
   per Material, Lichter/Grill/Kennzeichen/Türfugen als projizierte Aufkleber, Räder eigene Objekte (drehen + lenken).
-  **Kein Text: keine Logos/Schriftzüge, Kennzeichen leer.** Auto1 schwarzer Kompakt-Sportwagen → Platz 3, Auto2 grauer Kompakt → Platz 0,
-  Auto3 weißer Sportback → Platz 1, Auto4 schwarzes SUV → Platz 2 (Platz 0 = an der Gasse). Video: Auto2/Auto3 werden bei 42,5/42,75 s
-  wie die Wohnwagen auf den Platz gesetzt; **Auto1 parkt 48,4–55,6 s ein, Auto4 50,6–57,4 s** (über die Gasse, Fahrgasse, vorwärts schräg).
+  **Kein Text: keine Logos/Schriftzüge, Kennzeichen leer.** **Reihenfolge (Ayman 23.11.) von der Gasse aus: Platz 0 weißer
+  Sportback (Auto3), Platz 1 schwarzes SUV (Auto4), Platz 2 schwarzer Kompakt-Sportwagen (Auto1), Platz 3 grauer Kompakt (Auto2).**
+  Video: Auto4/Auto2 werden bei 42,5/42,75 s wie die Wohnwagen auf den Platz gesetzt; **Auto3 (weiß) parkt 48,4–54,8 s ein, Auto1 50,6–57,4 s**.
   Vorschau `out/phase5/autos_parkplatz.jpg`. Feinheiten macht Ayman später mit Higgsfield (ebenfalls ohne Text/Logo).

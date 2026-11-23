@@ -291,7 +291,7 @@ def _sichtbar_ab(teile, t):
         o.hide_render = False; o.keyframe_insert('hide_render', frame=F(t))
 
 
-for name, t0 in (('Auto2', 42.5), ('Auto3', 42.75)):
+for name, t0 in (('Auto4', 42.5), ('Auto2', 42.75)):
     b, teile = _auto_teile(name)
     _sichtbar_ab(teile, t0)
     z = b.location.z
@@ -370,8 +370,8 @@ def einparken(name, t0, t1, x_start=58.0):
                     kp.interpolation = 'LINEAR'
 
 
-einparken('Auto1', 48.4, 55.6)                 # schwarzer Kompakt → Platz 3 (hinten)
-einparken('Auto4', 50.6, 57.4)                 # schwarzes SUV → Platz 2
+einparken('Auto3', 48.4, 54.8)                 # weißer Sportback → Platz 0 (an der Gasse)
+einparken('Auto1', 50.6, 57.4)                 # schwarzer Kompakt-Sportwagen → Platz 2
 
 # (23.11.: fester Zaun entfällt – Schienen, Endpfosten und 3 Schiebeflügel kommen mit 'Schiebetor*')
 gruppe(['Schiebetor', 'Schiebetor_*'], 43.2, 44.0, Z, 6)
