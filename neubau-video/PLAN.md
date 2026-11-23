@@ -72,3 +72,16 @@ Auftrag vollständig in `AUFTRAG.md` (verbindlich, zusammen mit Aymans Korrektur
   −14,2 LUFS, Kontaktbogen ohne Text, Übergänge bei 44 s/48 s ohne Sprung (Bilddifferenz wie Nachbarbilder). An Ayman geschickt.
   Nächster Schritt erst nach Aymans „los“: Higgsfield-Video (`docs/higgsfield_prompts.md`).
 - Neu gerendert: alles außer 44–48 s (per Bildvergleich identisch).
+
+## Änderungen von Ayman am 23.11. (gehen dem AUFTRAG vor)
+- **Umgebung wie Aymans Bild** (`assets/umgebung_vorlage_ayman.jpg`): links cremefarbene Altbauten (3 Häuser, Schieferdach, Gauben,
+  Backstein-Kamine, Gesimse, Fensterbänke, Dachrinnen/Fallrohre, Hauseingang mit Laternen) statt hellblauem Haus/Backstein;
+  Lärmschutzwand (grünes Glas) auf der Hochstraße; langes Nachbargebäude und Halle hinter dem Hof mit dunklem Ziegel-Walmdach und
+  blauen Dachfenstern; kleines Haus mit rotem Ziegeldach rechts außen; hinten Flachdach-Hallen mit Dachlüftern. Balkon entfernt.
+- **Parkplätze andersherum schräg**: Autos fahren von der Gasse vorwärts schräg hinein (`moschee.py`, Vorlage `assets/parken_vorlage_ayman.jpg`).
+- **Anfang**: senkrecht von oben über dem leeren Grundstück, Drohne kommt herunter bis auf Augenhöhe vor den (künftigen) Eingang (3,4 s),
+  dann steigt sie auf und die Grube entsteht (Rückfrage abgelehnt → sinnvolle Wahl, Ayman kann ändern).
+- **Schluss**: Dach öffnet sich NICHT mehr (kein Blick ins OG/Frauenbereich); stattdessen ganzes Grundstück von vorn oben, Hof etwas sichtbar.
+- **Maße** (Pläne in `docs/plaene/`): Bestand 1.01 → Hallenteil 16,43 × ca. 25,6 m (Ayman: „ca. 26 × 16“), langer Teil ca. 33 × 10,3 m,
+  Gesamtlänge ca. 50 m, Grundstück 900 m². Unser Modell: Moschee + Hof 16,5 × 26 m, Parken/Wohnwagen 33,5 × 12,3 m (mit Vorstreifen) → passt.
+- Neu-Rendern komplett (alles ändert sich) seit 23.11., ~7,5 h (`sh tools/endfassung_weiter.sh`).

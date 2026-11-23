@@ -328,13 +328,20 @@ def shedhalle(name, x0, y0, x1, y1, h, zahn=5.0, hz=2.2, achse='x', c='Hallen'):
     return ob
 
 
-def flachhalle(name, x0, y0, x1, y1, h, c='Hallen', wand=None):
+def flachhalle(name, x0, y0, x1, y1, h, c='Hallen', wand=None, luefter=True):
     quader(name, x0, y0, 0, x1, y1, h, wand or M['putz_hell'], c)
     flaeche(name + '_Dach', [(x0, y0), (x1, y0), (x1, y1), (x0, y1)], h + 0.02, M['flachdach'], c)
-    # Lichtkuppeln / Technik
+    quader(name + '_Attika', x0 - 0.1, y0 - 0.1, h, x1 + 0.1, y0 + 0.2, h + 0.5, M['beton_hell'], c)
+    # Fensterband zur Gasse (blau) + Lichtkuppeln / Technik / Dachlüfter (wie im Bild)
+    quader(name + '_Fensterband', x0 + 1, y0 - 0.05, h * 0.55, x1 - 1, y0, h * 0.55 + 1.2, M['dachfenster'], c)
     for i in range(int((x1 - x0) * (y1 - y0) / 250)):
         px, py = random.uniform(x0 + 2, x1 - 4), random.uniform(y0 + 2, y1 - 4)
         quader(name + f'_Kuppel{i}', px, py, h, px + 1.6, py + 1.6, h + 0.5, M['dachfenster'] if i % 2 else M['metall_grau'], c)
+    if luefter:
+        for i in range(int((x1 - x0) * (y1 - y0) / 160)):
+            px, py = random.uniform(x0 + 2, x1 - 2), random.uniform(y0 + 2, y1 - 2)
+            zylinder(name + f'_Luefter{i}', px, py, h, 0.45, 0.45, 0.9, M['metall_grau'], 12, c)
+            zylinder(name + f'_Luefterkappe{i}', px, py, h + 0.9, 0.6, 0.2, 0.35, M['metall_grau'], 12, c)
 
 
 def zylinder(name, x, y, z0, r0, r1, hoehe, mat, n=40, c='Umgebung'):
@@ -440,72 +447,183 @@ for xm in (-25.15, -24.85):
     mk.append([(xm - 0.07, -120, DZ + 0.01), (xm + 0.07, -120, DZ + 0.01), (xm + 0.07, 160, DZ + 0.01), (xm - 0.07, 160, DZ + 0.01)])
 mesh('Hochstrasse_Markierung', [p for q in mk for p in q], [tuple(range(4 * i, 4 * i + 4)) for i in range(len(mk))], M['markierung'], 'Hochstrasse')
 
-# ------------------------------------------------------------------ links: hellblaues Haus + Backstein-Altbauten
-quader('Hellblaues_Haus', -16, 0.3, 0, -1.5, 7.0, 13.2, M['putz_blau'], 'Links')
-flaeche('Hellblaues_Haus_Dach', [(-16, 0.3), (-1.5, 0.3), (-1.5, 7.0), (-16, 7.0)], 13.22, M['flachdach'], 'Links')
-fenster('Hellblaues_Haus_F_Seite', '+x', -1.5, [2.2, 5.0], [4.2, 7.4, 10.4], 1.2, 1.5, c='Links')
-fenster('Hellblaues_Haus_F_Gasse', '-y', 0.3, [-13, -9.5, -6, -3], [1.0, 4.2, 7.4, 10.4], 1.2, 1.5, c='Links')
-# Außentreppe aus Beton mit Metallgeländer (an der Seite zum Grundstück)
-st = 14
-for i in range(st):
-    y0 = 0.6 + i * 0.36
-    quader(f'Aussentreppe_Stufe{i}', -1.45, y0, 0, -0.35, y0 + 0.36, 0.25 + i * 0.25, M['beton_hell'], 'Links')
-quader('Aussentreppe_Podest', -1.45, 5.6, 0, -0.35, 6.95, 3.75, M['beton_hell'], 'Links')
-for i, (ya, za, yb, zb) in enumerate(((0.6, 1.2, 5.6, 4.7), (5.6, 4.7, 6.95, 4.7))):
-    ast(f'Aussentreppe_Handlauf{i}', (-0.4, ya, za), (-0.4, yb, zb), 0.03, 0.03, M['metall_grau'], 'Links')
-for i in range(8):
-    y = 0.8 + i * 0.75; z = 0.25 + (y - 0.6) / 0.36 * 0.25 if y < 5.6 else 3.75
-    ast(f'Aussentreppe_Pfosten{i}', (-0.4, y, z), (-0.4, y, z + 0.95), 0.025, 0.025, M['metall_grau'], 'Links')
+# ------------------------------------------------------------------ Umgebung nach Aymans Bild (23.11.): cremefarbene Altbauten mit
+# dunklen Schieferdächern, Gauben, Kaminen; Lärmschutzwand an der Hochstraße; dunkle Ziegeldächer mit blauen Dachfenstern rechts
+# und hinten; kleines Haus mit rotem Ziegeldach rechts außen; Gewerbehallen mit Dachlüftern im Hintergrund.
+def dachziegel(name, hexf, reihe=0.30, breite=0.42):
+    m, nt, b = node_mat(name)
+    br = nt.nodes.new('ShaderNodeTexBrick')
+    br.inputs['Color1'].default_value = hexrgb(hexf)
+    br.inputs['Color2'].default_value = [x * 0.8 for x in hexrgb(hexf)[:3]] + [1]
+    br.inputs['Mortar'].default_value = [x * 0.55 for x in hexrgb(hexf)[:3]] + [1]
+    br.inputs['Scale'].default_value = 1.0; br.inputs['Mortar Size'].default_value = 0.018
+    br.inputs['Brick Width'].default_value = breite; br.inputs['Row Height'].default_value = reihe
+    nt.links.new(wand_uv(nt, 1, 1), br.inputs['Vector'])
+    nz = nt.nodes.new('ShaderNodeTexNoise'); nz.inputs['Scale'].default_value = 0.25; nz.inputs['Detail'].default_value = 8
+    mix = nt.nodes.new('ShaderNodeMix'); mix.data_type = 'RGBA'; mix.blend_type = 'MULTIPLY'; mix.inputs['Factor'].default_value = 0.45
+    nt.links.new(br.outputs['Color'], mix.inputs['A']); nt.links.new(nz.outputs['Color'], mix.inputs['B'])
+    nt.links.new(mix.outputs['Result'], b.inputs['Base Color'])
+    bump = nt.nodes.new('ShaderNodeBump'); bump.inputs['Strength'].default_value = 0.5
+    nt.links.new(br.outputs['Fac'], bump.inputs['Height']); nt.links.new(bump.outputs['Normal'], b.inputs['Normal'])
+    b.inputs['Roughness'].default_value = 0.7
+    return m
 
-ALT = [(7.0, 14.5, 13.5, 17.5, M['backstein'], -6.0), (14.5, 22.0, 11.0, 15.0, M['backstein2'], -2.5), (22.0, 30.5, 14.0, 18.5, M['backstein'], -0.3)]
-for i, (y0, y1, zt, zf, mat, xr) in enumerate(ALT):
-    quader(f'Altbau{i}', -16, y0, 0, xr, y1, zt, mat, 'Links')
-    satteldach(f'Altbau{i}_Dach', -16, y0, xr, y1, zt, zf, 'y', M['dach_ziegel'], 0.3, 'Links', giebel=mat)
-    us = [y0 + 1.4 + k * 2.1 for k in range(int((y1 - y0 - 1.4) // 2.1))]
-    zs = [1.0 + k * 3.2 for k in range(int(zt // 3.2))]
-    fenster(f'Altbau{i}_F_hinten', '+x', xr, us, [z for z in zs if xr < -1 and z > 6 or xr >= -1], 1.0, 1.55, c='Links')
-    fenster(f'Altbau{i}_F_vorn', '-x', -16, us, zs, 1.0, 1.55, c='Links')
-    zylinder(f'Altbau{i}_Kamin', -8 + i, y0 + 1.5, zf - 1.8, 0.35, 0.35, 2.6, M['backstein2'], 4, 'Links')
-quader('Altbau_Anbau', -6, 7.0, 0, -0.3, 14.5, 6.2, M['backstein2'], 'Links')
-flaeche('Altbau_Anbau_Dach', [(-6, 7.0), (-0.3, 7.0), (-0.3, 14.5), (-6, 14.5)], 6.22, M['dach_grau'], 'Links')
-quader('Altbau_Anbau2', -2.5, 14.5, 0, -0.3, 22.0, 4.0, M['beton'], 'Links')
-flaeche('Altbau_Anbau2_Dach', [(-2.5, 14.5), (-0.3, 14.5), (-0.3, 22.0), (-2.5, 22.0)], 4.02, M['dach_grau'], 'Links')
-fenster('Altbau_Anbau_F', '+x', -0.3, [9.0, 11.3], [3.4], 0.9, 1.2, c='Links')
-# Balkon mit rotem Geländer
-quader('Balkon_Platte', -0.3, 24.5, 9.6, 1.1, 27.0, 9.8, M['beton_hell'], 'Links')
-for i, (a, b) in enumerate((((1.1, 24.5), (1.1, 27.0)), ((-0.3, 24.5), (1.1, 24.5)), ((-0.3, 27.0), (1.1, 27.0)))):
-    ast(f'Balkon_Gelaender{i}', (a[0], a[1], 10.8), (b[0], b[1], 10.8), 0.035, 0.035, M['gelaender_rot'], 'Links')
-    for k in range(6):
-        t = k / 5; px, py = a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t
-        ast(f'Balkon_Stab{i}_{k}', (px, py, 9.8), (px, py, 10.8), 0.02, 0.02, M['gelaender_rot'], 'Links')
 
-# ------------------------------------------------------------------ hinten: Backsteinmauer mit Betonpfeilern + Hallendach
+def leuchtglas(name, hexf, staerke):
+    m = glas(name, hexf, 0.1)
+    b = m.node_tree.nodes['Principled BSDF']
+    b.inputs['Emission Color'].default_value = hexrgb(hexf); b.inputs['Emission Strength'].default_value = staerke
+    return m
+
+
+M.update({
+    'putz_alt': farbe('Putz_Altbau_creme', '#E9D6AE', 0.85, 0, 0.12, 0.9),
+    'putz_alt2': farbe('Putz_Altbau_sand', '#DCC497', 0.85, 0, 0.12, 0.9),
+    'sockel': farbe('Sockel_grau', '#7E776C', 0.9, 0, 0.12, 2),
+    'gesims': farbe('Gesims_hell', '#F1E8D6', 0.7, 0, 0.04),
+    'schiefer': dachziegel('Dach_Schiefer_dunkel', '#43464B', 0.26, 0.34),
+    'ziegel_dunkel': dachziegel('Dach_Ziegel_anthrazit', '#4B4C50', 0.32, 0.30),
+    'ziegel_rot': dachziegel('Dach_Ziegel_rot2', '#B0502F', 0.30, 0.28),
+    'dachfenster_blau': leuchtglas('Dachfenster_blau', '#7CC3F0', 0.6),
+    'laermschutz': glas('Laermschutz_gruen', '#5E8A63', 0.25),
+    'rinne': farbe('Dachrinne', '#6B6E72', 0.45, 0.7, 0),
+    'lampe': leuchtglas('Lampe_Hauseingang', '#FFC877', 4.0),
+    'kamin': ziegel('Kamin_Backstein', '#8E4430', '#9A9186', (0.24, 0.072)),
+    'tuer_holz': farbe('Haustuer_Holz', '#5C4030', 0.6, 0, 0.1),
+})
+
+
+def roof_z(x0, x1, zt, zf, x):
+    xm = (x0 + x1) / 2
+    return zt + (zf - zt) * (1 - abs(x - xm) / ((x1 - x0) / 2))
+
+
+def walmdach(name, x0, y0, x1, y1, zt, zf, mat, walm=4.0, ueber=0.4, c='Umgebung'):
+    """Walmdach, First entlang x."""
+    ym = (y0 + y1) / 2
+    a, b, cc, d = (x0 - ueber, y0 - ueber), (x1 + ueber, y0 - ueber), (x1 + ueber, y1 + ueber), (x0 - ueber, y1 + ueber)
+    v = [(*a, zt), (*b, zt), (*cc, zt), (*d, zt), (x0 + walm, ym, zf), (x1 - walm, ym, zf)]
+    f = [(0, 1, 5, 4), (2, 3, 4, 5), (1, 2, 5), (3, 0, 4)]
+    return mesh(name, v, f, mat, c)
+
+
+def dachfenster_reihe(name, x0, x1, y_trauf, y_first, zt, zf, xs, ys_rel, mat, w=1.3, l=1.6, c='Umgebung'):
+    """Dachfenster auf einer Dachfläche (First entlang x). ys_rel: 0 = Traufe … 1 = First."""
+    vd, fd = [], []
+    for x in xs:
+        for r in ys_rel:
+            ya = y_trauf + (y_first - y_trauf) * r; yb = ya + (l if y_first > y_trauf else -l) * abs(y_first - y_trauf) / math.hypot(y_first - y_trauf, zf - zt)
+            za = zt + (zf - zt) * (ya - y_trauf) / (y_first - y_trauf) + 0.05; zb = zt + (zf - zt) * (yb - y_trauf) / (y_first - y_trauf) + 0.05
+            k = len(vd); vd += [(x, ya, za), (x + w, ya, za), (x + w, yb, zb), (x, yb, zb)]
+            fd.append((k, k + 1, k + 2, k + 3) if y_first > y_trauf else (k + 3, k + 2, k + 1, k))
+    mesh(name, vd, fd, mat, c)
+
+
+def altbau(name, x0, y0, x1, y1, zt, zf, wand, seiten, gauben=(), kamine=(), c='Links', giebel_vorn=False):
+    """Altes Stadthaus: First entlang y, Putz, Sockel, Gesims, Fenster mit Bänken, Dachrinnen, Fallrohre, Kamine, Gauben."""
+    quader(name, x0, y0, 0, x1, y1, zt, wand, c)
+    quader(name + '_Sockel', x0 - 0.06, y0 - 0.06, 0, x1 + 0.06, y1 + 0.06, 0.75, M['sockel'], c)
+    quader(name + '_Gesims', x0 - 0.18, y0 - 0.18, zt - 0.35, x1 + 0.18, y1 + 0.18, zt, M['gesims'], c)
+    for zz in [1.0 + k * 3.2 + 3.0 for k in range(int((zt - 4) // 3.2))]:
+        quader(name + f'_Band{int(zz*10)}', x0 - 0.05, y0 - 0.05, zz, x1 + 0.05, y1 + 0.05, zz + 0.16, M['gesims'], c)
+    satteldach(name + '_Dach', x0, y0, x1, y1, zt, zf, 'y', M['schiefer'], 0.45, c, giebel=wand)
+    zs = [1.25 + k * 3.2 for k in range(int((zt - 1.5) // 3.2))]
+    baenke = []
+    for seite, us in seiten.items():
+        ebene = {'+x': x1, '-x': x0, '+y': y1, '-y': y0}[seite]
+        fenster(f'{name}_F{seite}', seite, ebene, us, zs, 1.05, 1.6, c=c)
+        for u in us:
+            for z in zs:
+                if seite in ('+x', '-x'):
+                    e = ebene + (0.0 if seite == '+x' else -0.16)
+                    baenke.append((e, u - 0.68, z - 0.16, e + 0.16, u + 0.68, z - 0.04))
+                else:
+                    e = ebene + (0.0 if seite == '+y' else -0.16)
+                    baenke.append((u - 0.68, e, z - 0.16, u + 0.68, e + 0.16, z - 0.04))
+    if giebel_vorn:   # Giebelfenster unter dem First
+        xm = (x0 + x1) / 2
+        fenster(f'{name}_F_Giebel', '-y', y0, [xm - 1.4, xm + 1.4], [zt + 0.6], 0.9, 1.3, c=c)
+        fenster(f'{name}_F_Giebel2', '-y', y0, [xm], [zt + 0.6 + (zf - zt) * 0.5], 0.7, 0.9, c=c)
+    for i, bb in enumerate(baenke):
+        pass
+    mesh(name + '_Fensterbaenke', [p for q in baenke for p in ((q[0], q[1], q[5]), (q[3], q[1], q[5]), (q[3], q[4], q[5]), (q[0], q[4], q[5]),
+                                                              (q[0], q[1], q[2]), (q[3], q[1], q[2]), (q[3], q[4], q[2]), (q[0], q[4], q[2]))],
+         [f for i in range(len(baenke)) for f in ((8*i, 8*i+1, 8*i+2, 8*i+3), (8*i+4, 8*i+5, 8*i+1, 8*i), (8*i+5, 8*i+6, 8*i+2, 8*i+1),
+                                                  (8*i+6, 8*i+7, 8*i+3, 8*i+2), (8*i+7, 8*i+4, 8*i, 8*i+3))], M['gesims'], c)
+    # Dachrinnen + Fallrohre
+    for xr in (x0 - 0.45, x1 + 0.45):
+        ast(name + f'_Rinne{int(xr*10)}', (xr, y0 - 0.45, zt - 0.05), (xr, y1 + 0.45, zt - 0.05), 0.09, 0.09, M['rinne'], c)
+        for yr in (y0 + 0.4, y1 - 0.4):
+            ast(name + f'_Fallrohr{int(xr*10)}_{int(yr*10)}', (xr, yr, 0.1), (xr, yr, zt - 0.05), 0.05, 0.05, M['rinne'], c)
+    for i, (kx, ky) in enumerate(kamine):
+        zr = roof_z(x0, x1, zt, zf, kx)
+        quader(name + f'_Kamin{i}', kx - 0.4, ky - 0.3, zr - 0.5, kx + 0.4, ky + 0.3, zf + 1.6, M['kamin'], c)
+        quader(name + f'_Kaminkopf{i}', kx - 0.48, ky - 0.38, zf + 1.6, kx + 0.48, ky + 0.38, zf + 1.78, M['sockel'], c)
+    for i, (gy, seite) in enumerate(gauben):   # Gaube auf der Dachfläche +x oder -x
+        sgn = 1 if seite == '+x' else -1
+        xm = (x0 + x1) / 2; xf = xm + sgn * (x1 - x0) * 0.27
+        zr = roof_z(x0, x1, zt, zf, xf); gx0, gx1 = sorted((xf, xf - sgn * 2.2))
+        quader(name + f'_Gaube{i}', gx0, gy - 1.0, zr - 0.3, gx1, gy + 1.0, zr + 1.9, wand, c)
+        satteldach(name + f'_Gaube{i}_Dach', gx0, gy - 1.0, gx1, gy + 1.0, zr + 1.9, zr + 2.6, 'x', M['schiefer'], 0.15, c, giebel=wand)
+        fenster(name + f'_Gaube{i}_F', seite, xf, [gy], [zr + 0.25], 1.0, 1.3, c=c)
+    return name
+
+
+# ------------------------------------------------------------------ links: Altbauten (Rückseiten zum Grundstück)
+altbau('Altbau_vorn', -14.5, 0.3, -0.4, 10.0, 12.2, 18.0, M['putz_alt'],
+       {'-y': [-12.2, -9.6, -5.3, -2.7], '+x': [2.0, 4.6, 7.4], '-x': [2.5, 7.5]}, gauben=[(5.0, '+x')], kamine=[(-3.5, 2.0), (-11.5, 8.0)], giebel_vorn=True)
+altbau('Altbau_mitte', -12.5, 10.0, -0.4, 19.5, 11.0, 16.2, M['putz_alt2'],
+       {'+x': [11.6, 14.0, 16.4, 18.4], '-x': [12.5, 17.0]}, gauben=[(12.7, '+x'), (17.2, '+x')], kamine=[(-4.0, 11.0)])
+altbau('Altbau_hinten', -14.5, 19.5, -0.4, 30.5, 12.8, 18.6, M['putz_alt'],
+       {'+x': [21.0, 23.6, 26.2, 28.8], '-x': [22.0, 28.0]}, gauben=[(22.3, '+x'), (27.7, '+x')], kamine=[(-3.0, 20.8), (-11.0, 29.0)])
+# Hauseingang vorn: Tür, Stufe, zwei warme Laternen (wie im Bild)
+quader('Altbau_vorn_Tuer', -8.6, 0.24, 0.3, -7.2, 0.3, 2.5, M['tuer_holz'], 'Links')
+quader('Altbau_vorn_Stufe', -9.0, -0.4, 0, -6.8, 0.3, 0.3, M['sockel'], 'Links')
+viele = [(-9.15, 0.12, 2.0, -8.85, 0.3, 2.45), (-6.95, 0.12, 2.0, -6.65, 0.3, 2.45)]
+for i, q in enumerate(viele):
+    quader(f'Altbau_vorn_Laterne{i}', *q, M['lampe'], 'Links')
+for i, (x, y) in enumerate(((-10.2, -0.1), (-5.6, -0.1))):
+    quader(f'Altbau_vorn_Kuebel{i}', x - 0.3, y - 0.3, 0, x + 0.3, y + 0.3, 0.5, M['sockel'], 'Links')
+    kugelkrone(f'Altbau_vorn_Pflanze{i}', x, y, 0.85, 0.35, 0.4, M['kiefer'], 'Links')
+# Baum hinter den Altbauten (wie im Bild)
+kiefer('Kiefer_Altbau', -16.5, 31.5, 15)
+
+# ------------------------------------------------------------------ Lärmschutzwand auf der Hochstraße (grünliches Glas mit Pfosten)
+quader('Laermschutz_Glas', -19.4, -120, DZ + 1.05, -19.25, 160, DZ + 4.2, M['laermschutz'], 'Hochstrasse')
+viele_p = []
+for i, y in enumerate(range(-120, 161, 4)):
+    quader(f'Laermschutz_Pfosten{i}', -19.5, y - 0.1, DZ + 1.0, -19.15, y + 0.1, DZ + 4.35, M['metall_grau'], 'Hochstrasse')
+
+# ------------------------------------------------------------------ hinten: Mauer + große Halle mit dunklem Ziegeldach und blauen Dachfenstern
 quader('Mauer_hinten', 0, TT, 0, BT, TT + 0.3, 4.6, M['mauer'], 'Hinten')
 quader('Mauer_Abdeckung', -0.05, TT - 0.05, 4.6, BT + 0.05, TT + 0.35, 4.75, M['beton_hell'], 'Hinten')
 for i, x in enumerate((0.0, 8.0, 16.1)):
     quader(f'Mauer_Pfeiler{i}', x, TT - 0.15, 0, x + 0.42, TT + 0.3, 4.9, M['beton_hell'], 'Hinten')
-quader('Halle_hinten', -16, TT + 0.3, 0, 56, 44, 4.8, M['beton'], 'Hinten')
-satteldach('Halle_hinten_Dach', -16, TT + 0.3, 56, 44, 4.8, 7.2, 'x', M['wellplatten'], 0.2, 'Hinten', giebel=M['beton'])
+quader('Halle_hinten', -0.4, TT + 0.3, 0, 56, 44, 5.6, M['putz_hell'], 'Hinten')
+walmdach('Halle_hinten_Dach', -0.4, TT + 0.3, 56, 44, 5.6, 11.0, M['ziegel_dunkel'], 5.0, 0.45, 'Hinten')
+dachfenster_reihe('Halle_hinten_Dachfenster', -0.4, 56, TT + 0.3 - 0.45, (TT + 0.3 + 44) / 2, 5.6, 11.0,
+                  [4.0, 14.0, 24.0, 34.0, 44.0], [0.35], M['dachfenster_blau'], 1.6, 1.8, 'Hinten')
+for i, x in enumerate((-0.4 - 0.45, 56 + 0.45)):
+    pass
+ast('Halle_hinten_Rinne', (-0.85, TT - 0.15, 5.55), (56.45, TT - 0.15, 5.55), 0.1, 0.1, M['rinne'], 'Hinten')
 
-# ------------------------------------------------------------------ rechts: langes Nachbargebäude (saniert: helle Putzfassade)
+# ------------------------------------------------------------------ rechts: langes Nachbargebäude (helle Fassade, großes dunkles Ziegeldach)
 NX0, NY0, NX1, NY1 = BT + 0.3, LT + 0.3, L + 4.5, TT + 0.3
-quader('Nachbar_lang', NX0, NY0, 0, NX1, NY1, 6.8, M['putz_hell'], 'Rechts')
-satteldach('Nachbar_lang_Dach', NX0, NY0, NX1, NY1, 6.8, 11.5, 'x', M['dach_grau'], 0.4, 'Rechts')
-# Dachfenster auf der gassenseitigen Dachfläche (Reihe) + auf der Rückseite einzelne
-ym = (NY0 + NY1) / 2; neig = (11.5 - 6.8) / (ym - NY0)
-vd, fd = [], []
-for i in range(14):
-    x = NX0 + 2.0 + i * 2.6
-    for (ya, yb) in ((NY0 + 2.2, NY0 + 3.6),):
-        za, zb = 6.8 + (ya - NY0) * neig + 0.04, 6.8 + (yb - NY0) * neig + 0.04
-        k = len(vd); vd += [(x, ya, za), (x + 1.1, ya, za), (x + 1.1, yb, zb), (x, yb, zb)]; fd.append((k, k + 1, k + 2, k + 3))
-mesh('Nachbar_lang_Dachfenster', vd, fd, M['dachfenster'], 'Rechts')
-fenster('Nachbar_lang_F_Stirn', '-x', NX0, [16, 20, 24], [2.8], 1.0, 1.4, c='Rechts')
-# kleiner Nachbar rechts außen
-quader('Nachbar_rechts', L + 0.5, 0.3, 0, L + 5.5, NY0, 5.0, M['putz_gruen'], 'Rechts')
-flaeche('Nachbar_rechts_Dach', [(L + 0.5, 0.3), (L + 5.5, 0.3), (L + 5.5, NY0), (L + 0.5, NY0)], 5.02, M['flachdach'], 'Rechts')
+quader('Nachbar_lang', NX0, NY0, 0, NX1, NY1, 5.2, M['putz_hell'], 'Rechts')
+quader('Nachbar_lang_Sockel', NX0 - 0.05, NY0 - 0.05, 0, NX1 + 0.05, NY1, 0.6, M['sockel'], 'Rechts')
+walmdach('Nachbar_lang_Dach', NX0, NY0, NX1, NY1, 5.2, 12.0, M['ziegel_dunkel'], 4.5, 0.5, 'Rechts')
+dachfenster_reihe('Nachbar_lang_Dachfenster', NX0, NX1, NY0 - 0.5, (NY0 + NY1) / 2, 5.2, 12.0,
+                  [NX0 + 5 + i * 5.2 for i in range(6)], [0.3], M['dachfenster_blau'], 1.5, 1.7, 'Rechts')
+dachfenster_reihe('Nachbar_lang_Dachfenster2', NX0, NX1, NY0 - 0.5, (NY0 + NY1) / 2, 5.2, 12.0,
+                  [NX0 + 7.6 + i * 5.2 for i in range(5)], [0.62], M['dachfenster_blau'], 1.5, 1.7, 'Rechts')
+ast('Nachbar_lang_Rinne', (NX0 - 0.5, NY0 - 0.55, 5.15), (NX1 + 0.5, NY0 - 0.55, 5.15), 0.1, 0.1, M['rinne'], 'Rechts')
+fenster('Nachbar_lang_F_Stirn', '-x', NX0, [16, 20, 24], [2.2], 1.0, 1.4, c='Rechts')
+# kleiner Nachbar rechts außen: helles Haus mit rotem Ziegeldach (wie im Bild)
+quader('Nachbar_rechts', L + 0.5, 0.3, 0, L + 5.5, NY0, 4.6, M['putz_weiss'], 'Rechts')
+satteldach('Nachbar_rechts_Dach', L + 0.5, 0.3, L + 5.5, NY0, 4.6, 7.4, 'y', M['ziegel_rot'], 0.35, 'Rechts', giebel=M['putz_weiss'])
+fenster('Nachbar_rechts_F', '-y', 0.3, [L + 3.0], [1.2], 1.4, 1.2, c='Rechts')
 quader('Zeile_vor_Torgebaeude', L + 5.5, 0.3, 0, 68, 9, 6.2, M['putz_creme'], 'Rechts')
-satteldach('Zeile_vor_Torgebaeude_Dach', L + 5.5, 0.3, 68, 9, 6.2, 8.4, 'x', M['dach_grau'], 0.3, 'Rechts', giebel=M['putz_creme'])
+satteldach('Zeile_vor_Torgebaeude_Dach', L + 5.5, 0.3, 68, 9, 6.2, 8.4, 'x', M['ziegel_dunkel'], 0.3, 'Rechts', giebel=M['putz_creme'])
 fenster('Zeile_vor_Torgebaeude_F', '-y', 0.3, [58, 61, 64], [1.0, 3.8], 1.1, 1.3, c='Rechts')
 
 # ------------------------------------------------------------------ gegenüber: weißes Haus + Schornstein
@@ -516,7 +634,7 @@ if SCHORNSTEIN:
     zylinder('Schornstein_Kopf', SX, SY, 27.6, 1.42, 1.42, 0.6, M['backstein2'], 48, 'Schornstein')
 WX0, WX1, WY0, WY1 = 3.3, SX - 1.9, -16.5, -8.2
 quader('Weisses_Haus', WX0, WY0, 0, WX1, WY1, 6.2, M['putz_weiss'], 'Gegenueber')
-satteldach('Weisses_Haus_Dach', WX0, WY0, WX1, WY1, 6.2, 8.6, 'x', M['dach_grau'], 0.35, 'Gegenueber', giebel=M['putz_weiss'])
+satteldach('Weisses_Haus_Dach', WX0, WY0, WX1, WY1, 6.2, 8.6, 'x', M['ziegel_dunkel'], 0.35, 'Gegenueber', giebel=M['putz_weiss'])
 fenster('Weisses_Haus_F_OG', '+y', WY1, [5.0, 7.7, 10.4, 13.1], [3.6], 1.1, 1.35, rollladen=True, c='Gegenueber')
 fenster('Weisses_Haus_F_EG', '+y', WY1, [5.0, 7.7, 10.4], [0.9], 1.1, 1.35, rollladen=True, c='Gegenueber')
 quader('Weisses_Haus_Tuer', 12.4, WY1, 0, 13.6, WY1 + 0.06, 2.15, M['holz_tuer'], 'Gegenueber')
@@ -548,8 +666,8 @@ shedhalle('Shedhalle_gegenueber', 21, -38, 66, -12.5, 4.4)
 quader('Garagen_gegenueber', 19.5, -12.5, 0, 66, -9.5, 3.0, M['putz_hell'], 'Hallen')
 flaeche('Garagen_gegenueber_Dach', [(19.5, -12.5), (66, -12.5), (66, -9.5), (19.5, -9.5)], 3.02, M['flachdach'], 'Hallen')
 shedhalle('Shedhalle_links_gegenueber', -17, -42, 2.5, -18.5, 5.0)
-shedhalle('Shedhalle_hinten1', -16, 45, 40, 70, 6.0)
-shedhalle('Shedhalle_hinten2', 42, 45, 95, 72, 6.0)
+flachhalle('Halle_hinten_flach1', -16, 45, 40, 70, 7.5)          # Ayman 23.11.: Flachdach-Hallen mit Dachlüftern
+flachhalle('Halle_hinten_flach2', 42, 45, 95, 72, 8.0)
 shedhalle('Shedhalle_rechts', 82, -40, 116, 20, 6.5)
 shedhalle('Shedhalle_weit1', -17, -95, 30, -50, 5.5)
 flachhalle('Gewerbehalle_hell1', 40, 80, 120, 115, 9.0)

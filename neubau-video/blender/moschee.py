@@ -469,8 +469,8 @@ quader('Aussenkueche_Grill', BT - 3.0, TT - 1.6, 0.95, BT - 2.1, TT - 1.15, 1.35
 # Parken: 4 schräge Plätze, leer
 flaeche('Parken_Belag', [(BT, 0.25), (PK, 0.25), (PK, LT), (BT, LT)], 0.03, M['asphalt'], 'S6_Aussen')
 mk = []
-for i in range(5):
-    y = 1.5 + i * 2.5; d = Vector((4.5, 2.2, 0)).normalized()
+for i in range(5):   # Ayman 23.11.: Schrägparker andersherum → Autos fahren von der Gasse (vorn) vorwärts schräg hinein
+    y = 2.4 + i * 2.4; d = Vector((4.5, -2.2, 0)).normalized()
     p0 = Vector((BT + 0.3, y, 0.04)); p1 = p0 + d * 5.0; nrm = Vector((-d.y, d.x, 0)) * 0.06
     mk.append([p0 - nrm, p1 - nrm, p1 + nrm, p0 + nrm])
 # Wohnwagen: 7 Plätze à 3,5 × 7,5 m, leer; Hecke + Wandleuchten an der Brandwand

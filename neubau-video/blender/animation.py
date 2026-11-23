@@ -294,10 +294,7 @@ for fc in (wl.id_data.animation_data.action.fcurves if hasattr(wl.id_data.animat
     for kp in fc.keyframe_points:
         kp.interpolation = 'CONSTANT'
 
-# Schluss (Ayman 20.11., Beispielbild): Dach und Obergeschoss-Decke öffnen sich → Blick von oben in den Gebetsraum
-for n in ('PV_Module', 'PV_Gestell', 'Dach_Technik', 'Gruendach', 'Dachkies', 'Attika_Abdeckung', 'LED_Attika', 'Dachplatte',
-          'Attika0', 'Attika1', 'Attika2', 'Attika3', 'Geschossdecke', 'OG_Teppich', 'OG_Saeule0', 'OG_Saeule1', 'OG_Saeule2', 'OG_Saeule3', 'Deckenleuchten'):
-    aufbau(bpy.data.objects[n], 51.6, 53.6, X, weg=True, stufe=6)
+# Schluss: Dach bleibt zu (Ayman 23.11.: kein Blick ins Obergeschoss/Frauenbereich), stattdessen Gesamtansicht von vorn oben
 
 # Sicherheit: jedes Bauteil der Moschee/Außenanlagen braucht einen Aufbau, sonst wäre es von Anfang an sichtbar
 for c in ('S2_Keller', 'S3_EG', 'S4_OG', 'S5_Dach', 'S6_Aussen', 'Innen', 'Wohnwagen'):
@@ -327,7 +324,8 @@ for t, v in ((0, 0.22), (48.0, 0.22), (51.0, 0.11 if an else 0.22)):
 
 # ------------------------------------------------------------------ Drohnenflug
 GEMEINSAM = [  # (s, Position, Blickziel)
-    (4.0, (24, -21, 22), (8, 9, -1.5)),
+    (4.2, (15.5, -6.8, 2.0), (14, 4, 3.2)),       # unten am (künftigen) Eingang
+    (6.0, (19, -15, 10), (9, 9, -1.0)),          # steigt auf, Grube entsteht
     (8.0, (14, -24, 23), (8, 9, -1.5)),
     (10.6, (13, -4, 11.5), (8, 15, -2.6)),        # tief und nah über die Grube: Keller mit Säulen, Treppen, Leuchten (Ayman 20.11.)
     (12.6, (6, -6, 12.5), (8, 16, -1.5)),
@@ -349,12 +347,12 @@ GEMEINSAM = [  # (s, Position, Blickziel)
     (47.8, (47, -6, 4.2), (44, 2, 1.2)),         # … und schließt
     (49.2, (37, 5.2, 34), (37, 6.2, 0.0)),       # senkrecht von oben über den Wohnwagen
     (50.6, (31, 4.6, 32), (31, 6.0, 0.0)),
-    (52.8, (-1, -15, 24), (9, 10, 0.0)),         # Schlussansicht schräg von oben (wie Beispielbild), Dach öffnet sich
-    (60.0, (4, -19, 27), (10, 9.5, 0.0)),        # ruhig zurück, Moschee bleibt mittig (Ayman 20.11.)
+    (53.0, (22, -19, 54), (23, 13, 0.0)),        # Schluss (Ayman 23.11.): ganzes Grundstück von vorn oben, Hof sichtbar
+    (60.0, (25, -23, 59), (24, 14, 0.0)),        # ruhig, Dach bleibt zu
 ]
 START = {
     'A': [(0.0, (33, -3.6, 2.0), (16.9, -8.9, 5.0)), (1.8, (26, -3.8, 7.5), (11, 5, 2.5)), (3.0, (25, -14, 15), (9, 5, 0.0))],
-    'B': [(0.0, (-46, -42, 50), (12, -6, 6.0)), (2.0, (4, -36, 32), (11, 3, 2.0))],
+    'B': [(0.0, (9, 5, 64), (9, 9, 0.0)), (1.8, (12, -3, 26), (13, 5, 0.0)), (3.4, (15, -5.8, 1.6), (15, 3, 4.2))],   # Ayman 23.11.: von oben herab bis zum Eingang
 }
 for v, start in START.items():
     cd = bpy.data.cameras.new(f'Drohne_{v}'); cd.lens = 24; cd.sensor_width = 36; cd.clip_end = 2000

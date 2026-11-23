@@ -57,7 +57,7 @@ for zeit in (30.0, 31.6, 41.0, 42.6, 49.2):
     setze(wk, zeit, -28)
 for k in range(7):                       # Wohnwagen setzen auf (Ayman 20.11.: fallen leicht auf den Platz)
     setze(impact, 42.45 + k * 0.2, -31, -0.2 + k * 0.08)
-setze(whoosh, 51.6, -24)                 # Dach öffnet sich
+# (Dach öffnet sich nicht mehr – Ayman 23.11.)
 
 # Schiebedach über dem Hof öffnet (35,0–36,6): leises Motorbrummen
 _n = int(1.6 * SR); _tt = np.arange(_n) / SR
