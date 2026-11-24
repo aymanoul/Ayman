@@ -1,4 +1,4 @@
-# Teil 2 (20–48 s im Video) – zur Freigabe, NOCH NICHT gestartet
+# Teil 2 (20–48 s im Video) – von Ayman freigegeben („Ja los“), gestartet: Job c224f533-76aa-4e01-aa99-047b05d5f00f
 
 **Modell:** Seedance 2.5, Modus omni_reference, 720p, 16:9, 28 s, ohne Ton – **196 Credits** (Guthaben 412,5 → danach 216,5; Teil 3 mit 24 s = 168).
 
