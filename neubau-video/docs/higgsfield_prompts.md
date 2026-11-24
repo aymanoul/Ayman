@@ -83,6 +83,13 @@ Mercedes 194e1096-5a93-49de-b0c1-0eaaab3fc4cd, Golf R 0606fd69-4f5e-4d0d-bb6e-22
 Foto-Jobs (als Look-Referenz nutzbar): A c3477069-d9cd-4e3b-bb6c-fc745d250033, B b9edbbba-9a93-463b-b6fe-48d8c78d2ae3,
 C b8e7f201-f1af-486b-949b-caeba609e358, D 75c4db07-7b34-47a3-a5ea-420640604161.
 
+### Video gestartet (24.11., Ayman: „Erstelle nun den Plan für das Video und starte damit“) – Seedance 2.5 video_edit, 720p, ohne Ton
+Quelle `out/neubau_drohne_ohne_ton.mp4` → `out/higgsfield/video/teil1|2|3_quelle.mp4` (je 24,0 s, 1080p). Higgsfield-Medien: Teil 1
+c44bcd2b-9433-4565-b064-161c7381b21f, Teil 2 3bb9e20e-5b7e-4683-8b6d-0fd9c5b4f1c8, Teil 3 c386f4f4-acae-42f0-8495-0944e4b890b6.
+Preis laut Schätzung 180 Credits je Teil (= Plan). Reihenfolge: Teil 1 → prüfen → Teil 2 → prüfen → Teil 3.
+Referenzen: Teil 1 nur T-Roc, Golf R, Wohnwagen (KEINE Fertig-Fotos); Teil 2 Fotos A/B/C + Wohnwagen + Autos; Teil 3 Fotos C/D + 4 Autos + Wohnwagen
+(Ayman: Wohnwagen-Vorlage immer mitgeben). Job Teil 1: f475adfe-dd0c-498e-81cc-ef9595571228.
+
 ### Ayman 24.11. (wichtig)
 - **Nichts überspringen:** Higgsfield darf nicht direkt zum fertigen Gebäude/Standbild springen. Deshalb bekommt **Teil 1 (Bauphase)
   KEINE Fotos vom fertigen Gebäude** als Referenz – nur unser Video (+ die 2 schwarzen Auto-Vorlagen); der Look kommt dort nur über
