@@ -257,3 +257,6 @@ Deckenleuchten erst mit der Dachplatte (schwebten), PV-Streben korrigiert, ton.p
 - **Kurzvideo 9:16 mit MoneyPrinterTurbo (Test, 24.11.):** Repo nach `/home/user/harry0703/moneyprinterturbo` (venv), `mpt/` hier: eigene Clips aus
   unseren Renderings (`clips.py`), Sprecher Piper „Thorsten“ offline (`tts.py`, Edge-TTS durfte nicht genutzt werden), exakte Untertitel
   (`montage_ton.py`), Start `mpt/mpt_lauf.py`, ohne Musik. Vorschau `out/neubau_kurzvideo_vorschau.mp4` (Ende = Platzhalter). Ayman: „nur ausgetestet“.
+
+- **Stand 24.11. abends (Ayman):** echtes Higgsfield-Video fertig (`out/neubau_echt_720p.mp4`, 1080p lokal). Ayman: „Jetzt erstmal nix mehr mit Higgsfield.
+  Nur auf meinen Kommando.“ Er schneidet das Video selbst und schickt es dann – Claude verbessert danach nur die Qualität (ohne Higgsfield, außer auf Befehl).
