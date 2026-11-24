@@ -337,10 +337,15 @@ def einparken(name, t0, t1, x_start=58.0):
     U = Vector((math.cos(gier), math.sin(gier)))
     i = int(b['platz']); E = Vector((25.3, 0.45 + (i + 0.5) * 2.5364))         # Einfahrt in den Platz (Fahrgassen-Kante)
     xg, yl = 27.45, -2.3                                                      # Mitte Fahrgasse, Fahrspur auf der Gasse
-    weg = [Vector((x_start, yl)), Vector((31.6, yl))]
-    weg += _bezier(Vector((31.6, yl)), Vector((29.2, yl)), Vector((xg, -0.6)), Vector((xg, 1.4)))[1:]
-    weg += [Vector((xg, E.y - 3.2))]
-    weg += _bezier(Vector((xg, E.y - 3.2)), Vector((xg, E.y - 1.6)), E - U * 0.9, E + U * 0.6)[1:]
+    if E.y - 3.2 > 1.9:
+        weg = [Vector((x_start, yl)), Vector((31.6, yl))]
+        weg += _bezier(Vector((31.6, yl)), Vector((29.2, yl)), Vector((xg, -0.6)), Vector((xg, 1.4)))[1:]
+        weg += [Vector((xg, E.y - 3.2))]
+        weg += _bezier(Vector((xg, E.y - 3.2)), Vector((xg, E.y - 1.6)), E - U * 0.9, E + U * 0.6)[1:]
+    else:
+        # vorderster Platz: direkt aus der Gasse in einem Bogen einparken (vorher fuhr das Auto kurz rueckwaerts)
+        weg = [Vector((x_start, yl)), Vector((33.0, yl))]
+        weg += _bezier(Vector((33.0, yl)), Vector((29.0, yl)), E - U * 2.6, E + U * 0.6)[1:]
     weg += [ziel]
     # dicht abtasten, Bogenlänge
     pts = [weg[0]]
