@@ -7,6 +7,9 @@
 > Nur Teil 1 gestartet (0–24 s, 168 Credits, Job 8a9a060a-f922-423e-9497-ef02f27e2794); Teil 2 erst nach Aymans Go.
 > **Ergebnis Teil 1 V2** (`out/higgsfield/video/v2_teil1.mp4`, 24,04 s, 24 fps): folgt Kamera/Timing/Baustufen des Blender-Videos, deutlich echtere
 > Texturen. Fehler: 11 s Perserteppich mit Ornamenten statt schlichtem rotem Gebetsteppich; am Ende 3 schwarze Autos statt 2; Wohnwagen noch kastenförmig.
+> **Teil 2 V2 (20–48 s, 196 Credits, Job c224f533…)** `out/higgsfield/video/v2_teil2.mp4` (28,04 s): folgt Kamera/Schnitten; Parkplatz jetzt richtig
+> (leer → 7 Wohnwagen, genau 2 schwarze Autos, schwarzer Zaun), Keller groß und warm, Hof gut. Schwächen: Himmel am Eingang orange mit Wolken
+> (Abendstimmung statt klarer Himmel), 15,5–17 s Kamera näher am Altbau als in Blender (folgt dem Foto), Wohnwagen weiter kastenförmig. Guthaben 216,5.
 > Für Teil 2/3 in den Prompt: „plain red prayer carpet with thin light lines, no ornaments, no pattern“, Autos genau zählen. Guthaben danach 412,5.
 
 
