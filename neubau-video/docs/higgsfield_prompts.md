@@ -88,7 +88,7 @@ Quelle `out/neubau_drohne_ohne_ton.mp4` → `out/higgsfield/video/teil1|2|3_quel
 c44bcd2b-9433-4565-b064-161c7381b21f, Teil 2 3bb9e20e-5b7e-4683-8b6d-0fd9c5b4f1c8, Teil 3 c386f4f4-acae-42f0-8495-0944e4b890b6.
 Preis laut Schätzung 180 Credits je Teil (= Plan). Reihenfolge: Teil 1 → prüfen → Teil 2 → prüfen → Teil 3.
 Referenzen: Teil 1 nur T-Roc, Golf R, Wohnwagen (KEINE Fertig-Fotos); Teil 2 Fotos A/B/C + Wohnwagen + Autos; Teil 3 Fotos C/D + 4 Autos + Wohnwagen
-(Ayman: Wohnwagen-Vorlage immer mitgeben). Job Teil 1: f475adfe-dd0c-498e-81cc-ef9595571228.
+(Ayman: Wohnwagen-Vorlage immer mitgeben). Job Teil 1: f475adfe-dd0c-498e-81cc-ef9595571228 (fertig, geprüft: alle Stufen da, 23,71 s bei 24 fps → beim Zusammensetzen auf 24,0 s strecken). Job Teil 2: fed67b1b-af7c-48ff-b557-835d2071054b.
 
 ### Ayman 24.11. (wichtig)
 - **Nichts überspringen:** Higgsfield darf nicht direkt zum fertigen Gebäude/Standbild springen. Deshalb bekommt **Teil 1 (Bauphase)
