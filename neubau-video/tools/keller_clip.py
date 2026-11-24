@@ -26,6 +26,7 @@ for n in sc.world.node_tree.nodes:
 cd = bpy.data.cameras.new('Keller'); cd.lens = 18; cd.sensor_width = 36
 cam = bpy.data.objects.new('Keller', cd); sc.collection.objects.link(cam); sc.camera = cam
 B = int(arg('breite', 1280))
+sc.render.use_persistent_data = True
 sc.render.engine = 'CYCLES'; sc.cycles.samples = int(arg('samples', 10)); sc.cycles.use_denoising = True
 sc.render.resolution_x, sc.render.resolution_y, sc.render.resolution_percentage = B, B * 9 // 16, 100
 sc.cycles.max_bounces = 8; sc.cycles.transmission_bounces = 12; sc.cycles.transparent_max_bounces = 12
