@@ -520,8 +520,9 @@ for r in range(3):
         _pv_box((xg, yv + 0.15, (H_DACH + 0.12 + Z_UNTEN + 0.1 * sn) / 2), (0.05, 0.05, Z_UNTEN + 0.1 * sn - H_DACH - 0.12), 1)
         _pv_box((xg, yh - 0.15, (H_DACH + 0.12 + zh - 0.1 * sn) / 2), (0.05, 0.05, zh - 0.1 * sn - H_DACH - 0.12), 1)
         _pv_box((xg, (yv + yh) / 2, H_DACH + 0.14), (0.06, yh - yv + 0.2, 0.04), 1)
-        ln = math.hypot(yh - yv - 0.3, zh - Z_UNTEN); ang = math.atan2(zh - Z_UNTEN - 0.15, yh - yv - 0.3)
-        _pv_box((xg, (yv + yh) / 2, (H_DACH + 0.14 + zh) / 2 - 0.05), (0.035, 0.035, ln * 0.9), 1, Matrix.Rotation(-ang + math.pi / 2, 3, 'X'))
+        _p0, _p1 = (yv + 0.15, H_DACH + 0.16), (yh - 0.15, zh - 0.14)       # Strebe: vorn unten → hinten oben (unter dem Modul)
+        ln = math.hypot(_p1[0] - _p0[0], _p1[1] - _p0[1]); ang = math.atan2(_p1[1] - _p0[1], _p1[0] - _p0[0])
+        _pv_box((xg, (_p0[0] + _p1[0]) / 2, (_p0[1] + _p1[1]) / 2), (0.035, 0.035, ln * 0.95), 1, Matrix.Rotation(ang - math.pi / 2, 3, 'X'))
     for t in (0.25, 0.75):
         _pv_box(((x0r + BT - 1.0) / 2, yv + (yh - yv) * t, Z_UNTEN + (zh - Z_UNTEN) * t - 0.05), (BT - 2.0, 0.04, 0.05), 1)
 me_ = bpy.data.meshes.new('PV_Module'); pvb.to_mesh(me_); pvb.free()

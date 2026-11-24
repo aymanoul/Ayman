@@ -12,6 +12,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 bpy.ops.wm.open_mainfile(filepath=os.path.join(HERE, os.environ.get('SAAL_BLEND', 'festsaal.blend')))
 sc = bpy.context.scene
 sc.frame_set(1799)
+for _m in list(sc.timeline_markers):                  # Kamera-Schnittmarken entfernen (würden die Kamera umschalten)
+    sc.timeline_markers.remove(_m)
 behalten = {o.name for o in bpy.data.collections['Festsaal'].all_objects}
 for o in sc.objects:
     if o.name in behalten:
@@ -19,7 +21,7 @@ for o in sc.objects:
     if o.name.startswith(('Keller_Wand', 'Keller_Bodenplatte', 'Kellerdecke')):
         continue
     if o.type in ('LIGHT', 'MESH', 'CURVE', 'EMPTY', 'CURVES', 'POINTCLOUD', 'VOLUME'):
-        o.hide_render = True
+        o.animation_data_clear(); o.hide_render = True
 for o in bpy.data.objects:
     if o.name.startswith('Wohnwagen'):
         o.hide_render = True

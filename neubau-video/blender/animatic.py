@@ -15,9 +15,16 @@ ROOT = os.path.join(HERE, '..')
 arg = lambda n, d: sys.argv[sys.argv.index('--' + n) + 1] if '--' + n in sys.argv else d
 bpy.ops.wm.open_mainfile(filepath=os.path.join(HERE, 'neubau.blend'))
 sc = bpy.context.scene
-sc.camera = bpy.data.objects['Drohne_' + arg('kamera', 'A')]
+WECHSEL = [(int(e.split(':')[0]), e.split(':')[1]) for e in sc.get('kamera_wechsel', '').split(';') if e]   # Schnitte (Ayman 24.11.)
+if not WECHSEL:
+    sc.camera = bpy.data.objects['Drohne_' + arg('kamera', 'A')]
+
+
+def kamera_fuer(fr):
+    if WECHSEL:
+        sc.camera = bpy.data.objects[[n for f, n in WECHSEL if f <= fr][-1]]
 FPS = int(arg('fps', 15)); B = int(arg('breite', 360))
-sc.render.resolution_x, sc.render.resolution_y = B, B * 16 // 9
+sc.render.resolution_x, sc.render.resolution_y = B, B * 9 // 16      # Ayman 24.11.: 16:9 QUERFORMAT
 sc.render.engine = 'CYCLES'; sc.cycles.samples = int(arg('samples', 4)); sc.cycles.use_denoising = True
 sc.render.use_persistent_data = True
 AUS = os.path.join(ROOT, arg('aus', 'out/phase4/anim_A')); os.makedirs(AUS, exist_ok=True)
@@ -33,7 +40,10 @@ for t, nm in zip(zeiten, namen):
     f = os.path.join(AUS, nm + '.png')
     if os.path.exists(f):
         continue
+    if sc.get('keller_von', -1) <= int(round(t * 30)) < sc.get('keller_bis', -1) and not arg('zeiten', ''):
+        continue                                     # Kellerbilder kommen aus tools/keller_clip.py (festsaal.blend)
     sc.frame_set(int(round(t * 30)))
+    kamera_fuer(int(round(t * 30)))
     sc.render.filepath = f
     bpy.ops.render.render(write_still=True)
     k += 1
