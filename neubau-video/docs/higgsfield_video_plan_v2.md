@@ -1,5 +1,12 @@
 # Higgsfield-Video Version 2 – detaillierter Plan (24.11., nach den Fehlern von Teil 1/2)
 
+> **KORREKTUR durch Ayman (24.11., verbindlich):** Das Blender-Video MUSS hochgeladen werden (Kamera, Inhalt, Timing).
+> Die echten Higgsfield-Fotos geben NUR Aussehen/Texturen vor. Der Prompt beschreibt genau, was im Blender-Video passiert.
+> NICHT „von Foto zu Foto“. Modus `omni_reference`: video_references = Blender-Teil, start_image = echtes Foto vom ersten Bild,
+> image_references = echte Fotos des Abschnitts + Autos (von allen Seiten) + Wohnwagen. Flecken an Häusern sind „nicht so schlimm“.
+> Nur Teil 1 gestartet (0–24 s, 168 Credits, Job 8a9a060a-f922-423e-9497-ef02f27e2794); Teil 2 erst nach Aymans Go.
+
+
 **Status: nur Plan – nichts gestartet. Start erst nach Aymans Freigabe.**
 
 ## 1. Was schiefging – und was wir daraus ändern
