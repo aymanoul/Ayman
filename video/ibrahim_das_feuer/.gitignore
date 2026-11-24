@@ -1,0 +1,7 @@
+build/
+out/
+models/
+fonts/
+assets/*
+!assets/.gitkeep
+__pycache__/
