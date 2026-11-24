@@ -10,6 +10,8 @@
 > **Teil 2 V2 (20–48 s, 196 Credits, Job c224f533…)** `out/higgsfield/video/v2_teil2.mp4` (28,04 s): folgt Kamera/Schnitten; Parkplatz jetzt richtig
 > (leer → 7 Wohnwagen, genau 2 schwarze Autos, schwarzer Zaun), Keller groß und warm, Hof gut. Schwächen: Himmel am Eingang orange mit Wolken
 > (Abendstimmung statt klarer Himmel), 15,5–17 s Kamera näher am Altbau als in Blender (folgt dem Foto), Wohnwagen weiter kastenförmig. Guthaben 216,5.
+> **Teil 3 V2 gestartet** (Ayman: „Ja ist okay. Mach Part 3“): 48–72 s, 168 Credits, Job c2f92bde-ed94-4889-a4a4-65d1207b815a; Startbild = echtes Foto 48 s,
+> 6 echte Fotos + alle 4 Autos + Wohnwagen; Himmel klar ohne Sonnenuntergang/Wolken; Kamera streng nach Blender; genau 4 Autos.
 > Für Teil 2/3 in den Prompt: „plain red prayer carpet with thin light lines, no ornaments, no pattern“, Autos genau zählen. Guthaben danach 412,5.
 
 
