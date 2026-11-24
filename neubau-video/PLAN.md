@@ -243,3 +243,7 @@ Deckenleuchten erst mit der Dachplatte (schwebten), PV-Streben korrigiert, ton.p
 (Keller-Clip zuerst, dann animatic, dann Zusammenbau). ~2160 Bilder, geschätzt 12–15 h.
 - **Zweites Portal (Chef/Ayman 24.11.):** genau gleiche Tür ganz links (x 0 … 2,9), alle Portal-Teile kopiert (Name + _L), Glasfront jetzt
   PL … PORTAL_X (2,9 … 17,1). Bild `out/chef/13_zwei_eingaenge.jpg`. Video-Render danach neu gestartet.
+- **Höhe alte Moschee (Chef/Ayman 24.11.):** Das linke Nachbarhaus ist die ALTE MOSCHEE; ihr Frauenbereich im 1. OG wird später mit dem neuen
+  Frauenbereich verbunden → Geschosse müssen passen. Altbau-Zeile jetzt: EG 0–5,95 (= Oberkante neuer Männerbereich/Fußboden neuer Frauenbereich),
+  1. OG 5,95–9,15, 2. OG 9,15–12,35, Traufe ~12,6, First ~17,2 (`ALT_EBENEN` in umgebung.py). Neubau bleibt (Attika 10 m) → deutlich niedriger als
+  der Altbau, wie im Vorbild. Bilder `out/chef/14_hoehe_altbau.jpg`, `15_hoehe_altbau_oben.jpg`. Video-Render neu gestartet.

@@ -581,16 +581,20 @@ def altbau(name, x0, y0, x1, y1, zt, zf, wand, seiten, gauben=(), kamine=(), c='
     quader(name, x0, y0, 0, x1, y1, zt, wand, c)
     quader(name + '_Sockel', x0 - 0.06, y0 - 0.06, 0, x1 + 0.06, y1 + 0.06, 0.75, M['sockel'], c)
     quader(name + '_Gesims', x0 - 0.18, y0 - 0.18, zt - 0.35, x1 + 0.18, y1 + 0.18, zt, M['gesims'], c)
-    for zz in [1.0 + k * 3.2 + 3.0 for k in range(int((zt - 4) // 3.2))]:
-        quader(name + f'_Band{int(zz*10)}', x0 - 0.05, y0 - 0.05, zz, x1 + 0.05, y1 + 0.05, zz + 0.16, M['gesims'], c)
+    # Geschosse (Chef/Ayman 24.11.): alte Moschee – hohes EG bis 5,95 m (= Fußboden des neuen Frauenbereichs, wird später verbunden),
+    # 1. OG 5,95 … 9,15, 2. OG 9,15 … 12,35
+    for zz in ALT_EBENEN[1:]:
+        quader(name + f'_Band{int(zz*10)}', x0 - 0.05, y0 - 0.05, zz - 0.08, x1 + 0.05, y1 + 0.05, zz + 0.08, M['gesims'], c)
     satteldach(name + '_Dach', x0, y0, x1, y1, zt, zf, 'y', M['schiefer'], 0.45, c, giebel=wand)
-    zs = [1.25 + k * 3.2 for k in range(int((zt - 1.5) // 3.2))]
+    zs = [e + 1.0 for e in ALT_EBENEN[1:]]                  # Brüstung der Obergeschoss-Fenster
+    zs_eg = [1.3]                                            # hohe Fenster im Erdgeschoss
     baenke = []
     for seite, us in seiten.items():
         ebene = {'+x': x1, '-x': x0, '+y': y1, '-y': y0}[seite]
         fenster(f'{name}_F{seite}', seite, ebene, us, zs, 1.05, 1.6, c=c)
+        fenster(f'{name}_F{seite}_EG', seite, ebene, us, zs_eg, 1.05, 2.7, c=c)
         for u in us:
-            for z in zs:
+            for z in zs + zs_eg:
                 if seite in ('+x', '-x'):
                     e = ebene + (0.0 if seite == '+x' else -0.16)
                     baenke.append((e, u - 0.68, z - 0.16, e + 0.16, u + 0.68, z - 0.04))
@@ -641,17 +645,19 @@ def dachfenster_y(name, x_trauf, x_first, zt, zf, ys, rels, mat, w=0.9, l=1.1, c
 # ------------------------------------------------------------------ links: schmale lange Häuserzeile (Ayman 23.11., Bild von oben):
 # ca. 7 m breit, Giebel zur Gasse, 3 Geschosse, mehrere Dachabschnitte mit kleinen Dachfenstern zur Moschee hin
 HX0, HX1 = -7.6, -0.4
-ZEILE = [('Altbau_vorn', 0.3, 9.5, 9.4, 12.5, M['putz_alt']), ('Altbau_2', 9.5, 18.0, 9.0, 12.1, M['putz_alt2']),
-         ('Altbau_3', 18.0, 26.5, 9.6, 12.7, M['putz_alt']), ('Altbau_4', 26.5, 35.0, 9.1, 12.2, M['putz_alt2'])]
+ALT_EBENEN = [0.0, 5.95, 9.15]          # Chef/Ayman 24.11.: 1. OG der alten Moschee auf Höhe des neuen Frauenbereichs (5,95 m)
+ZEILE = [('Altbau_vorn', 0.3, 9.5, 12.6, 17.2, M['putz_alt']), ('Altbau_2', 9.5, 18.0, 12.4, 16.9, M['putz_alt2']),
+         ('Altbau_3', 18.0, 26.5, 12.8, 17.4, M['putz_alt']), ('Altbau_4', 26.5, 35.0, 12.5, 17.0, M['putz_alt2'])]
 for i, (n, y0, y1, zt, zf, mat) in enumerate(ZEILE):
     us = [y0 + 1.4 + k * 2.0 for k in range(int((y1 - y0 - 1.0) // 2.0))]
     altbau(n, HX0, y0, HX1, y1, zt, zf, mat, {'+x': us, '-x': us[::2]}, kamine=[(-2.2, y0 + 1.2)] if i % 2 == 0 else [(-5.6, y1 - 1.2)])
     dachfenster_y(n + '_Dachfenster', HX1 + 0.45, (HX0 + HX1) / 2, zt, zf, [y0 + (y1 - y0) * 0.5], [0.35], M['dachfenster'], 0.8, 1.0)
 # Vorderseite (Giebel zur Gasse): 3 Fensterachsen, Haustür mit Rundbogen, zwei Laternen
-fenster('Altbau_vorn_F_vorn_OG', '-y', 0.3, [-6.0, -4.0, -2.0], [4.45, 7.65], 1.05, 1.6, c='Links')
-fenster('Altbau_vorn_F_vorn_EG', '-y', 0.3, [-6.0, -2.0], [1.25], 1.05, 1.6, c='Links')
-fenster('Altbau_vorn_F_Giebel', '-y', 0.3, [-4.0], [10.0], 0.9, 1.2, c='Links')
-quader('Altbau_vorn_Tuer', -4.6, 0.24, 0.3, -3.4, 0.3, 2.6, M['tuer_holz'], 'Links')
+fenster('Altbau_vorn_F_vorn_OG', '-y', 0.3, [-6.0, -4.0, -2.0], [6.95, 10.15], 1.05, 1.6, c='Links')
+fenster('Altbau_vorn_F_vorn_EG', '-y', 0.3, [-6.0, -2.0], [1.3], 1.05, 2.7, c='Links')
+fenster('Altbau_vorn_F_vorn_EG_oben', '-y', 0.3, [-4.0], [3.6], 1.05, 1.4, c='Links')
+fenster('Altbau_vorn_F_Giebel', '-y', 0.3, [-4.0], [13.4], 0.9, 1.2, c='Links')
+quader('Altbau_vorn_Tuer', -4.6, 0.24, 0.3, -3.4, 0.3, 2.9, M['tuer_holz'], 'Links')
 quader('Altbau_vorn_Stufe', -4.9, -0.3, 0, -3.1, 0.3, 0.3, M['sockel'], 'Links')
 for i, x in enumerate((-5.0, -3.0)):
     quader(f'Altbau_vorn_Laterne{i}', x - 0.15, 0.12, 2.1, x + 0.15, 0.3, 2.5, M['lampe'], 'Links')
