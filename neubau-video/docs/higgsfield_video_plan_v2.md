@@ -12,6 +12,11 @@
 > (Abendstimmung statt klarer Himmel), 15,5–17 s Kamera näher am Altbau als in Blender (folgt dem Foto), Wohnwagen weiter kastenförmig. Guthaben 216,5.
 > **Teil 3 V2 gestartet** (Ayman: „Ja ist okay. Mach Part 3“): 48–72 s, 168 Credits, Job c2f92bde-ed94-4889-a4a4-65d1207b815a; Startbild = echtes Foto 48 s,
 > 6 echte Fotos + alle 4 Autos + Wohnwagen; Himmel klar ohne Sonnenuntergang/Wolken; Kamera streng nach Blender; genau 4 Autos.
+> **Teil 3 V2 fertig** (`v2_teil3.mp4`, 24,04 s): folgt Blender genau (Hof Sitzhöhe → Glaswand → von oben → Parkplatz-Eck; Audi A3 und Mercedes A parken
+> ein, T-Roc/Golf R mit Logos, Kennzeichen leer; Schluss hoch), klarer Himmel. Schwäche: über dem Hof oben rechts ein dunkles Lamellendach (aus dem Foto 48 s).
+> **ZUSAMMENGESETZT** (Claude, 24.11.): Teil 1 0–20 s + Teil 2 0–28 s + Teil 3 0–24 s → `out/neubau_echt_1080p.mp4` (1920×1080, 24 fps, 72,0 s, ohne Ton,
+> Lanczos + leichtes Schärfen) und `out/neubau_echt_720p.mp4`. Naht bei 20 s nahtlos, 48 s harter Schnitt wie im Blender-Video. Higgsfield gesamt V2:
+> 168 + 196 + 168 = 532 Credits (+ 48 Fotos); Guthaben danach 48,5.
 > Für Teil 2/3 in den Prompt: „plain red prayer carpet with thin light lines, no ornaments, no pattern“, Autos genau zählen. Guthaben danach 412,5.
 
 
