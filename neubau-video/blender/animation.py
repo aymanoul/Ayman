@@ -343,7 +343,13 @@ def einparken(name, t0, t1, x_start=58.0):
         weg += [Vector((xg, E.y - 3.2))]
         weg += _bezier(Vector((xg, E.y - 3.2)), Vector((xg, E.y - 1.6)), E - U * 0.9, E + U * 0.6)[1:]
     else:
-        # vorderster Platz: direkt aus der Gasse in einem Bogen einparken (vorher fuhr das Auto kurz rueckwaerts)
+        # vorderster Platz: direkt aus der Gasse in einem Bogen einparken (vorher fuhr das Auto kurz rueckwaerts).
+        # Auf der Geraden bis x = 33 faehrt es zeitlich exakt wie frueher (alte Bilder bleiben gueltig).
+        alt = [Vector((x_start, yl)), Vector((31.6, yl))]
+        alt += _bezier(Vector((31.6, yl)), Vector((29.2, yl)), Vector((xg, -0.6)), Vector((xg, 1.4)))[1:]
+        alt += [Vector((xg, E.y - 3.2))]
+        alt += _bezier(Vector((xg, E.y - 3.2)), Vector((xg, E.y - 1.6)), E - U * 0.9, E + U * 0.6)[1:] + [ziel]
+        L_alt = sum((a_ - b_).length for a_, b_ in zip(alt, alt[1:]))
         weg = [Vector((x_start, yl)), Vector((33.0, yl))]
         weg += _bezier(Vector((33.0, yl)), Vector((29.0, yl)), E - U * 2.6, E + U * 0.6)[1:]
     weg += [ziel]
@@ -357,9 +363,25 @@ def einparken(name, t0, t1, x_start=58.0):
         sl.append(sl[-1] + (a_ - b_).length)
     Lw = sl[-1]; T = t1 - t0; v0 = 8.0
 
-    def s_von(tau):                                                           # Hermite: Startgeschwindigkeit v0, Ende steht
+    def s_herm(tau, L):                                                       # Hermite: Startgeschwindigkeit v0, Ende steht
         h10 = tau ** 3 - 2 * tau ** 2 + tau; h01 = -2 * tau ** 3 + 3 * tau ** 2
-        return h10 * v0 * T + h01 * Lw
+        return h10 * v0 * T + h01 * L
+
+    if E.y - 3.2 > 1.9:
+        s_von = lambda tau: s_herm(tau, Lw)
+    else:
+        S_GER = x_start - 33.0 - 0.5                                          # gemeinsamer gerader Teil
+        tc = 0.0
+        while s_herm(tc + 1e-3, L_alt) < S_GER:
+            tc += 1e-3
+        sc_ = s_herm(tc, L_alt); vc = (s_herm(tc + 1e-4, L_alt) - sc_) / 1e-4
+        def s_von(tau):
+            if tau <= tc:
+                return s_herm(tau, L_alt)
+            u = (tau - tc) / (1 - tc); m0 = vc * (1 - tc)
+            h00 = 2 * u ** 3 - 3 * u ** 2 + 1; h10 = u ** 3 - 2 * u ** 2 + u; h01 = -2 * u ** 3 + 3 * u ** 2
+            return h00 * sc_ + h10 * m0 + h01 * Lw
+        print('einparken', name, 'gleich wie alt bis', round(t0 + tc * T, 3), 's')
 
     def bei(sv):
         sv = max(0.0, min(Lw, sv)); k = 0
