@@ -60,10 +60,19 @@ Die 4 Bilder vom 20.11. (`out/higgsfield/echt/*`) werden NICHT mehr benutzt: alt
 **Gesamt 548 von max. 550 Credits.** Preise vom letzten Stand (Seedance 7,5 Credits/s bei 720p, max. 30 s je Auftrag; Nano Banana 2 Credits/Bild) –
 direkt vor dem Start mit der Higgsfield-Kostenschätzung neu prüfen. Ein misslungener Teil neu = +180 Credits → über Budget → nur mit Aymans Freigabe.
 
+### Autos (Ayman 24.11.): so wie in seinen Vorlagen – Logos und Schriftzüge BLEIBEN
+Weiß = **Audi A3 Sportback** (`assets/autos/auto_weiss_audi_a3.png`), schwarzer SUV = **VW T-Roc** (`auto_schwarz_suv_vw_t_roc.png`),
+grau = **Mercedes A-Klasse** (`auto_grau_mercedes_a_klasse.png`), schwarz sportlich = **VW Golf R** (`auto_schwarz_sport_vw_golf_r.png`).
+Reihenfolge von der Gasse: Audi (parkt ein), T-Roc (steht), Mercedes (parkt ein), Golf R (steht). Marken-Logos und Modell-Schriftzüge
+wie in den Vorlagen; **Kennzeichen bleiben leer** (in den Vorlagen grau); sonst nirgends Text. Die 4 Vorlagen werden zusätzlich als
+Bild-Referenz hochgeladen (Foto D und Video-Teil 3, in Teil 1 die zwei schwarzen). Vor dem Start prüfen, wie viele Bild-Referenzen
+Seedance je Auftrag annimmt; falls zu wenige: Auto-Vorlagen haben Vorrang vor den Look-Fotos, die nichts mit dem Teil zu tun haben.
+
 ### Was hochgeladen wird (sonst nichts – keine fremden Bilder)
 - Schritt 1: je Foto genau 1 Blender-Standbild aus Schritt 0 (Vorlage für Form und Bildausschnitt).
 - Schritt 2 je Teil: `video_references` = der 24-s-Ausschnitt aus unserem fertigen Video `out/neubau_drohne.mp4` (ohne Ton);
-  `image_references` = die 4 von Ayman freigegebenen Fotos aus Schritt 1, **nur als Look-Vorlage** (Materialien, Licht).
+  `image_references` = die 4 von Ayman freigegebenen Fotos aus Schritt 1, **nur als Look-Vorlage** (Materialien, Licht),
+  plus die Auto-Vorlagen von Ayman (`assets/autos/auto_*_{audi_a3,vw_t_roc,mercedes_a_klasse,vw_golf_r}.png`) für die Autos.
 
 ### Schutz gegen Dazudichten / Umdeuten / Weglassen
 1. **Video-Edit statt Neu-Erfinden:** Kamera, Formen, Positionen und Timing kommen 1:1 aus unserem Video.
@@ -72,7 +81,7 @@ direkt vor dem Start mit der Higgsfield-Kostenschätzung neu prüfen. Ein misslu
 4. **Bauphase ausdrücklich beschrieben** (Teil 1), damit das fertige Gebäude nicht zu früh erscheint.
 5. **Probe mit den 4 Fotos** (8 Credits) vor dem teuren Video; letztes Mal hat Higgsfield 2 Überwachungskameras erfunden → jetzt ausdrücklich verboten.
 6. **Kontrolle nach jedem Teil** (Kontaktbogen + Ausschnitte vergrößert, Vergleich mit dem Blender-Video Bild für Bild). Bei Fehlern: Prompt für die nächsten Teile schärfen.
-7. **Kennzeichen** sind im Modell leer. Erfindet Higgsfield trotzdem Zeichen → Claude macht sie unkenntlich oder ersetzt die Stelle durch das Blender-Bild. Kein KI-Text im Endvideo.
+7. **Autos:** sehen aus wie in Aymans 4 Vorlagen, Logos und Schriftzüge bleiben (Ayman 24.11.). **Kennzeichen** sind im Modell leer. Erfindet Higgsfield trotzdem Zeichen → Claude macht sie unkenntlich oder ersetzt die Stelle durch das Blender-Bild. Kein KI-Text im Endvideo.
 Ehrlich: 100 % Garantie gibt es bei KI nicht; Kleinigkeiten (Zahl der Stühle, Fensterteilung) können leicht abweichen → deshalb Probe + Kontrolle.
 
 ### Prompts Schritt 1 (Fotos) – gemeinsamer Teil
@@ -81,7 +90,8 @@ Ehrlich: 100 % Garantie gibt es bei KI nicht; Kleinigkeiten (Zahl der Stühle, F
 > position, same colour. Do not add, remove or reinterpret anything. Change only materials, lighting and realism: real
 > textures, natural late-afternoon light, soft realistic shadows and reflections, realistic sky, sharp detail, full-frame camera.
 > Strictly no people, no faces, no animals, no text, no letters, no numbers, no calligraphy, no signs, no logos, no brand
-> badges, no watermark, no characters on licence plates (plates stay blank), no surveillance cameras, no domes, no minarets,
+> badges (except on the four cars, which keep the logos and lettering of their reference images), no watermark, no characters
+> on licence plates (plates stay blank), no surveillance cameras, no domes, no minarets,
 > no flags, no extra lamps, plants, cars or buildings.
 
 Zusatz je Bild: (A) „New mosque façade between an old cream-plastered house (left) and a warehouse: two identical portals of light
@@ -91,7 +101,7 @@ cove lighting and ring pendants, white columns with dark brown wood cladding, da
 white tablecloths and dark brown runners, upholstered dark wooden chairs, a silver Moroccan teapot with coloured tea glasses on
 each table.“ (C) „Private courtyard: teak tables and armchairs, lounge, black lanterns, white octagonal umbrellas, olive trees in
 light-grey planters, thujas, warm wall lights, large glass wall into the prayer hall with red carpet.“ (D) „Parking next to the
-mosque: four generic cars without badges (white car, black SUV, grey compact car, black sports car), seven plain white caravans, black
+mosque: four cars exactly as in the car reference images, including their original brand logos and model lettering: a white Audi A3 Sportback, a black VW T-Roc, a grey Mercedes-Benz A-Class and a black VW Golf R; licence plates blank, seven plain white caravans, black
 three-leaf sliding gate, thujas and lights along the walls.“
 
 ### Prompt Schritt 2 (Video) – gemeinsamer Teil (an jeden Teil angehängt)
@@ -110,7 +120,8 @@ three-leaf sliding gate, thujas and lights along the walls.“
 > warehouse with grey slate roof and roof windows; small annex with orange clay tiles; elevated motorway with green noise
 > barrier; dark asphalt with white lines.
 > Strictly forbidden: people, faces, figures, animals, birds; any text, letters, numbers, calligraphy, inscriptions, signs,
-> logos, brand badges, watermarks or characters on licence plates (plates stay completely blank); domes, minarets, crescents,
+> logos, brand badges or watermarks – EXCEPT on the four cars, which must look exactly like their car reference images including
+> their original brand logos and model lettering; licence plates stay completely blank; domes, minarets, crescents,
 > flags, surveillance cameras, satellite dishes, antennas; extra lamps, plants, vehicles or buildings. No sound, no music.
 
 **Teil 1 (0–24 s, eine durchgehende Drohnenfahrt):**
@@ -118,7 +129,8 @@ three-leaf sliding gate, thujas and lights along the walls.“
 > construction timelapse: excavation pit with timber shoring, basement concrete walls and columns, ground-floor slab, glass
 > façade, the two stone portals (far left and far right of the façade), upper floor, flat roof, green roof with rows of tilted
 > dark-blue solar panels; a white retractable fabric roof over the courtyard appears complete (it is not built), slides closed
-> and opens again; the seven white caravans and two black cars are gently set down onto their spaces (they are not built); at the end the lights switch on. Every part
+> and opens again; the seven white caravans and two black cars (a black VW T-Roc and a black VW Golf R as in their reference images) are gently set
+> down onto their spaces (they are not built); at the end the lights switch on. Every part
 > appears exactly when it appears in the source – never show the finished building earlier.
 
 **Teil 2 (24–48 s):**
@@ -135,9 +147,10 @@ three-leaf sliding gate, thujas and lights along the walls.“
 > lanterns, white octagonal umbrellas, olive trees in light-grey square planters, thujas and box balls along light rendered
 > walls with warm wall lights, light stone paving; it ends looking through the large glass wall into the prayer hall (red
 > carpet, mihrab arch). 6.5–13 s: the camera rises vertically out of the courtyard and glides to the rear corner of the parking
-> area. 11.4–16.8 s: a white car drives in from the lane and parks forwards in the first space next to the glass side wall;
-> 13.4–19.2 s: a grey compact car parks in the third space; a black SUV and a black sports car are already parked; all four cars are
-> generic, without badges, with blank plates. 18.5–24 s: the camera lifts; the black three-leaf sliding gate in front of the
+> area. 11.4–16.8 s: a white Audi A3 Sportback drives in from the lane and parks forwards in the first space next to the glass side wall;
+> 13.4–19.2 s: a grey Mercedes-Benz A-Class parks in the third space; a black VW T-Roc (second space) and a black VW Golf R (fourth space)
+> are already parked; all four cars look exactly like their car reference images, with their original logos and lettering and
+> blank licence plates. 18.5–24 s: the camera lifts; the black three-leaf sliding gate in front of the
 > seven white caravans opens and closes again while a small warning light flashes; final high oblique view over the whole plot.
 
 ## (ÜBERHOLT) Alter Video-Plan vom 20.11. – 9:16, 60 s – gilt NICHT mehr, siehe neuer Plan oben
