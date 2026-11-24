@@ -247,3 +247,13 @@ Deckenleuchten erst mit der Dachplatte (schwebten), PV-Streben korrigiert, ton.p
   Frauenbereich verbunden → Geschosse müssen passen. Altbau-Zeile jetzt: EG 0–5,95 (= Oberkante neuer Männerbereich/Fußboden neuer Frauenbereich),
   1. OG 5,95–9,15, 2. OG 9,15–12,35, Traufe ~12,6, First ~17,2 (`ALT_EBENEN` in umgebung.py). Neubau bleibt (Attika 10 m) → deutlich niedriger als
   der Altbau, wie im Vorbild. Bilder `out/chef/14_hoehe_altbau.jpg`, `15_hoehe_altbau_oben.jpg`. Video-Render neu gestartet.
+- **ENDFASSUNG FERTIG (24.11., 19:30):** `out/neubau_drohne.mp4` (1920×1080, 30 fps, 72,0 s, −14,3 LUFS) + `out/neubau_drohne_vorschau_720p.mp4`.
+  Geprüft: Kontaktbogen ohne Text/Logos, keine schwebenden Blöcke, Schnitte 24/29,5/35,5/48 s, Hofdach fährt nur, Autos parken, Tor, 2 Portale.
+  Nächster Schritt: Aymans Rückmeldung bzw. Go seines Chefs → erst dann Higgsfield (Kosten vorher nennen).
+- **Standbilder Schnitt/Stufen (24.11., nur Bilder, Video-Modell unverändert):** `blender/schnitt_bild.py` (Geländeaufschnitt vor der Front,
+  Erdschichten, Fundamente, Glasgeländer) und `blender/stufen_bild.py` (gestaffelte Explosionsansicht: Keller vorn unten → EG → OG → Dach hinten
+  oben, Decken gehören zur nächsten Ebene, OG ohne Glas, Keller ohne Vorder-/rechte Wand). Ergebnisse `out/schnitt/stufen_gesamt.jpg`,
+  `stufen_keller_nah.jpg`. Higgsfield-Überarbeitung nur auf Aymans Kommando.
+- **Kurzvideo 9:16 mit MoneyPrinterTurbo (Test, 24.11.):** Repo nach `/home/user/harry0703/moneyprinterturbo` (venv), `mpt/` hier: eigene Clips aus
+  unseren Renderings (`clips.py`), Sprecher Piper „Thorsten“ offline (`tts.py`, Edge-TTS durfte nicht genutzt werden), exakte Untertitel
+  (`montage_ton.py`), Start `mpt/mpt_lauf.py`, ohne Musik. Vorschau `out/neubau_kurzvideo_vorschau.mp4` (Ende = Platzhalter). Ayman: „nur ausgetestet“.
