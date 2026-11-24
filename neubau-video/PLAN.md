@@ -241,3 +241,5 @@ Ablauf (Schnitte bei 24 s und 48 s = Higgsfield-Teilgrenzen):
 Neu gebaut: Kameras mit Brennweiten-Animation, Zeitmarken-Schnitte (`kamera_wechsel` in der Szene, animatic.py schaltet je Bild),
 Deckenleuchten erst mit der Dachplatte (schwebten), PV-Streben korrigiert, ton.py 72 s. Rendern: `sh tools/endfassung_weiter.sh`
 (Keller-Clip zuerst, dann animatic, dann Zusammenbau). ~2160 Bilder, geschätzt 12–15 h.
+- **Zweites Portal (Chef/Ayman 24.11.):** genau gleiche Tür ganz links (x 0 … 2,9), alle Portal-Teile kopiert (Name + _L), Glasfront jetzt
+  PL … PORTAL_X (2,9 … 17,1). Bild `out/chef/13_zwei_eingaenge.jpg`. Video-Render danach neu gestartet.

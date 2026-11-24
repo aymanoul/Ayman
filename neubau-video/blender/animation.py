@@ -235,6 +235,7 @@ gruppe(['EG_Glas_hinten', 'EG_Pfosten_hinten'], 16.0, 18.8, X, 3)
 gruppe(['EG_Glas_rechts', 'EG_Pfosten_rechts'], 15.8, 18.4, Y, 3)
 gruppe(['Portal_Pfeiler*', 'Portal_Sturz', 'Portal_Glastuer', 'Portal_Feld_oben', 'Portal_Zwickel*', 'Portal_Sprossen', 'Portal_Bogen*',
         'Portal_Schlussstein', 'Portal_Tuergriffe', 'Portal_Wandleuchten*'], 16.6, 19.6, Z, 3)
+gruppe(['Portal_Sturz_L', 'Portal_Glastuer_L', 'Portal_Feld_oben_L', 'Portal_Sprossen_L', 'Portal_Schlussstein_L', 'Portal_Tuergriffe_L'], 16.6, 19.6, Z, 3)   # zweites Portal links
 gruppe(['EG_Teppich', 'Mihrab*', 'Minbar*', 'Innen_Regal*'], 17.0, 18.8, X, 3)
 gruppe('Innen_Ringleuchte*', 18.4, 19.6, Z, 3, 0.1)
 gruppe(['Innen2_*'], 17.4, 19.4, Z, 3, 0.02)
@@ -273,7 +274,7 @@ for o in obs('Hofdach_*'):
         o.hide_render = False; o.keyframe_insert('hide_render', frame=FN(18.6))
 for t, v in ((0, 1.0), (18.9, 1.0), (19.8, 0.0), (20.1, 0.0), (21.0, 1.0)):
     sch['offen'] = v; sch.keyframe_insert('["offen"]', frame=FN(t))
-gruppe(['Portal_Stufen', 'Portal_Kuebel*', 'Portal_Zypresse*'], 30.2, 31.2, Z, 6)
+gruppe(['Portal_Stufen', 'Portal_Stufen_L', 'Portal_Kuebel*', 'Portal_Zypresse*'], 30.2, 31.2, Z, 6)
 gruppe(['Parken_Kuebel*', 'Parken_Thuja*'], 41.6, 42.4, Z, 6)
 aufbau(bpy.data.objects['Parken_Belag'], 40.8, 41.6, X, stufe=6)
 aufbau(bpy.data.objects['Wohnwagen_Belag'], 41.0, 41.8, X, stufe=6)

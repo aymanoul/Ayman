@@ -26,7 +26,8 @@ L, BT, TT, LT = 50.0, 20.0, 29.0, 12.3      # Ayman/Chef 23.11.: Moschee 20 m st
 X = lambda v: v * BT / 16.5                  # Innenpositionen, ursprünglich für 16,5 m geplant
 VOR, MT = 0.3, 12.0                      # Ayman 23.11.: Front bündig mit den Nachbarhäusern (kein Vorplatz)
 Y0, Y1 = VOR, VOR + MT                  # Moschee: y 0,3 … 12,3
-PORTAL_X = BT - 2.9                     # Portal am rechten Ende: x 13,6 … 16,5
+PORTAL_X = BT - 2.9                     # Portal am rechten Ende: x 17,1 … 20
+PL = BT - PORTAL_X                      # Chef/Ayman 24.11.: zweites, gleiches Portal ganz links (x 0 … 2,9) – Glasfront dazwischen
 PK, TOR = BT + 9.0, L - 6.0
 HX0 = BT - 16.43                        # Ayman 23.11.: Hof (und Keller darunter) nur 16,43 m breit, rechtsbündig; links davon Fläche des Nachbarn
 H_EG, H_DECKE, H_OG, H_DACH, H_ATTIKA = 5.5, 5.95, 8.7, 9.2, 10.0
@@ -367,11 +368,11 @@ viele_quader('EG_Pfosten_rechts', [(BT - 0.16, y - 0.05, 0.15, BT, y + 0.05, H_E
              + [(BT - 0.14, _ry[0], z - 0.04, BT, _ry[-1], z + 0.04) for z in (0.2, 2.8)], M['pfosten'], 'S3_EG')
 # Glasfassade EG (x 0 … PORTAL_X), Pfosten alle ~1,5 m, Riegel bei 2,8 m
 N_F = 11
-fx = [i * PORTAL_X / N_F for i in range(N_F + 1)]
+fx = [PL + i * (PORTAL_X - PL) / N_F for i in range(N_F + 1)]
 flaeche_v = lambda name, x0, x1, y, z0, z1, mat, c: mesh(name, [(x0, y, z0), (x1, y, z0), (x1, y, z1), (x0, y, z1)], [(0, 1, 2, 3)], mat, c)
-flaeche_v('EG_Glas', 0.05, PORTAL_X, Y0 + 0.07, 0.15, H_EG, M['glas'], 'S3_EG')
-pf = [(x - 0.05, Y0, 0.15, x + 0.05, Y0 + 0.16, H_EG) for x in fx[1:-1]] + [(0, Y0, 0.15, 0.12, Y0 + 0.16, H_EG)]
-pf += [(0, Y0, z - 0.04, PORTAL_X, Y0 + 0.14, z + 0.04) for z in (0.2, 2.8)]
+flaeche_v('EG_Glas', PL, PORTAL_X, Y0 + 0.07, 0.15, H_EG, M['glas'], 'S3_EG')
+pf = [(x - 0.05, Y0, 0.15, x + 0.05, Y0 + 0.16, H_EG) for x in fx[1:-1]]
+pf += [(PL, Y0, z - 0.04, PORTAL_X, Y0 + 0.14, z + 0.04) for z in (0.2, 2.8)]
 viele_quader('EG_Pfosten', pf, M['pfosten'], 'S3_EG')
 # Portal (Ayman 23.11., Vorlage assets/eingang_vorlage_ayman.jpg): heller Sandstein-Block, RUNDBOGEN mit Bogenrahmen,
 # dunkel gerahmte Glas-Doppeltür, Oberlicht, Bogenfenster mit Sprossen; Wandleuchten (Licht nach oben/unten)
@@ -460,14 +461,14 @@ for i, z in enumerate((3.0, 7.5)):
 
 # ------------------------------------------------------------------ S4: Geschossdecke + 1. Etage (Frauen)
 quader('Geschossdecke', 0, Y0, H_EG, BT, Y1, H_DECKE, M['beton_roh'], 'S4_OG')
-quader('Geschossband', -0.02, Y0 - 0.04, H_EG, PORTAL_X + 0.1, Y0 + 0.2, H_DECKE, M['band'], 'S4_OG')
+quader('Geschossband', PL - 0.1, Y0 - 0.04, H_EG, PORTAL_X + 0.1, Y0 + 0.2, H_DECKE, M['band'], 'S4_OG')
 quader('OG_Wand_links', 0, Y0, H_DECKE, 0.3, Y1, H_OG, M['putz'], 'S4_OG')
 quader('OG_Wand_hinten', 0.3, Y1 - 0.3, H_DECKE, BT, Y1, H_OG, M['putz'], 'S4_OG')
 mesh('OG_Glas_rechts', [(BT - 0.07, _ry[0], H_DECKE), (BT - 0.07, _ry[-1], H_DECKE), (BT - 0.07, _ry[-1], H_OG), (BT - 0.07, _ry[0], H_OG)], [(0, 1, 2, 3)], M['glas'], 'S4_OG')
 viele_quader('OG_Pfosten_rechts', [(BT - 0.16, y - 0.05, H_DECKE, BT, y + 0.05, H_OG) for y in _ry], M['pfosten'], 'S4_OG')
 quader('Geschossband_rechts', BT - 0.2, Y0 + 0.6, H_EG, BT + 0.02, Y1, H_DECKE, M['band'], 'S4_OG')
-flaeche_v('OG_Glas', 0.05, PORTAL_X, Y0 + 0.07, H_DECKE, H_OG, M['glas'], 'S4_OG')
-pf = [(x - 0.05, Y0, H_DECKE, x + 0.05, Y0 + 0.16, H_OG) for x in fx[1:-1]] + [(0, Y0, H_DECKE, 0.12, Y0 + 0.16, H_OG)]
+flaeche_v('OG_Glas', PL, PORTAL_X, Y0 + 0.07, H_DECKE, H_OG, M['glas'], 'S4_OG')
+pf = [(x - 0.05, Y0, H_DECKE, x + 0.05, Y0 + 0.16, H_OG) for x in fx[1:-1]]
 viele_quader('OG_Pfosten', pf, M['pfosten'], 'S4_OG')
 flaeche('OG_Teppich', [(0.3, Y0 + 0.2), (BT - 0.3, Y0 + 0.2), (BT - 0.3, Y1 - 0.3), (0.3, Y1 - 0.3)], H_DECKE + 0.01, M['teppich'], 'Innen')
 for i, (x, y) in enumerate(((BT / 2, (Y0 + Y1) / 2),)):     # wie EG: nur die Mittelstütze frei
@@ -980,13 +981,13 @@ dv.expression = f'-{F_LEN - UEB:.3f} * offen'                 # schiebt sich hin
 # ------------------------------------------------------------------ Details (Ayman 19.11.: „viel zu wenig Details“)
 granit = farbe('Granit_Sockel', '#3A3C40', 0.4, 0, 0.08, 6)
 # Fassade: dunkler Sockel, außen liegende Lisenen vor den Pfosten, LED-Linie unter dem Geschossband und unter der Attika
-viele_quader('Fassade_Sockel', [(0.0, Y0 - 0.06, 0.0, PORTAL_X, Y0 + 0.02, 0.38)], granit, 'S3_EG')
+viele_quader('Fassade_Sockel', [(PL, Y0 - 0.06, 0.0, PORTAL_X, Y0 + 0.02, 0.38)], granit, 'S3_EG')
 viele_quader('Fassade_Lisenen_EG', [(x - 0.035, Y0 - 0.2, 0.38, x + 0.035, Y0 + 0.0, H_EG) for x in fx[1:-1]], M['pfosten'], 'S3_EG')
 viele_quader('Fassade_Lisenen_OG', [(x - 0.035, Y0 - 0.2, H_DECKE, x + 0.035, Y0 + 0.0, H_OG) for x in fx[1:-1]], M['pfosten'], 'S4_OG')
-viele_quader('LED_Geschossband', [(0.0, Y0 - 0.07, H_EG - 0.04, PORTAL_X, Y0 - 0.03, H_EG + 0.0)], M['wandleuchte'], 'S4_OG')
+viele_quader('LED_Geschossband', [(PL, Y0 - 0.07, H_EG - 0.04, PORTAL_X, Y0 - 0.03, H_EG + 0.0)], M['wandleuchte'], 'S4_OG')
 viele_quader('Attika_Abdeckung', [(-0.05, Y0 - 0.1, H_ATTIKA - 0.01, BT + 0.05, Y0 + 0.35, H_ATTIKA + 0.07), (-0.05, Y1 - 0.35, H_ATTIKA - 0.01, BT + 0.05, Y1 + 0.05, H_ATTIKA + 0.07),
                                     (-0.05, Y0 + 0.35, H_ATTIKA - 0.01, 0.35, Y1 - 0.35, H_ATTIKA + 0.07), (BT - 0.35, Y0 + 0.35, H_ATTIKA - 0.01, BT + 0.05, Y1 - 0.35, H_ATTIKA + 0.07)], M['pv_rahmen'], 'S5_Dach')
-viele_quader('LED_Attika', [(0.0, Y0 - 0.08, H_OG - 0.02, PORTAL_X, Y0 - 0.04, H_OG + 0.02)], M['wandleuchte'], 'S5_Dach')
+viele_quader('LED_Attika', [(PL, Y0 - 0.08, H_OG - 0.02, PORTAL_X, Y0 - 0.04, H_OG + 0.02)], M['wandleuchte'], 'S5_Dach')
 # Portal: Bogenrahmen aus Sandstein (vorstehend) mit Schlussstein, Wandleuchten (Licht nach oben/unten), zwei Stufen,
 # Kegel-Thujen in hellen Betonkübeln (Ayman 23.11., Vorlage assets/eingang_vorlage_ayman.jpg)
 gv, gf = [], []
@@ -1024,6 +1025,20 @@ viele_quader('Portal_Stufen', [(PX0 + 0.3, Y0 - 0.95, 0.0, PX1 - 0.3, Y0 - 0.6, 
 for i, x in enumerate((PX0 - 0.55, PX1 + 0.55)):
     quader(f'Portal_Kuebel{i}', x - 0.32, Y0 - 0.92, 0, x + 0.32, Y0 - 0.28, 0.62, BETON_HELL, 'S6_Aussen')
     kegel_thuja(f'Portal_Zypresse{i}', x, Y0 - 0.6, 0.58, 0.36, 1.75, seed=10 + i)
+# Zweites Portal ganz links (Chef/Ayman 24.11.: „genau gleiche Tür, copy paste“): alle Portal-Teile um −PORTAL_X verschoben (Name + „_L“),
+# dazu die beiden Wandleuchten-Lichter an den Pfeilern
+for _o in [o for o in bpy.data.objects if o.name.startswith('Portal_') and o.type == 'MESH']:
+    _me = _o.data.copy(); _me.name = _o.data.name + '_L'
+    for _v in _me.vertices:
+        _v.co.x -= PORTAL_X
+    _n = bpy.data.objects.new(_o.name + '_L', _me)
+    for _c in _o.users_collection:
+        _c.objects.link(_n)
+for _o in [o for o in bpy.data.objects if o.type == 'LIGHT' and o.name.startswith(('Wandlicht_0_', 'Wandlicht_1_'))]:
+    _n = _o.copy(); _n.data = _o.data.copy(); _n.name = 'Wandlicht_P' + _o.name[len('Wandlicht_'):]
+    _n.location.x -= PORTAL_X
+    for _c in _o.users_collection:
+        _c.objects.link(_n)
 # rechte Seite mit Natursteinplatten statt Putz
 # Rückseite zum Hof: Fenster, Vordach über der Hoftür
 fen = []
