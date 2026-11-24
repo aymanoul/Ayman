@@ -46,7 +46,101 @@ Higgsfield hat von sich aus 2 kleine Überwachungskameras an die Fassade gesetzt
 bc0d001a… (1), edbbf0e0… (2), 3dd6afe8… (3), 3a562533… (4).
 Netz: `upload.higgsfield.ai` und `d8j0ntlcm91z4.cloudfront.net` mussten in der Umgebung freigegeben werden (Hochladen/Herunterladen).
 
-## Nächster Schritt: Video fotorealistisch (Ayman 20.11., entschieden, aber NOCH NICHT starten)
+## NEUER PLAN (24.11.): Video 72 s, 16:9 → fotorealistisch mit Higgsfield
+**Status: nur Plan. Start NUR nach Aymans ausdrücklichem „los“ (er braucht vorher das Go seines Chefs). Kosten vor jedem Auftrag nennen.**
+Die 4 Bilder vom 20.11. (`out/higgsfield/echt/*`) werden NICHT mehr benutzt: alte Fassade, nur 1 Portal, Palme, alter (niedriger) Altbau.
+
+### Ablauf (4 Schritte, jeder mit Aymans Freigabe)
+| Schritt | Was | Werkzeug | Credits |
+|---|---|---|---|
+| 0 | 4 neue Standbilder 16:9 aus dem fertigen Blender-Modell: (A) Front mit beiden Portalen + Altbau, (B) Keller-Festsaal, (C) Hof mit Glaswand, (D) Parkplatz mit 4 Autos, Wohnwagen, Tor | Blender (Claude) | 0 |
+| 1 | Daraus 4 Fotos (je 1 Bild, 2k, 16:9) = **Probe**: zeigt, ob Higgsfield etwas dazudichtet/weglässt. Ayman prüft jedes Bild. | Nano Banana 2.1 | 4 × 2 = **8** |
+| 2 | Video-Edit in 3 Teilen à 24 s (0–24, 24–48, 48–72 s = genau unsere Kamera-Schnitte → keine Sprünge an den Nahtstellen), 720p, 16:9, ohne Ton; nach jedem Teil Kontrolle, erst dann der nächste | Seedance 2.5 `video_edit` | 3 × 24 s × 7,5 = **540** |
+| 3 | Teile zusammensetzen, auf 1920×1080 hochrechnen, ohne Ton (Ayman 24.11.), Bild-für-Bild-Kontrolle | Claude | 0 |
+**Gesamt 548 von max. 550 Credits.** Preise vom letzten Stand (Seedance 7,5 Credits/s bei 720p, max. 30 s je Auftrag; Nano Banana 2 Credits/Bild) –
+direkt vor dem Start mit der Higgsfield-Kostenschätzung neu prüfen. Ein misslungener Teil neu = +180 Credits → über Budget → nur mit Aymans Freigabe.
+
+### Was hochgeladen wird (sonst nichts – keine fremden Bilder)
+- Schritt 1: je Foto genau 1 Blender-Standbild aus Schritt 0 (Vorlage für Form und Bildausschnitt).
+- Schritt 2 je Teil: `video_references` = der 24-s-Ausschnitt aus unserem fertigen Video `out/neubau_drohne.mp4` (ohne Ton);
+  `image_references` = die 4 von Ayman freigegebenen Fotos aus Schritt 1, **nur als Look-Vorlage** (Materialien, Licht).
+
+### Schutz gegen Dazudichten / Umdeuten / Weglassen
+1. **Video-Edit statt Neu-Erfinden:** Kamera, Formen, Positionen und Timing kommen 1:1 aus unserem Video.
+2. **Inventarliste je Teil** (was wann zu sehen ist) → nichts wird ausgelassen (2 Portale, Hofdach fährt, Autos parken, Tor …).
+3. **Verbotsliste** in jedem Prompt (Menschen, Gesichter, Tiere, jede Schrift inkl. Kennzeichen/Kalligrafie, Logos, Schilder, Kameras, Kuppel/Minarett, Fahnen, zusätzliche Autos/Pflanzen/Lampen/Gebäude, Musik).
+4. **Bauphase ausdrücklich beschrieben** (Teil 1), damit das fertige Gebäude nicht zu früh erscheint.
+5. **Probe mit den 4 Fotos** (8 Credits) vor dem teuren Video; letztes Mal hat Higgsfield 2 Überwachungskameras erfunden → jetzt ausdrücklich verboten.
+6. **Kontrolle nach jedem Teil** (Kontaktbogen + Ausschnitte vergrößert, Vergleich mit dem Blender-Video Bild für Bild). Bei Fehlern: Prompt für die nächsten Teile schärfen.
+7. **Kennzeichen** sind im Modell leer. Erfindet Higgsfield trotzdem Zeichen → Claude macht sie unkenntlich oder ersetzt die Stelle durch das Blender-Bild. Kein KI-Text im Endvideo.
+Ehrlich: 100 % Garantie gibt es bei KI nicht; Kleinigkeiten (Zahl der Stühle, Fensterteilung) können leicht abweichen → deshalb Probe + Kontrolle.
+
+### Prompts Schritt 1 (Fotos) – gemeinsamer Teil
+> Turn this 3D render into a real architectural photograph. Keep the exact camera angle, framing, composition, every building,
+> shape, proportion, window, door, plant, piece of furniture and vehicle exactly as in the reference image – same number, same
+> position, same colour. Do not add, remove or reinterpret anything. Change only materials, lighting and realism: real
+> textures, natural late-afternoon light, soft realistic shadows and reflections, realistic sky, sharp detail, full-frame camera.
+> Strictly no people, no faces, no animals, no text, no letters, no numbers, no calligraphy, no signs, no logos, no brand
+> badges, no watermark, no characters on licence plates (plates stay blank), no surveillance cameras, no domes, no minarets,
+> no flags, no extra lamps, plants, cars or buildings.
+
+Zusatz je Bild: (A) „New mosque façade between an old cream-plastered house (left) and a warehouse: two identical portals of light
+beige limestone with a round arch and a tall round-arched glass door, a glass curtain wall with slim black mullions between them,
+warm LED light lines, thujas in planters.“ (B) „Empty basement multipurpose hall, no people: white marble floor, white ceiling with
+cove lighting and ring pendants, white columns with dark brown wood cladding, dark brown wood wall panelling, round tables with
+white tablecloths and dark brown runners, upholstered dark wooden chairs, a silver Moroccan teapot with coloured tea glasses on
+each table.“ (C) „Private courtyard: teak tables and armchairs, lounge, black lanterns, white octagonal umbrellas, olive trees in
+light-grey planters, thujas, warm wall lights, large glass wall into the prayer hall with red carpet.“ (D) „Parking next to the
+mosque: four generic cars without badges (white car, black SUV, grey compact car, black sports car), seven plain white caravans, black
+three-leaf sliding gate, thujas and lights along the walls.“
+
+### Prompt Schritt 2 (Video) – gemeinsamer Teil (an jeden Teil angehängt)
+> Restyle this video into a photorealistic real-world video, as if filmed with a high-end cinema drone camera. The source video
+> is the master and must be followed exactly, frame by frame: keep the exact camera path, angles, lens, speed, cuts and timing;
+> keep every building, wall, window, door, roof, fence, gate, tree, plant, piece of furniture and vehicle exactly as it is – same
+> shape, position, size, number, colour and timing. Do not remove, merge, replace or reinterpret anything, and do not add
+> anything that is not in the source video. Change only the look: real materials, realistic light, shadows, reflections, sky and
+> fine photographic detail. Keep the time of day and every lighting change of the source (late-afternoon sun; façade and
+> interior lights switch on exactly when they do in the source). The reference images show only the photographic look and
+> materials of the finished buildings – use them for style, never for content or timing.
+> Materials: two entrance portals of light beige natural limestone with a round arch and a tall round-arched glass door with
+> black frames and a small wall lamp on each side; glass curtain wall with slim black aluminium mullions; thin warm LED light
+> lines; flat roof with light parapet; plain red prayer carpet with thin light lines (no pattern, no writing); to the left the
+> old mosque – a cream-plastered house with white window frames and a grey slate roof with roof windows and a chimney;
+> warehouse with grey slate roof and roof windows; small annex with orange clay tiles; elevated motorway with green noise
+> barrier; dark asphalt with white lines.
+> Strictly forbidden: people, faces, figures, animals, birds; any text, letters, numbers, calligraphy, inscriptions, signs,
+> logos, brand badges, watermarks or characters on licence plates (plates stay completely blank); domes, minarets, crescents,
+> flags, surveillance cameras, satellite dishes, antennas; extra lamps, plants, vehicles or buildings. No sound, no music.
+
+**Teil 1 (0–24 s, eine durchgehende Drohnenfahrt):**
+> Content in order: high above the empty flat plot between the old cream house and the warehouse, the camera descends; then a
+> construction timelapse: excavation pit with timber shoring, basement concrete walls and columns, ground-floor slab, glass
+> façade, the two stone portals (far left and far right of the façade), upper floor, flat roof, green roof with rows of tilted
+> dark-blue solar panels; a white retractable fabric roof over the courtyard appears complete (it is not built), slides closed
+> and opens again; the seven white caravans and two black cars are gently set down onto their spaces (they are not built); at the end the lights switch on. Every part
+> appears exactly when it appears in the source – never show the finished building earlier.
+
+**Teil 2 (24–48 s):**
+> 0–5.5 s: eye-level walk along the lane towards the right entrance portal, looking up at the stone arch; glass façade, thujas,
+> lamps. 5.5–11.5 s: the empty basement multipurpose hall (no people): glossy white marble floor with light grey veining, white
+> ceiling with recessed lights, cove lighting and ring pendants, white columns with dark brown wood cladding, dark brown wood
+> wall panelling, round tables with white tablecloths and dark brown runners, upholstered dark wooden chairs, a silver Moroccan
+> teapot with small coloured tea glasses on each table, a screen and a lectern at the back wall. 11.5–24 s: low flight over the
+> parapet along the rows of tilted solar panels on a green roof with grasses and small plants, then over the edge down into
+> the courtyard.
+
+**Teil 3 (48–72 s):**
+> 0–6.5 s: seated eye-level view in the courtyard looking around: teak tables and armchairs, lounge with dark cushions, black
+> lanterns, white octagonal umbrellas, olive trees in light-grey square planters, thujas and box balls along light rendered
+> walls with warm wall lights, light stone paving; it ends looking through the large glass wall into the prayer hall (red
+> carpet, mihrab arch). 6.5–13 s: the camera rises vertically out of the courtyard and glides to the rear corner of the parking
+> area. 11.4–16.8 s: a white car drives in from the lane and parks forwards in the first space next to the glass side wall;
+> 13.4–19.2 s: a grey compact car parks in the third space; a black SUV and a black sports car are already parked; all four cars are
+> generic, without badges, with blank plates. 18.5–24 s: the camera lifts; the black three-leaf sliding gate in front of the
+> seven white caravans opens and closes again while a small warning light flashes; final high oblique view over the whole plot.
+
+## (ÜBERHOLT) Alter Video-Plan vom 20.11. – 9:16, 60 s – gilt NICHT mehr, siehe neuer Plan oben
 Ayman: „ganzes Video 720p, aber erst wenn das Video fertig gerendert ist und ich es mir angeguckt habe“.
 Plan: Seedance 2.5 (`seedance_2_5`), mode `video_edit`, 720p, 9:16, `generate_audio: false` (keine Musik), 2 Teile à 30 s
 (0–30 s, 30–60 s) aus `out/neubau_drohne.mp4`, die 4 Bilder `out/higgsfield/echt/*` als image_references für den Look.
