@@ -226,3 +226,18 @@ Stil-Referenzbilder = 548), kein Puffer; (b) 60 s = 2 × 30 s = 450 Credits, 100
    Logos/Kennzeichen leer, Gründach + aufgeständerte PV, Thujen/Lichter, orangener Anbau …), nennt die genauen Kosten, Ayman bestätigt.
 6. Higgsfield Seedance 2.5 video_edit 720p in Teilen (≤ 30 s), keine Musik, kein Text.
 7. Claude schneidet die Teile zusammen, skaliert auf 1080×1920, eigener Ton (keine Musik), prüft und schickt das Endvideo.
+
+## VIDEO 72 s, 16:9 QUER (Ayman 24.11.) – Render gestartet auf Aymans Befehl („dann rendern“), OHNE Higgsfield
+**Format: 16:9 Querformat (1280×720 gerendert → 1920×1080).** Higgsfield erst nach Aymans ausdrücklichem Go (er braucht vorher das Go seines Chefs).
+Ablauf (Schnitte bei 24 s und 48 s = Higgsfield-Teilgrenzen):
+- 0–24 s `Drohne_B`: von oben herab zum Eingang, dann Bau-Zeitraffer im Bogen (alte Bauzeiten 3,4–44 s per R() auf 3,4–24 s gestaucht);
+  Hofdach erscheint fertig (nicht aufgebaut), fährt 18,9–19,8 zu und 20,1–21,0 wieder auf; Lichter an 21,5–23 s.
+- 24–29,5 s `Rundgang_1`: in Augenhöhe auf der Gasse auf den Eingang zu, Blick staunend den Bogen hinauf (18 mm).
+- 29,5–35,5 s Keller: langsame Fahrt durch den Mehrzweckraum (tools/keller_clip.py aus festsaal.blend).
+- 35,5–48 s: über der Attika, tief zwischen den Solarreihen entlang, dann durch das offene Hofdach in den Hof.
+- 48–54,5 s `Rundgang_2`: sitzend am Teaktisch, Blick schweift über Lounge, Schirme, Oliven bis durch die Glaswand in die Moschee.
+- 54,5–61 s: steigt senkrecht aus dem Hof, schwebt zur hinteren Parkplatz-Ecke; 61–66,5 s Eckblick (Glaswand, Thujen, Eingang),
+  weißes Auto parkt 59,4–64,8, graues 61,4–67,2 ein; 66,5–72 s hebt ab, Schiebetor öffnet/schließt, Schluss schräg über das Grundstück.
+Neu gebaut: Kameras mit Brennweiten-Animation, Zeitmarken-Schnitte (`kamera_wechsel` in der Szene, animatic.py schaltet je Bild),
+Deckenleuchten erst mit der Dachplatte (schwebten), PV-Streben korrigiert, ton.py 72 s. Rendern: `sh tools/endfassung_weiter.sh`
+(Keller-Clip zuerst, dann animatic, dann Zusammenbau). ~2160 Bilder, geschätzt 12–15 h.
