@@ -65,7 +65,7 @@ Weiß = **Audi A3 Sportback** (`assets/autos/auto_weiss_audi_a3.png`), schwarzer
 grau = **Mercedes A-Klasse** (`auto_grau_mercedes_a_klasse.png`), schwarz sportlich = **VW Golf R** (`auto_schwarz_sport_vw_golf_r.png`).
 Reihenfolge von der Gasse: Audi (parkt ein), T-Roc (steht), Mercedes (parkt ein), Golf R (steht). Marken-Logos und Modell-Schriftzüge
 wie in den Vorlagen; **Kennzeichen bleiben leer** (in den Vorlagen grau); sonst nirgends Text. Die 4 Vorlagen werden zusätzlich als
-Bild-Referenz hochgeladen (Foto D und Video-Teil 3, in Teil 1 die zwei schwarzen). Vor dem Start prüfen, wie viele Bild-Referenzen
+Bild-Referenz hochgeladen (Foto D und Video-Teil 3, in Teil 1 nur die zwei schwarzen – Teil 1 bekommt keine Fotos vom fertigen Gebäude). Vor dem Start prüfen, wie viele Bild-Referenzen
 Seedance je Auftrag annimmt; falls zu wenige: Auto-Vorlagen haben Vorrang vor den Look-Fotos, die nichts mit dem Teil zu tun haben.
 
 ### Was hochgeladen wird (sonst nichts – keine fremden Bilder)
@@ -73,6 +73,15 @@ Seedance je Auftrag annimmt; falls zu wenige: Auto-Vorlagen haben Vorrang vor de
 - Schritt 2 je Teil: `video_references` = der 24-s-Ausschnitt aus unserem fertigen Video `out/neubau_drohne.mp4` (ohne Ton);
   `image_references` = die 4 von Ayman freigegebenen Fotos aus Schritt 1, **nur als Look-Vorlage** (Materialien, Licht),
   plus die Auto-Vorlagen von Ayman (`assets/autos/auto_*_{audi_a3,vw_t_roc,mercedes_a_klasse,vw_golf_r}.png`) für die Autos.
+
+### Ayman 24.11. (wichtig)
+- **Nichts überspringen:** Higgsfield darf nicht direkt zum fertigen Gebäude/Standbild springen. Deshalb bekommt **Teil 1 (Bauphase)
+  KEINE Fotos vom fertigen Gebäude** als Referenz – nur unser Video (+ die 2 schwarzen Auto-Vorlagen); der Look kommt dort nur über
+  den Prompt-Text. Im Prompt zusätzlich: jede Zwischenstufe in gleicher Reihenfolge und Zeit, nie zum Endzustand springen.
+  Kontrolle: Bilder von Higgsfield-Teil 1 im Sekundenabstand neben unser Video legen.
+- **Lichter an, gemütlich:** Hof (Wandlichter, Laternen, Lichtlinien), beide Eingänge, Parkplatz neben den Thujas/Pflanzen – warm (~2700 K),
+  Stimmung goldene Stunde bis frühe Dämmerung, sobald im Video die Lichter angehen.
+- **Echt, aber sauber und ordentlich:** neu, gepflegt; kein Dreck, Flecken, Müll, Pfützen, Risse, Graffiti, Rost, Laub.
 
 ### Schutz gegen Dazudichten / Umdeuten / Weglassen
 1. **Video-Edit statt Neu-Erfinden:** Kamera, Formen, Positionen und Timing kommen 1:1 aus unserem Video.
@@ -112,7 +121,15 @@ three-leaf sliding gate, thujas and lights along the walls.“
 > anything that is not in the source video. Change only the look: real materials, realistic light, shadows, reflections, sky and
 > fine photographic detail. Keep the time of day and every lighting change of the source (late-afternoon sun; façade and
 > interior lights switch on exactly when they do in the source). The reference images show only the photographic look and
-> materials of the finished buildings – use them for style, never for content or timing.
+> materials of the finished buildings – use them for style, never for content or timing. Never jump to the finished state shown
+> in the reference images and never skip, shorten or merge any stage or moment of the source video: every intermediate frame of
+> the source must appear in the result in the same order and at the same time.
+> Mood: brand-new, clean, tidy and orderly – realistic but immaculate: no dirt, stains, litter, puddles, cracks, graffiti,
+> weathering, rust or fallen leaves (during the construction stages a clean, well-organised building site). Once the lights are
+> on, every light of the source is clearly on with a warm, cosy glow (about 2700 K): the wall lights, lanterns and light lines in
+> the courtyard, the lamps at both entrance portals and the façade light lines, the spotlights and wall lights at the parking
+> area next to the thujas and plants, and the warm interior light behind the glass – inviting and cosy like a calm evening
+> gathering place, in a soft golden-hour to early-dusk atmosphere.
 > Materials: two entrance portals of light beige natural limestone with a round arch and a tall round-arched glass door with
 > black frames and a small wall lamp on each side; glass curtain wall with slim black aluminium mullions; thin warm LED light
 > lines; flat roof with light parapet; plain red prayer carpet with thin light lines (no pattern, no writing); to the left the
