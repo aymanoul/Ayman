@@ -74,6 +74,15 @@ Seedance je Auftrag annimmt; falls zu wenige: Auto-Vorlagen haben Vorrang vor de
   `image_references` = die 4 von Ayman freigegebenen Fotos aus Schritt 1, **nur als Look-Vorlage** (Materialien, Licht),
   plus die Auto-Vorlagen von Ayman (`assets/autos/auto_*_{audi_a3,vw_t_roc,mercedes_a_klasse,vw_golf_r}.png`) für die Autos.
 
+### Ergebnis Schritt 0+1 (24.11., Ayman: „Fotos erstellen, noch kein Video“) – 8 Credits, Guthaben vorher 996,5
+Vorlagen (Blender, Bild 2019, Lichter an): `out/higgsfield/v2/A_front|B_keller|C_hof|D_parken.png`. Modell Nano Banana 2.1, 2k, thinking high, 16:9.
+Ergebnis `out/higgsfield/echt_v2/*_echt.jpg` (2752×1536). Geprüft: Bildaufbau gleich, keine Menschen, kein Text; Autos mit Original-Logos
+(Audi-Ringe, VW, Mercedes-Stern), Kennzeichen leer; T-Roc-Schriftzug leicht verwaschen; Wohnwagen ohne Schriftzug (Vorlage hatte Fantasie-Marke „NORDWIND“).
+Higgsfield-Medien (für das Video wiederverwendbar, Upload-Links 24 h): Audi a490909b-72c1-4983-93b9-dba5689c23b5, T-Roc e5ed9391-4a3b-4a41-afd0-59c401f9c898,
+Mercedes 194e1096-5a93-49de-b0c1-0eaaab3fc4cd, Golf R 0606fd69-4f5e-4d0d-bb6e-2230d923be60, Wohnwagen d59516ea-2e53-40ef-8f19-f56efb288a0e;
+Foto-Jobs (als Look-Referenz nutzbar): A c3477069-d9cd-4e3b-bb6c-fc745d250033, B b9edbbba-9a93-463b-b6fe-48d8c78d2ae3,
+C b8e7f201-f1af-486b-949b-caeba609e358, D 75c4db07-7b34-47a3-a5ea-420640604161.
+
 ### Ayman 24.11. (wichtig)
 - **Nichts überspringen:** Higgsfield darf nicht direkt zum fertigen Gebäude/Standbild springen. Deshalb bekommt **Teil 1 (Bauphase)
   KEINE Fotos vom fertigen Gebäude** als Referenz – nur unser Video (+ die 2 schwarzen Auto-Vorlagen); der Look kommt dort nur über
